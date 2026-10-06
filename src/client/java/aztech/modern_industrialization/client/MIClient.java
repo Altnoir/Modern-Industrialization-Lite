@@ -38,6 +38,7 @@ import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelToolti
 import aztech.modern_industrialization.client.blocks.storage.barrel.DeferredBarrelTextRenderer;
 import aztech.modern_industrialization.client.blocks.storage.tank.TankRenderer;
 import aztech.modern_industrialization.client.datagen.MIDatagenClient;
+import aztech.modern_industrialization.client.fluid.MIFluidTypeClient;
 import aztech.modern_industrialization.client.items.SteamDrillHighlight;
 import aztech.modern_industrialization.client.items.SteamDrillTooltipComponent;
 import aztech.modern_industrialization.client.items.armor.ClientKeyHandler;
@@ -120,6 +121,7 @@ public class MIClient {
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 
         MIShaders.init(modBus);
+        modBus.addListener(MIFluidTypeClient::register);
 
         NeoForge.EVENT_BUS.addListener(SteamDrillHighlight::onBlockHighlight);
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);
