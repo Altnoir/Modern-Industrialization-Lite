@@ -53,7 +53,6 @@ import aztech.modern_industrialization.client.machines.models.UseBlockModelUnbak
 import aztech.modern_industrialization.client.machines.multiblocks.MultiblockHighlight;
 import aztech.modern_industrialization.client.machines.multiblocks.MultiblockMachineBER;
 import aztech.modern_industrialization.client.machines.multiblocks.MultiblockTankBER;
-import aztech.modern_industrialization.client.misc.VersionEvents;
 import aztech.modern_industrialization.config.MIClientConfig;
 import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.datagen.MIDatagenServer;
@@ -125,7 +124,6 @@ public class MIClient {
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);
         DeferredBarrelTextRenderer.init();
         MultiblockHighlight.init();
-        VersionEvents.init(ModLoadingContext.get().getActiveContainer());
 
         NeoForge.EVENT_BUS.addListener(RenderFrameEvent.Pre.class, event -> {
             JetpackParticleAdder.addJetpackParticles(Minecraft.getInstance());

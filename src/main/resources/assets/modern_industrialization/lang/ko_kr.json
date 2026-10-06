@@ -1111,7 +1111,6 @@
   "text.modern_industrialization.Neutrons": "%d 중성자",
   "text.modern_industrialization.NeutronsMultiplication": "최대 %s개의 중성자를 방출",
   "text.modern_industrialization.NeutronsRate": "%s 중성자/t",
-  "text.modern_industrialization.NewVersion": "새 버전 Modern Industrialization (%s)이 %s에서 사용 가능합니다!",
   "text.modern_industrialization.NoEmi": "경고: Modern Industrialization을 플레이하기 위해 EMI(아이템 및 레시피 뷰어)를 사용하는 것을 강력 권장합니다. 그렇지 않으면 게임 내에서 레시피를 볼 수 없고, 충돌하는 기계 레시피를 처리할 수 없습니다. Just Enough Items과 Roughly Enough Items 또한 지원합니다. 이 메시지는 설정에서 비활성화할 수 있습니다.",
   "text.modern_industrialization.NuclearFuelEfficiencyTooltip": "생산량 %s/연료 소비량 %s",
   "text.modern_industrialization.NuclearFuelMode": "핵연료",

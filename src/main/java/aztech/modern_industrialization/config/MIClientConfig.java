@@ -38,7 +38,6 @@ public final class MIClientConfig {
     }
 
     public final ModConfigSpec.BooleanValue missingRecipeViewerMessage;
-    public final ModConfigSpec.BooleanValue newVersionMessage;
 
     public final ModConfigSpec.IntValue armorHudYPosition;
     public final ModConfigSpec.BooleanValue barrelContentRendering;
@@ -56,10 +55,6 @@ public final class MIClientConfig {
                 "Missing recipe viewer message",
                 "Enable login message when EMI, JEI and REI are all missing.")
                 .define("missingRecipeViewerMessage", true);
-        this.newVersionMessage = builder.start("newVersionMessage",
-                "New version message",
-                "Display when a new version is available")
-                .define("newVersionMessage", true);
         builder.popSection();
 
         builder.pushSection("rendering", "Rendering");
