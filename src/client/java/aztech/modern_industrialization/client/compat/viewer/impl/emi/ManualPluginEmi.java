@@ -43,7 +43,9 @@ public class ManualPluginEmi implements EmiPlugin {
         // We need a generic one because we want any subclass of MIHandledScreen
         registry.addGenericDragDropHandler(new MIDragDropHandler());
 
-        // TODO: click area?
+        // Clicking the machine progress bar displays the machine's recipes, like the JEI and REI plugins do.
+        MachineClickAreaEmi.init();
+
         registry.addStackProvider(MachineScreen.class, new MachineStackProvider());
         registry.addExclusionArea(MachineScreen.class, (screen, bounds) -> {
             screen.getExtraBoxes().forEach(r -> bounds.accept(new Bounds(r.x(), r.y(), r.w(), r.h())));

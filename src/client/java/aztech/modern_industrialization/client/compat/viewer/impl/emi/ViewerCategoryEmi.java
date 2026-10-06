@@ -56,6 +56,13 @@ import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jspecify.annotations.Nullable;
 
 class ViewerCategoryEmi<D> extends EmiRecipeCategory {
+    /**
+     * Maps a {@link ViewerCategory} id (the same id MI stores in
+     * {@link aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes}) to the EMI category, so that
+     * clicking a machine progress bar can display the matching recipes in EMI's sidebar.
+     */
+    static final java.util.Map<ResourceLocation, EmiRecipeCategory> BY_ID = new java.util.HashMap<>();
+
     public final ViewerCategory<D> wrapped;
 
     public ViewerCategoryEmi(ViewerCategory<D> category) {
@@ -68,6 +75,7 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
         });
 
         this.wrapped = category;
+        BY_ID.put(category.id, this);
     }
 
     @Override

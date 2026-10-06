@@ -64,6 +64,7 @@ public enum MIText {
     ClickToDisable("Click to disable"),
     ClickToEnable("Click to enable"),
     ClickToSwitch("Click to switch to %s"),
+    ClickToSeeRecipes("Click to see recipes"),
     ClickToToggleBlacklist("Click to enable blacklist mode"),
     ClickToToggleWhitelist("Click to enable whitelist mode"),
     ConfigCardApplied("Applied pipe settings from Config Card"),
