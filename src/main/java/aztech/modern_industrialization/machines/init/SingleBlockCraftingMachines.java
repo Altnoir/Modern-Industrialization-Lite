@@ -84,8 +84,6 @@ public final class SingleBlockCraftingMachines {
         );
         registerMachineTiers(
                 "Cutting Machine", "cutting_machine", MIMachineRecipeTypes.CUTTING_MACHINE, 1, 1, 0, 0, guiParams -> {},
-                // The machine screen is re-centred now that the fluid slot is gone, but the recipe viewer keeps
-                // its original layout.
                 new ProgressBar.Params(79, 31, "slice"), new ProgressBar.Params(88, 31, "slice"),
                 new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
                 items -> items.addSlot(56, 35).addSlot(102, 35), fluids -> {},
@@ -269,11 +267,16 @@ public final class SingleBlockCraftingMachines {
                         items.sublist(itemInputCount, itemInputCount + itemOutputCount),
                         fluids.sublist(0, fluidInputCount), fluids.sublist(fluidInputCount, fluidInputCount + fluidOutputCount), viewerProgressBarParams,
                         null, null, false, SteamMode.BOTH),
-                tiers);
+                tiers, guiProgressBarParams);
     }
 
+    /**
+     * @param clickAreaProgressBarParams where the clickable area of a machine screen is placed. This must follow the
+     *                                   progress bar that the screen actually draws, so that hovering over the visible
+     *                                   bar opens the recipe.
+     */
     private static void registerReiTiers(String englishName, String machine, MachineRecipeType recipeType, MachineCategoryParams categoryParams,
-            int tiers) {
+            int tiers, ProgressBar.Params clickAreaProgressBarParams) {
         List<MachineCategoryParams> previousCategories = new ArrayList<>();
         int previousMaxEu = 0;
         for (int i = 0; i < 3; ++i) {
@@ -291,7 +294,7 @@ public final class SingleBlockCraftingMachines {
                         recipeType, recipe -> minEu <= recipe.eu && recipe.eu <= maxEu, false,
                         i < 2 ? SteamMode.BOTH : SteamMode.ELECTRIC_ONLY);
                 ReiMachineRecipes.registerCategory(MI.id(itemId), category);
-                ReiMachineRecipes.registerMachineClickArea(MI.id(itemId), categoryParams.progressBarParams.toRectangle());
+                ReiMachineRecipes.registerMachineClickArea(MI.id(itemId), clickAreaProgressBarParams.toRectangle());
                 previousCategories.add(category);
                 for (MachineCategoryParams param : previousCategories) {
                     param.workstations.add(MI.id(itemId));
