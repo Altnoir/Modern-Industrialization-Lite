@@ -1,0 +1,4 @@
+{
+  "block": "minecraft:bricks",
+  "loader": "milite:use_block_model"
+}

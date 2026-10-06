@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:aluminum_blade"
+    },
+    "R": {
+      "item": "milite:aluminum_ring"
+    },
+    "b": {
+      "item": "milite:aluminum_bolt"
+    }
+  },
+  "pattern": [
+    "bBb",
+    "BRB",
+    "bBb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_rotor"
+  }
+}

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -61,7 +62,7 @@ public class ProgressBar implements GuiComponentServer<ProgressBar.Params, Float
 
     /**
      * @param progressBarType The real path will be
-     *                        {@code modern_industrialization:textures/gui/progress_bar/<progressBarType>.png}.
+     *                        {@code milite:textures/gui/progress_bar/<progressBarType>.png}.
      *                        Must have a size of width x 2*height.
      */
     public record Params(int renderX, int renderY, String progressBarType, int width, int height, boolean isVertical) {

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:titanium_blade"
+    },
+    "R": {
+      "item": "milite:titanium_ring"
+    },
+    "b": {
+      "item": "milite:titanium_bolt"
+    }
+  },
+  "pattern": [
+    "bBb",
+    "BRB",
+    "bBb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:titanium_rotor"
+  }
+}

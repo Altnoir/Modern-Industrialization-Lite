@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:aluminum_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:hv_energy_output_hatch"
+    }
+  ]
+}

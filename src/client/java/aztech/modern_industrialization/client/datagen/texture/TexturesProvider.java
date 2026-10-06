@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -81,7 +82,7 @@ public record TexturesProvider(PackOutput packOutput, ExistingFileHelper existin
                     ModList.get().getModFileById(MI.ID).getFile().getSecureJar().getRootPath()));
 
             // extra_datagen_resources folder
-            var extra = FMLPaths.GAMEDIR.get().resolve("modern_industrialization").resolve("extra_datagen_resources");
+            var extra = FMLPaths.GAMEDIR.get().resolve("milite").resolve("extra_datagen_resources");
             packs.add(new FastPathPackResources(makePackInfo("extra"), extra));
         } else {
             var nonGeneratedResources = packOutput.getOutputFolder().resolve("../../main/resources");

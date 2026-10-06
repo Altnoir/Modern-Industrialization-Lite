@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -114,10 +115,10 @@ public class MIMaterials {
         // init static
     }
 
-    public static final String commonPath = "modern_industrialization:textures/materialsets/common/";
-    public static final String templatePath = "modern_industrialization:textures/template/";
+    public static final String commonPath = "milite:textures/materialsets/common/";
+    public static final String templatePath = "milite:textures/template/";
     public static final String mcPath = "minecraft:textures/item/";
-    public static final String miPath = "modern_industrialization:textures/item/";
+    public static final String miPath = "milite:textures/item/";
 
     public static String common(String name) {
         return commonPath + name + ".png";

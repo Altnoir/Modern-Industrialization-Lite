@@ -1,0 +1,21 @@
+{
+  "type": "milite:mixer",
+  "eu": 8,
+  "duration": 600,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:heavy_fuel",
+      "amount": 1000
+    },
+    {
+      "fluid": "milite:light_fuel",
+      "amount": 5000
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:diesel",
+      "amount": 6000
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:tin_blade"
+    },
+    "R": {
+      "item": "milite:tin_ring"
+    },
+    "b": {
+      "item": "milite:tin_bolt"
+    }
+  },
+  "pattern": [
+    "bBb",
+    "BRB",
+    "bBb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:tin_rotor"
+  }
+}

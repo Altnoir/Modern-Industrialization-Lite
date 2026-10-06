@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "pPp",
+    "PLP",
+    "pPp"
+  ],
+  "key": {
+    "P": {
+      "tag" : "c:plates/invar"
+    },
+    "L": {
+      "item" : "milite:stainless_steel_large_plate"
+    },
+    "p":{
+      "item" : "milite:advanced_pump"
+    }
+  },
+
+  "result": {
+    "id": "milite:small_heat_exchanger"
+  }
+}

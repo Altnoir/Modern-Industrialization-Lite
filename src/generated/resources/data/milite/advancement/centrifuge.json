@@ -1,0 +1,33 @@
+{
+  "parent": "milite:electronic_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:centrifuge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.centrifuge.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:centrifuge"
+    },
+    "title": {
+      "translate": "advancements.milite.centrifuge"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

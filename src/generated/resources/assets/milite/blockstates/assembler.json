@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/assembler"
+    }
+  }
+}

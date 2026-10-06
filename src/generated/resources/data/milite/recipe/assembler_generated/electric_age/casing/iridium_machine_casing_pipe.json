@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:plasma_handling_iridium_machine_casing"
+    },
+    {
+      "amount": 6,
+      "item": "milite:iridium_curved_plate"
+    },
+    {
+      "amount": 2,
+      "item": "milite:large_advanced_pump"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 2,
+      "item": "milite:iridium_machine_casing_pipe"
+    }
+  ]
+}

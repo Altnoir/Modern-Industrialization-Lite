@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    " R ",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "milite:steel_ring"
+    }
+  },
+  "result": {
+    "id": "minecraft:chain",
+    "count": 6
+  }
+}

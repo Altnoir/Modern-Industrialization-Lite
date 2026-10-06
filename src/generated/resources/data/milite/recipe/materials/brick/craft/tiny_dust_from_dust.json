@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:brick_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:brick_tiny_dust"
+  }
+}

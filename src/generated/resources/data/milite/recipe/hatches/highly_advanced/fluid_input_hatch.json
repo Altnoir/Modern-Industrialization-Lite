@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": {
+      "item": "milite:titanium_tank"
+    },
+    "V": {
+      "item": "milite:highly_advanced_machine_hull"
+    }
+  },
+  "pattern": [
+    "U",
+    "V"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:highly_advanced_fluid_input_hatch"
+  }
+}

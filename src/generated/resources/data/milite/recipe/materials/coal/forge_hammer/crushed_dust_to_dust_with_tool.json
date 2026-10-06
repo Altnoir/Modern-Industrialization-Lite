@@ -1,0 +1,12 @@
+{
+  "type": "milite:forge_hammer",
+  "count": 3,
+  "damage": 30,
+  "ingredient": {
+    "item": "milite:coal_crushed_dust"
+  },
+  "result": {
+    "count": 4,
+    "id": "milite:coal_dust"
+  }
+}

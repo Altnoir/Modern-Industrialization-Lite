@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -103,7 +104,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String shortEnglishKey() {
-        return "cable_tier_short.modern_industrialization." + name;
+        return "cable_tier_short.milite." + name;
     }
 
     public MutableComponent shortEnglishName() {
@@ -111,7 +112,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String longEnglishKey() {
-        return "cable_tier_long.modern_industrialization." + name;
+        return "cable_tier_long.milite." + name;
     }
 
     public MutableComponent longEnglishName() {

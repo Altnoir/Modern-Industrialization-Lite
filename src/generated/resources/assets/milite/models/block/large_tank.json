@@ -1,0 +1,10 @@
+{
+  "casing": "steel",
+  "default_overlays": {
+    "fluid_auto": "milite:block/overlays/fluid_auto",
+    "front": "milite:block/machines/large_tank/overlay_front",
+    "item_auto": "milite:block/overlays/item_auto",
+    "output": "milite:block/overlays/output"
+  },
+  "loader": "milite:machine"
+}

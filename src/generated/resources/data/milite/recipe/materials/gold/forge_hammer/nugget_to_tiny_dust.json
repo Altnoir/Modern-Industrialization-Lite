@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "tag": "c:nuggets/gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:gold_tiny_dust"
+  }
+}

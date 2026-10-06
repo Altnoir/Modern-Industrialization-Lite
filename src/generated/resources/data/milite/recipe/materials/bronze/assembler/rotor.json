@@ -1,0 +1,27 @@
+{
+  "type": "milite:assembler",
+  "duration": 100,
+  "eu": 2,
+  "fluid_inputs": [
+    {
+      "amount": 100,
+      "fluid": "milite:soldering_alloy"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:bronze_blade"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_ring"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:bronze_rotor"
+    }
+  ]
+}

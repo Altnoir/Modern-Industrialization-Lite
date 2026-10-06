@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 50,
+  "ingredient": {
+    "tag": "c:ores/tin"
+  },
+  "result": {
+    "count": 4,
+    "id": "milite:tin_dust"
+  }
+}

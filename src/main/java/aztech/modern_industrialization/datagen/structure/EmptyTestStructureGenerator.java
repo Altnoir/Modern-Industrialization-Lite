@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -50,7 +51,7 @@ public class EmptyTestStructureGenerator implements DataProvider {
     @Override
     public CompletableFuture<?> run(CachedOutput output) {
         String structureIn;
-        try (var in = getClass().getResourceAsStream("/data/modern_industrialization/structure/empty.snbt")) {
+        try (var in = getClass().getResourceAsStream("/data/milite/structure/empty.snbt")) {
             structureIn = new String(in.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new UncheckedIOException(e);

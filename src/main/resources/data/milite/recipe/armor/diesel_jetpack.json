@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "PtP",
+    "McM",
+    "R R"
+  ],
+  "key" : {
+    "P" : {
+      "item" : "milite:pump"
+    },
+    "M": {
+      "item" : "milite:motor"
+    },
+    "R" : {
+      "item" : "milite:aluminum_rotor"
+    },
+    "t" : {
+      "item" : "milite:aluminum_tank"
+    },
+    "c": {
+      "item" : "milite:analog_circuit"
+    }
+  },
+  "result": {
+    "id" : "milite:diesel_jetpack"
+  }
+}

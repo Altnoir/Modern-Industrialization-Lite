@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -85,7 +86,6 @@ public class MIFluids {
     public static final FluidDefinition HYDROGEN = fluid("Hydrogen", "hydrogen", 0xff1b4acc, true);
     public static final FluidDefinition LIGHT_FUEL = fluid("Light Fuel", "light_fuel", 0xffffe946, NEAR_OPACITY);
     public static final FluidDefinition LIQUID_AIR = fluid("Liquid Air", "liquid_air", 0xff76c7f9, MEDIUM_OPACITY);
-    public static final FluidDefinition LUBRICANT = fluid("Lubricant", "lubricant", 0xffffc400, FULL_OPACITY);
     public static final FluidDefinition MANGANESE_SULFURIC_SOLUTION = fluid("Manganese Sulfuric Solution", "manganese_sulfuric_solution", 0xffb96c3f, MEDIUM_OPACITY);
     public static final FluidDefinition METHANE = fluid("Methane", "methane", 0xffb740d9, true);
     public static final FluidDefinition MOLTEN_REDSTONE = fluid("Molten Redstone", "molten_redstone", 0xffac0c04, FULL_OPACITY);

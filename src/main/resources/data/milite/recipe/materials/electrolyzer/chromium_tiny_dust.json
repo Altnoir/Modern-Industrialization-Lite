@@ -1,0 +1,23 @@
+{
+  "type": "milite:electrolyzer",
+  "eu": 16,
+  "duration": 400,
+  "item_outputs" : [
+    {"item" :  "milite:chromium_tiny_dust",
+    "amount": 3}
+  ],
+  "fluid_inputs" : {
+    "fluid" : "milite:chromium_hydrochloric_solution",
+    "amount" : 1000
+  },
+  "fluid_outputs" : [{
+    "fluid" : "milite:hydrogen",
+    "amount": 450
+  },
+    {
+      "fluid" : "milite:chlorine",
+      "amount": 450
+    }
+  ]
+
+}

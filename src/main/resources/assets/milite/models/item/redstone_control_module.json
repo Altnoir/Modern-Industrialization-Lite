@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "milite:item/redstone_control_module_high"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "milite:redstone_control_module": 0.5
+      },
+      "model": "milite:item/redstone_control_module_low"
+    }
+  ]
+}

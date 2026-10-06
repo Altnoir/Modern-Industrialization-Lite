@@ -1,0 +1,25 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 10,
+  "duration": 140,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:ethylene",
+      "amount": 200
+    },
+    {
+      "fluid": "minecraft:water",
+      "amount": 200
+    },
+    {
+      "fluid": "milite:sulfuric_acid",
+      "amount": 35
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:ethanol",
+      "amount": 200
+    }
+  ]
+}

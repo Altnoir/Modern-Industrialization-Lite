@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 3,
+      "tag": "c:plates/aluminum"
+    },
+    {
+      "amount": 4,
+      "item": "milite:electrum_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit_board"
+    },
+    {
+      "amount": 1,
+      "item": "milite:redstone_battery"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electronic_circuit_board"
+    }
+  ]
+}

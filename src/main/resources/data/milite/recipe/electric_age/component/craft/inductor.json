@@ -1,0 +1,21 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "www",
+    "wrw",
+    "www"
+  ],
+  "key":
+  {
+    "r" : {
+      "tag" : "c:rods/steel"
+    },
+    "w" : {
+      "item" : "milite:copper_wire"
+    }
+  },
+
+  "result": {
+    "id": "milite:inductor"
+  }
+}

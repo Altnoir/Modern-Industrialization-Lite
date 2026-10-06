@@ -1,0 +1,27 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 10,
+  "duration": 280,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:ethanol",
+      "amount": 1000
+    }
+  ],
+  "item_inputs": [
+    {
+      "tag": "c:dusts/sulfur",
+      "amount": 1
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:ethylene",
+      "amount": 500
+    },
+    {
+      "fluid": "milite:sulfuric_acid",
+      "amount": 400
+    }
+  ]
+}

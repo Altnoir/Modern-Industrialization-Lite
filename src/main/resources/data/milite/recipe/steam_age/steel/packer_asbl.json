@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PGP",
+    "GCG",
+    "ppp"
+  ],
+  "key": {
+    "G": {
+      "tag": "c:gears/bronze"
+    },
+    "C": {
+      "item": "milite:steel_machine_casing"
+    },
+    "p": {
+      "item": "milite:bronze_curved_plate"
+    },
+    "P": {
+      "item": "milite:bronze_curved_plate"
+    }
+  },
+  "result": {
+    "id": "milite:steel_packer",
+    "count": 1
+  }
+}

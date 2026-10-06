@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -101,7 +102,7 @@ import org.slf4j.LoggerFactory;
 
 @Mod(MI.ID)
 public class MI {
-    public static final String ID = "modern_industrialization";
+    public static final String ID = "milite";
     public static final Logger LOGGER = LoggerFactory.getLogger("Modern Industrialization");
 
     public static ResourceLocation id(String path) {
@@ -247,12 +248,12 @@ public class MI {
                 event.addRepositorySource(consumer -> {
                     consumer.accept(new Pack(
                             new PackLocationInfo(
-                                    "modern_industrialization/generated",
+                                    "milite/generated",
                                     MIText.GeneratedResources.text(),
                                     PackSource.BUILT_IN,
                                     Optional.empty()),
                             BuiltInPackSource.fixedResources(new GeneratedPathPackResources(
-                                    FMLPaths.GAMEDIR.get().resolve("modern_industrialization/generated_resources"),
+                                    FMLPaths.GAMEDIR.get().resolve("milite/generated_resources"),
                                     event.getPackType())),
                             new Pack.Metadata(
                                     MIText.GeneratedResourcesDescription.text(),

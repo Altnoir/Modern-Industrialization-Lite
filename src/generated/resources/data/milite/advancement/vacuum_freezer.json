@@ -1,0 +1,34 @@
+{
+  "parent": "milite:electronic_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:vacuum_freezer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.vacuum_freezer.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "milite:vacuum_freezer"
+    },
+    "title": {
+      "translate": "advancements.milite.vacuum_freezer"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

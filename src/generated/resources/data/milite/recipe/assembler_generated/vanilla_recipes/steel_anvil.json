@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 3,
+      "item": "milite:steel_block"
+    },
+    {
+      "amount": 4,
+      "item": "milite:steel_ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 2,
+      "item": "minecraft:anvil"
+    }
+  ]
+}

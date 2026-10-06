@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:deepslate_lead_ore"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:lead_ore"
+  }
+}

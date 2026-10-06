@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    " c ",
+    "BCB",
+    "ppp"
+  ],
+  "key": {
+    "B" : {
+      "item" : "milite:cadmium_battery"
+    },
+    "c" : {
+      "item" : "milite:processing_unit"
+    },
+    "C" : {
+      "item" : "milite:highly_advanced_machine_casing"
+    },
+    "p" : {
+      "item" : "milite:annealed_copper_wire"
+    }
+  },
+  "result": {
+    "id": "milite:highly_advanced_machine_hull"
+  }
+}

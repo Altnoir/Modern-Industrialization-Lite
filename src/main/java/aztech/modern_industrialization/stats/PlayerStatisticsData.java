@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -71,7 +72,7 @@ public class PlayerStatisticsData extends SavedData {
         return tag;
     }
 
-    private static final String NAME = "modern_industrialization_player_stats";
+    private static final String NAME = "milite_player_stats";
     private static final Factory<PlayerStatisticsData> FACTORY = new Factory<>(PlayerStatisticsData::new, PlayerStatisticsData::new);
 
     public static PlayerStatisticsData get(MinecraftServer server) {

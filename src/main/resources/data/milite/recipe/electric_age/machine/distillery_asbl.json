@@ -1,0 +1,31 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "gfg",
+    "mHm",
+    "CpC"
+  ],
+  "key": {
+    "f": {
+      "tag" : "milite:fluid_pipes"
+    },
+    "m" : {
+      "item" : "milite:large_pump"
+    },
+    "H" :{
+      "item" : "milite:basic_machine_hull"
+    },
+    "g" : {
+      "tag" : "c:glass_blocks"
+    },
+    "C" : {
+      "item" : "milite:electronic_circuit"
+    },
+    "p": {
+      "item" : "milite:electrum_wire"
+    }
+  },
+  "result": {
+    "id": "milite:distillery"
+  }
+}

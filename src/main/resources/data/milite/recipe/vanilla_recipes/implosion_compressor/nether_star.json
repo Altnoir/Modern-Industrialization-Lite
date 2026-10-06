@@ -1,0 +1,27 @@
+{
+  "type": "milite:implosion_compressor",
+  "eu": 64,
+  "duration": 10,
+  "item_inputs": [
+    {
+      "item": "milite:singularity"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "amount": 64,
+      "item": "milite:nuke"
+    },
+    {
+      "amount": 64,
+      "item": "milite:nuke"
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "minecraft:nether_star"
+    }
+  ]
+}

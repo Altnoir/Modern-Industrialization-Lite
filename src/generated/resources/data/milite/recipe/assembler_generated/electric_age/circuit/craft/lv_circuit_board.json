@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:rubber_sheet"
+    },
+    {
+      "amount": 1,
+      "tag": "c:plates/copper"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit_board"
+    }
+  ]
+}

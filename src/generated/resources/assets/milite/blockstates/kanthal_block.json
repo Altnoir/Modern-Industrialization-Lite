@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/kanthal_block"
+    }
+  }
+}

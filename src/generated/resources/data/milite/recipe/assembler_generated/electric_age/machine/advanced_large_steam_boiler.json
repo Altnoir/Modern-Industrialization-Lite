@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:pump"
+    },
+    {
+      "amount": 2,
+      "item": "milite:electronic_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:large_steam_boiler"
+    },
+    {
+      "amount": 2,
+      "item": "milite:large_pump"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:advanced_large_steam_boiler"
+    }
+  ]
+}

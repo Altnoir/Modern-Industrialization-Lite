@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "CHC",
+    "pCp"
+  ],
+  "key": {
+    "C": {
+      "item": "milite:electronic_circuit"
+    },
+    "H": {
+      "item": "milite:advanced_machine_hull"
+    },
+    "P": {
+      "item": "milite:large_pump"
+    },
+    "p" : {
+      "item": "milite:aluminum_large_plate"
+    }
+  },
+  "result": {
+    "id": "milite:vacuum_freezer"
+  }
+}

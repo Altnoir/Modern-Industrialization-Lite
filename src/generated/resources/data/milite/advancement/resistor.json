@@ -1,0 +1,33 @@
+{
+  "parent": "milite:steel_wiremill",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:resistor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.resistor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:resistor"
+    },
+    "title": {
+      "translate": "advancements.milite.resistor"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

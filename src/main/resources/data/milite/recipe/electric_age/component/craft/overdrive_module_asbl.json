@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "wdw",
+    "tbt",
+    "wdw"
+  ],
+  "key": {
+    "d": {
+      "item": "milite:diode"
+    },
+    "t": {
+      "item": "milite:transistor"
+    },
+    "w": {
+      "item": "milite:electrum_fine_wire"
+    },
+    "b": {
+      "item": "milite:electronic_circuit_board"
+    }
+  },
+  "result": {
+    "id": "milite:overdrive_module"
+  }
+}
+

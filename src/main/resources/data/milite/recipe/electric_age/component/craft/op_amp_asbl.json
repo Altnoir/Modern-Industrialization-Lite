@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "rTT",
+    "rdr",
+    "rTT"
+    ],
+  "key": {
+    "r": {
+      "item" : "milite:resistor"
+    },
+    "T": {
+      "item" : "milite:transistor"
+    },
+    "d":{
+      "item" : "milite:diode"
+    }
+  },
+
+  "result": {
+    "id": "milite:op_amp"
+  }
+}

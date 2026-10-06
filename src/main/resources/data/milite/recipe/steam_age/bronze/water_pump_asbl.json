@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rTr",
+    "GCG",
+    "ppp"
+  ],
+  "key": {
+    "r": {
+      "item": "milite:copper_rotor"
+    },
+    "C": {
+      "item": "milite:bronze_machine_casing"
+    },
+    "p": {
+      "item": "milite:bronze_curved_plate"
+    },
+    "G": {
+      "tag": "c:gears/copper"
+    },
+    "T": {
+      "item": "milite:bronze_tank"
+    }
+  },
+  "result": {
+    "id": "milite:bronze_water_pump",
+    "count": 1
+  }
+}

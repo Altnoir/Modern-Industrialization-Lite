@@ -1,0 +1,17 @@
+{
+  "type": "milite:polarizer",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:rods/steel"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:steel_rod_magnetic"
+    }
+  ]
+}

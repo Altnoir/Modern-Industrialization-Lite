@@ -1,0 +1,22 @@
+{
+  "type": "milite:packer",
+  "duration": 800,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "item": "minecraft:diamond"
+    },
+    {
+      "amount": 1,
+      "item": "milite:packer_block_template",
+      "probability": 0.0
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "minecraft:diamond_block"
+    }
+  ]
+}

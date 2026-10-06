@@ -1,0 +1,21 @@
+{
+    "type": "milite:assembler",
+    "eu": 8,
+    "duration": 200,
+    "item_inputs": [
+        {
+            "item": "milite:copper_fine_wire",
+            "amount": 2
+        },
+        {
+            "tag": "c:dusts/coal",
+            "amount": 1
+        }
+    ],
+    "item_outputs": [
+        {
+            "item": "milite:resistor",
+            "amount": 12
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -89,10 +90,10 @@ public class AlloyRecipesProvider extends MIRecipesProvider {
 
         public void Build(RecipeOutput consumer) {
             MachineRecipeBuilder dusts = new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100);
-            dusts.addItemOutput("modern_industrialization:" + output + "_dust", totalAmount);
+            dusts.addItemOutput("milite:" + output + "_dust", totalAmount);
 
             MachineRecipeBuilder tinyDusts = new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100);
-            tinyDusts.addItemOutput("modern_industrialization:" + output + "_tiny_dust", totalAmount);
+            tinyDusts.addItemOutput("milite:" + output + "_tiny_dust", totalAmount);
 
             for (int i = 0; i < ingredients.size(); i++) {
                 int n = ingredientAmounts.get(i);

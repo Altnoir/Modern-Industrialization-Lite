@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:dusts/diamond"
+    },
+    {
+      "amount": 1,
+      "tag": "c:gears/invar"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:invar_rotary_blade"
+    }
+  ]
+}

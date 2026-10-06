@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -139,7 +140,7 @@ public enum MIText {
     FuelEfficiencyFluidNormal("Accepts fluid fuel at normal efficiency."),
     FuelEfficiencyItemNormal("Accepts item fuel at normal efficiency."),
     GeneratedResources("MI Generated Resources"),
-    GeneratedResourcesDescription("Resources from the modern_industrialization/generated_resources folder."),
+    GeneratedResourcesDescription("Resources from the milite/generated_resources folder."),
     GeneratorCurrentEu("Production: %s"),
     GeneratorMaxEu("Max Production: %s"),
     GravichestplateDisabled("Gravichestplate disabled!"),
@@ -165,7 +166,6 @@ public enum MIText {
     Locked("Locked"),
     LockingModeOff("Lock editing disabled"),
     LockingModeOn("Lock editing enabled"),
-    LubricantTooltip("%s on Electric Machine: consume %s mb for 1 efficiency tick"),
     MachineCasingVoltage("Allows machines to accept %s power"),
     MachineMultipleRecipes1("The inputs match more than one possible recipe."),
     MachineMultipleRecipes2("Lock all output slots with at least one locked to the desired output."),

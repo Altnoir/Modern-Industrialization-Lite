@@ -1,0 +1,33 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:motor"
+    },
+    {
+      "amount": 2,
+      "tag": "c:rods/steel"
+    },
+    {
+      "amount": 3,
+      "item": "milite:tin_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:piston"
+    },
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:robot_arm"
+    }
+  ]
+}

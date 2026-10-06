@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:sodium_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:digital_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_casing"
+    },
+    {
+      "amount": 3,
+      "item": "milite:aluminum_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    }
+  ]
+}

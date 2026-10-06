@@ -1,0 +1,26 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 16,
+  "duration": 200,
+  "item_inputs": [
+    {
+    "tag": "c:dusts/sulfur",
+    "amount": 1
+    }
+  ],
+  "fluid_inputs": [
+    {
+      "fluid": "milite:oxygen",
+      "amount": 200
+    },
+    {
+      "fluid": "minecraft:water",
+      "amount": 200
+    }
+  ],
+  "fluid_outputs": {
+    "fluid": "milite:sulfuric_acid",
+    "amount": 500
+  }
+
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "milite:steel_wiremill",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:inductor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.inductor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:inductor"
+    },
+    "title": {
+      "translate": "advancements.milite.inductor"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,21 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 8,
+  "duration": 200,
+
+  "fluid_inputs": [
+    {
+      "fluid": "milite:oxygen",
+      "amount": 1000
+    },
+    {
+      "fluid": "milite:hydrogen",
+      "amount": 2000
+    }
+  ],
+
+  "fluid_outputs": {
+    "fluid": "minecraft:water",
+    "amount": 3000
+  }
+}

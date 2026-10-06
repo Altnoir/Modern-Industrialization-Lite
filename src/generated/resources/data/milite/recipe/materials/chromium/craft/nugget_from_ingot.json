@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:chromium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:chromium_nugget"
+  }
+}

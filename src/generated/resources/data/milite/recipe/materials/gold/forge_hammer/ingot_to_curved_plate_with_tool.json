@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 40,
+  "ingredient": {
+    "tag": "c:ingots/gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:gold_curved_plate"
+  }
+}

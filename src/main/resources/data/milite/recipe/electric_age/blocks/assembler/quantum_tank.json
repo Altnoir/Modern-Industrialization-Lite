@@ -1,0 +1,38 @@
+{
+  "type": "milite:assembler",
+  "eu": 32,
+  "duration": 1000,
+  "item_inputs": [
+    {
+      "item": "milite:quantum_machine_hull",
+      "amount": 1
+    },
+    {
+      "item": "milite:singularity",
+      "amount": 1
+    },
+    {
+      "item": "milite:quantum_circuit",
+      "amount": 2
+    },
+    {
+      "tag": "c:plates/iridium",
+      "amount": 16
+    },
+    {
+      "item": "milite:large_advanced_pump",
+      "amount": 8
+    },
+    {
+      "item": "milite:titanium_tank",
+      "amount": 1
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "milite:quantum_tank",
+      "amount": 1
+    }
+  ]
+}
+

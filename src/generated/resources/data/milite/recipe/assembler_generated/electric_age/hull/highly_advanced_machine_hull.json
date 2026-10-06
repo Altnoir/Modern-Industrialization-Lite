@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:cadmium_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:processing_unit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:highly_advanced_machine_casing"
+    },
+    {
+      "amount": 3,
+      "item": "milite:annealed_copper_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:highly_advanced_machine_hull"
+    }
+  ]
+}

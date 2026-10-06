@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "milite:block/cupronickel_coil_top",
+    "side": "milite:block/cupronickel_coil_side"
+  }
+}

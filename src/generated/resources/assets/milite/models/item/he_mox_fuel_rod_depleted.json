@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "milite:item/he_mox_fuel_rod_depleted"
+  }
+}

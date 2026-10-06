@@ -1,0 +1,45 @@
+{
+  "type": "milite:distillation_tower",
+  "duration": 200,
+  "eu": 120,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:steam_cracked_naphtha"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 150,
+      "fluid": "milite:methane"
+    },
+    {
+      "amount": 50,
+      "fluid": "milite:acetylene"
+    },
+    {
+      "amount": 250,
+      "fluid": "milite:ethylene"
+    },
+    {
+      "amount": 75,
+      "fluid": "milite:propene"
+    },
+    {
+      "amount": 125,
+      "fluid": "milite:butadiene"
+    },
+    {
+      "amount": 150,
+      "fluid": "milite:benzene"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:toluene"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:ethylbenzene"
+    }
+  ]
+}

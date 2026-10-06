@@ -1,0 +1,20 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 8,
+  "duration": 100,
+
+  "fluid_inputs" : [
+    {
+      "fluid": "milite:hydrogen",
+      "amount": 1000
+    },
+    {
+      "fluid": "milite:chlorine",
+      "amount": 1000
+    }
+  ],
+  "fluid_outputs" : {
+    "fluid" : "milite:hydrochloric_acid",
+    "amount" : 2000
+  }
+}

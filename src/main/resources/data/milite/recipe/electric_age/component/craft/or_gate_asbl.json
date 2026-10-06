@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    " A ",
+    "wdw",
+    " A "
+    ],
+  "key": {
+    "A": {
+      "item" : "milite:op_amp"
+    },
+    "w":{
+      "item" : "milite:aluminum_wire"
+    },
+    "d": {
+      "item" : "milite:diode"
+    }
+  },
+
+  "result": {
+    "id": "milite:or_gate"
+  }
+}

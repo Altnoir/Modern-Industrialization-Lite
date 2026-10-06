@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "AcA",
+    "RCR",
+    "AcA"
+  ],
+  "key": {
+    "A" : {
+      "item": "milite:nuclear_alloy_large_plate"
+    },
+
+    "C" : {
+      "item" : "milite:highly_advanced_machine_hull"
+    },
+
+    "c" : {
+      "item" : "milite:processing_unit"
+    },
+
+    "R" : {
+      "item" : "milite:cadmium_control_rod"
+    }
+  },
+  "result": {
+    "id": "milite:nuclear_reactor"
+  }
+}

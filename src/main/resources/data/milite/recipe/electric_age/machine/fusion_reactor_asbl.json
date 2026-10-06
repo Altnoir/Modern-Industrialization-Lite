@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "QHQ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "milite:fusion_chamber"
+    },
+    "H": {
+      "item": "milite:quantum_machine_hull"
+    },
+    "Q": {
+      "item": "milite:quantum_circuit"
+    }
+  },
+  "result": {
+    "id": "milite:fusion_reactor"
+  }
+}

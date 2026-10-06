@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:gears/steel"
+    },
+    "R": {
+      "tag": "c:rods/steel"
+    },
+    "b": {
+      "item": "milite:steel_bolt"
+    },
+    "c": {
+      "item": "milite:steel_curved_plate"
+    },
+    "p": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "pattern": [
+    "bcp",
+    "GRc",
+    "bGb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:steel_drill_head"
+  }
+}

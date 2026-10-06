@@ -1,0 +1,22 @@
+{
+  "type": "milite:packer",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "item": "milite:lignite_coal"
+    },
+    {
+      "amount": 1,
+      "item": "milite:packer_block_template",
+      "probability": 0.0
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:lignite_coal_block"
+    }
+  ]
+}

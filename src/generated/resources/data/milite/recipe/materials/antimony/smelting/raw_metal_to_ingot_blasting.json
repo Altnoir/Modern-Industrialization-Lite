@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "ingredient": {
+    "item": "milite:raw_antimony"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:antimony_ingot"
+  }
+}

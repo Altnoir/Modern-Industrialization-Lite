@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:bronze_blade"
+    },
+    "R": {
+      "item": "milite:bronze_ring"
+    },
+    "b": {
+      "item": "milite:bronze_bolt"
+    }
+  },
+  "pattern": [
+    "bBb",
+    "BRB",
+    "bBb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:bronze_rotor"
+  }
+}

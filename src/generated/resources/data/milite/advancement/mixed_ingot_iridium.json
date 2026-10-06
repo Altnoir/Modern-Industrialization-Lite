@@ -1,0 +1,33 @@
+{
+  "parent": "milite:implosion_compressor",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:mixed_ingot_iridium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.mixed_ingot_iridium.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:mixed_ingot_iridium"
+    },
+    "title": {
+      "translate": "advancements.milite.mixed_ingot_iridium"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

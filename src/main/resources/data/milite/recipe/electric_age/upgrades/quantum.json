@@ -1,0 +1,34 @@
+{
+  "type": "milite:assembler",
+  "eu": 32,
+  "duration": 1000,
+  "item_inputs": [
+    {
+      "item" : "milite:highly_advanced_upgrade",
+      "amount": 32
+    },
+    {
+      "item": "milite:quantum_circuit",
+      "amount": 8
+    },
+    {
+      "item" : "milite:singularity",
+      "amount": 1
+    },
+    {
+      "item" : "milite:quantum_circuit_board",
+      "amount": 1
+    }
+  ],
+
+  "fluid_inputs": {
+    "fluid" : "milite:uu_matter",
+    "amount" : 50
+  },
+  "item_outputs": [
+    {
+      "item": "milite:quantum_upgrade",
+      "amount": 1
+    }
+  ]
+}

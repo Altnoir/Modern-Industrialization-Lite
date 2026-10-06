@@ -1,0 +1,17 @@
+{
+  "type": "milite:blast_furnace",
+  "duration": 600,
+  "eu": 128,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:dusts/platinum"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:platinum_hot_ingot"
+    }
+  ]
+}

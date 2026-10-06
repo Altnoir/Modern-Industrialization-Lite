@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +25,6 @@
 
 package aztech.modern_industrialization.datagen.recipe.compat;
 
-import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.datagen.recipe.MIRecipesProvider;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
@@ -61,7 +61,6 @@ public abstract class CompatRecipesProvider extends MIRecipesProvider {
     protected final void addCuttingRecipe(String input, String output, int outputAmount) {
         addCompatRecipe("cutting_machine/%s".formatted(formatRecipePath(input, output)), new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 200)
                 .addItemInput(input, 1)
-                .addFluidInput(MIFluids.LUBRICANT, 1)
                 .addItemOutput(output, outputAmount));
     }
 

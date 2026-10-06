@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:uranium_238_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:uranium_238_tiny_dust"
+  }
+}

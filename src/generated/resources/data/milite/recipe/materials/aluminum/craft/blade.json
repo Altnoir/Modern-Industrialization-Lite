@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:rods/aluminum"
+    },
+    "P": {
+      "item": "milite:aluminum_curved_plate"
+    }
+  },
+  "pattern": [
+    "P",
+    "P",
+    "I"
+  ],
+  "result": {
+    "count": 4,
+    "id": "milite:aluminum_blade"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 6,
+      "item": "milite:sodium_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    },
+    {
+      "amount": 2,
+      "tag": "c:plates/battery_alloy"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:hv_storage_unit"
+    }
+  ]
+}

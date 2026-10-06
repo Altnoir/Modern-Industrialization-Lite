@@ -1,0 +1,33 @@
+{
+  "parent": "milite:analog_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:large_steam_boiler"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.large_steam_boiler.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:large_steam_boiler"
+    },
+    "title": {
+      "translate": "advancements.milite.large_steam_boiler"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

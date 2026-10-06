@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:quartz_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:quartz_tiny_dust"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:bronze_cutting_machine"
+    },
+    {
+      "item": "milite:steel_upgrade"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:steel_cutting_machine"
+  }
+}

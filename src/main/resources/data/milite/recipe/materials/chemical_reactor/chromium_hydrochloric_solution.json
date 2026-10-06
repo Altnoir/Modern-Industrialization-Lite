@@ -1,0 +1,17 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 8,
+  "duration": 200,
+  "item_inputs" : [
+    {"item" :  "milite:chromium_crushed_dust",
+      "amount": 1}
+  ],
+  "fluid_inputs" : {
+    "fluid" : "milite:hydrochloric_acid",
+    "amount": 9000
+  },
+  "fluid_outputs" : {
+    "fluid" : "milite:chromium_hydrochloric_solution",
+    "amount" : 9000
+  }
+}

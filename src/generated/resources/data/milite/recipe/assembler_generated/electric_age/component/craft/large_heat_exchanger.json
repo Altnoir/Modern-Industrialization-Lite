@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:small_heat_exchanger"
+    },
+    {
+      "amount": 1,
+      "item": "milite:large_advanced_pump"
+    },
+    {
+      "amount": 2,
+      "item": "milite:aluminum_rotor"
+    },
+    {
+      "amount": 4,
+      "tag": "c:gears/invar"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:large_heat_exchanger"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "DUD",
+    "MbM",
+    "DAD"
+  ],
+
+  "key":
+  {
+    "D" : {
+      "item" : "milite:digital_circuit"
+    },
+    "M" : {
+      "item" : "milite:random_access_memory"
+    },
+    "U" : {
+      "item" : "milite:memory_management_unit"
+    },
+    "A" : {
+      "item" : "milite:arithmetic_logic_unit"
+    },
+    "b" :{
+      "item" : "milite:processing_unit_board"
+    }
+  },
+
+  "result": {
+    "id": "milite:processing_unit"
+  }
+
+}

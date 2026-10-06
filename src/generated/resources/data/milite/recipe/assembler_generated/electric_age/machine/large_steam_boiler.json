@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:bronze_plated_bricks"
+    },
+    {
+      "amount": 2,
+      "item": "milite:analog_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_boiler"
+    },
+    {
+      "amount": 2,
+      "item": "milite:bronze_curved_plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:large_steam_boiler"
+    }
+  ]
+}

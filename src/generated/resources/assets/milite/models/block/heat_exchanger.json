@@ -1,0 +1,11 @@
+{
+  "casing": "stainless_steel_machine_casing_pipe",
+  "default_overlays": {
+    "fluid_auto": "milite:block/overlays/fluid_auto",
+    "front": "milite:block/machines/heat_exchanger/overlay_front",
+    "front_active": "milite:block/machines/heat_exchanger/overlay_front_active",
+    "item_auto": "milite:block/overlays/item_auto",
+    "output": "milite:block/overlays/output"
+  },
+  "loader": "milite:machine"
+}

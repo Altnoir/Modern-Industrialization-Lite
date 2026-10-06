@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:coke_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:coke"
+  }
+}

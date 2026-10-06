@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "mPm",
+    "pHp",
+    "mCm"
+  ],
+  "key": {
+    "m" : {
+      "item" : "milite:large_motor"
+    },
+    "H" : {
+      "item" : "milite:basic_machine_hull"
+    },
+    "p": {
+      "item" : "milite:electrum_wire"
+    },
+    "P": {
+      "item" : "milite:large_pump"
+    },
+    "C": {
+      "item" : "milite:electronic_circuit"
+    }
+  },
+  "result": {
+    "id": "milite:centrifuge"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "milite:packer",
+  "eu": 2,
+  "duration": 100,
+  "item_inputs": [
+    {
+      "item": "minecraft:prismarine_shard",
+      "amount": 9
+    },
+    {
+      "item" : "milite:packer_block_template",
+      "amount": 1,
+      "probability" : 0
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "minecraft:prismarine_bricks",
+      "amount": 1
+    }
+  ]
+}

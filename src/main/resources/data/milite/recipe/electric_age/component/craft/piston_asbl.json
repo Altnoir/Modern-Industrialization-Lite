@@ -1,0 +1,30 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "ppp",
+    "crr",
+    "cmg"
+  ],
+  "key":
+  {
+    "m" : {
+      "item" : "milite:motor"
+    },
+    "r" : {
+      "tag" : "c:rods/steel"
+    },
+    "c" : {
+      "item" : "milite:tin_wire"
+    },
+    "p" :{
+      "tag" : "c:plates/steel"
+    },
+    "g" :{
+      "tag" : "c:gears/steel"
+    }
+  },
+
+  "result": {
+    "id": "milite:piston"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "wLw",
+    "pHp",
+    "wLw"
+  ],
+  "key":
+  {
+    "w" : {
+      "item" : "milite:tin_wire"
+    },
+    "H" :{
+      "item" : "milite:basic_machine_hull"
+    },
+    "p": {
+      "item" : "milite:tin_wire"
+    },
+    "L" : {
+      "item" : "milite:inductor"
+    }
+  },
+
+  "result": {
+    "id": "milite:polarizer"
+  }
+}

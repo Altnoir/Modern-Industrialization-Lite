@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "cwr",
+    "wmw",
+    "rwc"
+  ],
+  "key":
+  {
+    "m" : {
+      "item" : "milite:steel_rod_magnetic"
+    },
+    "r" : {
+      "tag" : "c:rods/steel"
+    },
+    "c" : {
+      "item" : "milite:tin_wire"
+    },
+    "w" :{
+      "item" : "milite:copper_wire"
+    }
+  },
+
+  "result": {
+    "id": "milite:motor"
+  }
+}

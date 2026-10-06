@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:tungsten_large_plate"
+    },
+    {
+      "amount": 4,
+      "tag": "c:plates/lead"
+    },
+    {
+      "amount": 1,
+      "tag": "c:plates/iridium"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:ultradense_metal_ball"
+    }
+  ]
+}

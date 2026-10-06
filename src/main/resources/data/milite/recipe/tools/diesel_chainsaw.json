@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "cRr",
+    "MrR",
+    "tMc"
+  ],
+  "key" : {
+    "M": {
+      "item" : "milite:motor"
+    },
+    "r" : {
+      "item" : "milite:invar_rotary_blade"
+    },
+    "t" : {
+      "item" : "milite:aluminum_tank"
+    },
+    "R" : {
+      "item" : "milite:rubber_sheet"
+    },
+    "c": {
+      "item" : "milite:analog_circuit"
+    }
+  },
+  "result": {
+    "id" : "milite:diesel_chainsaw"
+  }
+}

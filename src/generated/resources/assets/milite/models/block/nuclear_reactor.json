@@ -1,0 +1,11 @@
+{
+  "casing": "nuclear_casing",
+  "default_overlays": {
+    "fluid_auto": "milite:block/overlays/fluid_auto",
+    "front": "milite:block/machines/nuclear_reactor/overlay_front",
+    "front_active": "milite:block/machines/nuclear_reactor/overlay_front_active",
+    "item_auto": "milite:block/overlays/item_auto",
+    "output": "milite:block/overlays/output"
+  },
+  "loader": "milite:machine"
+}

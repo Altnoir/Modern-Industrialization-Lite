@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -121,7 +122,7 @@ public class ForgeTool extends TieredItem {
 
         @Override
         public String toString() {
-            return "modern_industrialization:steel";
+            return "milite:steel";
         }
     };
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/battery_alloy_block"
+    }
+  }
+}

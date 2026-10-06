@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -57,17 +58,17 @@ public class RuntimeDataGen {
     }
 
     private static void runInner(DataGenConfig... configs) throws Exception {
-        var miFolder = FMLPaths.GAMEDIR.get().resolve("modern_industrialization");
+        var miFolder = FMLPaths.GAMEDIR.get().resolve("milite");
 
         // Create some relevant texture folders because I'm sure some people will forget it
         var datagenOverridesFolder = miFolder.resolve("extra_datagen_resources");
         Files.createDirectories(datagenOverridesFolder
                 .resolve("assets")
-                .resolve("modern_industrialization")
+                .resolve("milite")
                 .resolve("textures"));
         Files.createDirectories(datagenOverridesFolder
                 .resolve("assets")
-                .resolve("modern_industrialization")
+                .resolve("milite")
                 .resolve("datagen_texture_overrides"));
 
         var dataOutput = miFolder.resolve("runtime_datagen");

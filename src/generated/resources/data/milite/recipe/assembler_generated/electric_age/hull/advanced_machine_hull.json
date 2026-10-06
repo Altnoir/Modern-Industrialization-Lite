@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:silicon_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electronic_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:advanced_machine_casing"
+    },
+    {
+      "amount": 3,
+      "item": "milite:electrum_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:advanced_machine_hull"
+    }
+  ]
+}

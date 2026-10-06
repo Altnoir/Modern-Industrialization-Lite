@@ -1,0 +1,11 @@
+{
+  "values": [
+    "milite:iron_tank",
+    "milite:bronze_tank",
+    "milite:steel_tank",
+    "milite:aluminum_tank",
+    "milite:stainless_steel_tank",
+    "milite:titanium_tank",
+    "milite:quantum_tank"
+  ]
+}

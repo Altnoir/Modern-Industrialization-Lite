@@ -1,0 +1,39 @@
+{
+  "type": "milite:assembler",
+  "eu": 32,
+  "duration": 600,
+  "item_inputs": [
+    {
+      "item": "milite:industrial_tnt",
+      "amount": 6
+    },
+    {
+      "item": "milite:plutonium_ingot",
+      "amount": 4
+    },
+    {
+      "item": "milite:processing_unit",
+      "amount": 2
+    },
+    {
+      "item": "milite:nuclear_alloy_plate",
+      "amount": 4
+    }
+  ],
+  "fluid_inputs": [
+    {
+      "fluid": "milite:tritium",
+      "amount": 50
+    },
+    {
+      "fluid": "milite:deuterium",
+      "amount": 100
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "milite:nuke",
+      "amount": 2
+    }
+  ]
+}

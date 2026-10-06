@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -82,9 +83,9 @@ public final class SingleBlockCraftingMachines {
                 TIER_BRONZE | TIER_STEEL | TIER_ELECTRIC, 16
         );
         registerMachineTiers(
-                "Cutting Machine","cutting_machine", MIMachineRecipeTypes.CUTTING_MACHINE, 1, 1, 1, 0, guiParams -> {},
+                "Cutting Machine", "cutting_machine", MIMachineRecipeTypes.CUTTING_MACHINE, 1, 1, 0, 0, guiParams -> {},
                 new ProgressBar.Params(88, 31, "slice"), new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
-                items -> items.addSlot(60, 35).addSlot(120, 35), fluids -> fluids.addSlot(40, 35),
+                items -> items.addSlot(60, 35).addSlot(120, 35), fluids -> {},
                 true, false, false,
                 TIER_BRONZE | TIER_STEEL | TIER_ELECTRIC, 16
         );

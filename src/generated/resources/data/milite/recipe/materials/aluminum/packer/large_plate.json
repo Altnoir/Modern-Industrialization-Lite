@@ -1,0 +1,17 @@
+{
+  "type": "milite:packer",
+  "duration": 200,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/aluminum"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_large_plate"
+    }
+  ]
+}

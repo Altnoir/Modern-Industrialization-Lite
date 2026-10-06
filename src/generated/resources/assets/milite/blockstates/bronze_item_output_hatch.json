@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/bronze_item_output_hatch"
+    }
+  }
+}

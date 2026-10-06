@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:stainless_steel_blade"
+    },
+    "R": {
+      "item": "milite:stainless_steel_ring"
+    },
+    "b": {
+      "item": "milite:stainless_steel_bolt"
+    }
+  },
+  "pattern": [
+    "bBb",
+    "BRB",
+    "bBb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_rotor"
+  }
+}

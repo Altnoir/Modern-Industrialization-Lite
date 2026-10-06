@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:iron_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:iron_tiny_dust"
+  }
+}

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,7 +38,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 public class GuidebookPersistentState extends SavedData {
     private static final Factory<GuidebookPersistentState> FACTORY = new Factory<>(GuidebookPersistentState::new, GuidebookPersistentState::fromNbt);
-    private static final String NAME = "modern_industrialization_guidebook";
+    private static final String NAME = "milite_guidebook";
     private final Set<String> receivedPlayers;
 
     private GuidebookPersistentState(Set<String> receivedPlayers) {

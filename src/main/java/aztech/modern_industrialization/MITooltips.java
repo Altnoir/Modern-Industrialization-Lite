@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,7 +36,6 @@ import aztech.modern_industrialization.items.diesel_tools.DieselToolItem;
 import aztech.modern_industrialization.machines.MachineBlock;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.ElectricBlastFurnaceBlockEntity;
 import aztech.modern_industrialization.machines.components.CasingComponent;
-import aztech.modern_industrialization.machines.components.LubricantHelper;
 import aztech.modern_industrialization.machines.components.UpgradeComponent;
 import aztech.modern_industrialization.nuclear.NuclearAbsorbable;
 import aztech.modern_industrialization.nuclear.NuclearFuel;
@@ -271,9 +271,6 @@ public class MITooltips {
                 return Optional.empty();
             }).noShiftRequired();
 
-    public static final TooltipAttachment LUBRICANT_BUCKET = TooltipAttachment.of(MIFluids.LUBRICANT.getBucket(),
-            new Line(MIText.LubricantTooltip).arg("use", KEYBIND_PARSER).arg(LubricantHelper.mbPerTick));
-
     public static final TooltipAttachment GUNPOWDER = TooltipAttachment.of(Items.GUNPOWDER, MIText.GunpowderUpgrade);
 
     public static final TooltipAttachment MACHINE_TOOLTIPS = TooltipAttachment.ofMultilines(
@@ -367,7 +364,7 @@ public class MITooltips {
                     line(MIText.ToolConfiguration).build(),
                     line(MIText.SteamDrillWaterHelp).arg("use", KEYBIND_PARSER).build(),
                     line(MIText.SteamDrillFuelHelp).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.SteamDrillProfit).arg("modern_industrialization.toggle_3x3", KEYBIND_PARSER).build(),
+                    line(MIText.SteamDrillProfit).arg("milite.toggle_3x3", KEYBIND_PARSER).build(),
                     line(MIText.SteamDrillToggle).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build()));
 
     public static final TooltipAttachment DIESEL_TOOLS = TooltipAttachment.ofMultilines(
@@ -399,7 +396,7 @@ public class MITooltips {
 
         Preconditions.checkArgument(lineCount > 0);
 
-        String[] translationKey = IntStream.range(0, lineCount).mapToObj(l -> "item_tooltip.modern_industrialization." + translationId + ".line_" + l)
+        String[] translationKey = IntStream.range(0, lineCount).mapToObj(l -> "item_tooltip.milite." + translationId + ".line_" + l)
                 .toArray(String[]::new);
 
         for (int i = 0; i < lineCount; i++) {

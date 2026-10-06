@@ -1,0 +1,34 @@
+{
+  "parent": "milite:steam_blast_furnace",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:steel_machine_casing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.steel_machine_casing.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "milite:steel_machine_casing"
+    },
+    "title": {
+      "translate": "advancements.milite.steel_machine_casing"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

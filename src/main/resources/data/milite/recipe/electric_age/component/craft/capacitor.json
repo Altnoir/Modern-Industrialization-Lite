@@ -1,0 +1,24 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    " P ",
+    "wSw",
+    " P "
+  ],
+  "key":
+  {
+    "P" : {
+      "tag" : "c:plates/gold"
+    },
+    "w" : {
+      "item" : "milite:copper_wire"
+    },
+    "S" : {
+      "item" : "milite:rubber_sheet"
+    }
+  },
+
+  "result": {
+    "id": "milite:capacitor"
+  }
+}

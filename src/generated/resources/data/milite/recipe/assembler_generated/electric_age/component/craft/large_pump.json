@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:electronic_circuit"
+    },
+    {
+      "amount": 3,
+      "item": "milite:aluminum_rotor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:large_motor"
+    },
+    {
+      "amount": 3,
+      "item": "milite:pump"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:large_pump"
+    }
+  ]
+}

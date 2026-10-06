@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:superconductor_coil"
+    },
+    {
+      "amount": 2,
+      "item": "milite:large_heat_exchanger"
+    },
+    {
+      "amount": 2,
+      "item": "milite:nuclear_alloy_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:plasma_handling_iridium_machine_casing"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:fusion_chamber"
+    }
+  ]
+}

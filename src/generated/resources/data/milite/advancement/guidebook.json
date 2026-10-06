@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "logged_in": {
+      "trigger": "milite:player_logged_in"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "milite:textures/block/fire_clay_bricks.png",
+    "description": {
+      "translate": "advancements.milite.guidebook.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:guidebook"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "text.milite.ModernIndustrialization"
+    }
+  },
+  "requirements": [
+    [
+      "logged_in"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

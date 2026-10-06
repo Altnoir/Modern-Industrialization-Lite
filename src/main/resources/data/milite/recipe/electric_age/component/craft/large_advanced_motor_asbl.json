@@ -1,0 +1,22 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "mmm",
+    "Crr",
+    "mmm"
+  ],
+  "key": {
+    "C" : {
+      "item" : "milite:processing_unit"
+    },
+    "r" : {
+      "tag" : "c:rods/titanium"
+    },
+    "m" : {
+      "item" : "milite:advanced_motor"
+    }
+  },
+  "result": {
+    "id": "milite:large_advanced_motor"
+  }
+}

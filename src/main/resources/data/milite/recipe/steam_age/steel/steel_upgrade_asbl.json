@@ -1,0 +1,32 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern": [
+    "rRr",
+    "GCG",
+    "pFp"
+  ],
+  "key": {
+    "p":{
+      "item": "milite:bronze_curved_plate"
+    },
+    "G": {
+      "tag": "c:gears/bronze"
+    },
+    "R": {
+      "item": "milite:bronze_rotor"
+    },
+    "C": {
+      "item": "milite:steel_machine_casing"
+    },
+    "r": {
+      "tag": "c:rods/bronze"
+    },
+    "F": {
+      "item": "milite:fire_clay_bricks"
+    }
+  },
+  "result": {
+    "id": "milite:steel_upgrade",
+    "count": 2
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:bronze_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:bronze_ingot"
+  }
+}

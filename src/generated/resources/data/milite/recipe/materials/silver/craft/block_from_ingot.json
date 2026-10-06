@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "tag": "c:ingots/silver"
+    },
+    "y": {
+      "item": "milite:silver_ingot"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:silver_block"
+  }
+}

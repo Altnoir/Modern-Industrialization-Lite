@@ -1,0 +1,34 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 12,
+  "duration": 400,
+  "item_inputs": [
+    {
+      "item" : "milite:silicon_wafer",
+      "amount": 1
+    },
+    {
+      "tag" : "c:dusts/antimony",
+      "amount": 1
+    },
+    {
+      "tag" : "c:dusts/aluminum",
+      "amount": 1
+    }
+  ],
+
+  "fluid_inputs": [
+    {
+      "fluid" : "milite:argon",
+      "amount" : 250
+    },
+    {
+      "fluid" : "milite:styrene_butadiene_rubber",
+      "amount" : 500
+    }
+  ],
+  "item_outputs": {
+    "item" : "milite:random_access_memory",
+    "amount": 2
+  }
+}

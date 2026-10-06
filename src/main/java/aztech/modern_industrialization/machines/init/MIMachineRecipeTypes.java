@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,7 +46,7 @@ public class MIMachineRecipeTypes {
     public static final MachineRecipeType CENTRIFUGE = create("centrifuge", CentrifugeMachineRecipeType::new).withItemInputs().withFluidInputs().withItemOutputs().withFluidOutputs();
     public static final MachineRecipeType CHEMICAL_REACTOR = create("chemical_reactor").withItemInputs().withFluidInputs().withItemOutputs().withFluidOutputs();
     public static final MachineRecipeType COMPRESSOR = create("compressor").withItemInputs().withItemOutputs();
-    public static final MachineRecipeType CUTTING_MACHINE = create("cutting_machine", CuttingMachineRecipeType::new).withItemInputs().withFluidInputs().withItemOutputs();
+    public static final MachineRecipeType CUTTING_MACHINE = create("cutting_machine", CuttingMachineRecipeType::new).withItemInputs().withItemOutputs();
     public static final MachineRecipeType DISTILLERY = create("distillery").withFluidInputs().withFluidOutputs();
     public static final MachineRecipeType ELECTROLYZER = create("electrolyzer").withItemInputs().withFluidInputs().withItemOutputs().withFluidOutputs();
     public static final MachineRecipeType FURNACE = create("furnace", FurnaceMachineRecipeType::new).withItemInputs().withItemOutputs();

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -71,7 +72,7 @@ public final class MIStartupConfig {
                 .define("datagenOnStartup", false);
         this.loadRuntimeGeneratedResources = builder.start("loadRuntimeGeneratedResources",
                 "Load generated resources",
-                "Additionally load resources in modern_industrialization/generated_resources.")
+                "Additionally load resources in milite/generated_resources.")
                 .gameRestart()
                 .define("loadRuntimeGeneratedResources", false);
         builder.popSection();

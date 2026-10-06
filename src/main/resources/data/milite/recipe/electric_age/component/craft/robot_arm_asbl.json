@@ -1,0 +1,31 @@
+
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "ccc",
+    "mrm",
+    "pCr"
+  ],
+  "key":
+  {
+    "m" : {
+      "item" : "milite:motor"
+    },
+    "r" : {
+      "tag" : "c:rods/steel"
+    },
+    "c" : {
+      "item" : "milite:tin_wire"
+    },
+    "p" :{
+      "item" : "milite:piston"
+    },
+    "C" :{
+      "item" : "milite:analog_circuit"
+    }
+  },
+
+  "result": {
+    "id": "milite:robot_arm"
+  }
+}

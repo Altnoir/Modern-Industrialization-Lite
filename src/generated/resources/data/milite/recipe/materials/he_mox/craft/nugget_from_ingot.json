@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:he_mox_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:he_mox_nugget"
+  }
+}

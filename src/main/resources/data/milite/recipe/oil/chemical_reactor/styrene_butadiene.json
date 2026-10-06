@@ -1,0 +1,21 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 10,
+  "duration": 150,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:styrene",
+      "amount": 500
+    },
+    {
+      "fluid": "milite:butadiene",
+      "amount": 500
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:styrene_butadiene",
+      "amount": 1000
+    }
+  ]
+}

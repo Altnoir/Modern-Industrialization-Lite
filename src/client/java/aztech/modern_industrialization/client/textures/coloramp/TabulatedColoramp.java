@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,7 +39,7 @@ public class TabulatedColoramp implements Coloramp {
     public TabulatedColoramp(TextureManager mtm, int meanRGB, String name) {
         this.meanRGB = meanRGB;
 
-        var gradientMapPath = "modern_industrialization:textures/gradient_maps/" + name + ".png";
+        var gradientMapPath = "milite:textures/gradient_maps/" + name + ".png";
 
         if (mtm.hasAsset(gradientMapPath)) {
             try (NativeImage gradientMap = mtm.getAssetAsTexture(gradientMapPath)) {

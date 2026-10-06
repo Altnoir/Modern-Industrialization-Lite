@@ -1,0 +1,33 @@
+{
+  "type": "milite:heat_exchanger",
+  "duration": 10,
+  "eu": 8,
+  "fluid_inputs": [
+    {
+      "amount": 20,
+      "fluid": "milite:cryofluid"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 13,
+      "fluid": "milite:argon"
+    },
+    {
+      "amount": 5,
+      "fluid": "milite:helium"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_hot_ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_ingot"
+    }
+  ]
+}

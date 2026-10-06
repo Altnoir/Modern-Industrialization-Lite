@@ -1,0 +1,22 @@
+{
+  "type": "milite:packer",
+  "duration": 400,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "tag": "c:ingots/stainless_steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:packer_block_template",
+      "probability": 0.0
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_block"
+    }
+  ]
+}

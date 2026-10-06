@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "c:rods/invar"
+    },
+    "b": {
+      "item": "milite:invar_bolt"
+    }
+  },
+  "pattern": [
+    "bRb",
+    "R R",
+    "bRb"
+  ],
+  "result": {
+    "count": 2,
+    "id": "milite:invar_ring"
+  }
+}

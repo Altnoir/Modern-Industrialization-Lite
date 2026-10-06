@@ -1,0 +1,33 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:large_motor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:robot_arm"
+    },
+    {
+      "amount": 2,
+      "item": "milite:electronic_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steam_quarry"
+    },
+    {
+      "amount": 1,
+      "item": "milite:advanced_machine_hull"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electric_quarry"
+    }
+  ]
+}

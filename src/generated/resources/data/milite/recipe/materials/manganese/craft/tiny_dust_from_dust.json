@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:manganese_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:manganese_tiny_dust"
+  }
+}

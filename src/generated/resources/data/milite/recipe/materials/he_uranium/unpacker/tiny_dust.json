@@ -1,0 +1,17 @@
+{
+  "type": "milite:unpacker",
+  "duration": 800,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:dusts/he_uranium"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 9,
+      "item": "milite:he_uranium_tiny_dust"
+    }
+  ]
+}

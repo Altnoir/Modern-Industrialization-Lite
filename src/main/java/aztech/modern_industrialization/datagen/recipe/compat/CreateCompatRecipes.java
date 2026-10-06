@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -92,16 +93,16 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
                 .addItemOutput("create:zinc_nugget", 1, 0.3f));
         addCompatRecipe("macerator/crimsite", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 8, 100)
                 .addItemInput("#create:stone_types/crimsite", 1)
-                .addItemOutput("modern_industrialization:iron_dust", 1, 0.4f)
-                .addItemOutput("modern_industrialization:iron_tiny_dust", 1, 0.4f));
+                .addItemOutput("milite:iron_dust", 1, 0.4f)
+                .addItemOutput("milite:iron_tiny_dust", 1, 0.4f));
         addCompatRecipe("macerator/ochrum", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 8, 100)
                 .addItemInput("#create:stone_types/ochrum", 1)
-                .addItemOutput("modern_industrialization:gold_dust", 1, 0.2f)
-                .addItemOutput("modern_industrialization:gold_tiny_dust", 1, 0.2f));
+                .addItemOutput("milite:gold_dust", 1, 0.2f)
+                .addItemOutput("milite:gold_tiny_dust", 1, 0.2f));
         addCompatRecipe("macerator/veridium", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 8, 100)
                 .addItemInput("#create:stone_types/veridium", 1)
-                .addItemOutput("modern_industrialization:copper_dust", 1, 0.8f)
-                .addItemOutput("modern_industrialization:copper_tiny_dust", 1, 0.8f));
+                .addItemOutput("milite:copper_dust", 1, 0.8f)
+                .addItemOutput("milite:copper_tiny_dust", 1, 0.8f));
 
         addCompatRecipe("mixer/pulp", new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .addItemInput("#create:pulpifiable", 4)
@@ -125,7 +126,7 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
                 .addItemOutput("create:rose_quartz", 1));
         addCompatRecipe("chemical_reactor/polished_rose_quartz", new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
                 .addItemInput("create:rose_quartz", 1)
-                .addItemInput("modern_industrialization:wax", 1)
+                .addItemInput("milite:wax", 1)
                 .addItemOutput("create:polished_rose_quartz", 1));
         addCompatRecipe("craft/polished_rose_quartz", new ShapelessRecipeBuilder("create:polished_rose_quartz", 1)
                 .requires("create:rose_quartz").requires(MIItem.WAX));
@@ -135,9 +136,9 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
                 .addItemOutput("create:electron_tube", 1));
 
         addMiRecipe(MIMachineRecipeTypes.COMPRESSOR, "minecraft:dried_kelp", 6, "create:belt_connector", 1, 2, 100);
-        addMiRecipe(MIMachineRecipeTypes.COMPRESSOR, "modern_industrialization:rubber_sheet", 6, "create:belt_connector", 1, 2, 100);
+        addMiRecipe(MIMachineRecipeTypes.COMPRESSOR, "milite:rubber_sheet", 6, "create:belt_connector", 1, 2, 100);
         addCompatRecipe("craft/belt", new ShapedRecipeJson("create:belt_connector", 1, "rrr", "rrr")
-                .addInput('r', "modern_industrialization:rubber_sheet"));
+                .addInput('r', "milite:rubber_sheet"));
 
         addCuttingRecipe("create:andesite_alloy", "create:shaft", 6);
 
@@ -154,7 +155,7 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
                 .addItemInput("#c:plates/gold", 1)
                 .addItemInput("create:cogwheel", 5)
                 .addItemInput("create:large_cogwheel", 5)
-                .addItemInput("modern_industrialization:iron_bolt", 5)
+                .addItemInput("milite:iron_bolt", 5)
                 .addItemOutput("create:precision_mechanism", 1, 0.8f));
     }
 

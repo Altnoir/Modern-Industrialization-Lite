@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:motor"
+    },
+    {
+      "amount": 6,
+      "item": "milite:rubber_sheet"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tin_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:conveyor"
+    }
+  ]
+}

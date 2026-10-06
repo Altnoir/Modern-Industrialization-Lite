@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -94,13 +95,13 @@ public class DyeRecipesProvider extends MIRecipesProvider {
                     .offerTo(consumer, pathPrefix + "mixer/terracotta");
 
             // glass pane cutting
-            new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                     .addItemInput("minecraft:" + color.getName() + "_stained_glass", 6)
                     .addItemOutput("minecraft:" + color.getName() + "_stained_glass_pane", 16)
                     .offerTo(consumer, pathPrefix + "cutting_machine/glass_pane");
 
             // carpet cutting
-            new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                     .addItemInput("minecraft:" + color.getName() + "_wool", 1)
                     .addItemOutput("minecraft:" + color.getName() + "_carpet", 4)
                     .offerTo(consumer, pathPrefix + "cutting_machine/carpet");

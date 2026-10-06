@@ -1,0 +1,33 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "frf",
+    "PHP",
+    "pcp"
+  ],
+  "key":
+  {
+    "f" : {
+      "tag" : "milite:fluid_pipes"
+    },
+    "H" :{
+      "item" : "milite:basic_machine_hull"
+    },
+    "p": {
+      "item" : "milite:tin_wire"
+    },
+    "P" : {
+      "item" : "milite:pump"
+    },
+    "c": {
+      "item": "milite:analog_circuit"
+    },
+    "r": {
+      "item": "milite:tin_rotor"
+    }
+  },
+
+  "result": {
+    "id": "milite:electric_water_pump"
+  }
+}

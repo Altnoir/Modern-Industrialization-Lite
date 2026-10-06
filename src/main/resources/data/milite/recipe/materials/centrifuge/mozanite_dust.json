@@ -1,0 +1,31 @@
+{
+  "type": "milite:centrifuge",
+  "eu": 10,
+  "duration": 2400,
+  "item_inputs": {
+    "tag": "c:dusts/monazite",
+    "amount": 9
+  },
+    "item_outputs": [
+      {
+      "item": "milite:neodymium_dust",
+      "amount": 3
+      },
+      {
+        "item": "milite:yttrium_dust",
+        "amount": 3
+      },
+      {
+        "item": "milite:cadmium_dust",
+        "amount": 3
+      }
+    ],
+
+  "fluid_outputs": [
+    {
+      "fluid" : "milite:helium",
+      "amount": 300,
+      "probability" : 0.5
+    }
+  ]
+}

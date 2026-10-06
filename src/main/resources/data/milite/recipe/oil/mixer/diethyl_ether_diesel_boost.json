@@ -1,0 +1,21 @@
+{
+  "type": "milite:mixer",
+  "eu": 12,
+  "duration": 300,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:diesel",
+      "amount": 1000
+    },
+    {
+      "fluid": "milite:diethyl_ether",
+      "amount": 250
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:boosted_diesel",
+      "amount": 1200
+    }
+  ]
+}

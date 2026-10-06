@@ -1,0 +1,35 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 2,
+  "fluid_inputs": [
+    {
+      "amount": 75,
+      "fluid": "milite:soldering_alloy"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:plates/aluminum"
+    },
+    {
+      "amount": 2,
+      "item": "milite:aluminum_curved_plate"
+    },
+    {
+      "amount": 1,
+      "tag": "c:rods/aluminum"
+    },
+    {
+      "amount": 2,
+      "tag": "c:gears/aluminum"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_drill_head"
+    }
+  ]
+}

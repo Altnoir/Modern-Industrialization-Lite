@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 7,
+      "item": "milite:cupronickel_wire_magnetic"
+    },
+    {
+      "amount": 1,
+      "item": "milite:basic_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:blast_furnace"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electric_blast_furnace"
+    }
+  ]
+}

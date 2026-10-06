@@ -1,0 +1,7 @@
+{
+  "casing": "superconductor",
+  "default_overlays": {
+    "side": "milite:block/machines/hatch_energy/overlay_side"
+  },
+  "loader": "milite:machine"
+}

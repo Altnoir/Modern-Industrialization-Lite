@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:op_amp"
+    },
+    {
+      "amount": 2,
+      "item": "milite:aluminum_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:diode"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:or_gate"
+    }
+  ]
+}

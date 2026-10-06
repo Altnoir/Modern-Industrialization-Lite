@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 20,
+  "ingredient": {
+    "tag": "c:plates/tin"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:tin_curved_plate"
+  }
+}

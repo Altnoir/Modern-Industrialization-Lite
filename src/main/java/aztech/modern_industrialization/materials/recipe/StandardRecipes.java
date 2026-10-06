@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -143,7 +144,7 @@ public final class StandardRecipes {
                 .addPartOutput(DRILL_HEAD, 1);
 
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "fuel_rod", 16, 200)
-                .addItemInput("modern_industrialization:blastproof_alloy_curved_plate", 2)
+                .addItemInput("milite:blastproof_alloy_curved_plate", 2)
                 .addItemInput(MIItem.LARGE_MOTOR, 1).addItemInput(MIItem.ROBOT_ARM, 2).addTaggedPartInput(ROD, 18)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 500).addFluidInput(MIFluids.HELIUM, 100)
                 .addPartOutput(FUEL_ROD, 1);
@@ -199,7 +200,6 @@ public final class StandardRecipes {
 
     private static void addCuttingMachine(MaterialBuilder.RecipeContext ctx, String name, PartKeyProvider inputPart, PartKeyProvider outputPart,
             int amount) {
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.CUTTING_MACHINE, name).addTaggedPartInput(inputPart, 1).addPartOutput(outputPart, amount)
-                .addFluidInput("modern_industrialization:lubricant", 1);
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.CUTTING_MACHINE, name).addTaggedPartInput(inputPart, 1).addPartOutput(outputPart, amount);
     }
 }

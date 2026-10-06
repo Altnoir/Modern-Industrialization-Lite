@@ -1,0 +1,33 @@
+{
+  "type": "milite:distillation_tower",
+  "duration": 200,
+  "eu": 125,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:steam_cracked_light_fuel"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 200,
+      "fluid": "milite:methane"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:acetylene"
+    },
+    {
+      "amount": 300,
+      "fluid": "milite:ethylene"
+    },
+    {
+      "amount": 200,
+      "fluid": "milite:butadiene"
+    },
+    {
+      "amount": 200,
+      "fluid": "milite:benzene"
+    }
+  ]
+}

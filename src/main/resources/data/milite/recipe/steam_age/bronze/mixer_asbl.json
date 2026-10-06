@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gGg",
+    "rCr",
+    "ppp"
+  ],
+  "key": {
+    "r": {
+      "item": "milite:copper_rotor"
+    },
+    "G": {
+      "tag": "c:gears/copper"
+    },
+    "C": {
+      "item": "milite:bronze_machine_casing"
+    },
+    "p": {
+      "item": "milite:bronze_curved_plate"
+    },
+    "g" :{
+      "tag": "c:glass_blocks"
+    }
+  },
+  "result": {
+    "id": "milite:bronze_mixer",
+    "count": 1
+  }
+}

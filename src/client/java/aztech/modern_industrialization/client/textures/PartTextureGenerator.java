@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -99,10 +100,10 @@ class PartTextureGenerator {
     }
 
     private void processBlock(MaterialBlockSet set) throws IOException {
-        String template = String.format("modern_industrialization:textures/materialsets/blocks/%s.png", set.name);
+        String template = String.format("milite:textures/materialsets/blocks/%s.png", set.name);
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);
-            String texturePath = String.format("modern_industrialization:textures/block/%s.png", itemPath);
+            String texturePath = String.format("milite:textures/block/%s.png", itemPath);
             mtm.addTexture(texturePath, image);
         }
     }
@@ -142,10 +143,10 @@ class PartTextureGenerator {
     }
 
     private void processGem() throws IOException {
-        String template = String.format("modern_industrialization:textures/materialsets/gems/%s.png", materialName);
+        String template = String.format("milite:textures/materialsets/gems/%s.png", materialName);
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);
-            String texturePath = String.format("modern_industrialization:textures/item/%s.png", itemPath);
+            String texturePath = String.format("milite:textures/item/%s.png", itemPath);
             mtm.addTexture(texturePath, image);
         }
     }
@@ -156,7 +157,7 @@ class PartTextureGenerator {
     }
 
     private void processOre(ResourceLocation stoneType, MaterialOreSet oreSet) throws IOException {
-        String template = String.format("modern_industrialization:textures/materialsets/ores/%s.png", oreSet.name);
+        String template = String.format("milite:textures/materialsets/ores/%s.png", oreSet.name);
         ResourceLocation from;
         boolean deepslate = stoneType.equals(OrePart.TYPE_DEEPSLATE);
         if (stoneType.equals(OrePart.TYPE_STONE) || deepslate) {
@@ -181,20 +182,20 @@ class PartTextureGenerator {
                 NativeImage top = mtm.getAssetAsTexture(template)) {
 
             TextureHelper.colorize(top, coloramp);
-            String texturePath = String.format("modern_industrialization:textures/block/%s.png", itemPath);
+            String texturePath = String.format("milite:textures/block/%s.png", itemPath);
             mtm.addTexture(texturePath, TextureHelper.blend(image, top), true);
         }
     }
 
     private void processRawMetal(boolean isBlock, MaterialRawSet rawSet) throws IOException {
-        String template = String.format("modern_industrialization:textures/materialsets/raw/%s.png", rawSet.name + (isBlock ? "_block" : ""));
+        String template = String.format("milite:textures/materialsets/raw/%s.png", rawSet.name + (isBlock ? "_block" : ""));
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);
             String texturePath;
             if (isBlock) {
-                texturePath = String.format("modern_industrialization:textures/block/%s.png", itemPath);
+                texturePath = String.format("milite:textures/block/%s.png", itemPath);
             } else {
-                texturePath = String.format("modern_industrialization:textures/item/%s.png", itemPath);
+                texturePath = String.format("milite:textures/item/%s.png", itemPath);
             }
             mtm.addTexture(texturePath, image);
         }

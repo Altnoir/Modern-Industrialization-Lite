@@ -1,0 +1,33 @@
+{
+  "parent": "milite:stainless_steel_ingot",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:kanthal_coil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.kanthal_coil.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:kanthal_coil"
+    },
+    "title": {
+      "translate": "advancements.milite.kanthal_coil"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

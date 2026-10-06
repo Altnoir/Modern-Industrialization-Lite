@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:plates/emerald"
+    },
+    {
+      "amount": 2,
+      "item": "milite:silicon_wafer"
+    },
+    {
+      "amount": 6,
+      "item": "milite:platinum_fine_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:memory_management_unit"
+    }
+  ]
+}

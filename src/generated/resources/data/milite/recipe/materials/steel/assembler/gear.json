@@ -1,0 +1,27 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 2,
+  "fluid_inputs": [
+    {
+      "amount": 100,
+      "fluid": "milite:soldering_alloy"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_ring"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 2,
+      "item": "milite:steel_gear"
+    }
+  ]
+}

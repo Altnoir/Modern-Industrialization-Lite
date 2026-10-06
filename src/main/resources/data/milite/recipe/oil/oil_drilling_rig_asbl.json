@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LGL",
+    "PHP",
+    "LpL"
+  ],
+  "key": {
+    "L": {
+      "item": "milite:steel_large_plate"
+    },
+    "G": {
+      "item": "milite:electronic_circuit"
+    },
+    "P": {
+      "item": "milite:large_pump"
+    },
+    "H": {
+      "item": "milite:advanced_machine_hull"
+    },
+    "p": {
+      "item": "milite:bronze_curved_plate"
+    }
+  },
+  "result": {
+    "id": "milite:oil_drilling_rig"
+  }
+}

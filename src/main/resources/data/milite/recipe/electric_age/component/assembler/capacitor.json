@@ -1,0 +1,25 @@
+{
+    "type": "milite:assembler",
+    "eu": 8,
+    "duration": 200,
+    "item_inputs": [
+        {
+            "tag": "c:plates/gold",
+            "amount": 2
+        },
+        {
+            "item": "milite:copper_wire",
+            "amount": 2
+        },
+        {
+            "item": "milite:rubber_sheet",
+            "amount": 1
+        }
+    ],
+    "item_outputs": [
+        {
+            "item": "milite:capacitor",
+            "amount": 4
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "PcP",
+    "LBL",
+    "PcP"
+  ],
+  "key": {
+    "P" : {
+      "item" : "milite:pump"
+    },
+    "c" : {
+      "item" : "milite:electronic_circuit"
+    },
+    "B": {
+      "item": "milite:large_steam_boiler"
+    },
+    "L": {
+      "item": "milite:large_pump"
+    }
+  },
+  "result": {
+    "id": "milite:advanced_large_steam_boiler"
+  }
+}

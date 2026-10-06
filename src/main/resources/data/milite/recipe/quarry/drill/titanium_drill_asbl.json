@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "gpd",
+    "mCp",
+    "cmg"
+
+  ],
+  "key": {
+    "d" : {
+      "item": "milite:titanium_drill_head"
+    },
+    "g" : {
+      "tag": "c:gears/iron"
+    },
+    "p" : {
+      "tag" : "milite:item_pipes"
+    },
+    "m" : {
+      "item": "milite:large_advanced_motor"
+    },
+    "c" : {
+      "item" : "milite:annealed_copper_wire"
+    },
+    "C" : {
+      "item" : "milite:processing_unit"
+    }
+  },
+  "result": {
+    "id": "milite:titanium_drill",
+    "count": 4
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:steel_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_curved_plate"
+    },
+    {
+      "amount": 2,
+      "tag": "c:gears/steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:invar_rotary_blade"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_machine_casing"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:steam_quarry"
+    }
+  ]
+}

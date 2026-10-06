@@ -1,0 +1,34 @@
+{
+  "parent": "milite:steel_machine_casing",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:steam_quarry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.steam_quarry.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "milite:steam_quarry"
+    },
+    "title": {
+      "translate": "advancements.milite.steam_quarry"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

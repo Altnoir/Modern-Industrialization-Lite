@@ -1,0 +1,17 @@
+{
+  "type": "milite:mixer",
+  "eu": 4,
+  "duration": 300,
+  "item_inputs": {
+    "tag": "c:dusts/sulfur",
+    "amount": 1
+  },
+  "fluid_inputs": {
+    "fluid": "milite:synthetic_oil",
+    "amount": 1000
+  },
+  "fluid_outputs": {
+    "fluid": "milite:synthetic_rubber",
+    "amount": 1000
+  }
+}

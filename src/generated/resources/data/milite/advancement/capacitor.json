@@ -1,0 +1,33 @@
+{
+  "parent": "milite:steel_wiremill",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:capacitor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.capacitor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:capacitor"
+    },
+    "title": {
+      "translate": "advancements.milite.capacitor"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

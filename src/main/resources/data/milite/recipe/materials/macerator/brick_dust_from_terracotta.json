@@ -1,0 +1,13 @@
+{
+  "type": "milite:macerator",
+  "eu": 2,
+  "duration": 100,
+  "item_inputs": {
+    "tag": "minecraft:terracotta",
+    "amount": 1
+  },
+  "item_outputs": {
+    "item": "milite:brick_dust",
+    "amount": 4
+  }
+}

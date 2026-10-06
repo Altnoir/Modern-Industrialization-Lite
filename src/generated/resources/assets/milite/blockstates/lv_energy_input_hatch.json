@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/lv_energy_input_hatch"
+    }
+  }
+}

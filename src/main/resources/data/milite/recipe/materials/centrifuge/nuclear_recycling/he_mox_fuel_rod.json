@@ -1,0 +1,24 @@
+{
+  "type": "milite:centrifuge",
+
+  "eu": 32,
+  "duration": 6000,
+
+  "item_inputs": {
+    "item": "milite:he_mox_fuel_rod_depleted",
+    "amount": 1
+  },
+
+  "item_outputs":
+    [
+      {
+        "item": "milite:uranium_238_tiny_dust",
+        "amount": 36
+      },
+      {
+        "item": "milite:plutonium_tiny_dust",
+        "amount": 36
+      }
+    ]
+
+}

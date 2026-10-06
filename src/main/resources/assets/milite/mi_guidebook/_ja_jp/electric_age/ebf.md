@@ -1,0 +1,31 @@
+---
+navigation:
+  title: "電動高炉"
+  icon: "milite:electric_blast_furnace"
+  position: 106
+  parent: milite:electric_age.md
+item_ids:
+  - milite:electric_blast_furnace
+  - milite:cupronickel_coil
+  - milite:lv_energy_input_hatch
+  - milite:mv_energy_input_hatch
+---
+
+# 電動高炉
+
+電動高炉は蒸気高炉の電気版である。新しいレシピが解放され、他のマルチブロック電気マシンと同様にオーバークロックはデフォルトで128RF/tまでに制限されている。
+
+<Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
+
+電動高炉は1層の耐熱機械筐体、2層の中心を空けた白銅コイル、もう1層の耐熱機械筐体でできている。制御機械は最下層に、ハッチは最上層か最下層に設置する。
+
+<Recipe id="milite:materials/cupronickel/craft/coil" />
+
+エネルギー搬入ハッチを忘れずに追加するように！LVエネルギー入力ハッチはLVケーブルとのみ接続できる。
+
+<Recipe id="milite:hatches/basic/energy_input_hatch" />
+
+MVエネルギー搬入ハッチはMVケーブルとのみ接続可能で、電動高炉に大量のエネルギーが必要な場合に役立つ！まだクラフトはできないが、存在することは覚えておこう……
+
+<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+

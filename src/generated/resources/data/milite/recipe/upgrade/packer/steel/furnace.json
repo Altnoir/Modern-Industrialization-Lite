@@ -1,0 +1,21 @@
+{
+  "type": "milite:packer",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:bronze_furnace"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_upgrade"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:steel_furnace"
+    }
+  ]
+}

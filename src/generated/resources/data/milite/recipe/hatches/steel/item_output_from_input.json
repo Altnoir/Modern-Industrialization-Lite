@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": {
+      "item": "milite:steel_item_input_hatch"
+    }
+  },
+  "pattern": [
+    "U"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:steel_item_output_hatch"
+  }
+}

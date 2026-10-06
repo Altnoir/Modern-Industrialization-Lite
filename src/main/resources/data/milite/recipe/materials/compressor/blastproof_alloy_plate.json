@@ -1,0 +1,13 @@
+{
+  "type": "milite:compressor",
+  "eu": 32,
+  "duration": 600,
+  "item_inputs": {
+    "item": "milite:mixed_ingot_blastproof",
+    "amount": 2
+  },
+  "item_outputs": {
+    "item": "milite:blastproof_alloy_plate",
+    "amount": 1
+  }
+}

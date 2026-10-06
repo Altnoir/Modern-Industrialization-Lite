@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "ppp",
+    "rmr",
+    "brb"
+  ],
+  "key":
+  {
+    "m" : {
+      "item" : "milite:motor"
+    },
+    "r" : {
+      "item" : "milite:tin_rotor"
+    },
+    "p" :{
+      "tag" : "milite:fluid_pipes"
+    },
+    "b" :{
+      "item" : "milite:tin_bolt"
+    }
+  },
+
+  "result": {
+    "id": "milite:pump"
+  }
+}

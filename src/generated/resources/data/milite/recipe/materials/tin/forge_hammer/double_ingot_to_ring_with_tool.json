@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 100,
+  "ingredient": {
+    "item": "milite:tin_double_ingot"
+  },
+  "result": {
+    "count": 4,
+    "id": "milite:tin_ring"
+  }
+}

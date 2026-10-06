@@ -1,0 +1,29 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "pcp",
+    "PHP",
+    "pCp"
+  ],
+  "key": {
+    "p" : {
+      "item" : "milite:advanced_pump"
+    },
+    "H" : {
+      "item" : "milite:turbo_machine_hull"
+    },
+    "c" : {
+      "item" : "milite:digital_circuit"
+    },
+    "P":{
+      "item" : "milite:titanium_machine_casing_pipe"
+    },
+    "C" : {
+      "item" : "milite:aluminum_wire"
+    }
+
+  },
+  "result": {
+    "id": "milite:pressurizer"
+  }
+}

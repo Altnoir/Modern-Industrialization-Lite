@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -83,9 +84,6 @@ public abstract class AbstractElectricCraftingMultiblockBlockEntity extends Abst
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
         var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = LubricantHelper.onUse(this.crafter, player, hand);
-        }
         if (!result.consumesAction()) {
             result = components.mapOrDefault(UpgradeComponent.class, upgrade -> upgrade.onUse(this, player, hand), result);
         }

@@ -1,0 +1,16 @@
+{
+  "type": "milite:vacuum_freezer",
+  "eu": 32,
+  "duration" : 200,
+
+  "item_inputs": {
+    "item" : "milite:air_intake",
+    "probability": 0
+  },
+
+  "fluid_outputs": {
+    "fluid" : "milite:liquid_air",
+    "amount" : 1000
+  }
+
+}

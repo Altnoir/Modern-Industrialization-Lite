@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    " c ",
+    "BCB",
+    "ppp"
+  ],
+  "key": {
+    "B" : {
+      "item" : "milite:sodium_battery"
+    },
+    "c" : {
+      "item" : "milite:digital_circuit"
+    },
+    "C" : {
+      "item" : "milite:turbo_machine_casing"
+    },
+    "p" : {
+      "item" : "milite:aluminum_wire"
+    }
+  },
+  "result": {
+    "id": "milite:turbo_machine_hull"
+  }
+}

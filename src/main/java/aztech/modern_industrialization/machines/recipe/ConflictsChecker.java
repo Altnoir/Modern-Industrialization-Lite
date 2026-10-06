@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -111,7 +112,7 @@ public class ConflictsChecker {
             finalReport += conflictsReport.toString();
         }
 
-        var filePath = FMLPaths.GAMEDIR.get().resolve("modern_industrialization").resolve("recipe_conflicts.txt");
+        var filePath = FMLPaths.GAMEDIR.get().resolve("milite").resolve("recipe_conflicts.txt");
         try (var os = new BufferedOutputStream(Files.newOutputStream(filePath))) {
             os.write(finalReport.getBytes(StandardCharsets.UTF_8));
         }

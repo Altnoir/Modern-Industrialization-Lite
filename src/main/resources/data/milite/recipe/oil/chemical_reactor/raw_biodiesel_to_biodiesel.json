@@ -1,0 +1,25 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 16,
+  "duration": 200,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:raw_biodiesel",
+      "amount": 1000
+    },
+    {
+      "fluid": "milite:steam",
+      "amount": 1000
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:biodiesel",
+      "amount": 700
+    },
+    {
+      "fluid": "milite:ethanol",
+      "amount": 250
+    }
+  ]
+}

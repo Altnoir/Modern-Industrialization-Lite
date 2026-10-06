@@ -1,0 +1,33 @@
+{
+  "parent": "milite:distillery",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:digital_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.digital_circuit.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:digital_circuit"
+    },
+    "title": {
+      "translate": "advancements.milite.digital_circuit"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,29 @@
+{
+  "type": "milite:centrifuge",
+  "eu": 8,
+  "duration": 1200,
+  "item_inputs" : [
+    {"item" :  "minecraft:redstone",
+    "amount": 10}
+  ],
+  "item_outputs":[
+    {
+      "item": "milite:iron_dust",
+      "amount":5
+
+    },
+    {
+      "item": "milite:ruby_dust",
+      "amount": 1
+    },
+    {
+      "item": "milite:quartz_dust",
+      "amount":1
+    },
+    {
+      "item" : "milite:neodymium_tiny_dust",
+      "amount": 1,
+      "probability" : 0.5
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "minecraft:redstone"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:redstone_torch"
+    },
+    {
+      "amount": 1,
+      "item": "milite:capacitor"
+    },
+    {
+      "amount": 2,
+      "item": "milite:resistor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit_board"
+    },
+    {
+      "amount": 2,
+      "item": "milite:inductor"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:redstone_control_module"
+    }
+  ]
+}

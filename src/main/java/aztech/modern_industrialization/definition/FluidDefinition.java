@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -82,7 +83,7 @@ public class FluidDefinition extends Definition implements FluidLike {
 
     @Override
     public String getTranslationKey() {
-        return "block.modern_industrialization." + this.getId().getPath();
+        return "block.milite." + this.getId().getPath();
     }
 
     @Override

@@ -1,0 +1,21 @@
+{
+  "type": "milite:unpacker",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:steel_macerator"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:bronze_macerator"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_upgrade"
+    }
+  ]
+}

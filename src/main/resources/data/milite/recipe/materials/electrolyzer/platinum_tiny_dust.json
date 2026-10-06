@@ -1,0 +1,18 @@
+{
+  "type": "milite:electrolyzer",
+  "eu": 32,
+  "duration": 600,
+  "item_outputs" : [
+    {"item" :  "milite:platinum_tiny_dust",
+    "amount": 3}
+  ],
+  "fluid_inputs" : {
+    "fluid" : "milite:purified_platinum_sulfuric_solution",
+    "amount" : 1000
+  },
+  "fluid_outputs" : {
+    "fluid" : "milite:sulfuric_acid",
+    "amount": 900
+  }
+
+}

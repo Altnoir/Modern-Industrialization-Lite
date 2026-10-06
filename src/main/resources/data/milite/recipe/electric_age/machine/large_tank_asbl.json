@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "tpt",
+    "RSR",
+    "tpt"
+  ],
+  "key":
+  {
+    "t": {
+      "item" : "milite:steel_tank"
+    },
+    "p" : {
+      "item" : "milite:pump"
+    },
+    "S" :{
+      "item" : "milite:steel_machine_casing"
+    },
+    "R" : {
+      "item" : "milite:tin_rotor"
+    }
+  },
+
+  "result": {
+    "id": "milite:large_tank"
+  }
+}

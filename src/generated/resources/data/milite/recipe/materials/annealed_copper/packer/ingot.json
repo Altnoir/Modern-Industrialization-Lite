@@ -1,0 +1,17 @@
+{
+  "type": "milite:packer",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "tag": "c:nuggets/annealed_copper"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:annealed_copper_ingot"
+    }
+  ]
+}

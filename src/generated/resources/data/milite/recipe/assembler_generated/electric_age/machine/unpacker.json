@@ -1,0 +1,33 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "item": "milite:motor"
+    },
+    {
+      "amount": 2,
+      "item": "milite:analog_circuit"
+    },
+    {
+      "amount": 2,
+      "item": "milite:conveyor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:basic_machine_hull"
+    },
+    {
+      "amount": 2,
+      "item": "milite:tin_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electric_unpacker"
+    }
+  ]
+}

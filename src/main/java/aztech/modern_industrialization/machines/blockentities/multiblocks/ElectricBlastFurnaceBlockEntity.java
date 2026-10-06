@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -50,7 +51,7 @@ import net.minecraft.resources.ResourceLocation;
 public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     public record Tier(ResourceLocation coilBlockId, long maxBaseEu, String englishName) {
         public String getTranslationKey() {
-            return "ebf_tier.modern_industrialization." + coilBlockId.getPath();
+            return "ebf_tier.milite." + coilBlockId.getPath();
         }
 
         public Component getDisplayName() {

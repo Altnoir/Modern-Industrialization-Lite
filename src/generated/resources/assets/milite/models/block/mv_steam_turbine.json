@@ -1,0 +1,9 @@
+{
+  "casing": "mv",
+  "default_overlays": {
+    "front": "milite:block/machines/steam_turbine/overlay_front",
+    "front_active": "milite:block/machines/steam_turbine/overlay_front_active",
+    "output": "milite:block/overlays/output_energy"
+  },
+  "loader": "milite:machine"
+}

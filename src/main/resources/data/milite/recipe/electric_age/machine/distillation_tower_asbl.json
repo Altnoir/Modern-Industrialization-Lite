@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "pdp",
+    "CHC",
+    "pdp"
+  ],
+  "key": {
+    "p" : {
+      "item" : "milite:advanced_pump"
+    },
+    "H" :{
+      "item" : "milite:turbo_machine_hull"
+    },
+    "C" : {
+      "item" : "milite:digital_circuit"
+    },
+    "d": {
+      "item" : "milite:distillery"
+    }
+  },
+  "result": {
+    "id": "milite:distillation_tower"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "casing": "hv",
+  "default_overlays": {
+    "output": "milite:block/overlays/output_energy",
+    "side": "milite:block/machines/electric_storage/overlay_side"
+  },
+  "loader": "milite:machine"
+}

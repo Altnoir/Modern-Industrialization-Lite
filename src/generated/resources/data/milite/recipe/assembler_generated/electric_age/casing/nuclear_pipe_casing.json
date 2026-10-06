@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 6,
+      "item": "milite:blastproof_alloy_curved_plate"
+    },
+    {
+      "amount": 2,
+      "item": "milite:advanced_pump"
+    },
+    {
+      "amount": 1,
+      "item": "milite:nuclear_casing"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:nuclear_alloy_machine_casing_pipe"
+    }
+  ]
+}

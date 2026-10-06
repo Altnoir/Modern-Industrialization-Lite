@@ -1,0 +1,33 @@
+{
+  "parent": "milite:lv_steam_turbine",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:polarizer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.polarizer.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:polarizer"
+    },
+    "title": {
+      "translate": "advancements.milite.polarizer"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

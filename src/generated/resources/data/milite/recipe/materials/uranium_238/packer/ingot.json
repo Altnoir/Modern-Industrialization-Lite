@@ -1,0 +1,17 @@
+{
+  "type": "milite:packer",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "tag": "c:nuggets/uranium_238"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:uranium_238_ingot"
+    }
+  ]
+}

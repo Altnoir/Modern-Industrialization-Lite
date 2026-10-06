@@ -1,0 +1,26 @@
+{
+  "parent": "milite:steel_machine_casing",
+  "criteria": {
+    "used_steel_upgrade": {
+      "trigger": "milite:used_steel_upgrade"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.used_steel_upgrade.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:steel_upgrade"
+    },
+    "title": {
+      "translate": "advancements.milite.used_steel_upgrade"
+    }
+  },
+  "requirements": [
+    [
+      "used_steel_upgrade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

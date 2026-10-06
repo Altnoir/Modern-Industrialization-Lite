@@ -1,0 +1,17 @@
+{
+  "type": "milite:packer",
+  "duration": 400,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 9,
+      "tag": "c:tiny_dusts/kanthal"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:kanthal_dust"
+    }
+  ]
+}

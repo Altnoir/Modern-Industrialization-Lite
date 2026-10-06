@@ -1,0 +1,17 @@
+{
+  "type": "milite:blast_furnace",
+  "eu": 32,
+  "duration": 50,
+  "fluid_inputs": [
+    {
+      "fluid": "milite:methane",
+      "amount": 200
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "fluid": "milite:acetylene",
+      "amount": 200
+    }
+  ]
+}

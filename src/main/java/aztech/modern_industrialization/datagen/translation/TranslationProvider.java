@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -52,7 +53,7 @@ import net.minecraft.data.PackOutput;
 
 public final class TranslationProvider implements DataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String OUTPUT_PATH = "assets/modern_industrialization/lang/en_us.json";
+    private static final String OUTPUT_PATH = "assets/milite/lang/en_us.json";
 
     private final PackOutput packOutput;
     private final Map<String, String> translationPairs = new TreeMap<>();
@@ -72,18 +73,18 @@ public final class TranslationProvider implements DataProvider {
     }
 
     private void addManualEntries() {
-        addTranslation("block.modern_industrialization.pipe", "Pipe(s)");
+        addTranslation("block.milite.pipe", "Pipe(s)");
 
-        addTranslation("entity.minecraft.villager.modern_industrialization.industrialist", "Industrialist");
+        addTranslation("entity.minecraft.villager.milite.industrialist", "Industrialist");
 
-        addTranslation("key.categories.modern_industrialization.modern_industrialization", "Modern Industrialization");
-        addTranslation("key.modern_industrialization.toggle_flight", "Toggle Flight");
-        addTranslation("key.modern_industrialization.toggle_3x3", "Toggle 3x3 Mining");
-        addTranslation("text.autoconfig.modern_industrialization.title", "Modern Industrialization Menu");
-        addTranslation("tag.modern_industrialization.replicator_blacklist", "Replicator Blacklist");
+        addTranslation("key.categories.milite.milite", "Modern Industrialization");
+        addTranslation("key.milite.toggle_flight", "Toggle Flight");
+        addTranslation("key.milite.toggle_3x3", "Toggle 3x3 Mining");
+        addTranslation("text.autoconfig.milite.title", "Modern Industrialization Menu");
+        addTranslation("tag.milite.replicator_blacklist", "Replicator Blacklist");
 
-        addTranslation("config.jade.plugin_modern_industrialization.overclock", "Machine Overclock");
-        addTranslation("config.jade.plugin_modern_industrialization.pipe", "Pipe Information");
+        addTranslation("config.jade.plugin_milite.overclock", "Machine Overclock");
+        addTranslation("config.jade.plugin_milite.pipe", "Pipe Information");
     }
 
     private void collectTranslationEntries() {
@@ -110,7 +111,7 @@ public final class TranslationProvider implements DataProvider {
 
         for (var entry : ReiMachineRecipes.categories.entrySet()) {
             if (entry.getKey().getNamespace().equals(MI.ID)) {
-                addTranslation("rei_categories.modern_industrialization." + entry.getKey().getPath(), entry.getValue().englishName);
+                addTranslation("rei_categories.milite." + entry.getKey().getPath(), entry.getValue().englishName);
             }
         }
 

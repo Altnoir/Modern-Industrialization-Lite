@@ -139,10 +139,10 @@ neoForge {
     version = project.neo_version
 
     mods {
-        modern_industrialization {
+        milite {
             sourceSet sourceSets.main
         }
-        modern_industrialization_with_client {
+        milite_with_client {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -151,7 +151,7 @@ neoForge {
     runs {
         // applies to all the run configs below
         configureEach {
-            loadedMods = [mods.modern_industrialization]
+            loadedMods = [mods.milite]
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -166,38 +166,38 @@ neoForge {
             systemProperty 'forge.logging.console.level', 'debug'
 
             // Allows updates to the guide book to be watched for by GuideME.
-            systemProperty 'guideme.modern_industrialization.book.sources',
-                    file("src/main/resources/assets/modern_industrialization/mi_guidebook/").absolutePath
+            systemProperty 'guideme.milite.book.sources',
+                    file("src/main/resources/assets/milite/mi_guidebook/").absolutePath
         }
 
         client {
             client()
             sourceSet = sourceSets.client
-            loadedMods = [mods.modern_industrialization_with_client]
+            loadedMods = [mods.milite_with_client]
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            systemProperty 'forge.enabledGameTestNamespaces', "modern_industrialization"
+            systemProperty 'forge.enabledGameTestNamespaces', "milite"
         }
 
         server {
             server()
-            systemProperty 'forge.enabledGameTestNamespaces', "modern_industrialization"
+            systemProperty 'forge.enabledGameTestNamespaces', "milite"
         }
 
         data {
             data()
             sourceSet = sourceSets.client
-            loadedMods = [mods.modern_industrialization_with_client]
+            loadedMods = [mods.milite_with_client]
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
             // workingDirectory project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', "modern_industrialization", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', "milite", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
 
         gameTestServer {
             type = "gameTestServer"
             gameDirectory = project.file("build/gametest")
-            systemProperty 'forge.enabledGameTestNamespaces', "modern_industrialization"
+            systemProperty 'forge.enabledGameTestNamespaces', "milite"
         }
     }
 
@@ -310,7 +310,7 @@ abstract class GeneratePackageInfos extends DefaultTask {
             def packageInfoFile = new File(javaFile.parent, 'package-info.java')
             if (!packageInfoFile.exists()) {
                 def pkgName = javaFile.toString().replaceAll(Matcher.quoteReplacement(File.separator), '/')
-                pkgName = pkgName.substring(pkgName.indexOf('aztech/modern_industrialization/'), pkgName.lastIndexOf('/'))
+                pkgName = pkgName.substring(pkgName.indexOf('aztech/milite/'), pkgName.lastIndexOf('/'))
                 pkgName = pkgName.replaceAll('/', '.')
 
                 def pkgInfoText = """
@@ -368,6 +368,9 @@ immaculate {
 
 license {
     include '**/*.java'
+    // Use the repository LICENSE as the canonical header. Without this the plugin generates its own
+    // header from the project name, which never matches the file headers and fails the check.
+    header = file('LICENSE')
 }
 
 // the misc immaculate workflow processes resources, so we need some ordering

@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/titanium"
+    },
+    {
+      "amount": 4,
+      "tag": "c:plates/chromium"
+    },
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:highly_advanced_machine_casing"
+    }
+  ]
+}

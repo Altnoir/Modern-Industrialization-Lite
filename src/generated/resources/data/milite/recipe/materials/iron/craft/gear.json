@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:plates/iron"
+    },
+    "R": {
+      "item": "milite:iron_ring"
+    },
+    "b": {
+      "item": "milite:iron_bolt"
+    }
+  },
+  "pattern": [
+    "PbP",
+    "bRb",
+    "PbP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:iron_gear"
+  }
+}

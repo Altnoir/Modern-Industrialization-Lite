@@ -1,0 +1,19 @@
+{
+  "type" : "milite:packer",
+  "eu" : 2,
+  "duration" : 200,
+  "item_inputs" : [
+    {
+      "item": "minecraft:blast_furnace",
+      "amount": 1
+    },
+    {
+      "item": "milite:fire_clay_bricks",
+      "amount": 8
+    }
+  ],
+  "item_outputs" : {
+    "item" : "milite:steam_blast_furnace",
+    "amount" : 1
+  }
+}

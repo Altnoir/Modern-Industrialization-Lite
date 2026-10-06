@@ -1,0 +1,23 @@
+{
+  "type": "milite:chemical_reactor",
+  "eu": 8,
+  "duration": 200,
+  "item_inputs": {
+    "tag": "c:dusts/sodium",
+    "amount": 1
+  },
+  "fluid_inputs": [
+    {
+    "fluid": "milite:oxygen",
+    "amount": 1000
+    },
+    {
+      "fluid": "milite:hydrogen",
+      "amount": 1000
+    }
+  ],
+  "fluid_outputs": {
+    "fluid": "milite:sodium_hydroxide",
+    "amount": 2000
+  }
+}

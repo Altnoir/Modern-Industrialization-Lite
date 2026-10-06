@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "tag": "c:raw_materials/antimony"
+    },
+    "y": {
+      "item": "milite:raw_antimony"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:raw_antimony_block"
+  }
+}

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +25,6 @@
 
 package aztech.modern_industrialization.datagen.recipe;
 
-import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
 import net.minecraft.data.PackOutput;
@@ -55,22 +55,22 @@ public final class PlankRecipesProvider extends MIRecipesProvider {
 
         String packedSuffix = log ? "wood" : "hyphae";
 
-        var planks = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+        var planks = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                 .addItemInput("#minecraft:" + prefix + "_" + suffixTag, 1).addItemOutput("minecraft:" + prefix + "_planks", 6);
 
         planks.offerTo(consumer, "cutting_machine/planks/" + prefix);
 
-        var stripped = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+        var stripped = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                 .addItemInput("minecraft:" + prefix + "_" + suffix, 1).addItemOutput("minecraft:stripped_" + prefix + "_" + suffix, 1);
 
         stripped.offerTo(consumer, "cutting_machine/stripped/" + prefix);
 
-        var strippedWood = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+        var strippedWood = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                 .addItemInput("minecraft:" + prefix + "_" + packedSuffix, 1).addItemOutput("minecraft:stripped_" + prefix + "_" + packedSuffix, 1);
 
         strippedWood.offerTo(consumer, "cutting_machine/stripped_wood/" + prefix);
 
-        var slab = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100).addFluidInput(MIFluids.LUBRICANT, 1)
+        var slab = new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 2, 100)
                 .addItemInput("minecraft:" + prefix + "_planks", 1).addItemOutput("minecraft:" + prefix + "_slab", 2);
 
         slab.offerTo(consumer, "cutting_machine/slabs/" + prefix);

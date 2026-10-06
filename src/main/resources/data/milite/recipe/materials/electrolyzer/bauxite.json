@@ -1,0 +1,24 @@
+{
+  "type": "milite:electrolyzer",
+  "eu": 32,
+  "duration": 1200,
+  "item_inputs": {
+    "tag": "c:dusts/bauxite",
+    "amount": 10
+  },
+  "item_outputs": [
+    {
+      "item": "milite:aluminum_dust",
+      "amount": 4
+    },
+    {
+      "item": "milite:titanium_tiny_dust",
+      "amount": 3
+    }
+  ],
+  "fluid_outputs": {
+    "fluid": "milite:oxygen",
+    "amount": 2000,
+    "probability": 0.5
+  }
+}

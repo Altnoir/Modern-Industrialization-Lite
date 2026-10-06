@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 8,
+      "tag": "c:plates/stainless_steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:advanced_machine_hull"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_casing"
+    }
+  ]
+}

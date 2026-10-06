@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "ghg",
+    "RLR",
+    "ghg"
+  ],
+  "key": {
+    "h": {
+      "item" : "milite:small_heat_exchanger"
+    },
+    "L": {
+      "item" : "milite:large_advanced_pump"
+    },
+    "R":{
+      "item" : "milite:aluminum_rotor"
+    },
+    "g" : {
+      "tag" : "c:gears/invar"
+    }
+  },
+
+  "result": {
+    "id": "milite:large_heat_exchanger"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "item": "milite:tin_double_ingot"
+  },
+  "result": {
+    "count": 2,
+    "id": "milite:tin_rod"
+  }
+}

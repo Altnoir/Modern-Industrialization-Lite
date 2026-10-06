@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -75,7 +76,7 @@ public class AssemblerRecipesProvider extends MIRecipesProvider {
     }
 
     public static boolean shouldConvertToAssembler(ResourceLocation pathId) {
-        if (pathId.getNamespace().equals("modern_industrialization")) {
+        if (pathId.getNamespace().equals("milite")) {
             String path = pathId.toString();
             String postfix = path.substring(path.length() - 10, path.length() - 5);
             if (postfix.equals("_asbl")) {

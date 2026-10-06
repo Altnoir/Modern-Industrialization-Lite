@@ -1,0 +1,33 @@
+{
+  "parent": "milite:hv_steam_turbine",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:large_steam_turbine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.large_steam_turbine.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:large_steam_turbine"
+    },
+    "title": {
+      "translate": "advancements.milite.large_steam_turbine"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

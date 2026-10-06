@@ -1,0 +1,23 @@
+{
+  "type": "milite:centrifuge",
+  "eu": 10,
+  "duration": 240,
+  "item_inputs": {
+    "tag": "c:tiny_dusts/monazite",
+    "amount": 9
+  },
+    "item_outputs": [
+      {
+      "item": "milite:neodymium_tiny_dust",
+      "amount": 3
+      },
+      {
+        "item": "milite:yttrium_tiny_dust",
+        "amount": 3
+      },
+      {
+        "item": "milite:cadmium_tiny_dust",
+        "amount": 3
+      }
+    ]
+}

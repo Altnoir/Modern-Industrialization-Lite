@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "AAA",
+    "AHA",
+    "AAA"
+  ],
+  "key": {
+    "A" : {
+      "tag" : "c:plates/bronze"
+    },
+    "H" : {
+      "item" : "milite:fire_clay_bricks"
+    }
+  },
+  "result": {
+    "id": "milite:bronze_plated_bricks"
+  }
+}

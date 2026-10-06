@@ -1,0 +1,27 @@
+{
+  "type": "milite:electrolyzer",
+  "eu": 32,
+  "duration": 400,
+  "item_inputs": {
+    "tag": "c:dusts/emerald",
+    "amount": 23
+  },
+  "item_outputs": [
+    {
+      "item": "milite:beryllium_dust",
+      "amount": 3
+    },
+    {
+      "item": "milite:aluminum_dust",
+      "amount": 2
+    },
+    {
+      "item": "milite:silicon_dust",
+      "amount": 6
+    }
+  ],
+  "fluid_outputs": {
+    "fluid": "milite:oxygen",
+    "amount": 3000
+  }
+}

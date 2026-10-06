@@ -1,0 +1,29 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern": [
+    "LpL",
+    "GCG",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "milite:steel_large_plate"
+    },
+    "p":{
+      "item": "milite:bronze_curved_plate"
+    },
+    "G": {
+      "tag": "c:gears/steel"
+    },
+    "P": {
+      "item": "milite:invar_rotary_blade"
+    },
+    "C": {
+      "item": "milite:steel_machine_casing"
+    }
+  },
+  "result": {
+    "id": "milite:steam_quarry",
+    "count": 1
+  }
+}

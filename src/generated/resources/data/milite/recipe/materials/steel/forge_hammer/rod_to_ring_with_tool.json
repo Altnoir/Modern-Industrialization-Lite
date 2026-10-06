@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 20,
+  "ingredient": {
+    "tag": "c:rods/steel"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:steel_ring"
+  }
+}

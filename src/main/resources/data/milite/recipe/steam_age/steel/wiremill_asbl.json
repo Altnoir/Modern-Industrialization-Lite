@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "GpG",
+    "rHr",
+    "GpG"
+  ],
+  "key":
+  {
+    "G": {
+      "tag" : "c:gears/bronze"
+    },
+    "H" :{
+      "item" : "milite:steel_machine_casing"
+    },
+    "p": {
+      "tag" : "milite:fluid_pipes"
+    },
+    "r" : {
+      "item" : "milite:bronze_rotor"
+    }
+  },
+
+  "result": {
+    "id": "milite:steel_wiremill"
+  }
+}

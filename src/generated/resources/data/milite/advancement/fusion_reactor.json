@@ -1,0 +1,34 @@
+{
+  "parent": "milite:quantum_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:fusion_reactor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.fusion_reactor.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "milite:fusion_reactor"
+    },
+    "title": {
+      "translate": "advancements.milite.fusion_reactor"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

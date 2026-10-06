@@ -1,0 +1,17 @@
+{
+  "type": "milite:electrolyzer",
+  "eu": 8,
+  "duration": 400,
+  "item_inputs": {
+    "tag": "c:dusts/salt",
+    "amount": 2
+  },
+  "item_outputs": {
+    "item": "milite:sodium_dust",
+    "amount": 1
+  },
+  "fluid_outputs": {
+    "fluid": "milite:chlorine",
+    "amount": 125
+  }
+}

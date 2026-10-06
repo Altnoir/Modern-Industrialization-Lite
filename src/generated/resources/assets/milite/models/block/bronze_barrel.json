@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "milite:block/bronze_barrel_top",
+    "side": "milite:block/bronze_barrel_side"
+  }
+}

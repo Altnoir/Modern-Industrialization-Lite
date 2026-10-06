@@ -1,0 +1,21 @@
+{
+  "type": "milite:chemical_reactor",
+  "duration": 100,
+  "eu": 8,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:heavy_fuel"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:steam"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:steam_cracked_heavy_fuel"
+    }
+  ]
+}

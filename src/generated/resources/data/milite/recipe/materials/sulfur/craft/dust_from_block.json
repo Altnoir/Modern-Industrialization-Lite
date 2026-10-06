@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:sulfur_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:sulfur_dust"
+  }
+}

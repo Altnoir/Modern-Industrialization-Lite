@@ -1,0 +1,34 @@
+{
+  "parent": "milite:assembler",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:basic_upgrade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.basic_upgrade.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "milite:basic_upgrade"
+    },
+    "title": {
+      "translate": "advancements.milite.basic_upgrade"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

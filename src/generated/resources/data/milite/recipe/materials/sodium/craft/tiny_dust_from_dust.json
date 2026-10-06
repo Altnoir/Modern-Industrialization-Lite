@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:sodium_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:sodium_tiny_dust"
+  }
+}

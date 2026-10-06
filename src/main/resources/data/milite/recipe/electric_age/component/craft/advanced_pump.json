@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "ppp",
+    "rmr",
+    "brb"
+  ],
+  "key":
+  {
+    "m" : {
+      "item" : "milite:advanced_motor"
+    },
+    "r" : {
+      "item" : "milite:stainless_steel_rotor"
+    },
+    "p" :{
+      "tag" : "milite:fluid_pipes"
+    },
+    "b" :{
+      "item" : "milite:stainless_steel_bolt"
+    }
+  },
+
+  "result": {
+    "id": "milite:advanced_pump"
+  }
+}

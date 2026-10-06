@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 20,
+  "ingredient": {
+    "tag": "c:plates/bronze"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:bronze_curved_plate"
+  }
+}

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -87,20 +88,20 @@ public final class MITextures {
         mtm.runAtEnd(() -> casingFromTextureBricked(mtm, MachineCasings.BRICKED_STEEL,
                 MI.id("textures/block/steel_machine_casing.png")));
 
-        mtm.runAtEnd(() -> mtm.addTexture("modern_industrialization:textures/item/mixed_ingot_blastproof.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_industrialization:textures/item/stainless_steel_ingot.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/titanium_ingot.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/tungsten_ingot.png"))));
+        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_ingot_blastproof.png",
+                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/stainless_steel_ingot.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/titanium_ingot.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/tungsten_ingot.png"))));
 
-        mtm.runAtEnd(() -> mtm.addTexture("modern_industrialization:textures/item/mixed_plate_nuclear.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_industrialization:textures/item/cadmium_plate.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/beryllium_plate.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/blastproof_alloy_plate.png"), 1, 2)));
+        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_plate_nuclear.png",
+                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/cadmium_plate.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/beryllium_plate.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_plate.png"), 1, 2)));
 
-        mtm.runAtEnd(() -> mtm.addTexture("modern_industrialization:textures/item/mixed_ingot_iridium.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_industrialization:textures/item/blastproof_alloy_ingot.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/iridium_ingot.png"),
-                        mtm.getAssetAsTexture("modern_industrialization:textures/item/blastproof_alloy_ingot.png"))));
+        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_ingot_iridium.png",
+                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/iridium_ingot.png"),
+                        mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"))));
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
                 .thenComposeAsync(v -> {
@@ -114,7 +115,7 @@ public final class MITextures {
     }
 
     private static String getTemplate(String materialSet, String part, String suffix) {
-        return String.format("modern_industrialization:textures/materialsets/%s/%s%s.png", materialSet, part, suffix);
+        return String.format("milite:textures/materialsets/%s/%s%s.png", materialSet, part, suffix);
     }
 
     private static final String[] LAYERS = new String[] { "_underlay", "", "_overlay" };
@@ -190,9 +191,9 @@ public final class MITextures {
         if (texture != null) {
             String texturePath;
             if (isBlock) {
-                texturePath = String.format("modern_industrialization:textures/block/%s.png", path);
+                texturePath = String.format("milite:textures/block/%s.png", path);
             } else {
-                texturePath = String.format("modern_industrialization:textures/item/%s.png", path);
+                texturePath = String.format("milite:textures/item/%s.png", path);
             }
             mtm.addTexture(texturePath, texture);
             texture.close();
@@ -202,7 +203,7 @@ public final class MITextures {
     }
 
     public static void generateDoubleIngot(TextureManager mtm, String materialName) throws IOException {
-        String ingotTexture = String.format("modern_industrialization:textures/item/%s_ingot.png", materialName);
+        String ingotTexture = String.format("milite:textures/item/%s_ingot.png", materialName);
         if (materialName.equals("gold") || materialName.equals("iron") || materialName.equals("copper")) {
             ingotTexture = String.format("minecraft:textures/item/%s_ingot.png", materialName);
         }
@@ -210,7 +211,7 @@ public final class MITextures {
         TextureHelper.doubleIngot(image);
         String itemPath = materialName + "_double_ingot";
 
-        mtm.addTexture(String.format("modern_industrialization:textures/item/%s.png", itemPath), image);
+        mtm.addTexture(String.format("milite:textures/item/%s.png", itemPath), image);
         image.close();
     }
 
@@ -218,7 +219,7 @@ public final class MITextures {
         for (String side : new String[] { "top", "side", "bottom" }) {
 
             try {
-                String s = String.format("modern_industrialization:textures/block/casings/%s/%s.png", casing, side);
+                String s = String.format("milite:textures/block/casings/%s/%s.png", casing, side);
                 tm.addTexture(s, TextureHelper.copy(texture));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -229,7 +230,7 @@ public final class MITextures {
     public static void casingFromTextureBricked(TextureManager tm, MachineCasing casing, ResourceLocation topTexturePath) {
         try (
                 var topTexture = tm.getAssetAsTexture(topTexturePath.toString());
-                var brickTexture = tm.getAssetAsTexture("modern_industrialization:textures/block/fire_clay_bricks.png")) {
+                var brickTexture = tm.getAssetAsTexture("milite:textures/block/fire_clay_bricks.png")) {
             if (topTexture.getWidth() != brickTexture.getWidth() || topTexture.getHeight() != brickTexture.getHeight()) {
                 throw new IllegalArgumentException("Texture and Brick must have same dimension");
             }
@@ -249,7 +250,7 @@ public final class MITextures {
     }
 
     private static void registerFluidTextures(TextureManager tm, FluidDefinition fluid) {
-        String path = "modern_industrialization:textures/fluid/";
+        String path = "milite:textures/fluid/";
         String bucket = path + "bucket.png";
         String bucket_content = path + "bucket_content.png";
 
@@ -266,7 +267,7 @@ public final class MITextures {
             if (fluid.isGas) {
                 TextureHelper.flip(bucket_image);
             }
-            tm.addTexture(String.format("modern_industrialization:textures/item/%s_bucket.png", fluid.path()), bucket_image);
+            tm.addTexture(String.format("milite:textures/item/%s_bucket.png", fluid.path()), bucket_image);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -279,8 +280,8 @@ public final class MITextures {
             NativeImage fluidAnim = tm.getAssetAsTexture(pathFluid);
             TextureHelper.colorize(fluidAnim, fluidColoramp);
             TextureHelper.setAlpha(fluidAnim, fluid.opacity);
-            tm.addTexture(String.format("modern_industrialization:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
-            tm.addMcMeta(String.format("modern_industrialization:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
+            tm.addTexture(String.format("milite:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
+            tm.addMcMeta(String.format("milite:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
 
         } catch (IOException e) {
             e.printStackTrace();

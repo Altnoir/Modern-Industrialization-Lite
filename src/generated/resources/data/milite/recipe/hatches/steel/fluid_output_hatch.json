@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": {
+      "item": "milite:steel_machine_casing"
+    },
+    "V": {
+      "item": "milite:steel_tank"
+    }
+  },
+  "pattern": [
+    "U",
+    "V"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:steel_fluid_output_hatch"
+  }
+}

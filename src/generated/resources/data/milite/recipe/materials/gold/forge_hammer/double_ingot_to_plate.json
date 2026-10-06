@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "item": "milite:gold_double_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:gold_plate"
+  }
+}

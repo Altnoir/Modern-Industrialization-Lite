@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "PCP",
+    "GHG",
+    "ccc"
+  ],
+  "key" : {
+  "H" : { "item" : "milite:basic_machine_hull"},
+    "P": { "item" : "milite:pump"},
+    "G": { "tag" : "c:gears/tin"},
+    "c" : {"item" : "milite:tin_wire"},
+    "C" : {"item" : "milite:analog_circuit"}
+
+},
+  "result": {
+    "id": "milite:lv_diesel_generator"
+  }
+}

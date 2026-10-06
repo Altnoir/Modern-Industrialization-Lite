@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "milite:block/creative_barrel_top",
+    "side": "milite:block/creative_barrel_side"
+  }
+}

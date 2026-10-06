@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -80,8 +81,8 @@ public class UpgradeProvider extends MIRecipesProvider {
         for (var itemType : QUANTUM_ITEMS) {
             var packerRecipe = new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 1_000_000, 200)
                     .addItemInput("minecraft:netherite_" + itemType, 1)
-                    .addItemInput("modern_industrialization:quantum_upgrade", 1)
-                    .addItemOutput("modern_industrialization:quantum_" + itemType, 1);
+                    .addItemInput("milite:quantum_upgrade", 1)
+                    .addItemOutput("milite:quantum_" + itemType, 1);
             packerRecipe.offerTo(consumer, "upgrade/packer/quantum/" + itemType);
         }
     }

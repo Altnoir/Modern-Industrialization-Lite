@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:annealed_copper_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:annealed_copper_tiny_dust"
+  }
+}

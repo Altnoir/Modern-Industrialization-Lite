@@ -1,0 +1,13 @@
+{
+  "type": "milite:centrifuge",
+  "eu": 32,
+  "duration": 100,
+  "item_inputs": {
+    "tag": "c:dusts/lignite_coal",
+    "amount": 27
+  },
+  "item_outputs": {
+    "item": "milite:coal_dust",
+    "amount": 10
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "milite:distillery",
+  "duration": 800,
+  "eu": 8,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:sugar_solution"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 10,
+      "fluid": "milite:ethanol"
+    }
+  ]
+}

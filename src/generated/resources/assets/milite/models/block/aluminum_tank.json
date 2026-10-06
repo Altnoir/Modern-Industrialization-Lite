@@ -1,0 +1,6 @@
+{
+  "parent": "milite:base/tank",
+  "textures": {
+    "0": "milite:block/aluminum_tank"
+  }
+}

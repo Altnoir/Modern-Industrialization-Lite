@@ -1,0 +1,24 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "bbb",
+    "LHL",
+    "bbb"
+  ],
+  "key":
+  {
+    "b" : {
+      "item" : "milite:silicon_battery"
+    },
+    "H" :{
+      "item" : "milite:advanced_machine_hull"
+    },
+    "L": {
+      "tag" : "c:plates/battery_alloy"
+    }
+
+  },
+  "result": {
+    "id": "milite:mv_storage_unit"
+  }
+}

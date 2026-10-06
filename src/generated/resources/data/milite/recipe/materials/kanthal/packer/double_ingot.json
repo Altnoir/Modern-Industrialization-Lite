@@ -1,0 +1,22 @@
+{
+  "type": "milite:packer",
+  "duration": 400,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 2,
+      "tag": "c:ingots/kanthal"
+    },
+    {
+      "amount": 1,
+      "item": "milite:packer_double_ingot_template",
+      "probability": 0.0
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:kanthal_double_ingot"
+    }
+  ]
+}

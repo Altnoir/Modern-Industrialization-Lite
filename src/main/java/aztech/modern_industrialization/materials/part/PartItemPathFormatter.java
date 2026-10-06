@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +27,7 @@ package aztech.modern_industrialization.materials.part;
 
 public sealed interface PartItemPathFormatter {
     static String idFromPath(String path) {
-        return "modern_industrialization:" + path;
+        return "milite:" + path;
     }
 
     String getPartItemPath(String materialName, PartKey partKey);
@@ -34,7 +35,7 @@ public sealed interface PartItemPathFormatter {
     String getPartItemTag(String materialName, PartKey partKey);
 
     default String getPartItemId(String materialName, PartKey partKey) {
-        return "modern_industrialization:" + getPartItemPath(materialName, partKey);
+        return "milite:" + getPartItemPath(materialName, partKey);
     }
 
     record Default() implements PartItemPathFormatter {

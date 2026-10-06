@@ -1,0 +1,32 @@
+{
+    "type": "milite:assembler",
+    "eu": 8,
+    "duration": 200,
+    "item_inputs": [
+        {
+            "item": "milite:bronze_curved_plate",
+            "amount": 3
+        },
+        {
+            "item": "milite:tin_rotor",
+            "amount": 3
+        },
+        {
+            "item": "milite:motor",
+            "amount": 1
+        }
+    ],
+
+    "fluid_inputs": [
+        {
+            "fluid": "milite:soldering_alloy",
+            "amount": 100
+        }
+    ],
+    "item_outputs": [
+        {
+            "item": "milite:pump",
+            "amount": 1
+        }
+    ]
+}

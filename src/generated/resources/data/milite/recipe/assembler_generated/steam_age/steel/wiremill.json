@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:gears/bronze"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_machine_casing"
+    },
+    {
+      "amount": 2,
+      "tag": "milite:fluid_pipes"
+    },
+    {
+      "amount": 2,
+      "item": "milite:bronze_rotor"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:steel_wiremill"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "item": "milite:cupronickel_wire_magnetic"
+    },
+    {
+      "amount": 1,
+      "item": "milite:basic_machine_hull"
+    },
+    {
+      "amount": 2,
+      "item": "milite:tin_wire"
+    },
+    {
+      "amount": 2,
+      "item": "milite:analog_circuit"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electric_furnace"
+    }
+  ]
+}

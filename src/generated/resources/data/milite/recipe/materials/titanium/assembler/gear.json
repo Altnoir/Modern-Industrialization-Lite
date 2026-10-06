@@ -1,0 +1,27 @@
+{
+  "type": "milite:assembler",
+  "duration": 400,
+  "eu": 2,
+  "fluid_inputs": [
+    {
+      "amount": 100,
+      "fluid": "milite:soldering_alloy"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/titanium"
+    },
+    {
+      "amount": 1,
+      "item": "milite:titanium_ring"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 2,
+      "item": "milite:titanium_gear"
+    }
+  ]
+}

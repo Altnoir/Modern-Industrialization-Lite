@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "pCp",
+    "cHc",
+    "pCp"
+  ],
+  "key":
+  {
+    "p" : {
+      "item" : "milite:piston"
+    },
+    "H" :{
+      "item" : "milite:basic_machine_hull"
+    },
+    "c": {
+      "item" : "milite:tin_wire"
+    },
+    "C" : {
+      "item" : "milite:analog_circuit"
+    }
+  },
+
+  "result": {
+    "id": "milite:electric_compressor"
+  }
+}

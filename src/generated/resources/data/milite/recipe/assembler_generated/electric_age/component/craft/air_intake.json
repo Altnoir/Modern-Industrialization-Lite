@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/stainless_steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_rotor"
+    },
+    {
+      "amount": 4,
+      "tag": "c:plates/aluminum"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:air_intake"
+    }
+  ]
+}

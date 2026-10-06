@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "item": "milite:bronze_double_ingot"
+  },
+  "result": {
+    "count": 4,
+    "id": "milite:bronze_bolt"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "milite:unpacker",
+  "duration": 200,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:lv_energy_input_hatch"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:basic_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tin_wire"
+    }
+  ]
+}

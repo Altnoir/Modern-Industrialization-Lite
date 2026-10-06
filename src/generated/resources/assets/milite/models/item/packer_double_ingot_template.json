@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "milite:item/packer_double_ingot_template"
+  }
+}

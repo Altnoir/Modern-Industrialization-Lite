@@ -1,0 +1,17 @@
+{
+  "type": "milite:distillery",
+  "duration": 200,
+  "eu": 15,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:steam_cracked_naphtha"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 250,
+      "fluid": "milite:ethylene"
+    }
+  ]
+}

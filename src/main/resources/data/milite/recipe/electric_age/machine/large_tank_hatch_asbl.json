@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "t",
+    "p",
+    "S"
+  ],
+  "key": {
+    "t": {
+      "item" : "milite:steel_tank"
+    },
+    "p" : {
+      "item" : "milite:pump"
+    },
+    "S" :{
+      "item" : "milite:steel_machine_casing"
+    }
+  },
+  "result": {
+    "id": "milite:large_tank_hatch"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern" : [
+    "gpd",
+    "mCf",
+    "cPg"
+
+  ],
+  "key": {
+    "d" : {
+      "item": "milite:stainless_steel_drill_head"
+    },
+    "g" : {
+      "tag": "c:gears/iron"
+    },
+    "p" : {
+      "tag" : "milite:item_pipes"
+    },
+    "f" : {
+      "tag" : "milite:fluid_pipes"
+    },
+    "m" : {
+      "item": "milite:advanced_motor"
+    },
+    "P" : {
+      "item": "milite:advanced_pump"
+    },
+    "c" : {
+      "item" : "milite:aluminum_wire"
+    },
+    "C" : {
+      "item" : "milite:digital_circuit"
+    }
+  },
+  "result": {
+    "id": "milite:stainless_steel_drill",
+    "count": 4
+  }
+}

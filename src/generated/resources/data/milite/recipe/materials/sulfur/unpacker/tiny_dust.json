@@ -1,0 +1,17 @@
+{
+  "type": "milite:unpacker",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:dusts/sulfur"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 9,
+      "item": "milite:sulfur_tiny_dust"
+    }
+  ]
+}

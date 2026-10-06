@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p p",
+    "p#p",
+    "p p"
+  ],
+  "key": {
+    "#": {
+      "item": "milite:solid_titanium_machine_casing"
+    },
+    "p": {
+      "item": "milite:titanium_curved_plate"
+    }
+  },
+  "result": {
+    "id": "milite:titanium_machine_casing_pipe",
+    "count": 2
+  }
+}

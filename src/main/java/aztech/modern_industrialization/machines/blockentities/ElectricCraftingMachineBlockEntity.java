@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -113,9 +114,6 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
         }
         if (!result.consumesAction()) {
             result = overdrive.onUse(this, player, hand);
-        }
-        if (!result.consumesAction()) {
-            result = LubricantHelper.onUse(this.crafter, player, hand);
         }
         return result;
     }

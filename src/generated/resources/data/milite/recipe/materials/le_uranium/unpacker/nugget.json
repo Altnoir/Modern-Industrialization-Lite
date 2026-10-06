@@ -1,0 +1,17 @@
+{
+  "type": "milite:unpacker",
+  "duration": 800,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:ingots/le_uranium"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 9,
+      "item": "milite:le_uranium_nugget"
+    }
+  ]
+}

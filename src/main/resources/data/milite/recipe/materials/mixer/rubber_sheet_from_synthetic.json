@@ -1,0 +1,17 @@
+{
+  "type": "milite:mixer",
+  "eu": 2,
+  "duration": 100,
+  "item_inputs": {
+    "item": "minecraft:paper",
+    "amount": 1
+  },
+  "fluid_inputs": {
+    "fluid": "milite:synthetic_rubber",
+    "amount": 100
+  },
+  "item_outputs": {
+    "item": "milite:rubber_sheet",
+    "amount": 12
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "milite:packer",
+  "duration": 800,
+  "eu": 2,
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "c:plates/diamond"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:diamond_large_plate"
+    }
+  ]
+}

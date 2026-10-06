@@ -1,0 +1,33 @@
+{
+  "parent": "milite:fusion_reactor",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:plasma_turbine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.plasma_turbine.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:plasma_turbine"
+    },
+    "title": {
+      "translate": "advancements.milite.plasma_turbine"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

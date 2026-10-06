@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "fdd",
+    "PDd",
+    "bPf"
+  ],
+  "key" : {
+    "P": {
+      "item" : "milite:iron_large_plate"
+    },
+    "f" : {
+      "item" : "minecraft:furnace"
+    },
+    "b" : {
+      "item" : "minecraft:bucket"
+    },
+    "d": {
+      "item" : "minecraft:diamond"
+    },
+    "D" : {
+      "item" : "milite:copper_drill_head"
+    }
+  },
+  "result": {
+    "id" : "milite:steam_mining_drill"
+  }
+}

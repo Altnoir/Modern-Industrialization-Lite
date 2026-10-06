@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": {
+      "item": "milite:highly_advanced_fluid_input_hatch"
+    }
+  },
+  "pattern": [
+    "U"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:highly_advanced_fluid_output_hatch"
+  }
+}

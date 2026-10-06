@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:tungsten_dust"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "milite:tungsten_tiny_dust"
+  }
+}

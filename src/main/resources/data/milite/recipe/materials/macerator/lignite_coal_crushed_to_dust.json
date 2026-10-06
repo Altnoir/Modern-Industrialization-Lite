@@ -1,0 +1,25 @@
+{
+  "type": "milite:macerator",
+  "eu": 2,
+  "duration": 100,
+  "item_inputs": {
+    "item": "milite:lignite_coal_crushed_dust",
+    "amount": 1
+  },
+  "item_outputs": [{
+      "item": "milite:lignite_coal_dust",
+      "amount": 1
+    },
+    {
+      "item": "milite:lignite_coal_dust",
+      "amount": 1,
+      "probability" : 0.5
+    },
+    {
+      "item": "milite:sulfur_dust",
+      "amount": 1,
+      "probability" : 0.5
+    }
+
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "milite:item/antimony_tiny_dust"
+  }
+}

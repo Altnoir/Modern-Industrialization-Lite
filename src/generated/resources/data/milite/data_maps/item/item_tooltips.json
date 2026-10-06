@@ -1,0 +1,121 @@
+{
+  "values": {
+    "milite:aluminum_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:bronze_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:capacitor": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:copper_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:gold_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:inductor": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:invar_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:iron_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:resistor": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:stainless_steel_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:steel_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:tin_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
+    "milite:titanium_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    }
+  }
+}

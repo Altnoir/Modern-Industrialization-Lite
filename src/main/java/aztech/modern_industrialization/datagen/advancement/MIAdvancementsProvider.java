@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2026 Altnoir Null々
  * Copyright (c) 2020 Azercoco & Technici4n
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -53,13 +54,13 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
     }
 
     private Component translateTitle(String path, String englishName) {
-        var titleKey = "advancements.modern_industrialization." + path;
+        var titleKey = "advancements.milite." + path;
         translations.addTranslation(titleKey, englishName);
         return Component.translatable(titleKey);
     }
 
     private Component translateDescription(String path, String englishDescription) {
-        var descKey = "advancements.modern_industrialization." + path + ".description";
+        var descKey = "advancements.milite." + path + ".description";
         translations.addTranslation(descKey, englishDescription);
         return Component.translatable(descKey);
     }
