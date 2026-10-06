@@ -25,9 +25,6 @@
 package aztech.modern_industrialization.blocks;
 
 import aztech.modern_industrialization.MICapabilities;
-import aztech.modern_industrialization.api.energy.CableTier;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
@@ -148,32 +146,27 @@ public class TrashCanBlock extends Block {
         }
     }
 
-    private static class TrashEnergyStorage implements MIEnergyStorage {
+    private static class TrashEnergyStorage implements IEnergyStorage {
         private static final TrashEnergyStorage INSTANCE = new TrashEnergyStorage();
 
         @Override
-        public boolean canConnect(CableTier cableTier) {
-            return true;
-        }
-
-        @Override
-        public long receive(long maxReceive, boolean simulate) {
+        public int receiveEnergy(int maxReceive, boolean simulate) {
             return maxReceive;
         }
 
         @Override
-        public long extract(long maxExtract, boolean simulate) {
+        public int extractEnergy(int maxExtract, boolean simulate) {
             return 0;
         }
 
         @Override
-        public long getAmount() {
+        public int getEnergyStored() {
             return 0;
         }
 
         @Override
-        public long getCapacity() {
-            return Long.MAX_VALUE;
+        public int getMaxEnergyStored() {
+            return Integer.MAX_VALUE;
         }
 
         @Override
@@ -193,7 +186,7 @@ public class TrashCanBlock extends Block {
             event.registerItem(Capabilities.ItemHandler.ITEM, (stack, ctx) -> TrashItemHandler.INSTANCE, blockItem);
             event.registerBlock(Capabilities.FluidHandler.BLOCK, (level, pos, state, be, direction) -> TrashFluidHandler.INSTANCE, block);
             event.registerItem(Capabilities.FluidHandler.ITEM, (stack, ctx) -> new TrashFluidHandlerItem(stack), blockItem);
-            event.registerBlock(EnergyApi.SIDED, (level, pos, state, be, direction) -> TrashEnergyStorage.INSTANCE, block);
+            event.registerBlock(Capabilities.EnergyStorage.BLOCK, (level, pos, state, be, direction) -> TrashEnergyStorage.INSTANCE, block);
         });
     }
 }

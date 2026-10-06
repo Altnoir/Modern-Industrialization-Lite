@@ -28,13 +28,11 @@ import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.MIItem;
-import aztech.modern_industrialization.client.pipes.impl.PipeUnbakedModel;
 import aztech.modern_industrialization.datagen.model.BaseModelProvider;
 import aztech.modern_industrialization.datagen.model.MachineModelsToGenerate;
 import aztech.modern_industrialization.definition.BlockDefinition;
 import aztech.modern_industrialization.definition.FluidDefinition;
 import aztech.modern_industrialization.definition.ItemDefinition;
-import aztech.modern_industrialization.pipes.MIPipes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
@@ -54,10 +52,6 @@ public class MIModelProvider extends BaseModelProvider {
         for (FluidDefinition fluidDefinition : MIFluids.FLUID_DEFINITIONS.values()) {
             existingModel(fluidDefinition.asFluidBlock(), Blocks.AIR);
         }
-
-        simpleBlock(MIPipes.BLOCK_PIPE.get(), models().getBuilder("pipe")
-                .customLoader(TrivialModelBuilder.begin(PipeUnbakedModel.LOADER_ID))
-                .end());
 
         // Item models as well...
         for (ItemDefinition<?> itemDefinition : MIItem.ITEM_DEFINITIONS.values()) {

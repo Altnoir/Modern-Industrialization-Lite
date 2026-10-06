@@ -26,9 +26,7 @@ package aztech.modern_industrialization;
 
 import aztech.modern_industrialization.api.datamaps.MIDataMaps;
 import aztech.modern_industrialization.api.energy.CableTier;
-import aztech.modern_industrialization.api.energy.EnergyApi;
 import aztech.modern_industrialization.blocks.OreBlock;
-import aztech.modern_industrialization.compat.ae2.MIAEProxy;
 import aztech.modern_industrialization.config.MIClientConfig;
 import aztech.modern_industrialization.definition.FluidLike;
 import aztech.modern_industrialization.items.PortableStorageUnit;
@@ -41,8 +39,6 @@ import aztech.modern_industrialization.machines.components.LubricantHelper;
 import aztech.modern_industrialization.machines.components.UpgradeComponent;
 import aztech.modern_industrialization.nuclear.NuclearAbsorbable;
 import aztech.modern_industrialization.nuclear.NuclearFuel;
-import aztech.modern_industrialization.pipes.MIPipes;
-import aztech.modern_industrialization.pipes.impl.PipeItem;
 import aztech.modern_industrialization.util.TextHelper;
 import com.google.common.base.Preconditions;
 import java.util.ArrayList;
@@ -68,6 +64,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.capabilities.Capabilities;
 
 @SuppressWarnings("unused")
 public class MITooltips {
@@ -243,23 +240,6 @@ public class MITooltips {
                 }
             });
 
-    public static final TooltipAttachment CABLES = TooltipAttachment.of(
-            (itemStack, item) -> {
-                if (item instanceof PipeItem pipe) {
-                    if (MIPipes.ELECTRICITY_PIPE_TIER.containsKey(pipe.type)) {
-                        var tier = MIPipes.ELECTRICITY_PIPE_TIER.get(pipe.type);
-                        return Optional.of(new Line(MIText.EuCable).arg(tier.shortEnglishName()).arg(tier.getMaxTransfer(), EU_PER_TICK_PARSER).build());
-                    } else if (MIAEProxy.INSTANCE.isMeWireType(pipe.type)) {
-                        int channels = MIAEProxy.INSTANCE.getMeWireChannelCount();
-                        if (channels == 0) {
-                            return Optional.of(new Line(MIText.MeWire).arg(Component.literal("\u221E").withStyle(HIGHLIGHT_STYLE), COMPONENT).build());
-                        }
-                        return Optional.of(new Line(MIText.MeWire).arg(channels).build());
-                    }
-                }
-                return Optional.empty();
-            });
-
     public static final TooltipAttachment COILS = TooltipAttachment.of(
             (itemStack, item) -> {
                 if (item instanceof BlockItem blockItem
@@ -276,12 +256,12 @@ public class MITooltips {
     public static final TooltipAttachment ENERGY_STORED_ITEM = TooltipAttachment.of(
             (itemStack, item) -> {
                 if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(MI.ID)) {
-                    var energyStorage = itemStack.getCapability(EnergyApi.ITEM);
+                    var energyStorage = itemStack.getCapability(Capabilities.EnergyStorage.ITEM);
                     if (energyStorage != null) {
-                        long capacity = energyStorage.getCapacity();
+                        long capacity = energyStorage.getMaxEnergyStored();
                         if (capacity > 0) {
                             return Optional.of(new Line(MIText.EnergyStored)
-                                    .arg(new NumberWithMax(energyStorage.getAmount(), capacity), EU_MAXED_PARSER).build());
+                                    .arg(new NumberWithMax(energyStorage.getEnergyStored(), capacity), EU_MAXED_PARSER).build());
                         }
                     }
                 }
@@ -362,21 +342,6 @@ public class MITooltips {
     public static final TooltipAttachment OVERDRIVE_MODULE = TooltipAttachment.ofMultilines(MIItem.OVERDRIVE_MODULE,
             MIText.OverdriveModuleDescription1, MIText.OverdriveModuleDescription2);
 
-    public static final TooltipAttachment SPEED_UPGRADES = TooltipAttachment.ofMultilines(
-            (itemStack, item) -> {
-                var upgrade = itemStack.getItemHolder().getData(MIDataMaps.ITEM_PIPE_UPGRADES);
-                if (upgrade != null) {
-                    List<Component> lines = new ArrayList<>();
-                    lines.add(new Line(MIText.TooltipSpeedUpgrade).arg(upgrade.maxExtractedItems()).build());
-                    if (itemStack.getCount() > 1) {
-                        lines.add(new Line(MIText.TooltipSpeedUpgradeStack).arg(itemStack.getCount() * upgrade.maxExtractedItems()).build());
-                    }
-                    return lines;
-                } else {
-                    return List.of();
-                }
-            });
-
     public static final TooltipAttachment UPGRADES = TooltipAttachment.ofMultilines(
             (itemStack, item) -> {
                 if (UpgradeComponent.getExtraEu(item) > 0) {
@@ -415,33 +380,11 @@ public class MITooltips {
                 }
             });
 
-    public static final TooltipAttachment CONFIG_CARD_HELP = TooltipAttachment.ofMultilines(MIItem.CONFIG_CARD,
-            List.of(
-                    line(MIText.ConfigCardHelpCamouflage1).build(),
-                    line(MIText.ConfigCardHelpCamouflage2).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.ConfigCardHelpCamouflage3).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.ConfigCardHelpCamouflage4).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.ConfigCardHelpCamouflage5).arg("sneak", KEYBIND_PARSER)
-                            .arg(MIText.KeyMouseScroll.text().withStyle(NUMBER_TEXT), COMPONENT)
-                            .build(),
-                    Component.empty(),
-                    line(MIText.ConfigCardHelpPipes1).build(),
-                    line(MIText.ConfigCardHelpPipes2).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.ConfigCardHelpPipes3).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.ConfigCardHelpClear).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build()));
-
     public static final TooltipAttachment MACHINE_CASING_VOLTAGE = TooltipAttachment.of(
             (itemStack, item) -> {
                 CableTier tier = CasingComponent.getCasingTier(item);
                 return tier == null ? Optional.empty()
                         : Optional.of(new Line(MIText.MachineCasingVoltage).arg(Component.translatable(tier.shortEnglishKey())).build());
-            });
-
-    public static final TooltipAttachment PIPE_HELP = TooltipAttachment.ofMultilines(
-            (itemStack, item) -> {
-                return (item instanceof PipeItem pipe && (pipe.isItemPipe() || pipe.isFluidPipe())) ? List.of(
-                        line(MIText.PipeHelp1).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build(),
-                        line(MIText.PipeHelp2).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build()) : List.of();
             });
 
     // Long Tooltip with only text, no need of MIText
@@ -485,10 +428,6 @@ public class MITooltips {
         add("steam_blast_furnace", "Needs at least one Steel or higher tier hatch for 3 and 4 EU/t recipes");
         add(MIBlock.TRASH_CAN, "Will delete any item or fluid sent into it.",
                 "Can also be used to empty a fluid slot by Right-Clicking on it with a Trash Can");
-
-        add(itemLike -> itemLike.asItem() instanceof PipeItem pipe && pipe.isCable(), "cable", " ",
-                "Can power blocks from any mod, but can only extract energy from Modern Industrialization blocks and machines.",
-                "They also are the only cables able to power Modern Industrialization machines.");
 
     }
 

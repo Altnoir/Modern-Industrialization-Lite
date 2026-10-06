@@ -27,7 +27,6 @@ package aztech.modern_industrialization;
 import aztech.modern_industrialization.api.datamaps.MIDataMaps;
 import aztech.modern_industrialization.blocks.WrenchableBlockEntity;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelBlock;
-import aztech.modern_industrialization.compat.ae2.MIAEAddon;
 import aztech.modern_industrialization.compat.kubejs.KubeJSProxy;
 import aztech.modern_industrialization.config.MIServerConfig;
 import aztech.modern_industrialization.config.MIStartupConfig;
@@ -52,7 +51,6 @@ import aztech.modern_industrialization.materials.MIMaterials;
 import aztech.modern_industrialization.misc.runtime_datagen.RuntimeDataGen;
 import aztech.modern_industrialization.network.MIPackets;
 import aztech.modern_industrialization.nuclear.FluidNuclearComponent;
-import aztech.modern_industrialization.pipes.MIPipes;
 import aztech.modern_industrialization.resource.GeneratedPathPackResources;
 import aztech.modern_industrialization.stats.PlayerStatisticsData;
 import aztech.modern_industrialization.test.framework.MIGameTests;
@@ -131,8 +129,6 @@ public class MI {
         MultiblockHatches.init();
         MultiblockMachines.init();
         KubeJSProxy.instance.fireRegisterMachinesEvent();
-
-        MIPipes.INSTANCE.setup();
 
         MICommonProxy.initEvents();
         ChunkEventListeners.init();
@@ -237,14 +233,9 @@ public class MI {
 
         modBus.addListener(RegisterDataMapTypesEvent.class, event -> {
             event.register(MIDataMaps.FLUID_FUELS);
-            event.register(MIDataMaps.ITEM_PIPE_UPGRADES);
             event.register(MIDataMaps.MACHINE_UPGRADES);
             event.register(MIDataMaps.ITEM_TOOLTIPS);
         });
-
-        if (MIStartupConfig.INSTANCE.loadAe2Compat()) {
-            MIAEAddon.init(modBus);
-        }
 
         modBus.addListener(AddPackFindersEvent.class, event -> {
             if (dist == Dist.DEDICATED_SERVER && event.getPackType() == PackType.SERVER_DATA

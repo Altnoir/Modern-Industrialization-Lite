@@ -26,8 +26,6 @@ package aztech.modern_industrialization.machines.blockentities;
 
 import aztech.modern_industrialization.MICapabilities;
 import aztech.modern_industrialization.api.energy.CableTier;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.holder.EnergyComponentHolder;
 import aztech.modern_industrialization.inventory.MIInventory;
 import aztech.modern_industrialization.machines.BEP;
@@ -49,13 +47,15 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder {
     protected final EnergyComponent energy;
     private final RedstoneControlComponent redstoneControl;
 
-    protected final MIEnergyStorage insertable;
-    protected final MIEnergyStorage extractable;
+    protected final IEnergyStorage insertable;
+    protected final IEnergyStorage extractable;
 
     protected final long euCapacity;
     protected final CableTier from, to;
@@ -77,8 +77,43 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
         this.energy = new EnergyComponent(this, euCapacity);
         this.redstoneControl = new RedstoneControlComponent();
 
-        this.insertable = energy.buildInsertable((CableTier tier) -> tier == from);
-        this.extractable = energy.buildExtractable((CableTier tier) -> tier == to && redstoneControl.doAllowNormalOperation(this));
+        this.insertable = energy.buildInsertable();
+        this.extractable = new IEnergyStorage() {
+            private final IEnergyStorage delegate = energy.buildExtractable();
+
+            @Override
+            public int receiveEnergy(int maxReceive, boolean simulate) {
+                return delegate.receiveEnergy(maxReceive, simulate);
+            }
+
+            @Override
+            public int extractEnergy(int maxExtract, boolean simulate) {
+                if (!redstoneControl.doAllowNormalOperation(AbstractStorageMachineBlockEntity.this)) {
+                    return 0;
+                }
+                return delegate.extractEnergy(maxExtract, simulate);
+            }
+
+            @Override
+            public int getEnergyStored() {
+                return delegate.getEnergyStored();
+            }
+
+            @Override
+            public int getMaxEnergyStored() {
+                return delegate.getMaxEnergyStored();
+            }
+
+            @Override
+            public boolean canExtract() {
+                return delegate.canExtract();
+            }
+
+            @Override
+            public boolean canReceive() {
+                return delegate.canReceive();
+            }
+        };
 
         this.registerComponents(energy, redstoneControl);
 
@@ -95,7 +130,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
     }
 
     public static MachineCasing getCasingFromTier(CableTier from, CableTier to) {
-        if (from.eu > to.eu) {
+        if (from.rf > to.rf) {
             return from.casing;
         } else {
             return to.casing;
@@ -113,14 +148,14 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
     public void tick() {
         if (!level.isClientSide()) {
             if (extractableOnOutputDirection) {
-                EnergyHelper.autoOutput(this, orientation, to, extractable);
+                EnergyHelper.autoOutput(this, orientation, extractable);
             } else {
                 for (Direction side : Direction.values()) {
                     if (side == orientation.outputDirection) {
                         continue;
                     }
 
-                    EnergyHelper.autoOutput(this, side, to, extractable);
+                    EnergyHelper.autoOutput(this, side, extractable);
                 }
             }
         }
@@ -133,7 +168,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var energyItem = player.getItemInHand(hand).getCapability(EnergyApi.ITEM);
+        var energyItem = player.getItemInHand(hand).getCapability(Capabilities.EnergyStorage.ITEM);
         int stackSize = player.getItemInHand(hand).getCount();
         if (energyItem != null) {
             if (!player.level().isClientSide()) {
@@ -141,7 +176,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
                 for (int i = 0; i < 10000; ++i) { // Try up to 10000 times to bypass I/O limits
                     try (Transaction transaction = Transaction.openRoot()) {
-                        long inserted = energyItem.receive(energy.getEu() / stackSize, false);
+                        int inserted = energyItem.receiveEnergy((int) Math.min(Integer.MAX_VALUE, energy.getEu() / stackSize), false);
 
                         if (inserted == 0) {
                             break;
@@ -149,7 +184,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
                             insertedSomething = true;
                         }
 
-                        energy.consumeEu(inserted * stackSize, Simulation.ACT);
+                        energy.consumeEu((long) inserted * stackSize, Simulation.ACT);
                         transaction.commit();
                     }
                 }
@@ -157,13 +192,14 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
                 if (!insertedSomething) {
                     for (int i = 0; i < 10000; ++i) { // Try up to 10000 times to bypass I/O limits
                         try (Transaction transaction = Transaction.openRoot()) {
-                            long extracted = energyItem.extract(energy.getRemainingCapacity() / stackSize, false);
+                            int extracted = energyItem.extractEnergy(
+                                    (int) Math.min(Integer.MAX_VALUE, energy.getRemainingCapacity() / stackSize), false);
 
                             if (extracted == 0) {
                                 break;
                             }
 
-                            energy.insertEu(extracted * stackSize, Simulation.ACT);
+                            energy.insertEu((long) extracted * stackSize, Simulation.ACT);
                             transaction.commit();
                         }
                     }
@@ -180,7 +216,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {
         MICapabilities.onEvent(event -> {
-            event.registerBlockEntity(EnergyApi.SIDED, bet, (be, direction) -> {
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, bet, (be, direction) -> {
                 AbstractStorageMachineBlockEntity abe = (AbstractStorageMachineBlockEntity) be;
 
                 if (abe.extractableOnOutputDirection) {

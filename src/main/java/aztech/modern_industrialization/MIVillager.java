@@ -27,7 +27,6 @@ package aztech.modern_industrialization;
 import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.materials.MIMaterials;
 import aztech.modern_industrialization.materials.part.MIParts;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -60,15 +59,11 @@ public class MIVillager {
         level3.add(buyItemsFromVillager(MIMaterials.BRONZE.getPart(MIParts.GEAR), 4, 1, 5));
         level3.add(buyItemsFromVillager(MIMaterials.BRONZE.getPart(MIParts.ROTOR), 4, 1, 5));
         level3.add(buyItemsFromVillager(MIMaterials.STEEL.getPart(MIParts.INGOT), 6, 3, 10));
-        level3.add(sellItemsToVillager(BuiltInRegistries.ITEM.get(MI.id("item_pipe")), 4, 20, 10));
-        level3.add(sellItemsToVillager(BuiltInRegistries.ITEM.get(MI.id("fluid_pipe")), 4, 20, 10));
 
         var level4 = event.getTrades().get(4);
         level4.add(buyItemsFromVillager(MIMaterials.STEEL.getPart(MIParts.GEAR), 5, 1, 5));
         level4.add(buyItemsFromVillager(MIMaterials.STEEL.getPart(MIParts.PLATE), 6, 3, 10));
         level4.add(buyItemsFromVillager(MIItem.STEEL_UPGRADE, 20, 1, 20));
-        level4.add(sellItemsToVillager(MIMaterials.TIN.getPart(MIParts.CABLE), 8, 16, 5));
-        level4.add(sellItemsToVillager(MIMaterials.COPPER.getPart(MIParts.CABLE), 8, 16, 5));
 
         var level5 = event.getTrades().get(5);
         level5.add(buyItemsFromVillager(MIItem.ANALOG_CIRCUIT, 12, 1, 20));

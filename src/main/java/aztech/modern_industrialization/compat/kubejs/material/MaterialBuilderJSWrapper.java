@@ -100,11 +100,6 @@ public class MaterialBuilderJSWrapper {
         return this;
     }
 
-    public MaterialBuilderJSWrapper cable(String tier) {
-        materialBuilder.addParts(creator.cablePart(tier));
-        return this;
-    }
-
     public MaterialBuilderJSWrapper machineCasing(String englishName, String path) {
         materialBuilder.addParts(creator.machineCasing(englishName, path));
         return this;

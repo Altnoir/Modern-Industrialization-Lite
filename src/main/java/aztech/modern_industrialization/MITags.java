@@ -36,9 +36,6 @@ public class MITags {
 
     public static final TagKey<Item> BARRELS = miItem("barrels");
     public static final TagKey<Item> TANKS = miItem("tanks");
-    public static final TagKey<Item> FLUID_PIPES = miItem("fluid_pipes");
-    public static final TagKey<Item> ITEM_PIPES = miItem("item_pipes");
-    public static final TagKey<Item> ME_WIRES = miItem("me_wires");
 
     public static TagKey<Item> item(String path) {
         return TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", path));
@@ -47,8 +44,6 @@ public class MITags {
     public static TagKey<Item> miItem(String path) {
         return TagKey.create(BuiltInRegistries.ITEM.key(), MI.id(path));
     }
-
-    public static final TagKey<Block> TRANSPARENT_PIPE_CAMOUFLAGE = miBlock("transparent_pipe_camouflage");
 
     public static TagKey<Block> miBlock(String path) {
         return TagKey.create(Registries.BLOCK, MI.id(path));

@@ -24,7 +24,6 @@
 
 package aztech.modern_industrialization.compat.kubejs.material;
 
-import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.materials.part.MIParts;
 import aztech.modern_industrialization.materials.part.OrePart;
 import aztech.modern_industrialization.materials.part.PartTemplate;
@@ -72,11 +71,6 @@ public class PartJsonCreator {
             throw new IllegalArgumentException("No such Material Block Set: " + materialSet);
         }
         return MIParts.BLOCK.of(blockSet);
-    }
-
-    public PartTemplate cablePart(String tier) {
-        CableTier cableTier = CableTier.getTier(tier);
-        return MIParts.CABLE.of(cableTier);
     }
 
     public PartTemplate machineCasing(String englishName, String path) {

@@ -26,7 +26,7 @@ package aztech.modern_industrialization.machines.components;
 
 import aztech.modern_industrialization.api.machine.component.FluidAccess;
 import aztech.modern_industrialization.machines.MachineComponent;
-import aztech.modern_industrialization.pipes.fluid.FluidNetworkExtensionTank;
+import aztech.modern_industrialization.thirdparty.fabrictransfer.api.bridge.SlotFluidHandler;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.storage.base.ResourceAmount;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.storage.base.SingleVariantStorage;
@@ -57,7 +57,7 @@ public class FluidStorageComponent implements MachineComponent, FluidAccess {
             }
         }
     };
-    private final IFluidHandler fluidHandler = new FluidNetworkExtensionTank(singleStorageVariant);
+    private final IFluidHandler fluidHandler = new SlotFluidHandler(singleStorageVariant);
 
     public FluidStorageComponent(Runnable changeCallback) {
         this.changeCallback = changeCallback;

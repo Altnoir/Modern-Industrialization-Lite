@@ -27,8 +27,6 @@ package aztech.modern_industrialization.client.compat.jade;
 import aztech.modern_industrialization.compat.jade.server.MachineComponentProvider;
 import aztech.modern_industrialization.compat.jade.server.TankComponentProvider;
 import aztech.modern_industrialization.machines.MachineBlock;
-import aztech.modern_industrialization.pipes.MIPipes;
-import aztech.modern_industrialization.pipes.impl.PipeBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import snownee.jade.api.IWailaClientRegistration;
@@ -41,9 +39,6 @@ public class MIJadeClientPlugin implements IWailaPlugin {
     @Override
     public void registerClient(IWailaClientRegistration registration) {
         registration.registerBlockComponent(new OverclockComponentProvider(), MachineBlock.class);
-
-        registration.usePickedResult(MIPipes.BLOCK_PIPE.get());
-        registration.registerBlockComponent(new PipeComponentProvider(), PipeBlock.class);
 
         registration.registerEnergyStorageClient(new MachineComponentProvider.Energy());
         registration.registerFluidStorageClient(new MachineComponentProvider.Fluids());

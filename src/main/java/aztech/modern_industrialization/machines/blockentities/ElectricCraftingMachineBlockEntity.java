@@ -27,8 +27,6 @@ package aztech.modern_industrialization.machines.blockentities;
 import aztech.modern_industrialization.MICapabilities;
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.CableTierHolder;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.holder.EnergyComponentHolder;
 import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.components.*;
@@ -46,6 +44,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity implements EnergyComponentHolder, CableTierHolder {
     public ElectricCraftingMachineBlockEntity(BEP bep, MachineRecipeType recipeType, MachineInventoryComponent inventory,
@@ -57,7 +57,7 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
         this.upgrades = new UpgradeComponent();
         this.overdrive = new OverdriveComponent();
         this.energy = new EnergyComponent(this, casing::getEuCapacity);
-        this.insertable = energy.buildInsertable(cableTier -> this.casing.canInsertEu(cableTier));
+        this.insertable = energy.buildInsertable();
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getEu, energy::getCapacity));
         registerGuiComponent(new RecipeEfficiencyBar(efficiencyBarParams, crafter));
         registerGuiComponent(new SlotPanel(this)
@@ -73,7 +73,7 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
     private final UpgradeComponent upgrades;
     private final OverdriveComponent overdrive;
     private final EnergyComponent energy;
-    private final MIEnergyStorage insertable;
+    private final IEnergyStorage insertable;
 
     @Override
     public boolean isEnabled() {
@@ -95,7 +95,7 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {
         MICapabilities.onEvent(event -> {
-            event.registerBlockEntity(EnergyApi.SIDED, bet, (be, direction) -> ((ElectricCraftingMachineBlockEntity) be).insertable);
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, bet, (be, direction) -> ((ElectricCraftingMachineBlockEntity) be).insertable);
         });
     }
 

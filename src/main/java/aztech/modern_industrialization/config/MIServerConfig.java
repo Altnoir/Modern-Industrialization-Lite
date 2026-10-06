@@ -36,8 +36,6 @@ public final class MIServerConfig {
         SPEC = builder.build();
     }
 
-    public final ModConfigSpec.IntValue forgeEnergyPerEu;
-    public final ModConfigSpec.IntValue baseItemPipeTransfer;
     public final ModConfigSpec.BooleanValue spawnWithGuideBook;
     public final ModConfigSpec.BooleanValue respawnWithGuideBook;
 
@@ -45,14 +43,6 @@ public final class MIServerConfig {
     public final ModConfigSpec.BooleanValue stonecutterToCuttingMachine;
 
     private MIServerConfig(MIConfigBuilder builder) {
-        this.forgeEnergyPerEu = builder.start("forgeEnergyPerEu",
-                "FE per EU",
-                "How many Forge Energy units a single EU from MI is worth.")
-                .defineInRange("forgeEnergyPerEu", 10, 1, 1000);
-        this.baseItemPipeTransfer = builder.start("baseItemPipeTransfer",
-                "Base item pipe transfer",
-                "Base amount of items transferred by item pipes every 3 seconds.")
-                .defineInRange("baseItemPipeTransfer", 16, 1, 1024);
         this.spawnWithGuideBook = builder.start("spawnWithGuideBook",
                 "Spawn with guidebook",
                 "Grant guidebook the first time a player joins the server.")

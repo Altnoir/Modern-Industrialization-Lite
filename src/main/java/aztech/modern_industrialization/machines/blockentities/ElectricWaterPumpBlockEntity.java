@@ -27,8 +27,6 @@ package aztech.modern_industrialization.machines.blockentities;
 import aztech.modern_industrialization.MICapabilities;
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.CableTierHolder;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.holder.EnergyComponentHolder;
 import aztech.modern_industrialization.inventory.ConfigurableFluidStack;
 import aztech.modern_industrialization.inventory.MIInventory;
@@ -48,6 +46,8 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidType;
 
 public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity implements EnergyComponentHolder, CableTierHolder {
@@ -61,7 +61,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
         this.redstoneControl = new RedstoneControlComponent();
         this.casing = new CasingComponent();
         this.energy = new EnergyComponent(this, casing::getEuCapacity);
-        this.insertable = energy.buildInsertable(casing::canInsertEu);
+        this.insertable = energy.buildInsertable();
 
         this.registerComponents(inventory, redstoneControl, casing, energy);
 
@@ -75,7 +75,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
     private final RedstoneControlComponent redstoneControl;
     private final CasingComponent casing;
     private final EnergyComponent energy;
-    private final MIEnergyStorage insertable;
+    private final IEnergyStorage insertable;
 
     @Override
     protected long consumeEu(long max) {
@@ -112,7 +112,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {
         MICapabilities.onEvent(event -> {
-            event.registerBlockEntity(EnergyApi.SIDED, bet, (be, direction) -> ((ElectricWaterPumpBlockEntity) be).insertable);
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, bet, (be, direction) -> ((ElectricWaterPumpBlockEntity) be).insertable);
         });
     }
 

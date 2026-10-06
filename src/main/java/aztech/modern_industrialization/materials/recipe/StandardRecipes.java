@@ -56,7 +56,6 @@ public final class StandardRecipes {
 
         new ShapelessRecipeBuilder(ctx, ORE, 1, "deepslate_to_ore").addPart(ORE_DEEPSLATE);
 
-        new ShapedRecipeBuilder(ctx, COIL, 1, "coil", "xxx", "x x", "xxx").addTaggedPart('x', CABLE).exportToAssembler();
         new ShapedRecipeBuilder(ctx, LARGE_PLATE, 1, "large_plate", "xx", "xx").addTaggedPart('x', PLATE)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
 
@@ -69,9 +68,6 @@ public final class StandardRecipes {
         new ShapedRecipeBuilder(ctx, HAMMER, 1, "hammer", "ppp", "psp", " s ").addTaggedPart('p', LARGE_PLATE).addInput('s', Items.STICK);
 
         new ShapedRecipeBuilder(ctx, RING, 2, "ring", "bRb", "R R", "bRb").addTaggedPart('b', BOLT).addTaggedPart('R', ROD);
-
-        new ShapedRecipeBuilder(ctx, CABLE, 3, "cable", "rrr", "www", "rrr").addInput('r', MIItem.RUBBER_SHEET)
-                .addTaggedPart('w', WIRE).exportToMachine(MIMachineRecipeTypes.PACKER);
 
         new ShapedRecipeBuilder(ctx, TANK, 1, "tank", "###", "#G#", "###").addTaggedPart('#', PLATE).addInput('G', Tags.Items.GLASS_BLOCKS)
                 .exportToAssembler();
@@ -133,7 +129,6 @@ public final class StandardRecipes {
                 .addPartInput(FUEL_ROD_DOUBLE, 2)
                 .addPartOutput(FUEL_ROD_QUAD, 1);
         // UNPACKER
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.UNPACKER, "coil").addTaggedPartInput(COIL, 1).addPartOutput(CABLE, 8);
 
         // WIREMILL
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.WIREMILL, "wire").addTaggedPartInput(PLATE, 1).addPartOutput(WIRE, 2);
@@ -146,16 +141,6 @@ public final class StandardRecipes {
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "drill_head").addTaggedPartInput(PLATE, 1).addTaggedPartInput(CURVED_PLATE, 2)
                 .addTaggedPartInput(ROD, 1).addTaggedPartInput(GEAR, 2).addFluidInput(MIFluids.SOLDERING_ALLOY, 75)
                 .addPartOutput(DRILL_HEAD, 1);
-
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "cable_synthetic_rubber")
-                .addTaggedPartInput(WIRE, 3)
-                .addFluidInput(MIFluids.SYNTHETIC_RUBBER, 30)
-                .addPartOutput(CABLE, 3);
-
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "cable_styrene_rubber")
-                .addTaggedPartInput(WIRE, 3)
-                .addFluidInput(MIFluids.STYRENE_BUTADIENE_RUBBER, 6)
-                .addPartOutput(CABLE, 3);
 
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "fuel_rod", 16, 200)
                 .addItemInput("modern_industrialization:blastproof_alloy_curved_plate", 2)

@@ -25,17 +25,11 @@
 package aztech.modern_industrialization.test.framework;
 
 import aztech.modern_industrialization.MIBlock;
-import aztech.modern_industrialization.api.energy.EnergyApi;
 import aztech.modern_industrialization.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
 import aztech.modern_industrialization.materials.MIMaterials;
 import aztech.modern_industrialization.materials.Material;
 import aztech.modern_industrialization.materials.part.MIParts;
-import aztech.modern_industrialization.pipes.MIPipes;
-import aztech.modern_industrialization.pipes.api.PipeNetworkNode;
-import aztech.modern_industrialization.pipes.api.PipeNetworkType;
-import aztech.modern_industrialization.pipes.impl.PipeBlockEntity;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
-import java.util.function.Consumer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -68,28 +62,6 @@ public class MIGameTestHelper extends GameTestHelper {
 
     public void assertAir(BlockPos pos) {
         assertBlockPresent(Blocks.AIR, pos);
-    }
-
-    public void pipe(BlockPos pos, PipeNetworkType type, Consumer<? super PipeBuilder> setup) {
-        assertAir(pos);
-        // Mimic logic inside of PipeItem
-        setBlock(pos, MIPipes.BLOCK_PIPE.get());
-        var pipeBe = (PipeBlockEntity) getBlockEntity(pos);
-        var item = MIPipes.INSTANCE.getPipeItem(type);
-        pipeBe.addPipe(type, item.defaultData);
-        getLevel().blockUpdated(absolutePos(pos), Blocks.AIR);
-        setup.accept(new PipeBuilder(this, pipeBe, type));
-    }
-
-    public PipeNetworkNode getPipeNode(BlockPos pos, PipeNetworkType type) {
-        var pipeBe = (PipeBlockEntity) getBlockEntity(pos);
-        for (var node : pipeBe.getNodes()) {
-            if (node.getType() == type) {
-                return node;
-            }
-        }
-        fail("Could not find pipe node " + type.getIdentifier(), pos);
-        throw new RuntimeException("Unreachable!");
     }
 
     public <T, C extends @Nullable Object> T requireCapability(BlockCapability<T, C> cap, BlockPos pos, C context) {
@@ -131,8 +103,8 @@ public class MIGameTestHelper extends GameTestHelper {
     }
 
     public void assertEnergy(BlockPos pos, long energy, @Nullable Direction side) {
-        var miEnergyHandler = requireCapability(EnergyApi.SIDED, pos, side);
-        long storedEnergy = miEnergyHandler.getAmount();
+        var energyHandler = requireCapability(Capabilities.EnergyStorage.BLOCK, pos, side);
+        int storedEnergy = energyHandler.getEnergyStored();
         if (storedEnergy != energy) {
             fail("Expected energy to be " + energy + ", was " + storedEnergy, pos);
         }

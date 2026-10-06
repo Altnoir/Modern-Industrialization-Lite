@@ -173,7 +173,6 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var polarizer = createBasic(consumer, "polarizer", lvSteamTurbine, "One Recipe (+2) To Rule Them All", "Craft a Polarizer", existingFileHelper);
         var largeSteamBoiler = createBasic(consumer, "large_steam_boiler", analogCircuit, "Kiss Your Fuel Goodbye!", "Craft a Large Steam Boiler", existingFileHelper);
         var assembler = createBasic(consumer, "assembler", analogCircuit, AdvancementType.GOAL, "Avengers, Assemble!", "Craft an Assembler", existingFileHelper);
-        var mvLvTransformer = createBasic(consumer, "mv_lv_transformer", analogCircuit, "Optimus Prime!", "Craft an MV to LV Transformer", existingFileHelper);
         var electricBlastFurnace = createBasic(consumer, "electric_blast_furnace", lvSteamTurbine, AdvancementType.GOAL, "Electric Best Friend", "Craft an Electric Blast Furnace to start producing Aluminum", existingFileHelper);
         var electronicCircuit = createBasic(consumer, "electronic_circuit", electricBlastFurnace, "The Power of Silicon", "Craft a Electronic Circuit", existingFileHelper);
         var dieselJetpack = createBasic(consumer, "diesel_jetpack", electricBlastFurnace, AdvancementType.CHALLENGE, "Ely... We Meant Jetpack!", "Craft a Diesel Jetpack", existingFileHelper);
@@ -203,8 +202,7 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var implosionCompressor = createBasic(consumer, "implosion_compressor", blastProofAlloyPlate, AdvancementType.GOAL, "Automated Creeper", "Craft an Implosion Compressor", existingFileHelper);
         var pressurizer = createBasic(consumer, "pressurizer", titaniumIngot, "Under Pressure", "Craft a Pressurizer to unlock for efficient Steam Process", existingFileHelper);
         var rawIridium = createBasic(consumer, "raw_iridium", titaniumIngot, "Diamond 2.0: Electric Boogaloo", "Obtain a Raw Piece of Iridium", existingFileHelper);
-        var superconductorCable = createBasic(consumer, "superconductor_cable", rawIridium, AdvancementType.GOAL, "Unlimited Power (Transfer)", "Craft a Superconductor Cable to transfer unlimited amount of energy", existingFileHelper);
-        var gravichestplate = createBasic(consumer, "gravichestplate", superconductorCable, AdvancementType.CHALLENGE, "Gravichestplate™", "Craft a Gravichestplate to unlock creative flight", existingFileHelper);
+        var gravichestplate = createBasic(consumer, "gravichestplate", rawIridium, AdvancementType.CHALLENGE, "Gravichestplate™", "Craft a Gravichestplate to unlock creative flight", existingFileHelper);
         var nuclearReactor = createBasic(consumer, "nuclear_reactor", implosionCompressor, AdvancementType.CHALLENGE, "3.6 Roentgen", "Craft a Nuclear Reactor and discover its overengineered mechanisms", existingFileHelper);
         var nuke = createBasic(consumer, "nuke", nuclearReactor, "I've become Death, Destroyer of Worlds", "Craft a Nuke", existingFileHelper);
         var singularity = createBasic(consumer, "singularity", nuke, "Pocket Black Hole", "Craft a Singularity", existingFileHelper);

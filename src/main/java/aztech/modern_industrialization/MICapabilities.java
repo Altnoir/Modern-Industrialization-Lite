@@ -24,16 +24,12 @@
 
 package aztech.modern_industrialization;
 
-import aztech.modern_industrialization.api.energy.EnergyApi;
+import aztech.modern_industrialization.api.energy.EnergyStorage;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.bridge.SlotFluidHandler;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.bridge.SlotItemHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.StreamSupport;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
@@ -53,14 +49,8 @@ public class MICapabilities {
         // Misc
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MIRegistries.CREATIVE_BARREL_BE.get(), (be, side) -> new SlotItemHandler(be));
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, MIRegistries.CREATIVE_TANK_BE.get(), (be, side) -> new SlotFluidHandler(be));
-        event.registerBlockEntity(EnergyApi.SIDED, MIRegistries.CREATIVE_STORAGE_UNIT_BE.get(), (be, side) -> EnergyApi.CREATIVE);
-
-        // Energy compat
-        var allBlocks = StreamSupport.stream(BuiltInRegistries.BLOCK.spliterator(), false)
-                .toArray(Block[]::new);
-        var allItems = StreamSupport.stream(BuiltInRegistries.ITEM.spliterator(), false)
-                .toArray(Item[]::new);
-        EnergyApi.init(event, allBlocks, allItems);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, MIRegistries.CREATIVE_STORAGE_UNIT_BE.get(),
+                (be, side) -> EnergyStorage.CREATIVE);
     }
 
     public static void onEvent(Consumer<RegisterCapabilitiesEvent> consumer) {

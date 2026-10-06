@@ -31,7 +31,6 @@ import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerRecipe;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerScreenHandler;
 import aztech.modern_industrialization.blocks.storage.barrel.CreativeBarrelBlockEntity;
 import aztech.modern_industrialization.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
-import aztech.modern_industrialization.compat.ae2.AECompatCondition;
 import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.MapCodec;
@@ -79,9 +78,6 @@ public class MIRegistries {
     public static final DeferredRegister<MapCodec<? extends ICondition>> CONDITIONS = DeferredRegister.create(
             NeoForgeRegistries.CONDITION_SERIALIZERS,
             MI.ID);
-
-    public static final Supplier<MapCodec<AECompatCondition>> AE_COMPAT_CONDITION = CONDITIONS.register("ae_compat_loaded",
-            () -> AECompatCondition.CODEC);
 
     // Menus
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MI.ID);

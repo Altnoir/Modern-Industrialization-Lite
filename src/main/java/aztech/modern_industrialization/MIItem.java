@@ -26,7 +26,7 @@ package aztech.modern_industrialization;
 
 import static aztech.modern_industrialization.items.SortOrder.*;
 
-import aztech.modern_industrialization.api.energy.EnergyApi;
+import aztech.modern_industrialization.api.energy.EnergyItemStorage;
 import aztech.modern_industrialization.definition.ItemDefinition;
 import aztech.modern_industrialization.guidebook.GuideBookItem;
 import aztech.modern_industrialization.items.*;
@@ -39,7 +39,6 @@ import aztech.modern_industrialization.items.tools.QuantumSword;
 import aztech.modern_industrialization.nuclear.NeutronBehaviour;
 import aztech.modern_industrialization.nuclear.NuclearComponentItem;
 import aztech.modern_industrialization.nuclear.NuclearConstant;
-import dev.technici4n.grandpower.api.ISimpleEnergyItem;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
@@ -166,7 +165,7 @@ public final class MIItem {
     public static final ItemDefinition<PortableStorageUnit> PORTABLE_STORAGE_UNIT = itemHandheld("Portable Storage Unit", "portable_storage_unit", PortableStorageUnit::new, ITEMS_ORDERED.next())
             .withItemRegistrationEvent(item -> {
                 MICapabilities.onEvent(event -> {
-                    event.registerItem(EnergyApi.ITEM, (stack, ctx) -> ISimpleEnergyItem.createStorage(stack, MIComponents.ENERGY.get(), item.getEnergyCapacity(stack), item.getEnergyMaxInput(stack), item.getEnergyMaxOutput(stack)), item);
+                    event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, ctx) -> new EnergyItemStorage(stack, item), item);
                 });
             });
 
@@ -183,7 +182,7 @@ public final class MIItem {
     public static final ItemDefinition<GraviChestPlateItem> GRAVICHESTPLATE = item("Gravichestplate", "gravichestplate", GraviChestPlateItem::new, ITEMS_ORDERED.next())
             .withItemRegistrationEvent(item -> {
                 MICapabilities.onEvent(event -> {
-                    event.registerItem(EnergyApi.ITEM, (stack, ctx) -> ISimpleEnergyItem.createStorage(stack, MIComponents.ENERGY.get(), item.getEnergyCapacity(stack), item.getEnergyMaxInput(stack), item.getEnergyMaxOutput(stack)), item);
+                    event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, ctx) -> new EnergyItemStorage(stack, item), item);
                 });
             });
 
@@ -207,8 +206,6 @@ public final class MIItem {
     public static final ItemDefinition<NuclearComponentItem> LARGE_HEAT_EXCHANGER = NuclearComponentItem.of(
             "Large Heat Exchanger", "large_heat_exchanger",
             1800, 30 * NuclearConstant.BASE_HEAT_CONDUCTION, NeutronBehaviour.NO_INTERACTION);
-
-    public static final ItemDefinition<ConfigCardItem> CONFIG_CARD = item("Pipe Config Card", "config_card", ConfigCardItem::new, PIPES);
 
     // @formatter:on
 

@@ -26,8 +26,6 @@ package aztech.modern_industrialization.debug;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
-import static net.minecraft.commands.arguments.ResourceLocationArgument.getId;
-import static net.minecraft.commands.arguments.ResourceLocationArgument.id;
 import static net.minecraft.commands.arguments.coordinates.BlockPosArgument.blockPos;
 import static net.minecraft.commands.arguments.coordinates.BlockPosArgument.getLoadedBlockPos;
 
@@ -35,32 +33,19 @@ import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.modern_industrialization.machines.recipe.ConflictsChecker;
-import aztech.modern_industrialization.pipes.MIPipes;
-import aztech.modern_industrialization.pipes.api.PipeNetworkType;
-import aztech.modern_industrialization.pipes.impl.PipeNetworks;
 import aztech.modern_industrialization.stats.PlayerStatisticsData;
 import com.mojang.brigadier.Command;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.logging.LogUtils;
 import java.io.IOException;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public class DebugCommands {
-    private static final SuggestionProvider<CommandSourceStack> PIPE_TYPES_SUGGESTION_PROVIDER = (context, builder) -> {
-        return SharedSuggestionProvider.suggestResource(PipeNetworkType.getTypes().keySet().stream(), builder);
-    };
-
     // @formatter:off
     public static void init() {
         NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, event -> {
@@ -70,22 +55,6 @@ public class DebugCommands {
 
             event.getDispatcher().register(literal("mi")
                     .requires(source -> source.hasPermission(4))
-                    .then(literal("pipes")
-                            .then(argument("pos", blockPos())
-                                    .then(literal("clear")
-                                            .executes(ctx -> {
-                                                return clearPipes(ctx.getSource(), getLoadedBlockPos(ctx, "pos"));
-                                            })
-                                    )
-                                    .then(literal("add_ghost")
-                                            .then(argument("pipe_type", id()).suggests(PIPE_TYPES_SUGGESTION_PROVIDER)
-                                                    .executes(ctx -> {
-                                                        return addGhostPipe(ctx.getSource(), getLoadedBlockPos(ctx, "pos"), getId(ctx, "pipe_type"));
-                                                    })
-                                            )
-                                    )
-                            )
-                    )
                     .then(literal("machines")
                             .then(literal("claim_all")
                                 .executes(ctx -> {
@@ -115,46 +84,6 @@ public class DebugCommands {
         });
     }
     // @formatter:on
-
-    private static int clearPipes(CommandSourceStack src, BlockPos pos) {
-        // Clear pipe block first (if possible, hopefully yes)
-        if (src.getLevel().getBlockState(pos).is(MIPipes.BLOCK_PIPE.get())) {
-            src.getLevel().setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-        }
-
-        var networks = PipeNetworks.get(src.getLevel());
-        for (var type : PipeNetworkType.getTypes().values()) {
-            var manager = networks.getManager(type);
-            if (manager.hasNode(pos)) {
-                manager.removeNode(pos);
-                src.sendSuccess(() -> Component.literal("Successfully removed pipe of type %s at position %s.".formatted(type.getIdentifier(), pos)),
-                        true);
-            }
-        }
-
-        return Command.SINGLE_SUCCESS;
-    }
-
-    private static int addGhostPipe(CommandSourceStack src, BlockPos pos, ResourceLocation pipeType) throws CommandSyntaxException {
-        PipeNetworkType type = PipeNetworkType.get(pipeType);
-        if (type == null) {
-            throw new SimpleCommandExceptionType(Component.literal("Unknown pipe network type: " + pipeType)).create();
-        }
-
-        var networks = PipeNetworks.get(src.getLevel());
-        var manager = networks.getManager(type);
-        if (!manager.hasNode(pos)) {
-            manager.addNode(type.getNodeCtor().get(), pos, MIPipes.INSTANCE.getPipeItem(type).defaultData.clone());
-            src.sendSuccess(() -> Component.literal("Successfully added pipe of type %s at position %s.".formatted(type.getIdentifier(), pos)), true);
-        } else {
-            src.sendSuccess(
-                    () -> Component
-                            .literal("Failed to add pipe of type %s at position %s as it already existed.".formatted(type.getIdentifier(), pos)),
-                    true);
-        }
-
-        return Command.SINGLE_SUCCESS;
-    }
 
     private static int claimMachines(ServerPlayer player) {
         for (var level : player.server.getAllLevels()) {

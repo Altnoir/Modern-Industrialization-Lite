@@ -24,14 +24,11 @@
 
 package aztech.modern_industrialization.datagen.tag;
 
-import appeng.api.features.P2PTunnelAttunement;
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.MITags;
-import aztech.modern_industrialization.compat.ae2.MIAEAddon;
 import aztech.modern_industrialization.machines.blockentities.ReplicatorMachineBlockEntity;
 import aztech.modern_industrialization.materials.MIMaterials;
-import aztech.modern_industrialization.materials.part.MIParts;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
@@ -45,7 +42,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jspecify.annotations.Nullable;
@@ -107,11 +103,6 @@ public class MIItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.FOOT_ARMOR).add(MIItem.RUBBER_BOOTS.asItem(), MIItem.QUANTUM_BOOTS.asItem());
 
         tag(ItemTags.COALS).add(ResourceKey.create(Registries.ITEM, MI.id("lignite_coal")));
-
-        if (ModList.get().isLoaded("ae2") && !runtimeDatagen) {
-            tag(P2PTunnelAttunement.getAttunementTag(MIAEAddon.ENERGY_P2P_TUNNEL))
-                    .add(MIMaterials.SUPERCONDUCTOR.getPart(MIParts.CABLE).asItem());
-        }
     }
 
     private static TagKey<Item> key(ResourceLocation id) {

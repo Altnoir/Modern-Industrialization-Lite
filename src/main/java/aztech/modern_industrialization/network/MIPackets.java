@@ -38,11 +38,6 @@ import aztech.modern_industrialization.network.machines.SetAutoExtractPacket;
 import aztech.modern_industrialization.network.machines.SetLockingModePacket;
 import aztech.modern_industrialization.network.machines.UpdateFluidSlotPacket;
 import aztech.modern_industrialization.network.machines.UpdateItemSlotPacket;
-import aztech.modern_industrialization.network.pipes.IncrementPriorityPacket;
-import aztech.modern_industrialization.network.pipes.SetConnectionTypePacket;
-import aztech.modern_industrialization.network.pipes.SetItemWhitelistPacket;
-import aztech.modern_industrialization.network.pipes.SetNetworkFluidPacket;
-import aztech.modern_industrialization.network.pipes.SetPriorityPacket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,12 +79,6 @@ public class MIPackets {
         register("move_recipe", MoveRecipePacket.class, MoveRecipePacket.STREAM_CODEC);
         register("rei_lock_slots", ReiLockSlotsPacket.class, ReiLockSlotsPacket.STREAM_CODEC);
         register("set_auto_extract", SetAutoExtractPacket.class, SetAutoExtractPacket.STREAM_CODEC);
-        // Pipes
-        register("increment_priority", IncrementPriorityPacket.class, IncrementPriorityPacket.STREAM_CODEC);
-        register("set_connection_type", SetConnectionTypePacket.class, SetConnectionTypePacket.STREAM_CODEC);
-        register("set_item_whitelist", SetItemWhitelistPacket.class, SetItemWhitelistPacket.STREAM_CODEC);
-        register("set_network_fluid", SetNetworkFluidPacket.class, SetNetworkFluidPacket.STREAM_CODEC);
-        register("set_priority", SetPriorityPacket.class, SetPriorityPacket.STREAM_CODEC);
     }
 
     public static void init(RegisterPayloadHandlersEvent event) {

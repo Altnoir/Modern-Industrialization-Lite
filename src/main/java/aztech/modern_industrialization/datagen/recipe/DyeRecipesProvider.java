@@ -27,7 +27,6 @@ package aztech.modern_industrialization.datagen.recipe;
 import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
-import aztech.modern_industrialization.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.tags.ItemTags;
@@ -43,36 +42,6 @@ public class DyeRecipesProvider extends MIRecipesProvider {
         for (DyeColor color : DyeColor.values()) {
             String pathPrefix = "dyes/" + color.getName() + "/";
             var dyeTag = "#" + color.getTag().location();
-            // 16 item pipes with dye in the center
-            var itemPipesDirect = new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_item_pipe", 16, "CCC", "GdG",
-                    "CCC").addInput('C', "modern_industrialization:bronze_curved_plate").addInput('G', "#c:gears/steel").addInput('d',
-                            dyeTag);
-            itemPipesDirect.offerTo(consumer, pathPrefix + "craft/item_pipe_direct");
-            itemPipesDirect.exportToAssembler().offerTo(consumer, pathPrefix + "assembler/item_pipe_direct");
-            // 8 item pipes
-            var eightItemPipes = new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_item_pipe", 8, "ppp", "pdp",
-                    "ppp").addInput('d', dyeTag).addInput('p', "#modern_industrialization:item_pipes");
-            eightItemPipes.offerTo(consumer, pathPrefix + "craft/item_pipe_8");
-            eightItemPipes.exportToMachine(MIMachineRecipeTypes.MIXER, 2, 100, 1).offerTo(consumer, pathPrefix + "mixer/item_pipe_8");
-            // 1 item pipe
-            new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_item_pipe", 1, "pd")
-                    .addInput('d', dyeTag).addInput('p', "#modern_industrialization:item_pipes")
-                    .offerTo(consumer, pathPrefix + "craft/item_pipe_1");
-            // 16 fluid pipes with stained glass
-            var fluidPipesStainedGlass = new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_fluid_pipe", 16, "CCC",
-                    "rPr", "CCC").addInput('C', "modern_industrialization:bronze_curved_plate").addInput('r', "modern_industrialization:copper_rotor")
-                            .addInput('P', color.getName() + "_stained_glass_pane");
-            fluidPipesStainedGlass.offerTo(consumer, pathPrefix + "craft/fluid_pipe_stained_glass");
-            fluidPipesStainedGlass.exportToAssembler().offerTo(consumer, pathPrefix + "assembler/fluid_pipe_stained_glass");
-            // 8 fluid pipes
-            var eightFluidPipes = new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_fluid_pipe", 8, "ppp", "pdp",
-                    "ppp").addInput('d', dyeTag).addInput('p', "#modern_industrialization:fluid_pipes");
-            eightFluidPipes.offerTo(consumer, pathPrefix + "craft/fluid_pipe_8");
-            eightFluidPipes.exportToMachine(MIMachineRecipeTypes.MIXER, 2, 100, 1).offerTo(consumer, pathPrefix + "mixer/fluid_pipe_8");
-            // 1 fluid pipe
-            new ShapedRecipeJson("modern_industrialization:" + color.getName() + "_fluid_pipe", 1, "pd")
-                    .addInput('d', dyeTag).addInput('p', "#modern_industrialization:fluid_pipes")
-                    .offerTo(consumer, pathPrefix + "craft/fluid_pipe_1");
             // generate dyes with synthetic oil
             new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 200).addFluidInput(MIFluids.SYNTHETIC_OIL, 100)
                     .addItemInput(dyeTag, 1, 0).addItemOutput("minecraft:" + color.getName() + "_dye", 1)

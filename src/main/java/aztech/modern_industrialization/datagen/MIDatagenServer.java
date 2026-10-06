@@ -40,7 +40,6 @@ import aztech.modern_industrialization.datagen.recipe.PetrochemRecipesProvider;
 import aztech.modern_industrialization.datagen.recipe.PlankRecipesProvider;
 import aztech.modern_industrialization.datagen.recipe.UpgradeProvider;
 import aztech.modern_industrialization.datagen.recipe.VanillaCompatRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.compat.AE2CompatRecipes;
 import aztech.modern_industrialization.datagen.recipe.compat.CreateCompatRecipes;
 import aztech.modern_industrialization.datagen.structure.EmptyTestStructureGenerator;
 import aztech.modern_industrialization.datagen.tag.MIBlockTagProvider;
@@ -77,7 +76,6 @@ public class MIDatagenServer {
         aggregate.addProvider(DyeRecipesProvider::new);
         aggregate.addProvider(AssemblerRecipesProvider::new);
         if (!runtimeDatagen) {
-            aggregate.addProvider(AE2CompatRecipes::new);
             aggregate.addProvider(CreateCompatRecipes::new);
         }
         aggregate.addProvider(UpgradeProvider::new);

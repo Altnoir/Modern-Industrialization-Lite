@@ -31,7 +31,6 @@ import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.MITooltips;
 import aztech.modern_industrialization.api.datamaps.FluidFuel;
-import aztech.modern_industrialization.api.datamaps.ItemPipeUpgrade;
 import aztech.modern_industrialization.api.datamaps.ItemTooltip;
 import aztech.modern_industrialization.api.datamaps.MIDataMaps;
 import aztech.modern_industrialization.api.datamaps.MachineUpgrade;
@@ -63,7 +62,6 @@ public class MIDataMapProvider extends DataMapProvider {
         gatherFurnaceFuels();
 
         gatherFluidFuels();
-        gatherItemPipeUpgrades();
         gatherMachineUpgrades();
         gatherItemTooltips();
 
@@ -117,17 +115,6 @@ public class MIDataMapProvider extends DataMapProvider {
 
     private void addFluidFuel(ResourceLocation fluidId, int euPerMb, ICondition... conditions) {
         builder(MIDataMaps.FLUID_FUELS).add(fluidId, new FluidFuel(euPerMb), false, conditions);
-    }
-
-    private void gatherItemPipeUpgrades() {
-        addItemPipeUpgrade(MIItem.MOTOR, 2);
-        addItemPipeUpgrade(MIItem.LARGE_MOTOR, 16);
-        addItemPipeUpgrade(MIItem.ADVANCED_MOTOR, 64);
-        addItemPipeUpgrade(MIItem.LARGE_ADVANCED_MOTOR, 512);
-    }
-
-    private void addItemPipeUpgrade(ItemDefinition<?> itemDefinition, int maxExtractedItems) {
-        builder(MIDataMaps.ITEM_PIPE_UPGRADES).add(itemDefinition.getId(), new ItemPipeUpgrade(maxExtractedItems), false);
     }
 
     private void gatherMachineUpgrades() {

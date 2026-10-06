@@ -29,8 +29,6 @@ import static aztech.modern_industrialization.machines.components.FluidItemConsu
 import aztech.modern_industrialization.MICapabilities;
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.CableTierHolder;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.holder.EnergyComponentHolder;
 import aztech.modern_industrialization.definition.FluidDefinition;
 import aztech.modern_industrialization.inventory.ConfigurableFluidStack;
@@ -55,10 +53,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public class GeneratorMachineBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder, CableTierHolder {
     private final CableTier outputTier;
-    private final MIEnergyStorage extractable;
+    private final IEnergyStorage extractable;
     private final RedstoneControlComponent redstoneControl;
 
     protected final MIInventory inventory;
@@ -79,7 +79,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
 
         this.outputTier = outputTier;
         this.energy = new EnergyComponent(this, energyCapacity);
-        this.extractable = energy.buildExtractable((CableTier tier) -> tier == outputTier);
+        this.extractable = energy.buildExtractable();
         this.isActiveComponent = new IsActiveComponent();
         this.fluidItemConsumer = fluidItemConsumer;
         this.redstoneControl = new RedstoneControlComponent();
@@ -190,7 +190,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
             energy.insertEu(euProduced, Simulation.ACT);
             isActiveComponent.updateActive(0 != euProduced, this);
         }
-        EnergyHelper.autoOutput(this, orientation, outputTier, extractable);
+        EnergyHelper.autoOutput(this, orientation, extractable);
         setChanged();
     }
 
@@ -201,7 +201,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {
         MICapabilities.onEvent(event -> {
-            event.registerBlockEntity(EnergyApi.SIDED, bet, (be, direction) -> {
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, bet, (be, direction) -> {
                 GeneratorMachineBlockEntity abe = (GeneratorMachineBlockEntity) be;
                 if (abe.orientation.outputDirection == direction) {
                     return abe.extractable;

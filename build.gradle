@@ -208,7 +208,6 @@ configurations {
 }
 
 dependencies {
-    api jarJar("dev.technici4n:GrandPower:${project.grandpower_version}")
     api "org.jspecify:jspecify:${project.jspecify_version}"
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
@@ -446,7 +445,6 @@ publishMods {
         client = true
         server = true
         shared it
-        embeds "grandpower"
         optional "roughly-enough-items"
     }
 

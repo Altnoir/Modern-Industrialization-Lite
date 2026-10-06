@@ -179,10 +179,16 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     }
 
     public boolean canInsertEu(CableTier tier) {
-        return tier == currentTier;
+        return true;
     }
 
+    /**
+     * @return The RF buffer capacity granted by the current casing. It is proportional to the tier of the
+     *         casing, and capped so that it always fits in NeoForge's int-based energy API.
+     */
     public long getEuCapacity() {
-        return currentTier.getEu() * 100;
+        long capacity = currentTier.rf * 100;
+        long maxCapacity = CableTier.maxRf() * 100;
+        return Math.min(capacity, maxCapacity);
     }
 }

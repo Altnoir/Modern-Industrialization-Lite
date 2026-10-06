@@ -25,10 +25,10 @@
 package aztech.modern_industrialization.items;
 
 import aztech.modern_industrialization.MIComponents;
+import aztech.modern_industrialization.api.energy.EnergyItem;
 import aztech.modern_industrialization.blocks.storage.StorageBehaviour;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelTooltipData;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
-import dev.technici4n.grandpower.api.ISimpleEnergyItem;
 import it.unimi.dsi.fastutil.objects.Reference2LongMap;
 import it.unimi.dsi.fastutil.objects.Reference2LongOpenHashMap;
 import java.util.Optional;
@@ -40,7 +40,7 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class PortableStorageUnit extends Item implements ItemContainingItemHelper {
+public class PortableStorageUnit extends Item implements ItemContainingItemHelper, EnergyItem {
     public static final Reference2LongMap<Item> CAPACITY_PER_BATTERY = new Reference2LongOpenHashMap<>();
     private final static int MAX_BATTERY_COUNT = 10000;
 
@@ -120,15 +120,17 @@ public class PortableStorageUnit extends Item implements ItemContainingItemHelpe
     /**
      * @return The energy stored in the stack. Count is ignored.
      */
+    @Override
     public long getStoredEnergy(ItemStack stack) {
-        return ISimpleEnergyItem.getStoredEnergyUnchecked(stack, MIComponents.ENERGY.get());
+        return stack.getOrDefault(MIComponents.ENERGY.get(), 0L);
     }
 
     /**
      * Directly set the energy stored in the stack. Count is ignored.
      * It's up to callers to ensure that the new amount is >= 0 and <= capacity.
      */
+    @Override
     public void setStoredEnergy(ItemStack stack, long newAmount) {
-        ISimpleEnergyItem.setStoredEnergyUnchecked(stack, MIComponents.ENERGY.get(), newAmount);
+        stack.set(MIComponents.ENERGY.get(), Math.max(0, Math.min(getEnergyCapacity(stack), newAmount)));
     }
 }

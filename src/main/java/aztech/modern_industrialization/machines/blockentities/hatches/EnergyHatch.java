@@ -27,8 +27,6 @@ package aztech.modern_industrialization.machines.blockentities.hatches;
 import aztech.modern_industrialization.MICapabilities;
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.CableTierHolder;
-import aztech.modern_industrialization.api.energy.EnergyApi;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.holder.EnergyComponentHolder;
 import aztech.modern_industrialization.inventory.MIInventory;
 import aztech.modern_industrialization.machines.BEP;
@@ -42,6 +40,8 @@ import aztech.modern_industrialization.machines.multiblocks.HatchType;
 import aztech.modern_industrialization.machines.multiblocks.HatchTypes;
 import java.util.List;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHolder, CableTierHolder {
     public EnergyHatch(BEP bep, MachineGuiParameters guiParams, boolean input, CableTier tier) {
@@ -50,9 +50,9 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
         this.input = input;
         this.tier = tier;
 
-        this.energy = new EnergyComponent(this, 30 * 20 * tier.getEu());
-        insertable = energy.buildInsertable((CableTier tier2) -> tier2 == tier);
-        extractable = energy.buildExtractable((CableTier tier2) -> tier2 == tier);
+        this.energy = new EnergyComponent(this, 30L * 20L * tier.getMaxTransfer());
+        insertable = energy.buildInsertable();
+        extractable = energy.buildExtractable();
         EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getEu, energy::getCapacity));
 
@@ -63,8 +63,8 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
     private final CableTier tier;
 
     private final EnergyComponent energy;
-    private final MIEnergyStorage insertable;
-    private final MIEnergyStorage extractable;
+    private final IEnergyStorage insertable;
+    private final IEnergyStorage extractable;
 
     @Override
     public HatchType getHatchType() {
@@ -108,13 +108,13 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
     @Override
     protected void tickTransfer() {
         if (!input) {
-            EnergyHelper.autoOutput(this, orientation, tier, extractable);
+            EnergyHelper.autoOutput(this, orientation, extractable);
         }
     }
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {
         MICapabilities.onEvent(event -> {
-            event.registerBlockEntity(EnergyApi.SIDED, bet, (be, direction) -> {
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, bet, (be, direction) -> {
                 EnergyHatch eh = (EnergyHatch) be;
                 if (eh.input) {
                     return eh.insertable;

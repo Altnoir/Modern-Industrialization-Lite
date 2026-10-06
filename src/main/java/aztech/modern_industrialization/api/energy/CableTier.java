@@ -44,21 +44,31 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.Nullable;
 
 /**
- * A single tier of cable that can have a varying amount of energy pushed through it per tick.
+ * A single energy tier. In MI Lite the tiers are purely expressed in RF/t: the value of a tier is the base
+ * amount of RF/t that a machine of that tier consumes or produces, and {@link #getMaxTransfer()} is the
+ * ceiling for machine buffers of that tier.
+ *
+ * <p>
+ * MI Lite no longer ships cables: machines expose NeoForge's standard energy capability, so the tier is now
+ * just a machine class marker (it selects the machine casing model and caps the machine's internal buffer),
+ * not a cable voltage.
  */
 public final class CableTier implements Comparable<CableTier> {
     // static references
     public static CableTier LV = new CableTier("lv", "LV", "Low Voltage", 32, null);
-    public static CableTier MV = new CableTier("mv", "MV", "Medium Voltage", 32 * 4, MIBlockKeys.ADVANCED_MACHINE_HULL);
-    public static CableTier HV = new CableTier("hv", "HV", "High Voltage", 32 * 4 * 8, MIBlockKeys.TURBO_MACHINE_HULL);
-    public static CableTier EV = new CableTier("ev", "EV", "Extreme Voltage", 32 * 4 * 8 * 8, MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL);
+    public static CableTier MV = new CableTier("mv", "MV", "Medium Voltage", 128, MIBlockKeys.ADVANCED_MACHINE_HULL);
+    public static CableTier HV = new CableTier("hv", "HV", "High Voltage", 1024, MIBlockKeys.TURBO_MACHINE_HULL);
+    public static CableTier EV = new CableTier("ev", "EV", "Extreme Voltage", 8192, MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL);
     public static CableTier SUPERCONDUCTOR = new CableTier("superconductor", "SV", "Superconductor", 128000000,
             MIBlockKeys.QUANTUM_MACHINE_HULL);
 
     public final String name;
     public final String shortEnglishName;
     public final String longEnglishName;
-    public final long eu;
+    /**
+     * The base amount of RF/t of this tier.
+     */
+    public final long rf;
     /**
      * {@code null} for LV only.
      */
@@ -76,20 +86,20 @@ public final class CableTier implements Comparable<CableTier> {
     public final MachineCasing casing;
 
     @ApiStatus.Internal
-    public CableTier(String name, String shortEnglishName, String longEnglishName, long eu, ResourceLocation itemKey, boolean builtin) {
-        StoragePreconditions.notNegative(eu);
+    public CableTier(String name, String shortEnglishName, String longEnglishName, long rf, ResourceLocation itemKey, boolean builtin) {
+        StoragePreconditions.notNegative(rf);
 
         this.name = name;
         this.shortEnglishName = shortEnglishName;
         this.longEnglishName = longEnglishName;
-        this.eu = eu;
+        this.rf = rf;
         this.itemKey = itemKey;
         this.casing = MachineCasings.create(MI.id(name), shortEnglishName);
         this.builtin = builtin;
     }
 
-    private CableTier(String name, String shortEnglishName, String longEnglishName, long eu, @Nullable ResourceKey<Block> key) {
-        this(name, shortEnglishName, longEnglishName, eu, key == null ? null : key.location(), true);
+    private CableTier(String name, String shortEnglishName, String longEnglishName, long rf, @Nullable ResourceKey<Block> key) {
+        this(name, shortEnglishName, longEnglishName, rf, key == null ? null : key.location(), true);
     }
 
     public String shortEnglishKey() {
@@ -109,20 +119,19 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     /**
-     * @return The total EU/t transferred by this tier of network. The same number
-     *         is also the internal storage of every node.
+     * @return The maximum RF/t that a machine of this tier can hold in its internal buffer.
      */
     public long getMaxTransfer() {
-        return eu * 8;
+        return rf * 8;
     }
 
     public long getEu() {
-        return eu;
+        return rf;
     }
 
     @Override
     public int compareTo(CableTier other) {
-        return Long.compare(eu, other.eu);
+        return Long.compare(rf, other.rf);
     }
 
     @Override
@@ -132,6 +141,13 @@ public final class CableTier implements Comparable<CableTier> {
 
     // "registry" of name -> instance.
     private final static Map<String, CableTier> tiers = new HashMap<>();
+
+    /**
+     * @return The largest base RF/t of all registered tiers, used to cap machine buffers.
+     */
+    public static long maxRf() {
+        return allTiers().stream().mapToLong(t -> t.rf).max().orElse(0);
+    }
 
     /**
      * Adds a new cable tier to the internal mapping of tiers. If the tier already existed,
@@ -145,8 +161,8 @@ public final class CableTier implements Comparable<CableTier> {
             if (existingTier.name.equals(tier.name)) {
                 throw new IllegalArgumentException("Tier " + tier + " already exists!");
             }
-            if (existingTier.eu == tier.eu) {
-                throw new IllegalArgumentException("A tier with eu " + tier.eu + " already exists!");
+            if (existingTier.rf == tier.rf) {
+                throw new IllegalArgumentException("A tier with rf " + tier.rf + " already exists!");
             }
             if (Objects.equals(existingTier.itemKey, tier.itemKey)) {
                 throw new IllegalArgumentException("A tier with block key " + tier.itemKey + " already exists!");

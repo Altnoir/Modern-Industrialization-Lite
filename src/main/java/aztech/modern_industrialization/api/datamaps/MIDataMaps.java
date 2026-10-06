@@ -41,15 +41,6 @@ public final class MIDataMaps {
             .build();
 
     /**
-     * Items that can be added to item pipes, to increase the maximum amount of items moved at once.
-     */
-    public static final DataMapType<Item, ItemPipeUpgrade> ITEM_PIPE_UPGRADES = DataMapType
-            .builder(
-                    MI.id("item_pipe_upgrades"), Registries.ITEM, ItemPipeUpgrade.CODEC)
-            .synced(ItemPipeUpgrade.CODEC, true)
-            .build();
-
-    /**
      * Items that can be added to electric machines, to increase the maximum EU/t they can support.
      */
     public static final DataMapType<Item, MachineUpgrade> MACHINE_UPGRADES = DataMapType

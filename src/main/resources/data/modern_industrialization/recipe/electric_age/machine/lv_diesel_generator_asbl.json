@@ -9,7 +9,7 @@
   "H" : { "item" : "modern_industrialization:basic_machine_hull"},
     "P": { "item" : "modern_industrialization:pump"},
     "G": { "tag" : "c:gears/tin"},
-    "c" : {"item" : "modern_industrialization:tin_cable"},
+    "c" : {"item" : "modern_industrialization:tin_wire"},
     "C" : {"item" : "modern_industrialization:analog_circuit"}
 
 },

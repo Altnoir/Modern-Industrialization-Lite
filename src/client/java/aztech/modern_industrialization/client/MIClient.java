@@ -37,7 +37,6 @@ import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelToolti
 import aztech.modern_industrialization.client.blocks.storage.barrel.DeferredBarrelTextRenderer;
 import aztech.modern_industrialization.client.blocks.storage.tank.TankRenderer;
 import aztech.modern_industrialization.client.datagen.MIDatagenClient;
-import aztech.modern_industrialization.client.items.ClientConfigCardTooltip;
 import aztech.modern_industrialization.client.items.SteamDrillHighlight;
 import aztech.modern_industrialization.client.items.SteamDrillTooltipComponent;
 import aztech.modern_industrialization.client.items.armor.ClientKeyHandler;
@@ -47,6 +46,7 @@ import aztech.modern_industrialization.client.machines.MachineBlockEntityRendere
 import aztech.modern_industrialization.client.machines.MachineOverlayClient;
 import aztech.modern_industrialization.client.machines.gui.MachineMenuClient;
 import aztech.modern_industrialization.client.machines.gui.MachineScreen;
+import aztech.modern_industrialization.client.machines.models.DelegatingUnbakedModel;
 import aztech.modern_industrialization.client.machines.models.MachineBakedModel;
 import aztech.modern_industrialization.client.machines.models.MachineUnbakedModel;
 import aztech.modern_industrialization.client.machines.models.UseBlockModelUnbakedModel;
@@ -54,16 +54,10 @@ import aztech.modern_industrialization.client.machines.multiblocks.MultiblockHig
 import aztech.modern_industrialization.client.machines.multiblocks.MultiblockMachineBER;
 import aztech.modern_industrialization.client.machines.multiblocks.MultiblockTankBER;
 import aztech.modern_industrialization.client.misc.VersionEvents;
-import aztech.modern_industrialization.client.pipes.MIPipesClient;
-import aztech.modern_industrialization.client.pipes.fluid.FluidPipeScreen;
-import aztech.modern_industrialization.client.pipes.impl.DelegatingUnbakedModel;
-import aztech.modern_industrialization.client.pipes.impl.PipeUnbakedModel;
-import aztech.modern_industrialization.client.pipes.item.ItemPipeScreen;
 import aztech.modern_industrialization.config.MIClientConfig;
 import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.datagen.MIDatagenServer;
 import aztech.modern_industrialization.datagen.model.DelegatingModelBuilder;
-import aztech.modern_industrialization.items.ConfigCardItem;
 import aztech.modern_industrialization.items.RedstoneControlModuleItem;
 import aztech.modern_industrialization.items.SteamDrillItem;
 import aztech.modern_industrialization.machines.MachineBlock;
@@ -72,7 +66,6 @@ import aztech.modern_industrialization.machines.components.FuelBurningComponent;
 import aztech.modern_industrialization.machines.models.MachineCasings;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.modern_industrialization.misc.runtime_datagen.RuntimeDataGen;
-import aztech.modern_industrialization.pipes.MIPipes;
 import aztech.modern_industrialization.util.TextHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,7 +125,6 @@ public class MIClient {
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);
         DeferredBarrelTextRenderer.init();
         MultiblockHighlight.init();
-        MIPipesClient.setupClient(modBus);
         VersionEvents.init(ModLoadingContext.get().getActiveContainer());
 
         NeoForge.EVENT_BUS.addListener(RenderFrameEvent.Pre.class, event -> {
@@ -205,16 +197,12 @@ public class MIClient {
     private static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(MIRegistries.FORGE_HAMMER_MENU.get(), ForgeHammerScreen::new);
         event.register((MenuType<MachineMenuClient>) MIRegistries.MACHINE_MENU.get(), MachineScreen::new);
-
-        event.register(MIPipes.SCREEN_HANDLER_TYPE_ITEM_PIPE.get(), ItemPipeScreen::new);
-        event.register(MIPipes.SCREEN_HANDLER_TYPE_FLUID_PIPE.get(), FluidPipeScreen::new);
     }
 
     @SubscribeEvent
     private static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register(DelegatingModelBuilder.LOADER_ID, DelegatingUnbakedModel.LOADER);
         event.register(MachineUnbakedModel.LOADER_ID, MachineUnbakedModel.LOADER);
-        event.register(PipeUnbakedModel.LOADER_ID, PipeUnbakedModel.LOADER);
         event.register(UseBlockModelUnbakedModel.LOADER_ID, UseBlockModelUnbakedModel.LOADER);
     }
 
@@ -258,7 +246,6 @@ public class MIClient {
     @SubscribeEvent
     private static void registerClientTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(BarrelTooltipData.class, BarrelTooltipComponent::new);
-        event.register(ConfigCardItem.TooltipData.class, ClientConfigCardTooltip::new);
         event.register(SteamDrillItem.SteamDrillTooltipData.class, SteamDrillTooltipComponent::new);
     }
 

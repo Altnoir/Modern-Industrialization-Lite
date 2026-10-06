@@ -24,17 +24,15 @@
 
 package aztech.modern_industrialization.machines.components;
 
-import aztech.modern_industrialization.api.energy.CableTier;
-import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import aztech.modern_industrialization.api.machine.component.EnergyAccess;
 import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.util.Simulation;
 import com.google.common.base.Preconditions;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAccess {
     private long storedEu;
@@ -99,73 +97,86 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
         return ext;
     }
 
-    private abstract class EnergyStorage implements MIEnergyStorage {
-        @Override
-        public long getAmount() {
+    private abstract class EnergyStorage implements IEnergyStorage {
+        protected long longAmount() {
             return storedEu;
         }
 
-        @Override
-        public long getCapacity() {
+        protected long longCapacity() {
             return capacity.get();
+        }
+
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            return (int) Math.min(Integer.MAX_VALUE, insertEu(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
+        }
+
+        @Override
+        public int extractEnergy(int maxExtract, boolean simulate) {
+            return (int) Math.min(Integer.MAX_VALUE, consumeEu(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
+        }
+
+        @Override
+        public int getEnergyStored() {
+            return (int) Math.min(Integer.MAX_VALUE, storedEu);
+        }
+
+        @Override
+        public int getMaxEnergyStored() {
+            return (int) Math.min(Integer.MAX_VALUE, capacity.get());
+        }
+
+        @Override
+        public boolean canExtract() {
+            return false;
+        }
+
+        @Override
+        public boolean canReceive() {
+            return false;
         }
     }
 
-    public MIEnergyStorage buildInsertable(Predicate<CableTier> canInsert) {
+    public IEnergyStorage buildInsertable() {
         return new EnergyStorage() {
-            @Override
-            public long receive(long maxReceive, boolean simulate) {
-                return insertEu(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT);
-            }
-
             @Override
             public boolean canReceive() {
                 return true;
-            }
-
-            @Override
-            public long extract(long maxExtract, boolean simulate) {
-                return 0;
-            }
-
-            @Override
-            public boolean canExtract() {
-                return false;
-            }
-
-            @Override
-            public boolean canConnect(CableTier cableTier) {
-                return canInsert.test(cableTier);
             }
         };
     }
 
-    public MIEnergyStorage buildExtractable(Predicate<CableTier> canExtract) {
+    public IEnergyStorage buildExtractable() {
         return new EnergyStorage() {
-            @Override
-            public long receive(long maxReceive, boolean simulate) {
-                return 0;
-            }
-
-            @Override
-            public boolean canReceive() {
-                return false;
-            }
-
-            @Override
-            public long extract(long maxExtract, boolean simulate) {
-                return consumeEu(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT);
-            }
-
             @Override
             public boolean canExtract() {
                 return true;
             }
-
-            @Override
-            public boolean canConnect(CableTier cableTier) {
-                return canExtract.test(cableTier);
-            }
         };
+    }
+
+    /**
+     * Moves as much energy as possible from {@code source} to {@code target}, using the NeoForge energy API.
+     *
+     * @return the amount of RF that was actually moved.
+     */
+    public static long moveEnergy(IEnergyStorage source, IEnergyStorage target) {
+        if (!source.canExtract() || !target.canReceive()) {
+            return 0;
+        }
+
+        int accepted = target.receiveEnergy(Integer.MAX_VALUE, true);
+        if (accepted <= 0) {
+            return 0;
+        }
+
+        int extracted = source.extractEnergy(accepted, true);
+        if (extracted <= 0) {
+            return 0;
+        }
+
+        int received = target.receiveEnergy(extracted, false);
+        source.extractEnergy(received, false);
+        return received;
     }
 }

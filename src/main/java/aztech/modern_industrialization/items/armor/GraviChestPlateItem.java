@@ -26,9 +26,8 @@ package aztech.modern_industrialization.items.armor;
 
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIComponents;
+import aztech.modern_industrialization.api.energy.EnergyItem;
 import aztech.modern_industrialization.items.ActivatableItem;
-import dev.technici4n.grandpower.api.ISimpleEnergyItem;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -41,7 +40,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.NeoForgeMod;
 
-public class GraviChestPlateItem extends ArmorItem implements ActivatableItem, ISimpleEnergyItem {
+public class GraviChestPlateItem extends ArmorItem implements ActivatableItem, EnergyItem {
     public GraviChestPlateItem(Properties settings) {
         super(MIArmorMaterials.GRAVICHESTPLATE, Type.CHESTPLATE,
                 settings.stacksTo(1).rarity(Rarity.EPIC).component(MIComponents.ACTIVATED.get(), false));
@@ -58,11 +57,6 @@ public class GraviChestPlateItem extends ArmorItem implements ActivatableItem, I
                     .build();
         }
         return ItemAttributeModifiers.EMPTY;
-    }
-
-    @Override
-    public DataComponentType<Long> getEnergyComponent() {
-        return MIComponents.ENERGY.get();
     }
 
     public long getEnergy(ItemStack stack) {
@@ -95,6 +89,16 @@ public class GraviChestPlateItem extends ArmorItem implements ActivatableItem, I
     @Override
     public int getBarWidth(ItemStack stack) {
         return (int) Math.round(getEnergy(stack) / (double) ENERGY_CAPACITY * 13);
+    }
+
+    @Override
+    public long getStoredEnergy(ItemStack stack) {
+        return stack.getOrDefault(MIComponents.ENERGY.get(), 0L);
+    }
+
+    @Override
+    public void setStoredEnergy(ItemStack stack, long amount) {
+        stack.set(MIComponents.ENERGY.get(), Math.max(0, Math.min(ENERGY_CAPACITY, amount)));
     }
 
     @Override

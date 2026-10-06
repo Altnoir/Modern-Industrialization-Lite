@@ -24,7 +24,6 @@
 
 package aztech.modern_industrialization.util;
 
-import aztech.modern_industrialization.pipes.api.PipeEndpointType;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import java.util.List;
 import java.util.function.Function;
@@ -73,24 +72,6 @@ public class NbtHelper {
             }
         }
         return directions;
-    }
-
-    public static byte[] encodeConnections(@Nullable PipeEndpointType[] connections) {
-        byte[] encoded = new byte[6];
-        for (int i = 0; i < 6; ++i) {
-            PipeEndpointType type = connections[i];
-            encoded[i] = type == null ? 127 : (byte) type.getId();
-        }
-        return encoded;
-    }
-
-    public static @Nullable PipeEndpointType[] decodeConnections(byte[] encoded) {
-        @Nullable
-        PipeEndpointType[] connections = new PipeEndpointType[6];
-        for (int i = 0; i < 6; ++i) {
-            connections[i] = PipeEndpointType.byId(encoded[i]);
-        }
-        return connections;
     }
 
     public static <T> void putList(CompoundTag tag, String key, List<T> list, Function<T, CompoundTag> encoder) {
