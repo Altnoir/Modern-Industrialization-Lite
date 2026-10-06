@@ -26,6 +26,9 @@
 package aztech.modern_industrialization.client.compat.viewer.impl.jei;
 
 import aztech.modern_industrialization.MI;
+import aztech.modern_industrialization.MIRegistries;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableScreenHandler;
 import aztech.modern_industrialization.client.machines.gui.MachineScreen;
 import aztech.modern_industrialization.client.screen.MIHandledScreen;
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
@@ -51,6 +54,10 @@ public class ManualPluginJei implements IModPlugin {
         return RecipeType.create(category.getNamespace(), category.getPath(), (Class) RecipeHolder.class);
     }
 
+    private RecipeType<RecipeHolder<ProcessingTableRecipe>> getProcessingTableCategory() {
+        return RecipeType.create(ID.getNamespace(), "processing_table", (Class) RecipeHolder.class);
+    }
+
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
         this.jeiRuntime = jeiRuntime;
@@ -64,6 +71,11 @@ public class ManualPluginJei implements IModPlugin {
 
             registration.addRecipeTransferHandler(new MachineSlotLockingHandler(helper, () -> jeiRuntime, type), type);
         }
+
+        // The Processing Table has two input slots (36 and 37) and one output slot (38).
+        registration.addRecipeTransferHandler(helper.createBasicRecipeTransferInfo(
+                ProcessingTableScreenHandler.class, MIRegistries.PROCESSING_TABLE_MENU.get(), getProcessingTableCategory(),
+                36, 2, 0, 36));
     }
 
     @Override
