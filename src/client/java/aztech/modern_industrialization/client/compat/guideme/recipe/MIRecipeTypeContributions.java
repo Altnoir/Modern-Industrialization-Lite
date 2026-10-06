@@ -29,6 +29,7 @@ import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerRecipe;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
 import aztech.modern_industrialization.client.compat.guideme.recipe.header.LytMachineRecipeHeader;
 import aztech.modern_industrialization.client.compat.guideme.recipe.header.LytMachineRecipeHeaderConditionItemImage;
 import aztech.modern_industrialization.client.compat.guideme.recipe.header.LytMachineRecipeHeaderEuCostImage;
@@ -59,10 +60,35 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
     @Override
     public void collect(RecipeTypeMappings mappings) {
         mappings.add(MIRegistries.FORGE_HAMMER_RECIPE_TYPE.get(), MIRecipeTypeContributions::forgeHammer);
+        mappings.add(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get(), MIRecipeTypeContributions::processingTable);
 
         for (var recipeType : MIMachineRecipeTypes.getRecipeTypes()) {
             mappings.add(recipeType, MIRecipeTypeContributions::machine);
         }
+    }
+
+    private static LytStandardRecipeBox<ProcessingTableRecipe> processingTable(RecipeHolder<ProcessingTableRecipe> holder) {
+        return LytStandardRecipeBox.builder()
+                .icon(MIBlock.PROCESSING_TABLE)
+                .title(MIBlock.PROCESSING_TABLE.asItem().getDescription().getString())
+                .customBody(processingTableGrid(holder.value()))
+                .build(holder);
+    }
+
+    private static LytBlock processingTableGrid(ProcessingTableRecipe recipe) {
+        var grid = new LytHBox();
+        grid.setGap(2);
+        grid.setAlignItems(AlignItems.CENTER);
+        grid.setWrap(false);
+
+        grid.append(new LytMIItemSlot(recipe.first(), 1, 1, true));
+        grid.append(new LytMIItemSlot(recipe.second(), 1, 1, true));
+
+        grid.append(new LytGuiSprite(GuiAssets.ARROW, new LytSize(24, 17)));
+
+        grid.append(new LytMIItemSlot(ItemVariant.of(recipe.result()), recipe.result().getCount(), 1, false));
+
+        return grid;
     }
 
     private static LytStandardRecipeBox<ForgeHammerRecipe> forgeHammer(RecipeHolder<ForgeHammerRecipe> holder) {
