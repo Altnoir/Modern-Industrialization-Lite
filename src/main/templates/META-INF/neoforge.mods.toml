@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[2,)"
 license="MIT"
-issueTrackerURL="https://github.com/AztechMC/Modern-Industrialization/issues"
+issueTrackerURL="https://github.com/Altnoir/Modern-Industrialization-Lite/issues"
 
 [[mods]]
 modId="modern_industrialization"
 version="${mod_version}"
 displayName="Modern Industrialization: Lite"
-displayURL="https://github.com/AztechMC/Modern-Industrialization"
+displayURL="https://github.com/Altnoir/Modern-Industrialization-Lite"
 logoFile="assets/modern_industrialization/milogo.png"
 authors="ALTNOIR,Azerococo,Technici4n;"
 description='''A simplified fork of Modern Industrialization. It removes the mod's own cables, fluid pipes, item pipes and transformers: machines expose NeoForge's standard energy, fluid and item capabilities, and all power and transport is expected to come from other mods. Energy is expressed directly in RF, and the LV/MV/HV/EV/SV tiers are kept only as machine classes.'''
