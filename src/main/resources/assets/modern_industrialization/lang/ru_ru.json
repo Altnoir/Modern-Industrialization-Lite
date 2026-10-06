@@ -1529,6 +1529,7 @@
   "text.modern_industrialization.ClickToDisable": "Нажмите, чтобы отключить",
   "text.modern_industrialization.ClickToEnable": "Нажмите, чтобы включить",
   "text.modern_industrialization.ClickToSwitch": "Нажмите, чтобы переключить на %s",
+  "text.modern_industrialization.ClickToSeeRecipes": "Нажмите, чтобы посмотреть рецепты",
   "text.modern_industrialization.ClickToToggleBlacklist": "Нажмите, чтобы включить режим чёрного списка",
   "text.modern_industrialization.ClickToToggleWhitelist": "Нажмите, чтобы включить режим белого списка",
   "text.modern_industrialization.ConfigurableSlotCapacity": "Объём: %s. Отрегулируй при помощи прокручивания колёсика мыши.",
