@@ -120,7 +120,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         SingleBlockCraftingMachines.registerMachineTiers(
                 englishName, internalName, recipeType,
                 itemInputs, itemOutputs, fluidInputs, fluidOutputs,
-                guiParams, progressBar, efficiencyBar, energyBar,
+                guiParams, progressBar, progressBar, efficiencyBar, energyBar,
                 itemSlotPositions, fluidSlotPositions,
                 frontOverlay, topOverlay, sideOverlay,
                 tiersMask, bucketCapacity, config);

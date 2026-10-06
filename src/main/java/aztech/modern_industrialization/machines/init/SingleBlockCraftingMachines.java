@@ -84,8 +84,11 @@ public final class SingleBlockCraftingMachines {
         );
         registerMachineTiers(
                 "Cutting Machine", "cutting_machine", MIMachineRecipeTypes.CUTTING_MACHINE, 1, 1, 0, 0, guiParams -> {},
-                new ProgressBar.Params(88, 31, "slice"), new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
-                items -> items.addSlot(60, 35).addSlot(120, 35), fluids -> {},
+                // The machine screen is re-centred now that the fluid slot is gone, but the recipe viewer keeps
+                // its original layout.
+                new ProgressBar.Params(79, 31, "slice"), new ProgressBar.Params(88, 31, "slice"),
+                new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
+                items -> items.addSlot(56, 35).addSlot(102, 35), fluids -> {},
                 true, false, false,
                 TIER_BRONZE | TIER_STEEL | TIER_ELECTRIC, 16
         );
@@ -165,13 +168,32 @@ public final class SingleBlockCraftingMachines {
             Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, int tiers,
             int ioBucketCapacity) {
         registerMachineTiers(englishName, machine, type, itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount,
-                guiParams, progressBarParams, efficiencyBarParams, energyBarParams, itemPositions, fluidPositions, frontOverlay,
+                guiParams, progressBarParams, progressBarParams, efficiencyBarParams, energyBarParams, itemPositions, fluidPositions, frontOverlay,
                 topOverlay, sideOverlay, tiers, ioBucketCapacity, new Config());
+    }
+
+    /**
+     * @param guiProgressBarParams    where the progress bar is drawn inside the machine's own screen
+     * @param viewerProgressBarParams where the progress bar is drawn in the recipe viewer category. Only pass a value
+     *                                that differs from {@code guiProgressBarParams} when the machine screen was
+     *                                re-laid-out but the recipe viewer should keep its original appearance.
+     */
+    public static void registerMachineTiers(String englishName, String machine, MachineRecipeType type, int itemInputCount, int itemOutputCount,
+            int fluidInputCount,
+            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
+            ProgressBar.Params viewerProgressBarParams,
+            RecipeEfficiencyBar.Params efficiencyBarParams, EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
+            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, int tiers,
+            int ioBucketCapacity) {
+        registerMachineTiers(englishName, machine, type, itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount,
+                guiParams, guiProgressBarParams, viewerProgressBarParams, efficiencyBarParams, energyBarParams, itemPositions, fluidPositions,
+                frontOverlay, topOverlay, sideOverlay, tiers, ioBucketCapacity, new Config());
     }
 
     public static void registerMachineTiers(String englishName, String machine, MachineRecipeType type, int itemInputCount, int itemOutputCount,
             int fluidInputCount,
-            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params progressBarParams,
+            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
+            ProgressBar.Params viewerProgressBarParams,
             RecipeEfficiencyBar.Params efficiencyBarParams, EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
             Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, int tiers,
             int ioBucketCapacity, Config extraConfig) {
@@ -198,7 +220,7 @@ public final class SingleBlockCraftingMachines {
                     bet -> new SteamCraftingMachineBlockEntity(bet, type,
                             buildComponent(itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount, items, fluids, steamBuckets,
                                     ioBucketCapacity),
-                            builtGuiParams, progressBarParams, tier, extraConfig.steamOverclockCatalysts),
+                            builtGuiParams, guiProgressBarParams, tier, extraConfig.steamOverclockCatalysts),
                     bet -> {
                         if (itemInputCount + itemOutputCount > 0) {
                             MachineBlockEntity.registerItemApi(bet);
@@ -227,7 +249,7 @@ public final class SingleBlockCraftingMachines {
                     bet -> new ElectricCraftingMachineBlockEntity(bet, type,
                             buildComponent(itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount, items, fluids, 0, ioBucketCapacity),
                             builtGuiParams,
-                            energyBarParams, progressBarParams, efficiencyBarParams, MachineTier.LV, 3200),
+                            energyBarParams, guiProgressBarParams, efficiencyBarParams, MachineTier.LV, 3200),
                     bet -> {
                         ElectricCraftingMachineBlockEntity.registerEnergyApi(bet);
                         if (itemInputCount + itemOutputCount > 0) {
@@ -245,7 +267,7 @@ public final class SingleBlockCraftingMachines {
         registerReiTiers(englishName, machine, type,
                 new MachineCategoryParams(null, null, items.sublist(0, itemInputCount),
                         items.sublist(itemInputCount, itemInputCount + itemOutputCount),
-                        fluids.sublist(0, fluidInputCount), fluids.sublist(fluidInputCount, fluidInputCount + fluidOutputCount), progressBarParams,
+                        fluids.sublist(0, fluidInputCount), fluids.sublist(fluidInputCount, fluidInputCount + fluidOutputCount), viewerProgressBarParams,
                         null, null, false, SteamMode.BOTH),
                 tiers);
     }
