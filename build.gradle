@@ -280,6 +280,26 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     expand replaceProperties
 }
 sourceSets.main.resources.srcDir generateModMetadata
+
+// src/main/resources and src/generated/resources overlap: datagen writes the models, blockstates
+// and textures it generates into the generated tree, and stale copies of those same paths also sit
+// under main, left over from before the registry id rename. Without a strategy, processResources
+// fails with "Entry ... is a duplicate but no duplicate handling strategy has been set".
+//
+// The order below is what decides the winner: with DuplicatesStrategy.EXCLUDE the first file seen
+// for a given path is kept, so the freshly generated tree is listed ahead of src/main/resources.
+// Files that only exist under main are still packaged either way.
+sourceSets.main.resources.setSrcDirs([
+        layout.buildDirectory.dir('generated/sources/modMetadata'),
+        'src/generated/resources',
+        'src/main/resources'])
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+// sourcesJar copies the same trees, so it needs the same strategy.
+tasks.named('sourcesJar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 tasks.named("neoForgeIdeSync").configure {
     dependsOn generateModMetadata
 }
