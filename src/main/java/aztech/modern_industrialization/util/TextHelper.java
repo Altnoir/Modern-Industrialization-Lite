@@ -117,7 +117,9 @@ public class TextHelper {
         } else if (amount instanceof Float f && max instanceof Float m) {
             return getMaxedAmount(f, m);
         }
-        throw new IllegalArgumentException("Number " + amount + " or " + max + " is neither long, int, double or float");
+        // Mixed number types (for example an int amount with a long capacity). Widen both sides to double
+        // instead of crashing on a tooltip render.
+        return getMaxedAmount(amount.doubleValue(), max.doubleValue());
     }
 
     public static Amount getAmount(long amount) {

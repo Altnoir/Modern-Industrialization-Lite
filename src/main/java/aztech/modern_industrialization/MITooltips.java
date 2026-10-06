@@ -258,10 +258,13 @@ public class MITooltips {
                 if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(MI.ID)) {
                     var energyStorage = itemStack.getCapability(Capabilities.EnergyStorage.ITEM);
                     if (energyStorage != null) {
+                        // NeoForge's energy API is int-based, but MI tooltips expect a consistent number type:
+                        // widen both values to long, as the old long-based MI energy API did.
+                        long stored = energyStorage.getEnergyStored();
                         long capacity = energyStorage.getMaxEnergyStored();
                         if (capacity > 0) {
                             return Optional.of(new Line(MIText.EnergyStored)
-                                    .arg(new NumberWithMax(energyStorage.getEnergyStored(), capacity), EU_MAXED_PARSER).build());
+                                    .arg(new NumberWithMax(stored, capacity), EU_MAXED_PARSER).build());
                         }
                     }
                 }

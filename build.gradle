@@ -9,9 +9,11 @@ plugins {
     id 'me.modmuss50.mod-publish-plugin' version '2.1.0'
 }
 
+// MI_VERSION is only set by CI. Keep the workspace convention (see the sibling projects): the mod version
+// lives in gradle.properties as `mod_version`, so a local build reports a real version too.
 version = System.getenv("MI_VERSION")
         ? System.getenv("MI_VERSION")
-        : "0.0.0-local"
+        : project.mod_version
 group = "aztech"
 base {
     archivesName = "Modern-Industrialization"
@@ -265,8 +267,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     var replaceProperties = [
             neo_version: neo_version,
             neo_version_range: neo_version_range,
-            mod_version: version,
-            grandpower_version_range: grandpower_version_range,
+            mod_version: mod_version,
             guideme_version_range: guideme_version_range,
             ae2_version_range: ae2_version_range,
             jei_version_range: jei_version_range,
