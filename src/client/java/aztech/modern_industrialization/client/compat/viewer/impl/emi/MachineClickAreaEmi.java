@@ -34,7 +34,6 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.jspecify.annotations.Nullable;
@@ -53,7 +52,7 @@ public final class MachineClickAreaEmi {
 
     public static void init() {
         NeoForge.EVENT_BUS.addListener(MachineClickAreaEmi::onMousePressed);
-        NeoForge.EVENT_BUS.addListener(MachineClickAreaEmi::onRenderTooltip);
+        NeoForge.EVENT_BUS.addListener(MachineClickAreaEmi::onScreenRendered);
     }
 
     private static void onMousePressed(ScreenEvent.MouseButtonPressed.Pre event) {
@@ -68,18 +67,25 @@ public final class MachineClickAreaEmi {
         }
     }
 
-    private static void onRenderTooltip(RenderTooltipEvent.Pre event) {
-        if (!(Minecraft.getInstance().screen instanceof MachineScreen screen)) {
+    /**
+     * Draws the hint while the mouse is over the progress bar.
+     *
+     * <p>
+     * This uses {@link ScreenEvent.Render.Post} rather than {@code RenderTooltipEvent.Pre}: the latter only fires
+     * when vanilla already decided to draw a tooltip, and over a progress bar there is nothing to draw, so it
+     * would never fire.
+     */
+    private static void onScreenRendered(ScreenEvent.Render.Post event) {
+        if (!(event.getScreen() instanceof MachineScreen screen)) {
             return;
         }
 
-        if (categoryAt(screen, event.getX(), event.getY()) == null) {
+        if (categoryAt(screen, event.getMouseX(), event.getMouseY()) == null) {
             return;
         }
 
-        // Replace whatever tooltip was about to be drawn with the hint, like JEI does for its clickable areas.
-        event.setCanceled(true);
-        event.getGraphics().renderTooltip(event.getFont(), MIText.ClickToSeeRecipes.text(), event.getX(), event.getY());
+        event.getGuiGraphics().renderTooltip(Minecraft.getInstance().font, MIText.ClickToSeeRecipes.text(), event.getMouseX(),
+                event.getMouseY());
     }
 
     /**
