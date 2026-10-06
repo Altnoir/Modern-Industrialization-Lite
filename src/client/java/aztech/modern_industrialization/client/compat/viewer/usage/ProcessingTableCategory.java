@@ -83,7 +83,7 @@ public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<Process
         // The Forge Hammer puts its input on startPointX + 5. The Processing Table needs a second
         // input, so the two are stacked in the column the Forge Hammer gives to its input and tool.
         builder.inputSlot(startPointX + 5, startPointY + 6).ingredient(recipe.first(), 1, 1);
-        builder.inputSlot(startPointX + 5, startPointY + 24).ingredient(recipe.second(), 1, 1);
+        builder.inputSlot(startPointX + 23, startPointY + 6).ingredient(recipe.second(), 1, 1);
         builder.outputSlot(startPointX + 62, startPointY + 15).item(recipe.result());
     }
 
