@@ -38,6 +38,7 @@ public class ViewerSetup {
 
         registry.add(new FluidFuelsCategory());
         registry.add(new ForgeHammerCategory());
+        registry.add(new ProcessingTableCategory());
         registry.add(new MultiblockCategory());
         registry.add(new NeutronInteractionCategory());
         registry.add(new ThermalInteractionCategory());

@@ -39,6 +39,7 @@ public class ManualPluginEmi implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         registry.addRecipeHandler(MIRegistries.FORGE_HAMMER_MENU.get(), new ForgeHammerRecipeHandler());
+        registry.addRecipeHandler(MIRegistries.PROCESSING_TABLE_MENU.get(), new ProcessingTableRecipeHandler());
         registry.addRecipeHandler((MenuType<MachineMenuCommon>) MIRegistries.MACHINE_MENU.get(), new MachineRecipeHandler());
 
         // We need a generic one because we want any subclass of MIHandledScreen
