@@ -30,6 +30,8 @@ import aztech.modern_industrialization.attributes.QuantumArmorAttribute;
 import aztech.modern_industrialization.blocks.creativestorageunit.CreativeStorageUnitBlockEntity;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerRecipe;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerScreenHandler;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableScreenHandler;
 import aztech.modern_industrialization.blocks.storage.barrel.CreativeBarrelBlockEntity;
 import aztech.modern_industrialization.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
 import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
@@ -86,6 +88,9 @@ public class MIRegistries {
     public static final Supplier<MenuType<ForgeHammerScreenHandler>> FORGE_HAMMER_MENU = MENUS.register("forge_hammer", () -> {
         return new MenuType<>(ForgeHammerScreenHandler::new, FeatureFlags.VANILLA_SET);
     });
+    public static final Supplier<MenuType<ProcessingTableScreenHandler>> PROCESSING_TABLE_MENU = MENUS.register("processing_table", () -> {
+        return new MenuType<>(ProcessingTableScreenHandler::new, FeatureFlags.VANILLA_SET);
+    });
     public static final Supplier<MenuType<? extends MachineMenuCommon>> MACHINE_MENU = MENUS.register("machine", () -> {
         return IMenuTypeExtension.create(MICommonProxy.INSTANCE::createClientMachineMenu);
     })::get;
@@ -103,11 +108,17 @@ public class MIRegistries {
     public static final Supplier<RecipeSerializer<ForgeHammerRecipe>> FORGE_HAMMER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("forge_hammer",
             ForgeHammerRecipe.Serializer::new);
 
+    public static final Supplier<RecipeSerializer<ProcessingTableRecipe>> PROCESSING_TABLE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
+            .register("processing_table", ProcessingTableRecipe.Serializer::new);
+
     // Recipe types
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MI.ID);
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<ForgeHammerRecipe>> FORGE_HAMMER_RECIPE_TYPE = RECIPE_TYPES.register("forge_hammer",
             () -> RecipeType.simple(MI.id("forge_hammer")));
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ProcessingTableRecipe>> PROCESSING_TABLE_RECIPE_TYPE = RECIPE_TYPES
+            .register("processing_table", () -> RecipeType.simple(MI.id("processing_table")));
 
     // Creative tabs
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MI.ID);

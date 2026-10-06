@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-06T15:05:59.1132779	Loot Tables
+// 1.21.1	2026-10-06T16:42:55.4696436	Loot Tables
 b4fbebb3f5e5f68bc980b68bba39d0f7881dc761 data/milite/loot_table/blocks/advanced_fluid_input_hatch.json
 47a927740c5fc1de40fd494c02e5744018223e42 data/milite/loot_table/blocks/advanced_fluid_output_hatch.json
 484b3c777007297a320454a0f14108bedf6bba68 data/milite/loot_table/blocks/advanced_item_input_hatch.json
@@ -141,6 +141,7 @@ eaeeb79cdad269d1ce3a58af3d92c8079abf5b73 data/milite/loot_table/blocks/platinum_
 8475cf6f9146732cb687caccb36b8913f2030f79 data/milite/loot_table/blocks/plutonium_block.json
 e256e0d97d399e39634b3cbfdfbcc697ca5c1714 data/milite/loot_table/blocks/polarizer.json
 3d9b698b8f7b496b4155b1eea1bf85c24ffe8f4c data/milite/loot_table/blocks/pressurizer.json
+b65d141ad9a8b4ea3b4bbc66432a7eed708f7b3c data/milite/loot_table/blocks/processing_table.json
 afcfe9a7119ae5542f078f3e7de8ff179eaecc5c data/milite/loot_table/blocks/quantum_machine_casing.json
 807920f6c8b03eaf7d4189ebb01ec6d2d019d694 data/milite/loot_table/blocks/quantum_machine_hull.json
 408e98ce7985842a24ddc0f2f18bf82fe0981589 data/milite/loot_table/blocks/quartz_ore.json

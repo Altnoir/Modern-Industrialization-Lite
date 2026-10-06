@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "milite:bronze_machine_casing"
+  },
+  "second": {
+    "amount": 1,
+    "tag": "c:gears/copper"
+  },
+  "result": {
+    "id": "milite:bronze_compressor",
+    "count": 1
+  }
+}

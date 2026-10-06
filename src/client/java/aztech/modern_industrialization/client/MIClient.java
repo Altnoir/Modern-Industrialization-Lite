@@ -33,6 +33,7 @@ import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.MITooltips;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelTooltipData;
 import aztech.modern_industrialization.client.blocks.forgehammer.ForgeHammerScreen;
+import aztech.modern_industrialization.client.blocks.processingtable.ProcessingTableScreen;
 import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelRenderer;
 import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelTooltipComponent;
 import aztech.modern_industrialization.client.blocks.storage.barrel.DeferredBarrelTextRenderer;
@@ -197,6 +198,7 @@ public class MIClient {
     @SubscribeEvent
     private static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(MIRegistries.FORGE_HAMMER_MENU.get(), ForgeHammerScreen::new);
+        event.register(MIRegistries.PROCESSING_TABLE_MENU.get(), ProcessingTableScreen::new);
         event.register((MenuType<MachineMenuClient>) MIRegistries.MACHINE_MENU.get(), MachineScreen::new);
     }
 

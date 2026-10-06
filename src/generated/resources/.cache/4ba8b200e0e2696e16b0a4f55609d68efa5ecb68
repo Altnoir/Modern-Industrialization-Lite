@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-06T15:05:59.1162688	Server Data (aggregated)
+// 1.21.1	2026-10-06T16:42:55.4731837	Server Data (aggregated)
 ea1cec63a403deccbfd51ea73440577eb146da46 data/milite/recipe/alloy/mixer/battery_alloy/dust.json
 67659d7792ec754a84fa25ddf6ca3d1ea917011c data/milite/recipe/alloy/mixer/battery_alloy/tiny_dust.json
 9690112c628649f054ef372a835926a7e1a97894 data/milite/recipe/alloy/mixer/bronze/dust.json
@@ -142,24 +142,11 @@ cc9327fc74a5130e1c16bcf3fb5dad636ac2845f data/milite/recipe/assembler_generated/
 e55b4fe96e765054b97670486444d4f208db110f data/milite/recipe/assembler_generated/quarry/drill/stainless_steel_drill.json
 3cdfb49259695efdb69b64f79b24a8c6e0205540 data/milite/recipe/assembler_generated/quarry/drill/steel_drill.json
 03f5625430108cc5b65d81ac6dee56daed8f4d5d data/milite/recipe/assembler_generated/quarry/drill/titanium_drill.json
-fc2ce95e5e32694f181da5dd687dc4b4cf76f656 data/milite/recipe/assembler_generated/steam_age/bronze/boiler.json
 c2101329a91454ea45fe642ab44f8ba2eae3b127 data/milite/recipe/assembler_generated/steam_age/bronze/casing_pipe.json
-42eaab3525416a9c436ac4b109a29e29581d9c3c data/milite/recipe/assembler_generated/steam_age/bronze/compressor.json
-14bfe8b06fa4b6b1dcbc600d5d2ae434e2073afe data/milite/recipe/assembler_generated/steam_age/bronze/cutting_machine.json
-1d159a3958747b77a433a5b0598a398a6a4739cd data/milite/recipe/assembler_generated/steam_age/bronze/furnace.json
-70a81d7c0aa1ce04ed1b529e4bb6b47bf8332272 data/milite/recipe/assembler_generated/steam_age/bronze/macerator.json
 5a85decee442785a22cb0c6c694b35e9ca09c645 data/milite/recipe/assembler_generated/steam_age/bronze/machine_casing.json
-52c1a3346ac60d95ddea643d035e26d2e1615114 data/milite/recipe/assembler_generated/steam_age/bronze/mixer.json
-3e2ead04d034c189ee553b1e873a7c6ecef97eb5 data/milite/recipe/assembler_generated/steam_age/bronze/water_pump.json
-62566ab5749f2d32876ff8acc46a88448a649c8f data/milite/recipe/assembler_generated/steam_age/steel/boiler.json
 0fb53e9c6d7d8a17c74458e71aa2636c98d9481d data/milite/recipe/assembler_generated/steam_age/steel/casing_pipe.json
-08daf94f439d74977e6ce9e4c9da216e3f230ec2 data/milite/recipe/assembler_generated/steam_age/steel/furnace.json
 e9a664cc3fdfda23615a7f6b466d2163dbd46b06 data/milite/recipe/assembler_generated/steam_age/steel/machine_casing.json
-6d45f73c66d74bc4fce2b6f5e087976ef9e47efd data/milite/recipe/assembler_generated/steam_age/steel/packer.json
-48058f4a480b02d9810353513489ad172b64be55 data/milite/recipe/assembler_generated/steam_age/steel/quarry.json
 ce3461c84dee3086970acf5cf70d7b26d4f6281d data/milite/recipe/assembler_generated/steam_age/steel/steel_upgrade.json
-9916e911182f930551e7642df1692b7b45ab385c data/milite/recipe/assembler_generated/steam_age/steel/unpacker.json
-062aacc394fa28a908879d7677576bf29822ab2d data/milite/recipe/assembler_generated/steam_age/steel/wiremill.json
 54b4f80e84cfa9f5456665f8fefe4dd5681600a8 data/milite/recipe/assembler_generated/vanilla_recipes/blast_furnace.json
 de05d38766030b1e87c2e9492fe60d730b10f017 data/milite/recipe/assembler_generated/vanilla_recipes/steel_anvil.json
 d675465d8caf377b4899466e5140aacb0f87012a data/milite/recipe/assembler_generated/vanilla_recipes/steel_forge_hammer.json

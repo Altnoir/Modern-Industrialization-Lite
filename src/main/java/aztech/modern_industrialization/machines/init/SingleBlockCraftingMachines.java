@@ -84,8 +84,7 @@ public final class SingleBlockCraftingMachines {
         );
         registerMachineTiers(
                 "Cutting Machine", "cutting_machine", MIMachineRecipeTypes.CUTTING_MACHINE, 1, 1, 0, 0, guiParams -> {},
-                new ProgressBar.Params(79, 31, "slice"), new ProgressBar.Params(88, 31, "slice"),
-                new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
+                new ProgressBar.Params(77, 31, "slice"), new RecipeEfficiencyBar.Params(38, 62), new EnergyBar.Params(15, 34),
                 items -> items.addSlot(56, 35).addSlot(102, 35), fluids -> {},
                 true, false, false,
                 TIER_BRONZE | TIER_STEEL | TIER_ELECTRIC, 16

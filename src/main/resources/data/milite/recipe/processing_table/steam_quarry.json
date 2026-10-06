@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "milite:steel_machine_casing"
+  },
+  "second": {
+    "amount": 1,
+    "item": "milite:invar_rotary_blade"
+  },
+  "result": {
+    "id": "milite:steam_quarry",
+    "count": 1
+  }
+}

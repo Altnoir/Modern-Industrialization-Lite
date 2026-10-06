@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "milite:bronze_machine_casing"
+  },
+  "second": {
+    "amount": 1,
+    "item": "milite:bronze_tank"
+  },
+  "result": {
+    "id": "milite:bronze_water_pump",
+    "count": 1
+  }
+}

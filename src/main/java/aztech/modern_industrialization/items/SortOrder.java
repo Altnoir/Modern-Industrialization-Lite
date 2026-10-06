@@ -30,6 +30,7 @@ import aztech.modern_industrialization.nuclear.NuclearOrder;
 public final class SortOrder implements Comparable<SortOrder> {
     public static final SortOrder GUIDE_BOOK = new SortOrder();
     public static final SortOrder FORGE_HAMMER = new SortOrder();
+    public static final SortOrder PROCESSING_TABLE = new SortOrder();
     public static final SortOrderGroup.Counted ITEMS_ORDERED = new SortOrderGroup.Counted(new SortOrder());
     public static final SortOrderGroup.Parametrized<NuclearOrder> NUCLEAR = new SortOrderGroup.Parametrized<>(new SortOrder());
     public static final SortOrder CABLES = new SortOrder();

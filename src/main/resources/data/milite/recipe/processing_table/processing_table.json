@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "minecraft:crafting_table"
+  },
+  "second": {
+    "amount": 1,
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "milite:processing_table",
+    "count": 1
+  }
+}

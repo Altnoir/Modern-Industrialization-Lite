@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "milite:steel_machine_casing"
+  },
+  "second": {
+    "amount": 1,
+    "item": "minecraft:furnace"
+  },
+  "result": {
+    "id": "milite:steel_boiler",
+    "count": 1
+  }
+}

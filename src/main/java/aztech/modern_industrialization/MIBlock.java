@@ -30,6 +30,7 @@ import static net.minecraft.world.level.material.MapColor.STONE;
 import aztech.modern_industrialization.blocks.TrashCanBlock;
 import aztech.modern_industrialization.blocks.creativestorageunit.CreativeStorageUnitBlock;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerBlock;
+import aztech.modern_industrialization.blocks.processingtable.ProcessingTableBlock;
 import aztech.modern_industrialization.blocks.storage.StorageBehaviour;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelBlock;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelItem;
@@ -82,6 +83,11 @@ public class MIBlock {
     public static final BlockDefinition<ForgeHammerBlock> FORGE_HAMMER = block("Forge Hammer", "forge_hammer",
             BlockDefinitionParams.defaultStone().withBlockConstructor(ForgeHammerBlock::new).sortOrder(SortOrder.FORGE_HAMMER).noModel().destroyTime(6.0f).explosionResistance(1200)
                     .sound(SoundType.ANVIL));
+
+    // Processing table, the early game machine crafting station
+    public static final BlockDefinition<ProcessingTableBlock> PROCESSING_TABLE = block("Processing Table", "processing_table",
+            BlockDefinitionParams.defaultStone().withBlockConstructor(ProcessingTableBlock::new).sortOrder(SortOrder.PROCESSING_TABLE).noModel()
+                    .destroyTime(6.0f).explosionResistance(1200).sound(SoundType.WOOD));
 
     // Bronze stuff
     public static final BlockDefinition<TrashCanBlock> TRASH_CAN = block("Automatic Trash Can", "trash_can",

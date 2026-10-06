@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "milite:block/processing_table"
+    }
+  }
+}

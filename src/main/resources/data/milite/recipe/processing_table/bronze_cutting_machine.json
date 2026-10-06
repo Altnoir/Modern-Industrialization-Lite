@@ -1,0 +1,14 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+      "item": "milite:bronze_machine_casing"
+  },
+  "second": {
+    "amount": 1,
+    "tag": "c:glass_blocks"
+  },
+  "result": {
+    "id": "milite:bronze_cutting_machine",
+    "count": 1
+  }
+}

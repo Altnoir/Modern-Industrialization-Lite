@@ -1,4 +1,4 @@
-// 1.21.1	2026-10-06T15:05:59.1150328	Tags for minecraft:block mod id milite
+// 1.21.1	2026-10-06T16:42:55.4731837	Tags for minecraft:block mod id milite
 ef72297aa0ecfbc2672c0b74167d4bf1fa4b262e data/c/tags/block/ores.json
 23f19526b2777b95477a3146eba430dccb7112d5 data/c/tags/block/ores/antimony.json
 69e6a0ec5a88c636ef9e3b8c59ac8feec28d5c87 data/c/tags/block/ores/bauxite.json
@@ -69,5 +69,5 @@ b6f3a96c84e8d0070d91c457c5ed60430d045d7e data/c/tags/block/storage_blocks/uraniu
 eb9615a1f2d961782c539d45cb9b39db63394377 data/c/tags/block/storage_blocks/yttrium.json
 d3a55cd057656e5df5955c5a882da2d200ee2472 data/milite/tags/block/barrels.json
 b2b91986b9849ba9a0eda2acfedbfc800c403d8b data/milite/tags/block/tanks.json
-d8a10cb1733e43f2c09fe1ee29b90b5d55a03f84 data/minecraft/tags/block/mineable/pickaxe.json
-d8a10cb1733e43f2c09fe1ee29b90b5d55a03f84 data/minecraft/tags/block/needs_stone_tool.json
+00805ada0cf9589f699cf84613e4e3237bff6f7a data/minecraft/tags/block/mineable/pickaxe.json
+00805ada0cf9589f699cf84613e4e3237bff6f7a data/minecraft/tags/block/needs_stone_tool.json
