@@ -20,4 +20,4 @@ Sim, você pode! Clique com o botão direito em uma máquina segurando um Casco 
 
 Um Módulo de Overdrive impede que a eficiência da máquina caia caso ela pare de processar.
 
-A máquina consumirá a mesma quantidade de EU/t como se estivesse processando uma receita, mas sem realizar nenhum trabalho. Se o fornecimento de energia não conseguir acompanhar, a eficiência diminuirá normalmente.
+A máquina consumirá a mesma quantidade deRF/t como se estivesse processando uma receita, mas sem realizar nenhum trabalho. Se o fornecimento de energia não conseguir acompanhar, a eficiência diminuirá normalmente.

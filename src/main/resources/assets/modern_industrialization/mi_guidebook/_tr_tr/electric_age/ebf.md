@@ -13,7 +13,7 @@ item_ids:
 
 # Elektrikli Maden Eritme Ocağı
 
-Elektrikli Maden Eritme Ocağı, Buharlı Maden Eritme Ocağının elektrikli versiyonudur. Yeni tariflerin kilidini açar ve diğer çok bloklu elektrikli makineler gibi hız aşırtması varsayılan olarak 128 EU/t ile sınırlandırılmıştır.
+Elektrikli Maden Eritme Ocağı, Buharlı Maden Eritme Ocağının elektrikli versiyonudur. Yeni tariflerin kilidini açar ve diğer çok bloklu elektrikli makineler gibi hız aşırtması varsayılan olarak 128RF/t ile sınırlandırılmıştır.
 
 <Recipe id="modern_industrialization:electric_age/machine/electric_blast_furnace_asbl" />
 

@@ -13,7 +13,7 @@ item_ids:
 
 # 전기 용광로
 
-전기 용광로는 전기로 작동하는 용광로입니다. 새로운 조합법들을 활용할 수 있고, 다른 전기 멀티블록 기계들처럼 최대 128EU/t 만큼의 오버클럭을 지원합니다.
+전기 용광로는 전기로 작동하는 용광로입니다. 새로운 조합법들을 활용할 수 있고, 다른 전기 멀티블록 기계들처럼 최대 128RF/t 만큼의 오버클럭을 지원합니다.
 
 <Recipe id="modern_industrialization:electric_age/machine/electric_blast_furnace_asbl" />
 

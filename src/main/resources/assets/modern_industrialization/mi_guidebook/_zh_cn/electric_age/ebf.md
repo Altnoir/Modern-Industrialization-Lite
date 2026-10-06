@@ -17,7 +17,7 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-电力高炉是蒸汽高炉的电动版本。除了解锁新配方外，它与其他多方块电力机器一样，默认情况下其超频上限为128 EU/t。
+电力高炉是蒸汽高炉的电动版本。除了解锁新配方外，它与其他多方块电力机器一样，默认情况下其超频上限为128RF/t。
 
 <Recipe id="modern_industrialization:electric_age/machine/electric_blast_furnace_asbl" />
 

@@ -12,7 +12,7 @@ item_ids:
 
 # Elektrikli Makineler
 
-Elektrikli makineler, buhar yerine elektrik gerektirmeleri ve 32 EU/t'ye kadar aşamalı olarak hız aşırtma yapmaları dışında buharlı makinelerle tamamen aynı şekilde çalışır.
+Elektrikli makineler, buhar yerine elektrik gerektirmeleri ve 32RF/t'ye kadar aşamalı olarak hız aşırtma yapmaları dışında buharlı makinelerle tamamen aynı şekilde çalışır.
 
 Zaten aşina olduğunuz makinelerin elektrikli versiyonlarının tariflerini görüntülemek için REI'yi kullanabilirsiniz.
 
@@ -48,7 +48,7 @@ Modülü elinizde yapılandırın, ardından makineye veya çoklu blok denetleyi
 
 <ItemImage id="modern_industrialization:basic_upgrade" />
 
-Normal elektrikli makinelerde hız aşırtma 32 EU/t ile sınırlandırılmıştır ve elektrikli çoklu bloklarda hız aşırtma 128 EU/t ile sınırlandırılmıştır.
+Normal elektrikli makinelerde hız aşırtma 32RF/t ile sınırlandırılmıştır ve elektrikli çoklu bloklarda hız aşırtma 128RF/t ile sınırlandırılmıştır.
 
 Makine veya çoklu blok menüsünde, maksimum hız aşırtmayı artırmak için yükseltmeler ekleyin! Kesin miktarlar için REI'yi kontrol edin.
 

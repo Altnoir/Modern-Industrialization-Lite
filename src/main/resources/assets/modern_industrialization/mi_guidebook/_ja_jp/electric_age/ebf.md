@@ -13,7 +13,7 @@ item_ids:
 
 # 電動高炉
 
-電動高炉は蒸気高炉の電気版である。新しいレシピが解放され、他のマルチブロック電気マシンと同様にオーバークロックはデフォルトで128 EU/tまでに制限されている。
+電動高炉は蒸気高炉の電気版である。新しいレシピが解放され、他のマルチブロック電気マシンと同様にオーバークロックはデフォルトで128RF/tまでに制限されている。
 
 <Recipe id="modern_industrialization:electric_age/machine/electric_blast_furnace_asbl" />
 

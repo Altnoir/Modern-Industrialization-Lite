@@ -12,7 +12,7 @@ item_ids:
 
 # Electric Machines
 
-Electric machines work exactly the same as steam machines, except that they require electricity instead of steam and they progressively overclock recipes up to 32 EU/t.
+Electric machines work exactly the same as steam machines, except that they require electricity instead of steam and they progressively overclock recipes up to 32RF/t.
 
 You can use REI to view the recipes for the electric version of the machines you are already familiar with.
 
@@ -50,7 +50,7 @@ Configure the module in your hand, then insert it into the machine or multiblock
 
 <ItemImage id="modern_industrialization:basic_upgrade" />
 
-Regular electric machines have an overclock capped at 32 EU/t, and electric multiblocks have an overclock capped at 128 EU/t.
+Regular electric machines have an overclock capped at 32RF/t, and electric multiblocks have an overclock capped at 128RF/t.
 
 In the machine or multiblock's menu, add upgades to increase its maximum overclock! Check REI for the exact amounts.
 

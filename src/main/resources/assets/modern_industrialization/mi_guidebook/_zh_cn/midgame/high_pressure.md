@@ -33,7 +33,7 @@ item_ids:
 
 一旦能够制造高压水，你就可以使用高压大型蒸汽锅炉来生产高压蒸汽。
 
-1 mB高压蒸汽相当于8 mB普通蒸汽，等价于8 EU。
+1 mB高压蒸汽相当于8 mB普通蒸汽，等价于8RF。
 
 <Recipe id="modern_industrialization:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
@@ -51,7 +51,7 @@ item_ids:
     <MultiblockShape controller="large_steam_turbine" />
 </GameScene>
 
-大型蒸汽涡轮机可将常规蒸汽（1 mB = 1 EU）和高压蒸汽（1 mB = 8 EU）转化为EU，且产出最高可达16384 EU/t！**然而它既不会返还普通水，也不会返还高压水。**
+大型蒸汽涡轮机可将常规蒸汽（1 mB = 1RF）和高压蒸汽（1 mB = 8RF）转化为EU，且产出最高可达16384RF/t！**然而它既不会返还普通水，也不会返还高压水。**
 
 <Recipe id="modern_industrialization:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -67,7 +67,7 @@ item_ids:
 
 ## 高压蒸汽涡轮机
 
-小型设施的另一种选择是使用高压蒸汽涡轮机。与其他高压发电机一样，它能产出512 EU/t。它只接受普通蒸汽。
+小型设施的另一种选择是使用高压蒸汽涡轮机。与其他高压发电机一样，它能产出512RF/t。它只接受普通蒸汽。
 
 <Recipe id="modern_industrialization:electric_age/machine/hv_steam_turbine_asbl" />
 

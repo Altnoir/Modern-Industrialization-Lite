@@ -15,7 +15,7 @@ item_ids:
 
 <Recipe id="modern_industrialization:electric_age/machine/fusion_reactor_asbl" />
 
-プラズマタービンはヘリウムプラズマを1ミリバケツあたり100 kEUの割合でEUに変換することができる。その最大生産速度はおよそ1 MEU/tである。
+プラズマタービンはヘリウムプラズマを1ミリバケツあたり100 kRFの割合でEUに変換することができる。その最大生産速度はおよそ1 MRF/tである。
 
 <Recipe id="modern_industrialization:electric_age/machine/plasma_turbine_asbl" />
 

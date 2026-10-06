@@ -20,5 +20,5 @@ Evet değiştirebilirsiniz! OG katmanına değiştirmek için Gelişmiş Makine 
 
 Aşırı Hız Modülü, makinenin işlemeyi durdurması halinde makine verimliliğinin düşmesini önleyecektir.
 
-Makine, herhangi bir iş yapmadan bir tarifi işlemeye devam ediyormuş gibi çok sayıda EU/t tüketecektir. Enerji kaynağı yetişemezse, verimlilik her zamanki gibi düşecektir.
+Makine, herhangi bir iş yapmadan bir tarifi işlemeye devam ediyormuş gibi çok sayıdaRF/t tüketecektir. Enerji kaynağı yetişemezse, verimlilik her zamanki gibi düşecektir.
 

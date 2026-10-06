@@ -27,7 +27,7 @@ The Fusion Reactor is the ultimate energy source! It can combine Deuterium, Trit
     <MultiblockShape controller="plasma_turbine" />
 </GameScene>
 
-The Plasma Turbine can turn Helium Plasma into EU, at the rate of 100 kEU per millibucket. Its maximum production rate is roughly 1 MEU/t.
+The Plasma Turbine can turn Helium Plasma into RF, at the rate of 100 kRF per millibucket. Its maximum production rate is roughly 1 MRF/t.
 
 <Recipe id="modern_industrialization:electric_age/machine/plasma_turbine_asbl" />
 

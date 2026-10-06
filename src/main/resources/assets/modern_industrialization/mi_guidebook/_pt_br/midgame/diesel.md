@@ -13,7 +13,7 @@ item_ids:
 
 ## Gerador à Diesel HV
 
-Lembre-se de que você pode usar um Gerador à Diesel HV para uma geração compacta de energia HV. Como esperado, ele produz até 1024 EU/t. Não esqueça que você pode conferir a quantidade de energia armazenada em cada combustível usando o JEI.
+Lembre-se de que você pode usar um Gerador à Diesel HV para uma geração compacta de energia HV. Como esperado, ele produz até 1024RF/t. Não esqueça que você pode conferir a quantidade de energia armazenada em cada combustível usando o JEI.
 
 <Recipe id="modern_industrialization:electric_age/machine/hv_diesel_generator_asbl" />
 
@@ -23,7 +23,7 @@ Lembre-se de que você pode usar um Gerador à Diesel HV para uma geração comp
     <MultiblockShape controller="large_diesel_generator" />
 </GameScene>
 
-Quando tiver acesso a unidades de processamento e carcaças de máquinas extremamente avançadas, considere construir alguns Grandes Geradores à Diesel. Cada um desses monstros converte combustível em EU, produzindo até 16.384 EU/t!
+Quando tiver acesso a unidades de processamento e carcaças de máquinas extremamente avançadas, considere construir alguns Grandes Geradores à Diesel. Cada um desses monstros converte combustível emRF, produzindo até 16.384RF/t!
 
 <Recipe id="modern_industrialization:electric_age/machine/large_diesel_generator_asbl" />
 

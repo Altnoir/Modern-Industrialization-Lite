@@ -23,7 +23,7 @@ item_ids:
 
 原油可以转化为多种燃料，并且可用于更高效的橡胶片生产。
 
-柴油发电机可以燃烧多种燃料，你可以在REI中查看每种燃料产生的EU量。柴油发电机最高可产出256 EU/t，且只能与中压电缆连接。
+柴油发电机可以燃烧多种燃料，你可以在REI中查看每种燃料产生的EU量。柴油发电机最高可产出256RF/t，且只能与中压电缆连接。
 
 <Recipe id="modern_industrialization:electric_age/machine/diesel_generator_asbl" />
 

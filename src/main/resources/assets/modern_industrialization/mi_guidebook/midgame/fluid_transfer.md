@@ -1,24 +1,31 @@
 ---
 navigation:
-  title: "Fluid Pipe Speed"
+  title: "Moving Fluids and Items"
   icon: "minecraft:water_bucket"
   position: 203
   parent: modern_industrialization:midgame.md
 ---
 
-# Fluid Pipe Speed
+# Moving Fluids and Items
 
-You might be wondering how you can possibly transfer all these multiple thousands of millibuckets of steam every tick? The answer is: with regular fluid pipes!
+Modern Industrialization Lite **does not include fluid pipes, item pipes, or cables**. All transport is expected to come from another mod.
 
-Each fluid pipe has an internal buffer of exactly one bucket (= 1000 millibuckets). When you connect multiple pipes directly, they become linked and share their internal storage.
+## What other mods can connect to
 
-Regular and large tanks from Modern Industrialization will also link with the pipe network if they are connected to it using a bidirectional connection. This means I/O in the menu, or the double arrows on the pipe itself.
+Every Modern Industrialization machine, tank, barrel and multiblock hatch exposes the standard NeoForge capabilities:
 
-Tanks have a much larger internal buffer than pipes, so they can store a lot more fluid.
+- **Fluid** - `IFluidHandler`, so any fluid pipe, pump or tank from another mod can fill and drain it.
+- **Items** - `IItemHandler`, so any item pipe, hopper or logistics mod can insert and extract.
+- **Energy** - `IEnergyStorage` (RF), so any RF cable, energy pipe or battery can power it.
 
-How much fluid is transferred every tick is then bounded by the total capacity of the network. For example, 25 fluid pipes linked together can transfer up to 25000 mb/t of fluid - assuming you can produce that much fluid of course!
+Because these are the standard capabilities, no compatibility module is needed: if the other mod's pipe can move fluids or items, it can work with these blocks.
 
-Adding a single steel tank (16 buckets of storage) with an I/O connection will bring the total network rate to 41000 mb/t.
+## Things to keep in mind
 
-Note that you might be limited by the transfer rates of the tanks/machines the pipes are connected to.
+Machines have their own internal fluid and item buffers, and the **auto-eject** and **auto-pull** settings in the machine interface let a machine push its outputs into an adjacent inventory or tank by itself. This is often enough to chain machines together without any pipe at all.
 
+Multiblock machines are the exception: they need **Fluid Hatches** and **Item Hatches** to exchange fluids and items with the outside world. Those hatches also expose the standard capabilities, so connect your other mod's pipes to the hatch.
+
+Tanks can be filled and drained from any side through the standard fluid capability. The Large Tank multiblock behaves the same way through its controller or its dedicated hatch.
+
+Note that the transfer rate is now decided by the other mod's pipes rather than by Modern Industrialization, so a fast pipe network will move fluids far quicker than the old one-bucket-per-pipe setup ever could.

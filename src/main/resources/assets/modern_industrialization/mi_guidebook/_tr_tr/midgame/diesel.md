@@ -11,11 +11,11 @@ item_ids:
 
 # Daha İyi Dizel
 
-Kompakt YG güç üretimi için bir YG Dizel Jeneratörü kullanabileceğinizi unutmayın. Tahmin edebileceğiniz gibi, 1024 EU/t'ye kadar üretir. Her yakıtta depolanan enerji miktarını REI ile bulabileceğinizi unutmayın.
+Kompakt YG güç üretimi için bir YG Dizel Jeneratörü kullanabileceğinizi unutmayın. Tahmin edebileceğiniz gibi, 1024RF/t'ye kadar üretir. Her yakıtta depolanan enerji miktarını REI ile bulabileceğinizi unutmayın.
 
 <Recipe id="modern_industrialization:electric_age/machine/hv_diesel_generator_asbl" />
 
-İşleme ünitelerine ve son derece gelişmiş makine gövdelerine erişiminiz olduğunda, birkaç Büyük Dizel Jeneratör yapmayı düşünün. Bu kötü çocukların her biri yakıtı 16384 EU/t'ye kadar EU'ya dönüştürecektir!
+İşleme ünitelerine ve son derece gelişmiş makine gövdelerine erişiminiz olduğunda, birkaç Büyük Dizel Jeneratör yapmayı düşünün. Bu kötü çocukların her biri yakıtı 16384RF/t'ye kadarRF'ya dönüştürecektir!
 
 <Recipe id="modern_industrialization:electric_age/machine/large_diesel_generator_asbl" />
 

@@ -27,7 +27,7 @@ item_ids:
     <MultiblockShape controller="plasma_turbine" />
 </GameScene>
 
-Плазмова турбіна може перетворювати гелієву плазму в EU зі швидкістю 100 kEU на мВ. Його максимальна продуктивність становить приблизно 1 MEU/т.
+Плазмова турбіна може перетворювати гелієву плазму в RF зі швидкістю 100 kRF на мВ. Його максимальна продуктивність становить приблизно 1 MRF/т.
 
 <Recipe id="modern_industrialization:electric_age/machine/plasma_turbine_asbl" />
 

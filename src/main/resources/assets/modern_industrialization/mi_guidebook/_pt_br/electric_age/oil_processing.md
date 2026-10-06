@@ -23,7 +23,7 @@ A estrutura do multibloco é feita de: Estruturas de Máquina de Aço, Estrutura
 
 O Petróleo Bruto pode ser transformado em vários combustíveis e usado para uma produção mais eficiente de Folhas de Borracha.
 
-Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantos EU cada combustível produz. O Gerador a Diesel produzirá até 256 EU/t e só se conectará a cabos MV.
+Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantosRF cada combustível produz. O Gerador a Diesel produzirá até 256RF/t e só se conectará a cabos MV.
 
 <Recipe id="modern_industrialization:electric_age/machine/mv_diesel_generator_asbl" />
 

@@ -19,7 +19,7 @@ Petrol Sondaj Makinesi, matkaplar kullanarak ana kayanın altındaki Ham Petrol�
 
 Ham Petrol çeşitli yakıtlara dönüştürülebilir ve daha verimli Kauçuk Levha üretimi için kullanılabilir.
 
-Dizel Jeneratörde çeşitli yakıtlar yakılabilir ve REI'de her yakıtın kaç EU ürettiğini kontrol edebilirsiniz. Dizel Jeneratör 256 EU/t'ye kadar üretecek ve sadece OG kablolarına bağlanacaktır.
+Dizel Jeneratörde çeşitli yakıtlar yakılabilir ve REI'de her yakıtın kaçRF ürettiğini kontrol edebilirsiniz. Dizel Jeneratör 256RF/t'ye kadar üretecek ve sadece OG kablolarına bağlanacaktır.
 
 <Recipe id="modern_industrialization:electric_age/machine/mv_diesel_generator_asbl" />
 

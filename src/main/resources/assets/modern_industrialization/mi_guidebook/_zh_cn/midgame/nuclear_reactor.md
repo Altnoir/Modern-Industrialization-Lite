@@ -18,7 +18,7 @@ item_ids:
     <MultiblockShape controller="nuclear_reactor" useBigShape={true} x="-11" z="-3" />
 </GameScene>
 
-核反应堆是一种大型多块结构，其目的是通过消耗核燃料来产生巨量能量。它的EU/t产量可以是柴油发电机的数百倍。反应堆有多种尺寸，从小型到大型不等。
+核反应堆是一种大型多块结构，其目的是通过消耗核燃料来产生巨量能量。它的RF/t产量可以是柴油发电机的数百倍。反应堆有多种尺寸，从小型到大型不等。
 
 <Recipe id="modern_industrialization:electric_age/machine/nuclear_reactor_asbl" />
 

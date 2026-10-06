@@ -18,11 +18,11 @@ item_ids:
 
 <Recipe id="modern_industrialization:electric_age/machine/pressurizer_asbl" />
 
-高圧水が手に入れば、高圧大型蒸気ボイラーを使って高圧の蒸気を作ることができる。(br2)高圧蒸気1 mbは通常の蒸気8 mb、すなわと8 EUに相当する。
+高圧水が手に入れば、高圧大型蒸気ボイラーを使って高圧の蒸気を作ることができる。(br2)高圧蒸気1 mbは通常の蒸気8 mb、すなわと8RFに相当する。
 
 <Recipe id="modern_industrialization:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
-大型蒸気タービンは通常の蒸気(1 mb = 1 EU)と高圧蒸気(1 mb = 8 EU)の両方をEUとして受け入れ、最大16384 EU/tを生み出すことができる！(l)ただし、通常の水とHPの水は戻ってこない。
+大型蒸気タービンは通常の蒸気(1 mb = 1RF)と高圧蒸気(1 mb = 8RF)の両方をEUとして受け入れ、最大16384RF/tを生み出すことができる！(l)ただし、通常の水とHPの水は戻ってこない。
 
 <Recipe id="modern_industrialization:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -30,7 +30,7 @@ item_ids:
 
 <Recipe id="modern_industrialization:electric_age/machine/heat_exchanger_asbl" />
 
-小規模なセットアップにはHV蒸気タービンを使うという選択肢もある。他のHV発電機と同様512 EU/tを生み出す。これは通常の蒸気しか受け付けない。
+小規模なセットアップにはHV蒸気タービンを使うという選択肢もある。他のHV発電機と同様512RF/tを生み出す。これは通常の蒸気しか受け付けない。
 
 <Recipe id="modern_industrialization:electric_age/machine/hv_steam_turbine_asbl" />
 

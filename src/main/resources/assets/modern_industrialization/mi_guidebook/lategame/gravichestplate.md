@@ -12,7 +12,7 @@ navigation:
 
 The Gravichestplate uses advanced superconductor technology to invert the gravitational field around the player wearing it.
 
-It uses EU, and can be charged by right-clicking a Storage Unit or Transformer.
+It usesRF, and can be charged by right-clicking a Storage Unit or Transformer.
 
 Note that the current GSP technology grants fly and prevents fall damage, but it does not protected against other kinds of damage.
 

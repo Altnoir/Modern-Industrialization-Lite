@@ -23,7 +23,7 @@ The structure of the multiblock is made of: Steel Machine Casings, Steel Pipe Ma
 
 Crude Oil can be turned into various fuels and used for more efficient Rubber Sheet production.
 
-Various fuels can be burned in the Diesel Generator, and you can check in REI how many EU each fuel produces. The EU produced by these fuels in the Diesel Generator is doubled. The Diesel Generator will produce up to 256 EU/t and will only connect to MV cables.
+Various fuels can be burned in the Diesel Generator, and you can check in REI how manyRF each fuel produces. TheRF produced by these fuels in the Diesel Generator is doubled. The Diesel Generator will produce up to 256RF/t and will only connect to MV cables.
 
 <Recipe id="modern_industrialization:electric_age/machine/mv_diesel_generator_asbl" />
 

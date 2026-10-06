@@ -20,5 +20,5 @@ Yes you can! Right-click a machine with an Advanced Machine Hull to change it to
 
 An Overdrive Module will prevent machine efficiency from going down if the machine stops processing.
 
-The machine will consume as many EU/t as if it were continuing to process a recipe, but without doing any work. If the energy supply cannot keep up, efficiency will go down as usual.
+The machine will consume as manyRF/t as if it were continuing to process a recipe, but without doing any work. If the energy supply cannot keep up, efficiency will go down as usual.
 

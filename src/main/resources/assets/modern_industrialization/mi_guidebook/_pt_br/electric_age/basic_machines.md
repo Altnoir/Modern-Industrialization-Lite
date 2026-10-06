@@ -12,7 +12,7 @@ item_ids:
 
 # Máquinas Elétricas
 
-Máquinas Elétricas funcionam exatamente como as máquinas a vapor, exceto que elas usam eletricidade em vez de vapor e fazem overclock progressivo nas receitas até 32 EU/t.
+Máquinas Elétricas funcionam exatamente como as máquinas a vapor, exceto que elas usam eletricidade em vez de vapor e fazem overclock progressivo nas receitas até 32RF/t.
 
 Você pode usar o JEI para ver as receitas da versão elétrica das máquinas que já conhece.
 
@@ -50,7 +50,7 @@ Configure o módulo na mão e depois insira-o no controlador da máquina ou mult
 
 <ItemImage id="modern_industrialization:basic_upgrade" />
 
-Máquinas Elétricas comuns têm overclock limitado a 32 EU/t, e multiblocos elétricos têm overclock limitado a 128 EU/t.
+Máquinas Elétricas comuns têm overclock limitado a 32RF/t, e multiblocos elétricos têm overclock limitado a 128RF/t.
 
 No menu da máquina ou multibloco, adicione upgrades para aumentar o overclock máximo! Confira no REI os valores exatos.
 

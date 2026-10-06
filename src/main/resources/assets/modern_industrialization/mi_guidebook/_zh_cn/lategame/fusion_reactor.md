@@ -27,7 +27,7 @@ item_ids:
     <MultiblockShape controller="plasma_turbine" />
 </GameScene>
 
-等离子涡轮机可以将氦等离子体转化为EU，转化率为100 kEU/mB。其最大功率约为1 MEU/t。
+等离子涡轮机可以将氦等离子体转化为EU，转化率为100 kRF/mB。其最大功率约为1 MRF/t。
 
 <Recipe id="modern_industrialization:electric_age/machine/plasma_turbine_asbl" />
 
