@@ -17,7 +17,7 @@
       "item" : "modern_industrialization:turbo_machine_hull"
     },
     "p": {
-      "tag": "modern_industrialization:fluid_pipes"
+      "item": "modern_industrialization:bronze_curved_plate"
     },
     "r" : {
       "item" : "modern_industrialization:stainless_steel_rotor"

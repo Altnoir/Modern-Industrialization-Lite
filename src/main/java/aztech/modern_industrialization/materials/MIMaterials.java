@@ -696,10 +696,7 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0x86e3ec)
                         .set(MaterialProperty.HARDNESS, HARD)
                         .addParts(TINY_DUST, DUST, PLATE, INGOT, NUGGET, WIRE, DOUBLE_INGOT, HOT_INGOT).addParts(COIL)
-                        .addRecipes(StandardRecipes::apply)
-                        .cancelRecipes("craft/cable", "packer/cable",
-                                "assembler/cable_synthetic_rubber",
-                                "assembler/cable_styrene_rubber"));
+                        .addRecipes(StandardRecipes::apply));
 
         TUNGSTEN = MaterialRegistry.addMaterial(
                 new MaterialBuilder("Tungsten", "tungsten")

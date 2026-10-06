@@ -41,7 +41,8 @@ public class HatchRecipesProvider extends MIRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         String[] casings = { "bronze", "steel", "basic", "advanced", "turbo", "highly_advanced", "quantum" };
         String[] tanks = { "bronze", "steel", "", "aluminum", "stainless_steel", "titanium", "" };
-        String[] cables = { "", "", "tin", "electrum", "aluminum", "annealed_copper", "superconductor" };
+        // MI Lite has no cables, so energy hatches are crafted with the wire of the same material.
+        String[] wires = { "", "", "tin", "electrum", "aluminum", "annealed_copper", "superconductor" };
         String[] voltage = { "", "", "lv", "mv", "hv", "ev", "superconductor" };
 
         for (int i = 0; i < casings.length; i++) {
@@ -58,16 +59,16 @@ public class HatchRecipesProvider extends MIRecipesProvider {
             String itemOutput = String.format("modern_industrialization:%s_item_output_hatch", casings[i]);
             String energyInput = String.format("modern_industrialization:%s_energy_input_hatch", voltage[i]);
             String energyOutput = String.format("modern_industrialization:%s_energy_output_hatch", voltage[i]);
-            String cable = String.format("modern_industrialization:%s_cable", cables[i]);
+            String wire = String.format("modern_industrialization:%s_wire", wires[i]);
             String hopper = "minecraft:hopper";
 
             String[][] ABs = { { fluidInput, fluidOutput }, { itemInput, itemOutput }, { energyInput, energyOutput } };
             String[][] prefixes = { { "fluid_input", "fluid_output" }, { "item_input", "item_output" }, { "energy_input", "energy_output" } };
-            String[] others = { tank, hopper, cable };
+            String[] others = { tank, hopper, wire };
 
             for (int j = 0; j < ABs.length; j++) {
 
-                if (((j != 2) && !casings[i].equals("basic") && !casings[i].equals("quantum")) || (j == 2 && !cables[i].equals(""))) {
+                if (((j != 2) && !casings[i].equals("basic") && !casings[i].equals("quantum")) || (j == 2 && !wires[i].equals(""))) {
 
                     String[] AB = ABs[j];
                     String other = others[j];
