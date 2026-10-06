@@ -15,5 +15,5 @@ item_ids:
 
 청동 물 펌프는 5초마다 옆의 물 블록 하나당 125 mB 만큼의 물을 생산합니다. 최대 출력은 5초당 1000 mB 입니다.
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

@@ -31,11 +31,11 @@ item_ids:
 
 梱包機は鋼鉄製のみ使用できる新しい機械で、簡単な加工を行うことができる。例えばダブルインゴットやパイプを自動化できるようになった！もう一度REIを確認しよう。
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 開梱機は梱包機は鋼鉄製のみ使用できる新しい機械で……何ができるかな？ o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 いくらか鋼鉄の板があれば、とても便利なブロックを作ることができる！
 

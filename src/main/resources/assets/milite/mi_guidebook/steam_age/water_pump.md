@@ -15,5 +15,5 @@ It will automatically transfer water to the machine on its output side.
 
 The Bronze Water Pump will produce 1/8th of a bucket of water for every adjacent water source every 5 seconds, for a max output of 1 bucket / 5 seconds.
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

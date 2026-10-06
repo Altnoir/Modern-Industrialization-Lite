@@ -23,23 +23,23 @@ item_ids:
 
 Компрессор превратит слитки в пластины в соотношении 1:1. Он также может превратить двойной слиток в 2 пластины. Вероятно, это первая машина, которую вы захотите построить!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 Смешиватель поможет вам смешивать пыль, обеспечивая лучшее соотношение для бронзы, огнеупорной глины, а затем и для сырой стали. Он также может создавать булыжник и глину.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 Дробитель превратит 2 измельченные пыли в 3 пыли. Утроение руды сила! Он также может перерабатывать все виды материалов, превращая их в пыль.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 Режущий станок даст вам лучшее соотношение для болтов, шестеренок, колец и стержней. Он каждый раз использует немного смазки.
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 Печь это... ну... печь. Это так же медленно, как и обычные печи, но при этом расходуется в 20 раз меньше топлива, потому что пар очень эффективен.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 Паровые машины будут принимать ресурсы с любой стороны, будь то предметы, пар или другая жидкость.
 

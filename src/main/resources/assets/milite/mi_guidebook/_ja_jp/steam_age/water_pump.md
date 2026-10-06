@@ -15,5 +15,5 @@ item_ids:
 
 青銅の給水ポンプは5秒ごとに隣接する水源につき1/8バケツの水を生成し、最大で1バケツ/5秒の出力となる。
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

@@ -24,7 +24,7 @@ item_ids:
 
 虽然锅炉的造价看似高昂，但别忘了你可以通过锻压台和锤子获得三倍的矿石。而且，一旦你有了头两台机器，它的造价就会降至三分之一！
 
-<Recipe id="milite:steam_age/bronze/boiler_asbl" />
+<Recipe id="milite:processing_table/bronze_boiler" />
 
 要制作耐火黏土砖，你需要烧炼耐火黏土粉，而耐火黏土粉需要红砖粉来合成。将红砖放入锻压台中可制作红砖粉。蒸汽机器或锤子可以提高此过程的效率。
 

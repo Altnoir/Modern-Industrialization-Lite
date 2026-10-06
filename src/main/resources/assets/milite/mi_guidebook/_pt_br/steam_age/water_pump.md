@@ -15,5 +15,5 @@ Ela transfere água automaticamente para a máquina no lado de saída.
 
 A Bomba de Água de Bronze produz 1/8 de balde de água para cada fonte de água adjacente a cada 5 segundos, com uma saída máxima de 1 balde a cada 5 segundos.
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

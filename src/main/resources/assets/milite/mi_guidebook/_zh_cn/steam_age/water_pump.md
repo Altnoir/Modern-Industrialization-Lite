@@ -15,5 +15,5 @@ item_ids:
 
 对于每个相邻的水源，青铜水泵每5秒可泵出1/8桶的水，因此最大产能为1桶/5秒。
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

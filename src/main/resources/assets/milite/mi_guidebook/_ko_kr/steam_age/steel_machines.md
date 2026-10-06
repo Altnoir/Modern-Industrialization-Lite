@@ -29,11 +29,11 @@ item_ids:
 
 포장기는 강철 단계부터 추가되는 기계입니다. 이제 이중 주괴나 전선 등을 자동화할 수 있습니다. REI를 꼭 확인하세요.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 마찬가지로 강철 단계부터 추가되는 Unpacker입니다... 뭘 하는 기계인지 맞춰보세요 o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 약간의 강철 판만 있으면 정말 유용한 블록을 만들 수 있습니다!
 

@@ -21,23 +21,23 @@ Máquinas de bronze só conseguem processar receitas de até 2RF/t, ou seja, a r
 
 O Compressor transforma lingotes em chapas na proporção 1:1. Também pode transformar lingotes duplos em 2 chapas. Provavelmente será a primeira máquina que você vai querer construir!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 O Misturador ajuda a combinar pós, oferecendo uma proporção melhor para bronze, argila refratária e, mais tarde, aço cru. Também pode criar pedra britada e argila.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 O Macerador transforma 3 pós triturados/minérios crus em 4,5 pós. Quadrupla quase completamente o rendimento do minério! Também pode reciclar diversos materiais transformando-os em pó.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 A Máquina de Corte oferece melhores proporções para parafusos, engrenagens, anéis e hastes. Usa um pouco de lubrificante a cada operação.
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 O Forno é... bem... um Forno. É tão lento quanto fornos normais, mas usa 10 vezes menos combustível porque o vapor é muito eficiente.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 As máquinas a vapor aceitam entradas de qualquer lado, seja itens, vapor ou outro fluido.
 

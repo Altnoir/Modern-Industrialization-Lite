@@ -31,11 +31,11 @@ You can check all recipes in REI!
 
 The Packer, a new machine only available in steel, can perform simple crafts for you. You can now automate double ingots and pipes, for example! Again, check REI.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 The Unpacker, a new machine only available in steel... Guess what it does. o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 With a few steel plates, you can now craft a very useful block!
 

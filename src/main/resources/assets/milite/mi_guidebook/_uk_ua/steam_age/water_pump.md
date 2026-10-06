@@ -15,5 +15,5 @@ item_ids:
 
 Бронзова водяна помпа буде виробляти 1/8 відра води для кожного сусіднього джерела води кожні 5 секунд, для максимальної продуктивности 1 відро/5с.
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

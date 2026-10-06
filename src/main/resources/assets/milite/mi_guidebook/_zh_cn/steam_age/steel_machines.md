@@ -31,11 +31,11 @@ item_ids:
 
 打包机是用钢打造的新机器，可以帮你自动合成简易物品，例如双层锭、管道等，详见REI。
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 拆包机，一种只能用钢制成的新机器...猜猜它是做什么的。o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 你现在可以用几块钢板制作一个非常有用的方块！
 

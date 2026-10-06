@@ -26,11 +26,11 @@ item_ids:
 
 Упаковщик, новая машина, доступная только из стали, может выполнять за вас несложную работёнку. Например, теперь вы можете автоматизировать двойные слитки и трубы! Опять же, проверьте REI.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 Распаковщик, новая машина, доступная только из стали... Угадайте, что она делает. о_О
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 Теперь с несколькими стальными пластинами, вы можете создать очень полезный блок!
 

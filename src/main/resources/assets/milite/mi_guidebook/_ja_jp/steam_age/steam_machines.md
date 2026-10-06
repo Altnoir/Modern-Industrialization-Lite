@@ -21,23 +21,23 @@ item_ids:
 
 圧縮機はインゴットを1:1の割合で板にする。ダブルインゴットを2枚の板にすることもできる。おそらく最初に作りたくなる機械だろう！
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 混合機は粉を混ぜ合わせるのに役立ち、青銅や耐火粘土、そして後で未精錬の鋼鉄を効率よく作成することができる。また、丸石や粘土を作ることもできる。
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 粉砕機は3つの鉱石の破砕物/原石を4.5個の粉に変換する。4.5倍化というわけだ！また、あらゆる種類のアイテムを粉に変えてリサイクルすることもできる。
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 切断機はボルト、歯車、リング、棒の生産比を向上させる。加工ごとに少量の潤滑剤を使用する。
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 かまどは……えー、かまどだ。通常のかまどと同じように速度は遅いが、蒸気が非常に効率的なために使用する燃料は10分の1である。
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 蒸気機械はアイテムであれ、蒸気であれ、他の流体であれ、どの面からの入力でも受け入れる。
 

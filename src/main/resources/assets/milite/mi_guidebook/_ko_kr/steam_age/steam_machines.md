@@ -19,23 +19,23 @@ item_ids:
 
 압축기는 주괴를 1:1의 비율로 판으로 만들어줍니다. 또 이중 주괴는 두 개의 판으로 만들어줍니다. 아마, 제일 처음 만들고 싶은 기계일겁니다!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 혼합기는 더 효율적으로 가루들을 섞어줍니다. 청동이나 내화 점토, 선철 등... 또한 조약돌과 점토도 만들 수 있습니다.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 분쇄기는 3개의 분쇄된 가루나 원석을 4.5개의 가루로 바꾸어줍니다. 광석 하나당 4.5개의 가루를 얻을 수 있습니다! 또한 각종 재료들을 재활용해서 가루로 만들어줍니다.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 절단기는 볼트, 기어, 고리와 막대를 더 효율적으로 만들 수 있습니다. 작동에는 약간의 윤활유가 필요합니다.
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 화로는... 그냥 화로입니다. 일반 화로와 속도가 비슷하지만, 증기가 매우 효율적이기 때문에 연료를 20배 더 효율적으로 사용합니다.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 증기 기계들은 어느 방향으로든 아이템이나 액체, 증기를 받을 수 있습니다.
 

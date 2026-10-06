@@ -21,23 +21,23 @@ item_ids:
 
 Компресор перетворює злитки на пластини у співвідношенні 1:1. Він також може перетворити кожен подвійний злиток на 2 пластини. Ймовірно, це перша машина, яку ви захочете створити!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 Змішувач допоможе вам змішати пил, забезпечуючи краще співвідношення для бронзи, шамотної глини та пізніше сирої сталі. Він також може перетворювати кругляк та глину.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 Подрібнювач перетворить 3 купок/необроблених руд на 4,5 пилу. Руда напівпочетверюється для перемоги! Він також може переробляти всі види матеріалів, перетворюючи їх на пил.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 Різальна машина машина забезпечить вам кращі співвідношення для болтів, шестерень, кілець і стрижнів. Кожного разу використовуючи трохи мастила.
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 Піч — це… ну… піч. Вона працює так само повільно, як і звичайна піч, але використовує в 10 разів менше палива, оскільки пара дуже ефективна.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 Парові машини приймають введення з будь-якого боку, будь то предмети, пара чи інша рідина.
 

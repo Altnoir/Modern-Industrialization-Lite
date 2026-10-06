@@ -21,23 +21,23 @@ item_ids:
 
 压缩机可以以1:1的比率将锭压成板，也可以将双层锭压成2块板。这也许是你想造的第一台机器！
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 搅拌机可以搅拌矿粉，让你以更高的比率获得青铜、耐火黏土和生钢。它也可以产出圆石和粘土。
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 研磨机可将3粉碎矿粉或粗矿研磨为4.5粉矿粉。相当于多一半的矿石产出！它也可以将所有类型的材料回收为矿粉。
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 切割机可以让你以跟高的比率获得螺栓、环和杆。它每次工作都要消耗一点润滑剂。
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 这个熔炉...就是个...普通的熔炉。它和普通的熔炉一样慢，但由于蒸汽能的高效，它消耗的燃料是普通熔炉的二十分之一。
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 蒸汽机器将接受来自任何方向的输入，无论是物品、蒸汽还是其他流体。
 

@@ -30,11 +30,11 @@ item_ids:
 
 Пакувальник, нова машина, доступна лише зі сталі, може виконувати прості майстрування за вас. Тепер ви можете автоматизувати, наприклад, подвійні злитки та труби! Ще раз перевірте REI.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 Розпакувальник, нова машина, доступна лише у сталевому виконанні… вгадайте, що вона робить o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 З кількома сталевими пластинами тепер ви можете створити дуже корисний блок!
 

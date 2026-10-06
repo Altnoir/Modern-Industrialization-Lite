@@ -21,23 +21,23 @@ Bronz makineler yalnızca 2RF/t'ye kadar olan tarifleri işleyebilir, bu da tari
 
 Kompresör külçeleri 1:1 oranında levhalara dönüştürecektir. Ayrıca her bir çift külçeyi 2 levhaya dönüştürebilir. Bu muhtemelen inşa etmek isteyeceğiniz ilk makinedir!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 Karıştırıcı tozları karıştırmanıza yardımcı olarak bronz, ateş kili ve daha sonra pişmemiş çelik için daha iyi bir oran sağlar. Ayrıca kırık taş ve kil de oluşturabilir.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 Öğütücü 3 ezilmiş tozu/ham cevheri 4.5 toza dönüştürecektir. Kazanmak için cevherleri yarımdörtlükatlama! Ayrıca her türlü malzemeyi toza dönüştürerek geri dönüştürebilir.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 Kesme Makinesi size cıvatalar, dişliler, halkalar ve çubuklar için daha iyi oranlar verecektir. Her seferinde biraz yağlayıcı kullanır.
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 Ocak... şey... bir ocak. Normal Ocaklar kadar yavaştır, ancak buhar çok verimli olduğu için 10 kat daha az yakıt kullanır.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 Buhar makineleri, eşya, buhar veya başka bir sıvı olsun, herhangi bir taraftan gelen girdileri kabul edecektir.
 

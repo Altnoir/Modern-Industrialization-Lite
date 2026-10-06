@@ -24,7 +24,7 @@ Kazanın kendisi için sayfayı çevirin...
 
 Muhtemelen şu anda size pahalı görünüyor, ancak Demirci Örsü ile cevherleri üçe katlayabileceğinizi unutmayın. Ayrıca, ilk iki makinenize sahip olur olmaz, iki kattan daha ucuz hale gelecektir!
 
-<Recipe id="milite:steam_age/bronze/boiler_asbl" />
+<Recipe id="milite:processing_table/bronze_boiler" />
 
 Ateş kili tuğlaları yapmak için ateş kili tozlarını pişirmeniz ve bunları işlemek için tuğla tozlarına ihtiyacınız olacaktır. Biraz yapmak için tuğlaları Demirci Örsüne yerleştirin. Süreç verimliliği buhar makinelerinde veya bir Çekiç ile artırılabilir.
 

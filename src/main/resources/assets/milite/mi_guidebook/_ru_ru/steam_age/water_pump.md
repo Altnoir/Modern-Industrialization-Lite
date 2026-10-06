@@ -15,5 +15,5 @@ item_ids:
 
 Бронзовая помпа будет производить 1/8 часть ведра воды от каждого соседнего источника воды каждые 5 секунд, при максимальной производительности 1 ведро/5 секунд.
 
-<Recipe id="milite:steam_age/bronze/water_pump_asbl" />
+<Recipe id="milite:processing_table/bronze_water_pump" />
 

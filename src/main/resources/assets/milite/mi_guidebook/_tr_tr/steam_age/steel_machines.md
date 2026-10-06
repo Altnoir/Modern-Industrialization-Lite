@@ -31,11 +31,11 @@ REI'deki tüm tarifleri kontrol edebilirsiniz!
 
 Sadece çelikte mevcut olan yeni bir makine olan Paketleyici, sizin için basit el işleri yapabilir. Örneğin artık çift külçe ve boruları otomatikleştirebilirsiniz! Tekrar, REI'yi kontrol edin.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 Paket Açıcı, sadece çelikten üretilen yeni bir makine... Tahmin et ne yapıyor. o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 Birkaç çelik levha ile artık çok kullanışlı bir blok üretebilirsiniz!
 

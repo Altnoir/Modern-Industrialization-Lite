@@ -31,11 +31,11 @@ Você pode conferir todas as receitas no REI!
 
 O Empacotador, uma nova máquina disponível só no aço, pode fazer artesanatos simples para você. Agora você pode automatizar lingotes duplos e tubos, por exemplo! Confira no REI.
 
-<Recipe id="milite:steam_age/steel/packer_asbl" />
+<Recipe id="milite:processing_table/steel_packer" />
 
 O Desempacotador, outra nova máquina disponível só no aço... Adivinhe o que ela faz. o_O
 
-<Recipe id="milite:steam_age/steel/unpacker_asbl" />
+<Recipe id="milite:processing_table/steel_unpacker" />
 
 Com algumas chapas de aço, você pode agora fabricar um bloco muito útil!
 

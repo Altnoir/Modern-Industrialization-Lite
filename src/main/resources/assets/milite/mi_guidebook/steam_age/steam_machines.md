@@ -21,22 +21,22 @@ Bronze machines can only process recipes up to 2RF/t, meaning that the recipe wi
 
 The Compressor will turn ingots into plates at 1:1 ratio. It can also turn each double ingot into 2 plates. This is probably the first machine you will want to build!
 
-<Recipe id="milite:steam_age/bronze/compressor_asbl" />
+<Recipe id="milite:processing_table/bronze_compressor" />
 
 The Mixer will help you mix dusts, giving you a better ratio for bronze, fire clay and later uncooked steel. It can also create cobblestone and clay.
 
-<Recipe id="milite:steam_age/bronze/mixer_asbl" />
+<Recipe id="milite:processing_table/bronze_mixer" />
 
 The Macerator will turn 3 crushed dusts/raw ores into 4.5 dusts. Ore hemiquadrupling for the win! It can also recycle all kinds of materials by turning them into dust.
 
-<Recipe id="milite:steam_age/bronze/macerator_asbl" />
+<Recipe id="milite:processing_table/bronze_macerator" />
 
 
-<Recipe id="milite:steam_age/bronze/cutting_machine_asbl" />
+<Recipe id="milite:processing_table/bronze_cutting_machine" />
 
 The Furnace is... well... a Furnace. It is as slow as normal Furnaces, but it uses 10 times less fuel because steam is very efficient.
 
-<Recipe id="milite:steam_age/bronze/furnace_asbl" />
+<Recipe id="milite:processing_table/bronze_furnace" />
 
 Steam machines will accept inputs from any side, be it items, steam or another fluid.
 

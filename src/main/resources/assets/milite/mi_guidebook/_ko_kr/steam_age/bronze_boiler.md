@@ -24,7 +24,7 @@ item_ids:
 
 지금 당장은 좀 비싸보이겠지만, 포지 해머를 쓴다면 광석을 세 배로 만들 수 있다는걸 기억하세요. 우선 두 개의 기계만 갖춘다면, 소모하는 재료도 반절이 될겁니다.
 
-<Recipe id="milite:steam_age/bronze/boiler_asbl" />
+<Recipe id="milite:processing_table/bronze_boiler" />
 
 내화 점토 벽돌을 만드려면, 내화 점토 가루를 만들어야 합니다. 포지 해머에서 재료가 될 벽돌 가루를 만들 수 있습니다. 망치나 증기 기계를 사용하면 더욱 효율적으로 제작할 수 있습니다.
 

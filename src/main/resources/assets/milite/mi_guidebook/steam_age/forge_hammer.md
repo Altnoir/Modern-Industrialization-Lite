@@ -23,6 +23,8 @@ Now, you may want to consider making a Steam Mining Drill to obtain the ores dir
 
 <Recipe id="milite:forge_hammer" />
 
+Once you have bronze, machines are assembled on the [Processing Table](./processing_table.md) rather than a crafting table.
+
 The Steam Mining Drill can mine 3x3 blocks at the time, perfect for your early game mining needs! It also has Silk Touch which combines well with the Forge Hammer.
 
 <Recipe id="milite:tools/steam_mining_drill" />

@@ -24,7 +24,7 @@ Vire a página para ver a caldeira em si...
 
 Pode parecer caro agora, mas não esqueça que você pode triplicar minérios com o Martelo de Forja. Além disso, assim que tiver suas primeiras duas máquinas, ficará mais da metade do preço!
 
-<Recipe id="milite:steam_age/bronze/boiler_asbl" />
+<Recipe id="milite:processing_table/bronze_boiler" />
 
 Para fazer tijolos de argila refratária, você precisa assar pós de argila refratária e, para craftá-los, vai precisar de pós de tijolo. Para isso, coloque tijolos no Martelo de Forja. A eficiência do processo pode ser melhorada em máquinas a vapor ou usando um martelo.
 
