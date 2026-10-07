@@ -45,8 +45,6 @@ Modülü elinizde yapılandırın, ardından makineye veya çoklu blok denetleyi
 
 ## Hız Aşırtma Yükseltmeleri
 
-<ItemImage id="milite:basic_upgrade" />
-
 Normal elektrikli makinelerde hız aşırtma 32RF/t ile sınırlandırılmıştır ve elektrikli çoklu bloklarda hız aşırtma 128RF/t ile sınırlandırılmıştır.
 
 Makine veya çoklu blok menüsünde, maksimum hız aşırtmayı artırmak için yükseltmeler ekleyin! Kesin miktarlar için REI'yi kontrol edin.

@@ -45,8 +45,6 @@ Configure the module in your hand, then insert it into the machine or multiblock
 
 ## Overclock Upgrades
 
-<ItemImage id="milite:basic_upgrade" />
-
 Regular electric machines have an overclock capped at 32RF/t, and electric multiblocks have an overclock capped at 128RF/t.
 
 In the machine or multiblock's menu, add upgades to increase its maximum overclock! Check REI for the exact amounts.

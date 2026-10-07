@@ -47,8 +47,6 @@ Configure o módulo na mão e depois insira-o no controlador da máquina ou mult
 
 ## Melhorias de Overclock
 
-<ItemImage id="milite:basic_upgrade" />
-
 Máquinas Elétricas comuns têm overclock limitado a 32RF/t, e multiblocos elétricos têm overclock limitado a 128RF/t.
 
 No menu da máquina ou multibloco, adicione upgrades para aumentar o overclock máximo! Confira no REI os valores exatos.

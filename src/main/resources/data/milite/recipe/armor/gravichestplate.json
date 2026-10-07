@@ -1,16 +1,13 @@
 {
   "type" : "minecraft:crafting_shaped",
   "pattern": [
-    "PUP",
+    "P P",
     "PCP",
     "cPc"
   ],
   "key": {
     "P": {
       "item": "milite:superconductor_plate"
-    },
-    "U" : {
-      "item"  : "milite:highly_advanced_upgrade"
     },
     "C" : {
       "item": "milite:superconductor_coil"

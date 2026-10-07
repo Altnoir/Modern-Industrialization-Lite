@@ -4,10 +4,6 @@
   "duration": 1000,
   "item_inputs": [
     {
-      "item" : "milite:highly_advanced_upgrade",
-      "amount": 32
-    },
-    {
       "item": "milite:quantum_circuit",
       "amount": 8
     },
