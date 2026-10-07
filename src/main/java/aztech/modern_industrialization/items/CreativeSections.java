@@ -48,7 +48,7 @@ public final class CreativeSections {
     public static final CreativeTabSection STORAGE = section(MIText.SectionStorage);
     public static final CreativeTabSection MACHINE_PARTS = section(MIText.SectionMachineParts);
     public static final CreativeTabSection MACHINES = section(MIText.SectionMachines);
-    public static final CreativeTabSection RESOURCES = section(MIText.SectionResources);
+    public static final CreativeTabSection ORES = section(MIText.SectionOres);
     public static final CreativeTabSection MATERIALS = section(MIText.SectionMaterials);
     public static final CreativeTabSection FLUIDS = section(MIText.SectionFluids);
     public static final CreativeTabSection MISC = section(MIText.SectionMisc);
@@ -57,7 +57,7 @@ public final class CreativeSections {
      * The sections in the order the tab lists them. The order here is the order of the tab, because the tab walks its
      * sections in the order it was given them.
      */
-    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINE_PARTS, MACHINES, RESOURCES,
+    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINE_PARTS, MACHINES, ORES,
             MATERIALS, FLUIDS, MISC);
 
     /** The section each group of {@link SortOrder} belongs to. */
@@ -107,7 +107,7 @@ public final class CreativeSections {
         add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         add(byGroup, MACHINE_PARTS, SortOrder.CASINGS, SortOrder.MACHINE_HULLS, SortOrder.COILS);
         add(byGroup, MACHINES, SortOrder.MACHINES);
-        add(byGroup, RESOURCES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
+        add(byGroup, ORES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
         add(byGroup, MATERIALS, SortOrder.MATERIALS);
         add(byGroup, FLUIDS, SortOrder.BUCKETS);
         add(byGroup, MISC, SortOrder.BLOCKS_OTHERS);

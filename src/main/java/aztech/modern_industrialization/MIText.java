@@ -249,7 +249,7 @@ public enum MIText {
     SectionMaterials("Material"),
     SectionMisc("Misc"),
     SectionNuclear("Nuclear"),
-    SectionResources("Ores"),
+    SectionOres("Ores"),
     SectionStorage("Storage"),
     ShapeSelectionDescription("Click to open shape selection panel."),
     ShapeSelectionTitle("Select Multiblock Shape"),
