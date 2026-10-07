@@ -34,6 +34,14 @@ public final class SortOrderGroup {
             this.sortOrder = sortOrder;
         }
 
+        /**
+         * The group every entry of this counter is derived from, for callers that need to name the group rather than
+         * hand out the next place in it.
+         */
+        public SortOrder root() {
+            return sortOrder;
+        }
+
         public SortOrder next() {
             return sortOrder.and(localOrder++);
         }
@@ -44,6 +52,14 @@ public final class SortOrderGroup {
 
         public Parametrized(SortOrder sortOrder) {
             this.sortOrder = sortOrder;
+        }
+
+        /**
+         * The group every entry of this group is derived from, for callers that need to name the group rather than
+         * build an entry of it.
+         */
+        public SortOrder root() {
+            return sortOrder;
         }
 
         public SortOrder create(T parameter) {

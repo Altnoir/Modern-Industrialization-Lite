@@ -34,10 +34,13 @@ import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRec
 import aztech.modern_industrialization.blocks.processingtable.ProcessingTableScreenHandler;
 import aztech.modern_industrialization.blocks.storage.barrel.CreativeBarrelBlockEntity;
 import aztech.modern_industrialization.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
+import aztech.modern_industrialization.items.CreativeSections;
 import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
+import com.altnoir.abysslib.creative.BannerStyle;
+import com.altnoir.abysslib.creative.CreativeTabSection;
+import com.altnoir.abysslib.creative.SectionedCreativeModeTab;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.MapCodec;
-import java.util.Comparator;
 import java.util.Set;
 import java.util.function.Supplier;
 import net.minecraft.core.Holder;
@@ -123,14 +126,25 @@ public class MIRegistries {
     // Creative tabs
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MI.ID);
 
-    private static final Supplier<CreativeModeTab> TAB = TABS.register("general", () -> CreativeModeTab.builder()
-            .title(MIText.ModernIndustrialization.text())
-            .icon(() -> MIBlock.FORGE_HAMMER.asItem().getDefaultInstance())
-            .displayItems((params, output) -> {
-                MIItem.ITEM_DEFINITIONS.values().stream()
-                        .sorted(Comparator.comparing(e -> e.sortOrder))
-                        .forEach(output::accept);
-            })
+    /**
+     * How much of its first row a section spends on the heading banner: three of the nine slots the tab is wide, so the
+     * entries of the section start after the heading on that same row. The library draws the heading on its own
+     * {@code abysslib:textures/gui/section/banner_3.png}, which is cut to that width.
+     */
+    private static final int SECTION_BANNER_UNITS = 3;
+
+    /**
+     * One tab, divided into the sections of {@link CreativeSections}. The tab is built by the library rather than by
+     * vanilla because a section heading needs somewhere to be drawn, which is the empty slots each section leaves at
+     * the start of its first row.
+     */
+    private static final Supplier<CreativeModeTab> TAB = TABS.register("general", () -> SectionedCreativeModeTab
+            .configure(CreativeModeTab.builder()
+                    .title(MIText.ModernIndustrialization.text())
+                    .icon(() -> MIBlock.FORGE_HAMMER.asItem().getDefaultInstance()),
+                    BannerStyle.texture(SECTION_BANNER_UNITS),
+                    parameters -> CreativeSections.populate(),
+                    CreativeSections.ALL.toArray(CreativeTabSection[]::new))
             .build());
 
     // Villager professions

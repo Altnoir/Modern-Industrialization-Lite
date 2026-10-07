@@ -25,59 +25,47 @@
 
 package aztech.modern_industrialization.test;
 
-import aztech.modern_industrialization.MIItem;
-import aztech.modern_industrialization.items.SortOrder;
+import aztech.modern_industrialization.items.CreativeSections;
 import aztech.modern_industrialization.test.framework.MIGameTest;
 import aztech.modern_industrialization.test.framework.MIGameTestHelper;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 /**
- * Writes the general tab order to a file, so a layout can be reviewed without launching the game. It sorts exactly like
- * the tab does, group separators included, and names no group because the groups are anonymous in the sort chain.
+ * Writes the layout of the general creative tab, section by section, to a file, so that the layout can be reviewed
+ * without launching the game.
+ *
+ * <p>
+ * It fills the sections the same way the tab does and then reads them back, so what it writes is what the tab shows. It
+ * asserts nothing; it exists to be read.
  */
 public class CreativeOrderDump {
     @MIGameTest
     public void dumpCreativeOrder(MIGameTestHelper helper) {
         try {
+            CreativeSections.populate();
+
             var lines = new ArrayList<String>();
-            Object previousRoot = null;
-            int group = 0;
-            int count = 0;
-            for (var entry : MIItem.ITEM_DEFINITIONS.values().stream().sorted(Comparator.comparing(e -> e.sortOrder)).toList()) {
-                var root = rootOf(entry.sortOrder);
-                if (root != previousRoot) {
-                    if (group > 0) {
-                        lines.add("  (" + count + " entries)");
-                    }
-                    group++;
-                    count = 0;
-                    previousRoot = root;
-                    lines.add("");
-                    lines.add("======== group " + group + ", sort index " + root + " ========");
+            var total = 0;
+            for (var section : CreativeSections.ALL) {
+                var stacks = section.itemStacks();
+                total += stacks.size();
+                lines.add("");
+                lines.add("======== " + section.translationKey() + "  (" + stacks.size() + " entries) ========");
+                for (var stack : stacks) {
+                    lines.add("  " + BuiltInRegistries.ITEM.getKey(stack.getItem()));
                 }
-                count++;
-                lines.add("  " + entry.getId() + "   " + entry.getEnglishName());
             }
-            lines.add("  (" + count + " entries)");
+            lines.add("");
+            lines.add("total entries: " + total);
+
             var path = Path.of(System.getProperty("java.io.tmpdir"), "milite_creative_order.txt");
             Files.write(path, lines);
         } catch (Exception e) {
             helper.fail("could not dump the order: " + e);
         }
         helper.succeed();
-    }
-
-    /**
-     * The number of the root order an entry was derived from: the first element of an {@code and} chain, or the number
-     * a root carries itself. Reflection because the chain is private and this only feeds a debug dump.
-     */
-    private static Object rootOf(SortOrder order) throws ReflectiveOperationException {
-        var field = SortOrder.class.getDeclaredField("objects");
-        field.setAccessible(true);
-        var objects = (Comparable<?>[]) field.get(order);
-        return objects.length == 0 ? order : objects[0];
     }
 }

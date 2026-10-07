@@ -91,6 +91,15 @@ public final class SortOrder implements Comparable<SortOrder> {
         return new SortOrder(newArray);
     }
 
+    /**
+     * The group this order belongs to: the constant it was derived from, or itself when it is a constant. A group takes
+     * the next number for itself when the class is initialised and everything derived from it with {@link #and} carries
+     * that number first, so this names the group without having to keep a list of the constants.
+     */
+    public int groupIndex() {
+        return ((Number) objects[0]).intValue();
+    }
+
     @Override
     public int compareTo(SortOrder o) {
         int i;
