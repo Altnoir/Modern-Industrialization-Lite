@@ -1,7 +1,7 @@
 {
   "type" : "minecraft:crafting_shaped",
   "pattern" : [
-    "pCp",
+    "mCm",
     "rHr",
     "mcm"
   ],
@@ -15,9 +15,6 @@
     },
     "H" :{
       "item" : "milite:basic_machine_hull"
-    },
-    "p": {
-      "tag" : "milite:fluid_pipes"
     },
     "r" : {
       "item" : "milite:tin_rotor"

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern" : [
     "gpd",
-    "mCf",
+    "mCp",
     "cPg"
 
   ],
@@ -14,10 +14,7 @@
       "tag": "c:gears/iron"
     },
     "p" : {
-      "tag" : "milite:item_pipes"
-    },
-    "f" : {
-      "tag" : "milite:fluid_pipes"
+      "tag" : "c:plates/stainless_steel"
     },
     "m" : {
       "item": "milite:advanced_motor"

@@ -14,7 +14,7 @@
       "tag": "c:gears/iron"
     },
     "p" : {
-      "tag" : "milite:item_pipes"
+      "tag" : "c:plates/titanium"
     },
     "m" : {
       "item": "milite:large_advanced_motor"

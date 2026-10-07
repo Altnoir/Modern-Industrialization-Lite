@@ -12,12 +12,8 @@
       "tag": "c:gears/iron"
     },
     {
-      "amount": 1,
-      "tag": "milite:item_pipes"
-    },
-    {
-      "amount": 1,
-      "tag": "milite:fluid_pipes"
+      "amount": 2,
+      "tag": "c:plates/copper"
     }
   ],
   "item_outputs": [

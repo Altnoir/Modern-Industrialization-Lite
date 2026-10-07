@@ -14,7 +14,7 @@
       "tag": "c:gears/iron"
     },
     "p" : {
-      "tag" : "milite:fluid_pipes"
+      "tag" : "c:plates/aluminum"
     },
     "m" : {
       "item": "milite:pump"

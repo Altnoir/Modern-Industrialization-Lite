@@ -1,14 +1,11 @@
 {
   "type" : "minecraft:crafting_shaped",
   "pattern" : [
-    "pcp",
+    "mcm",
     "rHr",
     "mem"
   ],
   "key": {
-    "p" : {
-      "tag" : "milite:fluid_pipes"
-    },
     "H" : {
       "item" : "milite:advanced_machine_hull"
     },

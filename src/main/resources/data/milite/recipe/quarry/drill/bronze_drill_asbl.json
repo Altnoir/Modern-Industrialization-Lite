@@ -3,7 +3,7 @@
   "pattern" : [
     "  d",
     "gp ",
-    "fg "
+    "pg "
 
   ],
   "key": {
@@ -14,10 +14,7 @@
       "tag": "c:gears/iron"
     },
     "p" : {
-      "tag" : "milite:item_pipes"
-    },
-    "f" : {
-      "tag" : "milite:fluid_pipes"
+      "tag" : "c:plates/bronze"
     }
   },
   "result": {

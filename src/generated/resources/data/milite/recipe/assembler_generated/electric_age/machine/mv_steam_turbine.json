@@ -4,10 +4,6 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "tag": "milite:fluid_pipes"
-    },
-    {
       "amount": 1,
       "item": "milite:advanced_machine_hull"
     },
@@ -20,7 +16,7 @@
       "item": "milite:aluminum_rotor"
     },
     {
-      "amount": 2,
+      "amount": 4,
       "item": "milite:large_motor"
     },
     {

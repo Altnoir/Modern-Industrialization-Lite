@@ -1,7 +1,7 @@
 {
   "type" : "minecraft:crafting_shaped",
   "pattern" : [
-    "ppp",
+    "brb",
     "rmr",
     "brb"
   ],
@@ -12,9 +12,6 @@
     },
     "r" : {
       "item" : "milite:tin_rotor"
-    },
-    "p" :{
-      "tag" : "milite:fluid_pipes"
     },
     "b" :{
       "item" : "milite:tin_bolt"
