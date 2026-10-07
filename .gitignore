@@ -5,7 +5,7 @@ build/
 out/
 classes/
 logs/
-resources/.cache
+src/generated/resources/.cache
 
 # eclipse
 
