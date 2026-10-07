@@ -31,10 +31,9 @@ import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.test.framework.MIGameTest;
 import aztech.modern_industrialization.test.framework.MIGameTestHelper;
+import java.util.List;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeHolder;
-
-import java.util.List;
 
 public class AssemblerTests {
     /**

@@ -29,6 +29,7 @@ import aztech.modern_industrialization.definition.FluidLike;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
+import java.util.Map;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -40,8 +41,6 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
-
-import java.util.Map;
 
 @SuppressWarnings({ "FieldCanBeLocal", "unused", "MismatchedQueryAndUpdateOfCollection" })
 public class MIRecipeJson<T extends MIRecipeJson<?>> {

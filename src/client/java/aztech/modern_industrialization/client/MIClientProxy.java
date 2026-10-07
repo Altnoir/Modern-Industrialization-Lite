@@ -40,6 +40,8 @@ import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
 import aztech.modern_industrialization.machines.models.MachineModelClientData;
 import aztech.modern_industrialization.machines.multiblocks.HatchBlockEntity;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
+import java.util.Objects;
+import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -52,9 +54,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class MIClientProxy extends MICommonProxy {
     @Override

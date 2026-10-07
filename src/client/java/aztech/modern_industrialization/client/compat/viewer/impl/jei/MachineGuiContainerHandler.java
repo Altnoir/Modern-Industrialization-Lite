@@ -32,6 +32,8 @@ import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.inventory.ConfigurableFluidStack;
 import aztech.modern_industrialization.inventory.ConfigurableItemStack;
 import aztech.modern_industrialization.util.Rectangle;
+import java.util.*;
+import java.util.function.Supplier;
 import mezz.jei.api.gui.builder.IClickableIngredientFactory;
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
@@ -48,9 +50,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jspecify.annotations.Nullable;
-
-import java.util.*;
-import java.util.function.Supplier;
 
 record MachineGuiContainerHandler(IIngredientManager ingredientManager, Supplier<IJeiRuntime> jeiRuntime)
         implements IGuiContainerHandler<MachineScreen> {

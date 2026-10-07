@@ -28,10 +28,9 @@ package aztech.modern_industrialization.datagen.recipe;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
+import java.util.List;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
-
-import java.util.List;
 
 /**
  * Recipes that turn one tier of gear into the next.

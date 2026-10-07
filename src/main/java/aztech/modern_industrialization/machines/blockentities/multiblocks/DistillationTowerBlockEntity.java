@@ -45,9 +45,8 @@ import aztech.modern_industrialization.machines.multiblocks.HatchTypes;
 import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
 import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
-import net.minecraft.network.chat.Component;
-
 import java.util.stream.IntStream;
+import net.minecraft.network.chat.Component;
 
 public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     private static final int MAX_HEIGHT = MIStartupConfig.INSTANCE.maxDistillationTowerHeight.getAsInt();

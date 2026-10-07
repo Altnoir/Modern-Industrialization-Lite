@@ -25,6 +25,9 @@
 
 package aztech.modern_industrialization;
 
+import static aztech.modern_industrialization.items.SortOrder.ITEMS_ORDERED;
+import static aztech.modern_industrialization.items.SortOrder.MATERIALS;
+
 import aztech.modern_industrialization.api.energy.EnergyItemStorage;
 import aztech.modern_industrialization.definition.ItemDefinition;
 import aztech.modern_industrialization.guidebook.GuideBookItem;
@@ -38,6 +41,10 @@ import aztech.modern_industrialization.items.tools.QuantumSword;
 import aztech.modern_industrialization.nuclear.NeutronBehaviour;
 import aztech.modern_industrialization.nuclear.NuclearComponentItem;
 import aztech.modern_industrialization.nuclear.NuclearConstant;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
@@ -48,14 +55,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
-import static aztech.modern_industrialization.items.SortOrder.ITEMS_ORDERED;
-import static aztech.modern_industrialization.items.SortOrder.MATERIALS;
 
 @SuppressWarnings("unused")
 public final class MIItem {

@@ -35,18 +35,17 @@ import aztech.modern_industrialization.machines.components.OverdriveComponent;
 import aztech.modern_industrialization.machines.components.RedstoneControlComponent;
 import aztech.modern_industrialization.machines.gui.GuiComponentServer;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.Unit;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.Unit;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 
 public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, Unit> {
     public static final Type<List<SlotPanel.SlotType>, Unit> TYPE = new Type<>(MI.id("slot_panel"),

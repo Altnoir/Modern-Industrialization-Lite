@@ -38,6 +38,8 @@ import aztech.modern_industrialization.materials.Material;
 import aztech.modern_industrialization.materials.part.MIParts;
 import aztech.modern_industrialization.materials.part.PartKeyProvider;
 import aztech.modern_industrialization.recipe.json.ShapelessRecipeBuilder;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -47,9 +49,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Generates the Processing Table recipes: one machine casing plus one characterising item make a machine.

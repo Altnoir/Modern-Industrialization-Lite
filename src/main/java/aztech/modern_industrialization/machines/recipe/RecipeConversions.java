@@ -30,6 +30,8 @@ import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.config.MIServerConfig;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
+import java.util.Collections;
+import java.util.List;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -41,9 +43,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Collections;
-import java.util.List;
 
 public class RecipeConversions {
     public static RecipeHolder<MachineRecipe> ofSmelting(RecipeHolder<SmeltingRecipe> holder, MachineRecipeType type, RegistryAccess registryAccess) {

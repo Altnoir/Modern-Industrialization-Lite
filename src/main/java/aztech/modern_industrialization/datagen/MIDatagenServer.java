@@ -39,6 +39,9 @@ import aztech.modern_industrialization.datagen.tag.MIFluidTagProvider;
 import aztech.modern_industrialization.datagen.tag.MIItemTagProvider;
 import aztech.modern_industrialization.datagen.tag.MIPoiTypeTagProvider;
 import aztech.modern_industrialization.datagen.translation.TranslationProvider;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -46,10 +49,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 public class MIDatagenServer {
     public static void configure(

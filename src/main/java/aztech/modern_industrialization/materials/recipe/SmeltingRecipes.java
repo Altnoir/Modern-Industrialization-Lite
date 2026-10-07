@@ -25,14 +25,14 @@
 
 package aztech.modern_industrialization.materials.recipe;
 
+import static aztech.modern_industrialization.materials.part.MIParts.*;
+
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.materials.MaterialBuilder;
 import aztech.modern_industrialization.materials.recipe.builder.MIRecipeBuilder;
 import aztech.modern_industrialization.materials.recipe.builder.SmeltingRecipeBuilder;
-
-import static aztech.modern_industrialization.materials.part.MIParts.*;
 
 /**
  * Standard smelting and blasting recipes for materials that can be smelted with

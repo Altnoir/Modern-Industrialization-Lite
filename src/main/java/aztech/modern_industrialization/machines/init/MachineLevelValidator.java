@@ -29,12 +29,11 @@ import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
-import net.minecraft.server.MinecraftServer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import net.minecraft.server.MinecraftServer;
 
 /**
  * Reports machine recipes that no machine can ever craft.

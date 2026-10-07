@@ -31,6 +31,9 @@ import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Optional;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.network.chat.Component;
@@ -42,10 +45,6 @@ import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.server.packs.resources.MultiPackResourceManager;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import org.apache.commons.io.IOUtils;
-
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Optional;
 
 public class AssemblerRecipesProvider extends MIRecipesProvider {
     private static final Gson GSON = new Gson();

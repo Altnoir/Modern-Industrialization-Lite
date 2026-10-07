@@ -28,9 +28,8 @@ package aztech.modern_industrialization.compat.kubejs.machine;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.ElectricBlastFurnaceBlockEntity;
 import aztech.modern_industrialization.machines.init.MachineLevel;
 import dev.latvian.mods.kubejs.event.KubeEvent;
-import net.minecraft.resources.ResourceLocation;
-
 import java.util.function.Consumer;
+import net.minecraft.resources.ResourceLocation;
 
 public class AddEbfTiersEventJS implements KubeEvent {
     private final Consumer<ElectricBlastFurnaceBlockEntity.Tier> tierConsumer;

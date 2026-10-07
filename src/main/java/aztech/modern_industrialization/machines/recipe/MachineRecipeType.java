@@ -27,6 +27,7 @@ package aztech.modern_industrialization.machines.recipe;
 
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
+import java.util.*;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
@@ -37,8 +38,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
-
-import java.util.*;
 
 public class MachineRecipeType implements RecipeType<MachineRecipe>, RecipeSerializer<MachineRecipe> {
     private final MapCodec<MachineRecipe> codec;

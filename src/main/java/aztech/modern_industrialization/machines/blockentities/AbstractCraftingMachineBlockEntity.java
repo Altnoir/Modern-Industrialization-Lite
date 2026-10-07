@@ -42,10 +42,9 @@ import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.Tickable;
+import java.util.UUID;
 import net.minecraft.server.level.ServerLevel;
 import org.jspecify.annotations.Nullable;
-
-import java.util.UUID;
 
 public abstract class AbstractCraftingMachineBlockEntity extends MachineBlockEntity implements CrafterComponent.Behavior, Tickable,
         CrafterComponentHolder {

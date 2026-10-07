@@ -26,14 +26,13 @@
 package aztech.modern_industrialization.api.datamaps;
 
 import aztech.modern_industrialization.MI;
+import java.util.ArrayList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.registries.datamaps.AdvancedDataMapType;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import net.neoforged.neoforge.registries.datamaps.DataMapValueRemover;
-
-import java.util.ArrayList;
 
 public final class MIDataMaps {
     public static final DataMapType<Fluid, FluidFuel> FLUID_FUELS = DataMapType

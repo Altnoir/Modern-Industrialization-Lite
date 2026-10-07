@@ -30,6 +30,9 @@ import aztech.modern_industrialization.MIAdvancementTriggers;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.datagen.translation.TranslationProvider;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
@@ -44,10 +47,6 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public record MIAdvancementsProvider(TranslationProvider translations) implements AdvancementProvider.AdvancementGenerator {
     private static Criterion<?> createSimpleCriterion(Supplier<PlayerTrigger> trigger) {

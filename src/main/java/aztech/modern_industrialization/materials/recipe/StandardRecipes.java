@@ -25,6 +25,10 @@
 
 package aztech.modern_industrialization.materials.recipe;
 
+import static aztech.modern_industrialization.materials.part.MIParts.*;
+import static aztech.modern_industrialization.materials.property.MaterialProperty.HARDNESS;
+import static aztech.modern_industrialization.materials.property.MaterialProperty.MAIN_PART;
+
 import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
@@ -37,10 +41,6 @@ import aztech.modern_industrialization.materials.recipe.builder.ShapelessRecipeB
 import aztech.modern_industrialization.materials.recipe.builder.SmeltingRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
-
-import static aztech.modern_industrialization.materials.part.MIParts.*;
-import static aztech.modern_industrialization.materials.property.MaterialProperty.HARDNESS;
-import static aztech.modern_industrialization.materials.property.MaterialProperty.MAIN_PART;
 
 /**
  * Standard conversion recipes for all materials.

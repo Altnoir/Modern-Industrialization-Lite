@@ -26,11 +26,10 @@
 package aztech.modern_industrialization.machines.init;
 
 import com.mojang.serialization.Codec;
+import java.util.Locale;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.StringRepresentable;
-
-import java.util.Locale;
 
 /**
  * The tier ladder of the mod. A recipe declares the level it needs, and a machine declares the level it is, so a recipe

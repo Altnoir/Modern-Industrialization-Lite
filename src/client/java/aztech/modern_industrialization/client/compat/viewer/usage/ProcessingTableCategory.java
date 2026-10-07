@@ -30,13 +30,12 @@ import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
 import aztech.modern_industrialization.client.compat.viewer.abstraction.ViewerCategory;
+import java.util.Comparator;
+import java.util.function.Consumer;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-
-import java.util.Comparator;
-import java.util.function.Consumer;
 
 /**
  * Recipe viewer category of the Processing Table: two inputs make one machine.

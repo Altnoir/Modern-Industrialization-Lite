@@ -25,10 +25,9 @@
 
 package aztech.modern_industrialization;
 
+import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-
-import java.util.List;
 
 public enum MIText {
     ModernIndustrialization("Modern Industrialization"),

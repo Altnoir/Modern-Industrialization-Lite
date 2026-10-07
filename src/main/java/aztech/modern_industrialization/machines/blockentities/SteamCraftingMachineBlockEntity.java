@@ -37,13 +37,12 @@ import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.models.MachineModelClientData;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.Simulation;
+import java.util.List;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
 
 public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity {
     private final OverclockComponent overclockComponent;

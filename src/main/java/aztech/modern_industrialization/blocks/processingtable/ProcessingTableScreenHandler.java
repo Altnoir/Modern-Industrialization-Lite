@@ -28,6 +28,7 @@ package aztech.modern_industrialization.blocks.processingtable;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.inventory.MoveRecipeHandler;
+import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -43,8 +44,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * The Processing Table: the player puts a machine casing and a characterising item in the two input slots and takes

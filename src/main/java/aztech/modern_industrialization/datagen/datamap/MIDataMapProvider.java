@@ -33,6 +33,8 @@ import aztech.modern_industrialization.datagen.loot.MILootTables;
 import aztech.modern_industrialization.definition.FluidDefinition;
 import aztech.modern_industrialization.materials.MaterialRegistry;
 import aztech.modern_industrialization.materials.part.MIParts;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -43,9 +45,6 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.RaidHeroGift;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class MIDataMapProvider extends DataMapProvider {
     public MIDataMapProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
