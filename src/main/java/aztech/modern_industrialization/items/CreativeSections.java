@@ -43,8 +43,7 @@ import java.util.Map;
  * out loud what the order already meant.
  */
 public final class CreativeSections {
-    public static final CreativeTabSection GETTING_STARTED = section(MIText.SectionGettingStarted);
-    public static final CreativeTabSection ITEMS_AND_GEAR = section(MIText.SectionItemsAndGear);
+    public static final CreativeTabSection ITEMS = section(MIText.SectionItems);
     public static final CreativeTabSection NUCLEAR = section(MIText.SectionNuclear);
     public static final CreativeTabSection STORAGE = section(MIText.SectionStorage);
     public static final CreativeTabSection MACHINE_PARTS = section(MIText.SectionMachineParts);
@@ -58,8 +57,8 @@ public final class CreativeSections {
      * The sections in the order the tab lists them. The order here is the order of the tab, because the tab walks its
      * sections in the order it was given them.
      */
-    public static final List<CreativeTabSection> ALL = List.of(GETTING_STARTED, ITEMS_AND_GEAR, NUCLEAR, STORAGE, MACHINE_PARTS,
-            MACHINES, RESOURCES, MATERIALS, FLUIDS, MISC);
+    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINE_PARTS, MACHINES, RESOURCES,
+            MATERIALS, FLUIDS, MISC);
 
     /** The section each group of {@link SortOrder} belongs to. */
     private static final Map<Integer, CreativeTabSection> BY_GROUP = byGroup();
@@ -100,9 +99,10 @@ public final class CreativeSections {
      */
     private static Map<Integer, CreativeTabSection> byGroup() {
         var byGroup = new HashMap<Integer, CreativeTabSection>();
-        // The three blocks the mod starts with, so the first thing in the tab is how to play.
-        add(byGroup, GETTING_STARTED, SortOrder.GUIDE_BOOK, SortOrder.FORGE_HAMMER, SortOrder.PROCESSING_TABLE);
-        add(byGroup, ITEMS_AND_GEAR, SortOrder.ITEMS_ORDERED.root());
+        // The guidebook comes first along with the two blocks it starts a player on: hammering and the processing table
+        // are where the mod begins, and they belong with the rest of the items rather than under a heading of their own.
+        add(byGroup, ITEMS, SortOrder.GUIDE_BOOK, SortOrder.FORGE_HAMMER, SortOrder.PROCESSING_TABLE,
+                SortOrder.ITEMS_ORDERED.root());
         add(byGroup, NUCLEAR, SortOrder.NUCLEAR.root());
         add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         add(byGroup, MACHINE_PARTS, SortOrder.CASINGS, SortOrder.MACHINE_HULLS, SortOrder.COILS);
