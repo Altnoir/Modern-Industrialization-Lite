@@ -42,24 +42,46 @@ import aztech.modern_industrialization.nuclear.NuclearOrder;
  * with {@link #and}.
  */
 public final class SortOrder implements Comparable<SortOrder> {
-    /** The guidebook, so the first thing in the tab is how to play. */
+    /**
+     * The guidebook, so the first thing in the tab is how to play.
+     */
     public static final SortOrder GUIDE_BOOK = new SortOrder();
-    /** The forge hammer and the processing table, the two blocks the mod starts with. */
+    /**
+     * The forge hammer and the processing table, the two blocks the mod starts with.
+     */
     public static final SortOrder FORGE_HAMMER = new SortOrder();
     public static final SortOrder PROCESSING_TABLE = new SortOrder();
-    /** Loose items: components, circuits, tools and armour, numbered in the order they are declared in MIItem. */
+    /**
+     * Loose items: components, circuits, tools and armour, numbered in the order they are declared in MIItem.
+     */
     public static final SortOrderGroup.Counted ITEMS_ORDERED = new SortOrderGroup.Counted(new SortOrder());
-    /** Nuclear parts, ordered by their role and then by material. */
+    /**
+     * Nuclear parts, ordered by their role and then by material.
+     */
     public static final SortOrderGroup.Parametrized<NuclearOrder> NUCLEAR = new SortOrderGroup.Parametrized<>(new SortOrder());
-    /** Blocks by family: what stores things, what a machine is built from, then the machines themselves. */
+    /**
+     * Blocks by family: what stores things, what a machine is built from, then the machines themselves.
+     */
     public static final SortOrder TANKS = new SortOrder();
     public static final SortOrder BARRELS = new SortOrder();
     public static final SortOrder CASINGS = new SortOrder();
-    /** The machine hull a machine is built into, which belongs beside the casings rather than with the leftovers. */
+    /**
+     * The machine hull a machine is built into, which belongs beside the casings rather than with the leftovers.
+     */
     public static final SortOrder MACHINE_HULLS = new SortOrder();
     public static final SortOrder COILS = new SortOrder();
+    /**
+     * Multiblock hatches, which a multiblock uses to exchange items, fluids and energy with the outside.
+     */
+    public static final SortOrder HATCHES = new SortOrder();
+    /**
+     * The fusion chamber, a structural block of the fusion reactor rather than a block in its own right.
+     */
+    public static final SortOrder FUSION_CHAMBER = new SortOrder();
     public static final SortOrder MACHINES = new SortOrder();
-    /** The material forms, in the order a player meets them: ore, raw block, block, then the items made from it. */
+    /**
+     * The material forms, in the order a player meets them: ore, raw block, block, then the items made from it.
+     */
     public static final SortOrder ORES = new SortOrder();
     public static final SortOrder RAW_ORE_BLOCKS = new SortOrder();
     public static final SortOrder STORAGE_BLOCKS = new SortOrder();

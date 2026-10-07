@@ -25,8 +25,6 @@
 
 package aztech.modern_industrialization;
 
-import static net.minecraft.world.level.material.MapColor.STONE;
-
 import aztech.modern_industrialization.blocks.TrashCanBlock;
 import aztech.modern_industrialization.blocks.creativestorageunit.CreativeStorageUnitBlock;
 import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerBlock;
@@ -44,11 +42,6 @@ import aztech.modern_industrialization.definition.BlockDefinition;
 import aztech.modern_industrialization.items.ContainerItem;
 import aztech.modern_industrialization.items.SortOrder;
 import aztech.modern_industrialization.materials.part.TankPart;
-import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -68,6 +61,14 @@ import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jspecify.annotations.Nullable;
+
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import static net.minecraft.world.level.material.MapColor.STONE;
 
 @SuppressWarnings("unused")
 public class MIBlock {
@@ -104,7 +105,8 @@ public class MIBlock {
     public static final BlockDefinition<Block> QUANTUM_MACHINE_HULL = block("Quantum Machine Hull", MIBlockKeys.QUANTUM_MACHINE_HULL.location().getPath(),
             machineHullParams(4).explosionResistance(6000f));
 
-    public static final BlockDefinition<Block> FUSION_CHAMBER = nonConductorBlock("Fusion Chamber", "fusion_chamber");
+    public static final BlockDefinition<Block> FUSION_CHAMBER = nonConductorBlock("Fusion Chamber", "fusion_chamber",
+            SortOrder.FUSION_CHAMBER);
     public static final BlockDefinition<Block> INDUSTRIAL_TNT = blockExplosive("Industrial TNT", "industrial_tnt");
     public static final BlockDefinition<Block> NUKE = blockExplosive("Nuke", "nuke");
 
@@ -168,8 +170,9 @@ public class MIBlock {
         return MIBlock.block(englishName, id, BlockDefinitionParams.defaultStone());
     }
 
-    public static BlockDefinition<Block> nonConductorBlock(String englishName, String id) {
-        return MIBlock.block(englishName, id, BlockDefinitionParams.defaultStone().dontConductRedstone());
+    public static BlockDefinition<Block> nonConductorBlock(String englishName, String id, SortOrder sortOrder) {
+        return MIBlock.block(englishName, id,
+                BlockDefinitionParams.defaultStone().dontConductRedstone().sortOrder(sortOrder));
     }
 
     /**
@@ -189,7 +192,7 @@ public class MIBlock {
                 englishName,
                 id,
                 BlockDefinitionParams.of(
-                        BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).ignitedByLava().instabreak().sound(SoundType.GRASS))
+                                BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).ignitedByLava().instabreak().sound(SoundType.GRASS))
                         .clearTags().noModel());
 
         // TODO : Datagen model
@@ -198,7 +201,8 @@ public class MIBlock {
     public static class BlockDefinitionParams<T extends Block> {
         public final BlockBehaviour.Properties props;
         public BiConsumer<Block, BaseModelProvider> modelGenerator;
-        public BiConsumer<Item, ItemModelProvider> itemModelGenerator = (item, gen) -> {};
+        public BiConsumer<Item, ItemModelProvider> itemModelGenerator = (item, gen) -> {
+        };
         @Nullable
         public MIBlockLoot blockLoot;
         public final ArrayList<TagKey<Block>> tags = new ArrayList<>();
@@ -208,13 +212,13 @@ public class MIBlock {
         public BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor;
 
         protected BlockDefinitionParams(BlockBehaviour.Properties properties,
-                Function<BlockBehaviour.Properties, T> ctor,
-                BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor,
-                BiConsumer<Block, BaseModelProvider> modelGenerator,
-                BiConsumer<Item, ItemModelProvider> itemModelGenerator,
-                @Nullable MIBlockLoot blockLoot,
-                List<TagKey<Block>> tags,
-                SortOrder sortOrder) {
+                                        Function<BlockBehaviour.Properties, T> ctor,
+                                        BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor,
+                                        BiConsumer<Block, BaseModelProvider> modelGenerator,
+                                        BiConsumer<Item, ItemModelProvider> itemModelGenerator,
+                                        @Nullable MIBlockLoot blockLoot,
+                                        List<TagKey<Block>> tags,
+                                        SortOrder sortOrder) {
             this.props = properties;
             this.ctor = ctor;
             this.blockItemCtor = blockItemCtor;
@@ -232,7 +236,8 @@ public class MIBlock {
         public static BlockDefinitionParams<Block> of(BlockBehaviour.Properties properties) {
             return new BlockDefinitionParams<>(properties, Block::new, BlockItem::new,
                     (block, modelGenerator) -> modelGenerator.simpleBlockWithItem(block, modelGenerator.cubeAll(block)),
-                    (item, gen) -> {},
+                    (item, gen) -> {
+                    },
                     new MIBlockLoot.DropSelf(),
                     List.of(BlockTags.NEEDS_STONE_TOOL, BlockTags.MINEABLE_WITH_PICKAXE),
                     SortOrder.BLOCKS_OTHERS);

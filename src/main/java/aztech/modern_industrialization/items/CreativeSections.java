@@ -28,6 +28,7 @@ package aztech.modern_industrialization.items;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.MIText;
 import com.altnoir.abysslib.creative.CreativeTabSection;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -60,10 +61,13 @@ public final class CreativeSections {
     public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINE_PARTS, MACHINES, ORES,
             MATERIALS, FLUIDS, MISC);
 
-    /** The section each group of {@link SortOrder} belongs to. */
+    /**
+     * The section each group of {@link SortOrder} belongs to.
+     */
     private static final Map<Integer, CreativeTabSection> BY_GROUP = byGroup();
 
-    private CreativeSections() {}
+    private CreativeSections() {
+    }
 
     /**
      * Add every item to the section of its group, in the order the tab shows them.
@@ -105,7 +109,9 @@ public final class CreativeSections {
                 SortOrder.ITEMS_ORDERED.root());
         add(byGroup, NUCLEAR, SortOrder.NUCLEAR.root());
         add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
-        add(byGroup, MACHINE_PARTS, SortOrder.CASINGS, SortOrder.MACHINE_HULLS, SortOrder.COILS);
+        // Everything a machine or a multiblock is built from: only the machines themselves belong to the next section.
+        add(byGroup, MACHINE_PARTS, SortOrder.CASINGS, SortOrder.MACHINE_HULLS, SortOrder.COILS, SortOrder.HATCHES,
+                SortOrder.FUSION_CHAMBER);
         add(byGroup, MACHINES, SortOrder.MACHINES);
         add(byGroup, ORES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
         add(byGroup, MATERIALS, SortOrder.MATERIALS);

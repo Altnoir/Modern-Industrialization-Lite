@@ -105,6 +105,13 @@ public class MachineRegistrationHelper {
      */
     private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
 
+    /**
+     * The kinds of hatch, in the order the tab lists them: what moves items, then what moves fluids, then what moves
+     * energy, each with its inputs ahead of its outputs. A hatch of any other kind sorts after these.
+     */
+    private static final List<String> HATCH_KINDS = List.of("item_input", "item_output", "fluid_input", "fluid_output",
+            "energy_input", "energy_output");
+
     private static List<String> machineTierPrefixes() {
         var prefixes = new ArrayList<String>();
         prefixes.add("steam");
@@ -127,6 +134,10 @@ public class MachineRegistrationHelper {
      * @returns the order to register the machine with.
      */
     private static SortOrder machineSortOrder(String id) {
+        // A hatch is a part a multiblock is built from rather than a machine of its own, so it goes with the casings.
+        if (id.endsWith("_hatch")) {
+            return hatchSortOrder(id);
+        }
         for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
             var prefix = MACHINE_TIER_PREFIXES.get(tier);
             if (id.startsWith(prefix + "_")) {
@@ -134,6 +145,28 @@ public class MachineRegistrationHelper {
             }
         }
         return SortOrder.MACHINES.and(id).and(-1);
+    }
+
+    /**
+     * Where a hatch sits in the creative tab: its kind first, then the tier it is a version of, so the item hatches come
+     * before the fluid ones and the bronze ones come before the steel ones.
+     *
+     * @param id - the hatch block id, for example {@code bronze_item_input_hatch}.
+     * @returns the order to register the hatch with.
+     */
+    private static SortOrder hatchSortOrder(String id) {
+        var kind = id.substring(0, id.length() - "_hatch".length());
+        var tier = -1;
+        for (int i = 0; i < MACHINE_TIER_PREFIXES.size(); i++) {
+            var prefix = MACHINE_TIER_PREFIXES.get(i);
+            if (id.startsWith(prefix + "_")) {
+                kind = id.substring(prefix.length() + 1, id.length() - "_hatch".length());
+                tier = i;
+                break;
+            }
+        }
+        var kindOrder = HATCH_KINDS.indexOf(kind);
+        return SortOrder.HATCHES.and(kindOrder < 0 ? HATCH_KINDS.size() : kindOrder).and(tier);
     }
 
     /**
