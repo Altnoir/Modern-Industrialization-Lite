@@ -16,7 +16,7 @@ version = System.getenv("MI_VERSION")
         : project.mod_version
 group = "aztech"
 base {
-    archivesName = "Modern-Industrialization"
+    archivesName = "milite"
 }
 
 logger.lifecycle("Modern Industrialization version ${version}")
