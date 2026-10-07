@@ -41,8 +41,6 @@ import com.altnoir.abysslib.creative.CreativeTabSection;
 import com.altnoir.abysslib.creative.SectionedCreativeModeTab;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.MapCodec;
-import java.util.Set;
-import java.util.function.Supplier;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
@@ -61,6 +59,9 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Misc registry objects.
@@ -140,8 +141,8 @@ public class MIRegistries {
      */
     private static final Supplier<CreativeModeTab> TAB = TABS.register("general", () -> SectionedCreativeModeTab
             .configure(CreativeModeTab.builder()
-                    .title(MIText.ModernIndustrialization.text())
-                    .icon(() -> MIBlock.FORGE_HAMMER.asItem().getDefaultInstance()),
+                            .title(MIText.ModernIndustrialization.text())
+                            .icon(() -> MIBlock.FORGE_HAMMER.asItem().getDefaultInstance()),
                     BannerStyle.texture(SECTION_BANNER_UNITS),
                     parameters -> CreativeSections.populate(),
                     CreativeSections.ALL.toArray(CreativeTabSection[]::new))
