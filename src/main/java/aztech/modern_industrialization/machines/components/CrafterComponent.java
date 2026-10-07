@@ -25,6 +25,9 @@
 
 package aztech.modern_industrialization.machines.components;
 
+import static aztech.modern_industrialization.util.Simulation.ACT;
+import static aztech.modern_industrialization.util.Simulation.SIMULATE;
+
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.api.machine.component.CrafterAccess;
 import aztech.modern_industrialization.api.machine.component.InventoryAccess;
@@ -47,6 +50,8 @@ import aztech.modern_industrialization.util.Simulation;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -60,12 +65,6 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jspecify.annotations.Nullable;
-
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
-
-import static aztech.modern_industrialization.util.Simulation.ACT;
-import static aztech.modern_industrialization.util.Simulation.SIMULATE;
 
 public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAccess {
     /**
@@ -104,7 +103,19 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             return !getMachineLevel().canCraft(recipe.level);
         }
 
+        /**
+         * The recipe type of this machine, which is the one its viewer category and its recipe list are built from.
+         */
         MachineRecipeType recipeType();
+
+        /**
+         * Every recipe type this machine runs. A machine that took over the work of an older one lists both, and the
+         * recipes of the second are found exactly like its own: by item input when it looks for something to start, and
+         * by id when it restores a craft that a reload interrupted.
+         */
+        default List<MachineRecipeType> recipeTypes() {
+            return List.of(recipeType());
+        }
 
         /**
          * The level of this machine. A recipe may only run when its own level is not above this one.
@@ -340,7 +351,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     private void loadDelayedActiveRecipe() {
         if (delayedActiveRecipe != null) {
-            activeRecipe = behavior.recipeType().getRecipe(behavior.getCrafterWorld(), delayedActiveRecipe);
+            activeRecipe = findRecipe(delayedActiveRecipe);
             delayedActiveRecipe = null;
             if (activeRecipe == null) { // If a recipe got removed, we need to reset the efficiency and the used energy
                 // to allow the machine to resume processing.
@@ -348,6 +359,21 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
                 usedEnergy = 0;
             }
         }
+    }
+
+    /**
+     * A recipe id names a recipe across the whole recipe manager, so trying the types of the machine in turn finds the
+     * same recipe the machine had picked before it was unloaded.
+     */
+    @Nullable
+    private RecipeHolder<MachineRecipe> findRecipe(ResourceLocation recipeId) {
+        for (MachineRecipeType recipeType : behavior.recipeTypes()) {
+            var recipe = recipeType.getRecipe(behavior.getCrafterWorld(), recipeId);
+            if (recipe != null) {
+                return recipe;
+            }
+        }
+        return null;
     }
 
     private static boolean areAllSlotsLocked(List<? extends AbstractConfigurableStack> slots) {
@@ -455,7 +481,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         if (efficiencyTicks > 0) {
             return Collections.singletonList(activeRecipe);
         } else {
-            return getRecipes(behavior.getCrafterWorld(), behavior.recipeType(), inventory.getItemInputs());
+            return getRecipes(behavior.getCrafterWorld(), behavior.recipeTypes(), inventory.getItemInputs());
         }
     }
 
@@ -465,6 +491,19 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             if (!stack.isEmpty()) {
                 recipes.addAll(recipeType.getMatchingRecipes(level, stack.getResource().getItem()));
             }
+        }
+        return recipes;
+    }
+
+    /**
+     * The recipes of every type the machine runs. A recipe belongs to exactly one type, so a machine that runs several
+     * never sees the same recipe twice.
+     */
+    public static Collection<RecipeHolder<MachineRecipe>> getRecipes(ServerLevel level, List<MachineRecipeType> recipeTypes,
+            List<ConfigurableItemStack> itemInputs) {
+        Set<RecipeHolder<MachineRecipe>> recipes = new HashSet<>();
+        for (MachineRecipeType recipeType : recipeTypes) {
+            recipes.addAll(getRecipes(level, recipeType, itemInputs));
         }
         return recipes;
     }
@@ -808,7 +847,8 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     public void lockRecipe(ResourceLocation recipeId, net.minecraft.world.entity.player.Inventory inventory) {
         // Find MachineRecipe
-        Optional<RecipeHolder<MachineRecipe>> optionalMachineRecipe = behavior.recipeType().getRecipesWithCache(behavior.getCrafterWorld()).stream()
+        Optional<RecipeHolder<MachineRecipe>> optionalMachineRecipe = behavior.recipeTypes().stream()
+                .flatMap(recipeType -> recipeType.getRecipesWithCache(behavior.getCrafterWorld()).stream())
                 .filter(recipe -> recipe.id().equals(recipeId)).findFirst();
         if (optionalMachineRecipe.isEmpty())
             return;

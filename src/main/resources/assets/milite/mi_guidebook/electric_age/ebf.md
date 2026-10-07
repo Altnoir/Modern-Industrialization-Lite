@@ -21,7 +21,7 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-The Electric Blast Furnace is the electric version of the Steam Blast Furnace. There are three of them, one per coil: the Electric Blast Furnace is built around Cupronickel Coils, the Stainless Steel Blast Furnace around Kanthal Coils and the Iridium Blast Furnace around Superconductor Coils. Each one runs the recipes of its own level, and a higher furnace also runs every recipe of the furnaces below it, so the Iridium Blast Furnace can still do the work of the other two.
+The Electric Blast Furnace is the electric version of the Steam Blast Furnace. There are three of them, one per coil: the Electric Blast Furnace is built around Cupronickel Coils, the Stainless Steel Blast Furnace around Kanthal Coils and the Iridium Blast Furnace around Superconductor Coils. Each one runs the recipes of its own level, and a higher furnace also runs every recipe of the furnaces below it, so the Iridium Blast Furnace can still do the work of the other two. All three also run the recipes of the Steam Blast Furnace, so once you have one there is no need to keep a steam furnace around for the few recipes that only it knows.
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 

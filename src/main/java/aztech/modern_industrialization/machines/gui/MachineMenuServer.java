@@ -91,12 +91,21 @@ public class MachineMenuServer extends MachineMenuCommon implements MoveRecipeHa
 
     @Override
     public void moveRecipe(ResourceLocation recipeId, int fillAction, int amount) {
-        var category = ReiMachineRecipes.categories.get(guiParams.blockId);
-        if (category == null) {
+        // A machine is a workstation of every category it is registered under, and it runs the recipes of all of them:
+        // the three electric blast furnaces share one category between them, and they are workstations of the steam one
+        // as well. So the recipe is looked for in the categories of the machine rather than in the one category that
+        // happens to be named after its block, which would miss the other two furnaces and every steam recipe.
+        var machineCategories = ReiMachineRecipes.machineToClickAreaCategory.get(guiParams.blockId);
+        if (machineCategories == null) {
             return;
         }
         var world = playerInventory.player.level();
-        var recipeHolder = world.getRecipeManager().getAllRecipesFor(category.recipeType).stream()
+        var recipeHolder = machineCategories.stream()
+                .map(entry -> ReiMachineRecipes.categories.get(entry.category))
+                .filter(Objects::nonNull)
+                .map(params -> params.recipeType)
+                .distinct()
+                .flatMap(recipeType -> world.getRecipeManager().getAllRecipesFor(recipeType).stream())
                 .filter(r -> r.id().equals(recipeId)).findFirst().orElse(null);
         if (recipeHolder == null) {
             return;

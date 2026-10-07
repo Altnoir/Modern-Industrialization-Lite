@@ -32,12 +32,11 @@ import aztech.modern_industrialization.machines.recipe.CentrifugeMachineRecipeTy
 import aztech.modern_industrialization.machines.recipe.CuttingMachineRecipeType;
 import aztech.modern_industrialization.machines.recipe.FurnaceMachineRecipeType;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
-import net.minecraft.resources.ResourceLocation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import net.minecraft.resources.ResourceLocation;
 
 public class MIMachineRecipeTypes {
     private static final List<MachineRecipeType> recipeTypes = new ArrayList<>();
@@ -67,7 +66,8 @@ public class MIMachineRecipeTypes {
     public static final MachineRecipeType BLAST_FURNACE = create("blast_furnace").withItemInputs().withItemOutputs().withFluidInputs().withFluidOutputs();
     /**
      * What the steam blast furnace runs. It is the small, steam driven one and it has no levels, so it keeps a type of
-     * its own instead of being folded into the electric one.
+     * its own instead of being folded into the electric one. The electric furnaces run these recipes as well, by listing
+     * this type next to their own.
      */
     public static final MachineRecipeType STEAM_BLAST_FURNACE = create("steam_blast_furnace").withItemInputs().withItemOutputs()
             .withFluidInputs().withFluidOutputs();

@@ -25,6 +25,9 @@
 
 package aztech.modern_industrialization.machines.init;
 
+import static aztech.modern_industrialization.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
+import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
+
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIFluids;
@@ -47,16 +50,12 @@ import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.Rectangle;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Blocks;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
-import static aztech.modern_industrialization.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
-import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 
 public class MultiblockMachines {
     private static final Rectangle CRAFTING_GUI = new Rectangle(CraftingMultiblockGui.X, CraftingMultiblockGui.Y,
@@ -703,12 +702,13 @@ public class MultiblockMachines {
 
     private static void registerEbfReiCategories() {
         // The steam blast furnace keeps its own category: it is the small, steam driven one, it runs its own recipes,
-        // and it is built from fire bricks rather than from heatproof casings.
+        // and it is built from fire bricks rather than from heatproof casings. The electric furnaces are workstations of
+        // it as well, because they run these recipes too.
         new Rei("Steam Blast Furnace", "steam_blast_furnace", MIMachineRecipeTypes.STEAM_BLAST_FURNACE,
                 new ProgressBar.Params(77, 33, "arrow"))
                         .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
                         .fluids(fluids -> fluids.addSlots(36, 35, 1, 1), outputs -> outputs.addSlots(122, 35, 1, 1))
-                        .workstations("steam_blast_furnace")
+                        .workstations(steamBlastFurnaceWorkstations())
                         .steam(false)
                         .register();
 
@@ -724,6 +724,19 @@ public class MultiblockMachines {
                                 .toArray(String[]::new))
                         .steam(false)
                         .register();
+    }
+
+    /**
+     * The steam blast furnace and the three electric ones. An electric furnace runs the steam recipes too, so the viewer
+     * lists a steam recipe under all four machines.
+     */
+    private static String[] steamBlastFurnaceWorkstations() {
+        List<String> workstations = new ArrayList<>();
+        workstations.add("steam_blast_furnace");
+        for (var tier : ElectricBlastFurnaceBlockEntity.tiers) {
+            workstations.add(tier.id());
+        }
+        return workstations.toArray(String[]::new);
     }
 
     public static class Rei {

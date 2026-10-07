@@ -25,6 +25,8 @@
 
 package aztech.modern_industrialization.machines.blockentities.multiblocks;
 
+import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
+
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.api.machine.holder.EnergyListComponentHolder;
@@ -44,12 +46,9 @@ import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import com.google.common.base.Preconditions;
-import net.minecraft.resources.ResourceLocation;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
+import net.minecraft.resources.ResourceLocation;
 
 public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     /**
@@ -140,6 +139,20 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
     @Override
     public MachineRecipeType recipeType() {
         return MIMachineRecipeTypes.BLAST_FURNACE;
+    }
+
+    /**
+     * A furnace also runs the recipes of the steam blast furnace. The steam one is the furnace of the age before, and
+     * everything it can make an electric one can make too, so the handful of recipes that only it knows are not a reason
+     * to keep a steam furnace standing next to an electric one.
+     *
+     * <p>
+     * The level check would let these through on its own: a steam recipe states no level, so it counts as a bronze one,
+     * and every electric furnace is above bronze.
+     */
+    @Override
+    public List<MachineRecipeType> recipeTypes() {
+        return List.of(MIMachineRecipeTypes.BLAST_FURNACE, MIMachineRecipeTypes.STEAM_BLAST_FURNACE);
     }
 
     /**
