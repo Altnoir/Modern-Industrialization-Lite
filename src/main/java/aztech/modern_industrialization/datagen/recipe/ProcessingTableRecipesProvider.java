@@ -63,12 +63,16 @@ import net.minecraft.world.level.ItemLike;
  * json, because that is what the game reads.
  */
 public class ProcessingTableRecipesProvider extends MIRecipesProvider {
-    /** A machine to craft, and the item that characterises it. */
+    /**
+     * A machine to craft, and the item that characterises it.
+     */
     private record Family(String machine, String levels, ItemLike ingredient) {}
 
     private static final List<Family> FAMILIES = new ArrayList<>();
 
-    /** Levels a machine is registered at, in the same shape {@code SingleBlockCraftingMachines} uses. */
+    /**
+     * Levels a machine is registered at, in the same shape {@code SingleBlockCraftingMachines} uses.
+     */
     private static final String BRONZE_TO_IRIDIUM = "bronze_to_iridium";
     private static final String STEEL_TO_IRIDIUM = "steel_to_iridium";
     private static final String ELECTRIC_TO_IRIDIUM = "electric_to_iridium";
@@ -172,7 +176,9 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         };
     }
 
-    /** Where the machine copies of the Processing Table recipes are written, relative to the recipe folder. */
+    /**
+     * Where the machine copies of the Processing Table recipes are written, relative to the recipe folder.
+     */
     public static final String MACHINE_RECIPE_FOLDER = "assembler_machine/";
 
     /**
@@ -193,9 +199,13 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
                 .offerTo(consumer, MACHINE_RECIPE_FOLDER + path.substring("processing_table/".length()));
     }
 
-    /** Enough energy that even a bronze machine, the weakest one, can run the adapter recipes. */
+    /**
+     * Enough energy that even a bronze machine, the weakest one, can run the adapter recipes.
+     */
     private static final int MACHINE_ADAPTER_ENERGY = 2;
-    /** Ten seconds by default, matching the pace of the other machine recipes. */
+    /**
+     * Ten seconds by default, matching the pace of the other machine recipes.
+     */
     private static final int MACHINE_ADAPTER_DURATION = 200;
 
     private static Item item(Material material, PartKeyProvider part) {
