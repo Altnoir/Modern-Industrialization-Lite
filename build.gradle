@@ -45,6 +45,15 @@ repositories {
             }
         }
     }
+    // AbyssLib and the other Altnoir libraries, published by the library's own CI. Scoped to that group so that the
+    // other dependencies are not looked up here first.
+    maven {
+        name "RingLoReleases"
+        url "https://maven.ringlo.im/releases"
+        content {
+            includeGroup "com.altnoir"
+        }
+    }
     mavenCentral {
         content {
             includeGroup "org.appliedenergistics"
@@ -231,16 +240,13 @@ dependencies {
     // that is the module the tab lives in: the section classes, the renderer and the access transformer it needs are
     // all there, and the module has no dependency on the rest of AbyssLib.
     //
-    // It is read from the library's own build output instead of from a repository. A repository would pin the artifact
-    // to a coordinate that stays at the same version while the library changes, so Gradle would keep serving the copy
-    // it cached the first time; the file is whatever the library last built. Build the library first:
-    //     cd ../AbyssLib && ./gradlew build
-    def abysslibReginth = file("$rootDir/../AbyssLib/module.reginth/build/libs/abysslib-reginth-1.21.1-${project.abysslib_version}.jar")
-    if (!abysslibReginth.isFile()) {
-        throw new GradleException("AbyssLib Reginth is missing, build the library first (looked for ${abysslibReginth})")
-    }
-    implementation files(abysslibReginth)
-    jarJar files(abysslibReginth)
+    // The library's CI publishes this to the RingLo Maven, and that is where the build resolves it — the version to
+    // use lives in gradle.properties. Note that a published release is a fixed version: when the library changes and
+    // is published again under the same number, Gradle keeps serving the copy it cached the first time. Use the
+    // build-numbered version (1.0.0-16 and up) or run with --refresh-dependencies to pick a new one up.
+    def abysslibReginth = "com.altnoir:abysslib-reginth-${project.minecraft_version}:${project.abysslib_version}"
+    implementation abysslibReginth
+    jarJar abysslibReginth
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
 
