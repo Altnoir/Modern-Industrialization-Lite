@@ -67,8 +67,9 @@ public sealed interface MaterialItemPart extends PartKeyProvider, ItemLike permi
         String itemId = "milite:" + itemPath;
 
         return new MaterialItemPartImpl(part.key(), itemId, itemId, ctx -> {
-            MIItem.item(englishName, itemPath,
-                    SortOrder.MATERIALS.and(MaterialProgression.rankOf(ctx.getMaterialName())));
+            MIItem.item(englishName, itemPath, SortOrder.MATERIALS
+                    .and(MaterialProgression.rankOf(ctx.getMaterialName()))
+                    .and(PartProgression.rankOf(part.key())));
         }, new TextureGenParams.NoTexture(), true);
     }
 

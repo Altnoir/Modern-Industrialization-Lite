@@ -79,8 +79,9 @@ public class PartTemplate implements PartKeyProvider {
     }
 
     public static ItemDefinition<Item> createSimpleItem(String englishName, String itemPath, MaterialBuilder.PartContext partContext, PartKey part) {
-        return MIItem.item(englishName, itemPath,
-                SortOrder.MATERIALS.and(MaterialProgression.rankOf(partContext.getMaterialName())).and(part));
+        return MIItem.item(englishName, itemPath, SortOrder.MATERIALS
+                .and(MaterialProgression.rankOf(partContext.getMaterialName()))
+                .and(PartProgression.rankOf(part)));
     }
 
     private static void setupTag(MaterialBuilder.PartContext context, PartKey part, String itemTag, ItemLike item) {
