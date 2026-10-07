@@ -411,12 +411,10 @@ immaculate {
     }
     workflows.register('java') {
         java()
-        googleFixImports()
-        eclipse() {
-            version '3.42.0'
-            config = file('eclipse-format.xml')
-        }
-
+        // Deliberately no code formatter and no import sorting here. Neither of the formatters this plugin can drive
+        // agrees with the IDE this project is written in, so enforcing one of them only ever reports the IDE's own
+        // formatting back as a build failure. Formatting is left to the IDE; what stays below are the rules that no
+        // formatter disagrees about and that are easy to get wrong by hand.
         noTrailingSpaces()
         noTabs()
         trailingNewline()
