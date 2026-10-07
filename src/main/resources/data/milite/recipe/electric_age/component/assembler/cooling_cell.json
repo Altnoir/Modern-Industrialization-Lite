@@ -4,7 +4,7 @@
     "duration": 400,
     "item_inputs": [
         {
-            "item": "milite:bronze_curved_plate",
+            "item": "milite:bronze_plate",
             "amount": 3
         },
         {

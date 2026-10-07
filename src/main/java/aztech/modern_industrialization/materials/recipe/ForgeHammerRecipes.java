@@ -44,8 +44,6 @@ public class ForgeHammerRecipes {
 
         addRecipe(ctx, INGOT, 1, PLATE, 1, 20);
         addRecipe(ctx, INGOT, 2, PLATE, 1);
-        addRecipe(ctx, INGOT, 2, CURVED_PLATE, 1);
-        addRecipe(ctx, INGOT, 1, CURVED_PLATE, 1, 40);
         addRecipe(ctx, INGOT, 1, ROD, 1);
         addRecipe(ctx, INGOT, 1, ROD, 2, 20);
         addRecipe(ctx, INGOT, 1, RING, 1);
@@ -55,16 +53,12 @@ public class ForgeHammerRecipes {
 
         addRecipe(ctx, DOUBLE_INGOT, 1, PLATE, 2, 20);
         addRecipe(ctx, DOUBLE_INGOT, 1, PLATE, 1);
-        addRecipe(ctx, DOUBLE_INGOT, 1, CURVED_PLATE, 1);
-        addRecipe(ctx, DOUBLE_INGOT, 1, CURVED_PLATE, 2, 60);
         addRecipe(ctx, DOUBLE_INGOT, 1, ROD, 2);
         addRecipe(ctx, DOUBLE_INGOT, 1, ROD, 4, 20);
         addRecipe(ctx, DOUBLE_INGOT, 1, RING, 2);
         addRecipe(ctx, DOUBLE_INGOT, 1, RING, 4, 100);
         addRecipe(ctx, DOUBLE_INGOT, 1, BOLT, 4);
         addRecipe(ctx, DOUBLE_INGOT, 1, BOLT, 8, 100);
-
-        addRecipe(ctx, PLATE, 1, CURVED_PLATE, 1, 20);
 
         addRecipe(ctx, ROD, 1, BOLT, 2, 20);
         addRecipe(ctx, ROD, 1, RING, 1, 20);

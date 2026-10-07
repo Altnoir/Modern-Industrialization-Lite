@@ -14,7 +14,7 @@
       "item" : "milite:annealed_copper_wire"
     },
     "B" : {
-      "item" : "milite:battery_alloy_curved_plate"
+      "item" : "milite:battery_alloy_plate"
     },
     "r" :{
       "tag" : "c:dusts/cadmium"

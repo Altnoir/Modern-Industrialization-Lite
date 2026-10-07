@@ -11,7 +11,7 @@
       "tag" : "c:plates/battery_alloy"
     },
     "c" : {
-      "item" : "milite:battery_alloy_curved_plate"
+      "item" : "milite:battery_alloy_plate"
     },
     "C" : {
       "item" : "milite:tin_wire"

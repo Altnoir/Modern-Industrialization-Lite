@@ -45,7 +45,6 @@ public class MIParts {
     public static final PartTemplate BOLT = new PartTemplate("Bolt", "bolt");
     public static final PartTemplate COIL = new PartTemplate("Coil", "coil").asColumnBlock(SortOrder.COILS);
     public static final PartTemplate CRUSHED_DUST = new PartTemplate("Crushed Dust", "crushed_dust");
-    public static final PartTemplate CURVED_PLATE = new PartTemplate("Curved Plate", "curved_plate");
     public static final PartTemplate DOUBLE_INGOT = new PartTemplate("Double Ingot", "double_ingot")
             .withTexture(new TextureGenParams.DoubleIngot());
 

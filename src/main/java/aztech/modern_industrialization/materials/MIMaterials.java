@@ -182,7 +182,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, SHINY)
                         .set(MaterialProperty.MEAN_RGB, 0xFFE650)
                         .set(MaterialProperty.HARDNESS, SOFT)
-                        .addParts(BOLT, RING, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, PLATE, TINY_DUST)
+                        .addParts(BOLT, RING, GEAR, ROD, DOUBLE_INGOT, DUST, PLATE, TINY_DUST)
                         .addParts(DRILL_HEAD, DRILL))
         );
 
@@ -201,7 +201,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0xe77c56)
                         .set(MaterialProperty.HARDNESS, SOFT)
-                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, NUGGET, PLATE, TINY_DUST)
                         .addParts(WIRE)
                         .addParts(FINE_WIRE)
                         .addParts(DRILL_HEAD, DRILL))
@@ -310,7 +310,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, SHINY)
                         .set(MaterialProperty.MEAN_RGB, 0xffcc00)
                         .set(MaterialProperty.HARDNESS, SOFT)
-                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, NUGGET, PLATE, TINY_DUST)
                         .addParts(BLOCK.of(MaterialBlockSet.COPPER)).addParts(TANK.of(4)).addParts(DRILL_HEAD, DRILL)
                         .addParts(BARREL.of(32)).addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.of())
                         .addParts(MACHINE_CASING_SPECIAL.of("Bronze Plated Bricks", "bronze_plated_bricks"))
@@ -321,7 +321,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, DULL)
                         .set(MaterialProperty.MEAN_RGB, 0xc0bcd0)
                         .set(MaterialProperty.HARDNESS, SOFT)
-                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, NUGGET, PLATE, TINY_DUST)
                         .addParts(OrePart.ofAll(16, 9, 64, MaterialOreSet.IRON))
                         .addParts(WIRE).addParts(RAW_METAL.ofAll(MaterialRawSet.GOLD))
                         .addParts(BLOCK.of(MaterialBlockSet.COPPER))
@@ -331,7 +331,7 @@ public class MIMaterials {
                 new MaterialBuilder("Steel", "steel")
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0x3f3f3f)
-                        .addParts(BOLT, RING, ROD, GEAR, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, RING, ROD, GEAR, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
                         .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.of()).addParts(TANK.of(16)).addParts(BARREL.of(128))
                         .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.STEEL_HAMMER.getId().toString()))
@@ -352,7 +352,7 @@ public class MIMaterials {
                 new MaterialBuilder("Aluminum", "aluminum")
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0x3fcaff)
-                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(WIRE).addParts(BLOCK.of(MaterialBlockSet.GOLD)).addParts(MACHINE_CASING.of("Advanced Machine Casing", "advanced_machine_casing"))
                         .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing")).addParts(TANK.of(64))
                         .addParts(BARREL.of(512)).addRecipes(StandardRecipes::apply)
@@ -378,7 +378,7 @@ public class MIMaterials {
                 .set(MaterialProperty.SET, DULL)
                 .set(MaterialProperty.MEAN_RGB, 0x9C7CA0)
                 .set(MaterialProperty.HARDNESS, SOFT)
-                .addParts(TINY_DUST, DUST, INGOT, DOUBLE_INGOT, PLATE, CURVED_PLATE, NUGGET).addParts(BLOCK.of(MaterialBlockSet.IRON))
+                .addParts(TINY_DUST, DUST, INGOT, DOUBLE_INGOT, PLATE, NUGGET).addParts(BLOCK.of(MaterialBlockSet.IRON))
                 .addRecipes(StandardRecipes::apply, SmeltingRecipes::apply));
 
         INVAR = MaterialRegistry
@@ -451,7 +451,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0xDCA0F0)
                         .set(MaterialProperty.HARDNESS, HARD)
-                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
+                        .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(BLOCK.of(MaterialBlockSet.NETHERITE)).addParts(RAW_METAL.ofAll(MaterialRawSet.COPPER)).addParts(HOT_INGOT)
                         .addParts(MACHINE_CASING.of(
                                 "Highly Advanced Machine Casing",
@@ -482,7 +482,7 @@ public class MIMaterials {
                 .set(MaterialProperty.MEAN_RGB, 0xC8C8DC)
                 .set(MaterialProperty.HARDNESS, HARD)
                 .addParts(BLOCK.of(MaterialBlockSet.IRON))
-                .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, CURVED_PLATE, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
+                .addParts(BOLT, BLADE, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                 .addParts(HOT_INGOT).addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING.of(
                         "Turbo Machine Casing",
                         "turbo_machine_casing"))
@@ -639,7 +639,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, SHINY)
                         .set(MaterialProperty.MEAN_RGB, 0xe1e6f5)
                         .set(MaterialProperty.HARDNESS, VERY_HARD)
-                        .addParts(BLOCK.of(MaterialBlockSet.DIAMOND)).addParts(ITEM_PURE_METAL).addParts(CURVED_PLATE)
+                        .addParts(BLOCK.of(MaterialBlockSet.DIAMOND)).addParts(ITEM_PURE_METAL)
                         .addParts(ORE.of(MaterialOreSet.DIAMOND))
                         .addParts(MACHINE_CASING.of("Quantum Machine Casing", "quantum_machine_casing", 6000f))
 
@@ -714,7 +714,7 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0x524c3a)
                         .set(MaterialProperty.HARDNESS, VERY_HARD)
-                        .addParts(INGOT, PLATE, LARGE_PLATE, CURVED_PLATE)
+                        .addParts(INGOT, PLATE, LARGE_PLATE)
                         .addParts(MACHINE_CASING_SPECIAL.of(
                                 "Blastproof Casing",
                                 "blastproof_casing", 6000f)).addRecipes(StandardRecipes::apply));

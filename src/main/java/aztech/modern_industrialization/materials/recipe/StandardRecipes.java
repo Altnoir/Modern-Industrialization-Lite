@@ -53,7 +53,7 @@ public final class StandardRecipes {
         add3By3Crafting(ctx, ctx.get(MAIN_PART), BLOCK, false); // Not in packer due to conflicts with double ingots.
         add3By3Crafting(ctx, RAW_METAL, RAW_METAL_BLOCK, true);
 
-        new ShapedRecipeBuilder(ctx, BLADE, 4, "blade", "P", "P", "I").addTaggedPart('P', CURVED_PLATE).addTaggedPart('I', ROD)
+        new ShapedRecipeBuilder(ctx, BLADE, 4, "blade", "P", "P", "I").addTaggedPart('P', PLATE).addTaggedPart('I', ROD)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
 
         // A coil used to be built from eight cables. Cables are gone, so it is built from the wire they carried instead,
@@ -82,13 +82,14 @@ public final class StandardRecipes {
                 .addInput('b', Tags.Items.BARRELS_WOODEN)
                 .exportToAssembler();
 
+        // The pattern letter 'c' used to ask for a curved plate. Curved plates are gone, so 'c' and 'p' are both the
+        // plain plate now, which leaves the drill head costing the same three plates it did before.
         new ShapedRecipeBuilder(ctx, DRILL_HEAD, 1, "drill_head", "bcp", "GRc", "bGb").addTaggedPart('G', GEAR).addPart('b', BOLT)
-                .addPart('c', CURVED_PLATE).addTaggedPart('R', ROD).addTaggedPart('p', PLATE);
+                .addTaggedPart('c', PLATE).addTaggedPart('R', ROD).addTaggedPart('p', PLATE);
 
         // MACERATOR
         addMaceratorRecycling(ctx, DOUBLE_INGOT, 18);
         addMaceratorRecycling(ctx, PLATE, 9);
-        addMaceratorRecycling(ctx, CURVED_PLATE, 9);
         addMaceratorRecycling(ctx, NUGGET, 1);
         addMaceratorRecycling(ctx, LARGE_PLATE, 36);
         addMaceratorRecycling(ctx, GEAR, 18);
@@ -114,7 +115,6 @@ public final class StandardRecipes {
                 .addPartOutput(DUST, 1).addPartOutput(DUST, 1, 0.5f);
         // COMPRESSOR
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "main").addTaggedPartInput(ctx.get(MAIN_PART), 1).addPartOutput(PLATE, 1);
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "plate").addTaggedPartInput(PLATE, 1).addPartOutput(CURVED_PLATE, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "double_ingot").addTaggedPartInput(DOUBLE_INGOT, 1).addPartOutput(PLATE, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "ring").addTaggedPartInput(ROD, 1).addPartOutput(RING, 1);
         // CUTTING MACHINE
@@ -149,12 +149,12 @@ public final class StandardRecipes {
                 .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(GEAR, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "drill_head").level(MachineLevel.ELECTRIC)
-                .addTaggedPartInput(PLATE, 1).addTaggedPartInput(CURVED_PLATE, 2)
+                .addTaggedPartInput(PLATE, 3)
                 .addTaggedPartInput(ROD, 1).addTaggedPartInput(GEAR, 2).addFluidInput(MIFluids.SOLDERING_ALLOY, 75)
                 .addPartOutput(DRILL_HEAD, 1);
 
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "fuel_rod", 16, 200)
-                .addItemInput("milite:blastproof_alloy_curved_plate", 2)
+                .addItemInput("milite:blastproof_alloy_plate", 2)
                 .addItemInput(MIItem.LARGE_MOTOR, 1).addItemInput(MIItem.ROBOT_ARM, 2).addTaggedPartInput(ROD, 18)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 500).addFluidInput(MIFluids.HELIUM, 100)
                 .addPartOutput(FUEL_ROD, 1);
