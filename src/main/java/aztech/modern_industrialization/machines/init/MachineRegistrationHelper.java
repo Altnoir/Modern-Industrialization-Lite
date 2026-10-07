@@ -38,7 +38,9 @@ import aztech.modern_industrialization.machines.models.MachineCasing;
 import aztech.modern_industrialization.machines.models.MachineCasings;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.MobSpawning;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -69,7 +71,7 @@ public class MachineRegistrationHelper {
                 englishName,
                 id,
                 MIBlock.BlockDefinitionParams.defaultStone()
-                        .sortOrder(SortOrder.MACHINES)
+                        .sortOrder(machineSortOrder(id))
                         .withBlockConstructor((s) -> new MachineBlock(ctor, s))
                         .withModel((block, gen) -> {
                             // Model generation is handled in the model provider already.
@@ -90,6 +92,48 @@ public class MachineRegistrationHelper {
         });
 
         return new MachineDefinition<>(blockEntityType, blockDefinition);
+    }
+
+    /**
+     * The tier prefixes machine ids are built from, in the order a player meets them. A machine named
+     * {@code <tier>_<machine>} is one of the machines that exists at several tiers.
+     *
+     * <p>
+     * The material tiers come from {@link MachineLevel}, which is the ladder this mod already keeps, so the two cannot
+     * drift apart. The voltage tiers and the tiers only the hatches use follow after it; their numbers only ever get
+     * compared against machines that share their name, so the two ladders never have to agree on anything.
+     */
+    private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
+
+    private static List<String> machineTierPrefixes() {
+        var prefixes = new ArrayList<String>();
+        prefixes.add("steam");
+        for (var level : MachineLevel.values()) {
+            prefixes.add(level.getSerializedName());
+        }
+        prefixes.addAll(List.of("lv", "mv", "hv", "ev", "superconductor", "advanced", "turbo", "highly_advanced", "nuclear"));
+        return List.copyOf(prefixes);
+    }
+
+    /**
+     * Where a machine sits in the creative tab: the machine it is first, the tier it is a version of second, so every
+     * furnace sits together with the bronze one ahead of the iridium one.
+     *
+     * <p>
+     * A name that carries no known tier is a machine of its own and sorts ahead of the tiered versions of the same
+     * name, which keeps the four large boilers next to each other.
+     *
+     * @param id - the machine block id, for example {@code electric_macerator}.
+     * @returns the order to register the machine with.
+     */
+    private static SortOrder machineSortOrder(String id) {
+        for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
+            var prefix = MACHINE_TIER_PREFIXES.get(tier);
+            if (id.startsWith(prefix + "_")) {
+                return SortOrder.MACHINES.and(id.substring(prefix.length() + 1)).and(tier);
+            }
+        }
+        return SortOrder.MACHINES.and(id).and(-1);
     }
 
     /**

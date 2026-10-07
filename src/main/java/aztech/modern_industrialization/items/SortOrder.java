@@ -27,25 +27,49 @@ package aztech.modern_industrialization.items;
 
 import aztech.modern_industrialization.nuclear.NuclearOrder;
 
+/**
+ * Where an entry sits in the general creative tab.
+ *
+ * <p>
+ * The order of the constants below is the order of the tab, because each root order takes the next number for itself
+ * when the class is initialised. Inserting a constant therefore moves everything declared after it, so the list is
+ * written as the sequence a player reads: the two blocks that start the mod, the hand ordered items, then the blocks by
+ * family, then the material forms, and the leftovers last.
+ *
+ * <p>
+ * Two entries that carry the same order compare equal and keep the order they came in, which is the order of
+ * {@code MIItem.ITEM_DEFINITIONS}: the id, alphabetically. A group that wants a better order than that has to say so
+ * with {@link #and}.
+ */
 public final class SortOrder implements Comparable<SortOrder> {
+    /** The guidebook, so the first thing in the tab is how to play. */
     public static final SortOrder GUIDE_BOOK = new SortOrder();
+    /** The forge hammer and the processing table, the two blocks the mod starts with. */
     public static final SortOrder FORGE_HAMMER = new SortOrder();
     public static final SortOrder PROCESSING_TABLE = new SortOrder();
+    /** Loose items: components, circuits, tools and armour, numbered in the order they are declared in MIItem. */
     public static final SortOrderGroup.Counted ITEMS_ORDERED = new SortOrderGroup.Counted(new SortOrder());
+    /** Nuclear parts, ordered by their role and then by material. */
     public static final SortOrderGroup.Parametrized<NuclearOrder> NUCLEAR = new SortOrderGroup.Parametrized<>(new SortOrder());
-    public static final SortOrder CABLES = new SortOrder();
-    public static final SortOrder PIPES = new SortOrder();
+    /** Blocks by family: what stores things, what a machine is built from, then the machines themselves. */
     public static final SortOrder TANKS = new SortOrder();
     public static final SortOrder BARRELS = new SortOrder();
-    public static final SortOrder MACHINES = new SortOrder();
     public static final SortOrder CASINGS = new SortOrder();
+    /** The machine hull a machine is built into, which belongs beside the casings rather than with the leftovers. */
+    public static final SortOrder MACHINE_HULLS = new SortOrder();
     public static final SortOrder COILS = new SortOrder();
-    public static final SortOrder BLOCKS_OTHERS = new SortOrder();
+    public static final SortOrder MACHINES = new SortOrder();
+    /** The material forms, in the order a player meets them: ore, raw block, block, then the items made from it. */
     public static final SortOrder ORES = new SortOrder();
     public static final SortOrder RAW_ORE_BLOCKS = new SortOrder();
     public static final SortOrder STORAGE_BLOCKS = new SortOrder();
     public static final SortOrder MATERIALS = new SortOrder();
     public static final SortOrder BUCKETS = new SortOrder();
+    /**
+     * The default for a block that never states an order, and the home of the odds and ends. It is last on purpose: a
+     * block that forgets to say where it goes is then found at the end rather than in the middle of a family.
+     */
+    public static final SortOrder BLOCKS_OTHERS = new SortOrder();
 
     private static int nextGlobalOrder = 0;
 

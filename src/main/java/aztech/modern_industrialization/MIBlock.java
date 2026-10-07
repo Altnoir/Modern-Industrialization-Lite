@@ -94,12 +94,15 @@ public class MIBlock {
             BlockDefinitionParams.defaultStone().withBlockConstructor(TrashCanBlock::new).destroyTime(6.0f).explosionResistance(1200).dontConductRedstone())
             .withBlockRegistrationEvent(TrashCanBlock::onRegister);
 
-    // Other
-    public static final BlockDefinition<Block> BASIC_MACHINE_HULL = nonConductorBlock("Basic Machine Hull", MIBlockKeys.BASIC_MACHINE_HULL.location().getPath());
-    public static final BlockDefinition<Block> ADVANCED_MACHINE_HULL = nonConductorBlock("Advanced Machine Hull", MIBlockKeys.ADVANCED_MACHINE_HULL.location().getPath());
-    public static final BlockDefinition<Block> TURBO_MACHINE_HULL = nonConductorBlock("Turbo Machine Hull", MIBlockKeys.TURBO_MACHINE_HULL.location().getPath());
-    public static final BlockDefinition<Block> HIGHLY_ADVANCED_MACHINE_HULL = nonConductorBlock("Highly Advanced Machine Hull", MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL.location().getPath());
-    public static final BlockDefinition<Block> QUANTUM_MACHINE_HULL = block("Quantum Machine Hull", MIBlockKeys.QUANTUM_MACHINE_HULL.location().getPath(), BlockDefinitionParams.defaultStone().explosionResistance(6000f).dontConductRedstone());
+    // Machine hulls. They are the casing a machine is built into, so the tab lists them beside the casings rather than
+    // with the odds and ends, and the tier number is the upgrade path, weakest first.
+    public static final BlockDefinition<Block> BASIC_MACHINE_HULL = machineHull("Basic Machine Hull", MIBlockKeys.BASIC_MACHINE_HULL.location().getPath(), 0);
+    public static final BlockDefinition<Block> ADVANCED_MACHINE_HULL = machineHull("Advanced Machine Hull", MIBlockKeys.ADVANCED_MACHINE_HULL.location().getPath(), 1);
+    public static final BlockDefinition<Block> TURBO_MACHINE_HULL = machineHull("Turbo Machine Hull", MIBlockKeys.TURBO_MACHINE_HULL.location().getPath(), 2);
+    public static final BlockDefinition<Block> HIGHLY_ADVANCED_MACHINE_HULL = machineHull("Highly Advanced Machine Hull",
+            MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL.location().getPath(), 3);
+    public static final BlockDefinition<Block> QUANTUM_MACHINE_HULL = block("Quantum Machine Hull", MIBlockKeys.QUANTUM_MACHINE_HULL.location().getPath(),
+            machineHullParams(4).explosionResistance(6000f));
 
     public static final BlockDefinition<Block> FUSION_CHAMBER = nonConductorBlock("Fusion Chamber", "fusion_chamber");
     public static final BlockDefinition<Block> INDUSTRIAL_TNT = blockExplosive("Industrial TNT", "industrial_tnt");
@@ -169,6 +172,18 @@ public class MIBlock {
         return MIBlock.block(englishName, id, BlockDefinitionParams.defaultStone().dontConductRedstone());
     }
 
+    /**
+     * The parameters of a machine hull of the given tier. The tier is the upgrade path, weakest hull first, so the hulls
+     * are listed in the order a player unlocks them instead of alphabetically.
+     */
+    private static BlockDefinitionParams<Block> machineHullParams(int tier) {
+        return BlockDefinitionParams.defaultStone().dontConductRedstone().sortOrder(SortOrder.MACHINE_HULLS.and(tier));
+    }
+
+    private static BlockDefinition<Block> machineHull(String englishName, String id, int tier) {
+        return MIBlock.block(englishName, id, machineHullParams(tier));
+    }
+
     public static BlockDefinition<Block> blockExplosive(String englishName, String id) {
         return MIBlock.block(
                 englishName,
@@ -196,14 +211,18 @@ public class MIBlock {
                 Function<BlockBehaviour.Properties, T> ctor,
                 BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor,
                 BiConsumer<Block, BaseModelProvider> modelGenerator,
+                BiConsumer<Item, ItemModelProvider> itemModelGenerator,
                 @Nullable MIBlockLoot blockLoot,
-                List<TagKey<Block>> tags) {
+                List<TagKey<Block>> tags,
+                SortOrder sortOrder) {
             this.props = properties;
             this.ctor = ctor;
             this.blockItemCtor = blockItemCtor;
             this.modelGenerator = modelGenerator;
+            this.itemModelGenerator = itemModelGenerator;
             this.blockLoot = blockLoot;
             this.tags.addAll(tags);
+            this.sortOrder = sortOrder;
         }
 
         public static BlockDefinitionParams<Block> of() {
@@ -213,16 +232,25 @@ public class MIBlock {
         public static BlockDefinitionParams<Block> of(BlockBehaviour.Properties properties) {
             return new BlockDefinitionParams<>(properties, Block::new, BlockItem::new,
                     (block, modelGenerator) -> modelGenerator.simpleBlockWithItem(block, modelGenerator.cubeAll(block)),
+                    (item, gen) -> {},
                     new MIBlockLoot.DropSelf(),
-                    List.of(BlockTags.NEEDS_STONE_TOOL, BlockTags.MINEABLE_WITH_PICKAXE));
+                    List.of(BlockTags.NEEDS_STONE_TOOL, BlockTags.MINEABLE_WITH_PICKAXE),
+                    SortOrder.BLOCKS_OTHERS);
         }
 
         public static BlockDefinitionParams<Block> defaultStone() {
             return of(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).destroyTime(4.0f).requiresCorrectToolForDrops());
         }
 
+        /**
+         * Swaps the block constructor, which changes the type parameter, so this has to build a new set of parameters
+         * rather than change this one. Every field has to be carried over: a chain such as
+         * {@code defaultStone().sortOrder(MACHINES).withBlockConstructor(...)} used to silently drop the sort order and
+         * fall back to {@link SortOrder#BLOCKS_OTHERS}, which buried every machine in the catch all group.
+         */
         public <U extends Block> BlockDefinitionParams<U> withBlockConstructor(Function<BlockBehaviour.Properties, U> ctor) {
-            return new BlockDefinitionParams<>(props, ctor, (BiFunction) this.blockItemCtor, this.modelGenerator, this.blockLoot, this.tags);
+            return new BlockDefinitionParams<>(props, ctor, (BiFunction) this.blockItemCtor, this.modelGenerator,
+                    this.itemModelGenerator, this.blockLoot, this.tags, this.sortOrder);
         }
 
         public <U extends Block> BlockDefinitionParams<U> withBlockConstructor(Supplier<U> ctor) {
@@ -230,8 +258,10 @@ public class MIBlock {
                     p -> ctor.get(),
                     (BiFunction) this.blockItemCtor,
                     this.modelGenerator,
+                    this.itemModelGenerator,
                     this.blockLoot,
-                    this.tags);
+                    this.tags,
+                    this.sortOrder);
         }
 
         public BlockDefinitionParams<T> withBlockItemConstructor(BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor) {
