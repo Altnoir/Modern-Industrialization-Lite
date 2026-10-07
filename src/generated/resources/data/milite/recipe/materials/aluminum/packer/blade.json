@@ -5,7 +5,7 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "milite:aluminum_curved_plate"
+      "tag": "c:plates/aluminum"
     },
     {
       "amount": 1,

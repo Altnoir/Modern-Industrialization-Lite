@@ -12,7 +12,7 @@
       "item": "milite:gold_bolt"
     },
     "c": {
-      "item": "milite:gold_curved_plate"
+      "tag": "c:plates/gold"
     },
     "p": {
       "tag": "c:plates/gold"

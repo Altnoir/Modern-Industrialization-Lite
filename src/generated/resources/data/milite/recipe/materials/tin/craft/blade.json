@@ -6,7 +6,7 @@
       "tag": "c:rods/tin"
     },
     "P": {
-      "item": "milite:tin_curved_plate"
+      "tag": "c:plates/tin"
     }
   },
   "pattern": [

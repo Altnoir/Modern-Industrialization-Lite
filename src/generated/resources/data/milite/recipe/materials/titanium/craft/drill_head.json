@@ -12,7 +12,7 @@
       "item": "milite:titanium_bolt"
     },
     "c": {
-      "item": "milite:titanium_curved_plate"
+      "tag": "c:plates/titanium"
     },
     "p": {
       "tag": "c:plates/titanium"

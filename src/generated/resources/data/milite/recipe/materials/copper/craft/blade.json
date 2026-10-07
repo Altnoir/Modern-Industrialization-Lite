@@ -6,7 +6,7 @@
       "tag": "c:rods/copper"
     },
     "P": {
-      "item": "milite:copper_curved_plate"
+      "tag": "c:plates/copper"
     }
   },
   "pattern": [

@@ -6,7 +6,7 @@
       "tag": "c:rods/titanium"
     },
     "P": {
-      "item": "milite:titanium_curved_plate"
+      "tag": "c:plates/titanium"
     }
   },
   "pattern": [

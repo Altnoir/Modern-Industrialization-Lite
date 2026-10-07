@@ -5,7 +5,7 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "milite:copper_curved_plate"
+      "tag": "c:plates/copper"
     },
     {
       "amount": 1,

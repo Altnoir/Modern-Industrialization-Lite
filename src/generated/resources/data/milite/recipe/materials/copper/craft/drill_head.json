@@ -12,7 +12,7 @@
       "item": "milite:copper_bolt"
     },
     "c": {
-      "item": "milite:copper_curved_plate"
+      "tag": "c:plates/copper"
     },
     "p": {
       "tag": "c:plates/copper"

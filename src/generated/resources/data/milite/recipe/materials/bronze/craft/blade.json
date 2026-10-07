@@ -6,7 +6,7 @@
       "tag": "c:rods/bronze"
     },
     "P": {
-      "item": "milite:bronze_curved_plate"
+      "tag": "c:plates/bronze"
     }
   },
   "pattern": [

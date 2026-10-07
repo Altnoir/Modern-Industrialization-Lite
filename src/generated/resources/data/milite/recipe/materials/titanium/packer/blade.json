@@ -5,7 +5,7 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "milite:titanium_curved_plate"
+      "tag": "c:plates/titanium"
     },
     {
       "amount": 1,

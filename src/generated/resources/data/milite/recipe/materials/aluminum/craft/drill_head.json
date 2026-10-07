@@ -12,7 +12,7 @@
       "item": "milite:aluminum_bolt"
     },
     "c": {
-      "item": "milite:aluminum_curved_plate"
+      "tag": "c:plates/aluminum"
     },
     "p": {
       "tag": "c:plates/aluminum"

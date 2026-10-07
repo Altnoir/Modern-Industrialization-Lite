@@ -6,7 +6,7 @@
       "tag": "c:rods/aluminum"
     },
     "P": {
-      "item": "milite:aluminum_curved_plate"
+      "tag": "c:plates/aluminum"
     }
   },
   "pattern": [

@@ -6,7 +6,7 @@
       "tag": "c:rods/stainless_steel"
     },
     "P": {
-      "item": "milite:stainless_steel_curved_plate"
+      "tag": "c:plates/stainless_steel"
     }
   },
   "pattern": [

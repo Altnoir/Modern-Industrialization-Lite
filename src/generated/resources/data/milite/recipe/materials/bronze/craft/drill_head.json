@@ -12,7 +12,7 @@
       "item": "milite:bronze_bolt"
     },
     "c": {
-      "item": "milite:bronze_curved_plate"
+      "tag": "c:plates/bronze"
     },
     "p": {
       "tag": "c:plates/bronze"

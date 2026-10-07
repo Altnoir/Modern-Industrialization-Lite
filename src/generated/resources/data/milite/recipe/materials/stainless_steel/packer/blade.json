@@ -5,7 +5,7 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "milite:stainless_steel_curved_plate"
+      "tag": "c:plates/stainless_steel"
     },
     {
       "amount": 1,
