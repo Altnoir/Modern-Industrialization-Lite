@@ -1,6 +1,6 @@
 {
   "type": "milite:electrolyzer",
-  "eu": 8,
+  "energy": 8,
   "duration": 400,
   "item_inputs": {
     "tag": "c:dusts/salt",

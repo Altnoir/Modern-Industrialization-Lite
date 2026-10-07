@@ -1,7 +1,7 @@
 {
   "type": "milite:distillery",
   "duration": 200,
-  "eu": 25,
+  "energy": 25,
   "fluid_inputs": [
     {
       "amount": 1000,
@@ -13,5 +13,6 @@
       "amount": 300,
       "fluid": "milite:ethylene"
     }
-  ]
+  ],
+  "level": "electric"
 }

@@ -1,6 +1,6 @@
 {
   "type": "milite:polarizer",
-  "eu": 16,
+  "energy": 16,
   "duration": 400,
   "item_inputs":
     [

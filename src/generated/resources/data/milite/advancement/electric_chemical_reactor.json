@@ -1,0 +1,33 @@
+{
+  "parent": "milite:electronic_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:electric_chemical_reactor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.electric_chemical_reactor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "milite:electric_chemical_reactor"
+    },
+    "title": {
+      "translate": "advancements.milite.electric_chemical_reactor"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

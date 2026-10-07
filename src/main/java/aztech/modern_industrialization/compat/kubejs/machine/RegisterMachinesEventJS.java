@@ -25,8 +25,6 @@
 
 package aztech.modern_industrialization.compat.kubejs.machine;
 
-import static aztech.modern_industrialization.machines.init.SingleBlockCraftingMachines.*;
-
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.inventory.SlotPositions;
@@ -41,6 +39,7 @@ import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
 import aztech.modern_industrialization.machines.guicomponents.EnergyBar;
 import aztech.modern_industrialization.machines.guicomponents.ProgressBar;
 import aztech.modern_industrialization.machines.guicomponents.RecipeEfficiencyBar;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineRegistrationHelper;
 import aztech.modern_industrialization.machines.init.MultiblockMachines;
 import aztech.modern_industrialization.machines.init.SingleBlockCraftingMachines;
@@ -48,13 +47,15 @@ import aztech.modern_industrialization.machines.models.MachineCasings;
 import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.latvian.mods.kubejs.event.KubeEvent;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
@@ -106,14 +107,10 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         var config = new SingleBlockCraftingMachines.Config();
         extraConfig.accept(new ExtraMachineConfig.CraftingSingleBlock(config));
 
-        int tiersMask = 0;
+        // The tier names are the machine level names, for example "bronze", "steel" or "electric".
+        List<MachineLevel> levels = new ArrayList<>();
         for (String tier : tiers) {
-            tiersMask |= switch (tier) {
-                case "bronze" -> TIER_BRONZE;
-                case "steel" -> TIER_STEEL;
-                case "electric" -> TIER_ELECTRIC;
-                default -> throw new IllegalArgumentException("Unknown tier: " + tier);
-            };
+            levels.add(MachineLevel.byName(tier));
         }
         Consumer<MachineGuiParameters.Builder> guiParams = backgroundHeight < 0 ? p -> {} : p -> p.backgroundHeight(backgroundHeight);
 
@@ -123,7 +120,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
                 guiParams, progressBar, progressBar, efficiencyBar, energyBar,
                 itemSlotPositions, fluidSlotPositions,
                 frontOverlay, topOverlay, sideOverlay,
-                tiersMask, bucketCapacity, config);
+                levels, bucketCapacity, config);
     }
 
     private void simpleMultiBlock(

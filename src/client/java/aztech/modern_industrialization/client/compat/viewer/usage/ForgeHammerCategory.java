@@ -33,14 +33,15 @@ import aztech.modern_industrialization.blocks.forgehammer.ForgeHammerRecipe;
 import aztech.modern_industrialization.client.blocks.forgehammer.ForgeHammerScreen;
 import aztech.modern_industrialization.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.modern_industrialization.items.ForgeTool;
-import java.util.Comparator;
-import java.util.function.Consumer;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+
+import java.util.Comparator;
+import java.util.function.Consumer;
 
 public class ForgeHammerCategory extends ViewerCategory<RecipeHolder<ForgeHammerRecipe>> {
     public static final ResourceLocation ID = MI.id("forge_hammer");
@@ -49,7 +50,7 @@ public class ForgeHammerCategory extends ViewerCategory<RecipeHolder<ForgeHammer
     private final int startPointY;
 
     protected ForgeHammerCategory() {
-        super((Class) RecipeHolder.class, ID, MIBlock.FORGE_HAMMER.asBlock().getName(),
+        super(recipeHolderClass(), ID, MIBlock.FORGE_HAMMER.asBlock().getName(),
                 MIBlock.FORGE_HAMMER.asItem().getDefaultInstance(), 150, 40);
 
         this.startPointX = width / 2 - 25;

@@ -1,7 +1,7 @@
 {
   "type": "milite:assembler",
   "duration": 200,
-  "eu": 8,
+  "energy": 8,
   "item_inputs": [
     {
       "amount": 8,
@@ -17,5 +17,6 @@
       "amount": 1,
       "item": "milite:steel_machine_casing"
     }
-  ]
+  ],
+  "level": "electric"
 }

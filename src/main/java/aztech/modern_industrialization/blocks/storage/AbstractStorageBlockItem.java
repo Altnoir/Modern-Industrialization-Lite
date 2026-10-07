@@ -25,17 +25,16 @@
 
 package aztech.modern_industrialization.blocks.storage;
 
-import aztech.modern_industrialization.MICommonProxy;
 import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.items.ContainerItem;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.storage.TransferVariant;
-import java.util.List;
-import java.util.function.Consumer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+
+import java.util.List;
 
 public abstract class AbstractStorageBlockItem<T extends TransferVariant<?>> extends BlockItem implements ContainerItem<T> {
     public final StorageBehaviour<T> behaviour;
@@ -54,12 +53,5 @@ public abstract class AbstractStorageBlockItem<T extends TransferVariant<?>> ext
 
     public StorageBehaviour<T> getBehaviour() {
         return behaviour;
-    }
-
-    // A bit stupid but I don't want to have client-only code in the main sourceset
-    @Override
-    @SuppressWarnings("rawtype")
-    public void initializeClient(Consumer stupidClientProperties) {
-        MICommonProxy.INSTANCE.withStandardItemRenderer(stupidClientProperties);
     }
 }

@@ -29,11 +29,11 @@ Ele possui 27 slots configuráveis e funcionalidade de ejeção automática! Mui
 
 O Polarizador polariza coisas. Ainda não tem muitas receitas, mas já é útil para automatizar Motores!
 
-<Recipe id="milite:electric_age/machine/polarizer_asbl" />
+<Recipe id="milite:processing_table/electric_polarizer" />
 
 A primeira máquina que você vai querer fabricar em grande quantidade! O Montador permite automatizar quase todas as receitas, até 3 por Montador se usar bloqueio de slots.
 
-<Recipe id="milite:electric_age/machine/assembler_asbl" />
+<Recipe id="milite:processing_table/electric_assembler" />
 
 Recomendamos fortemente que você automatize Carcaça de Máquina, Circuitos Analógicos, Motores, Pistões, Braços Robóticos e Esteiras Transportadoras usando Montadores o quanto antes — isso tornará a fabricação de Máquinas Elétricas praticamente grátis!
 

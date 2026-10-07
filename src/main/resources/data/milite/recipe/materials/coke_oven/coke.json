@@ -1,6 +1,6 @@
 {
   "type" : "milite:coke_oven",
-  "eu" : 2,
+  "energy" : 2,
   "duration" : 600,
   "item_inputs" : {
     "item" : "minecraft:coal",

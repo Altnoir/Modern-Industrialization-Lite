@@ -1,6 +1,6 @@
 {
   "type": "milite:centrifuge",
-  "eu": 32,
+  "energy": 32,
   "duration": 2000,
 
   "fluid_inputs": {

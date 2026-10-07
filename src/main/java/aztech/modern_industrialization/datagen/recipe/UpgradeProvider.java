@@ -25,17 +25,22 @@
 
 package aztech.modern_industrialization.datagen.recipe;
 
-import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
-import aztech.modern_industrialization.recipe.json.ShapelessRecipeBuilder;
-import java.util.List;
-import java.util.Set;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.world.item.Item;
 
+import java.util.List;
+
+/**
+ * Recipes that turn one tier of gear into the next.
+ *
+ * <p>
+ * This used to also generate the steel upgrade conversions, where a bronze machine plus an upgrade item became the steel
+ * machine. Machines exist at every level on their own now, so those recipes are gone and only the quantum armour
+ * conversions remain.
+ */
 public class UpgradeProvider extends MIRecipesProvider {
     public UpgradeProvider(PackOutput packOutput) {
         super(packOutput);
@@ -43,43 +48,18 @@ public class UpgradeProvider extends MIRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
-        buildSteelUpgrades(consumer);
-        buildQuantumUpgrades(consumer);
-    }
-
-    private static final String[] STEEL_UPGRADE_MACHINES = { "compressor", "macerator", "cutting_machine", "water_pump", "mixer", "furnace",
-            "boiler" };
-    private static final Set<String> STEEL_NO_UNPACKER = Set.of("furnace", "boiler");
-
-    private void buildSteelUpgrades(RecipeOutput consumer) {
-        Item upgrade = BuiltInRegistries.ITEM.get(MI.id("steel_upgrade"));
-
-        for (String machine : STEEL_UPGRADE_MACHINES) {
-            Item bronze = BuiltInRegistries.ITEM.get(MI.id("bronze_" + machine));
-            Item steel = BuiltInRegistries.ITEM.get(MI.id("steel_" + machine));
-
-            var recipe = ShapelessRecipeBuilder.shapeless(steel)
-                    .requires(bronze)
-                    .requires(upgrade);
-            recipe.offerTo(consumer, "upgrade/craft/steel/" + machine);
-
-            var recipePacker = new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100).addItemInput(bronze, 1)
-                    .addItemInput(upgrade, 1).addItemOutput(steel, 1);
-            recipePacker.offerTo(consumer, "upgrade/packer/steel/" + machine);
-
-            if (!STEEL_NO_UNPACKER.contains(machine)) {
-                var recipeUnpacker = new MachineRecipeBuilder(MIMachineRecipeTypes.UNPACKER, 2, 100).addItemOutput(bronze, 1)
-                        .addItemOutput(upgrade, 1).addItemInput(steel, 1);
-                recipeUnpacker.offerTo(consumer, "upgrade/unpacker/steel/" + machine);
-            }
-        }
+        buildQuantumArmour(consumer);
     }
 
     private static final List<String> QUANTUM_ITEMS = List.of("helmet", "chestplate", "leggings", "boots", "sword");
 
-    private void buildQuantumUpgrades(RecipeOutput consumer) {
+    /**
+     * Quantum armour is the top of the armour ladder, so it is only craftable once an iridium packer exists.
+     */
+    private void buildQuantumArmour(RecipeOutput consumer) {
         for (var itemType : QUANTUM_ITEMS) {
             var packerRecipe = new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 1_000_000, 200)
+                    .level(MachineLevel.IRIDIUM)
                     .addItemInput("minecraft:netherite_" + itemType, 1)
                     .addItemInput("milite:quantum_upgrade", 1)
                     .addItemOutput("milite:quantum_" + itemType, 1);

@@ -1,6 +1,7 @@
 {
   "type": "milite:blast_furnace",
-  "eu": 128,
+  "energy": 128,
+  "level" : "stainless_steel",
   "duration": 400,
   "item_inputs": {
     "tag": "c:raw_materials/titanium",

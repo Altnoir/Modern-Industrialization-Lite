@@ -49,6 +49,7 @@ public final class MIStartupConfig {
     public final ModConfigSpec.BooleanValue debugCommands;
     public final ModConfigSpec.IntValue maxDistillationTowerHeight;
     public final ModConfigSpec.BooleanValue defaultIndustrialistTrades;
+    public final ModConfigSpec.BooleanValue validateRecipeLevels;
 
     private MIStartupConfig(MIConfigBuilder builder) {
         builder.pushSection("compat", "Mod Compatibility");
@@ -96,5 +97,14 @@ public final class MIStartupConfig {
                 "Enable the default trades from the Industrialist villager provided by MI.",
                 "Disable this to provide your own set of trades.")
                 .define("defaultIndustrialistTrades", true);
+
+        builder.pushSection("debug", "Debugging");
+        this.validateRecipeLevels = builder.start("validateRecipeLevels",
+                "Validate recipe levels",
+                "On datapack load, check every machine recipe against the levels the machines of its type can reach, and log the ones nothing can craft.",
+                "This only ever logs a warning, it never changes or removes a recipe. Turn it off if the checks get in the way.")
+                .gameRestart()
+                .define("validateRecipeLevels", !FMLEnvironment.production);
+        builder.popSection();
     }
 }

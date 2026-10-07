@@ -1,6 +1,6 @@
 {
-  "type" : "milite:blast_furnace",
-  "eu" : 2,
+  "type" : "milite:steam_blast_furnace",
+  "energy" : 2,
   "duration" : 600,
   "item_inputs" : {
     "item" : "milite:uncooked_steel_dust",

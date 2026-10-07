@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:fire_clay_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:bronze_boiler"
+  },
+  "second": {
+    "item": "milite:bronze_furnace"
+  }
+}

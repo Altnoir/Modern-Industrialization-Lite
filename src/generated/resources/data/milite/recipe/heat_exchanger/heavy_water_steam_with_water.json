@@ -1,7 +1,7 @@
 {
   "type": "milite:heat_exchanger",
   "duration": 300,
-  "eu": 2,
+  "energy": 2,
   "fluid_inputs": [
     {
       "amount": 16000,

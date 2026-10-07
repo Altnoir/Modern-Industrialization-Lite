@@ -1,6 +1,6 @@
 {
   "type": "milite:assembler",
-  "eu": 32,
+  "energy": 32,
   "duration": 600,
   "item_inputs": [
     {

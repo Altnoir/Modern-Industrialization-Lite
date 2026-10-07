@@ -1,6 +1,6 @@
 {
   "type": "milite:fusion_reactor",
-  "eu": 16000,
+  "energy": 16000,
   "duration": 300,
   "fluid_inputs": [
     {

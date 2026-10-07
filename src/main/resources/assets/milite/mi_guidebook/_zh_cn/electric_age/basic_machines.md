@@ -29,11 +29,11 @@ item_ids:
 
 两极磁化机用于极化物品。当前配方虽不多，但已可用于自动化生产马达！
 
-<Recipe id="milite:electric_age/machine/polarizer_asbl" />
+<Recipe id="milite:processing_table/electric_polarizer" />
 
 第一台你会想要大量生产的机器！装配机允许你自动化几乎所有配方，如果使用槽位锁定功能，每台装配机最多可处理3种配方。
 
-<Recipe id="milite:electric_age/machine/assembler_asbl" />
+<Recipe id="milite:processing_table/electric_assembler" />
 
 我们强烈建议你尽快使用装配机自动化生产机器框架、模拟电路、马达、活塞、机械臂和传送带，这将使电力机器的制造几乎没有成本！
 

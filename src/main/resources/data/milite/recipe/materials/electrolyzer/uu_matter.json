@@ -1,6 +1,6 @@
 {
   "type": "milite:electrolyzer",
-  "eu": 40,
+  "energy": 40,
   "duration": 2500,
   "item_inputs": [
     {

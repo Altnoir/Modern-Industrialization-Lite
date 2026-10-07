@@ -51,9 +51,6 @@ import aztech.modern_industrialization.nuclear.FluidNuclearComponent;
 import aztech.modern_industrialization.resource.GeneratedPathPackResources;
 import aztech.modern_industrialization.stats.PlayerStatisticsData;
 import aztech.modern_industrialization.test.framework.MIGameTests;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackLocationInfo;
@@ -95,6 +92,10 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Mod(MI.ID)
 public class MI {
@@ -230,7 +231,6 @@ public class MI {
 
         modBus.addListener(RegisterDataMapTypesEvent.class, event -> {
             event.register(MIDataMaps.FLUID_FUELS);
-            event.register(MIDataMaps.MACHINE_UPGRADES);
             event.register(MIDataMaps.ITEM_TOOLTIPS);
         });
 

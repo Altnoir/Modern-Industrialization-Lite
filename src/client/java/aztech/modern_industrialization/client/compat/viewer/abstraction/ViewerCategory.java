@@ -29,8 +29,6 @@ import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.storage.TransferVariant;
 import aztech.modern_industrialization.util.Rectangle;
-import java.util.List;
-import java.util.function.Consumer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -38,11 +36,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jspecify.annotations.Nullable;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @param <D> Data of each "recipe" in the category.
@@ -66,6 +69,16 @@ public abstract class ViewerCategory<D> {
         this.icon = icon;
         this.width = width;
         this.height = height;
+    }
+
+    /**
+     * @return the class of {@code RecipeHolder<D>}, for the categories whose data is a recipe holder.
+     *         There is no class literal for a parameterised type, so the two-step cast through the raw type is
+     *         unavoidable; it is confined here so that the call sites stay warning free.
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public static <D extends Recipe<?>> Class<RecipeHolder<D>> recipeHolderClass() {
+        return (Class<RecipeHolder<D>>) (Class) RecipeHolder.class;
     }
 
     public abstract void buildWorkstations(WorkstationConsumer consumer);

@@ -1,6 +1,6 @@
 {
   "type": "milite:mixer",
-  "eu": 32,
+  "energy": 32,
   "duration": 1250,
   "item_inputs": {
     "item": "minecraft:stone",

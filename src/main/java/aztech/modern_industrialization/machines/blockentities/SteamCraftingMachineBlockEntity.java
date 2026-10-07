@@ -32,23 +32,25 @@ import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
 import aztech.modern_industrialization.machines.guicomponents.GunpowderOverclockGui;
 import aztech.modern_industrialization.machines.guicomponents.ProgressBar;
 import aztech.modern_industrialization.machines.helper.SteamHelper;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.models.MachineModelClientData;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.Simulation;
-import java.util.List;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 
+import java.util.List;
+
 public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity {
     private final OverclockComponent overclockComponent;
 
     public SteamCraftingMachineBlockEntity(BEP bep, MachineRecipeType recipeType, MachineInventoryComponent inventory, MachineGuiParameters guiParams,
             ProgressBar.Params progressBarParams, MachineTier tier, List<OverclockComponent.Catalyst> overclockCatalysts) {
-        super(bep, recipeType, inventory, guiParams, progressBarParams, tier);
+        super(bep, recipeType, inventory, guiParams, progressBarParams, tier, MachineLevel.of(tier));
         this.overclockComponent = new OverclockComponent(overclockCatalysts);
 
         GunpowderOverclockGui.Params gunpowderOverclockGuiParams = new GunpowderOverclockGui.Params(progressBarParams.renderX(),

@@ -1,6 +1,6 @@
 {
-  "type" : "milite:blast_furnace",
-  "eu" : 4,
+  "type" : "milite:steam_blast_furnace",
+  "energy" : 4,
   "duration" : 300,
   "item_inputs" : {
     "tag" : "c:dusts/soldering_alloy",

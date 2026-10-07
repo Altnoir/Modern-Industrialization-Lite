@@ -26,19 +26,24 @@
 package aztech.modern_industrialization.test.framework;
 
 import aztech.modern_industrialization.MI;
+import aztech.modern_industrialization.test.AssemblerTests;
+import aztech.modern_industrialization.test.BlastFurnaceTests;
 import aztech.modern_industrialization.test.GeneratorTests;
 import aztech.modern_industrialization.test.MultiblockTests;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.StructureUtils;
 import net.minecraft.gametest.framework.TestFunction;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public final class MIGameTests {
     private MIGameTests() {}
 
     private static final List<Class<?>> TEST_CLASSES = List.of(
+            AssemblerTests.class,
+            BlastFurnaceTests.class,
             GeneratorTests.class,
             MultiblockTests.class);
 

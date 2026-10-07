@@ -1,6 +1,6 @@
 {
   "type": "milite:vacuum_freezer",
-  "eu": 2,
+  "energy": 2,
   "duration": 2400,
   "fluid_inputs": {
     "fluid": "minecraft:lava",

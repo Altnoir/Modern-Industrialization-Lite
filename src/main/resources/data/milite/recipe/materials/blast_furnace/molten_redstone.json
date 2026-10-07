@@ -1,6 +1,6 @@
 {
-  "type": "milite:blast_furnace",
-  "eu": 4,
+  "type": "milite:steam_blast_furnace",
+  "energy": 4,
   "duration": 100,
   "item_inputs": {
     "item": "minecraft:redstone",

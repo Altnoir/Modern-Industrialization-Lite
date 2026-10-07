@@ -34,9 +34,6 @@ import aztech.modern_industrialization.machines.multiblocks.HatchBlockEntity;
 import aztech.modern_industrialization.machines.multiblocks.ShapeMatcher;
 import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
 import aztech.modern_industrialization.util.Simulation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -44,6 +41,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import org.jspecify.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public abstract class AbstractElectricCraftingMultiblockBlockEntity extends AbstractCraftingMultiblockBlockEntity
         implements EnergyListComponentHolder, CrafterComponent.Behavior {
@@ -84,9 +85,6 @@ public abstract class AbstractElectricCraftingMultiblockBlockEntity extends Abst
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
         var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = components.mapOrDefault(UpgradeComponent.class, upgrade -> upgrade.onUse(this, player, hand), result);
-        }
         if (!result.consumesAction()) {
             result = redstoneControl.onUse(this, player, hand);
         }

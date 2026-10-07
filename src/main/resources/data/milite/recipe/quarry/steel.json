@@ -1,6 +1,6 @@
 {
   "type": "milite:quarry",
-  "eu": 12,
+  "energy": 12,
   "duration": 600,
   "item_inputs": {
     "item": "milite:steel_drill",

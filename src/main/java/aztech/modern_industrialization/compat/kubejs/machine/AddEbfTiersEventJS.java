@@ -26,9 +26,11 @@
 package aztech.modern_industrialization.compat.kubejs.machine;
 
 import aztech.modern_industrialization.machines.blockentities.multiblocks.ElectricBlastFurnaceBlockEntity;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import dev.latvian.mods.kubejs.event.KubeEvent;
-import java.util.function.Consumer;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.function.Consumer;
 
 public class AddEbfTiersEventJS implements KubeEvent {
     private final Consumer<ElectricBlastFurnaceBlockEntity.Tier> tierConsumer;
@@ -37,7 +39,19 @@ public class AddEbfTiersEventJS implements KubeEvent {
         this.tierConsumer = tierConsumer;
     }
 
-    public void add(ResourceLocation coilBlockId, long maxBaseEu, String englishName) {
-        tierConsumer.accept(new ElectricBlastFurnaceBlockEntity.Tier(coilBlockId, maxBaseEu, englishName));
+    /**
+     * Adds one more electric blast furnace. The coil is what the furnace is built around, so a new furnace always
+     * comes with its own coil and its own block.
+     *
+     * @param id          the block id of the new furnace
+     * @param englishName its name, which is also the name of its recipe category
+     * @param coilBlockId the coil its structure is built with
+     * @param maxBaseRF   the energy per tick the coil lets the furnace draw
+     * @param level       the machine level this coil grants, as one of the {@link MachineLevel} names such as
+     *                    {@code "titanium"}
+     */
+    public void add(String id, String englishName, ResourceLocation coilBlockId, long maxBaseRF, String level) {
+        tierConsumer.accept(new ElectricBlastFurnaceBlockEntity.Tier(id, englishName, coilBlockId, maxBaseRF,
+                MachineLevel.byName(level)));
     }
 }

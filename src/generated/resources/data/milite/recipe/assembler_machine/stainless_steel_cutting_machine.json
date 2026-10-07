@@ -1,0 +1,21 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:invar_rotary_blade"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_cutting_machine"
+    }
+  ]
+}

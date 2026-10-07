@@ -1,6 +1,6 @@
 {
   "type": "milite:chemical_reactor",
-  "eu": 10,
+  "energy": 10,
   "duration": 240,
   "fluid_inputs": [
     {

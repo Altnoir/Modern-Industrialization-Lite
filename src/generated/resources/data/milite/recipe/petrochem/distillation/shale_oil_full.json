@@ -1,7 +1,7 @@
 {
   "type": "milite:distillation_tower",
   "duration": 200,
-  "eu": 30,
+  "energy": 30,
   "fluid_inputs": [
     {
       "amount": 1000,
@@ -21,5 +21,6 @@
       "amount": 500,
       "fluid": "milite:sulfuric_naphtha"
     }
-  ]
+  ],
+  "level": "electric"
 }

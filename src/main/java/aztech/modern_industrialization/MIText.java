@@ -25,9 +25,10 @@
 
 package aztech.modern_industrialization;
 
-import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+
+import java.util.List;
 
 public enum MIText {
     ModernIndustrialization("Modern Industrialization"),
@@ -46,7 +47,6 @@ public enum MIText {
     AcceptsRedstoneControlModule("Accepts a redstone control module."),
     AcceptsSteam("Accepts Steam (1 mb = 1 RF)"),
     AcceptsSteamToo("Also Accepts Steam (1 mb = 1 RF)"),
-    AcceptsUpgrades("Add upgrades to increase max processing RF/t."),
     Activated("Activated"),
     AttributeInfiniteDamage("Infinite Damage"),
     AttributeQuantumArmor("Quantum Armor"),
@@ -101,7 +101,7 @@ public enum MIText {
     DirectHeatByDesintegration("Direct Heat for one capture"),
     Disabled("Disabled"),
     DurabilityCost("Durability Cost: %d"),
-    EbfMaxEu("Allows EBF recipes up to %d RF/t"),
+    EbfMaxRF("Allows EBF recipes up to %d RF/t"),
     Efficiency("Efficiency"),
     EfficiencyDefaultMessage("No active recipe to overclock"),
     EfficiencyEu("Current consumption: %d RF/t"),
@@ -169,8 +169,6 @@ public enum MIText {
     MachineCasingVoltage("Allows machines to accept %s power"),
     MachineMultipleRecipes1("The inputs match more than one possible recipe."),
     MachineMultipleRecipes2("Lock all output slots with at least one locked to the desired output."),
-    MachineUpgrade("Electric Machine Upgrade: Max Overclock +%s"),
-    MachineUpgradeStack("Total Stack Upgrade +%s"),
     MaxEuProduction("Can produce up to %s"),
     MaxEuProductionSteam("Can produce up to %s worth of %s"),
     MaxTemp("Max Temperature: %d °C"),

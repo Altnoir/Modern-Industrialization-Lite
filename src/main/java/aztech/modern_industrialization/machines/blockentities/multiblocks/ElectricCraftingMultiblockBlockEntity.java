@@ -28,8 +28,10 @@ package aztech.modern_industrialization.machines.blockentities.multiblocks;
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.api.machine.holder.EnergyListComponentHolder;
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.components.*;
+import aztech.modern_industrialization.machines.components.OrientationComponent;
+import aztech.modern_industrialization.machines.components.OverdriveComponent;
 import aztech.modern_industrialization.machines.guicomponents.SlotPanel;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
@@ -38,14 +40,18 @@ import net.minecraft.resources.ResourceLocation;
 public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     public ElectricCraftingMultiblockBlockEntity(BEP bep, ResourceLocation blockId, ShapeTemplate shapeTemplate,
             MachineRecipeType recipeType) {
+        this(bep, blockId, shapeTemplate, recipeType, MachineLevel.STAINLESS_STEEL);
+    }
+
+    public ElectricCraftingMultiblockBlockEntity(BEP bep, ResourceLocation blockId, ShapeTemplate shapeTemplate,
+            MachineRecipeType recipeType, MachineLevel level) {
         super(bep, blockId, new OrientationComponent.Params(false, false, false), new ShapeTemplate[] { shapeTemplate });
         this.recipeType = recipeType;
-        this.upgrades = new UpgradeComponent();
+        this.machineLevel = level;
         this.overdrive = new OverdriveComponent();
-        this.registerComponents(upgrades, overdrive);
+        this.registerComponents(overdrive);
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl)
-                .withUpgrades(upgrades)
                 .withOverdrive(overdrive));
     }
 
@@ -53,9 +59,19 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
         this(bep, MI.id(name), shapeTemplate, recipeType);
     }
 
+    public ElectricCraftingMultiblockBlockEntity(BEP bep, String name, ShapeTemplate shapeTemplate, MachineRecipeType recipeType,
+            MachineLevel level) {
+        this(bep, MI.id(name), shapeTemplate, recipeType, level);
+    }
+
     private final MachineRecipeType recipeType;
-    private final UpgradeComponent upgrades;
+    private final MachineLevel machineLevel;
     private final OverdriveComponent overdrive;
+
+    @Override
+    public MachineLevel getMachineLevel() {
+        return machineLevel;
+    }
 
     @Override
     public MachineRecipeType recipeType() {
@@ -69,7 +85,7 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
 
     @Override
     public long getMaxRecipeEu() {
-        return MachineTier.MULTIBLOCK.getMaxEu() + upgrades.getAddMaxEUPerTick();
+        return MachineTier.MULTIBLOCK.getMaxEu();
     }
 
     @Override

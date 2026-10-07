@@ -30,9 +30,6 @@ import aztech.modern_industrialization.MIAdvancementTriggers;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.datagen.translation.TranslationProvider;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
@@ -47,6 +44,10 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jspecify.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public record MIAdvancementsProvider(TranslationProvider translations) implements AdvancementProvider.AdvancementGenerator {
     private static Criterion<?> createSimpleCriterion(Supplier<PlayerTrigger> trigger) {
@@ -149,19 +150,6 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var steelMachineCasing = createBasic(consumer, "steel_machine_casing", steamBlastFurnace, AdvancementType.GOAL, "Cooked Uncooked Steel!", "Use a Steam Blast Furnace to produce Steel and craft a Steel Machine Casing", existingFileHelper);
         // @formatter:on
 
-        var usedSteelUpgrade = newBuilder("used_steel_upgrade")
-                .display(MIItem.STEEL_UPGRADE,
-                        "Upgrade Like a Boss",
-                        "Right-click a Steel Upgrade on a bronze machine.",
-                        null,
-                        AdvancementType.TASK,
-                        true,
-                        true,
-                        false)
-                .parent(steelMachineCasing)
-                .addCriterion("used_steel_upgrade", createSimpleCriterion(MIAdvancementTriggers.USED_STEEL_UPGRADE))
-                .save(consumer, existingFileHelper);
-
         // @formatter:off
         var steelWiremill = createBasic(consumer, "steel_wiremill", steelMachineCasing, "Neither a Wire nor a Mill", "Craft a Steel Wiremill", existingFileHelper);
         var steamQuarry = createBasic(consumer, "steam_quarry", steelMachineCasing, AdvancementType.GOAL, "From Minecraft to Craft", "Craft a Steam Quarry and say goodbye to mining", existingFileHelper);
@@ -171,18 +159,18 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var capacitor = createBasic(consumer, "capacitor", steelWiremill, "The C in RLC", "Craft a Capacitor", existingFileHelper);
         var analogCircuit = createBasic(consumer, "analog_circuit", resistor, AdvancementType.GOAL, "RLC Circuits", "Craft an Analog Circuit and start the Electric Age", existingFileHelper);
         var lvSteamTurbine = createBasic(consumer, "lv_steam_turbine", analogCircuit, "Better Than Solar Panels", "Craft a Steam Turbine", existingFileHelper);
-        var polarizer = createBasic(consumer, "polarizer", lvSteamTurbine, "One Recipe (+2) To Rule Them All", "Craft a Polarizer", existingFileHelper);
+        var polarizer = createBasic(consumer, "electric_polarizer", lvSteamTurbine, "One Recipe (+2) To Rule Them All", "Craft a Polarizer", existingFileHelper);
         var largeSteamBoiler = createBasic(consumer, "large_steam_boiler", analogCircuit, "Kiss Your Fuel Goodbye!", "Craft a Large Steam Boiler", existingFileHelper);
-        var assembler = createBasic(consumer, "assembler", analogCircuit, AdvancementType.GOAL, "Avengers, Assemble!", "Craft an Assembler", existingFileHelper);
+        var assembler = createBasic(consumer, "electric_assembler", analogCircuit, AdvancementType.GOAL, "Avengers, Assemble!", "Craft an Assembler", existingFileHelper);
         var electricBlastFurnace = createBasic(consumer, "electric_blast_furnace", lvSteamTurbine, AdvancementType.GOAL, "Electric Best Friend", "Craft an Electric Blast Furnace to start producing Aluminum", existingFileHelper);
         var electronicCircuit = createBasic(consumer, "electronic_circuit", electricBlastFurnace, "The Power of Silicon", "Craft a Electronic Circuit", existingFileHelper);
         var dieselJetpack = createBasic(consumer, "diesel_jetpack", electricBlastFurnace, AdvancementType.CHALLENGE, "Ely... We Meant Jetpack!", "Craft a Diesel Jetpack", existingFileHelper);
         var dieselChainsaw = createBasic(consumer, "diesel_chainsaw", electricBlastFurnace, AdvancementType.CHALLENGE, "The Texas Chain Saw Massacre", "Craft a Diesel Chainsaw", existingFileHelper);
         var dieselMiningDrill = createBasic(consumer, "diesel_mining_drill", electricBlastFurnace, AdvancementType.CHALLENGE, "Through The Walls Of Ba Sing Se", "Craft a Diesel Mining Drill", existingFileHelper);
-        var centrifuge = createBasic(consumer, "centrifuge", electronicCircuit, "Actually It's The Centripetal Force", "Craft a Centrifuge", existingFileHelper);
-        var electrolyzer = createBasic(consumer, "electrolyzer", electronicCircuit, "It's Got What Plants Crave", "Craft an Electrolyzer", existingFileHelper);
-        var chemicalReactor = createBasic(consumer, "chemical_reactor", electronicCircuit, "Walter White Approves", "Craft a Chemical Reactor", existingFileHelper);
-        var distillery = createBasic(consumer, "distillery", electronicCircuit, "Al Capone Approves", "Craft a Distillery", existingFileHelper);
+        var centrifuge = createBasic(consumer, "electric_centrifuge", electronicCircuit, "Actually It's The Centripetal Force", "Craft a Centrifuge", existingFileHelper);
+        var electrolyzer = createBasic(consumer, "electric_electrolyzer", electronicCircuit, "It's Got What Plants Crave", "Craft an Electrolyzer", existingFileHelper);
+        var chemicalReactor = createBasic(consumer, "electric_chemical_reactor", electronicCircuit, "Walter White Approves", "Craft a Chemical Reactor", existingFileHelper);
+        var distillery = createBasic(consumer, "electric_distillery", electronicCircuit, "Al Capone Approves", "Craft a Distillery", existingFileHelper);
         var electricQuarry = createBasic(consumer, "electric_quarry", electronicCircuit, AdvancementType.CHALLENGE, "Resource Goes BRRRRRR!!!", "Craft an Electric Quarry", existingFileHelper);
         var oilDrillingRig = createBasic(consumer, "oil_drilling_rig", electronicCircuit, AdvancementType.GOAL, "Bringing Freedom To Your Country", "Craft an Oil Drilling Rig", existingFileHelper);
         var vacuumFreezer = createBasic(consumer, "vacuum_freezer", electronicCircuit, AdvancementType.GOAL, "Enslaved Winter", "Craft a Vacuum Freezer", existingFileHelper);

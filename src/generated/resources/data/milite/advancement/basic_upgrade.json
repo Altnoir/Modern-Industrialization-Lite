@@ -1,5 +1,5 @@
 {
-  "parent": "milite:assembler",
+  "parent": "milite:electric_assembler",
   "criteria": {
     "checkInv": {
       "conditions": {

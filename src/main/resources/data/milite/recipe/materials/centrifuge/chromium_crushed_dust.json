@@ -1,6 +1,6 @@
 {
   "type": "milite:centrifuge",
-  "eu": 16,
+  "energy": 16,
   "duration": 2400,
   "item_inputs" :     {
     "tag": "c:dusts/ruby",

@@ -1,6 +1,6 @@
 {
   "type": "milite:pressurizer",
-  "eu": 8,
+  "energy": 8,
   "duration" : 200,
 
   "item_inputs": {

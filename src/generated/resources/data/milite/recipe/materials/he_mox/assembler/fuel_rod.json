@@ -1,7 +1,7 @@
 {
   "type": "milite:assembler",
   "duration": 200,
-  "eu": 16,
+  "energy": 16,
   "fluid_inputs": [
     {
       "amount": 500,
@@ -35,5 +35,6 @@
       "amount": 1,
       "item": "milite:he_mox_fuel_rod"
     }
-  ]
+  ],
+  "level": "electric"
 }

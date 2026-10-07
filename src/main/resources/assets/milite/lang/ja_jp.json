@@ -1443,7 +1443,7 @@
   "text.milite.DirectHeatByDesintegration": "捕獲一回あたりの直接熱",
   "text.milite.Disabled": "無効",
   "text.milite.DurabilityCost": "耐久コスト：%d",
-  "text.milite.EbfMaxEu": "%d RF/tまでのEBFレシピを許可",
+  "text.milite.EbfMaxRF": "%d RF/tまでのEBFレシピを許可",
   "text.milite.Efficiency": "効率",
   "text.milite.EfficiencyDefaultMessage": "加速レシピなし",
   "text.milite.EfficiencyEu": "消費電力：%d RF/t",

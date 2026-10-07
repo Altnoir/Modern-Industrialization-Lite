@@ -1,6 +1,6 @@
 {
   "type": "milite:quarry",
-  "eu": 128,
+  "energy": 128,
   "duration": 600,
   "item_inputs": {
     "item": "milite:titanium_drill",

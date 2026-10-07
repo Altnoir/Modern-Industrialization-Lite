@@ -1,6 +1,6 @@
 {
   "type": "milite:chemical_reactor",
-  "eu": 4,
+  "energy": 4,
   "duration": 400,
   "item_inputs": [
     {

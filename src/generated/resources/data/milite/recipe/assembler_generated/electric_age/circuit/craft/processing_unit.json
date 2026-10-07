@@ -1,7 +1,7 @@
 {
   "type": "milite:assembler",
   "duration": 200,
-  "eu": 8,
+  "energy": 8,
   "item_inputs": [
     {
       "amount": 4,
@@ -29,5 +29,6 @@
       "amount": 1,
       "item": "milite:processing_unit"
     }
-  ]
+  ],
+  "level": "electric"
 }

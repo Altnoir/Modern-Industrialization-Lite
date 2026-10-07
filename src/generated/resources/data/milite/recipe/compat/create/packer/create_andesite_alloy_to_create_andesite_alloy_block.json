@@ -7,7 +7,7 @@
   ],
   "type": "milite:packer",
   "duration": 200,
-  "eu": 2,
+  "energy": 2,
   "item_inputs": [
     {
       "amount": 9,

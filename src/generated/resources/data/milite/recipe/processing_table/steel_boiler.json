@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:bronze_boiler"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:steel_boiler"
+  },
+  "second": {
+    "item": "minecraft:furnace"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "type": "milite:vacuum_freezer",
-  "eu": 128,
+  "energy": 128,
   "duration": 300,
   "fluid_inputs": {
     "fluid": "milite:styrene_butadiene_rubber",

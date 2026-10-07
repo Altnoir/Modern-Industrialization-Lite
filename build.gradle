@@ -332,6 +332,9 @@ jar {
     from sourceSets.client.output
 }
 
+
+import me.modmuss50.mpp.ReleaseType
+
 import java.util.regex.Matcher
 
 abstract class GeneratePackageInfos extends DefaultTask {
@@ -339,23 +342,38 @@ abstract class GeneratePackageInfos extends DefaultTask {
     @PathSensitive(PathSensitivity.RELATIVE)
     abstract ConfigurableFileCollection getFiles();
 
+    // Declared as an input so the task can read it without touching the project at execution time, which the
+    // configuration cache forbids.
+    @InputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
+    abstract RegularFileProperty getLicenseFile();
+
     @TaskAction
     void generatePackageInfos() {
+        // The generated file has to match what the license and formatting checks expect: the canonical header from
+        // LICENSE wrapped in a block comment, then the annotation and package, then a trailing newline and nothing else.
+        def licenseLines = licenseFile.get().asFile.text.replace('\r\n', '\n').stripTrailing().split('\n', -1)
+        def headerLines = ['/*']
+        licenseLines.each { line -> headerLines.add(line ? ' * ' + line : ' *') }
+        headerLines.add(' */')
+        def header = headerLines.join('\n')
+        // The misc workflow owns line endings, so write LF and let it normalise to the repository convention.
+        def nl = '\n'
+
         getFiles().each { javaFile ->
             def packageInfoFile = new File(javaFile.parent, 'package-info.java')
             if (!packageInfoFile.exists()) {
-                def pkgName = javaFile.toString().replaceAll(Matcher.quoteReplacement(File.separator), '/')
-                pkgName = pkgName.substring(pkgName.indexOf('aztech/milite/'), pkgName.lastIndexOf('/'))
+                // Derive the package name from the source root rather than from a hardcoded path segment, so that
+                // renaming the mod does not break this task.
+                def normalised = javaFile.toString().replaceAll(Matcher.quoteReplacement(File.separator), '/')
+                def sourceRoot = normalised.indexOf('/java/')
+                def pkgName = normalised.substring(sourceRoot + '/java/'.length(), normalised.lastIndexOf('/'))
                 pkgName = pkgName.replaceAll('/', '.')
 
-                def pkgInfoText = """
-                    |@NullMarked
-                    |package $pkgName;
-                    |
-                    |import org.jspecify.annotations.NullMarked;
-                """.stripMargin().trim()
-
-                packageInfoFile.text = pkgInfoText
+                packageInfoFile.text = header + nl + nl +
+                        '@NullMarked' + nl +
+                        'package ' + pkgName + ';' + nl + nl +
+                        'import org.jspecify.annotations.NullMarked;' + nl
             }
         }
     }
@@ -363,6 +381,7 @@ abstract class GeneratePackageInfos extends DefaultTask {
 final generatePackageInfos = tasks.register('generatePackageInfos', GeneratePackageInfos) {
     it.files.from fileTree("src/client/java")
     it.files.from fileTree("src/main/java")
+    it.licenseFile.set(layout.projectDirectory.file('LICENSE'))
 }
 
 immaculate {
@@ -459,8 +478,6 @@ if (version.toLowerCase().contains("alpha")) {
     releaseChannel = "beta"
     changelogContents = "This is a beta release. It is expected to be mostly stable, but in any case please report any issue you may find.\n\n" + changelogContents
 }
-
-import me.modmuss50.mpp.ReleaseType
 
 publishMods {
     file = tasks.named("jar").flatMap { it.archiveFile }

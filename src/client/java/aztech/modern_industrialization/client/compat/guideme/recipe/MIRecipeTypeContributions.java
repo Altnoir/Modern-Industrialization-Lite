@@ -40,15 +40,10 @@ import aztech.modern_industrialization.items.ForgeTool;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
-import aztech.modern_industrialization.util.TextHelper;
 import guideme.compiler.tags.RecipeTypeMappingSupplier;
 import guideme.document.DefaultStyles;
 import guideme.document.LytSize;
-import guideme.document.block.AlignItems;
-import guideme.document.block.LytBlock;
-import guideme.document.block.LytGuiSprite;
-import guideme.document.block.LytHBox;
-import guideme.document.block.LytParagraph;
+import guideme.document.block.*;
 import guideme.document.block.recipes.LytStandardRecipeBox;
 import guideme.render.GuiAssets;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -150,7 +145,7 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
 
         var euCost = new LytParagraph();
         euCost.setStyle(DefaultStyles.CRAFTING_RECIPE_TYPE);
-        euCost.appendText(TextHelper.getEuTextTick(recipe.eu).getString());
+        euCost.appendText(recipe.level.getDisplayName().getString());
         header.append(euCost);
 
         boolean includeRecipeConditionDisplay = params.includeRecipeConditionDisplay(recipe);

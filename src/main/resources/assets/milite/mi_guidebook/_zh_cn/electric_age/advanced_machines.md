@@ -22,19 +22,19 @@ item_ids:
 
 离心机通过高速旋转来分离物品。你可以使用它来制造碳粉，为钢和硅解锁更好的配方。
 
-<Recipe id="milite:electric_age/machine/centrifuge_asbl" />
+<Recipe id="milite:processing_table/electric_centrifuge" />
 
 化学反应釜可以使物品和流体发生反应。
 
-<Recipe id="milite:electric_age/machine/chemical_reactor_asbl" />
+<Recipe id="milite:processing_table/electric_chemical_reactor" />
 
 蒸馏室能将各类流体转化为更轻质的组分，这在石油加工过程中极为实用。
 
-<Recipe id="milite:electric_age/machine/distillery_asbl" />
+<Recipe id="milite:processing_table/electric_distillery" />
 
 电解机能够利用强电流将材料分解为不同组分。你可以电解铝土矿粉以获得铝粉，随后即可直接在电力高炉中将其熔炼成铝锭。
 
-<Recipe id="milite:electric_age/machine/electrolyzer_asbl" />
+<Recipe id="milite:processing_table/electric_electrolyzer" />
 
 可配置储罐是可配置箱子的流体版本。
 

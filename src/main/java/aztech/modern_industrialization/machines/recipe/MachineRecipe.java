@@ -25,6 +25,7 @@
 
 package aztech.modern_industrialization.machines.recipe;
 
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
 import aztech.modern_industrialization.util.DefaultedListWrapper;
@@ -32,11 +33,7 @@ import aztech.modern_industrialization.util.MIExtraCodecs;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentPatch;
@@ -48,11 +45,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.util.NeoForgeExtraCodecs;
@@ -60,22 +53,30 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 public class MachineRecipe implements Recipe<RecipeInput> {
     public static MapCodec<MachineRecipe> codec(MachineRecipeType type) {
         return RecordCodecBuilder.mapCodec(
                 g -> g
                         .group(
-                                ExtraCodecs.POSITIVE_INT.fieldOf("eu").forGetter(recipe -> recipe.eu),
+                                ExtraCodecs.POSITIVE_INT.fieldOf("energy").forGetter(recipe -> recipe.energy),
                                 ExtraCodecs.POSITIVE_INT.fieldOf("duration").forGetter(recipe -> recipe.duration),
+                                MachineLevel.CODEC.optionalFieldOf("level", MachineLevel.BRONZE).forGetter(recipe -> recipe.level),
                                 MIExtraCodecs.maybeList(ItemInput.CODEC, "item_inputs").forGetter(recipe -> recipe.itemInputs),
                                 MIExtraCodecs.maybeList(FluidInput.CODEC, "fluid_inputs").forGetter(recipe -> recipe.fluidInputs),
                                 MIExtraCodecs.maybeList(ItemOutput.CODEC, "item_outputs").forGetter(recipe -> recipe.itemOutputs),
                                 MIExtraCodecs.maybeList(FluidOutput.CODEC, "fluid_outputs").forGetter(recipe -> recipe.fluidOutputs),
                                 MIExtraCodecs.maybeList(MachineProcessCondition.CODEC, "process_conditions").forGetter(recipe -> recipe.conditions))
-                        .apply(g, (eu, duration, itemInputs, fluidInputs, itemOutputs, fluidOutputs, conditions) -> {
+                        .apply(g, (energy, duration, level, itemInputs, fluidInputs, itemOutputs, fluidOutputs, conditions) -> {
                             var ret = new MachineRecipe(type);
-                            ret.eu = eu;
+                            ret.energy = energy;
                             ret.duration = duration;
+                            ret.level = level;
                             ret.itemInputs = itemInputs;
                             ret.fluidInputs = fluidInputs;
                             ret.itemOutputs = itemOutputs;
@@ -85,12 +86,23 @@ public class MachineRecipe implements Recipe<RecipeInput> {
                         }));
     }
 
+    /**
+     * The two scalar fields that are not a list, packed into one so that the stream codec stays within the seven
+     * fields {@code NeoForgeStreamCodecs.composite} supports.
+     */
+    private record Timing(int duration, MachineLevel level) {
+        static final StreamCodec<ByteBuf, Timing> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.VAR_INT, Timing::duration,
+                ByteBufCodecs.fromCodec(MachineLevel.CODEC), Timing::level,
+                Timing::new);
+    }
+
     public static StreamCodec<RegistryFriendlyByteBuf, MachineRecipe> streamCodec(MachineRecipeType type) {
         return NeoForgeStreamCodecs.composite(
                 ByteBufCodecs.VAR_INT,
-                r -> r.eu,
-                ByteBufCodecs.VAR_INT,
-                r -> r.duration,
+                r -> r.energy,
+                Timing.STREAM_CODEC,
+                r -> new Timing(r.duration, r.level),
                 ItemInput.STREAM_CODEC.apply(ByteBufCodecs.list()),
                 r -> r.itemInputs,
                 FluidInput.STREAM_CODEC.apply(ByteBufCodecs.list()),
@@ -101,10 +113,11 @@ public class MachineRecipe implements Recipe<RecipeInput> {
                 r -> r.fluidOutputs,
                 MachineProcessCondition.STREAM_CODEC.apply(ByteBufCodecs.list()),
                 r -> r.conditions,
-                (eu, duration, itemInputs, fluidInputs, itemOutputs, fluidOutputs, conditions) -> {
+                (energy, timing, itemInputs, fluidInputs, itemOutputs, fluidOutputs, conditions) -> {
                     var ret = new MachineRecipe(type);
-                    ret.eu = eu;
-                    ret.duration = duration;
+                    ret.energy = energy;
+                    ret.duration = timing.duration();
+                    ret.level = timing.level();
                     ret.itemInputs = itemInputs;
                     ret.fluidInputs = fluidInputs;
                     ret.itemOutputs = itemOutputs;
@@ -116,8 +129,9 @@ public class MachineRecipe implements Recipe<RecipeInput> {
 
     final MachineRecipeType type;
 
-    public int eu; // Also used for forge hammer damage
+    public int energy;
     public int duration;
+    public MachineLevel level = MachineLevel.BRONZE;
     public List<ItemInput> itemInputs = new ArrayList<>();
     public List<FluidInput> fluidInputs = new ArrayList<>();
     public List<ItemOutput> itemOutputs = new ArrayList<>();
@@ -129,7 +143,7 @@ public class MachineRecipe implements Recipe<RecipeInput> {
     }
 
     public long getTotalEu() {
-        return (long) eu * duration;
+        return (long) energy * duration;
     }
 
     @Override

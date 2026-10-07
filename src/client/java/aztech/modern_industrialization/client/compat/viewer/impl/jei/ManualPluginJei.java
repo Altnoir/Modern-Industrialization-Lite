@@ -29,6 +29,7 @@ import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
 import aztech.modern_industrialization.blocks.processingtable.ProcessingTableScreenHandler;
+import aztech.modern_industrialization.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.modern_industrialization.client.machines.gui.MachineScreen;
 import aztech.modern_industrialization.client.screen.MIHandledScreen;
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
@@ -51,11 +52,11 @@ public class ManualPluginJei implements IModPlugin {
     private IJeiRuntime jeiRuntime;
 
     private RecipeType<RecipeHolder<MachineRecipe>> getMachineCategory(ResourceLocation category) {
-        return RecipeType.create(category.getNamespace(), category.getPath(), (Class) RecipeHolder.class);
+        return RecipeType.create(category.getNamespace(), category.getPath(), ViewerCategory.recipeHolderClass());
     }
 
     private RecipeType<RecipeHolder<ProcessingTableRecipe>> getProcessingTableCategory() {
-        return RecipeType.create(ID.getNamespace(), "processing_table", (Class) RecipeHolder.class);
+        return RecipeType.create(ID.getNamespace(), "processing_table", ViewerCategory.recipeHolderClass());
     }
 
     @Override

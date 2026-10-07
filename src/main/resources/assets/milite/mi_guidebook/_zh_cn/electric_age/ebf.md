@@ -6,7 +6,11 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:electric_blast_furnace
+  - milite:stainless_steel_blast_furnace
+  - milite:iridium_blast_furnace
   - milite:cupronickel_coil
+  - milite:kanthal_coil
+  - milite:superconductor_coil
   - milite:lv_energy_input_hatch
   - milite:mv_energy_input_hatch
 ---
@@ -17,11 +21,15 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-电力高炉是蒸汽高炉的电动版本。除了解锁新配方外，它与其他多方块电力机器一样，默认情况下其超频上限为128RF/t。
+电力高炉是蒸汽高炉的电动版本。它一共有三种，每种对应一种线圈：电力高炉用白铜线圈搭建，不锈钢高炉用坎塔尔合金线圈搭建，铱高炉用超导线圈搭建。每种高炉运行自己等级的配方，而高级高炉还能处理所有低级高炉的配方，所以铱高炉也能做另外两种高炉的活。
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
-电力高炉由一层耐热机器外壳、两层中空的白铜线圈和另一层耐热机器外壳制成。控制器必须放在底层，且仓室需放在顶层或底层。
+<Recipe id="milite:electric_age/machine/stainless_steel_blast_furnace_asbl" />
+
+<Recipe id="milite:electric_age/machine/iridium_blast_furnace_asbl" />
+
+每种电力高炉都由一层耐热机器外壳、两层中空的对应线圈和另一层耐热机器外壳制成。控制器必须放在底层，且仓室需放在顶层或底层。一种高炉只认它对应的那种线圈，所以界面里不需要选择任何东西。
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 

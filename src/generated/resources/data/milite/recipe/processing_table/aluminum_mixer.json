@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:advanced_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_mixer"
+  },
+  "second": {
+    "item": "milite:tin_rotor"
+  }
+}

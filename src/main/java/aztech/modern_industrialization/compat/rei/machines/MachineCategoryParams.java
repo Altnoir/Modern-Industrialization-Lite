@@ -25,8 +25,6 @@
 
 package aztech.modern_industrialization.compat.rei.machines;
 
-import static aztech.modern_industrialization.MITooltips.EU_PER_TICK_PARSER;
-
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.MIText;
@@ -37,15 +35,18 @@ import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.TextHelper;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+import static aztech.modern_industrialization.MITooltips.EU_PER_TICK_PARSER;
 
 public class MachineCategoryParams {
     public final String englishName;
@@ -98,11 +99,11 @@ public class MachineCategoryParams {
     }
 
     private boolean steelHatchRequired(MachineRecipe recipe) {
-        return steamMode.steam && isMultiblock && recipe.eu > MachineTier.BRONZE.getMaxEu();
+        return steamMode.steam && isMultiblock && recipe.energy > MachineTier.BRONZE.getMaxEu();
     }
 
     private int upgradeEuRequired(MachineRecipe recipe) {
-        int upgradeEuRequired = recipe.eu - (isMultiblock ? MachineTier.MULTIBLOCK : MachineTier.LV).getMaxEu();
+        int upgradeEuRequired = recipe.energy - (isMultiblock ? MachineTier.MULTIBLOCK : MachineTier.LV).getMaxEu();
         // Ugly fusion reactor workaround
         if (upgradeEuRequired > 0 && category.getPath().equals("fusion_reactor")) {
             upgradeEuRequired = 0;
@@ -121,9 +122,6 @@ public class MachineCategoryParams {
         if (steelHatchRequired(recipe)) {
             items.add(BuiltInRegistries.ITEM.get(MI.id("steel_item_input_hatch")).getDefaultInstance());
         }
-        if (upgradeEuRequired(recipe) > 0) {
-            items.add(MIItem.BASIC_UPGRADE.stack());
-        }
         for (var condition : recipe.conditions) {
             ItemStack displayedItem = condition.icon();
             if (!displayedItem.isEmpty()) {
@@ -139,7 +137,7 @@ public class MachineCategoryParams {
     public List<Component> getRecipeTooltip(MachineRecipe recipe) {
         List<Component> lines = new ArrayList<>();
         if (steamMode != SteamMode.NEITHER) {
-            lines.add(MIText.BaseEuTotal.text(TextHelper.getEuText((long) recipe.duration * recipe.eu)));
+            lines.add(MIText.BaseEuTotal.text(TextHelper.getEuText((long) recipe.duration * recipe.energy)));
         }
         if (steamMode.steam) {
             lines.add((steamMode.electric ? MIText.AcceptsSteamToo : MIText.AcceptsSteam).text().withStyle(ChatFormatting.GRAY));

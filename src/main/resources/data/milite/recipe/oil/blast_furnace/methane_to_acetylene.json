@@ -1,6 +1,7 @@
 {
   "type": "milite:blast_furnace",
-  "eu": 32,
+  "energy": 32,
+  "level" : "electric",
   "duration": 50,
   "fluid_inputs": [
     {

@@ -25,13 +25,10 @@
 
 package aztech.modern_industrialization.materials.recipe;
 
-import static aztech.modern_industrialization.materials.part.MIParts.*;
-import static aztech.modern_industrialization.materials.property.MaterialProperty.HARDNESS;
-import static aztech.modern_industrialization.materials.property.MaterialProperty.MAIN_PART;
-
 import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.materials.MaterialBuilder;
 import aztech.modern_industrialization.materials.part.PartKeyProvider;
 import aztech.modern_industrialization.materials.recipe.builder.MIRecipeBuilder;
@@ -40,6 +37,10 @@ import aztech.modern_industrialization.materials.recipe.builder.ShapelessRecipeB
 import aztech.modern_industrialization.materials.recipe.builder.SmeltingRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
+
+import static aztech.modern_industrialization.materials.part.MIParts.*;
+import static aztech.modern_industrialization.materials.property.MaterialProperty.HARDNESS;
+import static aztech.modern_industrialization.materials.property.MaterialProperty.MAIN_PART;
 
 /**
  * Standard conversion recipes for all materials.
@@ -54,6 +55,10 @@ public final class StandardRecipes {
 
         new ShapedRecipeBuilder(ctx, BLADE, 4, "blade", "P", "P", "I").addTaggedPart('P', CURVED_PLATE).addTaggedPart('I', ROD)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
+
+        // A coil used to be built from eight cables. Cables are gone, so it is built from the wire they carried instead,
+        // which keeps the same material cost. Without this, a blast furnace could not be built at all.
+        new ShapedRecipeBuilder(ctx, COIL, 1, "coil", "xxx", "x x", "xxx").addTaggedPart('x', WIRE).exportToAssembler();
 
         new ShapelessRecipeBuilder(ctx, ORE, 1, "deepslate_to_ore").addPart(ORE_DEEPSLATE);
 
@@ -135,11 +140,16 @@ public final class StandardRecipes {
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.WIREMILL, "wire").addTaggedPartInput(PLATE, 1).addPartOutput(WIRE, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.WIREMILL, "fine_wire").addTaggedPartInput(WIRE, 1).addPartOutput(FINE_WIRE, 4);
         // EXTRA ASSEMBLER
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "rotor").addTaggedPartInput(BLADE, 4).addTaggedPartInput(RING, 1)
+        // These use the default energy of two, but the assembler only exists as an electric machine, so they still
+        // belong to the electric level and have to say so.
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "rotor").level(MachineLevel.ELECTRIC)
+                .addTaggedPartInput(BLADE, 4).addTaggedPartInput(RING, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(ROTOR, 1);
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "gear").addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "gear").level(MachineLevel.ELECTRIC)
+                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(GEAR, 2);
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "drill_head").addTaggedPartInput(PLATE, 1).addTaggedPartInput(CURVED_PLATE, 2)
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "drill_head").level(MachineLevel.ELECTRIC)
+                .addTaggedPartInput(PLATE, 1).addTaggedPartInput(CURVED_PLATE, 2)
                 .addTaggedPartInput(ROD, 1).addTaggedPartInput(GEAR, 2).addFluidInput(MIFluids.SOLDERING_ALLOY, 75)
                 .addPartOutput(DRILL_HEAD, 1);
 
@@ -159,7 +169,8 @@ public final class StandardRecipes {
         new SmeltingRecipeBuilder(ctx, ROD_MAGNETIC, ROD, 0.0f, false);
         new SmeltingRecipeBuilder(ctx, WIRE_MAGNETIC, WIRE, 0.0f, false);
 
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.VACUUM_FREEZER, "hot_ingot", 32, 250).addTaggedPartInput(HOT_INGOT, 1).addPartOutput(INGOT, 1);
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.VACUUM_FREEZER, "hot_ingot", 32, 250).level(MachineLevel.ALUMINUM)
+                .addTaggedPartInput(HOT_INGOT, 1).addPartOutput(INGOT, 1);
     }
 
     /**

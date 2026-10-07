@@ -27,10 +27,9 @@ package aztech.modern_industrialization.recipe.json;
 
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
-import java.util.HashMap;
-import java.util.Map;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +39,9 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings({ "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection", "UnusedDeclaration" })
 public class ShapedRecipeJson implements MIRecipeBuilder {
@@ -101,7 +103,16 @@ public class ShapedRecipeJson implements MIRecipeBuilder {
     }
 
     public MachineRecipeBuilder exportToAssembler() {
-        return exportToMachine(MIMachineRecipeTypes.ASSEMBLER, 8, 200, 1);
+        return exportToMachine(MIMachineRecipeTypes.ASSEMBLER, 8, 200, 1).level(MachineLevel.ELECTRIC);
+    }
+
+    /**
+     * @param level the machine level the exported recipe needs, since the machine it is exported to cannot be inferred
+     *              from the recipe itself
+     */
+    public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int eu, int duration, int division,
+            MachineLevel level) {
+        return exportToMachine(machine, eu, duration, division).level(level);
     }
 
     public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int eu, int duration, int division) {

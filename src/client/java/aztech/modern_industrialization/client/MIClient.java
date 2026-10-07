@@ -25,15 +25,11 @@
 
 package aztech.modern_industrialization.client;
 
-import aztech.modern_industrialization.MI;
-import aztech.modern_industrialization.MIBlock;
-import aztech.modern_industrialization.MIItem;
-import aztech.modern_industrialization.MIRegistries;
-import aztech.modern_industrialization.MIText;
-import aztech.modern_industrialization.MITooltips;
+import aztech.modern_industrialization.*;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelTooltipData;
 import aztech.modern_industrialization.client.blocks.forgehammer.ForgeHammerScreen;
 import aztech.modern_industrialization.client.blocks.processingtable.ProcessingTableScreen;
+import aztech.modern_industrialization.client.blocks.storage.MIStorageBlockItemClient;
 import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelRenderer;
 import aztech.modern_industrialization.client.blocks.storage.barrel.BarrelTooltipComponent;
 import aztech.modern_industrialization.client.blocks.storage.barrel.DeferredBarrelTextRenderer;
@@ -69,10 +65,6 @@ import aztech.modern_industrialization.machines.models.MachineCasings;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.modern_industrialization.misc.runtime_datagen.RuntimeDataGen;
 import aztech.modern_industrialization.util.TextHelper;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -93,15 +85,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterRenderBuffersEvent;
-import net.neoforged.neoforge.client.event.RenderFrameEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -109,6 +93,11 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = MI.ID)
 public class MIClient {
@@ -123,6 +112,7 @@ public class MIClient {
 
         MIShaders.init(modBus);
         modBus.addListener(MIFluidTypeClient::register);
+        modBus.addListener(MIStorageBlockItemClient::register);
 
         NeoForge.EVENT_BUS.addListener(SteamDrillHighlight::onBlockHighlight);
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);

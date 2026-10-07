@@ -40,7 +40,6 @@ import aztech.modern_industrialization.machines.guicomponents.EnergyBar;
 import aztech.modern_industrialization.machines.guicomponents.SlotPanel;
 import aztech.modern_industrialization.machines.models.MachineModelClientData;
 import aztech.modern_industrialization.util.Simulation;
-import java.util.Collections;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -50,6 +49,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidType;
+
+import java.util.Collections;
 
 public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity implements EnergyComponentHolder, CableTierHolder {
     public ElectricWaterPumpBlockEntity(BEP bep) {
@@ -68,8 +69,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
 
         registerGuiComponent(new EnergyBar(new EnergyBar.Params(18, 32), energy::getEu, energy::getCapacity));
         registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl)
-                .withCasing(casing));
+                .withRedstoneControl(redstoneControl));
     }
 
     private final MIInventory inventory;
@@ -122,9 +122,6 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
         var result = super.useItemOn(player, hand, face);
         if (!result.consumesAction()) {
             result = redstoneControl.onUse(this, player, hand);
-        }
-        if (!result.consumesAction()) {
-            result = casing.onUse(this, player, hand);
         }
         return result;
     }

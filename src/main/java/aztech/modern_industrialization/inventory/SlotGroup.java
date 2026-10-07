@@ -30,8 +30,6 @@ package aztech.modern_industrialization.inventory;
  */
 public enum SlotGroup {
     CONFIGURABLE_STACKS,
-    UPGRADES,
-    CASING,
     REDSTONE_MODULE,
     OVERDRIVE_MODULE,
 }

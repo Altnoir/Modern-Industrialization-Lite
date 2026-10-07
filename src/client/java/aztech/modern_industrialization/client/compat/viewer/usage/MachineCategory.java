@@ -36,10 +36,6 @@ import aztech.modern_industrialization.compat.rei.machines.SteamMode;
 import aztech.modern_industrialization.inventory.SlotPositions;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
-import aztech.modern_industrialization.util.TextHelper;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -48,6 +44,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>> {
     public static MachineCategory create(MachineCategoryParams params) {
@@ -60,7 +60,7 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
     private final MachineCategoryParams params;
 
     private MachineCategory(MachineCategoryParams params, int width, int height) {
-        super((Class) RecipeHolder.class, params.category,
+        super(recipeHolderClass(), params.category,
                 Component.translatable("rei_categories.%s.%s".formatted(params.category.getNamespace(), params.category.getPath())),
                 BuiltInRegistries.ITEM.get(params.workstations.get(0)).getDefaultInstance(), width, height);
 
@@ -190,16 +190,17 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
 
             guiGraphics.pose().popPose();
         });
-        int endOfEuText;
+        int endOfLevelText;
         if (params.steamMode != SteamMode.NEITHER) {
-            var euText = TextHelper.getEuTextTick(recipe.eu);
+            // The recipe is labelled with the machine level it needs, not with the energy it costs.
+            var levelText = recipe.level.getDisplayName();
             int startx = 15 + (params.steamMode.steam ? 2 : 0);
-            widgets.text(euText, startx, 5, TextAlign.LEFT, false, true, null);
+            widgets.text(levelText, startx, 5, TextAlign.LEFT, false, true, null);
 
             var font = Minecraft.getInstance().font;
-            endOfEuText = startx + font.width(euText);
+            endOfLevelText = startx + font.width(levelText);
         } else {
-            endOfEuText = 15;
+            endOfLevelText = 15;
         }
         widgets.text(
                 MIText.BaseDurationSeconds.text(getSeconds(recipe)),
@@ -217,7 +218,7 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
 
                 graphics.pose().pushPose();
                 // Make sure that we don't overlap with the EU/t text
-                double itemx = Math.max(x, endOfEuText + 1);
+                double itemx = Math.max(x, endOfLevelText + 1);
                 graphics.pose().translate(itemx, y, 0);
                 graphics.pose().scale((float) wh / 16, (float) wh / 16, 1);
                 graphics.renderFakeItem(displayedItem, 0, 0);

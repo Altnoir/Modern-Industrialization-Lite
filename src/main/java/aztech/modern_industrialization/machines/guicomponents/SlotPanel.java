@@ -31,23 +31,22 @@ import aztech.modern_industrialization.MIText;
 import aztech.modern_industrialization.inventory.HackySlot;
 import aztech.modern_industrialization.inventory.SlotGroup;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
-import aztech.modern_industrialization.machines.components.CasingComponent;
 import aztech.modern_industrialization.machines.components.OverdriveComponent;
 import aztech.modern_industrialization.machines.components.RedstoneControlComponent;
-import aztech.modern_industrialization.machines.components.UpgradeComponent;
 import aztech.modern_industrialization.machines.gui.GuiComponentServer;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.Unit;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.Unit;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 
 public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, Unit> {
     public static final Type<List<SlotPanel.SlotType>, Unit> TYPE = new Type<>(MI.id("slot_panel"),
@@ -63,14 +62,6 @@ public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, U
 
     public SlotPanel withRedstoneControl(RedstoneControlComponent redstoneControlComponent) {
         return addSlot(SlotType.REDSTONE_MODULE, () -> redstoneControlComponent.getDrop().copy(), redstoneControlComponent::setStackServer);
-    }
-
-    public SlotPanel withUpgrades(UpgradeComponent upgradeComponent) {
-        return addSlot(SlotType.UPGRADES, () -> upgradeComponent.getDrop().copy(), upgradeComponent::setStackServer);
-    }
-
-    public SlotPanel withCasing(CasingComponent casingComponent) {
-        return addSlot(SlotType.CASINGS, () -> casingComponent.getDrop().copy(), casingComponent::setCasingServer);
     }
 
     public SlotPanel withOverdrive(OverdriveComponent overdriveComponent) {
@@ -136,9 +127,6 @@ public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, U
 
     public enum SlotType {
         REDSTONE_MODULE(SlotGroup.REDSTONE_MODULE, 1, MIItem.REDSTONE_CONTROL_MODULE::is, 36, 80, MIText.AcceptsRedstoneControlModule),
-        UPGRADES(SlotGroup.UPGRADES, 64, stack -> UpgradeComponent.getExtraEu(stack.getItem()) > 0, 0, 80, MIText.AcceptsUpgrades),
-        // Assumes that the default casing is always the LV casing for now,
-        CASINGS(SlotGroup.CASING, 1, stack -> CasingComponent.getCasingTier(stack.getItem()) != null, 18, 80, MIText.AcceptsMachineHull),
         OVERDRIVE_MODULE(SlotGroup.OVERDRIVE_MODULE, 1, MIItem.OVERDRIVE_MODULE::is, 0, 98, MIText.AcceptsOverdriveModule);
 
         public final SlotGroup group;

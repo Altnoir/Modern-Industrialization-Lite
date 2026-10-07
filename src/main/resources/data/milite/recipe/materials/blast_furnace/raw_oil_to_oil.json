@@ -1,6 +1,6 @@
 {
-  "type": "milite:blast_furnace",
-  "eu": 2,
+  "type": "milite:steam_blast_furnace",
+  "energy": 2,
   "duration": 200,
   "fluid_inputs": {
     "fluid": "milite:raw_synthetic_oil",

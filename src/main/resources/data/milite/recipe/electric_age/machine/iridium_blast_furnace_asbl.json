@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CHC",
+    "CFC"
+  ],
+  "key": {
+    "C": {
+      "item": "milite:superconductor_double_ingot"
+    },
+    "H": {
+      "item": "milite:quantum_machine_hull"
+    },
+    "F": {
+      "item": "milite:stainless_steel_blast_furnace"
+    }
+  },
+  "result": {
+    "id": "milite:iridium_blast_furnace"
+  }
+}

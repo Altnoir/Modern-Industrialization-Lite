@@ -1,6 +1,6 @@
 {
   "type": "milite:vacuum_freezer",
-  "eu": 16,
+  "energy": 16,
   "duration": 5,
   "fluid_inputs": [
     {

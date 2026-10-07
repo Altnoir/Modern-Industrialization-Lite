@@ -1,0 +1,26 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 8,
+  "item_inputs": [
+    {
+      "amount": 7,
+      "item": "milite:kanthal_double_ingot"
+    },
+    {
+      "amount": 1,
+      "item": "milite:turbo_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electric_blast_furnace"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_blast_furnace"
+    }
+  ],
+  "level": "electric"
+}

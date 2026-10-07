@@ -25,8 +25,6 @@
 
 package aztech.modern_industrialization;
 
-import static aztech.modern_industrialization.items.SortOrder.*;
-
 import aztech.modern_industrialization.api.energy.EnergyItemStorage;
 import aztech.modern_industrialization.definition.ItemDefinition;
 import aztech.modern_industrialization.guidebook.GuideBookItem;
@@ -40,17 +38,24 @@ import aztech.modern_industrialization.items.tools.QuantumSword;
 import aztech.modern_industrialization.nuclear.NeutronBehaviour;
 import aztech.modern_industrialization.nuclear.NuclearComponentItem;
 import aztech.modern_industrialization.nuclear.NuclearConstant;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
+import static aztech.modern_industrialization.items.SortOrder.ITEMS_ORDERED;
+import static aztech.modern_industrialization.items.SortOrder.MATERIALS;
 
 @SuppressWarnings("unused")
 public final class MIItem {
@@ -72,7 +77,6 @@ public final class MIItem {
     public static final ItemDefinition<ForgeTool> NETHERITE_HAMMER = itemHandheld("Netherite Hammer", "netherite_hammer", p -> new ForgeTool(Tiers.NETHERITE, p), ITEMS_ORDERED.next());
 
     // Steam tier stuff
-    public static final ItemDefinition<Item> STEEL_UPGRADE = item("Steel Upgrade", "steel_upgrade", SteelUpgradeItem::new, ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> RUBBER_SHEET = item("Rubber Sheet", "rubber_sheet", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PACKER_BLOCK_TEMPLATE = item("Packer Block Template", "packer_block_template", p -> new Item(p.rarity(Rarity.RARE).stacksTo(1)), ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PACKER_DOUBLE_INGOT_TEMPLATE = item("Packer Double Ingot Template", "packer_double_ingot_template", p -> new Item(p.rarity(Rarity.RARE).stacksTo(1)), ITEMS_ORDERED.next());
@@ -135,9 +139,10 @@ public final class MIItem {
     public static final ItemDefinition<Item> ULTRADENSE_METAL_BALL = item("Ultradense Metal Ball", "ultradense_metal_ball", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> SINGULARITY = item("Singularity", "singularity", p -> new Item(p.rarity(Rarity.EPIC)), ITEMS_ORDERED.next());
 
-    // Upgrades
     public static final ItemDefinition<Item> REDSTONE_CONTROL_MODULE = item("Redstone Control Module", "redstone_control_module", RedstoneControlModuleItem::new, (item, itemModelGenerators) -> {}, ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> OVERDRIVE_MODULE = item("Overdrive Module", "overdrive_module", ITEMS_ORDERED.next());
+
+public static final ItemDefinition<Item> STEEL_UPGRADE = item("Steel Upgrade", "steel_upgrade", ITEMS_ORDERED.next());
 
     public static final ItemDefinition<Item> BASIC_UPGRADE = item("Basic Upgrade", "basic_upgrade", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ADVANCED_UPGRADE = item("Advanced Upgrade", "advanced_upgrade", ITEMS_ORDERED.next());

@@ -1,7 +1,7 @@
 {
   "type": "milite:blast_furnace",
   "duration": 200,
-  "eu": 128,
+  "energy": 128,
   "item_inputs": [
     {
       "amount": 1,
@@ -13,5 +13,6 @@
       "amount": 1,
       "item": "milite:uranium_235_ingot"
     }
-  ]
+  ],
+  "level": "iridium"
 }

@@ -26,6 +26,7 @@
 package aztech.modern_industrialization.datagen.recipe;
 
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeBuilder;
 import aztech.modern_industrialization.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
@@ -78,7 +79,8 @@ public class HatchRecipesProvider extends MIRecipesProvider {
                         ShapedRecipeJson craft = new ShapedRecipeJson(AB[k], 1, "U", "V").addInput('U', k == 0 ? other : casing).addInput('V',
                                 k == 1 ? other : casing);
 
-                        MachineRecipeBuilder craftAsbl = craft.exportToMachine(MIMachineRecipeTypes.ASSEMBLER, 8, 200, 1);
+                        MachineRecipeBuilder craftAsbl = craft.exportToMachine(MIMachineRecipeTypes.ASSEMBLER, 8, 200, 1,
+                                MachineLevel.ELECTRIC);
 
                         MachineRecipeBuilder unpacker = new MachineRecipeBuilder(MIMachineRecipeTypes.UNPACKER, 2, 200).addItemOutput(casing, 1)
                                 .addItemOutput(other, 1).addItemInput(AB[k], 1);

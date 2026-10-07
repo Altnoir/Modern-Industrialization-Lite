@@ -7,7 +7,7 @@
   ],
   "type": "milite:assembler",
   "duration": 500,
-  "eu": 8,
+  "energy": 8,
   "item_inputs": [
     {
       "amount": 1,
@@ -32,5 +32,6 @@
       "item": "create:precision_mechanism",
       "probability": 0.8
     }
-  ]
+  ],
+  "level": "electric"
 }

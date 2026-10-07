@@ -25,9 +25,6 @@
 
 package aztech.modern_industrialization.machines.init;
 
-import static aztech.modern_industrialization.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
-import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
-
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIFluids;
@@ -50,15 +47,16 @@ import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.Rectangle;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.stream.IntStream;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+import static aztech.modern_industrialization.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
+import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
 
 public class MultiblockMachines {
     private static final Rectangle CRAFTING_GUI = new Rectangle(CraftingMultiblockGui.X, CraftingMultiblockGui.Y,
@@ -67,7 +65,12 @@ public class MultiblockMachines {
     public static MachineDefinition<SteamCraftingMultiblockBlockEntity> COKE_OVEN;
     public static MachineDefinition<SteamCraftingMultiblockBlockEntity> STEAM_BLAST_FURNACE;
     public static MachineDefinition<SteamCraftingMultiblockBlockEntity> STEAM_QUARRY;
-    public static MachineDefinition<ElectricBlastFurnaceBlockEntity> ELECTRIC_BLAST_FURNACE;
+    /**
+     * The electric blast furnaces, one per level. Keying them by level is what lets the rest of the code reach the
+     * furnace a recipe needs without knowing about the blocks one by one.
+     */
+    public static final Map<MachineLevel, MachineDefinition<ElectricBlastFurnaceBlockEntity>> ELECTRIC_BLAST_FURNACES = new EnumMap<>(
+            MachineLevel.class);
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> LARGE_STEAM_BOILER;
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> ADVANCED_LARGE_STEAM_BOILER;
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> HIGH_PRESSURE_LARGE_STEAM_BOILER;
@@ -127,13 +130,19 @@ public class MultiblockMachines {
         HatchFlags sbfHatches = new HatchFlags.Builder().with(ITEM_INPUT, ITEM_OUTPUT, FLUID_INPUT, FLUID_OUTPUT).build();
         ShapeTemplate sbfShape = new ShapeTemplate.Builder(MachineCasings.FIREBRICKS).add3by3Levels(-1, 2, fireclayBricks, sbfHatches).build();
         STEAM_BLAST_FURNACE = MachineRegistrationHelper.registerMachine("Steam Blast Furnace", "steam_blast_furnace",
-                bet -> new SteamCraftingMultiblockBlockEntity(bet, "steam_blast_furnace", sbfShape, MIMachineRecipeTypes.BLAST_FURNACE, OverclockComponent.getDefaultCatalysts()));
+                bet -> new SteamCraftingMultiblockBlockEntity(bet, "steam_blast_furnace", sbfShape, MIMachineRecipeTypes.STEAM_BLAST_FURNACE, OverclockComponent.getDefaultCatalysts()));
         ReiMachineRecipes.registerMultiblockShape("steam_blast_furnace", sbfShape);
+        // It has no levels, but it does reach the steel one, so its recipes are checked against that.
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.STEAM_BLAST_FURNACE, MachineLevel.STEEL);
     }
 
-    private static void electricBlastFurnace() {
-        ELECTRIC_BLAST_FURNACE = MachineRegistrationHelper.registerMachine("Electric Blast Furnace", "electric_blast_furnace",
-                ElectricBlastFurnaceBlockEntity::new);
+    private static void electricBlastFurnaces() {
+        for (ElectricBlastFurnaceBlockEntity.Tier tier : ElectricBlastFurnaceBlockEntity.tiers) {
+            ELECTRIC_BLAST_FURNACES.put(tier.level(), MachineRegistrationHelper.registerMachine(tier.englishName(), tier.id(),
+                    bet -> new ElectricBlastFurnaceBlockEntity(bet, tier)));
+            // A multiblock only knows its level once it is placed, so the level check has to be told about it here.
+            MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.BLAST_FURNACE, tier.level());
+        }
         ElectricBlastFurnaceBlockEntity.registerReiShapes();
     }
 
@@ -282,7 +291,7 @@ public class MultiblockMachines {
 
     private static void distillationTower() {
         DISTILLATION_TOWER = MachineRegistrationHelper.registerMachine(
-                "Distillation Tower",
+                "Large Distillation Tower",
                 "distillation_tower", DistillationTowerBlockEntity::new);
         DistillationTowerBlockEntity.registerReiShapes();
     }
@@ -574,7 +583,7 @@ public class MultiblockMachines {
 
         cokeOven();
         steamBlastFurnace();
-        electricBlastFurnace();
+        electricBlastFurnaces();
         steamBoilers();
         quarries();
         oilDrillingRig();
@@ -603,14 +612,12 @@ public class MultiblockMachines {
                 .register();
 
         MachineRegistrationHelper.addMachineModel("steam_blast_furnace", "steam_blast_furnace", MachineCasings.FIREBRICKS, true, false, false);
-        new Rei("Steam Blast Furnace", "steam_blast_furnace", MIMachineRecipeTypes.BLAST_FURNACE, new ProgressBar.Params(77, 33, "arrow"))
-                .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
-                .fluids(fluids -> fluids.addSlots(36, 35, 1, 1), outputs -> outputs.addSlots(122, 35, 1, 1))
-                .workstations("steam_blast_furnace", "electric_blast_furnace").extraTest(recipe -> recipe.eu <= 4)
-                .steam(false)
-                .register();
 
-        MachineRegistrationHelper.addMachineModel("electric_blast_furnace", "electric_blast_furnace", MachineCasings.HEATPROOF, true, false, false);
+        // Each furnace has its own front panel, so a player can tell which one they are looking at. The panel keeps the
+        // green running lamps of every machine, only the furnace's own colour changes.
+        for (ElectricBlastFurnaceBlockEntity.Tier tier : ElectricBlastFurnaceBlockEntity.tiers) {
+            MachineRegistrationHelper.addMachineModel(tier.id(), tier.id(), MachineCasings.HEATPROOF, true, false, false);
+        }
 
         MachineRegistrationHelper.addMachineModel("large_steam_boiler", "large_boiler", MachineCasings.BRONZE_PLATED_BRICKS, true, false, false);
 
@@ -625,12 +632,12 @@ public class MultiblockMachines {
         MachineRegistrationHelper.addMachineModel("steam_quarry", "steam_quarry", MachineCasings.STEEL, true, false, false);
         new Rei("Steam Quarry", "steam_quarry", MIMachineRecipeTypes.QUARRY, new ProgressBar.Params(77, 33, "arrow"))
                 .items(inputs -> inputs.addSlot(56, 35), outputs -> outputs.addSlots(102, 35, 4, 4))
-                .workstations("steam_quarry", "electric_quarry").extraTest(recipe -> recipe.eu <= 4)
+                .workstations("steam_quarry", "electric_quarry").extraTest(recipe -> recipe.energy <= 4)
                 .steam(false)
                 .register();
         new Rei("Electric Quarry", "electric_quarry", MIMachineRecipeTypes.QUARRY, new ProgressBar.Params(77, 33, "arrow"))
                 .items(inputs -> inputs.addSlot(56, 35), outputs -> outputs.addSlots(102, 35, 4, 4))
-                .workstations("electric_quarry").extraTest(recipe -> recipe.eu > 4)
+                .workstations("electric_quarry").extraTest(recipe -> recipe.energy > 4)
                 .register();
 
         MachineRegistrationHelper.addMachineModel("electric_quarry", "electric_quarry", MachineCasings.STEEL, true, false, false);
@@ -650,7 +657,7 @@ public class MultiblockMachines {
                 .register();
 
         MachineRegistrationHelper.addMachineModel("distillation_tower", "distillation_tower", CLEAN_STAINLESS_STEEL, true, false, false);
-        new Rei("Distillation Tower", "distillation_tower", MIMachineRecipeTypes.DISTILLATION_TOWER, new ProgressBar.Params(77, 33, "arrow"))
+        new Rei("Large Distillation Tower", "distillation_tower", MIMachineRecipeTypes.DISTILLATION_TOWER, new ProgressBar.Params(77, 33, "arrow"))
                 .fluids(inputs -> inputs.addSlot(56, 35), outputs -> outputs.addSlots(102, 35, 8, 1))
                 .register();
 
@@ -695,26 +702,28 @@ public class MultiblockMachines {
     }
 
     private static void registerEbfReiCategories() {
-        // Register REI categories
-        for (int i = 0; i < ElectricBlastFurnaceBlockEntity.tiers.size(); ++i) {
-            var tier = ElectricBlastFurnaceBlockEntity.tiers.get(i);
-            long previousMax = i == 0 ? 4 : ElectricBlastFurnaceBlockEntity.tiers.get(i - 1).maxBaseEu();
-            long currentMax = tier.maxBaseEu();
+        // The steam blast furnace keeps its own category: it is the small, steam driven one, it runs its own recipes,
+        // and it is built from fire bricks rather than from heatproof casings.
+        new Rei("Steam Blast Furnace", "steam_blast_furnace", MIMachineRecipeTypes.STEAM_BLAST_FURNACE,
+                new ProgressBar.Params(77, 33, "arrow"))
+                        .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
+                        .fluids(fluids -> fluids.addSlots(36, 35, 1, 1), outputs -> outputs.addSlots(122, 35, 1, 1))
+                        .workstations("steam_blast_furnace")
+                        .steam(false)
+                        .register();
 
-            var extraWorkstations = IntStream.range(i, ElectricBlastFurnaceBlockEntity.tiers.size())
-                    .mapToObj(j -> ElectricBlastFurnaceBlockEntity.tiers.get(j).coilBlockId())
-                    .toArray(ResourceLocation[]::new);
-
-            new Rei("EBF (%s Tier)".formatted(tier.englishName()), "electric_blast_furnace_" + tier.coilBlockId().getPath(),
-                    MIMachineRecipeTypes.BLAST_FURNACE,
-                    new ProgressBar.Params(77, 33, "arrow"))
-                            .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlot(102, 35))
-                            .fluids(fluids -> fluids.addSlot(36, 35), outputs -> outputs.addSlot(122, 35))
-                            .extraTest(recipe -> previousMax < recipe.eu && recipe.eu <= currentMax)
-                            .workstations("electric_blast_furnace")
-                            .extraWorkstations(extraWorkstations)
-                            .register();
-        }
+        // The three electric furnaces share one category, and all three are workstations of it. What separates them is
+        // the level of recipe they reach, which is a property of the recipe, so a category per furnace would only be
+        // the same list three times over. Which furnace can run a recipe is decided when it is built, not shown here.
+        new Rei("Electric Blast Furnace", "electric_blast_furnace", MIMachineRecipeTypes.BLAST_FURNACE,
+                new ProgressBar.Params(77, 33, "arrow"))
+                        .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
+                        .fluids(fluids -> fluids.addSlots(36, 35, 1, 1), outputs -> outputs.addSlots(122, 35, 1, 1))
+                        .workstations(ElectricBlastFurnaceBlockEntity.tiers.stream()
+                                .map(ElectricBlastFurnaceBlockEntity.Tier::id)
+                                .toArray(String[]::new))
+                        .steam(false)
+                        .register();
     }
 
     public static class Rei {
@@ -724,8 +733,7 @@ public class MultiblockMachines {
         private final ProgressBar.Params progressBarParams;
         private final List<ResourceLocation> workstations;
         // extra workstations to be displayed in viewers, can be any item id
-        private final List<ResourceLocation> extraWorkstations;
-        private Predicate<MachineRecipe> extraTest = recipe -> true;
+            private Predicate<MachineRecipe> extraTest = recipe -> true;
         private final SlotPositions.Builder itemInputs = new SlotPositions.Builder();
         private final SlotPositions.Builder itemOutputs = new SlotPositions.Builder();
         private final SlotPositions.Builder fluidInputs = new SlotPositions.Builder();
@@ -738,8 +746,7 @@ public class MultiblockMachines {
             this.recipeType = recipeType;
             this.progressBarParams = progressBarParams;
             this.workstations = new ArrayList<>();
-            this.extraWorkstations = new ArrayList<>();
-            workstations.add(category);
+                workstations.add(category);
         }
 
         public Rei(String englishName, String category, MachineRecipeType recipeType, ProgressBar.Params progressBarParams) {
@@ -773,12 +780,6 @@ public class MultiblockMachines {
             return workstations(Arrays.stream(workstations).map(MI::id).toList().toArray(new ResourceLocation[0]));
         }
 
-        public Rei extraWorkstations(ResourceLocation... extraWorkstations) {
-            this.extraWorkstations.clear();
-            this.extraWorkstations.addAll(Arrays.asList(extraWorkstations));
-            return this;
-        }
-
         public Rei steam(boolean steamOnly) {
             this.steamMode = steamOnly ? SteamMode.STEAM_ONLY : SteamMode.BOTH;
             return this;
@@ -795,9 +796,6 @@ public class MultiblockMachines {
                 ReiMachineRecipes.registerWorkstation(category, workstation);
                 ReiMachineRecipes.registerRecipeCategoryForMachine(workstation, category, ReiMachineRecipes.MachineScreenPredicate.MULTIBLOCK);
                 ReiMachineRecipes.registerMachineClickArea(workstation, CRAFTING_GUI);
-            }
-            for (ResourceLocation extraWorkstation : extraWorkstations) {
-                ReiMachineRecipes.registerWorkstation(category, extraWorkstation);
             }
         }
     }

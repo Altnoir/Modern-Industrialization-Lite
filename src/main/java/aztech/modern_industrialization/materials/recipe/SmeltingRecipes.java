@@ -25,12 +25,14 @@
 
 package aztech.modern_industrialization.materials.recipe;
 
-import static aztech.modern_industrialization.materials.part.MIParts.*;
-
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
+import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.materials.MaterialBuilder;
 import aztech.modern_industrialization.materials.recipe.builder.MIRecipeBuilder;
 import aztech.modern_industrialization.materials.recipe.builder.SmeltingRecipeBuilder;
+
+import static aztech.modern_industrialization.materials.part.MIParts.*;
 
 /**
  * Standard smelting and blasting recipes for materials that can be smelted with
@@ -49,14 +51,42 @@ public final class SmeltingRecipes {
     }
 
     public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int eu, int duration) {
+        // The steam blast furnace and the electric ones do not share a recipe type, so a recipe is written for the one
+        // that can actually run it.
+        MachineRecipeType type = eu <= STEAM_MAX_ENERGY ? MIMachineRecipeTypes.STEAM_BLAST_FURNACE : MIMachineRecipeTypes.BLAST_FURNACE;
+        MachineLevel level = blastFurnaceLevel(ctx, eu);
         if (hotIngot) {
-            new MIRecipeBuilder(ctx, MIMachineRecipeTypes.BLAST_FURNACE, "dust", eu, duration).addTaggedPartInput(DUST, 1).addPartOutput(HOT_INGOT,
-                    1);
+            new MIRecipeBuilder(ctx, type, "dust", eu, duration).level(level)
+                    .addTaggedPartInput(DUST, 1).addPartOutput(HOT_INGOT, 1);
         } else {
-            new MIRecipeBuilder(ctx, MIMachineRecipeTypes.BLAST_FURNACE, "dust", eu, duration).addTaggedPartInput(DUST, 1).addPartOutput(INGOT, 1);
-            new MIRecipeBuilder(ctx, MIMachineRecipeTypes.BLAST_FURNACE, "tiny_dust", eu, duration / 10).addTaggedPartInput(TINY_DUST, 1)
-                    .addPartOutput(NUGGET, 1);
+            new MIRecipeBuilder(ctx, type, "dust", eu, duration).level(level)
+                    .addTaggedPartInput(DUST, 1).addPartOutput(INGOT, 1);
+            new MIRecipeBuilder(ctx, type, "tiny_dust", eu, duration / 10).level(level)
+                    .addTaggedPartInput(TINY_DUST, 1).addPartOutput(NUGGET, 1);
         }
+    }
+
+    /** The most a recipe may cost and still be run by the steam blast furnace. */
+    private static final int STEAM_MAX_ENERGY = 4;
+
+    /**
+     * Which blast furnace a recipe needs.
+     *
+     * <p>
+     * The cheapest recipes are the ones the steam blast furnace runs. Above that the tier follows the material and not
+     * the cost: a coil must be reachable with the furnace one tier below the one it unlocks, so the three coil
+     * materials sit one step below their own furnace and only the endgame materials ask for the iridium one.
+     */
+    private static MachineLevel blastFurnaceLevel(MaterialBuilder.RecipeContext ctx, int eu) {
+        if (eu <= STEAM_MAX_ENERGY) {
+            return MachineLevel.BRONZE;
+        }
+        return switch (ctx.getMaterialName()) {
+            // Kanthal unlocks the stainless steel furnace, titanium and superconductor unlock the iridium one.
+            case "titanium", "superconductor", "annealed_copper", "silicon" -> MachineLevel.STAINLESS_STEEL;
+            case "uranium", "uranium_235", "uranium_238", "plutonium", "he_uranium", "le_uranium", "he_mox", "le_mox", "platinum" -> MachineLevel.IRIDIUM;
+            default -> MachineLevel.ELECTRIC;
+        };
     }
 
     public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int eu) {

@@ -1,6 +1,6 @@
 {
   "type": "milite:mixer",
-  "eu": 4,
+  "energy": 4,
   "duration": 300,
   "item_inputs": {
     "tag": "c:dusts/sulfur",

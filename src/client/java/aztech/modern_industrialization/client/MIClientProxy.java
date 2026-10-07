@@ -34,19 +34,14 @@ import aztech.modern_industrialization.client.machines.gui.MachineMenuClient;
 import aztech.modern_industrialization.client.machines.models.MachineBakedModel;
 import aztech.modern_industrialization.client.machines.models.UseBlockModelBakedModel;
 import aztech.modern_industrialization.client.textures.TextureHelper;
-import aztech.modern_industrialization.client.util.RenderHelper;
 import aztech.modern_industrialization.config.MIClientConfig;
 import aztech.modern_industrialization.items.SteamDrillHooks;
 import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
 import aztech.modern_industrialization.machines.models.MachineModelClientData;
 import aztech.modern_industrialization.machines.multiblocks.HatchBlockEntity;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -56,8 +51,10 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.jspecify.annotations.Nullable;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 public class MIClientProxy extends MICommonProxy {
     @Override
@@ -99,16 +96,6 @@ public class MIClientProxy extends MICommonProxy {
     @Override
     public boolean hasShiftDown() {
         return Screen.hasShiftDown();
-    }
-
-    @Override
-    public void withStandardItemRenderer(Consumer<?> stupidClientProperties) {
-        ((Consumer<IClientItemExtensions>) stupidClientProperties).accept(new IClientItemExtensions() {
-            @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return RenderHelper.BLOCK_AND_ENTITY_RENDERER;
-            }
-        });
     }
 
     @Override

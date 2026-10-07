@@ -29,11 +29,11 @@ REIを使えば、すでに使い慣れた機械の電動版レシピを見る�
 
 着磁機は物体を磁化する。まだレシピは多くないが、モーターの自動化にはもう役立っている！
 
-<Recipe id="milite:electric_age/machine/polarizer_asbl" />
+<Recipe id="milite:processing_table/electric_polarizer" />
 
 たくさん作りたくなる最初の機械！組立機はスロットロックを使用すれば1台のアセンブラーにつき最大3つまで、ほぼすべてのレシピを自動化することができる。
 
-<Recipe id="milite:electric_age/machine/assembler_asbl" />
+<Recipe id="milite:processing_table/electric_assembler" />
 
 機械外装、アナログ回路、モーター、ピストン、ロボットアーム、コンベアベルトを組立機を使ってできるだけ早く自動化することを強くお勧めします！
 

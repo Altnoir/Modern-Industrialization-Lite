@@ -25,9 +25,6 @@
 
 package aztech.modern_industrialization.machines.components;
 
-import static aztech.modern_industrialization.util.Simulation.ACT;
-import static aztech.modern_industrialization.util.Simulation.SIMULATE;
-
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.api.machine.component.CrafterAccess;
 import aztech.modern_industrialization.api.machine.component.InventoryAccess;
@@ -37,6 +34,7 @@ import aztech.modern_industrialization.inventory.ConfigurableFluidStack;
 import aztech.modern_industrialization.inventory.ConfigurableItemStack;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.MachineComponent;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
@@ -49,15 +47,6 @@ import aztech.modern_industrialization.util.Simulation;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -72,7 +61,18 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jspecify.annotations.Nullable;
 
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static aztech.modern_industrialization.util.Simulation.ACT;
+import static aztech.modern_industrialization.util.Simulation.SIMULATE;
+
 public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAccess {
+    /**
+     * Upper bound for the efficiency warm up search, see getRecipeMaxEfficiencyTicks.
+     */
+    private static final int MAX_EFFICIENCY_TICKS = 100000;
+
     private final MachineProcessCondition.Context conditionContext;
 
     public CrafterComponent(MachineBlockEntity blockEntity, Inventory inventory, Behavior behavior) {
@@ -101,10 +101,15 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         long consumeEu(long max, Simulation simulation);
 
         default boolean banRecipe(MachineRecipe recipe) {
-            return recipe.eu > getMaxRecipeEu();
+            return !getMachineLevel().canCraft(recipe.level);
         }
 
         MachineRecipeType recipeType();
+
+        /**
+         * The level of this machine. A recipe may only run when its own level is not above this one.
+         */
+        MachineLevel getMachineLevel();
 
         long getBaseRecipeEu();
 
@@ -218,7 +223,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     @Override
     public long getBaseRecipeEu() {
         Preconditions.checkArgument(hasActiveRecipe());
-        return activeRecipe.value().eu;
+        return activeRecipe.value().energy;
     }
 
     /**
@@ -252,7 +257,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         boolean finishedRecipe = false; // whether the recipe finished this tick
         if (activeRecipe != null && isEnabled) {
             if (usedEnergy > 0 || recipeStarted) {
-                recipeMaxEu = getRecipeMaxEu(activeRecipe.value().eu, recipeEnergy, efficiencyTicks);
+                recipeMaxEu = getRecipeMaxEu(activeRecipe.value().energy, recipeEnergy, efficiencyTicks);
                 eu = activeRecipe.value().conditionsMatch(conditionContext)
                         ? behavior.consumeEu(Math.min(recipeMaxEu, recipeEnergy - usedEnergy), ACT)
                         : 0;
@@ -412,7 +417,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             activeRecipe = newActiveRecipe;
             usedEnergy = 0;
             recipeEnergy = newActiveRecipe.value().getTotalEu();
-            recipeMaxEu = getRecipeMaxEu(newActiveRecipe.value().eu, recipeEnergy, efficiencyTicks);
+            recipeMaxEu = getRecipeMaxEu(newActiveRecipe.value().energy, recipeEnergy, efficiencyTicks);
             return true;
         }
         return false;
@@ -485,19 +490,39 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         }
     }
 
-    private long getRecipeMaxEu(long recipeEu, long totalEu, int efficiencyTicks) {
-        long baseEu = Math.max(behavior.getBaseRecipeEu(), recipeEu);
+    /**
+     * How much energy this machine may eat per tick for the active recipe.
+     *
+     * <p>
+     * There is deliberately no cap coming from the machine tier here: a machine eats as much as it is supplied with, so
+     * a recipe finishes as soon as enough energy arrives. The actual consumption is still limited by what the energy
+     * buffer holds, which is what makes a starved machine sit in the middle of its progress bar instead of finishing.
+     */
+    private long getRecipeMaxEu(long recipeEnergy, long totalEu, int efficiencyTicks) {
+        long baseEu = Math.max(behavior.getBaseRecipeEu(), recipeEnergy);
         long overclockedEu = baseEu + efficiencyTicks * totalEu / (20 * 30);
-        return Math.min(totalEu, Math.min(overclockedEu, behavior.getMaxRecipeEu()));
+        return Math.min(totalEu, overclockedEu);
     }
 
+    /**
+     * How many crafts are needed before this recipe reaches its full speed at the current energy supply.
+     *
+     * <p>
+     * The top level is already at full speed, so it reports zero and every recipe it starts completes as fast as the
+     * energy supply allows.
+     */
     private int getRecipeMaxEfficiencyTicks(MachineRecipe recipe) {
-        long eu = recipe.eu;
+        if (behavior.getMachineLevel() == MachineLevel.IRIDIUM) {
+            return 0;
+        }
+        long energy = recipe.energy;
         long totalEu = recipe.getTotalEu();
-        for (int ticks = 0; true; ++ticks) {
-            if (getRecipeMaxEu(eu, totalEu, ticks) == Math.min(behavior.getMaxRecipeEu(), totalEu))
+        // The loop always terminates for a positive total, the bound is only a guard against bad recipe data.
+        for (int ticks = 0; ticks < MAX_EFFICIENCY_TICKS; ++ticks) {
+            if (getRecipeMaxEu(energy, totalEu, ticks) == totalEu)
                 return ticks;
         }
+        return MAX_EFFICIENCY_TICKS;
     }
 
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {

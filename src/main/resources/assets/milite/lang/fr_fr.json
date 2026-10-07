@@ -1547,7 +1547,7 @@
   "text.milite.DirectHeatByDesintegration": "Chaleur directe pour une capture",
   "text.milite.Disabled": "Désactivé",
   "text.milite.DurabilityCost": "Coût de durabilité : %d",
-  "text.milite.EbfMaxEu": "Permet les recettes de HFE jusqu'à %d RF/t",
+  "text.milite.EbfMaxRF": "Permet les recettes de HFE jusqu'à %d RF/t",
   "text.milite.Efficiency": "Efficacité",
   "text.milite.EfficiencyDefaultMessage": "Aucune recette active à surcadencer",
   "text.milite.EfficiencyEu": "Courant consommé : %d RF/t",

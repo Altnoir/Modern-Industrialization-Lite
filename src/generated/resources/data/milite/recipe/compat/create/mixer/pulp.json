@@ -7,7 +7,7 @@
   ],
   "type": "milite:mixer",
   "duration": 100,
-  "eu": 2,
+  "energy": 2,
   "fluid_inputs": [
     {
       "amount": 250,

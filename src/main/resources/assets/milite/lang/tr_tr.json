@@ -1467,7 +1467,7 @@
   "text.milite.DirectHeatByDesintegration": "Bir yakalama için Doğrudan Isı",
   "text.milite.Disabled": "Devre dışı",
   "text.milite.DurabilityCost": "Dayanıklılık Maliyeti: %d",
-  "text.milite.EbfMaxEu": "%d RF/t'ye kadar EMEO tariflerine izin verir",
+  "text.milite.EbfMaxRF": "%d RF/t'ye kadar EMEO tariflerine izin verir",
   "text.milite.Efficiency": "Verimlilik",
   "text.milite.EfficiencyDefaultMessage": "Hız aşırtma için aktif tarif yok",
   "text.milite.EfficiencyEu": "Güncel tüketim: %d RF/t",

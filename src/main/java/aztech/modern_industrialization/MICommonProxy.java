@@ -28,12 +28,9 @@ package aztech.modern_industrialization;
 import aztech.modern_industrialization.blocks.storage.barrel.BarrelBlockEntity;
 import aztech.modern_industrialization.blocks.storage.tank.AbstractTankBlockEntity;
 import aztech.modern_industrialization.machines.gui.MachineMenuCommon;
+import aztech.modern_industrialization.machines.init.MachineLevelValidator;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.fluid.FluidVariantAttributes;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -47,8 +44,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import org.jspecify.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * Abstractions over client-only code called in common code.
@@ -74,6 +76,8 @@ public class MICommonProxy {
 
     public static void initEvents() {
         NeoForge.EVENT_BUS.addListener(ServerAboutToStartEvent.class, e -> currentServer = e.getServer());
+        // Recipes are loaded by the time the server has started, so this is the first point where they can be checked.
+        NeoForge.EVENT_BUS.addListener(ServerStartedEvent.class, e -> MachineLevelValidator.validate(e.getServer()));
         NeoForge.EVENT_BUS.addListener(ServerStoppedEvent.class, e -> currentServer = null);
     }
 
@@ -112,8 +116,6 @@ public class MICommonProxy {
         list.add(FluidVariantAttributes.getName(variant));
         return list;
     }
-
-    public void withStandardItemRenderer(Consumer<?> stupidClientProperties) {}
 
     public void registerPartTankClient(Supplier<? extends BlockEntityType<? extends AbstractTankBlockEntity>> blockEntityType, int meanRgb) {}
 

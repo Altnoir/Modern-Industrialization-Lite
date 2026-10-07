@@ -1,6 +1,6 @@
 {
   "type": "milite:chemical_reactor",
-  "eu": 12,
+  "energy": 12,
   "duration": 200,
   "fluid_inputs": {
     "fluid": "milite:acetylene",

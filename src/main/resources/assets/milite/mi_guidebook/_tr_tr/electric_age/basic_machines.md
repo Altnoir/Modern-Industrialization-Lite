@@ -27,11 +27,11 @@ Yapılandırılabilir Sandık bir makine değildir, ancak Analog Devrelere sahip
 
 Polarizör bir şeyleri polarize eder. Henüz çok fazla tarifi yok, ancak Motorları otomatikleştirmek için zaten kullanışlı!
 
-<Recipe id="milite:electric_age/machine/polarizer_asbl" />
+<Recipe id="milite:processing_table/electric_polarizer" />
 
 Çok sayıda yapmak isteyeceğiniz ilk makine! Birleştirici, yuva kilitleme kullanırsanız, Birleştirici başına 3'e kadar neredeyse tüm tarifleri otomatikleştirmenize olanak tanır.
 
-<Recipe id="milite:electric_age/machine/assembler_asbl" />
+<Recipe id="milite:processing_table/electric_assembler" />
 
 Makine Gövdesi, Analog Devreler, Motorlar, Pistonlar, Robot Kolları ve Konveyör Bantlarını mümkün olan en kısa sürede Birleştiriciler kullanarak otomatikleştirmenizi şiddetle tavsiye ediyoruz, bu da elektrikli makineler üretmeyi temelde ücretsiz hale getirecektir!
 

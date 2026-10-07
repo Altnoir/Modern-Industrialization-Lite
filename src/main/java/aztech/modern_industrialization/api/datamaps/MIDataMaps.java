@@ -26,7 +26,6 @@
 package aztech.modern_industrialization.api.datamaps;
 
 import aztech.modern_industrialization.MI;
-import java.util.ArrayList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
@@ -34,20 +33,13 @@ import net.neoforged.neoforge.registries.datamaps.AdvancedDataMapType;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import net.neoforged.neoforge.registries.datamaps.DataMapValueRemover;
 
+import java.util.ArrayList;
+
 public final class MIDataMaps {
     public static final DataMapType<Fluid, FluidFuel> FLUID_FUELS = DataMapType
             .builder(
                     MI.id("fluid_fuels"), Registries.FLUID, FluidFuel.CODEC)
             .synced(FluidFuel.CODEC, true)
-            .build();
-
-    /**
-     * Items that can be added to electric machines, to increase the maximum EU/t they can support.
-     */
-    public static final DataMapType<Item, MachineUpgrade> MACHINE_UPGRADES = DataMapType
-            .builder(
-                    MI.id("machine_upgrades"), Registries.ITEM, MachineUpgrade.CODEC)
-            .synced(MachineUpgrade.CODEC, true)
             .build();
 
     /**

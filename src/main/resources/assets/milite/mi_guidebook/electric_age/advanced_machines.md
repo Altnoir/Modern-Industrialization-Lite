@@ -22,19 +22,19 @@ Aluminum is a material used to make more advanced machines. Like the other elect
 
 The Centrifuge splits items by spinning them very fast. You can use it to make carbon dust and unlock better recipes for steel and silicon.
 
-<Recipe id="milite:electric_age/machine/centrifuge_asbl" />
+<Recipe id="milite:processing_table/electric_centrifuge" />
 
 The Chemical Reactor can make items and fluids react.
 
-<Recipe id="milite:electric_age/machine/chemical_reactor_asbl" />
+<Recipe id="milite:processing_table/electric_chemical_reactor" />
 
 The Distillery will turn various fluids into their lighter parts. That will be very useful for Oil Processing.
 
-<Recipe id="milite:electric_age/machine/distillery_asbl" />
+<Recipe id="milite:processing_table/electric_distillery" />
 
 The Electrolyzer can split materials into their different parts using strong electric currents. You can electrolyze bauxite dust to get aluminum dust, which you can then directly smelt into aluminum ingots in the EBF.
 
-<Recipe id="milite:electric_age/machine/electrolyzer_asbl" />
+<Recipe id="milite:processing_table/electric_electrolyzer" />
 
 The Configurable Tank is the fluid equivalent of the Configurable Chest.
 

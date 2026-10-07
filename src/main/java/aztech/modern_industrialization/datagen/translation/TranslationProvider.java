@@ -34,22 +34,23 @@ import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.config.MIConfigBuilder;
 import aztech.modern_industrialization.datagen.tag.TagsToGenerate;
 import aztech.modern_industrialization.definition.Definition;
-import aztech.modern_industrialization.machines.blockentities.multiblocks.ElectricBlastFurnaceBlockEntity;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.models.MachineCasings;
 import com.google.common.hash.Hashing;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import net.minecraft.Util;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
-import net.minecraft.Util;
-import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
 
 public final class TranslationProvider implements DataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -74,6 +75,11 @@ public final class TranslationProvider implements DataProvider {
 
     private void addManualEntries() {
         addTranslation("block.milite.pipe", "Pipe(s)");
+
+        // The machine levels, shown on a recipe in the viewer in place of the energy it costs.
+        for (MachineLevel level : MachineLevel.values()) {
+            addTranslation(level.getTranslationKey(), level.getEnglishName());
+        }
 
         addTranslation("entity.minecraft.villager.milite.industrialist", "Industrialist");
 
@@ -117,10 +123,6 @@ public final class TranslationProvider implements DataProvider {
 
         for (var entry : TagsToGenerate.tagTranslations.entrySet()) {
             addTranslation(entry.getKey(), entry.getValue());
-        }
-
-        for (var ebfTier : ElectricBlastFurnaceBlockEntity.tiers) {
-            addTranslation(ebfTier.getTranslationKey(), ebfTier.englishName());
         }
 
         for (var cableTier : CableTier.allTiers()) {

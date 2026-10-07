@@ -27,7 +27,6 @@ package aztech.modern_industrialization.machines.recipe;
 
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
-import java.util.*;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
@@ -38,6 +37,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
+
+import java.util.*;
 
 public class MachineRecipeType implements RecipeType<MachineRecipe>, RecipeSerializer<MachineRecipe> {
     private final MapCodec<MachineRecipe> codec;
@@ -108,9 +109,15 @@ public class MachineRecipeType implements RecipeType<MachineRecipe>, RecipeSeria
                     fluidOnlyRecipes.add(recipe);
                 }
             } else {
-                for (Item inputItem : recipe.value().itemInputs.get(0).getInputItems()) {
-                    recipeCache.putIfAbsent(inputItem, new ArrayList<>());
-                    recipeCache.get(inputItem).add(recipe);
+                // Index by every item the recipe accepts, not just the first one. A machine may hold the other input in
+                // a different slot, and only the slots that hold something are looked up, so indexing all of them is
+                // what lets a recipe be found no matter which of its inputs the player inserted first. The candidates
+                // are still filtered properly when the recipe is matched against the machine contents.
+                for (var input : recipe.value().itemInputs) {
+                    for (Item inputItem : input.getInputItems()) {
+                        recipeCache.putIfAbsent(inputItem, new ArrayList<>());
+                        recipeCache.get(inputItem).add(recipe);
+                    }
                 }
             }
         }

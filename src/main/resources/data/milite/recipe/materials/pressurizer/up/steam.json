@@ -1,6 +1,6 @@
 {
   "type" : "milite:pressurizer",
-  "eu" : 64,
+  "energy" : 64,
   "duration" : 75,
 
   "fluid_outputs" : {

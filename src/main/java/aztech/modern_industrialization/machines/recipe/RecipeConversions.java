@@ -30,8 +30,6 @@ import aztech.modern_industrialization.MIFluids;
 import aztech.modern_industrialization.config.MIServerConfig;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
-import java.util.Collections;
-import java.util.List;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -44,13 +42,16 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.List;
+
 public class RecipeConversions {
     public static RecipeHolder<MachineRecipe> ofSmelting(RecipeHolder<SmeltingRecipe> holder, MachineRecipeType type, RegistryAccess registryAccess) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(), "/" + holder.id().getPath() + "_exported_mi_furnace");
         var smeltingRecipe = holder.value();
         Ingredient ingredient = smeltingRecipe.getIngredients().get(0);
         MachineRecipe recipe = new MachineRecipe(type);
-        recipe.eu = 2;
+        recipe.energy = 2;
         recipe.duration = smeltingRecipe.getCookingTime();
         recipe.itemInputs = Collections.singletonList(new MachineRecipe.ItemInput(ingredient, 1, 1));
         recipe.fluidInputs = Collections.emptyList();
@@ -72,7 +73,7 @@ public class RecipeConversions {
                 "/" + holder.id().getPath() + "_exported_mi_cutting_machine");
         var stonecuttingRecipe = holder.value();
         MachineRecipe recipe = new MachineRecipe(type);
-        recipe.eu = 2;
+        recipe.energy = 2;
         recipe.duration = 200;
         recipe.itemInputs = Collections.singletonList(new MachineRecipe.ItemInput(stonecuttingRecipe.getIngredients().get(0), 1, 1));
         recipe.itemOutputs = Collections
@@ -97,7 +98,7 @@ public class RecipeConversions {
         if (probability > 0.0F) {
             ResourceLocation id = MI.id("/" + BuiltInRegistries.ITEM.getKey(compostable.asItem()).getPath() + "_to_plant_oil");
             MachineRecipe plantOil = new MachineRecipe(MIMachineRecipeTypes.CENTRIFUGE);
-            plantOil.eu = 8;
+            plantOil.energy = 8;
             plantOil.duration = 200;
 
             plantOil.itemInputs = List.of(new MachineRecipe.ItemInput(

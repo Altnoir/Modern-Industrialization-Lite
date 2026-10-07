@@ -1,7 +1,7 @@
 {
   "type": "milite:wiremill",
   "duration": 400,
-  "eu": 2,
+  "energy": 2,
   "item_inputs": [
     {
       "amount": 1,

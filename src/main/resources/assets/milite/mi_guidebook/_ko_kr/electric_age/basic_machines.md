@@ -18,11 +18,11 @@ REI를 사용해서 각종 전기 기계들의 사용처를 확인하실 수 있
 
 자화기는 물체가 자성을 띄게 만듭니다. 많은 조합법이 있지는 않지만, 모터를 자동화하는데 매우 유용합니다.
 
-<Recipe id="milite:electric_age/machine/polarizer_asbl" />
+<Recipe id="milite:processing_table/electric_polarizer" />
 
 조합기는 당신이 정맣 많은 양을 만들게 될 기계입니다. 조합기는 대부분의 조합법을 자동화해주는 기계입니다. 슬롯 잠금을 활용한다면 조합기 하나당 최대 3 개의 레시피를 저장할 수 있습니다.
 
-<Recipe id="milite:electric_age/machine/assembler_asbl" />
+<Recipe id="milite:processing_table/electric_assembler" />
 
 우선 조합기를 활용해 기계 껍데기와 아날로그 회로, 모터, 피스톤, 로봇 팔. 컨베이어를 자동화해놓는 것을 추천드립니다. 이렇게 하면 대부분의 전기 기계들을 자동으로 만들 수 있습니다.
 

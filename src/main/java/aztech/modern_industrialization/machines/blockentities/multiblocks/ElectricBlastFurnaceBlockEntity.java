@@ -25,125 +25,137 @@
 
 package aztech.modern_industrialization.machines.blockentities.multiblocks;
 
-import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
-
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.api.machine.holder.EnergyListComponentHolder;
 import aztech.modern_industrialization.compat.kubejs.KubeJSProxy;
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.components.*;
-import aztech.modern_industrialization.machines.guicomponents.ShapeSelection;
+import aztech.modern_industrialization.machines.components.OrientationComponent;
+import aztech.modern_industrialization.machines.components.OverdriveComponent;
 import aztech.modern_industrialization.machines.guicomponents.SlotPanel;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.models.MachineCasings;
-import aztech.modern_industrialization.machines.multiblocks.*;
+import aztech.modern_industrialization.machines.multiblocks.HatchFlags;
+import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
+import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import com.google.common.base.Preconditions;
-import java.util.*;
-import java.util.stream.Collectors;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
-    public record Tier(ResourceLocation coilBlockId, long maxBaseEu, String englishName) {
-        public String getTranslationKey() {
-            return "ebf_tier.milite." + coilBlockId.getPath();
-        }
+import java.util.*;
+import java.util.stream.Collectors;
 
-        public Component getDisplayName() {
-            return Component.translatable(getTranslationKey());
-        }
-    }
+import static aztech.modern_industrialization.machines.multiblocks.HatchTypes.*;
+
+public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
+    /**
+     * One electric blast furnace. The coil is part of the structure, so the coil, the energy it lets the furnace draw
+     * and the level of recipe the furnace runs all belong to the same machine. A furnace also runs the recipes of every
+     * furnace below it, so a higher one can take over the work of the ones it replaces.
+     *
+     * @param id          the block id of this furnace
+     * @param englishName its name, which is also the name of its recipe category
+     * @param coilBlockId the coil its structure is built with, and the only coil that fits it
+     * @param maxBaseRF   the energy per tick the coil lets the furnace draw, shown on the coil tooltip
+     * @param level       the level of recipe it runs, and of every furnace below it
+     */
+    public record Tier(String id, String englishName, ResourceLocation coilBlockId, long maxBaseRF, MachineLevel level) {}
 
     public static final List<Tier> tiers;
     public static final Map<ResourceLocation, Tier> tiersByCoil;
-    private static final ShapeTemplate[] shapeTemplates;
+    private static final Map<String, ShapeTemplate> shapesById;
 
     static {
-        // Register tiers
         List<Tier> registrationTiers = new ArrayList<>();
+        registrationTiers.add(new Tier("electric_blast_furnace", "Electric Blast Furnace", MI.id("cupronickel_coil"), 32,
+                MachineLevel.ELECTRIC));
+        registrationTiers.add(new Tier("stainless_steel_blast_furnace", "Stainless Steel Blast Furnace", MI.id("kanthal_coil"), 128,
+                MachineLevel.STAINLESS_STEEL));
+        registrationTiers.add(new Tier("iridium_blast_furnace", "Iridium Blast Furnace", MI.id("superconductor_coil"), 512,
+                MachineLevel.IRIDIUM));
 
-        registrationTiers.add(new Tier(MI.id("cupronickel_coil"), 32, "Cupronickel"));
-        registrationTiers.add(new Tier(MI.id("kanthal_coil"), 128, "Kanthal"));
         KubeJSProxy.instance.fireAddEbfTiersEvent(tier -> {
-            Preconditions.checkArgument(tier.maxBaseEu > 4, "EBF tier EU/t must be greater than 4.");
+            Preconditions.checkArgument(tier.maxBaseRF() > 4, "EBF tier RF/t must be greater than 4.");
             for (var t : registrationTiers) {
-                if (t.coilBlockId.equals(tier.coilBlockId)) {
-                    throw new IllegalArgumentException("EBF tier with coil " + tier.coilBlockId + " is already registered.");
+                if (t.id().equals(tier.id())) {
+                    throw new IllegalArgumentException("An EBF with id " + tier.id() + " is already registered.");
                 }
-                if (t.coilBlockId.getPath().equals(tier.coilBlockId.getPath())) {
-                    throw new IllegalArgumentException(
-                            "EBF tier with coil " + tier.coilBlockId + " has the same path as an already registered tier.");
+                if (t.coilBlockId().equals(tier.coilBlockId())) {
+                    throw new IllegalArgumentException("An EBF with coil " + tier.coilBlockId() + " is already registered.");
                 }
-                if (t.maxBaseEu == tier.maxBaseEu) {
-                    throw new IllegalArgumentException("EBF tier with max " + tier.maxBaseEu + " EU/t is already registered.");
+                if (t.level() == tier.level()) {
+                    throw new IllegalArgumentException("An EBF with level " + tier.level() + " is already registered.");
                 }
             }
             registrationTiers.add(tier);
         });
-        registrationTiers.sort(Comparator.comparingLong(Tier::maxBaseEu));
+        registrationTiers.sort(Comparator.comparingInt(tier -> tier.level().ordinal()));
 
-        tiers = Collections.unmodifiableList(registrationTiers);
+        tiers = List.copyOf(registrationTiers);
         tiersByCoil = tiers.stream().collect(Collectors.toMap(Tier::coilBlockId, t -> t));
 
-        // Build shapes
-        shapeTemplates = new ShapeTemplate[tiers.size()];
-
-        for (int i = 0; i < tiers.size(); ++i) {
-            var tier = tiers.get(i);
-            SimpleMember invarCasings = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("heatproof_machine_casing")));
-            SimpleMember coilsBlocks = SimpleMember.forBlockId(tier.coilBlockId());
-            HatchFlags ebfHatches = new HatchFlags.Builder().with(ITEM_INPUT, ITEM_OUTPUT, FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
-            ShapeTemplate ebfShape = new ShapeTemplate.Builder(MachineCasings.HEATPROOF)
-                    .add3by3(0, invarCasings, false, ebfHatches)
-                    .add3by3(1, coilsBlocks, true, null)
-                    .add3by3(2, coilsBlocks, true, null)
-                    .add3by3(3, invarCasings, false, ebfHatches)
-                    .build();
-            shapeTemplates[i] = ebfShape;
+        Map<String, ShapeTemplate> shapes = new LinkedHashMap<>();
+        for (Tier tier : tiers) {
+            shapes.put(tier.id(), createShape(tier.coilBlockId()));
         }
+        shapesById = Map.copyOf(shapes);
     }
 
-    public ElectricBlastFurnaceBlockEntity(BEP bep) {
-        super(bep, "electric_blast_furnace", new OrientationComponent.Params(false, false, false), shapeTemplates);
-        this.upgrades = new UpgradeComponent();
+    /**
+     * Every furnace is the same four heatproof layers, with the coil it is built around in the middle two.
+     */
+    private static ShapeTemplate createShape(ResourceLocation coilBlockId) {
+        SimpleMember heatproofCasings = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("heatproof_machine_casing")));
+        SimpleMember coils = SimpleMember.forBlockId(coilBlockId);
+        HatchFlags hatches = new HatchFlags.Builder().with(ITEM_INPUT, ITEM_OUTPUT, FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
+        return new ShapeTemplate.Builder(MachineCasings.HEATPROOF)
+                .add3by3(0, heatproofCasings, false, hatches)
+                .add3by3(1, coils, true, null)
+                .add3by3(2, coils, true, null)
+                .add3by3(3, heatproofCasings, false, hatches)
+                .build();
+    }
+
+    public ElectricBlastFurnaceBlockEntity(BEP bep, Tier tier) {
+        super(bep, tier.id(), new OrientationComponent.Params(false, false, false), new ShapeTemplate[] { shapesById.get(tier.id()) });
+        this.tier = tier;
         this.overdrive = new OverdriveComponent();
-        this.registerComponents(upgrades, overdrive);
+        this.registerComponents(overdrive);
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl)
-                .withUpgrades(upgrades)
                 .withOverdrive(overdrive));
-
-        var tierComponents = tiers.stream().map(Tier::getDisplayName).toList();
-
-        registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
-            @Override
-            public void handleClick(int clickedLine, int delta) {
-                activeShape.incrementShape(ElectricBlastFurnaceBlockEntity.this, delta);
-            }
-
-            @Override
-            public int getCurrentIndex(int line) {
-                return activeShape.getActiveShapeIndex();
-            }
-        }, new ShapeSelection.LineInfo(tierComponents, true)));
     }
 
-    private final UpgradeComponent upgrades;
+    private final Tier tier;
     private final OverdriveComponent overdrive;
+
+    public Tier getTier() {
+        return tier;
+    }
 
     @Override
     public MachineRecipeType recipeType() {
         return MIMachineRecipeTypes.BLAST_FURNACE;
     }
 
+    /**
+     * Which recipes the furnace runs is decided by the block a player built, not by anything inside it.
+     */
+    @Override
+    public MachineLevel getMachineLevel() {
+        return tier.level();
+    }
+
+    /**
+     * A furnace runs the recipes of its own level and of every level below it.
+     */
+    @Override
     public boolean banRecipe(MachineRecipe recipe) {
-        int index = activeShape.getActiveShapeIndex();
-        return (recipe.eu > getMaxRecipeEu()) || (recipe.eu > tiers.get(index).maxBaseEu);
+        return !tier.level().canCraft(recipe.level);
     }
 
     @Override
@@ -153,7 +165,7 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
 
     @Override
     public long getMaxRecipeEu() {
-        return MachineTier.MULTIBLOCK.getMaxEu() + upgrades.getAddMaxEUPerTick();
+        return MachineTier.MULTIBLOCK.getMaxEu();
     }
 
     @Override
@@ -161,14 +173,9 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
         return overdrive.shouldOverdrive();
     }
 
-    @Override
-    public ShapeTemplate getBigShape() {
-        return shapeTemplates[shapeTemplates.length - 1];
-    }
-
     public static void registerReiShapes() {
-        for (int i = 0; i < shapeTemplates.length; ++i) {
-            ReiMachineRecipes.registerMultiblockShape("electric_blast_furnace", shapeTemplates[i], tiers.get(i).coilBlockId.getPath());
+        for (Tier tier : tiers) {
+            ReiMachineRecipes.registerMultiblockShape(tier.id(), shapesById.get(tier.id()), tier.coilBlockId().getPath());
         }
     }
 }

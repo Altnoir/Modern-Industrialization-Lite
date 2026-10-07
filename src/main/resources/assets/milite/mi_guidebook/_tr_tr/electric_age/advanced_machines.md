@@ -22,19 +22,19 @@ Alüminyum, daha gelişmiş makineler yapmak için kullanılan bir malzemedir. D
 
 Santrifüj, nesneleri çok hızlı döndürerek ayırır. Karbon tozu yapmak ve çelik ve silikon için daha iyi tariflerin kilidini açmak için kullanabilirsiniz.
 
-<Recipe id="milite:electric_age/machine/centrifuge_asbl" />
+<Recipe id="milite:processing_table/electric_centrifuge" />
 
 Kimyasal Reaktör maddelerin ve sıvıların reaksiyona girmesini sağlayabilir.
 
-<Recipe id="milite:electric_age/machine/chemical_reactor_asbl" />
+<Recipe id="milite:processing_table/electric_chemical_reactor" />
 
 Damıtma Tesisi çeşitli sıvıları daha hafif parçalarına dönüştürecektir. Bu, Petrol İşleme için çok faydalı olacaktır.
 
-<Recipe id="milite:electric_age/machine/distillery_asbl" />
+<Recipe id="milite:processing_table/electric_distillery" />
 
 Elektrolizör, güçlü elektrik akımları kullanarak malzemeleri farklı parçalarına ayırabilir. Alüminyum tozu elde etmek için boksit tozunu elektrolize edebilir ve daha sonra EMEO'da doğrudan alüminyum külçelere eritebilirsiniz.
 
-<Recipe id="milite:electric_age/machine/electrolyzer_asbl" />
+<Recipe id="milite:processing_table/electric_electrolyzer" />
 
 Yapılandırılabilir Tank, Yapılandırılabilir Sandık'ın akışkan eşdeğeridir. 16 kova alabilen 9 yapılandırılabilir yuvası ve otomatik çıkartma işlevi vardır! Birçok farklı sıvı ile otomasyon için kullanışlıdır!
 

@@ -1,5 +1,5 @@
 {
-  "parent": "milite:distillery",
+  "parent": "milite:electric_distillery",
   "criteria": {
     "checkInv": {
       "conditions": {

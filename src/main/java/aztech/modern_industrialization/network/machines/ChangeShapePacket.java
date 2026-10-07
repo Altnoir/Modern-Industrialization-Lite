@@ -50,8 +50,11 @@ public record ChangeShapePacket(int syncId, int shapeLine, boolean clickedLeftBu
 
         AbstractContainerMenu menu = ctx.getPlayer().containerMenu;
         if (menu.containerId == syncId && menu instanceof MachineMenuServer machineMenu) {
-            var shapeSelection = machineMenu.blockEntity.guiComponents.getOrThrow(ShapeSelection.class);
-            shapeSelection.behavior.handleClick(shapeLine, clickedLeftButton ? -1 : +1);
+            // Not every multiblock has a shape to select, so a missing component is ignored instead of throwing.
+            var shapeSelection = machineMenu.blockEntity.guiComponents.getNullable(ShapeSelection.class);
+            if (shapeSelection != null) {
+                shapeSelection.behavior.handleClick(shapeLine, clickedLeftButton ? -1 : +1);
+            }
         }
     }
 }

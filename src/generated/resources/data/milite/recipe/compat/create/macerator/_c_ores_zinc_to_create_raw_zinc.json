@@ -7,7 +7,7 @@
   ],
   "type": "milite:macerator",
   "duration": 200,
-  "eu": 2,
+  "energy": 2,
   "item_inputs": [
     {
       "amount": 1,

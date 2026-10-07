@@ -1,7 +1,7 @@
 {
   "type": "milite:heat_exchanger",
   "duration": 10,
-  "eu": 8,
+  "energy": 8,
   "fluid_inputs": [
     {
       "amount": 20,
@@ -29,5 +29,6 @@
       "amount": 1,
       "item": "milite:annealed_copper_ingot"
     }
-  ]
+  ],
+  "level": "electric"
 }

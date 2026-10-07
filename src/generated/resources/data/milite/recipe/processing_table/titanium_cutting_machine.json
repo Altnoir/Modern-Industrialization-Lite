@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:highly_advanced_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:titanium_cutting_machine"
+  },
+  "second": {
+    "item": "milite:invar_rotary_blade"
+  }
+}

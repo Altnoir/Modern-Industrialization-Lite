@@ -1,7 +1,7 @@
 {
   "type": "milite:chemical_reactor",
   "duration": 700,
-  "eu": 12,
+  "energy": 12,
   "fluid_inputs": [
     {
       "amount": 500,
@@ -19,5 +19,6 @@
       "amount": 4,
       "tag": "c:tiny_dusts/lead"
     }
-  ]
+  ],
+  "level": "electric"
 }

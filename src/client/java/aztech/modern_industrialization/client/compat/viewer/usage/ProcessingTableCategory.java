@@ -30,12 +30,13 @@ import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.blocks.processingtable.ProcessingTableRecipe;
 import aztech.modern_industrialization.client.compat.viewer.abstraction.ViewerCategory;
-import java.util.Comparator;
-import java.util.function.Consumer;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+
+import java.util.Comparator;
+import java.util.function.Consumer;
 
 /**
  * Recipe viewer category of the Processing Table: two inputs make one machine.
@@ -48,19 +49,16 @@ import net.minecraft.world.item.crafting.RecipeManager;
 public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<ProcessingTableRecipe>> {
     public static final ResourceLocation ID = MI.id("processing_table");
 
-    private static final int WIDTH = 150;
-    private static final int HEIGHT = 40;
+    private static final int WIDTH = 98;
+    private static final int HEIGHT = 28;
 
-    private final int startPointX;
     private final int startPointY;
 
     public ProcessingTableCategory() {
-        super((Class) RecipeHolder.class, ID, MIBlock.PROCESSING_TABLE.asBlock().getName(),
+        super(recipeHolderClass(), ID, MIBlock.PROCESSING_TABLE.asBlock().getName(),
                 MIBlock.PROCESSING_TABLE.asItem().getDefaultInstance(), WIDTH, HEIGHT);
 
-        // Same anchors as the Forge Hammer category.
-        this.startPointX = WIDTH / 2 - 25;
-        this.startPointY = HEIGHT / 2 - 18;
+        this.startPointY = HEIGHT / 2 - 8;
     }
 
     @Override
@@ -80,17 +78,15 @@ public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<Process
     public void buildLayout(RecipeHolder<ProcessingTableRecipe> holder, LayoutBuilder builder) {
         var recipe = holder.value();
 
-        // The Forge Hammer puts its input on startPointX + 5. The Processing Table needs a second
-        // input, so the two are stacked in the column the Forge Hammer gives to its input and tool.
-        builder.inputSlot(startPointX + 5, startPointY + 6).ingredient(recipe.first(), 1, 1);
-        builder.inputSlot(startPointX + 23, startPointY + 6).ingredient(recipe.second(), 1, 1);
-        builder.outputSlot(startPointX + 62, startPointY + 15).item(recipe.result());
+        builder.inputSlot(8, startPointY).ingredient(recipe.first(), 1, 1);
+        builder.inputSlot(26, startPointY).ingredient(recipe.second(), 1, 1);
+        builder.outputSlot(74, startPointY).item(recipe.result());
     }
 
     @Override
     public void buildWidgets(RecipeHolder<ProcessingTableRecipe> holder, WidgetList widgets) {
         // Same arrow position and size as the Forge Hammer category, centred on the two inputs.
-        widgets.arrow(startPointX + 27, startPointY + 13);
+        widgets.arrow(46, startPointY);
     }
 
     @Override

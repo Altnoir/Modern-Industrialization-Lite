@@ -1,6 +1,7 @@
 {
   "type": "milite:blast_furnace",
-  "eu": 64,
+  "energy": 64,
+  "level" : "stainless_steel",
   "duration": 600,
   "item_inputs": {
     "tag": "c:dusts/copper",

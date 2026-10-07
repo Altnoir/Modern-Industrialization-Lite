@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:quantum_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:iridium_unpacker"
+  },
+  "second": {
+    "item": "minecraft:chest"
+  }
+}

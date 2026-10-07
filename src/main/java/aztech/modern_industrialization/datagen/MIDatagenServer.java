@@ -31,16 +31,7 @@ import aztech.modern_industrialization.datagen.datamap.MIDataMapProvider;
 import aztech.modern_industrialization.datagen.dynreg.DynamicRegistryDatagen;
 import aztech.modern_industrialization.datagen.loot.BlockLootTableProvider;
 import aztech.modern_industrialization.datagen.loot.MIGiftLoot;
-import aztech.modern_industrialization.datagen.recipe.AlloyRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.AssemblerRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.DyeRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.HatchRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.HeatExchangerRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.MaterialRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.PetrochemRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.PlankRecipesProvider;
-import aztech.modern_industrialization.datagen.recipe.UpgradeProvider;
-import aztech.modern_industrialization.datagen.recipe.VanillaCompatRecipesProvider;
+import aztech.modern_industrialization.datagen.recipe.*;
 import aztech.modern_industrialization.datagen.recipe.compat.CreateCompatRecipes;
 import aztech.modern_industrialization.datagen.structure.EmptyTestStructureGenerator;
 import aztech.modern_industrialization.datagen.tag.MIBlockTagProvider;
@@ -48,9 +39,6 @@ import aztech.modern_industrialization.datagen.tag.MIFluidTagProvider;
 import aztech.modern_industrialization.datagen.tag.MIItemTagProvider;
 import aztech.modern_industrialization.datagen.tag.MIPoiTypeTagProvider;
 import aztech.modern_industrialization.datagen.translation.TranslationProvider;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -58,6 +46,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class MIDatagenServer {
     public static void configure(
@@ -76,6 +68,7 @@ public class MIDatagenServer {
         aggregate.addProvider(MaterialRecipesProvider::new);
         aggregate.addProvider(DyeRecipesProvider::new);
         aggregate.addProvider(AssemblerRecipesProvider::new);
+        aggregate.addProvider(ProcessingTableRecipesProvider::new);
         if (!runtimeDatagen) {
             aggregate.addProvider(CreateCompatRecipes::new);
         }

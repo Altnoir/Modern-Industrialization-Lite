@@ -36,15 +36,20 @@ import aztech.modern_industrialization.machines.MachineBlock;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.models.MachineCasing;
 import aztech.modern_industrialization.machines.models.MachineCasings;
+import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import aztech.modern_industrialization.util.MobSpawning;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MachineRegistrationHelper {
     /**
@@ -88,6 +93,56 @@ public class MachineRegistrationHelper {
         return new MachineDefinition<>(blockEntityType, blockDefinition);
     }
 
+    /**
+     * The highest level any machine of a given recipe type can reach.
+     *
+     * <p>
+     * A recipe whose level is above this can never be crafted by anything, which is a mistake that is otherwise only
+     * found by noticing the recipe never works. {@code MachineLevelValidator} uses this to report such recipes.
+     */
+    private static final Map<MachineRecipeType, MachineLevel> highestLevelByRecipeType = new HashMap<>();
+
+    /**
+     * Records that a machine of the given recipe type exists at the given level.
+     */
+    public static void recordMachineLevel(MachineRecipeType recipeType, MachineLevel level) {
+        highestLevelByRecipeType.merge(recipeType, level,
+                (current, added) -> added.ordinal() > current.ordinal() ? added : current);
+    }
+
+    public static @Nullable MachineLevel highestLevel(MachineRecipeType recipeType) {
+        return highestLevelByRecipeType.get(recipeType);
+    }
+
+    /**
+     * The casing a machine level is built with. This is what decides the appearance of the machine, see
+     * {@code MachineBakedModel}.
+     */
+    public static MachineCasing casingOf(MachineLevel level) {
+        return switch (level) {
+            case BRONZE -> MachineCasings.BRONZE;
+            case STEEL -> MachineCasings.STEEL;
+            case ELECTRIC -> CableTier.LV.casing;
+            case ALUMINUM -> CableTier.MV.casing;
+            case STAINLESS_STEEL -> CableTier.HV.casing;
+            case TITANIUM -> CableTier.EV.casing;
+            case IRIDIUM -> CableTier.SUPERCONDUCTOR.casing;
+        };
+    }
+
+    /**
+     * Registers the model of a machine variant, taking its casing from the level it belongs to.
+     */
+    public static void addMachineModel(MachineLevel level, String id, String machineType, boolean frontOverlay, boolean topOverlay,
+            boolean sideOverlay) {
+        addMachineModel(id, machineType, casingOf(level), frontOverlay, topOverlay, sideOverlay);
+    }
+
+    /**
+     * @deprecated prefer {@link #addMachineModel(MachineLevel, String, String, boolean, boolean, boolean)}, which covers
+     *             every level instead of only the three oldest ones.
+     */
+    @Deprecated(forRemoval = false)
     @SuppressWarnings("IfCanBeSwitch")
     public static void addMachineModel(String tier, String id, String machineType, boolean frontOverlay, boolean topOverlay, boolean sideOverlay) {
         MachineCasing defaultCasing;

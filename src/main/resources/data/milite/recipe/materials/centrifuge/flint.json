@@ -1,6 +1,6 @@
 {
   "type": "milite:centrifuge",
-  "eu": 8,
+  "energy": 8,
   "duration": 300,
   "item_inputs": {
     "item": "minecraft:gravel",

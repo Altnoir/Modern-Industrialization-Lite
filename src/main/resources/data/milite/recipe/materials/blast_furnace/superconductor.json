@@ -1,6 +1,7 @@
 {
   "type": "milite:blast_furnace",
-  "eu": 128,
+  "energy": 128,
+  "level" : "stainless_steel",
   "duration": 1200,
   "item_inputs": {
     "tag": "c:dusts/superconductor",

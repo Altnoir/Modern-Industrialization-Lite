@@ -1,5 +1,5 @@
 {
-  "parent": "milite:chemical_reactor",
+  "parent": "milite:electric_chemical_reactor",
   "criteria": {
     "checkInv": {
       "conditions": {

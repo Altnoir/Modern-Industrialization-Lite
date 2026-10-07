@@ -30,6 +30,7 @@ import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.guicomponents.SlotPanel;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 
@@ -43,6 +44,14 @@ public class FusionReactorBlockEntity extends AbstractElectricCraftingMultiblock
     @Override
     public MachineRecipeType recipeType() {
         return MIMachineRecipeTypes.FUSION_REACTOR;
+    }
+
+    /**
+     * The casing of the structure is the highly advanced machine hull, which is the titanium level.
+     */
+    @Override
+    public MachineLevel getMachineLevel() {
+        return MachineLevel.TITANIUM;
     }
 
     @Override

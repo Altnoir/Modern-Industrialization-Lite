@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:bronze_machine_casing"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:bronze_cutting_machine"
+  },
+  "second": {
+    "item": "milite:invar_rotary_blade"
+  }
+}

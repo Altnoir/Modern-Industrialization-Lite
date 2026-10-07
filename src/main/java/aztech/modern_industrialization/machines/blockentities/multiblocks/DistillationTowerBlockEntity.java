@@ -32,16 +32,22 @@ import aztech.modern_industrialization.api.machine.holder.EnergyListComponentHol
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.config.MIStartupConfig;
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.components.*;
+import aztech.modern_industrialization.machines.components.OrientationComponent;
+import aztech.modern_industrialization.machines.components.OverdriveComponent;
 import aztech.modern_industrialization.machines.guicomponents.ShapeSelection;
 import aztech.modern_industrialization.machines.guicomponents.SlotPanel;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.models.MachineCasings;
-import aztech.modern_industrialization.machines.multiblocks.*;
+import aztech.modern_industrialization.machines.multiblocks.HatchFlags;
+import aztech.modern_industrialization.machines.multiblocks.HatchTypes;
+import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
+import aztech.modern_industrialization.machines.multiblocks.SimpleMember;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
-import java.util.stream.IntStream;
 import net.minecraft.network.chat.Component;
+
+import java.util.stream.IntStream;
 
 public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     private static final int MAX_HEIGHT = MIStartupConfig.INSTANCE.maxDistillationTowerHeight.getAsInt();
@@ -49,12 +55,10 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
 
     public DistillationTowerBlockEntity(BEP bep) {
         super(bep, "distillation_tower", new OrientationComponent.Params(false, false, false), shapeTemplates);
-        this.upgrades = new UpgradeComponent();
         this.overdrive = new OverdriveComponent();
-        this.registerComponents(upgrades, overdrive);
+        this.registerComponents(overdrive);
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl)
-                .withUpgrades(upgrades)
                 .withOverdrive(overdrive));
 
         registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
@@ -72,12 +76,16 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
                 false)));
     }
 
-    private final UpgradeComponent upgrades;
     private final OverdriveComponent overdrive;
 
     @Override
     public MachineRecipeType recipeType() {
         return MIMachineRecipeTypes.DISTILLATION_TOWER;
+    }
+
+    @Override
+    public MachineLevel getMachineLevel() {
+        return MachineLevel.STAINLESS_STEEL;
     }
 
     @Override
@@ -87,7 +95,7 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
 
     @Override
     public long getMaxRecipeEu() {
-        return MachineTier.MULTIBLOCK.getMaxEu() + upgrades.getAddMaxEUPerTick();
+        return MachineTier.MULTIBLOCK.getMaxEu();
     }
 
     @Override

@@ -22,19 +22,19 @@ O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim 
 
 A Centrífuga separa itens girando-os em alta velocidade. Você pode usá-la para fazer pó de carbono e desbloquear receitas melhores para aço e silício.
 
-<Recipe id="milite:electric_age/machine/centrifuge_asbl" />
+<Recipe id="milite:processing_table/electric_centrifuge" />
 
 O Reator Químico pode fazer itens e fluidos reagirem.
 
-<Recipe id="milite:electric_age/machine/chemical_reactor_asbl" />
+<Recipe id="milite:processing_table/electric_chemical_reactor" />
 
 A Destilaria transformará vários fluidos em suas partes mais leves. Isso será muito útil para o Processamento de Petróleo.
 
-<Recipe id="milite:electric_age/machine/distillery_asbl" />
+<Recipe id="milite:processing_table/electric_distillery" />
 
 O Eletrólisador pode separar materiais em suas diferentes partes usando correntes elétricas fortes. Você pode eletrólisar pó de bauxita para obter pó de alumínio, que pode então ser fundido diretamente em lingotes de alumínio no AFE.
 
-<Recipe id="milite:electric_age/machine/electrolyzer_asbl" />
+<Recipe id="milite:processing_table/electric_electrolyzer" />
 
 O Tanque Configurável é o equivalente fluido do Baú Configurável.
 

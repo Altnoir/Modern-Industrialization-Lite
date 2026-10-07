@@ -1544,7 +1544,7 @@
   "text.milite.DirectHeatByDesintegration": "Calor direto para uma captura",
   "text.milite.Disabled": "Desativado",
   "text.milite.DurabilityCost": "Custo de durabilidade: %d",
-  "text.milite.EbfMaxEu": "Permite receitas do EBF de até %d RF/t",
+  "text.milite.EbfMaxRF": "Permite receitas do EBF de até %d RF/t",
   "text.milite.Efficiency": "Eficiência",
   "text.milite.EfficiencyDefaultMessage": "Nenhuma receita ativa para overclock",
   "text.milite.EfficiencyEu": "Consumo atual: %d RF/t",

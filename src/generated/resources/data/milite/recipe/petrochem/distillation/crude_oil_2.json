@@ -1,7 +1,7 @@
 {
   "type": "milite:distillery",
   "duration": 200,
-  "eu": 12,
+  "energy": 12,
   "fluid_inputs": [
     {
       "amount": 1000,
@@ -13,5 +13,6 @@
       "amount": 300,
       "fluid": "milite:sulfuric_naphtha"
     }
-  ]
+  ],
+  "level": "electric"
 }

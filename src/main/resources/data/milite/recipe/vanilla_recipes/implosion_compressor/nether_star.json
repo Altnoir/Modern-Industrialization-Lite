@@ -1,6 +1,6 @@
 {
   "type": "milite:implosion_compressor",
-  "eu": 64,
+  "energy": 64,
   "duration": 10,
   "item_inputs": [
     {

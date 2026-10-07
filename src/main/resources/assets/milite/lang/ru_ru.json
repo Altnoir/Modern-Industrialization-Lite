@@ -1542,7 +1542,7 @@
   "text.milite.DirectHeatByDesintegration": "Постоянный нагрев за одно поглощение",
   "text.milite.Disabled": "Отключён(а)",
   "text.milite.DurabilityCost": "Расход прочности: %d",
-  "text.milite.EbfMaxEu": "Позволяет рецепты ЭДП до %d ЭЕ/тик",
+  "text.milite.EbfMaxRF": "Позволяет рецепты ЭДП до %d ЭЕ/тик",
   "text.milite.Efficiency": "Эффективность",
   "text.milite.EfficiencyDefaultMessage": "Нет активных рецептов для разгона",
   "text.milite.EfficiencyEu": "Текущее потребление: %d ЭЕ/тик",

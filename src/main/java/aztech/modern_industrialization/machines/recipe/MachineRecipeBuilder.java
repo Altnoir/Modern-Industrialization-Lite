@@ -30,8 +30,8 @@ import aztech.modern_industrialization.recipe.json.MIRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 
 public class MachineRecipeBuilder extends MIRecipeJson<MachineRecipeBuilder> implements MIRecipeBuilder {
-    public MachineRecipeBuilder(MachineRecipeType machineRecipeType, int eu, int duration) {
-        super(machineRecipeType, eu, duration);
+    public MachineRecipeBuilder(MachineRecipeType machineRecipeType, int energy, int duration) {
+        super(machineRecipeType, energy, duration);
     }
 
     public MachineRecipeBuilder(MIRecipeJson<?> otherWithSameData) {

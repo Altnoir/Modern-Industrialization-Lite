@@ -28,7 +28,6 @@ package aztech.modern_industrialization.blocks.processingtable;
 import aztech.modern_industrialization.MIBlock;
 import aztech.modern_industrialization.MIRegistries;
 import aztech.modern_industrialization.inventory.MoveRecipeHandler;
-import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,6 +44,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
+import java.util.List;
+
 /**
  * The Processing Table: the player puts a machine casing and a characterising item in the two input slots and takes
  * the resulting machine from the output slot. Input order does not matter.
@@ -53,9 +54,9 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
     /**
      * Slot positions, taken from the processing_table.png background.
      */
-    public static final int FIRST_INPUT_X = 7, FIRST_INPUT_Y = 46;
-    public static final int SECOND_INPUT_X = 43, SECOND_INPUT_Y = 46;
-    public static final int OUTPUT_X = 115, OUTPUT_Y = 46;
+    public static final int FIRST_INPUT_X = 27, FIRST_INPUT_Y = 47;
+    public static final int SECOND_INPUT_X = 76, SECOND_INPUT_Y = 47;
+    public static final int OUTPUT_X = 134, OUTPUT_Y = 47;
 
     public final Slot firstInput;
     public final Slot secondInput;

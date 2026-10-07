@@ -22,19 +22,19 @@ item_ids:
 
 遠心分離機はアイテムを高速回転さすることで分離する。炭素の粉をを作ったり、鉄やシリコンのレシピを改良したりするのに使える。
 
-<Recipe id="milite:electric_age/machine/centrifuge_asbl" />
+<Recipe id="milite:processing_table/electric_centrifuge" />
 
 化学反応機はアイテムや流体を反応させることができる。
 
-<Recipe id="milite:electric_age/machine/chemical_reactor_asbl" />
+<Recipe id="milite:processing_table/electric_chemical_reactor" />
 
 蒸留所は様々な液体を低沸点の成分へと分離する。石油精製にとても役立つだろう。
 
-<Recipe id="milite:electric_age/machine/distillery_asbl" />
+<Recipe id="milite:processing_table/electric_distillery" />
 
 電解機は電気を流すことで素材を分離することができる。ボーキサイトの粉を電気分解してアルミニウムの粉を作り、電気高炉で直接製錬してアルミニウムのインゴットにすることができる。
 
-<Recipe id="milite:electric_age/machine/electrolyzer_asbl" />
+<Recipe id="milite:processing_table/electric_electrolyzer" />
 
 設定可変タンクは設定可変チェストの流体版である。
 

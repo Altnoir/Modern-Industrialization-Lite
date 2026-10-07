@@ -32,16 +32,10 @@ import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
 import aztech.modern_industrialization.inventory.ConfigurableFluidStack;
 import aztech.modern_industrialization.inventory.ConfigurableItemStack;
 import aztech.modern_industrialization.util.Rectangle;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import mezz.jei.api.gui.builder.IClickableIngredientFactory;
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
-import mezz.jei.api.ingredients.ITypedIngredient;
+import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.recipe.IFocusFactory;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.runtime.IClickableIngredient;
@@ -54,6 +48,9 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jspecify.annotations.Nullable;
+
+import java.util.*;
+import java.util.function.Supplier;
 
 record MachineGuiContainerHandler(IIngredientManager ingredientManager, Supplier<IJeiRuntime> jeiRuntime)
         implements IGuiContainerHandler<MachineScreen> {
@@ -107,19 +104,50 @@ record MachineGuiContainerHandler(IIngredientManager ingredientManager, Supplier
     }
 
     @Override
-    public Optional<IClickableIngredient<?>> getClickableIngredientUnderMouse(MachineScreen screen, double mouseX, double mouseY) {
+    public Optional<IClickableIngredient<?>> getClickableIngredientUnderMouse(IClickableIngredientFactory factory,
+            MachineScreen screen, double mouseX, double mouseY) {
         Slot slot = screen.getFocusedSlot();
-        var maybeIngredient = getIngredientUnderMouse(slot);
+        Object ingredient = getIngredientUnderMouse(slot);
+        if (ingredient == null) {
+            return Optional.empty();
+        }
 
-        return Optional.ofNullable(maybeIngredient)
-                .map(ingredientManager::createTypedIngredient)
-                .flatMap(ingredient -> ingredient.map(slotArea(screen, slot)));
+        // The slot area is in absolute screen coordinates, not gui relative ones.
+        var area = new Rect2i(screen.x() + slot.x, screen.y() + slot.y, 16, 16);
+
+        // Declared as IIngredientType<?> on purpose: the wildcard is captured when it is passed to the helper below,
+        // so the helper's type variable is not widened to Object and the builder keeps its wildcard.
+        IIngredientType<?> type = ingredientManager.getIngredientTypeChecked(ingredient).orElse(null);
+        if (type == null) {
+            return Optional.empty();
+        }
+        return buildClickable(factory, type, ingredient, area);
     }
 
-    public @Nullable Object getIngredientUnderMouse(Slot slot) {
-        if (slot instanceof ConfigurableFluidStack.ConfigurableFluidSlot) {
-            var fluidHelper = jeiRuntime.get().getJeiHelpers().getPlatformFluidHelper();
+    /**
+     * Builds the clickable ingredient from an ingredient whose static type is {@code Object}.
+     *
+     * <p>
+     * The shape of this method is forced by {@code Optional} being invariant while JEI's interface returns
+     * {@code Optional<IClickableIngredient<?>>}. {@code factory.createBuilder} can only produce an
+     * {@code IClickableIngredient<V>} for the captured type {@code V}, and {@code Optional<IClickableIngredient<V>>} is
+     * not a subtype of {@code Optional<IClickableIngredient<?>>}. The element itself converts fine, so {@code map} does
+     * that part; only the enclosing {@code Optional} needs an unchecked cast, which is safe because both optionals wrap
+     * the very same object and {@code Optional} carries no state of its own.
+     *
+     * <p>
+     * The cast of the ingredient to {@code V} is what lets the {@code Object} argument in; the caller has already
+     * established with {@code getIngredientTypeChecked} that the ingredient really is of this type.
+     */
+    @SuppressWarnings("unchecked")
+    private static <V> Optional<IClickableIngredient<?>> buildClickable(IClickableIngredientFactory factory, IIngredientType<V> type,
+            Object ingredient, Rect2i area) {
+        Optional<IClickableIngredient<V>> built = factory.createBuilder(type, (V) ingredient).buildWithArea(area);
+        return (Optional<IClickableIngredient<?>>) (Optional<?>) built;
+    }
 
+    private @Nullable Object getIngredientUnderMouse(Slot slot) {
+        if (slot instanceof ConfigurableFluidStack.ConfigurableFluidSlot) {
             ConfigurableFluidStack stack = ((ConfigurableFluidStack.ConfigurableFluidSlot) slot).getConfStack();
             if (stack.getAmount() > 0) {
                 var fluid = stack.getResource();
@@ -141,21 +169,6 @@ record MachineGuiContainerHandler(IIngredientManager ingredientManager, Supplier
             }
         }
         return null;
-    }
-
-    private static <T> Function<ITypedIngredient<T>, IClickableIngredient<T>> slotArea(MachineScreen screen, Slot slot) {
-        var area = new Rect2i(screen.x() + slot.x, screen.y() + slot.y, 16, 16);
-        return ing -> new IClickableIngredient<>() {
-            @Override
-            public ITypedIngredient<T> getTypedIngredient() {
-                return ing;
-            }
-
-            @Override
-            public Rect2i getArea() {
-                return area;
-            }
-        };
     }
 
     private static boolean contains(Rectangle rectangle, double x, double y) {

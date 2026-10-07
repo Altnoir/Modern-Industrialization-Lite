@@ -36,22 +36,10 @@ import aztech.modern_industrialization.items.diesel_tools.DieselToolItem;
 import aztech.modern_industrialization.machines.MachineBlock;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.ElectricBlastFurnaceBlockEntity;
 import aztech.modern_industrialization.machines.components.CasingComponent;
-import aztech.modern_industrialization.machines.components.UpgradeComponent;
 import aztech.modern_industrialization.nuclear.NuclearAbsorbable;
 import aztech.modern_industrialization.nuclear.NuclearFuel;
 import aztech.modern_industrialization.util.TextHelper;
 import com.google.common.base.Preconditions;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -65,6 +53,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
+
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @SuppressWarnings("unused")
 public class MITooltips {
@@ -246,8 +240,8 @@ public class MITooltips {
                         && ElectricBlastFurnaceBlockEntity.tiersByCoil.containsKey(BuiltInRegistries.BLOCK.getKey(blockItem.getBlock()))) {
                     long eu = ElectricBlastFurnaceBlockEntity.tiersByCoil
                             .get(BuiltInRegistries.BLOCK.getKey(((BlockItem) itemStack.getItem()).getBlock()))
-                            .maxBaseEu();
-                    return Optional.of(new Line(MIText.EbfMaxEu).arg(eu).build());
+                            .maxBaseRF();
+                    return Optional.of(new Line(MIText.EbfMaxRF).arg(eu).build());
                 } else {
                     return Optional.empty();
                 }
@@ -341,23 +335,6 @@ public class MITooltips {
 
     public static final TooltipAttachment OVERDRIVE_MODULE = TooltipAttachment.ofMultilines(MIItem.OVERDRIVE_MODULE,
             MIText.OverdriveModuleDescription1, MIText.OverdriveModuleDescription2);
-
-    public static final TooltipAttachment UPGRADES = TooltipAttachment.ofMultilines(
-            (itemStack, item) -> {
-                if (UpgradeComponent.getExtraEu(item) > 0) {
-
-                    List<Component> lines = new ArrayList<>();
-                    lines.add(new Line(MIText.MachineUpgrade).arg(UpgradeComponent.getExtraEu(itemStack.getItem()), EU_PER_TICK_PARSER).build());
-
-                    if (itemStack.getCount() > 1) {
-                        lines.add(new Line(MIText.MachineUpgradeStack)
-                                .arg(itemStack.getCount() * UpgradeComponent.getExtraEu(itemStack.getItem()), EU_PER_TICK_PARSER).build());
-                    }
-                    return lines;
-                } else {
-                    return List.of();
-                }
-            });
 
     public static final TooltipAttachment STEAM_DRILL = TooltipAttachment.ofMultilines(MIItem.STEAM_MINING_DRILL,
             List.of(

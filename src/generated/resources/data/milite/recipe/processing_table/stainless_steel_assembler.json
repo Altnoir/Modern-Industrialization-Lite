@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:turbo_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_assembler"
+  },
+  "second": {
+    "item": "milite:robot_arm"
+  }
+}

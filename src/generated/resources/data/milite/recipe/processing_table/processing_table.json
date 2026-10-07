@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:crafting_table"
+    },
+    {
+      "item": "milite:forge_hammer"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:processing_table"
+  }
+}

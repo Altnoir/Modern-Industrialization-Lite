@@ -7,7 +7,7 @@
   ],
   "type": "milite:assembler",
   "duration": 100,
-  "eu": 8,
+  "energy": 8,
   "item_inputs": [
     {
       "amount": 1,
@@ -23,5 +23,6 @@
       "amount": 1,
       "item": "create:large_cogwheel"
     }
-  ]
+  ],
+  "level": "electric"
 }

@@ -27,8 +27,8 @@ package aztech.modern_industrialization.machines.recipe;
 
 import aztech.modern_industrialization.definition.FluidLike;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.init.MachineLevel;
 import aztech.modern_industrialization.thirdparty.fabrictransfer.api.item.ItemVariant;
-import java.util.Map;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -41,23 +41,53 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 
+import java.util.Map;
+
 @SuppressWarnings({ "FieldCanBeLocal", "unused", "MismatchedQueryAndUpdateOfCollection" })
 public class MIRecipeJson<T extends MIRecipeJson<?>> {
+    /** The energy per tick of a recipe that a bronze machine, and not just an electric one, can run. */
+    private static final int BRONZE_ENERGY = 2;
+
     protected final MachineRecipe recipe;
 
-    protected MIRecipeJson(MachineRecipeType machineRecipeType, int eu, int duration) {
+    protected MIRecipeJson(MachineRecipeType machineRecipeType, int energy, int duration) {
         this.recipe = new MachineRecipe(machineRecipeType);
-        recipe.eu = eu;
+        recipe.energy = energy;
         recipe.duration = duration;
+        recipe.level = defaultLevel(energy);
+    }
+
+    /**
+     * The level a recipe gets when it does not state one.
+     *
+     * <p>
+     * The energy a recipe costs is what used to decide which machine could run it, and the two standard values still
+     * carry that meaning: two is a recipe for the bronze and steel machines, anything above that is a recipe for the
+     * electric ones. Deriving the level here keeps that meaning in a single place instead of repeating it at every call
+     * site. A recipe whose level is not implied by its energy, such as a blast furnace recipe, overrides the result with
+     * {@link #level(MachineLevel)}.
+     */
+    private static MachineLevel defaultLevel(int energy) {
+        return energy == BRONZE_ENERGY ? MachineLevel.BRONZE : MachineLevel.ELECTRIC;
     }
 
     protected MIRecipeJson(MIRecipeJson<?> otherWithSameData) {
-        this((MachineRecipeType) otherWithSameData.recipe.getType(), otherWithSameData.recipe.eu, otherWithSameData.recipe.duration);
+        this((MachineRecipeType) otherWithSameData.recipe.getType(), otherWithSameData.recipe.energy,
+                otherWithSameData.recipe.duration);
 
+        recipe.level = otherWithSameData.recipe.level;
         recipe.itemInputs.addAll(otherWithSameData.recipe.itemInputs);
         recipe.fluidInputs.addAll(otherWithSameData.recipe.fluidInputs);
         recipe.itemOutputs.addAll(otherWithSameData.recipe.itemOutputs);
         recipe.fluidOutputs.addAll(otherWithSameData.recipe.fluidOutputs);
+    }
+
+    /**
+     * @param level the machine level this recipe needs, see {@link MachineLevel}
+     */
+    public T level(MachineLevel level) {
+        recipe.level = level;
+        return (T) this;
     }
 
     public static MIRecipeJson<MIRecipeJson<?>> create(MachineRecipeType machineRecipeType, int eu, int duration) {

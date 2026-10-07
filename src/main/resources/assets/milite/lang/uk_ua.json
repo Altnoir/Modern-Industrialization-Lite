@@ -1547,7 +1547,7 @@
   "text.milite.DirectHeatByDesintegration": "Пряме нагрівання для одного захоплення",
   "text.milite.Disabled": "ВИМК.",
   "text.milite.DurabilityCost": "Вартість в міцности: %d",
-  "text.milite.EbfMaxEu": "Дозволяє рецепти ЕДП до %d RF/т",
+  "text.milite.EbfMaxRF": "Дозволяє рецепти ЕДП до %d RF/т",
   "text.milite.Efficiency": "Ефективність",
   "text.milite.EfficiencyDefaultMessage": "Немає активного рецепта для розгону",
   "text.milite.EfficiencyEu": "Поточне споживання: %d RF/t",

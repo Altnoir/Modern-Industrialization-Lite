@@ -1,0 +1,13 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:basic_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:electric_furnace"
+  },
+  "second": {
+    "item": "minecraft:blast_furnace"
+  }
+}

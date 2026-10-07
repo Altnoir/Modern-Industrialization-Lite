@@ -1,7 +1,7 @@
 {
   "type": "milite:chemical_reactor",
   "duration": 400,
-  "eu": 16,
+  "energy": 16,
   "fluid_inputs": [
     {
       "amount": 12000,
@@ -21,5 +21,6 @@
       "amount": 2000,
       "fluid": "milite:sulfuric_acid"
     }
-  ]
+  ],
+  "level": "electric"
 }

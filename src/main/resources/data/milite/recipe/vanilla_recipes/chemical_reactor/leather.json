@@ -1,6 +1,6 @@
 {
   "type": "milite:chemical_reactor",
-  "eu": 8,
+  "energy": 8,
   "duration": 100,
   "item_inputs": {
     "item": "minecraft:rotten_flesh",
