@@ -28,6 +28,7 @@ package aztech.modern_industrialization.materials.part;
 import aztech.modern_industrialization.MIItem;
 import aztech.modern_industrialization.items.SortOrder;
 import aztech.modern_industrialization.materials.MaterialBuilder;
+import aztech.modern_industrialization.materials.MaterialProgression;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -66,7 +67,8 @@ public sealed interface MaterialItemPart extends PartKeyProvider, ItemLike permi
         String itemId = "milite:" + itemPath;
 
         return new MaterialItemPartImpl(part.key(), itemId, itemId, ctx -> {
-            MIItem.item(englishName, itemPath, SortOrder.MATERIALS.and(ctx.getMaterialName()));
+            MIItem.item(englishName, itemPath,
+                    SortOrder.MATERIALS.and(MaterialProgression.rankOf(ctx.getMaterialName())));
         }, new TextureGenParams.NoTexture(), true);
     }
 

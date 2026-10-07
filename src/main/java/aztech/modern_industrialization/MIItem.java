@@ -35,6 +35,7 @@ import aztech.modern_industrialization.items.armor.MIArmorMaterials;
 import aztech.modern_industrialization.items.armor.QuantumArmorItem;
 import aztech.modern_industrialization.items.diesel_tools.DieselToolItem;
 import aztech.modern_industrialization.items.tools.QuantumSword;
+import aztech.modern_industrialization.materials.MaterialProgression;
 import aztech.modern_industrialization.nuclear.NeutronBehaviour;
 import aztech.modern_industrialization.nuclear.NuclearComponentItem;
 import aztech.modern_industrialization.nuclear.NuclearConstant;
@@ -194,10 +195,10 @@ public final class MIItem {
     public static final ItemDefinition<QuantumArmorItem> QUANTUM_BOOTS = item("Quantum Boots", "quantum_boots", s -> new QuantumArmorItem(ArmorItem.Type.BOOTS, s), ITEMS_ORDERED.next());
 
     // Material-like items
-    public static final ItemDefinition<Item> UNCOOKED_STEEL_DUST = item("Uncooked Steel Dust", "uncooked_steel_dust", MATERIALS.and("steel"));
-    public static final ItemDefinition<Item> MIXED_INGOT_BLASTPROOF = item("Mixed Blastproof Ingot", "mixed_ingot_blastproof", MATERIALS.and("blastproof"));
-    public static final ItemDefinition<Item> MIXED_INGOT_IRIDIUM = item("Mixed Iridium Ingot", "mixed_ingot_iridium", s -> new Item(s.food(new FoodProperties.Builder().nutrition(20).saturationModifier(1).build())), MATERIALS.and("iridium"));
-    public static final ItemDefinition<Item> MIXED_PLATE_NUCLEAR = item("Nuclear Mixed Plate", "mixed_plate_nuclear", MATERIALS.and("nuclear"));
+    public static final ItemDefinition<Item> UNCOOKED_STEEL_DUST = item("Uncooked Steel Dust", "uncooked_steel_dust", MATERIALS.and(MaterialProgression.rankOf("steel")));
+    public static final ItemDefinition<Item> MIXED_INGOT_BLASTPROOF = item("Mixed Blastproof Ingot", "mixed_ingot_blastproof", MATERIALS.and(MaterialProgression.rankOf("blastproof_alloy")));
+    public static final ItemDefinition<Item> MIXED_INGOT_IRIDIUM = item("Mixed Iridium Ingot", "mixed_ingot_iridium", s -> new Item(s.food(new FoodProperties.Builder().nutrition(20).saturationModifier(1).build())), MATERIALS.and(MaterialProgression.rankOf("iridium")));
+    public static final ItemDefinition<Item> MIXED_PLATE_NUCLEAR = item("Nuclear Mixed Plate", "mixed_plate_nuclear", MATERIALS.and(MaterialProgression.rankOf("nuclear_alloy")));
 
     // Others
     public static final ItemDefinition<Item> WAX = item("Wax", "wax", WaxItem::new, ITEMS_ORDERED.next());

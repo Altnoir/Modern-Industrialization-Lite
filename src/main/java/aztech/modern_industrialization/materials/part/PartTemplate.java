@@ -31,6 +31,7 @@ import aztech.modern_industrialization.datagen.tag.TagsToGenerate;
 import aztech.modern_industrialization.definition.ItemDefinition;
 import aztech.modern_industrialization.items.SortOrder;
 import aztech.modern_industrialization.materials.MaterialBuilder;
+import aztech.modern_industrialization.materials.MaterialProgression;
 import aztech.modern_industrialization.util.TagHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -78,7 +79,8 @@ public class PartTemplate implements PartKeyProvider {
     }
 
     public static ItemDefinition<Item> createSimpleItem(String englishName, String itemPath, MaterialBuilder.PartContext partContext, PartKey part) {
-        return MIItem.item(englishName, itemPath, SortOrder.MATERIALS.and(partContext.getMaterialName()).and(part));
+        return MIItem.item(englishName, itemPath,
+                SortOrder.MATERIALS.and(MaterialProgression.rankOf(partContext.getMaterialName())).and(part));
     }
 
     private static void setupTag(MaterialBuilder.PartContext context, PartKey part, String itemTag, ItemLike item) {

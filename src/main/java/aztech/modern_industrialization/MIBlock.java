@@ -41,6 +41,7 @@ import aztech.modern_industrialization.datagen.model.BaseModelProvider;
 import aztech.modern_industrialization.definition.BlockDefinition;
 import aztech.modern_industrialization.items.ContainerItem;
 import aztech.modern_industrialization.items.SortOrder;
+import aztech.modern_industrialization.materials.MaterialProgression;
 import aztech.modern_industrialization.materials.part.TankPart;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -146,7 +147,7 @@ public class MIBlock {
 
     // Materials
     public static final BlockDefinition<Block> BLOCK_FIRE_CLAY_BRICKS = block("Fire Clay Bricks", "fire_clay_bricks",
-            BlockDefinitionParams.of(BlockBehaviour.Properties.of().mapColor(STONE)).sortOrder(SortOrder.MATERIALS.and("fire_clay")).destroyTime(2.0f).explosionResistance(6.0f).requiresCorrectToolForDrops());
+            BlockDefinitionParams.of(BlockBehaviour.Properties.of().mapColor(STONE)).sortOrder(SortOrder.MATERIALS.and(MaterialProgression.rankOf("fire_clay"))).destroyTime(2.0f).explosionResistance(6.0f).requiresCorrectToolForDrops());
 
     // @formatter:on
 
