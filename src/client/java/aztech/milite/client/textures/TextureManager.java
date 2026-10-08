@@ -99,8 +99,17 @@ public class TextureManager {
                 textureWriter.accept(overrideImage, textureId);
             }
         } else {
-            // Write generated texture
-            textureWriter.accept(image, textureId);
+            // A completed texture supplied by a resource pack takes precedence over generation.
+            Optional<Resource> suppliedTexture = rm.getResource(ResourceLocation.parse(textureId));
+            if (suppliedTexture.isPresent()) {
+                try (var stream = suppliedTexture.get().open();
+                        var suppliedImage = NativeImage.read(stream)) {
+                    textureWriter.accept(suppliedImage, textureId);
+                }
+            } else {
+                // Write generated texture
+                textureWriter.accept(image, textureId);
+            }
         }
 
         generatedTextures.add(textureId.replace(":textures/", ":"));

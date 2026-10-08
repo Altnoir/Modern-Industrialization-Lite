@@ -35,13 +35,14 @@ import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.gui.MachineMenuCommon;
 import aztech.milite.util.NbtHelper;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import org.jspecify.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MachineMenuClient extends MachineMenuCommon {
     @SuppressWarnings("ConstantConditions")
@@ -94,10 +95,14 @@ public class MachineMenuClient extends MachineMenuCommon {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void readClientComponentSyncData(int componentIndex, RegistryFriendlyByteBuf buf) {
-        var type = componentTypes.get(componentIndex);
-        components.get(componentIndex).data = type.dataCodec().decode(buf);
+        readClientComponentSyncData(componentIndex, buf, componentTypes.get(componentIndex));
+    }
+
+    @SuppressWarnings("unchecked")
+    private <D> void readClientComponentSyncData(
+            int componentIndex, RegistryFriendlyByteBuf buf, GuiComponentServer.Type<?, D> type) {
+        ((GuiComponentClient<?, D>) components.get(componentIndex)).data = type.dataCodec().decode(buf);
     }
 }
