@@ -1,16 +1,16 @@
 package aztech.milite.client.machines.guicomponents;
 
+import aztech.milite.MIText;
 import aztech.milite.client.machines.gui.ClientComponentRenderer;
 import aztech.milite.client.machines.gui.GuiComponentClient;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.machines.guicomponents.ShapeSelection;
-import aztech.milite.MIText;
 import aztech.milite.network.machines.ChangeShapePacket;
 import aztech.milite.util.Rectangle;
 import aztech.milite.util.TextHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.List;
 
@@ -94,9 +94,9 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             }
 
             // Big button to open panel
-            container.addButton(-24, 17, 20, 20, syncId -> isPanelOpen = !isPanelOpen,
+            container.addButton(-14, 18, 12, 12, syncId -> isPanelOpen = !isPanelOpen,
                     () -> List.of(MIText.ShapeSelectionTitle.text(), MIText.ShapeSelectionDescription.text().setStyle(TextHelper.GRAY_TEXT)),
-                    (screen, button, guiGraphics, mouseX, mouseY, delta) -> screen.blitButton(button, guiGraphics, 138, 38));
+                    (screen, button, guiGraphics, mouseX, mouseY, delta) -> screen.blitButton12(button, guiGraphics, 24, isPanelOpen));
         }
 
         @Override

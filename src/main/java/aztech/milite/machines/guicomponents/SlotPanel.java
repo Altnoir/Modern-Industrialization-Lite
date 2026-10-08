@@ -1,15 +1,15 @@
 package aztech.milite.machines.guicomponents;
 
+import aztech.milite.MI;
+import aztech.milite.MIItem;
+import aztech.milite.MIText;
 import aztech.milite.inventory.HackySlot;
 import aztech.milite.inventory.SlotGroup;
+import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.machines.components.RedstoneControlComponent;
 import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.machines.gui.MachineGuiParameters;
-import aztech.milite.machines.MachineBlockEntity;
-import aztech.milite.MI;
-import aztech.milite.MIItem;
-import aztech.milite.MIText;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.Unit;
@@ -17,11 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.List;
 
 public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, Unit> {
     public static final Type<List<SlotPanel.SlotType>, Unit> TYPE = new Type<>(MI.id("slot_panel"),
@@ -93,16 +93,16 @@ public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, U
     }
 
     public static int getSlotY(int slotIndex) {
-        return 19 + slotIndex * 20;
+        return 27 + slotIndex * 18;
     }
 
     public static int getSlotX(MachineGuiParameters guiParameters) {
-        return guiParameters.backgroundWidth + 6;
+        return guiParameters.backgroundWidth + 2;
     }
 
     public enum SlotType {
-        REDSTONE_MODULE(SlotGroup.REDSTONE_MODULE, 1, MIItem.REDSTONE_CONTROL_MODULE::is, 36, 80, MIText.AcceptsRedstoneControlModule),
-        OVERDRIVE_MODULE(SlotGroup.OVERDRIVE_MODULE, 1, MIItem.OVERDRIVE_MODULE::is, 0, 98, MIText.AcceptsOverdriveModule);
+        REDSTONE_MODULE(SlotGroup.REDSTONE_MODULE, 1, MIItem.REDSTONE_CONTROL_MODULE::is, 0, 18, MIText.AcceptsRedstoneControlModule),
+        OVERDRIVE_MODULE(SlotGroup.OVERDRIVE_MODULE, 1, MIItem.OVERDRIVE_MODULE::is, 18, 18, MIText.AcceptsOverdriveModule);
 
         public final SlotGroup group;
         public final int slotLimit;

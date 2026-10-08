@@ -1,5 +1,7 @@
 package aztech.milite.client.machines.gui;
 
+import aztech.milite.MI;
+import aztech.milite.MIText;
 import aztech.milite.client.DynamicTooltip;
 import aztech.milite.client.screen.MIHandledScreen;
 import aztech.milite.client.util.RenderHelper;
@@ -7,8 +9,6 @@ import aztech.milite.inventory.BackgroundRenderedSlot;
 import aztech.milite.inventory.ConfigurableFluidStack;
 import aztech.milite.inventory.ConfigurableItemStack;
 import aztech.milite.machines.gui.MachineGuiParameters;
-import aztech.milite.MI;
-import aztech.milite.MIText;
 import aztech.milite.network.machines.AdjustSlotCapacityPacket;
 import aztech.milite.network.machines.LockAllPacket;
 import aztech.milite.network.machines.SetLockingModePacket;
@@ -16,9 +16,9 @@ import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.milite.util.FluidHelper;
 import aztech.milite.util.Rectangle;
 import aztech.milite.util.TextHelper;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -28,14 +28,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements ClientComponentRenderer.ButtonContainer {
     public static final ResourceLocation SLOT_ATLAS = MI.id("textures/gui/container/slot_atlas.png");
@@ -63,12 +63,20 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         return topPos;
     }
 
+    private static final int BUTTON_LOCK_U = 24;
+    private static final int BUTTON_V_UP = 18;
+    private static final int BUTTON_V_DOWN = 30;
+    private static final int BUTTON_HOVER_U = 60;
+    private static final int BUTTON_HOVER_V = 18;
+
     private int nextButtonX;
-    private static final int BUTTON_Y = 4;
+    private static final int BUTTON_Y = 6;
+    private static final int BUTTON_SIZE = 12;
+    private static final int BUTTON_SPACING = 2;
 
     private int buttonX() {
-        nextButtonX -= 22;
-        return nextButtonX + 22 + leftPos;
+        nextButtonX -= BUTTON_SIZE + BUTTON_SPACING;
+        return nextButtonX + BUTTON_SIZE + BUTTON_SPACING + leftPos;
     }
 
     private int buttonY() {
@@ -78,7 +86,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     @Override
     protected void init() {
         super.init();
-        this.nextButtonX = 152;
+        this.nextButtonX = 150;
         if (menu.guiParams.lockButton) {
             addLockButton();
         }
@@ -99,7 +107,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
      * Helper method to draw a 20x20 button.
      */
     public void blitButton(Button button, GuiGraphics guiGraphics, int u, int v) {
-        blitButton(button, guiGraphics, u, v, 60, 18);
+        blitButton(button, guiGraphics, u, v, BUTTON_HOVER_U, BUTTON_HOVER_V);
     }
 
     /**
@@ -113,26 +121,36 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), u, v, button.getWidth(), button.getHeight());
     }
 
+    /**
+     * Draws one of the 12x12 buttons of the top left corner of the atlas. The released and pressed
+     * sprites are stacked one below the other, so the pressed state is the same u one row lower.
+     * These sprites already carry their own highlight, so no hover overlay is drawn on top of them.
+     */
+    public void blitButton12(Button button, GuiGraphics guiGraphics, int u, boolean pressed) {
+        guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), u, pressed ? BUTTON_V_DOWN : BUTTON_V_UP,
+                button.getWidth(), button.getHeight());
+    }
+
     @Override
     public MachineButton addButton(int u, Consumer<Integer> pressAction, Supplier<List<Component>> tooltipSupplier,
-            Supplier<Boolean> isPressed) {
-        return addRenderableWidget(new MachineButton(buttonX(), buttonY(), 20, 20, b -> pressAction.accept(menu.containerId),
+                                   Supplier<Boolean> isPressed) {
+        return addRenderableWidget(new MachineButton(buttonX(), buttonY(), BUTTON_SIZE, BUTTON_SIZE, b -> pressAction.accept(menu.containerId),
                 tooltipSupplier,
                 (screen, button, guiGraphics, mouseX, mouseY, delta) -> {
-                    blitButton(button, guiGraphics, u, isPressed.get() ? 38 : 18);
+                    blitButton12(button, guiGraphics, u, isPressed.get());
                 }, () -> true));
     }
 
     @Override
     public MachineButton addButton(int posX, int posY, int width, int height, Consumer<Integer> pressAction,
-            Supplier<List<Component>> tooltipSupplier, ClientComponentRenderer.CustomButtonRenderer renderer, Supplier<Boolean> isButtonPresent) {
+                                   Supplier<List<Component>> tooltipSupplier, ClientComponentRenderer.CustomButtonRenderer renderer, Supplier<Boolean> isButtonPresent) {
         return addRenderableWidget(new MachineButton(posX + leftPos, posY + topPos, width, height, b -> {
             pressAction.accept(menu.containerId);
         }, tooltipSupplier, renderer, isButtonPresent));
     }
 
     private void addLockButton() {
-        addButton(40, syncId -> {
+        addButton(BUTTON_LOCK_U, syncId -> {
             if (hasShiftDown()) {
                 boolean lock = menu.hasUnlockedSlot();
                 menu.lockAll(lock);
@@ -208,10 +226,14 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
             renderer.renderBackground(guiGraphics, leftPos, topPos);
         }
 
-        renderConfigurableSlotBackgrounds(guiGraphics);
+        renderSlotBackgrounds(guiGraphics);
     }
 
-    private void renderConfigurableSlotBackgrounds(GuiGraphics guiGraphics) {
+    /**
+     * Draws the atlas background of every slot that asks for one. The module slots of the side panel return no atlas
+     * (their frames are part of the side panel sprite), so they are skipped here.
+     */
+    private void renderSlotBackgrounds(GuiGraphics guiGraphics) {
         for (Slot slot : this.menu.slots) {
             if (slot instanceof BackgroundRenderedSlot brs) {
                 var atlas = brs.getBackgroundAtlasLocation();
@@ -341,7 +363,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         final Supplier<Boolean> isPresent;
 
         private MachineButton(int x, int y, int width, int height, OnPress onPress, Supplier<List<Component>> tooltipSupplier,
-                ClientComponentRenderer.CustomButtonRenderer renderer, Supplier<Boolean> isPresent) {
+                              ClientComponentRenderer.CustomButtonRenderer renderer, Supplier<Boolean> isPresent) {
             super(x, y, width, height, Component.empty(), onPress, Button.DEFAULT_NARRATION);
             this.tooltipSupplier = tooltipSupplier;
             this.setTooltip(new DynamicTooltip(tooltipSupplier));

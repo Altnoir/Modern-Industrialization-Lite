@@ -35,7 +35,7 @@ public class AutoExtractClient extends GuiComponentClient<AutoExtract.Params, Au
         }
 
         private void addExtractButton(ButtonContainer container, boolean isItem) {
-            int u = isItem ? 20 : 0;
+            int u = isItem ? 12 : 0;
             var display = params.display();
             container.addButton(u, syncId -> {
                 boolean newExtract;

@@ -157,7 +157,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                                             RenderSystem.enableBlend();
                                             RenderSystem.disableDepthTest();
                                             if (System.currentTimeMillis() % 1000 > 500) {
-                                                guiGraphics.blit(MachineScreen.SLOT_ATLAS, px + 1, py + 1, 22, 58, 16, 16);
+                                                guiGraphics.blit(MachineScreen.SLOT_ATLAS, px + 1, py + 1, 22, 42, 16, 16);
                                             }
                                         }
                                     }

@@ -1,20 +1,22 @@
 package aztech.milite.client.machines.guicomponents;
 
+import aztech.milite.MITooltips;
 import aztech.milite.client.machines.gui.ClientComponentRenderer;
 import aztech.milite.client.machines.gui.GuiComponentClient;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.inventory.BackgroundRenderedSlot;
 import aztech.milite.machines.guicomponents.SlotPanel;
-import aztech.milite.MITooltips;
 import aztech.milite.util.Rectangle;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Unit;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.SimpleContainer;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -65,43 +67,69 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
 
     @Override
     public ClientComponentRenderer createRenderer(MachineScreen machineScreen) {
-        return new ClientComponentRenderer() {
-            private Rectangle getBox(int leftPos, int topPos) {
-                return new Rectangle(leftPos + machineScreen.getGuiParams().backgroundWidth, topPos + 10, 31, 14 + 20 * params.size());
-            }
+        return new SlotPanelRenderer(machineScreen);
+    }
 
-            @Override
-            public void addExtraBoxes(List<Rectangle> rectangles, int leftPos, int topPos) {
-                rectangles.add(getBox(leftPos, topPos));
-            }
+    public static class SlotWithBackground extends Slot implements BackgroundRenderedSlot {
+        public SlotWithBackground(Container container, int index, int x, int y) {
+            super(container, index, x, y);
+        }
 
-            @Override
-            public void renderBackground(GuiGraphics guiGraphics, int x, int y) {
-                var box = getBox(x, y);
-
-                int textureX = box.x() - x - box.w();
-                guiGraphics.blit(MachineScreen.BACKGROUND, box.x(), box.y(), textureX, 0, box.w(), box.h() - 4);
-                guiGraphics.blit(MachineScreen.BACKGROUND, box.x(), box.y() + box.h() - 4, textureX, 252, box.w(), 4);
-            }
-
-            @Override
-            public boolean renderTooltip(MachineScreen screen, Font font, GuiGraphics guiGraphics, int x, int y, int cursorX, int cursorY) {
-                if (screen.getFocusedSlot() instanceof SlotTooltip st && !screen.getFocusedSlot().hasItem()) {
-                    guiGraphics.renderTooltip(font, st.getTooltip(), cursorX, cursorY);
-                    return true;
-                }
-                return false;
-            }
-        };
+        /**
+         * The module slot frames are part of {@link SlotPanelRenderer}'s plate sprite, so this slot must not draw a
+         * slot atlas background of its own on top of it.
+         */
+        @Override
+        public @Nullable ResourceLocation getBackgroundAtlasLocation() {
+            return null;
+        }
     }
 
     interface SlotTooltip {
         Component getTooltip();
     }
 
-    public static class SlotWithBackground extends Slot implements BackgroundRenderedSlot {
-        public SlotWithBackground(Container container, int index, int x, int y) {
-            super(container, index, x, y);
+    private class SlotPanelRenderer implements ClientComponentRenderer {
+        private static final int PLATE_U = 0;
+        private static final int PLATE_V = 64;
+        private static final int PLATE_WIDTH = 22;
+        private static final int SLOT_BAND = 18;
+        private static final int PLATE_MARGIN = 5;
+        private static final int PANEL_TOP = 23;
+
+        private final MachineScreen machineScreen;
+
+        private SlotPanelRenderer(MachineScreen machineScreen) {
+            this.machineScreen = machineScreen;
+        }
+
+        private Rectangle getBox(int leftPos, int topPos) {
+            int height = PLATE_MARGIN * 2 + SLOT_BAND * params.size();
+            return new Rectangle(leftPos + machineScreen.getGuiParams().backgroundWidth,
+                    topPos + PANEL_TOP, PLATE_WIDTH, height);
+        }
+
+        @Override
+        public void addExtraBoxes(List<Rectangle> rectangles, int leftPos, int topPos) {
+            rectangles.add(getBox(leftPos, topPos));
+        }
+
+        @Override
+        public void renderBackground(GuiGraphics guiGraphics, int x, int y) {
+            var box = getBox(x, y);
+
+            // One blit of the whole panel: the sprite carries the plate edges and the rounded frame of every slot, so
+            // the module slots must not draw a background of their own (see SlotWithBackground).
+            guiGraphics.blit(MachineScreen.SLOT_ATLAS, box.x(), box.y(), PLATE_U, PLATE_V, box.w(), box.h());
+        }
+
+        @Override
+        public boolean renderTooltip(MachineScreen screen, Font font, GuiGraphics guiGraphics, int x, int y, int cursorX, int cursorY) {
+            if (screen.getFocusedSlot() instanceof SlotTooltip st && !screen.getFocusedSlot().hasItem()) {
+                guiGraphics.renderTooltip(font, st.getTooltip(), cursorX, cursorY);
+                return true;
+            }
+            return false;
         }
     }
 }

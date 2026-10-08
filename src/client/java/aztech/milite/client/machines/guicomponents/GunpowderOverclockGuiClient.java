@@ -26,7 +26,7 @@ public class GunpowderOverclockGuiClient extends GuiComponentClient<GunpowderOve
             if (data > 0) {
                 int px = x + params.renderX();
                 int py = y + params.renderY();
-                guiGraphics.blit(MachineScreen.SLOT_ATLAS, px, py, 0, 58, 20, 20);
+                guiGraphics.blit(MachineScreen.SLOT_ATLAS, px, py, 0, 42, 20, 20);
             }
         }
 
