@@ -32,7 +32,8 @@ public class MachineCasingsProvider extends ModelProvider<BlockModelBuilder> {
         imitateBlock(CableTier.SUPERCONDUCTOR.casing, MIBlock.QUANTUM_MACHINE_HULL.asBlock());
 
         cubeBottomTop(MachineCasings.BRICKED_BRONZE, "block/casings/bricked_bronze", "block/fire_clay_bricks", "block/bronze_machine_casing");
-        cubeBottomTop(MachineCasings.BRICKED_STEEL, "block/casings/bricked_steel", "block/fire_clay_bricks", "block/steel_machine_casing");
+        cubeBottomTop(MachineCasings.BRICKED_STEEL, "block/casings/bricked_steel/side", "block/casings/bricked_steel/bottom",
+                "block/casings/bricked_steel/top");
         cubeAll(MachineCasings.CONFIGURABLE_TANK, "block/casings/configurable_tank");
         cubeAll(MachineCasings.STEEL_CRATE, "block/casings/steel_crate");
     }
