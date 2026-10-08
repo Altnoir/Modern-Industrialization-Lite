@@ -32,14 +32,9 @@ public enum MachineLevel implements StringRepresentable {
     public static final Codec<MachineLevel> CODEC = StringRepresentable.fromEnum(MachineLevel::values);
 
     /**
-     * How many times faster than {@link #BRONZE} this level works, which doubles at every step of the ladder.
-     *
-     * <p>
-     * A recipe duration is the number of ticks a {@link #BRONZE} machine takes over it, and every level above bronze
-     * finishes the recipe in {@code 1 / multiplier} of that time by eating the multiplier times as much RF per tick. The
-     * total RF of a craft therefore does not depend on the level, only how long it takes. An {@link #IRIDIUM} machine is
-     * sixty-four times as fast as a bronze one, which turns the hundred tick recipe most machines use into two ticks,
-     * and one tick with an overdrive module in it.
+     * How many times faster than {@link #BRONZE} this level works: a recipe duration is the number of ticks a bronze
+     * machine takes over it, and every level above bronze finishes it in {@code 1 / multiplier} of that time by eating
+     * the multiplier times as much RF per tick, so a craft costs the same RF on every level.
      */
     private final int speedMultiplier;
 
@@ -76,11 +71,8 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     /**
-     * The level that goes with a machine tier, used by machines whose level is not stated explicitly.
-     *
-     * <p>
-     * {@link MachineTier#MULTIBLOCK} and {@link MachineTier#UNLIMITED} have no single level of their own: a multiblock
-     * takes its level from its own structure, so it must state it instead of relying on this mapping.
+     * The level that goes with a machine tier, used by machines whose level is not stated explicitly. A multiblock takes
+     * its level from its own structure, so it states it instead of relying on this mapping.
      */
     public static MachineLevel of(MachineTier tier) {
         return switch (tier) {

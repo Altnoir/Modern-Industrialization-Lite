@@ -149,15 +149,9 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     private boolean matchesMultipleRecipes;
 
-    /**
-     * The total RF a craft of the active recipe costs. It does not depend on the machine: a faster machine eats the
-     * same total over fewer ticks, which is what {@link #recipeRfPerTick} expresses.
-     */
+    /** The total RF a craft of the active recipe costs, which does not depend on how fast the machine is. */
     private long recipeRf;
-    /**
-     * The RF the active recipe needs per tick to run at full speed. It is only a request: a machine that is not
-     * supplied with that much eats what it has and takes longer, and the progress bar stands still while it has nothing.
-     */
+    /** The RF per tick the active recipe wants at full speed, which a starved machine gets only part of. */
     private long recipeRfPerTick;
     private long usedRf;
     /** The RF that went into the recipe during the last tick, which is the requested amount unless the machine is starved. */
@@ -220,9 +214,6 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         return lastConsumedRf;
     }
 
-    /**
-     * The RF per tick the active recipe needs to run at the speed of this machine.
-     */
     private long getRecipeRfPerTick(MachineRecipe recipe) {
         return Math.max(1, (long) recipe.energy * getSpeedMultiplier());
     }
@@ -257,8 +248,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         long rf = 0;
         if (activeRecipe != null && isEnabled) {
             if (usedRf > 0 || recipeStarted) {
-                // The machine asks for what running at its speed costs, but only gets what its buffer holds. A machine
-                // that runs dry therefore keeps its progress and waits for the power to come back instead of failing.
+                // A starved machine eats what its buffer holds and keeps its progress until the power comes back.
                 long request = Math.min(recipeRfPerTick, recipeRf - usedRf);
                 rf = activeRecipe.value().conditionsMatch(conditionContext)
                         ? behavior.consumeRf(request, ACT)
