@@ -78,12 +78,12 @@ public class MIDataMapProvider extends DataMapProvider {
         addFluidFuel(ResourceLocation.fromNamespaceAndPath("immersiveengineering", "creosote"), creosote, new ModLoadedCondition("immersiveengineering"));
     }
 
-    private void addFluidFuel(FluidDefinition fluidDefinition, int euPerMb) {
-        addFluidFuel(fluidDefinition.getId(), euPerMb);
+    private void addFluidFuel(FluidDefinition fluidDefinition, int rfPerMb) {
+        addFluidFuel(fluidDefinition.getId(), rfPerMb);
     }
 
-    private void addFluidFuel(ResourceLocation fluidId, int euPerMb, ICondition... conditions) {
-        builder(MIDataMaps.FLUID_FUELS).add(fluidId, new FluidFuel(euPerMb), false, conditions);
+    private void addFluidFuel(ResourceLocation fluidId, int rfPerMb, ICondition... conditions) {
+        builder(MIDataMaps.FLUID_FUELS).add(fluidId, new FluidFuel(rfPerMb), false, conditions);
     }
 
     private void gatherItemTooltips() {

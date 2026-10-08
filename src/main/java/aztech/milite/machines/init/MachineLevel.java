@@ -21,30 +21,51 @@ import java.util.Locale;
  * using {@code MachineTier} for its energy buffer and its minimum consumption while this enum decides what it may craft.
  */
 public enum MachineLevel implements StringRepresentable {
-    BRONZE("bronze"),
-    STEEL("steel"),
-    ELECTRIC("electric"),
-    ALUMINUM("aluminum"),
-    STAINLESS_STEEL("stainless_steel"),
-    TITANIUM("titanium"),
-    IRIDIUM("iridium");
+    BRONZE("bronze", 1),
+    STEEL("steel", 1),
+    ELECTRIC("electric", 1),
+    ALUMINUM("aluminum", 2),
+    STAINLESS_STEEL("stainless_steel", 4),
+    TITANIUM("titanium", 8),
+    IRIDIUM("iridium", 16);
 
     public static final Codec<MachineLevel> CODEC = StringRepresentable.fromEnum(MachineLevel::values);
 
-    private final String name;
+    /**
+     * How many times faster than the reference level this level works.
+     *
+     * <p>
+     * A recipe duration is written for the {@link #ELECTRIC} level, which is the reference machine: it is the first
+     * level that runs on RF, and the one every other level is compared against. A faster level finishes a recipe in
+     * {@code 1 / multiplier} of that duration by eating the multiplier times as much RF per tick, so the total RF of a
+     * craft is the same on every level. An {@link #IRIDIUM} machine therefore turns a sixteen tick recipe into one
+     * tick, and a two tick recipe into a single tick.
+     */
+    private final int speedMultiplier;
 
-    MachineLevel(String name) {
-        this.name = name;
+    /** The lower case name used in ids and translation keys, for example {@code "stainless_steel"}. */
+    private final String levelName;
+
+    MachineLevel(String name, int speedMultiplier) {
+        this.levelName = name;
+        this.speedMultiplier = speedMultiplier;
+    }
+
+    /**
+     * @return how many times faster than the reference machine ({@link #ELECTRIC}) this level works, always at least 1
+     */
+    public int speedMultiplier() {
+        return speedMultiplier;
     }
 
     @Override
     public String getSerializedName() {
-        return name;
+        return levelName;
     }
 
     @Override
     public String toString() {
-        return name;
+        return levelName;
     }
 
     /**
@@ -71,7 +92,7 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     public String getTranslationKey() {
-        return "machine_level.milite." + name;
+        return "machine_level.milite." + levelName;
     }
 
     /**
@@ -80,7 +101,7 @@ public enum MachineLevel implements StringRepresentable {
      */
     public String getEnglishName() {
         StringBuilder englishName = new StringBuilder();
-        for (String word : name.split("_")) {
+        for (String word : levelName.split("_")) {
             if (!englishName.isEmpty()) {
                 englishName.append(' ');
             }
@@ -106,7 +127,7 @@ public enum MachineLevel implements StringRepresentable {
 
     public static MachineLevel byName(String name) {
         for (MachineLevel level : values()) {
-            if (level.name.equals(name.toLowerCase(Locale.ROOT))) {
+            if (level.levelName.equals(name.toLowerCase(Locale.ROOT))) {
                 return level;
             }
         }

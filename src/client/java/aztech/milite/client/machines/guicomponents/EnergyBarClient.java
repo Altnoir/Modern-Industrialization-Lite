@@ -39,7 +39,7 @@ public class EnergyBarClient extends GuiComponentClient<EnergyBar.Params, Energy
 
         @Override
         public void renderBackground(GuiGraphics guiGraphics, int x, int y) {
-            renderEnergy(guiGraphics, x + params.renderX(), y + params.renderY(), (float) data.eu() / data.maxEu());
+            renderEnergy(guiGraphics, x + params.renderX(), y + params.renderY(), (float) data.rf() / data.maxRf());
         }
 
         @Override
@@ -47,10 +47,10 @@ public class EnergyBarClient extends GuiComponentClient<EnergyBar.Params, Energy
             if (RenderHelper.isPointWithinRectangle(params.renderX(), params.renderY(), WIDTH, HEIGHT, cursorX - x, cursorY - y)) {
                 Component tooltip;
                 if (Screen.hasShiftDown()) {
-                    tooltip = MIText.EuMaxed.text(data.eu(), data.maxEu(), "");
+                    tooltip = MIText.RfMaxed.text(data.rf(), data.maxRf(), "");
                 } else {
-                    TextHelper.MaxedAmount maxedAmount = TextHelper.getMaxedAmount(data.eu(), data.maxEu());
-                    tooltip = MIText.EuMaxed.text(maxedAmount.digit(), maxedAmount.maxDigit(), maxedAmount.unit());
+                    TextHelper.MaxedAmount maxedAmount = TextHelper.getMaxedAmount(data.rf(), data.maxRf());
+                    tooltip = MIText.RfMaxed.text(maxedAmount.digit(), maxedAmount.maxDigit(), maxedAmount.unit());
                 }
                 guiGraphics.renderTooltip(font, Collections.singletonList(tooltip), Optional.empty(), cursorX, cursorY);
                 return true;

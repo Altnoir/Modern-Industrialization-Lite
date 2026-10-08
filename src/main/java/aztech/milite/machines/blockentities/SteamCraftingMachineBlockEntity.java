@@ -35,8 +35,8 @@ public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBloc
     }
 
     @Override
-    public long consumeEu(long max, Simulation simulation) {
-        return SteamHelper.consumeSteamEu(getInventory().getFluidStacks(), max, simulation);
+    public long consumeRf(long max, Simulation simulation) {
+        return SteamHelper.consumeSteamRf(getInventory().getFluidStacks(), max, simulation);
     }
 
     @Override
@@ -56,14 +56,12 @@ public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBloc
         return result;
     }
 
+    /**
+     * Steam machines get their speed from the gunpowder overclock, since their EU supply is fixed by the boiler.
+     */
     @Override
-    public long getMaxRecipeEu() {
-        return overclockComponent.getRecipeEu(tier.getMaxEu());
-    }
-
-    @Override
-    public long getBaseRecipeEu() {
-        return overclockComponent.getRecipeEu(tier.getBaseEu());
+    public int getSpeedBonus() {
+        return (int) Math.max(1, overclockComponent.getRecipeRf(1));
     }
 
     public void tick() {

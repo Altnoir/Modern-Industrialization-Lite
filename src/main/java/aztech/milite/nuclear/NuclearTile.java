@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface NuclearTile extends NuclearTileData {
     void setTemperature(double temp);
 
-    void putHeat(double eu);
+    void putHeat(double rf);
 
     default Optional<NuclearFuel> getFuel() {
         if (getComponent() instanceof NuclearFuel fuel) {

@@ -9,14 +9,14 @@ public enum MachineTier {
 
     private final String name;
     private final boolean steam;
-    private final int maxEu;
-    private final int baseEu;
+    private final int maxRf;
+    private final int baseRf;
 
-    MachineTier(String name, boolean steam, int maxEu, int baseEu) {
+    MachineTier(String name, boolean steam, int maxRf, int baseRf) {
         this.name = name;
         this.steam = steam;
-        this.maxEu = maxEu;
-        this.baseEu = baseEu;
+        this.maxRf = maxRf;
+        this.baseRf = baseRf;
     }
 
     public boolean isSteam() {
@@ -27,12 +27,12 @@ public enum MachineTier {
         return !steam;
     }
 
-    public int getBaseEu() {
-        return baseEu;
+    public int getBaseRf() {
+        return baseRf;
     }
 
-    public int getMaxEu() {
-        return maxEu;
+    public int getMaxRf() {
+        return maxRf;
     }
 
     @Override
@@ -40,7 +40,7 @@ public enum MachineTier {
         return name;
     }
 
-    public int getMaxStoredEu() {
-        return isSteam() ? 0 : getMaxEu() * 100;
+    public int getMaxStoredRf() {
+        return isSteam() ? 0 : getMaxRf() * 100;
     }
 }

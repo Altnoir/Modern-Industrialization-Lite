@@ -82,8 +82,8 @@ public class NuclearFuel extends NuclearAbsorbable {
     public int simulateDesintegration(double neutronsReceived, ItemStack stack, double temperature, RandomSource rand,
             NuclearEfficiencyHistoryComponent efficiencyHistory) {
         int absorption = simulateAbsorption(neutronsReceived, stack, rand);
-        double fuelEuConsumed = absorption * totalEUbyDesintegration;
-        efficiencyHistory.registerEuFuelConsumption(fuelEuConsumed);
+        double fuelRfConsumed = absorption * totalEUbyDesintegration;
+        efficiencyHistory.registerRfFuelConsumption(fuelRfConsumed);
         return randIntFromDouble(efficiencyFactor(temperature) * absorption * neutronMultiplicationFactor, rand);
     }
 }

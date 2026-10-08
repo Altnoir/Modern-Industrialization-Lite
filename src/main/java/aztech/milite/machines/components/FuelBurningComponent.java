@@ -19,17 +19,17 @@ public class FuelBurningComponent implements MachineComponent {
     /**
      * How many EUs worth of heat can be produced every tick at most.
      */
-    public final long maxEuProduction;
+    public final long maxRfProduction;
     /**
      * How many EUs one degree of heat is worth.
      */
-    public final long euPerDegree;
+    public final long rfPerDegree;
     public final TemperatureComponent temperature;
     /**
      * Multiplier on the efficiency of the boiler, i.e. the number of EUs produced
      * per burn tick.
      */
-    private final double burningItemEuMultiplier;
+    private final double burningItemRfMultiplier;
 
     /**
      * How many EUs one furnace burn tick is worth. Remembering that 1 furnace
@@ -41,58 +41,58 @@ public class FuelBurningComponent implements MachineComponent {
     /**
      * Buffer of EU that was burnt already, and is awaiting to be turned into heat.
      */
-    private long burningEuBuffer;
+    private long burningRfBuffer;
     /**
      * Total EU of the currently burning item. If 0 it means that we are burning fluid instead.
      */
-    private long burningItemTotalEu;
+    private long burningItemTotalRf;
 
-    public FuelBurningComponent(TemperatureComponent temperature, long maxEuProduction, long euPerDegree, double burningItemEuMultiplier) {
+    public FuelBurningComponent(TemperatureComponent temperature, long maxRfProduction, long rfPerDegree, double burningItemRfMultiplier) {
         this.temperature = temperature;
-        this.maxEuProduction = maxEuProduction;
-        this.euPerDegree = euPerDegree;
-        this.burningItemEuMultiplier = burningItemEuMultiplier;
+        this.maxRfProduction = maxRfProduction;
+        this.rfPerDegree = rfPerDegree;
+        this.burningItemRfMultiplier = burningItemRfMultiplier;
     }
 
-    public FuelBurningComponent(TemperatureComponent temperature, long maxEuProduction, long euPerDegree) {
-        this(temperature, maxEuProduction, euPerDegree, 1);
+    public FuelBurningComponent(TemperatureComponent temperature, long maxRfProduction, long rfPerDegree) {
+        this(temperature, maxRfProduction, rfPerDegree, 1);
     }
 
-    public FuelBurningComponent(SteamHeaterComponent steamHeater, double burningItemEuMultiplier) {
-        this(steamHeater, steamHeater.maxEuProduction, steamHeater.euPerDegree, burningItemEuMultiplier);
+    public FuelBurningComponent(SteamHeaterComponent steamHeater, double burningItemRfMultiplier) {
+        this(steamHeater, steamHeater.maxRfProduction, steamHeater.rfPerDegree, burningItemRfMultiplier);
     }
 
     public FuelBurningComponent(SteamHeaterComponent steamHeater) {
-        this(steamHeater, steamHeater.maxEuProduction, steamHeater.euPerDegree, 1);
+        this(steamHeater, steamHeater.maxRfProduction, steamHeater.rfPerDegree, 1);
     }
 
     public boolean isBurning() {
-        return burningEuBuffer > 0;
+        return burningRfBuffer > 0;
     }
 
     public void clearActiveFuel() {
-        burningEuBuffer = 0;
-        burningItemTotalEu = 0;
+        burningRfBuffer = 0;
+        burningItemTotalRf = 0;
     }
 
     public double getBurningProgress() {
-        if (burningItemTotalEu == 0) {
-            return Math.min(1.0, (double) burningEuBuffer / (5 * 20 * maxEuProduction));
+        if (burningItemTotalRf == 0) {
+            return Math.min(1.0, (double) burningRfBuffer / (5 * 20 * maxRfProduction));
         } else {
-            return Math.min(1.0, (double) burningEuBuffer / burningItemTotalEu);
+            return Math.min(1.0, (double) burningRfBuffer / burningItemTotalRf);
         }
     }
 
     public void tick(List<ConfigurableItemStack> itemInputs, List<ConfigurableFluidStack> fluidInputs, boolean canConsumeNewFuel) {
         // Turn buffer into heat
-        long maxEuInsertion = Math.min(burningEuBuffer, maxEuProduction);
+        long maxRfInsertion = Math.min(burningRfBuffer, maxRfProduction);
 
         // Use ceil here to be able to reach the max temperature exactly, even if it wastes a fraction of an EU.
-        maxEuInsertion = Math.min(maxEuInsertion, (long) Math.ceil(euPerDegree * (temperature.temperatureMax - temperature.getTemperature())));
-        if (maxEuInsertion > 0) {
-            burningEuBuffer -= maxEuInsertion;
-            temperature.increaseTemperature((double) maxEuInsertion / euPerDegree);
-        } else if (burningEuBuffer == 0) {
+        maxRfInsertion = Math.min(maxRfInsertion, (long) Math.ceil(rfPerDegree * (temperature.temperatureMax - temperature.getTemperature())));
+        if (maxRfInsertion > 0) {
+            burningRfBuffer -= maxRfInsertion;
+            temperature.increaseTemperature((double) maxRfInsertion / rfPerDegree);
+        } else if (burningRfBuffer == 0) {
             temperature.decreaseTemperature(1);
         }
 
@@ -102,16 +102,16 @@ public class FuelBurningComponent implements MachineComponent {
 
         // Refill buffer with item fuel
         outer:
-        while (burningEuBuffer < maxEuProduction) {
+        while (burningRfBuffer < maxRfProduction) {
             // Find first item fuel
             for (ConfigurableItemStack stack : itemInputs) {
                 var fuel = stack.getResource().toStack((int) stack.getAmount());
                 if (ItemStackHelper.consumeFuel(stack, true)) {
                     int fuelTime = fuel.getBurnTime(null);
                     if (fuelTime > 0) {
-                        long fuelTotalEu = (long) (fuelTime * EU_PER_BURN_TICK * burningItemEuMultiplier);
-                        burningEuBuffer += fuelTotalEu;
-                        burningItemTotalEu = fuelTotalEu;
+                        long fuelTotalRf = (long) (fuelTime * EU_PER_BURN_TICK * burningItemRfMultiplier);
+                        burningRfBuffer += fuelTotalRf;
+                        burningItemTotalRf = fuelTotalRf;
                         ItemStackHelper.consumeFuel(stack, false);
                         continue outer;
                     }
@@ -122,17 +122,17 @@ public class FuelBurningComponent implements MachineComponent {
         }
         // Refill buffer with fluid fuel
         outer:
-        while (burningEuBuffer < 5 * 20 * maxEuProduction) {
+        while (burningRfBuffer < 5 * 20 * maxRfProduction) {
             for (ConfigurableFluidStack stack : fluidInputs) {
                 if (!stack.isEmpty()) {
-                    long euPerMb = FluidFuel.getEu(stack.getResource().getFluid());
-                    if (euPerMb != 0) {
-                        long mbConsumedMax = (5 * 20 * maxEuProduction - burningEuBuffer) / euPerMb;
+                    long rfPerMb = FluidFuel.getRf(stack.getResource().getFluid());
+                    if (rfPerMb != 0) {
+                        long mbConsumedMax = (5 * 20 * maxRfProduction - burningRfBuffer) / rfPerMb;
                         long mbConsumed = Math.min(mbConsumedMax, stack.getAmount());
                         if (mbConsumed > 0) {
                             stack.decrement(mbConsumed);
-                            burningEuBuffer += mbConsumed * euPerMb;
-                            burningItemTotalEu = 0;
+                            burningRfBuffer += mbConsumed * rfPerMb;
+                            burningItemTotalRf = 0;
                             continue outer;
                         }
                     }
@@ -144,30 +144,30 @@ public class FuelBurningComponent implements MachineComponent {
 
     @Override
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("burningEuBuffer", burningEuBuffer);
-        if (burningItemTotalEu != 0) {
-            tag.putLong("burningItemTotalEu", burningItemTotalEu);
+        tag.putLong("burningEuBuffer", burningRfBuffer);
+        if (burningItemTotalRf != 0) {
+            tag.putLong("burningItemTotalEu", burningItemTotalRf);
         }
     }
 
     @Override
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        burningEuBuffer = tag.getLong("burningEuBuffer");
-        burningItemTotalEu = tag.getLong("burningItemTotalEu");
+        burningRfBuffer = tag.getLong("burningEuBuffer");
+        burningItemTotalRf = tag.getLong("burningItemTotalEu");
     }
 
     public List<Component> getTooltips(boolean acceptsFluid) {
         List<Component> returnList = new ArrayList<>();
-        returnList.add(new MITooltips.Line(MIText.MaxEuProductionSteam).arg(
-                this.maxEuProduction,
+        returnList.add(new MITooltips.Line(MIText.MaxRfProductionSteam).arg(
+                this.maxRfProduction,
                 MITooltips.EU_PER_TICK_PARSER)
                 .arg(MIFluids.STEAM)
                 .build());
 
-        if (burningItemEuMultiplier == 1) {
+        if (burningItemRfMultiplier == 1) {
             returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItemNormal).build());
         } else {
-            returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItem).arg(burningItemEuMultiplier, MITooltips.MULTIPLIER_PARSER).arg(burningItemEuMultiplier, MITooltips.MULTIPLIER_PARSER).build());
+            returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItem).arg(burningItemRfMultiplier, MITooltips.MULTIPLIER_PARSER).arg(burningItemRfMultiplier, MITooltips.MULTIPLIER_PARSER).build());
         }
         if (acceptsFluid) {
             returnList.add(new MITooltips.Line(MIText.FuelEfficiencyFluidNormal).build());

@@ -120,7 +120,7 @@ public class MITooltips {
         @Override
         public Component parse(Number number) {
             TextHelper.Amount amount = TextHelper.getAmountGeneric(number);
-            return MIText.EuT.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
+            return MIText.RfT.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
         }
     };
 
@@ -128,7 +128,7 @@ public class MITooltips {
         @Override
         public Component parse(Number number) {
             TextHelper.Amount amount = TextHelper.getAmountGeneric(number);
-            return MIText.Eu.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
+            return MIText.Rf.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
         }
     };
 
@@ -138,7 +138,7 @@ public class MITooltips {
     public static final Parser<NumberWithMax> EU_MAXED_PARSER = new Parser<>() {
         @Override
         public Component parse(NumberWithMax numberWithMax) {
-            MutableComponent component = TextHelper.getEuTextMaxed(numberWithMax.number, numberWithMax.max);
+            MutableComponent component = TextHelper.getRfTextMaxed(numberWithMax.number, numberWithMax.max);
             return component.withStyle(NUMBER_TEXT);
         }
     };
@@ -214,10 +214,10 @@ public class MITooltips {
             (itemStack, item) -> {
                 if (item instanceof BlockItem blockItem
                         && ElectricBlastFurnaceBlockEntity.tiersByCoil.containsKey(BuiltInRegistries.BLOCK.getKey(blockItem.getBlock()))) {
-                    long eu = ElectricBlastFurnaceBlockEntity.tiersByCoil
+                    long rf = ElectricBlastFurnaceBlockEntity.tiersByCoil
                             .get(BuiltInRegistries.BLOCK.getKey(((BlockItem) itemStack.getItem()).getBlock()))
                             .maxBaseRF();
-                    return Optional.of(new Line(MIText.EbfMaxRF).arg(eu).build());
+                    return Optional.of(new Line(MIText.EbfMaxRF).arg(rf).build());
                 } else {
                     return Optional.empty();
                 }
@@ -260,8 +260,8 @@ public class MITooltips {
                     tooltips.add(new MITooltips.Line(MIText.RemAbsorption).arg(remAbs)
                             .arg(((NuclearAbsorbable) itemStack.getItem()).desintegrationMax).build());
                     if (itemStack.getItem() instanceof NuclearFuel fuel) {
-                        long totalEu = (long) fuel.totalEUbyDesintegration * fuel.desintegrationMax;
-                        tooltips.add(new MITooltips.Line(MIText.BaseEuTotalStored).arg(totalEu, MITooltips.EU_PARSER).build());
+                        long totalRf = (long) fuel.totalEUbyDesintegration * fuel.desintegrationMax;
+                        tooltips.add(new MITooltips.Line(MIText.BaseRfTotalStored).arg(totalRf, MITooltips.EU_PARSER).build());
                     }
                     return tooltips;
                 } else {

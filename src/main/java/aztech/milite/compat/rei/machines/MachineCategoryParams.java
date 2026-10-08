@@ -1,7 +1,5 @@
 package aztech.milite.compat.rei.machines;
 
-import static aztech.milite.MITooltips.EU_PER_TICK_PARSER;
-
 import aztech.milite.inventory.SlotPositions;
 import aztech.milite.machines.guicomponents.ProgressBar;
 import aztech.milite.machines.init.MachineTier;
@@ -10,7 +8,6 @@ import aztech.milite.machines.recipe.MachineRecipeType;
 import aztech.milite.MI;
 import aztech.milite.MIItem;
 import aztech.milite.MIText;
-import aztech.milite.MITooltips;
 import aztech.milite.util.TextHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -74,21 +71,11 @@ public class MachineCategoryParams {
     }
 
     private boolean steelHatchRequired(MachineRecipe recipe) {
-        return steamMode.steam && isMultiblock && recipe.energy > MachineTier.BRONZE.getMaxEu();
-    }
-
-    private int upgradeEuRequired(MachineRecipe recipe) {
-        int upgradeEuRequired = recipe.energy - (isMultiblock ? MachineTier.MULTIBLOCK : MachineTier.LV).getMaxEu();
-        // Ugly fusion reactor workaround
-        if (upgradeEuRequired > 0 && category.getPath().equals("fusion_reactor")) {
-            upgradeEuRequired = 0;
-        }
-        return upgradeEuRequired;
+        return steamMode.steam && isMultiblock && recipe.energy > MachineTier.BRONZE.getMaxRf();
     }
 
     public boolean includeRecipeConditionDisplay(MachineRecipe recipe) {
         return steelHatchRequired(recipe) ||
-                upgradeEuRequired(recipe) > 0 ||
                 !recipe.conditions.isEmpty();
     }
 
@@ -112,7 +99,7 @@ public class MachineCategoryParams {
     public List<Component> getRecipeTooltip(MachineRecipe recipe) {
         List<Component> lines = new ArrayList<>();
         if (steamMode != SteamMode.NEITHER) {
-            lines.add(MIText.BaseEuTotal.text(TextHelper.getEuText((long) recipe.duration * recipe.energy)));
+            lines.add(MIText.BaseRfTotal.text(TextHelper.getRfText((long) recipe.duration * recipe.energy)));
         }
         if (steamMode.steam) {
             lines.add((steamMode.electric ? MIText.AcceptsSteamToo : MIText.AcceptsSteam).text().withStyle(ChatFormatting.GRAY));
@@ -120,10 +107,6 @@ public class MachineCategoryParams {
                 lines.add(MIText.RequiresSteelHatch0.text().setStyle(Style.EMPTY.withUnderlined(true)));
                 lines.add(MIText.RequiresSteelHatch1.text().withStyle(ChatFormatting.GRAY));
             }
-        }
-        int upgradeEuRequired = upgradeEuRequired(recipe);
-        if (upgradeEuRequired > 0) {
-            lines.add(new MITooltips.Line(MIText.RequiresUpgrades).arg(upgradeEuRequired, EU_PER_TICK_PARSER).build());
         }
         for (var condition : recipe.conditions) {
             condition.appendDescription(lines);

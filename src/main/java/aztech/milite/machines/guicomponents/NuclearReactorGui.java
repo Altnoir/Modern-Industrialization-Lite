@@ -41,7 +41,7 @@ public record NuclearReactorGui(Supplier<Data> dataSupplier) implements GuiCompo
             boolean valid,
             int gridSizeX, int gridSizeY,
             List<TileData> tilesData,
-            double euProduction, double euFuelConsumption) {
+            double rfProduction, double rfFuelConsumption) {
         public static final StreamCodec<RegistryFriendlyByteBuf, Data> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.BOOL,
                 Data::valid,
@@ -52,9 +52,9 @@ public record NuclearReactorGui(Supplier<Data> dataSupplier) implements GuiCompo
                 TileData.STREAM_CODEC.apply(ByteBufCodecs.list()),
                 Data::tilesData,
                 ByteBufCodecs.DOUBLE,
-                Data::euProduction,
+                Data::rfProduction,
                 ByteBufCodecs.DOUBLE,
-                Data::euFuelConsumption,
+                Data::rfFuelConsumption,
                 Data::new);
 
         public int toIndex(int x, int y) {

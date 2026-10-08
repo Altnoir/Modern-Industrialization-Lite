@@ -10,10 +10,10 @@ import guideme.layout.LayoutContext;
 import guideme.render.RenderContext;
 import net.minecraft.client.renderer.MultiBufferSource;
 
-public class LytMachineRecipeHeaderEuCostImage extends LytBlock {
+public class LytMachineRecipeHeaderRfCostImage extends LytBlock {
     private final SteamMode steamMode;
 
-    public LytMachineRecipeHeaderEuCostImage(SteamMode steamMode) {
+    public LytMachineRecipeHeaderRfCostImage(SteamMode steamMode) {
         this.steamMode = steamMode;
     }
 

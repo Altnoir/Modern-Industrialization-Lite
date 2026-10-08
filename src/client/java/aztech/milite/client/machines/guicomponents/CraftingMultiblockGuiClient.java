@@ -81,13 +81,9 @@ public class CraftingMultiblockGuiClient extends GuiComponentClient<Unit, Crafti
 
                     deltaY += drawWordWrap(guiGraphics, font, MIText.Progress.text(String.format("%.1f", recipe.progress() * 100) + " %"), x + 10, y + deltaY, 11, 0xFFFFFF, false);
 
-                    if (recipe.efficiencyTicks() != 0 || recipe.maxEfficiencyTicks() != 0) {
-                        deltaY += drawWordWrap(guiGraphics, font, MIText.EfficiencyTicks.text(recipe.efficiencyTicks(), recipe.maxEfficiencyTicks()), x + 10, y + deltaY, 11, 0xFFFFFF, false);
-                    }
+                    deltaY += drawWordWrap(guiGraphics, font, MIText.BaseRfRecipe.text(TextHelper.getRfTextTick(recipe.baseRecipeRf())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
 
-                    deltaY += drawWordWrap(guiGraphics, font, MIText.BaseEuRecipe.text(TextHelper.getEuTextTick(recipe.baseRecipeEu())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
-
-                    deltaY += drawWordWrap(guiGraphics, font, MIText.CurrentEuRecipe.text(TextHelper.getEuTextTick(recipe.currentRecipeEu())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
+                    deltaY += drawWordWrap(guiGraphics, font, MIText.CurrentRfRecipe.text(TextHelper.getRfTextTick(recipe.currentRecipeRf())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
                 }
             }
 

@@ -64,16 +64,6 @@ public abstract class AbstractCraftingMachineBlockEntity extends MachineBlockEnt
     }
 
     @Override
-    public long getBaseRecipeEu() {
-        return tier.getBaseEu();
-    }
-
-    @Override
-    public long getMaxRecipeEu() {
-        return tier.getMaxEu();
-    }
-
-    @Override
     public void tick() {
         if (!level.isClientSide) {
             boolean newActive = crafter.tickRecipe();

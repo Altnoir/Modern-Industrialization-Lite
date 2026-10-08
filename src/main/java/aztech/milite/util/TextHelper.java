@@ -119,37 +119,37 @@ public class TextHelper {
         }
     }
 
-    public static MutableComponent getEuTextMaxed(Number eu, Number max) {
-        var amount = getMaxedAmountGeneric(eu, max);
-        return MIText.EuMaxed.text(amount.digit(), amount.maxDigit(), amount.unit());
+    public static MutableComponent getRfTextMaxed(Number rf, Number max) {
+        var amount = getMaxedAmountGeneric(rf, max);
+        return MIText.RfMaxed.text(amount.digit(), amount.maxDigit(), amount.unit());
     }
 
-    public static MutableComponent getEuText(double eu) {
-        var amount = getAmount(eu);
-        return MIText.Eu.text(amount.digit(),
+    public static MutableComponent getRfText(double rf) {
+        var amount = getAmount(rf);
+        return MIText.Rf.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getEuTextTick(double eu) {
-        var amount = getAmount(eu);
-        return MIText.EuT.text(amount.digit(),
+    public static MutableComponent getRfTextTick(double rf) {
+        var amount = getAmount(rf);
+        return MIText.RfT.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getEuText(long eu) {
-        var amount = getAmount(eu);
-        return MIText.Eu.text(amount.digit(),
+    public static MutableComponent getRfText(long rf) {
+        var amount = getAmount(rf);
+        return MIText.Rf.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getEuTextTick(long eu) {
-        var amount = getAmount(eu);
-        return MIText.EuT.text(amount.digit(),
+    public static MutableComponent getRfTextTick(long rf) {
+        var amount = getAmount(rf);
+        return MIText.RfT.text(amount.digit(),
                 amount.unit());
     }
 
-    public static Component getEuTextTick(double eu, boolean style) {
-        MutableComponent text = getEuTextTick(eu);
+    public static Component getRfTextTick(double rf, boolean style) {
+        MutableComponent text = getRfTextTick(rf);
         if (style) {
             text.setStyle(TextHelper.NUMBER_TEXT);
         }

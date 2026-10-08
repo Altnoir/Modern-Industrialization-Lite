@@ -12,7 +12,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import java.util.function.Supplier;
 
 public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAccess {
-    private long storedEu;
+    private long storedRf;
     private final Supplier<Long> capacity;
     private final BlockEntity blockEntity; // used to call setChanged()
 
@@ -27,8 +27,8 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     @Override
-    public long getEu() {
-        return Math.min(storedEu, capacity.get());
+    public long getRf() {
+        return Math.min(storedRf, capacity.get());
     }
 
     @Override
@@ -37,46 +37,46 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     public long getRemainingCapacity() {
-        return capacity.get() - getEu();
+        return capacity.get() - getRf();
     }
 
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("storedEu", getEu());
+        tag.putLong("storedEu", getRf());
     }
 
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        setEu(tag.getLong("storedEu"), false);
+        setRf(tag.getLong("storedEu"), false);
     }
 
-    private void setEu(long eu, boolean update) {
-        this.storedEu = Math.min(eu, capacity.get());
+    private void setRf(long rf, boolean update) {
+        this.storedRf = Math.min(rf, capacity.get());
 
         if (update) {
             blockEntity.setChanged();
         }
     }
 
-    public long consumeEu(long max, Simulation simulation) {
+    public long consumeRf(long max, Simulation simulation) {
         Preconditions.checkArgument(max >= 0, "May not consume < 0 energy.");
-        long ext = Math.min(max, getEu());
+        long ext = Math.min(max, getRf());
         if (simulation.isActing()) {
-            setEu(getEu() - ext, true);
+            setRf(getRf() - ext, true);
         }
         return ext;
     }
 
-    public long insertEu(long max, Simulation simulation) {
+    public long insertRf(long max, Simulation simulation) {
         Preconditions.checkArgument(max >= 0, "May not insert < 0 energy.");
-        long ext = Math.min(max, capacity.get() - getEu());
+        long ext = Math.min(max, capacity.get() - getRf());
         if (simulation.isActing()) {
-            setEu(getEu() + ext, true);
+            setRf(getRf() + ext, true);
         }
         return ext;
     }
 
     private abstract class EnergyStorage implements IEnergyStorage {
         protected long longAmount() {
-            return storedEu;
+            return storedRf;
         }
 
         protected long longCapacity() {
@@ -85,17 +85,17 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
 
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
-            return (int) Math.min(Integer.MAX_VALUE, insertEu(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
+            return (int) Math.min(Integer.MAX_VALUE, insertRf(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
-            return (int) Math.min(Integer.MAX_VALUE, consumeEu(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
+            return (int) Math.min(Integer.MAX_VALUE, consumeRf(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int getEnergyStored() {
-            return (int) Math.min(Integer.MAX_VALUE, storedEu);
+            return (int) Math.min(Integer.MAX_VALUE, storedRf);
         }
 
         @Override

@@ -64,13 +64,8 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
     }
 
     @Override
-    public long getBaseRecipeEu() {
-        return MachineTier.MULTIBLOCK.getBaseEu();
-    }
-
-    @Override
-    public long getMaxRecipeEu() {
-        return MachineTier.MULTIBLOCK.getMaxEu();
+    public int getSpeedBonus() {
+        return 2;
     }
 
     @Override

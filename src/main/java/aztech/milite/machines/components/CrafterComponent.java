@@ -43,11 +43,6 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAccess {
-    /**
-     * Upper bound for the efficiency warm up search, see getRecipeMaxEfficiencyTicks.
-     */
-    private static final int MAX_EFFICIENCY_TICKS = 100000;
-
     private final MachineProcessCondition.Context conditionContext;
 
     public CrafterComponent(MachineBlockEntity blockEntity, Inventory inventory, Behavior behavior) {
@@ -73,7 +68,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             return true;
         }
 
-        long consumeEu(long max, Simulation simulation);
+        long consumeRf(long max, Simulation simulation);
 
         default boolean banRecipe(MachineRecipe recipe) {
             return !getMachineLevel().canCraft(recipe.level);
@@ -98,9 +93,17 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
          */
         MachineLevel getMachineLevel();
 
-        long getBaseRecipeEu();
-
-        long getMaxRecipeEu();
+        /**
+         * An extra speed factor on top of {@link MachineLevel#speedMultiplier()}, for machines that can speed themselves
+         * up beyond what their level does (the gunpowder overclock of the steam multiblocks, for instance).
+         *
+         * <p>
+         * How much power the machine is supplied with decides whether it actually reaches this speed: a machine never
+         * eats more than its buffer holds, so a starved one simply sits in the middle of its progress bar.
+         */
+        default int getSpeedBonus() {
+            return 1;
+        }
 
         default boolean isOverdriving() {
             return false;
@@ -146,32 +149,28 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     private boolean matchesMultipleRecipes;
 
-    private long usedEnergy;
-    private long recipeEnergy;
-    private long recipeMaxEu;
+    /**
+     * The total RF a craft of the active recipe costs. It does not depend on the machine: a faster machine eats the
+     * same total over fewer ticks, which is what {@link #recipeRfPerTick} expresses.
+     */
+    private long recipeRf;
+    /**
+     * The RF the active recipe needs per tick to run at full speed. It is only a request: a machine that is not
+     * supplied with that much eats what it has and takes longer, and the progress bar stands still while it has nothing.
+     */
+    private long recipeRfPerTick;
+    private long usedRf;
+    /** The RF that went into the recipe during the last tick, which is the requested amount unless the machine is starved. */
+    private long lastConsumedRf;
 
-    private int efficiencyTicks;
-    private int maxEfficiencyTicks;
-
-    private long previousBaseEu = -1;
-    private long previousMaxEu = -1;
+    private long lastSpeed = -1;
 
     private int lastInvHash = 0;
     private int lastForcedTick = 0;
 
     @Override
     public float getProgress() {
-        return (float) usedEnergy / recipeEnergy;
-    }
-
-    @Override
-    public int getEfficiencyTicks() {
-        return efficiencyTicks;
-    }
-
-    @Override
-    public int getMaxEfficiencyTicks() {
-        return maxEfficiencyTicks;
+        return recipeRf == 0 ? 0 : (float) usedRf / recipeRf;
     }
 
     @Override
@@ -192,25 +191,40 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         return behavior;
     }
 
-    public void decreaseEfficiencyTicks() {
-        efficiencyTicks = Math.max(efficiencyTicks - 1, 0);
-        clearActiveRecipeIfPossible();
+    /**
+     * How many times faster than the reference machine of its level this machine runs, coefficients included.
+     */
+    public int getSpeedMultiplier() {
+        long speed = (long) behavior.getMachineLevel().speedMultiplier() * behavior.getSpeedBonus();
+        if (behavior.isOverdriving()) {
+            speed *= 2;
+        }
+        return (int) Math.min(Integer.MAX_VALUE, Math.max(1, speed));
     }
 
-    public void increaseEfficiencyTicks(int increment) {
-        efficiencyTicks = Math.min(efficiencyTicks + increment, maxEfficiencyTicks);
-    }
-
-    @Override
-    public long getCurrentRecipeEu() {
+    /**
+     * The RF per tick the active recipe needs to run at the speed of this machine.
+     */
+    public long getBaseRecipeRf() {
         Preconditions.checkArgument(hasActiveRecipe());
-        return recipeMaxEu;
+        return recipeRfPerTick;
     }
 
+    /**
+     * The RF the active recipe actually ate during the last tick. It is lower than {@link #getBaseRecipeRf()} while the
+     * machine is starved, which is what makes the recipe take longer than its speed allows.
+     */
     @Override
-    public long getBaseRecipeEu() {
+    public long getCurrentRecipeRf() {
         Preconditions.checkArgument(hasActiveRecipe());
-        return activeRecipe.value().energy;
+        return lastConsumedRf;
+    }
+
+    /**
+     * The RF per tick the active recipe needs to run at the speed of this machine.
+     */
+    private long getRecipeRfPerTick(MachineRecipe recipe) {
+        return Math.max(1, (long) recipe.energy * getSpeedMultiplier());
     }
 
     /**
@@ -227,10 +241,10 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         loadDelayedActiveRecipe();
 
         // START RECIPE IF NECESSARY
-        // usedEnergy == 0 means that no recipe is currently started
+        // usedRf == 0 means that no recipe is currently started
         boolean recipeStarted = false;
-        if (usedEnergy == 0 && isEnabled) {
-            if (behavior.consumeEu(1, SIMULATE) == 1) {
+        if (usedRf == 0 && isEnabled) {
+            if (behavior.consumeRf(1, SIMULATE) == 1) {
                 recipeStarted = updateActiveRecipe();
             }
         }
@@ -240,28 +254,26 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         }
 
         // PROCESS RECIPE TICK
-        long eu = 0;
-        boolean finishedRecipe = false; // whether the recipe finished this tick
+        long rf = 0;
         if (activeRecipe != null && isEnabled) {
-            if (usedEnergy > 0 || recipeStarted) {
-                recipeMaxEu = getRecipeMaxEu(activeRecipe.value().energy, recipeEnergy, efficiencyTicks);
-                eu = activeRecipe.value().conditionsMatch(conditionContext)
-                        ? behavior.consumeEu(Math.min(recipeMaxEu, recipeEnergy - usedEnergy), ACT)
+            if (usedRf > 0 || recipeStarted) {
+                // The machine asks for what running at its speed costs, but only gets what its buffer holds. A machine
+                // that runs dry therefore keeps its progress and waits for the power to come back instead of failing.
+                long request = Math.min(recipeRfPerTick, recipeRf - usedRf);
+                rf = activeRecipe.value().conditionsMatch(conditionContext)
+                        ? behavior.consumeRf(request, ACT)
                         : 0;
-                isActive = eu > 0;
-                usedEnergy += eu;
+                lastConsumedRf = rf;
+                isActive = rf > 0;
+                usedRf += rf;
 
-                if (usedEnergy == recipeEnergy) {
+                if (usedRf >= recipeRf) {
                     putItemOutputs(activeRecipe.value(), false, false);
                     putFluidOutputs(activeRecipe.value(), false, false);
                     clearLocks();
-                    usedEnergy = 0;
-                    finishedRecipe = true;
+                    usedRf = 0;
                     behavior.onCraft();
                 }
-            } else if (behavior.isOverdriving()) {
-                eu = activeRecipe.value().conditionsMatch(conditionContext) ? behavior.consumeEu(recipeMaxEu, ACT) : 0;
-                isActive = eu > 0;
             } else {
                 isActive = false;
             }
@@ -270,35 +282,21 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         }
 
         if (activeRecipe != null) {
-            if (previousBaseEu != behavior.getBaseRecipeEu() || previousMaxEu != behavior.getMaxRecipeEu()) {
-                previousBaseEu = behavior.getBaseRecipeEu();
-                previousMaxEu = behavior.getMaxRecipeEu();
-                maxEfficiencyTicks = getRecipeMaxEfficiencyTicks(activeRecipe.value());
-                efficiencyTicks = Math.min(efficiencyTicks, maxEfficiencyTicks);
-            }
-
-        }
-
-        // ADD OR REMOVE EFFICIENCY TICKS
-        // If we finished a recipe, we can add an efficiency tick
-        if (finishedRecipe) {
-            if (efficiencyTicks < maxEfficiencyTicks)
-                ++efficiencyTicks;
-        } else if (eu < recipeMaxEu) { // If we didn't use the max energy this tick and the recipe is still ongoing,
-            // remove one efficiency tick
-            if (efficiencyTicks > 0) {
-                efficiencyTicks--;
+            long speed = getSpeedMultiplier();
+            if (speed != lastSpeed) {
+                lastSpeed = speed;
+                recipeRfPerTick = getRecipeRfPerTick(activeRecipe.value());
             }
         }
 
-        // If the recipe is done, allow starting another one when the efficiency reaches zero
+        // If the recipe is done, allow starting another one right away
         clearActiveRecipeIfPossible();
 
         return isActive;
     }
 
     private void clearActiveRecipeIfPossible() {
-        if (efficiencyTicks == 0 && usedEnergy == 0) {
+        if (usedRf == 0) {
             activeRecipe = null;
         }
     }
@@ -329,10 +327,8 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         if (delayedActiveRecipe != null) {
             activeRecipe = findRecipe(delayedActiveRecipe);
             delayedActiveRecipe = null;
-            if (activeRecipe == null) { // If a recipe got removed, we need to reset the efficiency and the used energy
-                // to allow the machine to resume processing.
-                efficiencyTicks = 0;
-                usedEnergy = 0;
+            if (activeRecipe == null) { // If a recipe got removed, the saved progress is meaningless and must go
+                usedRf = 0;
             }
         }
     }
@@ -410,16 +406,11 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         }
         matchesMultipleRecipes = false;
         if (newActiveRecipe != null && tryStartRecipe(newActiveRecipe.value())) {
-            // Make sure we recalculate the max efficiency ticks if the recipe changes or if
-            // the efficiency has reached 0 (the latter is to recalculate the efficiency for
-            // 0.3.6 worlds without having to break and replace the machines)
-            if (activeRecipe != newActiveRecipe || efficiencyTicks == 0) {
-                maxEfficiencyTicks = getRecipeMaxEfficiencyTicks(newActiveRecipe.value());
-            }
             activeRecipe = newActiveRecipe;
-            usedEnergy = 0;
-            recipeEnergy = newActiveRecipe.value().getTotalEu();
-            recipeMaxEu = getRecipeMaxEu(newActiveRecipe.value().energy, recipeEnergy, efficiencyTicks);
+            recipeRf = newActiveRecipe.value().getTotalRf();
+            usedRf = 0;
+            lastSpeed = getSpeedMultiplier();
+            recipeRfPerTick = getRecipeRfPerTick(newActiveRecipe.value());
             return true;
         }
         return false;
@@ -454,7 +445,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     private Iterable<RecipeHolder<MachineRecipe>> getRecipes() {
-        if (efficiencyTicks > 0) {
+        if (usedRf > 0) {
             return Collections.singletonList(activeRecipe);
         } else {
             return getRecipes(behavior.getCrafterWorld(), behavior.recipeTypes(), inventory.getItemInputs());
@@ -506,64 +497,31 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     /**
-     * How much energy this machine may eat per tick for the active recipe.
-     *
-     * <p>
-     * There is deliberately no cap coming from the machine tier here: a machine eats as much as it is supplied with, so
-     * a recipe finishes as soon as enough energy arrives. The actual consumption is still limited by what the energy
-     * buffer holds, which is what makes a starved machine sit in the middle of its progress bar instead of finishing.
+     * Writes the craft that is in progress, so that a machine that is unloaded in the middle of a recipe resumes it
+     * where it stopped instead of starting over.
      */
-    private long getRecipeMaxEu(long recipeEnergy, long totalEu, int efficiencyTicks) {
-        long baseEu = Math.max(behavior.getBaseRecipeEu(), recipeEnergy);
-        long overclockedEu = baseEu + efficiencyTicks * totalEu / (20 * 30);
-        return Math.min(totalEu, overclockedEu);
-    }
-
-    /**
-     * How many crafts are needed before this recipe reaches its full speed at the current energy supply.
-     *
-     * <p>
-     * The top level is already at full speed, so it reports zero and every recipe it starts completes as fast as the
-     * energy supply allows.
-     */
-    private int getRecipeMaxEfficiencyTicks(MachineRecipe recipe) {
-        if (behavior.getMachineLevel() == MachineLevel.IRIDIUM) {
-            return 0;
-        }
-        long energy = recipe.energy;
-        long totalEu = recipe.getTotalEu();
-        // The loop always terminates for a positive total, the bound is only a guard against bad recipe data.
-        for (int ticks = 0; ticks < MAX_EFFICIENCY_TICKS; ++ticks) {
-            if (getRecipeMaxEu(energy, totalEu, ticks) == totalEu)
-                return ticks;
-        }
-        return MAX_EFFICIENCY_TICKS;
-    }
-
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("usedEnergy", this.usedEnergy);
-        tag.putLong("recipeEnergy", this.recipeEnergy);
-        tag.putLong("recipeMaxEu", this.recipeMaxEu);
+        tag.putLong("usedRf", this.usedRf);
+        tag.putLong("recipeRf", this.recipeRf);
+        tag.putLong("recipeRfPerTick", this.recipeRfPerTick);
         if (activeRecipe != null) {
             tag.putString("activeRecipe", this.activeRecipe.id().toString());
         } else if (delayedActiveRecipe != null) {
             tag.putString("activeRecipe", this.delayedActiveRecipe.toString());
         }
-        tag.putInt("efficiencyTicks", this.efficiencyTicks);
-        tag.putInt("maxEfficiencyTicks", this.maxEfficiencyTicks);
     }
 
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        this.usedEnergy = tag.getInt("usedEnergy");
-        this.recipeEnergy = tag.getInt("recipeEnergy");
-        this.recipeMaxEu = tag.getInt("recipeMaxEu");
-        this.delayedActiveRecipe = tag.contains("activeRecipe") ? ResourceLocation.parse(tag.getString("activeRecipe")) : null;
-        if (delayedActiveRecipe == null && usedEnergy > 0) {
-            usedEnergy = 0;
-            MI.LOGGER.error("Had to set the usedEnergy of CrafterComponent to 0, but that should never happen!");
+        this.usedRf = tag.getLong("usedRf");
+        this.recipeRf = tag.getLong("recipeRf");
+        this.recipeRfPerTick = tag.getLong("recipeRfPerTick");
+        this.lastSpeed = -1;
+        String recipeId = tag.getString("activeRecipe");
+        this.delayedActiveRecipe = recipeId.isEmpty() ? null : ResourceLocation.tryParse(recipeId);
+        if (delayedActiveRecipe == null && usedRf > 0) {
+            usedRf = 0;
+            MI.LOGGER.error("Had to set the usedRf of CrafterComponent to 0, but that should never happen!");
         }
-        this.efficiencyTicks = tag.getInt("efficiencyTicks");
-        this.maxEfficiencyTicks = tag.getInt("maxEfficiencyTicks");
     }
 
     public static boolean doInputsMatch(List<ConfigurableItemStack> itemInputs, List<ConfigurableFluidStack> fluidInputs, MachineRecipe recipe) {

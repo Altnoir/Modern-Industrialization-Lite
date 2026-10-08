@@ -73,7 +73,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
         }
 
         Component[] modeTooltip = new Component[] { MIText.NuclearFuelMode.text(), MIText.TemperatureMode.text(), MIText.NeutronAbsorptionMode.text(),
-                MIText.NeutronFluxMode.text(), MIText.NeutronGenerationMode.text(), MIText.EuGenerationMode.text() };
+                MIText.NeutronFluxMode.text(), MIText.NeutronGenerationMode.text(), MIText.RfGenerationMode.text() };
 
         Component[] neutronModeTooltip = new Component[] { MIText.FastNeutron.text(), MIText.ThermalNeutron.text(), MIText.Both.text() };
 
@@ -117,7 +117,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                                     u = (int) (299 * tileData.getTemperature() / NuclearConstant.MAX_TEMPERATURE);
                                 } else if (currentMode == Renderer.Mode.EU_GENERATION) {
                                     v = 30;
-                                    u = (int) (299 * Math.min(1.0, tileData.getMeanEuGeneration() / (2 * NuclearConstant.MAX_HATCH_EU_PRODUCTION)));
+                                    u = (int) (299 * Math.min(1.0, tileData.getMeanRfGeneration() / (2 * NuclearConstant.MAX_HATCH_EU_PRODUCTION)));
                                 } else {
                                     double neutronRate;
                                     double factor = neutronMode == BOTH ? 2 : 1;
@@ -167,7 +167,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                     }
                 }
 
-                if (data.euFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
+                if (data.rfFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
                     Font font = Minecraft.getInstance().font;
                     guiGraphics.pose().translate(0, 0, 256);
                     guiGraphics.drawString(font, getEfficiencyText(), x + 8, y + 16, 0xFFFFFF, false);
@@ -224,8 +224,8 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                             return true;
 
                         } else if (currentMode == Renderer.Mode.EU_GENERATION) {
-                            double euGeneration = tileData.getMeanEuGeneration();
-                            guiGraphics.renderTooltip(font, TextHelper.getEuTextTick(euGeneration, true), cursorX, cursorY);
+                            double rfGeneration = tileData.getMeanRfGeneration();
+                            guiGraphics.renderTooltip(font, TextHelper.getRfTextTick(rfGeneration, true), cursorX, cursorY);
                             return true;
                         } else {
                             double neutronRateFast;
@@ -300,15 +300,15 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                 }
             }
 
-            if (data.euFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
+            if (data.rfFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
                 Font renderer = Minecraft.getInstance().font;
                 int width = renderer.width(getEfficiencyText().getString());
                 if (cursorX > x + 8 && cursorX < x + 8 + width && cursorY >= y + 15 && cursorY < y + 24) {
 
-                    Component euProduction = TextHelper.getEuTextTick(data.euProduction(), true);
-                    Component euFuelConsumption = TextHelper.getEuTextTick(data.euFuelConsumption(), true);
+                    Component rfProduction = TextHelper.getRfTextTick(data.rfProduction(), true);
+                    Component rfFuelConsumption = TextHelper.getRfTextTick(data.rfFuelConsumption(), true);
 
-                    Component tooltip = MIText.NuclearFuelEfficiencyTooltip.text(euProduction, euFuelConsumption);
+                    Component tooltip = MIText.NuclearFuelEfficiencyTooltip.text(rfProduction, rfFuelConsumption);
 
                     guiGraphics.renderTooltip(font, tooltip, cursorX, cursorY);
                     return true;
@@ -318,7 +318,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
         }
 
         public Component getEfficiencyText() {
-            String eff = String.format("%.1f", 100 * data.euProduction() / data.euFuelConsumption());
+            String eff = String.format("%.1f", 100 * data.rfProduction() / data.rfFuelConsumption());
             return MIText.EfficiencyNuclear.text(eff).setStyle(TextHelper.RED);
         }
 

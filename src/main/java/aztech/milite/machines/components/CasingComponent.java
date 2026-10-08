@@ -30,6 +30,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
 
     private ItemStack casingStack = ItemStack.EMPTY;
     private CableTier currentTier = CableTier.LV;
+    private int speedMultiplier = 1;
 
     public CasingComponent(@Nullable UpdatedCallback callback) {
         this.callback = callback;
@@ -46,6 +47,16 @@ public class CasingComponent implements MachineComponent, DropableComponent {
 
     public CasingComponent(CableTier initialTier) {
         this((UpdatedCallback) null, initialTier);
+    }
+
+    /**
+     * @param speedMultiplier how many times faster than the reference level the machine runs. It scales the RF buffer,
+     *                        because a machine that eats {@code n} times as much per tick needs {@code n} times as
+     *                        much energy waiting for it to keep running at full speed between two insertions.
+     */
+    public CasingComponent(CableTier initialTier, int speedMultiplier) {
+        this((UpdatedCallback) null, initialTier);
+        this.speedMultiplier = Math.max(1, speedMultiplier);
     }
 
     /**
@@ -166,16 +177,16 @@ public class CasingComponent implements MachineComponent, DropableComponent {
         return casingStack.isEmpty() ? null : currentTier.casing;
     }
 
-    public boolean canInsertEu(CableTier tier) {
+    public boolean canInsertRf(CableTier tier) {
         return true;
     }
 
     /**
      * @return The RF buffer capacity granted by the current casing. It is proportional to the tier of the
-     * casing, and capped so that it always fits in NeoForge's int-based energy API.
+     * casing and to the speed of the machine, and capped so that it always fits in NeoForge's int-based energy API.
      */
-    public long getEuCapacity() {
-        long capacity = currentTier.rf * 100;
+    public long getRfCapacity() {
+        long capacity = currentTier.rf * 100 * speedMultiplier;
         long maxCapacity = CableTier.maxRf() * 100;
         return Math.min(capacity, maxCapacity);
     }

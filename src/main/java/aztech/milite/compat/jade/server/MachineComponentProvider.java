@@ -43,7 +43,7 @@ public abstract sealed class MachineComponentProvider<S, C>
                     long capacity = 0;
 
                     for (var component : components) {
-                        stored += component.getEu();
+                        stored += component.getRf();
                         capacity += component.getCapacity();
                     }
 
@@ -51,7 +51,7 @@ public abstract sealed class MachineComponentProvider<S, C>
                 }
             } else if (accessor.getTarget() instanceof EnergyComponentHolder holder) {
                 var component = holder.getEnergyComponent();
-                return List.of(new ViewGroup<>(List.of(EnergyView.of(component.getEu(), component.getCapacity()))));
+                return List.of(new ViewGroup<>(List.of(EnergyView.of(component.getRf(), component.getCapacity()))));
             }
 
             return List.of();

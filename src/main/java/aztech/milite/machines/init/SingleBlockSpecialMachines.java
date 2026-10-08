@@ -81,12 +81,12 @@ public class SingleBlockSpecialMachines {
                 .build());
     }
 
-    private static void registerSteamTurbine(CableTier tier, int eu, int fluidCapacity) {
+    private static void registerSteamTurbine(CableTier tier, int rf, int fluidCapacity) {
         String id = tier.name + "_steam_turbine";
         String englishName = tier.shortEnglishName + " Steam Turbine";
         MachineRegistrationHelper.registerMachine(englishName, id,
                 bet -> new GeneratorMachineBlockEntity(bet, id, true,
-                        tier, eu * 100L, fluidCapacity, eu,
+                        tier, rf * 100L, fluidCapacity, rf,
                         MIFluids.STEAM, 1),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 

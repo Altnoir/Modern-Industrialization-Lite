@@ -12,7 +12,6 @@ import aztech.milite.machines.components.FluidItemConsumerComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.guicomponents.RecipeEfficiencyBar;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineRegistrationHelper;
 import aztech.milite.machines.init.MultiblockMachines;
@@ -42,10 +41,6 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         return new ProgressBar.Params(renderX, renderY, type, width, height, false);
     }
 
-    public RecipeEfficiencyBar.Params efficiencyBar(int renderX, int renderY) {
-        return new RecipeEfficiencyBar.Params(renderX, renderY);
-    }
-
     public EnergyBar.Params energyBar(int renderX, int renderY) {
         return new EnergyBar.Params(renderX, renderY);
     }
@@ -55,13 +50,13 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             String englishName, String internalName, MachineRecipeType recipeType, List<String> tiers,
             // gui
             int backgroundHeight, // can be -1 to use default
-            ProgressBar.Params progressBar, RecipeEfficiencyBar.Params efficiencyBar, EnergyBar.Params energyBar,
+            ProgressBar.Params progressBar, EnergyBar.Params energyBar,
             // slots
             int itemInputs, int itemOutputs, int fluidInputs, int fluidOutputs, int bucketCapacity,
             Consumer<SlotPositions.Builder> itemSlotPositions, Consumer<SlotPositions.Builder> fluidSlotPositions,
             // model
             boolean frontOverlay, boolean topOverlay, boolean sideOverlay) {
-        craftingSingleBlock(englishName, internalName, recipeType, tiers, backgroundHeight, progressBar, efficiencyBar, energyBar,
+        craftingSingleBlock(englishName, internalName, recipeType, tiers, backgroundHeight, progressBar, energyBar,
                 itemInputs, itemOutputs, fluidInputs, fluidOutputs, bucketCapacity, itemSlotPositions, fluidSlotPositions,
                 frontOverlay, topOverlay, sideOverlay, config -> {});
     }
@@ -71,7 +66,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             String englishName, String internalName, MachineRecipeType recipeType, List<String> tiers,
             // gui
             int backgroundHeight, // can be -1 to use default
-            ProgressBar.Params progressBar, RecipeEfficiencyBar.Params efficiencyBar, EnergyBar.Params energyBar,
+            ProgressBar.Params progressBar, EnergyBar.Params energyBar,
             // slots
             int itemInputs, int itemOutputs, int fluidInputs, int fluidOutputs, int bucketCapacity,
             Consumer<SlotPositions.Builder> itemSlotPositions, Consumer<SlotPositions.Builder> fluidSlotPositions,
@@ -92,7 +87,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         SingleBlockCraftingMachines.registerMachineTiers(
                 englishName, internalName, recipeType,
                 itemInputs, itemOutputs, fluidInputs, fluidOutputs,
-                guiParams, progressBar, progressBar, efficiencyBar, energyBar,
+                guiParams, progressBar, progressBar, energyBar,
                 itemSlotPositions, fluidSlotPositions,
                 frontOverlay, topOverlay, sideOverlay,
                 levels, bucketCapacity, config);
@@ -272,12 +267,12 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
     public static class FluidItemConsumerBuilder {
         long maxEnergyProduction;
 
-        double euMultiplier = 1;
+        double rfMultiplier = 1;
 
-        FluidItemConsumerComponent.EuProductionMapBuilder<Item> itemEuProductionMapBuilder = new FluidItemConsumerComponent.EuProductionMapBuilder<>(
+        FluidItemConsumerComponent.RfProductionMapBuilder<Item> itemRfProductionMapBuilder = new FluidItemConsumerComponent.RfProductionMapBuilder<>(
                 BuiltInRegistries.ITEM);
 
-        FluidItemConsumerComponent.EuProductionMapBuilder<Fluid> fluidEuProductionMapBuilder = new FluidItemConsumerComponent.EuProductionMapBuilder<>(
+        FluidItemConsumerComponent.RfProductionMapBuilder<Fluid> fluidRfProductionMapBuilder = new FluidItemConsumerComponent.RfProductionMapBuilder<>(
                 BuiltInRegistries.FLUID);
 
         boolean doesAcceptAllFluidFuels = false;
@@ -289,8 +284,8 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             this.maxEnergyProduction = maxEnergyProduction;
         }
 
-        public FluidItemConsumerBuilder euMultiplier(double euMultiplier) {
-            this.euMultiplier = euMultiplier;
+        public FluidItemConsumerBuilder rfMultiplier(double rfMultiplier) {
+            this.rfMultiplier = rfMultiplier;
             return this;
         }
 
@@ -304,13 +299,13 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             return this;
         }
 
-        public FluidItemConsumerBuilder fluid(ResourceLocation fluidId, long euPerMb) {
-            fluidEuProductionMapBuilder.add(fluidId, euPerMb);
+        public FluidItemConsumerBuilder fluid(ResourceLocation fluidId, long rfPerMb) {
+            fluidRfProductionMapBuilder.add(fluidId, rfPerMb);
             return this;
         }
 
-        public FluidItemConsumerBuilder item(ResourceLocation itemId, long euPerItem) {
-            itemEuProductionMapBuilder.add(itemId, euPerItem);
+        public FluidItemConsumerBuilder item(ResourceLocation itemId, long rfPerItem) {
+            itemRfProductionMapBuilder.add(itemId, rfPerItem);
             return this;
         }
 
@@ -322,9 +317,9 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         public FluidItemConsumerComponent build() {
             return new FluidItemConsumerComponent(
                     maxEnergyProduction,
-                    euMultiplier,
-                    doesAcceptAllItemFuels ? FluidItemConsumerComponent.itemFuels() : itemEuProductionMapBuilder.build(),
-                    doesAcceptAllFluidFuels ? FluidItemConsumerComponent.fluidFuels() : fluidEuProductionMapBuilder.build(),
+                    rfMultiplier,
+                    doesAcceptAllItemFuels ? FluidItemConsumerComponent.itemFuels() : itemRfProductionMapBuilder.build(),
+                    doesAcceptAllFluidFuels ? FluidItemConsumerComponent.fluidFuels() : fluidRfProductionMapBuilder.build(),
                     hideEfficiencyTooltip);
         }
     }

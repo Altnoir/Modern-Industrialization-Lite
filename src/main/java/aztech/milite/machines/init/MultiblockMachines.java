@@ -331,7 +331,7 @@ public class MultiblockMachines {
                 "large_steam_turbine", bet ->
                         new GeneratorMultiblockBlockEntity(bet, "large_steam_turbine", largeSteamTurbineShape,
                                 FluidItemConsumerComponent.ofFluid(16384,
-                                        new FluidItemConsumerComponent.EuProductionMapBuilder<>(BuiltInRegistries.FLUID)
+                                        new FluidItemConsumerComponent.RfProductionMapBuilder<>(BuiltInRegistries.FLUID)
                                                 .add(MIFluids.STEAM.getId(), 1)
                                                 .add(MIFluids.HIGH_PRESSURE_STEAM.getId(), 8)
                                                 .add(MIFluids.HEAVY_WATER_STEAM.getId(), 1)

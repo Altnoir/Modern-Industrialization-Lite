@@ -8,13 +8,13 @@ import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.function.Supplier;
 
-public record EnergyBar(Params params, Supplier<Long> euSupplier,
-                        Supplier<Long> maxEuSupplier) implements GuiComponentServer<EnergyBar.Params, EnergyBar.Data> {
+public record EnergyBar(Params params, Supplier<Long> rfSupplier,
+                        Supplier<Long> maxRfSupplier) implements GuiComponentServer<EnergyBar.Params, EnergyBar.Data> {
     public static final Type<Params, Data> TYPE = new Type<>(MI.id("energy_bar"), Params.STREAM_CODEC, Data.STREAM_CODEC);
 
     @Override
     public Data extractData() {
-        return new Data(euSupplier.get(), maxEuSupplier.get());
+        return new Data(rfSupplier.get(), maxRfSupplier.get());
     }
 
     @Override
@@ -31,12 +31,12 @@ public record EnergyBar(Params params, Supplier<Long> euSupplier,
                 Params::new);
     }
 
-    public record Data(long eu, long maxEu) {
+    public record Data(long rf, long maxRf) {
         public static final StreamCodec<FriendlyByteBuf, Data> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.VAR_LONG,
-                Data::eu,
+                Data::rf,
                 ByteBufCodecs.VAR_LONG,
-                Data::maxEu,
+                Data::maxRf,
                 Data::new);
     }
 }

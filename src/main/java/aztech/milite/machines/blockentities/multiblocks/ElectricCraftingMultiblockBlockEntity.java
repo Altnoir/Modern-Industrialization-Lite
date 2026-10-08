@@ -53,14 +53,13 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
         return recipeType;
     }
 
+    /**
+     * A controller is twice as fast as a single block machine of the same level, which is what makes building the
+     * multiblock worth it now that the level no longer caps the energy per tick.
+     */
     @Override
-    public long getBaseRecipeEu() {
-        return MachineTier.MULTIBLOCK.getBaseEu();
-    }
-
-    @Override
-    public long getMaxRecipeEu() {
-        return MachineTier.MULTIBLOCK.getMaxEu();
+    public int getSpeedBonus() {
+        return 2;
     }
 
     @Override

@@ -29,15 +29,6 @@ public class FusionReactorBlockEntity extends AbstractElectricCraftingMultiblock
         return MachineLevel.TITANIUM;
     }
 
-    @Override
-    public long getBaseRecipeEu() {
-        return 128000;
-    }
-
-    @Override
-    public long getMaxRecipeEu() {
-        return Integer.MAX_VALUE;
-    }
 
     @Override
     public boolean oneFluidInputPerStack() {

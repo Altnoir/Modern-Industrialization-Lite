@@ -5,6 +5,7 @@ import aztech.milite.test.AssemblerTests;
 import aztech.milite.test.BlastFurnaceTests;
 import aztech.milite.test.CreativeOrderDump;
 import aztech.milite.test.GeneratorTests;
+import aztech.milite.test.MachineSpeedTests;
 import aztech.milite.test.MultiblockTests;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.StructureUtils;
@@ -22,6 +23,7 @@ public final class MIGameTests {
             BlastFurnaceTests.class,
             CreativeOrderDump.class,
             GeneratorTests.class,
+            MachineSpeedTests.class,
             MultiblockTests.class);
 
     @GameTestGenerator

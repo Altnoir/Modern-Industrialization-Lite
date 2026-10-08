@@ -17,8 +17,8 @@ public class MIRecipeBuilder extends MIRecipeJson<MIRecipeBuilder> implements Ma
     private final MaterialBuilder.RecipeContext context;
     private boolean canceled = false;
 
-    public MIRecipeBuilder(MaterialBuilder.RecipeContext context, MachineRecipeType type, String recipeSuffix, int eu, int duration) {
-        super(type, eu, duration);
+    public MIRecipeBuilder(MaterialBuilder.RecipeContext context, MachineRecipeType type, String recipeSuffix, int rf, int duration) {
+        super(type, rf, duration);
         this.recipeId = type.getPath() + "/" + recipeSuffix;
         this.context = context;
         context.addRecipe(this);

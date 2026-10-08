@@ -32,8 +32,8 @@ public class SteamWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity {
     private final MIInventory inventory;
 
     @Override
-    protected long consumeEu(long max) {
-        return SteamHelper.consumeSteamEu(inventory.getFluidStacks(), max, Simulation.ACT);
+    protected long consumeRf(long max) {
+        return SteamHelper.consumeSteamRf(inventory.getFluidStacks(), max, Simulation.ACT);
     }
 
     @Override

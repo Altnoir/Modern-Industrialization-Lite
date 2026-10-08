@@ -97,7 +97,7 @@ public class DieselToolItem extends Item implements DynamicToolItem {
         long amount = FluidFuelItemHelper.getAmount(stack);
         if (amount > 0) {
             FluidVariant fluid = FluidFuelItemHelper.getFluid(stack);
-            int burnTicks = FluidFuel.getEu(fluid.getFluid());
+            int burnTicks = FluidFuel.getRf(fluid.getFluid());
             if (burnTicks > 0) {
                 return 1.0f + burnTicks / 8.0f;
             }
@@ -108,7 +108,7 @@ public class DieselToolItem extends Item implements DynamicToolItem {
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
         if (FluidFuelItemHelper.getAmount(stack) > 0) {
-            return ItemHelper.getToolModifiers(damage * FluidFuel.getEu(FluidFuelItemHelper.getFluid(stack).getFluid()) / 600);
+            return ItemHelper.getToolModifiers(damage * FluidFuel.getRf(FluidFuelItemHelper.getFluid(stack).getFluid()) / 600);
         }
         return ItemAttributeModifiers.EMPTY;
     }

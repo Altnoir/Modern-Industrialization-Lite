@@ -48,8 +48,8 @@ public class FluidFuelsCategory extends ViewerCategory<Fluid> {
 
     @Override
     public void buildWidgets(Fluid recipe, WidgetList widgets) {
-        int totalEnergy = FluidFuel.getEu(recipe);
-        Component text = MIText.EuInDieselGenerator.text(totalEnergy);
+        int totalEnergy = FluidFuel.getRf(recipe);
+        Component text = MIText.RfInDieselGenerator.text(totalEnergy);
         widgets.secondaryText(text, 40, 14);
     }
 

@@ -21,8 +21,8 @@ public final class RegisterCableTiersEventJS implements KubeEvent {
     @Info("""
             Registers a new cable tier.
             """)
-    public CableTier register(String name, String shortEnglishName, String longEnglishName, long eu, ResourceLocation itemKey) {
-        CableTier tier = new CableTier(name, shortEnglishName, longEnglishName, eu, itemKey, false);
+    public CableTier register(String name, String shortEnglishName, String longEnglishName, long rf, ResourceLocation itemKey) {
+        CableTier tier = new CableTier(name, shortEnglishName, longEnglishName, rf, itemKey, false);
         CableTier.addTier(tier);
         return tier;
     }

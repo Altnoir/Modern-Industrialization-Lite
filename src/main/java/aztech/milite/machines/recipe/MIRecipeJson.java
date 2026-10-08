@@ -65,8 +65,8 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
         return (T) this;
     }
 
-    public static MIRecipeJson<MIRecipeJson<?>> create(MachineRecipeType machineRecipeType, int eu, int duration) {
-        return new MIRecipeJson<>(machineRecipeType, eu, duration);
+    public static MIRecipeJson<MIRecipeJson<?>> create(MachineRecipeType machineRecipeType, int rf, int duration) {
+        return new MIRecipeJson<>(machineRecipeType, rf, duration);
     }
 
     public T addItemInput(String maybeTag, int amount) {
@@ -209,7 +209,7 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
 
     public static MIRecipeJson<?> fromShaped(
             MachineRecipeType machine,
-            int eu, int duration, int division,
+            int rf, int duration, int division,
             ItemStack result,
             String[] pattern,
             Map<Character, Ingredient> key) {
@@ -217,7 +217,7 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
             throw new IllegalArgumentException("Output must be divisible by division");
         }
 
-        MIRecipeJson<?> assemblerJson = MIRecipeJson.create(machine, eu, duration).addItemOutput(result.getItem(), result.getCount() / division);
+        MIRecipeJson<?> assemblerJson = MIRecipeJson.create(machine, rf, duration).addItemOutput(result.getItem(), result.getCount() / division);
         for (Map.Entry<Character, Ingredient> entry : key.entrySet()) {
             int count = 0;
             for (String row : pattern) {

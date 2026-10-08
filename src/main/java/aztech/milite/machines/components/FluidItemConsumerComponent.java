@@ -24,29 +24,29 @@ import java.util.stream.Collectors;
  * A component that turns fluids and/or item into energy.
  */
 public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
-    protected long euBuffer = 0;
+    protected long rfBuffer = 0;
     /**
      * The maximum EU that can be produced by one production operation, to limit the
      * maximum conversion rate of the machine.
      */
-    public final long maxEuProduction;
+    public final long maxRfProduction;
 
-    protected final double euMultiplier;
+    protected final double rfMultiplier;
 
     public final EUProductionMap<Item> itemEUProductionMap;
     public final EUProductionMap<Fluid> fluidEUProductionMap;
 
     private final boolean hideEfficiencyTooltip;
 
-    public FluidItemConsumerComponent(long maxEuProduction,
-            double euMultiplier,
+    public FluidItemConsumerComponent(long maxRfProduction,
+            double rfMultiplier,
             EUProductionMap<Item> itemEUProductionMap,
             EUProductionMap<Fluid> fluidEUProductionMap,
             boolean hideEfficiencyTooltip) {
         this.itemEUProductionMap = itemEUProductionMap;
         this.fluidEUProductionMap = fluidEUProductionMap;
-        this.maxEuProduction = maxEuProduction;
-        this.euMultiplier = euMultiplier;
+        this.maxRfProduction = maxRfProduction;
+        this.rfMultiplier = rfMultiplier;
         this.hideEfficiencyTooltip = hideEfficiencyTooltip;
     }
 
@@ -55,22 +55,22 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
                 || fluidEUProductionMap.getNumberOfFuel() == NumberOfFuel.MANY;
     }
 
-    public static FluidItemConsumerComponent ofSingleFluid(long maxEuProduction,
+    public static FluidItemConsumerComponent ofSingleFluid(long maxRfProduction,
             FluidDefinition acceptedFluid,
             long fluidEUperMb) {
-        return ofFluid(maxEuProduction, new EuProductionMapBuilder<>(BuiltInRegistries.FLUID).add(acceptedFluid.getId(), fluidEUperMb).build());
+        return ofFluid(maxRfProduction, new RfProductionMapBuilder<>(BuiltInRegistries.FLUID).add(acceptedFluid.getId(), fluidEUperMb).build());
     }
 
-    public static FluidItemConsumerComponent ofFluidFuels(long maxEuProduction, double euMultiplier) {
-        return new FluidItemConsumerComponent(maxEuProduction,
-                euMultiplier,
+    public static FluidItemConsumerComponent ofFluidFuels(long maxRfProduction, double rfMultiplier) {
+        return new FluidItemConsumerComponent(maxRfProduction,
+                rfMultiplier,
                 EUProductionMap.empty(),
                 fluidFuels(),
                 false);
     }
 
-    public static FluidItemConsumerComponent ofFluid(long maxEuProduction, EUProductionMap<Fluid> fluidEUProductionMap) {
-        return new FluidItemConsumerComponent(maxEuProduction,
+    public static FluidItemConsumerComponent ofFluid(long maxRfProduction, EUProductionMap<Fluid> fluidEUProductionMap) {
+        return new FluidItemConsumerComponent(maxRfProduction,
                 1,
                 EUProductionMap.empty(),
                 fluidEUProductionMap,
@@ -79,45 +79,45 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
 
     @Override
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("euBuffer", euBuffer);
+        tag.putLong("euBuffer", rfBuffer);
     }
 
     @Override
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        euBuffer = tag.getLong("euBuffer");
+        rfBuffer = tag.getLong("euBuffer");
     }
 
-    public long getEuProduction(List<ConfigurableFluidStack> fluidInputs,
+    public long getRfProduction(List<ConfigurableFluidStack> fluidInputs,
             List<ConfigurableItemStack> itemInputs,
             long maxEnergyInsertable) {
-        long maxEuProduced = Math.min(maxEnergyInsertable, maxEuProduction);
+        long maxRfProduced = Math.min(maxEnergyInsertable, maxRfProduction);
 
-        if (maxEuProduced == 0) {
+        if (maxRfProduced == 0) {
             return 0;
         }
 
-        if (euBuffer >= maxEuProduced) {
-            euBuffer -= maxEuProduced;
-            return maxEuProduced;
+        if (rfBuffer >= maxRfProduced) {
+            rfBuffer -= maxRfProduced;
+            return maxRfProduced;
         }
 
-        long euProduced = 0;
+        long rfProduced = 0;
 
         // Consume from the buffer first
-        euProduced += euBuffer;
-        euBuffer = 0;
+        rfProduced += rfBuffer;
+        rfBuffer = 0;
 
         for (ConfigurableFluidStack stack : fluidInputs) {
             Fluid fluid = stack.getResource().getFluid();
             if (fluidEUProductionMap.accept(fluid) && stack.getAmount() > 0) {
-                long fuelEu = (long) (fluidEUProductionMap.getEuProduction(fluid) * euMultiplier);
-                long usedDroplets = Math.min((maxEuProduced - euProduced + fuelEu - 1) / fuelEu, stack.getAmount());
-                euProduced += usedDroplets * fuelEu;
+                long fuelRf = (long) (fluidEUProductionMap.getRfProduction(fluid) * rfMultiplier);
+                long usedDroplets = Math.min((maxRfProduced - rfProduced + fuelRf - 1) / fuelRf, stack.getAmount());
+                rfProduced += usedDroplets * fuelRf;
                 stack.decrement(usedDroplets);
 
-                if (euProduced >= maxEuProduced) {
-                    euBuffer += euProduced - maxEuProduced;
-                    return maxEuProduced;
+                if (rfProduced >= maxRfProduced) {
+                    rfBuffer += rfProduced - maxRfProduced;
+                    return maxRfProduced;
                 }
             }
         }
@@ -126,9 +126,9 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
             Item fuel = stack.getResource().getItem();
             if (itemEUProductionMap.accept(fuel) && stack.getAmount() > 0) {
                 if (!itemEUProductionMap.isStandardFuels() || ItemStackHelper.consumeFuel(stack, true)) {
-                    long fuelEU = (long) (itemEUProductionMap.getEuProduction(fuel) * euMultiplier);
-                    long usedItem = Math.min((maxEuProduced - euProduced + fuelEU - 1) / fuelEU, stack.getAmount());
-                    euProduced += fuelEU * usedItem;
+                    long fuelEU = (long) (itemEUProductionMap.getRfProduction(fuel) * rfMultiplier);
+                    long usedItem = Math.min((maxRfProduced - rfProduced + fuelEU - 1) / fuelEU, stack.getAmount());
+                    rfProduced += fuelEU * usedItem;
 
                     if (itemEUProductionMap.isStandardFuels()) {
                         ItemStackHelper.consumeFuel(stack, false);
@@ -136,22 +136,22 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
                         stack.decrement(usedItem);
                     }
 
-                    if (euProduced >= maxEuProduced) {
-                        euBuffer += euProduced - maxEuProduced;
-                        return maxEuProduced;
+                    if (rfProduced >= maxRfProduced) {
+                        rfBuffer += rfProduced - maxRfProduced;
+                        return maxRfProduced;
                     }
                 }
             }
         }
 
-        return euProduced;
+        return rfProduced;
     }
 
     public List<Component> getTooltips() {
         List<Component> returnList = new ArrayList<>();
 
-        returnList.add(new MITooltips.Line(MIText.MaxEuProduction).arg(
-                this.maxEuProduction,
+        returnList.add(new MITooltips.Line(MIText.MaxRfProduction).arg(
+                this.maxRfProduction,
                 MITooltips.EU_PER_TICK_PARSER).build());
 
         if (this.itemEUProductionMap.getNumberOfFuel() != NumberOfFuel.NONE) {
@@ -162,21 +162,21 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
                 if (informationEntries.size() == 1) {
                     var entry = informationEntries.iterator().next();
                     returnList.add(new MITooltips.Line(MIText.AcceptSingleItem)
-                            .arg(entry.variant).arg(entry.eu, MITooltips.EU_PARSER).build());
+                            .arg(entry.variant).arg(entry.rf, MITooltips.EU_PARSER).build());
                 } else {
                     returnList.add(new MITooltips.Line(MIText.ConsumesTheFollowing).build());
                     for (var entry : informationEntries) {
                         returnList.add(
                                 new MITooltips.Line(MIText.AcceptFollowingItemEntry)
-                                        .arg(entry.variant).arg(entry.eu, MITooltips.EU_PARSER).build());
+                                        .arg(entry.variant).arg(entry.rf, MITooltips.EU_PARSER).build());
                     }
                 }
             }
             if (!hideEfficiencyTooltip) {
-                if (euMultiplier == 1) {
+                if (rfMultiplier == 1) {
                     returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItemNormal).build());
                 } else {
-                    returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItem).arg(euMultiplier, MITooltips.MULTIPLIER_PARSER).arg(euMultiplier, MITooltips.MULTIPLIER_PARSER).build());
+                    returnList.add(new MITooltips.Line(MIText.FuelEfficiencyItem).arg(rfMultiplier, MITooltips.MULTIPLIER_PARSER).arg(rfMultiplier, MITooltips.MULTIPLIER_PARSER).build());
                 }
             }
         }
@@ -190,21 +190,21 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
                 if (informationEntries.size() == 1) {
                     var entry = informationEntries.iterator().next();
                     returnList.add(new MITooltips.Line(MIText.AcceptSingleFluid)
-                            .arg(entry.variant).arg(entry.eu, MITooltips.EU_PARSER).build());
+                            .arg(entry.variant).arg(entry.rf, MITooltips.EU_PARSER).build());
                 } else if (informationEntries.size() > 1) {
                     returnList.add(new MITooltips.Line(MIText.ConsumesTheFollowing).build());
                     for (var entry : informationEntries) {
                         returnList.add(
                                 new MITooltips.Line(MIText.AcceptFollowingFluidEntry)
-                                        .arg(entry.variant).arg(entry.eu, MITooltips.EU_PARSER).build());
+                                        .arg(entry.variant).arg(entry.rf, MITooltips.EU_PARSER).build());
                     }
                 }
             }
             if (!hideEfficiencyTooltip) {
-                if (euMultiplier == 1) {
+                if (rfMultiplier == 1) {
                     returnList.add(new MITooltips.Line(MIText.FuelEfficiencyFluidNormal).build());
                 } else {
-                    returnList.add(new MITooltips.Line(MIText.FuelEfficiencyFluid).arg(euMultiplier, MITooltips.MULTIPLIER_PARSER).arg(euMultiplier, MITooltips.MULTIPLIER_PARSER).build());
+                    returnList.add(new MITooltips.Line(MIText.FuelEfficiencyFluid).arg(rfMultiplier, MITooltips.MULTIPLIER_PARSER).arg(rfMultiplier, MITooltips.MULTIPLIER_PARSER).build());
                 }
             }
         }
@@ -213,16 +213,16 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
     }
 
     public interface EUProductionMap<T> {
-        record InformationEntry<T>(long eu, T variant) {}
+        record InformationEntry<T>(long rf, T variant) {}
 
-        long getEuProduction(T variant);
+        long getRfProduction(T variant);
 
         default boolean isStandardFuels() {
             return false;
         }
 
         default boolean accept(T variant) {
-            return getEuProduction(variant) != 0;
+            return getRfProduction(variant) != 0;
         }
 
         default NumberOfFuel getNumberOfFuel() {
@@ -243,7 +243,7 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
         static <T> EUProductionMap<T> empty() {
             return new EUProductionMap<>() {
                 @Override
-                public long getEuProduction(T variant) {
+                public long getRfProduction(T variant) {
                     return 0;
                 }
 
@@ -258,30 +258,30 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
 
         default List<InformationEntry<T>> getAllAcceptedWithEU() {
             return getAllAccepted().stream()
-                    .map(variant -> new InformationEntry<>(getEuProduction(variant), variant)).sorted(Comparator.comparingLong(InformationEntry::eu))
+                    .map(variant -> new InformationEntry<>(getRfProduction(variant), variant)).sorted(Comparator.comparingLong(InformationEntry::rf))
                     .collect(Collectors.toList());
         }
     }
 
-    public static class EuProductionMapBuilder<T> {
+    public static class RfProductionMapBuilder<T> {
         private final Map<ResourceLocation, Long> map = new HashMap<>(); // Must Stores as string, because KubeJS could add not loader yet resource
                                                                         // location
         private final DefaultedRegistry<T> registryAccess;
 
-        public EuProductionMapBuilder(DefaultedRegistry<T> registryAccess) {
+        public RfProductionMapBuilder(DefaultedRegistry<T> registryAccess) {
             this.registryAccess = registryAccess;
         }
 
-        public EuProductionMapBuilder<T> add(ResourceLocation resourceLocation,
-                long eu) {
-            map.put(resourceLocation, eu);
+        public RfProductionMapBuilder<T> add(ResourceLocation resourceLocation,
+                long rf) {
+            map.put(resourceLocation, rf);
             return this;
         }
 
         public EUProductionMap<T> build() {
             return new EUProductionMap<>() {
                 @Override
-                public long getEuProduction(T variant) {
+                public long getRfProduction(T variant) {
                     return map.getOrDefault(registryAccess.getKey(variant), 0L);
                 }
 
@@ -296,7 +296,7 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
     public static EUProductionMap<Item> itemFuels() {
         return new EUProductionMap<>() {
             @Override
-            public long getEuProduction(Item variant) {
+            public long getRfProduction(Item variant) {
                 // TODO NEO NBT-aware fuels
                 int burnTime = variant.getDefaultInstance().getBurnTime(null);
                 return burnTime <= 0 ? 0 : burnTime * FuelBurningComponent.EU_PER_BURN_TICK;
@@ -317,8 +317,8 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
     public static EUProductionMap<Fluid> fluidFuels() {
         return new EUProductionMap<>() {
             @Override
-            public long getEuProduction(Fluid variant) {
-                return FluidFuel.getEu(variant);
+            public long getRfProduction(Fluid variant) {
+                return FluidFuel.getRf(variant);
             }
 
             @Override

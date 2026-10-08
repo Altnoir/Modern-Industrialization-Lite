@@ -80,11 +80,11 @@ public abstract class AbstractElectricCraftingMultiblockBlockEntity extends Abst
     }
 
     @Override
-    public final long consumeEu(long max, Simulation simulation) {
+    public final long consumeRf(long max, Simulation simulation) {
         long total = 0;
 
         for (EnergyComponent energyComponent : energyInputs) {
-            total += energyComponent.consumeEu(max - total, simulation);
+            total += energyComponent.consumeRf(max - total, simulation);
         }
 
         return total;

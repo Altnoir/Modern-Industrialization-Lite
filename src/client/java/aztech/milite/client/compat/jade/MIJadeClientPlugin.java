@@ -14,8 +14,6 @@ import snownee.jade.api.WailaPlugin;
 public class MIJadeClientPlugin implements IWailaPlugin {
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(new OverclockComponentProvider(), MachineBlock.class);
-
         registration.registerEnergyStorageClient(new MachineComponentProvider.Energy());
         registration.registerFluidStorageClient(new MachineComponentProvider.Fluids());
         registration.registerItemStorageClient(new MachineComponentProvider.Items());

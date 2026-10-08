@@ -102,7 +102,7 @@ public final class CableTier implements Comparable<CableTier> {
         return rf * 8;
     }
 
-    public long getEu() {
+    public long getRf() {
         return rf;
     }
 

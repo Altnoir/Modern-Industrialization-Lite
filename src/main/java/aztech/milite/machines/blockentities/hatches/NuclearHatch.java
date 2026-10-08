@@ -161,8 +161,8 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     }
 
     @Override
-    public double getMeanEuGeneration() {
-        return neutronHistory.getAverageEuGeneration();
+    public double getMeanRfGeneration() {
+        return neutronHistory.getAverageRfGeneration();
     }
 
     @Override
@@ -194,10 +194,10 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     }
 
     @Override
-    public void putHeat(double eu) {
-        Preconditions.checkArgument(eu >= 0);
-        setTemperature(getTemperature() + eu / NuclearConstant.EU_PER_DEGREE);
-        neutronHistory.addValue(euGeneration, (int) eu);
+    public void putHeat(double rf) {
+        Preconditions.checkArgument(rf >= 0);
+        setTemperature(getTemperature() + rf / NuclearConstant.EU_PER_DEGREE);
+        neutronHistory.addValue(rfGeneration, (int) rf);
     }
 
     @Override
@@ -312,9 +312,9 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
         fluidNeutronProductTick(randIntFromDouble(neutronHistory.getAverageReceived(NeutronType.BOTH), this.getLevel().getRandom()), false);
 
         if (isFluid) {
-            double euProduced = ((SteamHeaterComponent) nuclearReactorComponent).tick(Collections.singletonList(inventory.getFluidStacks().get(0)),
+            double rfProduced = ((SteamHeaterComponent) nuclearReactorComponent).tick(Collections.singletonList(inventory.getFluidStacks().get(0)),
                     inventory.getFluidStacks().stream().filter(AbstractConfigurableStack::canPipesExtract).collect(Collectors.toList()));
-            efficiencyHistory.registerEuProduction(euProduced);
+            efficiencyHistory.registerRfProduction(rfProduced);
         }
 
         checkComponentMaxTemperature();
@@ -357,7 +357,7 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     @Override
     public List<Component> getTooltips() {
         if (isFluid) {
-            return List.of(new MITooltips.Line(MIText.MaxEuProductionSteam).arg(
+            return List.of(new MITooltips.Line(MIText.MaxRfProductionSteam).arg(
                     NuclearConstant.MAX_HATCH_EU_PRODUCTION,
                     MITooltips.EU_PER_TICK_PARSER).arg(MIFluids.STEAM).build(),
                     new MITooltips.Line(MIText.AcceptLowAndHighPressure).arg(Fluids.WATER).arg(MIFluids.HEAVY_WATER)

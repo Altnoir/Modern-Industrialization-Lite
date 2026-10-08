@@ -17,8 +17,8 @@ public class StorageMachineBlockEntity extends AbstractStorageMachineBlockEntity
 
     @Override
     protected int getComparatorOutput() {
-        double fillPercentage = (double) energy.getEu() / energy.getCapacity();
-        return Mth.floor(fillPercentage * 14) + (energy.getEu() > 0 ? 1 : 0);
+        double fillPercentage = (double) energy.getRf() / energy.getCapacity();
+        return Mth.floor(fillPercentage * 14) + (energy.getRf() > 0 ? 1 : 0);
     }
 
     @Override

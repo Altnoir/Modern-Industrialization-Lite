@@ -14,13 +14,13 @@ public class GeneratorMultiblockGui implements GuiComponentServer<Unit, Generato
     public static final Type<Unit, Data> TYPE = new Type<>(MI.id("generator_multiblock_gui"), StreamCodec.unit(Unit.INSTANCE), Data.STREAM_CODEC);
 
     private final Supplier<Boolean> isShapeValid;
-    private final LongSupplier currentEuGeneration;
-    private final long maxEuGeneration;
+    private final LongSupplier currentRfGeneration;
+    private final long maxRfGeneration;
 
-    public GeneratorMultiblockGui(Supplier<Boolean> isShapeValid, LongSupplier currentEuGeneration, long maxEuGeneration) {
+    public GeneratorMultiblockGui(Supplier<Boolean> isShapeValid, LongSupplier currentRfGeneration, long maxRfGeneration) {
         this.isShapeValid = isShapeValid;
-        this.currentEuGeneration = currentEuGeneration;
-        this.maxEuGeneration = maxEuGeneration;
+        this.currentRfGeneration = currentRfGeneration;
+        this.maxRfGeneration = maxRfGeneration;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class GeneratorMultiblockGui implements GuiComponentServer<Unit, Generato
 
     @Override
     public Data extractData() {
-        return new Data(isShapeValid.get(), currentEuGeneration.getAsLong(), maxEuGeneration);
+        return new Data(isShapeValid.get(), currentRfGeneration.getAsLong(), maxRfGeneration);
     }
 
     @Override
@@ -38,14 +38,14 @@ public class GeneratorMultiblockGui implements GuiComponentServer<Unit, Generato
         return TYPE;
     }
 
-    public record Data(boolean isShapeValid, long currentEuGeneration, long maxEuGeneration) {
+    public record Data(boolean isShapeValid, long currentRfGeneration, long maxRfGeneration) {
         public static final StreamCodec<RegistryFriendlyByteBuf, Data> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.BOOL,
                 Data::isShapeValid,
                 ByteBufCodecs.VAR_LONG,
-                Data::currentEuGeneration,
+                Data::currentRfGeneration,
                 ByteBufCodecs.VAR_LONG,
-                Data::maxEuGeneration,
+                Data::maxRfGeneration,
                 Data::new);
     }
 }

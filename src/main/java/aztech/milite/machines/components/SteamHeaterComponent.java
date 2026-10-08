@@ -22,11 +22,11 @@ public class SteamHeaterComponent extends TemperatureComponent {
     /**
      * mb/t of steam produced at max heat, assuming enough water
      */
-    public final long maxEuProduction;
+    public final long maxRfProduction;
     /**
-     * How many eu in one degree of heat.
+     * How many rf in one degree of heat.
      */
-    public final long euPerDegree;
+    public final long rfPerDegree;
 
     public final boolean acceptHighPressure;
     public final boolean acceptLowPressure;
@@ -39,65 +39,65 @@ public class SteamHeaterComponent extends TemperatureComponent {
      */
     private final Reference2LongMap<Fluid> steamBuffer = new Reference2LongOpenHashMap<>();
 
-    public SteamHeaterComponent(double temperatureMax, long maxEuProduction, long euPerDegree) {
-        this(maxEuProduction, maxEuProduction, euPerDegree, true, false, false);
+    public SteamHeaterComponent(double temperatureMax, long maxRfProduction, long rfPerDegree) {
+        this(maxRfProduction, maxRfProduction, rfPerDegree, true, false, false);
     }
 
-    public SteamHeaterComponent(double temperatureMax, long maxEuProduction, long euPerDegree, boolean acceptLowPressure,
+    public SteamHeaterComponent(double temperatureMax, long maxRfProduction, long rfPerDegree, boolean acceptLowPressure,
             boolean acceptHighPressure, boolean requiresContinuousOperation) {
         super(temperatureMax);
-        this.maxEuProduction = maxEuProduction;
-        this.euPerDegree = euPerDegree;
+        this.maxRfProduction = maxRfProduction;
+        this.rfPerDegree = rfPerDegree;
         this.acceptLowPressure = acceptLowPressure;
         this.acceptHighPressure = acceptHighPressure;
         this.requiresContinuousOperation = requiresContinuousOperation;
     }
 
-    // return eu produced
+    // return rf produced
     public double tick(List<ConfigurableFluidStack> fluidInputs, List<ConfigurableFluidStack> fluidOutputs) {
-        double euProducedLowPressure = 0;
+        double rfProducedLowPressure = 0;
         if (acceptLowPressure) {
-            euProducedLowPressure = tryMakeSteam(fluidInputs, fluidOutputs, Fluids.WATER, MIFluids.STEAM.asFluid(), 1);
-            if (euProducedLowPressure == 0) {
-                euProducedLowPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HEAVY_WATER.asFluid(), MIFluids.HEAVY_WATER_STEAM.asFluid(),
+            rfProducedLowPressure = tryMakeSteam(fluidInputs, fluidOutputs, Fluids.WATER, MIFluids.STEAM.asFluid(), 1);
+            if (rfProducedLowPressure == 0) {
+                rfProducedLowPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HEAVY_WATER.asFluid(), MIFluids.HEAVY_WATER_STEAM.asFluid(),
                         1);
             }
         }
 
-        double euProducedHighPressure = 0;
+        double rfProducedHighPressure = 0;
         if (acceptHighPressure) {
-            euProducedHighPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HIGH_PRESSURE_WATER.asFluid(),
+            rfProducedHighPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HIGH_PRESSURE_WATER.asFluid(),
                     MIFluids.HIGH_PRESSURE_STEAM.asFluid(), 8);
-            if (euProducedHighPressure == 0) {
-                euProducedHighPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HIGH_PRESSURE_HEAVY_WATER.asFluid(),
+            if (rfProducedHighPressure == 0) {
+                rfProducedHighPressure = tryMakeSteam(fluidInputs, fluidOutputs, MIFluids.HIGH_PRESSURE_HEAVY_WATER.asFluid(),
                         MIFluids.HIGH_PRESSURE_HEAVY_WATER_STEAM.asFluid(), 8);
             }
         }
 
-        double totalEuProduced = euProducedLowPressure + euProducedHighPressure;
+        double totalRfProduced = rfProducedLowPressure + rfProducedHighPressure;
 
         if (this.requiresContinuousOperation) {
-            this.decreaseTemperature(INPUT_ENERGY_RATIO_FOR_STARTUP * (this.maxEuProduction - totalEuProduced) / this.euPerDegree);
+            this.decreaseTemperature(INPUT_ENERGY_RATIO_FOR_STARTUP * (this.maxRfProduction - totalRfProduced) / this.rfPerDegree);
         }
 
-        return totalEuProduced;
+        return totalRfProduced;
     }
 
     public void tickDisabled() {
-        this.decreaseTemperature(INPUT_ENERGY_RATIO_FOR_STARTUP * this.maxEuProduction / this.euPerDegree);
+        this.decreaseTemperature(INPUT_ENERGY_RATIO_FOR_STARTUP * this.maxRfProduction / this.rfPerDegree);
     }
 
-    private double tryMakeSteam(List<ConfigurableFluidStack> input, List<ConfigurableFluidStack> output, Fluid water, Fluid steam, int euPerSteamMb) {
-        return tryMakeSteam(new MIFluidStorage(input), new MIFluidStorage(output), water, steam, euPerSteamMb);
+    private double tryMakeSteam(List<ConfigurableFluidStack> input, List<ConfigurableFluidStack> output, Fluid water, Fluid steam, int rfPerSteamMb) {
+        return tryMakeSteam(new MIFluidStorage(input), new MIFluidStorage(output), water, steam, rfPerSteamMb);
     }
 
     // Return true if any steam was made.
-    private double tryMakeSteam(MIFluidStorage input, MIFluidStorage output, Fluid water, Fluid steam, int euPerSteamMb) {
+    private double tryMakeSteam(MIFluidStorage input, MIFluidStorage output, Fluid water, Fluid steam, int rfPerSteamMb) {
         FluidVariant waterKey = FluidVariant.of(water);
         FluidVariant steamKey = FluidVariant.of(steam);
 
         if (getTemperature() > 100d) {
-            long steamProduction = (long) ((getTemperature() - 100d) / (temperatureMax - 100d) * maxEuProduction / euPerSteamMb);
+            long steamProduction = (long) ((getTemperature() - 100d) / (temperatureMax - 100d) * maxRfProduction / rfPerSteamMb);
 
             try (Transaction tx = Transaction.openRoot()) {
                 long inserted;
@@ -116,10 +116,10 @@ public class SteamHeaterComponent extends TemperatureComponent {
                     long producedSteam = output.insertAllSlot(steamKey, Math.min(steamProduction, steamBuffer.getLong(steam)), tx);
                     steamBuffer.mergeLong(steam, -producedSteam, Long::sum);
 
-                    double euProduced = producedSteam * euPerSteamMb;
-                    decreaseTemperature(euProduced / euPerDegree);
+                    double rfProduced = producedSteam * rfPerSteamMb;
+                    decreaseTemperature(rfProduced / rfPerDegree);
                     tx.commit();
-                    return euProduced;
+                    return rfProduced;
                 }
             }
         }

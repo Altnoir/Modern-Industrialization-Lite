@@ -61,7 +61,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         this.redstoneControl = new RedstoneControlComponent();
 
         EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
-        registerGuiComponent(new EnergyBar(energyBarParams, energy::getEu, energy::getCapacity));
+        registerGuiComponent(new EnergyBar(energyBarParams, energy::getRf, energy::getCapacity));
 
         List<ConfigurableItemStack> itemStacks;
         List<ConfigurableFluidStack> fluidStacks;
@@ -159,12 +159,12 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         if (!redstoneControl.doAllowNormalOperation(this)) {
             isActiveComponent.updateActive(false, this);
         } else {
-            long euProduced = fluidItemConsumer.getEuProduction(inventory.getFluidStacks(),
+            long rfProduced = fluidItemConsumer.getRfProduction(inventory.getFluidStacks(),
                     inventory.getItemStacks(),
                     energy.getRemainingCapacity());
 
-            energy.insertEu(euProduced, Simulation.ACT);
-            isActiveComponent.updateActive(0 != euProduced, this);
+            energy.insertRf(rfProduced, Simulation.ACT);
+            isActiveComponent.updateActive(0 != rfProduced, this);
         }
         EnergyHelper.autoOutput(this, orientation, extractable);
         setChanged();

@@ -37,9 +37,9 @@ public class GeneratorMultiblockGuiClient extends GuiComponentClient<Unit, Gener
             if (data.isShapeValid()) {
                 deltaY += 11;
 
-                deltaY += drawWordWrap(guiGraphics, font, MIText.GeneratorCurrentEu.text(TextHelper.getEuTextTick(data.currentEuGeneration())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
+                deltaY += drawWordWrap(guiGraphics, font, MIText.GeneratorCurrentRf.text(TextHelper.getRfTextTick(data.currentRfGeneration())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
 
-                drawWordWrap(guiGraphics, font, MIText.GeneratorMaxEu.text(TextHelper.getEuTextTick(data.maxEuGeneration())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
+                drawWordWrap(guiGraphics, font, MIText.GeneratorMaxRf.text(TextHelper.getRfTextTick(data.maxRfGeneration())), x + 10, y + deltaY, 11, 0xFFFFFF, false);
             }
         }
     }

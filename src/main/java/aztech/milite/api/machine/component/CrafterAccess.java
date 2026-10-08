@@ -9,11 +9,13 @@ public interface CrafterAccess {
 
     float getProgress();
 
-    int getEfficiencyTicks();
+    /**
+     * The RF per tick the active recipe asks for at the speed of this machine.
+     */
+    long getBaseRecipeRf();
 
-    int getMaxEfficiencyTicks();
-
-    long getBaseRecipeEu();
-
-    long getCurrentRecipeEu();
+    /**
+     * The RF per tick the machine currently consumes, which is the requested amount unless it runs dry.
+     */
+    long getCurrentRecipeRf();
 }

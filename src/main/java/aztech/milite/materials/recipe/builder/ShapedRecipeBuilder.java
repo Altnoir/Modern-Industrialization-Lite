@@ -88,17 +88,17 @@ public class ShapedRecipeBuilder implements MaterialRecipeBuilder {
         return addInput(key, BuiltInRegistries.ITEM.getKey(item.asItem()).toString());
     }
 
-    public ShapedRecipeBuilder exportToAssembler(int eu, int duration) {
-        return exportToMachine(MIMachineRecipeTypes.ASSEMBLER, eu, duration, 1);
+    public ShapedRecipeBuilder exportToAssembler(int rf, int duration) {
+        return exportToMachine(MIMachineRecipeTypes.ASSEMBLER, rf, duration, 1);
     }
 
     public ShapedRecipeBuilder exportToAssembler() {
         return exportToAssembler(8, 200);
     }
 
-    public ShapedRecipeBuilder exportToMachine(MachineRecipeType machine, int eu, int duration, int division) {
+    public ShapedRecipeBuilder exportToMachine(MachineRecipeType machine, int rf, int duration, int division) {
         if (!canceled) {
-            new MIRecipeBuilder(context, id, MIRecipeJson.fromShaped(machine, eu, duration, division, result, pattern, inputs));
+            new MIRecipeBuilder(context, id, MIRecipeJson.fromShaped(machine, rf, duration, division, result, pattern, inputs));
         }
 
         return this;

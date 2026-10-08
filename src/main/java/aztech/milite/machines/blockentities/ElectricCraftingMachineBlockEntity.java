@@ -8,7 +8,6 @@ import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.guicomponents.RecipeEfficiencyBar;
 import aztech.milite.machines.guicomponents.SlotPanel;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineRegistrationHelper;
@@ -28,15 +27,14 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity implements EnergyComponentHolder, CableTierHolder {
     public ElectricCraftingMachineBlockEntity(BEP bep, MachineRecipeType recipeType, MachineInventoryComponent inventory,
             MachineGuiParameters guiParams, EnergyBar.Params energyBarParams, ProgressBar.Params progressBarParams,
-            RecipeEfficiencyBar.Params efficiencyBarParams, MachineTier tier, MachineLevel level, long euCapacity) {
+            MachineTier tier, MachineLevel level) {
         super(bep, recipeType, inventory, guiParams, progressBarParams, tier, level);
         this.redstoneControl = new RedstoneControlComponent();
-        this.casing = new CasingComponent(MachineRegistrationHelper.casingTierOf(level));
+        this.casing = new CasingComponent(MachineRegistrationHelper.casingTierOf(level), level.speedMultiplier());
         this.overdrive = new OverdriveComponent();
-        this.energy = new EnergyComponent(this, casing::getEuCapacity);
+        this.energy = new EnergyComponent(this, casing::getRfCapacity);
         this.insertable = energy.buildInsertable();
-        registerGuiComponent(new EnergyBar(energyBarParams, energy::getEu, energy::getCapacity));
-        registerGuiComponent(new RecipeEfficiencyBar(efficiencyBarParams, crafter));
+        registerGuiComponent(new EnergyBar(energyBarParams, energy::getRf, energy::getCapacity));
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl)
                 .withOverdrive(overdrive));
@@ -55,8 +53,8 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
     }
 
     @Override
-    public long consumeEu(long max, Simulation simulation) {
-        return energy.consumeEu(max, simulation);
+    public long consumeRf(long max, Simulation simulation) {
+        return energy.consumeRf(max, simulation);
     }
 
     @Override
@@ -83,11 +81,6 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
             result = overdrive.onUse(this, player, hand);
         }
         return result;
-    }
-
-    @Override
-    public long getMaxRecipeEu() {
-        return tier.getMaxEu();
     }
 
     @Override
