@@ -1,49 +1,25 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.guidebook;
 
-import aztech.milite.MIText;
 import aztech.milite.machines.MachineBlock;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.milite.machines.multiblocks.ShapeMatcher;
+import aztech.milite.MIText;
 import guideme.color.ConstantColor;
 import guideme.color.SymbolicColor;
 import guideme.compiler.PageCompiler;
 import guideme.compiler.tags.MdxAttrs;
-import guideme.document.LytErrorSink;
 import guideme.document.interaction.TextTooltip;
+import guideme.document.LytErrorSink;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
-import guideme.scene.GuidebookScene;
 import guideme.scene.annotation.InWorldBoxAnnotation;
 import guideme.scene.element.SceneElementTagCompiler;
+import guideme.scene.GuidebookScene;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.phys.Vec3;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.phys.Vec3;
 
 public class MultiblockShapeCompiler implements SceneElementTagCompiler {
     @Override

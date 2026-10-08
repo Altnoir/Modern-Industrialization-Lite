@@ -1,33 +1,5 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.machines.blockentities.multiblocks;
 
-import aztech.milite.MI;
-import aztech.milite.MIBlock;
-import aztech.milite.MIText;
 import aztech.milite.api.machine.holder.EnergyListComponentHolder;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.config.MIStartupConfig;
@@ -36,17 +8,21 @@ import aztech.milite.machines.components.OrientationComponent;
 import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.machines.guicomponents.ShapeSelection;
 import aztech.milite.machines.guicomponents.SlotPanel;
-import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineTier;
+import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.multiblocks.HatchFlags;
 import aztech.milite.machines.multiblocks.HatchTypes;
 import aztech.milite.machines.multiblocks.ShapeTemplate;
 import aztech.milite.machines.multiblocks.SimpleMember;
 import aztech.milite.machines.recipe.MachineRecipeType;
-import java.util.stream.IntStream;
+import aztech.milite.MI;
+import aztech.milite.MIBlock;
+import aztech.milite.MIText;
 import net.minecraft.network.chat.Component;
+
+import java.util.stream.IntStream;
 
 public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
     private static final int MAX_HEIGHT = MIStartupConfig.INSTANCE.maxDistillationTowerHeight.getAsInt();

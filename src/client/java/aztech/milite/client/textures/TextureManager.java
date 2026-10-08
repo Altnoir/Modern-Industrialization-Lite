@@ -1,48 +1,24 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.client.textures;
 
 import aztech.milite.textures.MCMetaInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.mojang.blaze3d.platform.NativeImage;
-import java.io.IOException;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.function.BiConsumer;
-import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceProvider;
+import net.minecraft.Util;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.function.BiConsumer;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.Set;
 
 public class TextureManager {
     private final ResourceProvider rm;
@@ -61,6 +37,15 @@ public class TextureManager {
 
     public boolean hasAsset(String asset) {
         return rm.getResource(ResourceLocation.parse(asset)).isPresent();
+    }
+
+    public boolean hasTextureOverride(String textureId) {
+        if (!textureId.contains(":textures/")) {
+            throw new IllegalArgumentException("Invalid texture location: " + textureId);
+        }
+
+        String overrideId = textureId.replace(":textures/", ":datagen_texture_overrides/");
+        return rm.getResource(ResourceLocation.parse(overrideId)).isPresent();
     }
 
     public NativeImage getAssetAsTexture(String textureId) throws IOException {
@@ -89,8 +74,9 @@ public class TextureManager {
             throw new IllegalArgumentException("Invalid texture location: " + textureId);
         }
 
-        String overrideId = textureId.replace(":textures/", ":datagen_texture_overrides/");
-        Optional<Resource> overrideResource = rm.getResource(ResourceLocation.parse(overrideId));
+        Optional<Resource> overrideResource = hasTextureOverride(textureId)
+                ? rm.getResource(ResourceLocation.parse(textureId.replace(":textures/", ":datagen_texture_overrides/")))
+                : Optional.empty();
 
         if (overrideResource.isPresent()) {
             // Copy the override over
@@ -99,17 +85,8 @@ public class TextureManager {
                 textureWriter.accept(overrideImage, textureId);
             }
         } else {
-            // A completed texture supplied by a resource pack takes precedence over generation.
-            Optional<Resource> suppliedTexture = rm.getResource(ResourceLocation.parse(textureId));
-            if (suppliedTexture.isPresent()) {
-                try (var stream = suppliedTexture.get().open();
-                        var suppliedImage = NativeImage.read(stream)) {
-                    textureWriter.accept(suppliedImage, textureId);
-                }
-            } else {
-                // Write generated texture
-                textureWriter.accept(image, textureId);
-            }
+            // Write generated texture
+            textureWriter.accept(image, textureId);
         }
 
         generatedTextures.add(textureId.replace(":textures/", ":"));

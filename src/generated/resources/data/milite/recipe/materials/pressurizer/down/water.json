@@ -1,0 +1,17 @@
+{
+  "type": "milite:pressurizer",
+  "duration": 100,
+  "energy": 2,
+  "fluid_inputs": [
+    {
+      "amount": 125,
+      "fluid": "milite:high_pressure_water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 1000,
+      "fluid": "minecraft:water"
+    }
+  ]
+}

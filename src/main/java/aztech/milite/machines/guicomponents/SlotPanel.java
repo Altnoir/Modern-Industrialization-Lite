@@ -1,51 +1,27 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.machines.guicomponents;
 
-import aztech.milite.MI;
-import aztech.milite.MIItem;
-import aztech.milite.MIText;
 import aztech.milite.inventory.HackySlot;
 import aztech.milite.inventory.SlotGroup;
-import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.machines.components.RedstoneControlComponent;
 import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.machines.gui.MachineGuiParameters;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import aztech.milite.machines.MachineBlockEntity;
+import aztech.milite.MI;
+import aztech.milite.MIItem;
+import aztech.milite.MIText;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.Unit;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
+
+import java.util.ArrayList;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.List;
 
 public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, Unit> {
     public static final Type<List<SlotPanel.SlotType>, Unit> TYPE = new Type<>(MI.id("slot_panel"),

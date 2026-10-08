@@ -1,3 +1,6 @@
 {
-  "parent": "milite:block/frostproof_machine_casing"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "milite:block/frostproof_machine_casing"
+  }
 }

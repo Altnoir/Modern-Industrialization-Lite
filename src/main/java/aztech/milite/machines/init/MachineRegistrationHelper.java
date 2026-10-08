@@ -1,32 +1,5 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.machines.init;
 
-import aztech.milite.MIBlock;
-import aztech.milite.MIRegistries;
 import aztech.milite.api.energy.CableTier;
 import aztech.milite.datagen.model.MachineModelsToGenerate;
 import aztech.milite.definition.BlockDefinition;
@@ -37,20 +10,24 @@ import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.models.MachineCasing;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.recipe.MachineRecipeType;
+import aztech.milite.MIBlock;
+import aztech.milite.MIRegistries;
 import aztech.milite.util.MobSpawning;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MachineRegistrationHelper {
     /**
@@ -62,8 +39,8 @@ public class MachineRegistrationHelper {
      */
     @SafeVarargs
     public static <T extends MachineBlockEntity> MachineDefinition<T> registerMachine(String englishName, String id,
-            Function<BEP, ? extends T> factory,
-            Consumer<? super BlockEntityType<T>>... extraRegistrators) {
+                                                                                      Function<BEP, ? extends T> factory,
+                                                                                      Consumer<? super BlockEntityType<T>>... extraRegistrators) {
         BlockEntityType<T>[] bet = new BlockEntityType[1];
         BiFunction<BlockPos, BlockState, T> ctor = (pos, state) -> factory.apply(new BEP(bet[0], pos, state));
 
@@ -73,6 +50,7 @@ public class MachineRegistrationHelper {
                 MIBlock.BlockDefinitionParams.defaultStone()
                         .sortOrder(machineSortOrder(id))
                         .withBlockConstructor((s) -> new MachineBlock(ctor, s))
+                        .sound(SoundType.NETHERITE_BLOCK)
                         .withModel((block, gen) -> {
                             // Model generation is handled in the model provider already.
                         })
@@ -206,17 +184,28 @@ public class MachineRegistrationHelper {
         };
     }
 
+    /** The built-in energy casing tier for electric machines at a given machine level. */
+    public static CableTier casingTierOf(MachineLevel level) {
+        return switch (level) {
+            case BRONZE, STEEL, ELECTRIC -> CableTier.LV;
+            case ALUMINUM -> CableTier.MV;
+            case STAINLESS_STEEL -> CableTier.HV;
+            case TITANIUM -> CableTier.EV;
+            case IRIDIUM -> CableTier.SUPERCONDUCTOR;
+        };
+    }
+
     /**
      * Registers the model of a machine variant, taking its casing from the level it belongs to.
      */
     public static void addMachineModel(MachineLevel level, String id, String machineType, boolean frontOverlay, boolean topOverlay,
-            boolean sideOverlay) {
+                                       boolean sideOverlay) {
         addMachineModel(id, machineType, casingOf(level), frontOverlay, topOverlay, sideOverlay);
     }
 
     /**
      * @deprecated prefer {@link #addMachineModel(MachineLevel, String, String, boolean, boolean, boolean)}, which covers
-     *             every level instead of only the three oldest ones.
+     * every level instead of only the three oldest ones.
      */
     @Deprecated(forRemoval = false)
     @SuppressWarnings("IfCanBeSwitch")
@@ -235,12 +224,12 @@ public class MachineRegistrationHelper {
     }
 
     public static void addMachineModel(String id, String overlayFolder, MachineCasing defaultCasing, boolean frontOverlay, boolean topOverlay,
-            boolean sideOverlay) {
+                                       boolean sideOverlay) {
         addMachineModel(id, overlayFolder, defaultCasing, frontOverlay, topOverlay, sideOverlay, true);
     }
 
     public static void addMachineModel(String id, String overlayFolder, MachineCasing defaultCasing, boolean frontOverlay, boolean topOverlay,
-            boolean sideOverlay, boolean hasActive) {
+                                       boolean sideOverlay, boolean hasActive) {
         MachineModelsToGenerate.register(id, defaultCasing, overlayFolder, frontOverlay, topOverlay, sideOverlay, hasActive);
     }
 

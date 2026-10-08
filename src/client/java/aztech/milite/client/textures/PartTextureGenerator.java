@@ -1,28 +1,3 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.client.textures;
 
 import static aztech.milite.materials.property.MaterialProperty.SET;
@@ -36,9 +11,10 @@ import aztech.milite.materials.set.MaterialBlockSet;
 import aztech.milite.materials.set.MaterialOreSet;
 import aztech.milite.materials.set.MaterialRawSet;
 import com.mojang.blaze3d.platform.NativeImage;
+import net.minecraft.resources.ResourceLocation;
+
 import java.io.IOException;
 import java.util.Objects;
-import net.minecraft.resources.ResourceLocation;
 
 /**
  * All the per-part texture processing logic.
@@ -100,6 +76,10 @@ class PartTextureGenerator {
     }
 
     private void processBlock(MaterialBlockSet set) throws IOException {
+        if (mtm.hasTextureOverride(String.format("milite:textures/block/%s.png", itemPath))) {
+            return;
+        }
+
         String template = String.format("milite:textures/materialsets/blocks/%s.png", set.name);
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);
@@ -109,6 +89,10 @@ class PartTextureGenerator {
     }
 
     private void processCasing(PartKeyProvider part) throws IOException {
+        if (mtm.hasTextureOverride(String.format("milite:textures/block/%s.png", itemPath))) {
+            return;
+        }
+
         try (NativeImage image = MITextures.generateTexture(mtm, part.key().key, material.get(SET).name, coloramp)) {
             MITextures.appendTexture(mtm, image, itemPath, true);
         }
@@ -143,6 +127,10 @@ class PartTextureGenerator {
     }
 
     private void processGem() throws IOException {
+        if (mtm.hasTextureOverride(String.format("milite:textures/item/%s.png", itemPath))) {
+            return;
+        }
+
         String template = String.format("milite:textures/materialsets/gems/%s.png", materialName);
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);
@@ -157,6 +145,10 @@ class PartTextureGenerator {
     }
 
     private void processOre(ResourceLocation stoneType, MaterialOreSet oreSet) throws IOException {
+        if (mtm.hasTextureOverride(String.format("milite:textures/block/%s.png", itemPath))) {
+            return;
+        }
+
         String template = String.format("milite:textures/materialsets/ores/%s.png", oreSet.name);
         ResourceLocation from;
         boolean deepslate = stoneType.equals(OrePart.TYPE_DEEPSLATE);
@@ -188,6 +180,10 @@ class PartTextureGenerator {
     }
 
     private void processRawMetal(boolean isBlock, MaterialRawSet rawSet) throws IOException {
+        if (mtm.hasTextureOverride(String.format("milite:textures/%s/%s.png", isBlock ? "block" : "item", itemPath))) {
+            return;
+        }
+
         String template = String.format("milite:textures/materialsets/raw/%s.png", rawSet.name + (isBlock ? "_block" : ""));
         try (NativeImage image = mtm.getAssetAsTexture(template)) {
             TextureHelper.colorize(image, coloramp);

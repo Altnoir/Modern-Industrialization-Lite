@@ -1,43 +1,19 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.machines.blockentities;
 
-import aztech.milite.MIFluids;
 import aztech.milite.inventory.ConfigurableFluidStack;
 import aztech.milite.inventory.MIInventory;
 import aztech.milite.inventory.SlotPositions;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.helper.SteamHelper;
 import aztech.milite.machines.models.MachineModelClientData;
+import aztech.milite.MIFluids;
 import aztech.milite.util.Simulation;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidType;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.fluids.FluidType;
 
 public class SteamWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity {
     public SteamWaterPumpBlockEntity(BEP bep, boolean bronze) {

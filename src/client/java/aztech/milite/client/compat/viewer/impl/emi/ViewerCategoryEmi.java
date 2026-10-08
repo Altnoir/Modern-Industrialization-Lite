@@ -1,34 +1,9 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.client.compat.viewer.impl.emi;
 
-import aztech.milite.MI;
 import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.milite.client.compat.viewer.abstraction.ViewerPageManager;
 import aztech.milite.client.machines.gui.MachineScreen;
+import aztech.milite.MI;
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.milite.thirdparty.fabrictransfer.api.item.ItemVariant;
 import aztech.milite.thirdparty.fabrictransfer.api.storage.TransferVariant;
@@ -41,20 +16,21 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jspecify.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.List;
+import java.util.stream.Stream;
 
 class ViewerCategoryEmi<D> extends EmiRecipeCategory {
     /**
@@ -67,16 +43,24 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
     public final ViewerCategory<D> wrapped;
 
     public ViewerCategoryEmi(ViewerCategory<D> category) {
-        super(category.id, category.icon instanceof ViewerCategory.Icon.Stack(ItemStack stack1) ? EmiStack.of(stack1) : new EmiRenderable() {
+        super(category.id, iconFor(category));
+
+        this.wrapped = category;
+        BY_ID.put(category.id, this);
+    }
+
+    private static EmiRenderable iconFor(ViewerCategory<?> category) {
+        if (category.icon instanceof ViewerCategory.Icon.Stack(ItemStack stack)) {
+            return EmiStack.of(stack);
+        }
+
+        return new EmiRenderable() {
             @Override
             public void render(GuiGraphics guiGraphics, int x, int y, float delta) {
                 var texture = (ViewerCategory.Icon.Texture) category.icon;
                 guiGraphics.blit(texture.loc(), x - 1, y - 1, 0, texture.u(), texture.v(), 18, 18, 256, 256);
             }
-        });
-
-        this.wrapped = category;
-        BY_ID.put(category.id, this);
+        };
     }
 
     @Override
@@ -297,7 +281,7 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
             wrapped.buildWidgets(recipe, new ViewerCategory.WidgetList() {
                 @Override
                 public void text(Component text, float x, float y, ViewerCategory.TextAlign align, boolean shadow, boolean overrideColor,
-                        @Nullable Component tooltip) {
+                                 @Nullable Component tooltip) {
                     var font = Minecraft.getInstance().font;
                     var width = font.width(text);
                     var alignedX = (int) switch (align) {
@@ -331,7 +315,8 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
                 @Override
                 public void tooltip(int x, int y, int w, int h, List<Component> tooltip) {
                     var mapped = tooltip.stream().map(c -> ClientTooltipComponent.create(c.getVisualOrderText())).toList();
-                    widgets.addDrawable(x - 4, y - 4, w, h, (matrices, mouseX, mouseY, delta) -> {}).tooltip((mouseX, mouseY) -> mapped);
+                    widgets.addDrawable(x - 4, y - 4, w, h, (matrices, mouseX, mouseY, delta) -> {
+                    }).tooltip((mouseX, mouseY) -> mapped);
                 }
 
                 @Override

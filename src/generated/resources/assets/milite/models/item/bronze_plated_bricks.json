@@ -1,3 +1,6 @@
 {
-  "parent": "milite:block/bronze_plated_bricks"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "milite:block/bronze_plated_bricks"
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "milite:mixer",
+  "duration": 100,
+  "energy": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "minecraft:poppy"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "minecraft:red_dye"
+    }
+  ]
+}

@@ -1,34 +1,5 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.datagen.translation;
 
-import aztech.milite.MI;
-import aztech.milite.MIFluids;
-import aztech.milite.MIText;
-import aztech.milite.MITooltips;
 import aztech.milite.api.energy.CableTier;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.config.MIConfigBuilder;
@@ -36,20 +7,25 @@ import aztech.milite.datagen.tag.TagsToGenerate;
 import aztech.milite.definition.Definition;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.models.MachineCasings;
+import aztech.milite.MI;
+import aztech.milite.MIFluids;
+import aztech.milite.MIText;
+import aztech.milite.MITooltips;
 import com.google.common.hash.Hashing;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.concurrent.CompletableFuture;
-import net.minecraft.Util;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.Util;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
+import java.util.Map;
+import java.util.TreeMap;
 
 public final class TranslationProvider implements DataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

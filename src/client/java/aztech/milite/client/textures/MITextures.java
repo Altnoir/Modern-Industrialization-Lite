@@ -1,32 +1,5 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.client.textures;
 
-import aztech.milite.MI;
-import aztech.milite.MIFluids;
 import aztech.milite.client.textures.coloramp.Coloramp;
 import aztech.milite.client.textures.coloramp.TabulatedColoramp;
 import aztech.milite.definition.FluidDefinition;
@@ -36,19 +9,22 @@ import aztech.milite.materials.Material;
 import aztech.milite.materials.MaterialRegistry;
 import aztech.milite.materials.part.MaterialItemPart;
 import aztech.milite.materials.property.MaterialProperty;
+import aztech.milite.MI;
+import aztech.milite.MIFluids;
 import com.google.gson.JsonElement;
 import com.mojang.blaze3d.platform.NativeImage;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceProvider;
+import net.minecraft.Util;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jspecify.annotations.Nullable;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import net.minecraft.Util;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jspecify.annotations.Nullable;
+import java.util.List;
 
 public final class MITextures {
     public static CompletableFuture<?> offerTextures(BiConsumer<NativeImage, String> textureWriter, BiConsumer<JsonElement, String> mcMetaWriter,
@@ -88,20 +64,32 @@ public final class MITextures {
         mtm.runAtEnd(() -> casingFromTextureBricked(mtm, MachineCasings.BRICKED_STEEL,
                 MI.id("textures/block/steel_machine_casing.png")));
 
-        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_ingot_blastproof.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/stainless_steel_ingot.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/titanium_ingot.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/tungsten_ingot.png"))));
+        mtm.runAtEnd(() -> {
+            if (!mtm.hasTextureOverride("milite:textures/item/mixed_ingot_blastproof.png")) {
+                mtm.addTexture("milite:textures/item/mixed_ingot_blastproof.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/stainless_steel_ingot.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/titanium_ingot.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/tungsten_ingot.png")));
+            }
+        });
 
-        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_plate_nuclear.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/cadmium_plate.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/beryllium_plate.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_plate.png"), 1, 2)));
+        mtm.runAtEnd(() -> {
+            if (!mtm.hasTextureOverride("milite:textures/item/mixed_plate_nuclear.png")) {
+                mtm.addTexture("milite:textures/item/mixed_plate_nuclear.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/cadmium_plate.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/beryllium_plate.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_plate.png"), 1, 2));
+            }
+        });
 
-        mtm.runAtEnd(() -> mtm.addTexture("milite:textures/item/mixed_ingot_iridium.png",
-                TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/iridium_ingot.png"),
-                        mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"))));
+        mtm.runAtEnd(() -> {
+            if (!mtm.hasTextureOverride("milite:textures/item/mixed_ingot_iridium.png")) {
+                mtm.addTexture("milite:textures/item/mixed_ingot_iridium.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/iridium_ingot.png"),
+                                mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png")));
+            }
+        });
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
                 .thenComposeAsync(v -> {
@@ -131,6 +119,11 @@ public final class MITextures {
 
     public static void generateItemPartTexture(TextureManager mtm, String partTemplate, @Nullable String overlay, String materialSet, String path,
             boolean isBlock, Coloramp coloramp) {
+        String outputPath = String.format("milite:textures/%s/%s.png", isBlock ? "block" : "item", path);
+        if (mtm.hasTextureOverride(outputPath)) {
+            return;
+        }
+
         try {
             NativeImage texture = generateTexture(mtm, partTemplate, materialSet, coloramp);
 
@@ -203,14 +196,17 @@ public final class MITextures {
     }
 
     public static void generateDoubleIngot(TextureManager mtm, String materialName) throws IOException {
+        String itemPath = materialName + "_double_ingot";
+        if (mtm.hasTextureOverride(String.format("milite:textures/item/%s.png", itemPath))) {
+            return;
+        }
+
         String ingotTexture = String.format("milite:textures/item/%s_ingot.png", materialName);
         if (materialName.equals("gold") || materialName.equals("iron") || materialName.equals("copper")) {
             ingotTexture = String.format("minecraft:textures/item/%s_ingot.png", materialName);
         }
         NativeImage image = mtm.getAssetAsTexture(ingotTexture);
         TextureHelper.doubleIngot(image);
-        String itemPath = materialName + "_double_ingot";
-
         mtm.addTexture(String.format("milite:textures/item/%s.png", itemPath), image);
         image.close();
     }
@@ -228,6 +224,11 @@ public final class MITextures {
     }
 
     public static void casingFromTextureBricked(TextureManager tm, MachineCasing casing, ResourceLocation topTexturePath) {
+        String outputPath = String.format("%s:textures/block/casings/%s.png", casing.key.getNamespace(), casing.key.getPath());
+        if (tm.hasTextureOverride(outputPath)) {
+            return;
+        }
+
         try (
                 var topTexture = tm.getAssetAsTexture(topTexturePath.toString());
                 var brickTexture = tm.getAssetAsTexture("milite:textures/block/fire_clay_bricks.png")) {
@@ -257,34 +258,38 @@ public final class MITextures {
         Coloramp fluidColoramp = new TabulatedColoramp(fluid.color);
 
         // Bucket
-        try {
-            NativeImage bucket_image = tm.getAssetAsTexture(bucket);
-            NativeImage bucket_content_image = tm.getAssetAsTexture(bucket_content);
-            TextureHelper.colorize(bucket_content_image, fluidColoramp);
-            NativeImage oldBucketImage = bucket_image;
-            bucket_image = TextureHelper.blend(oldBucketImage, bucket_content_image);
-            oldBucketImage.close();
-            if (fluid.isGas) {
-                TextureHelper.flip(bucket_image);
+        if (!tm.hasTextureOverride(String.format("milite:textures/item/%s_bucket.png", fluid.path()))) {
+            try {
+                NativeImage bucket_image = tm.getAssetAsTexture(bucket);
+                NativeImage bucket_content_image = tm.getAssetAsTexture(bucket_content);
+                TextureHelper.colorize(bucket_content_image, fluidColoramp);
+                NativeImage oldBucketImage = bucket_image;
+                bucket_image = TextureHelper.blend(oldBucketImage, bucket_content_image);
+                oldBucketImage.close();
+                if (fluid.isGas) {
+                    TextureHelper.flip(bucket_image);
+                }
+                tm.addTexture(String.format("milite:textures/item/%s_bucket.png", fluid.path()), bucket_image);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            tm.addTexture(String.format("milite:textures/item/%s_bucket.png", fluid.path()), bucket_image);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         // Flowing Textures
 
         String pathFluid = path + String.format("template/%s.png", fluid.fluidTexture.path);
 
-        try {
-            NativeImage fluidAnim = tm.getAssetAsTexture(pathFluid);
-            TextureHelper.colorize(fluidAnim, fluidColoramp);
-            TextureHelper.setAlpha(fluidAnim, fluid.opacity);
-            tm.addTexture(String.format("milite:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
-            tm.addMcMeta(String.format("milite:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
+        if (!tm.hasTextureOverride(String.format("milite:textures/fluid/%s_still.png", fluid.path()))) {
+            try {
+                NativeImage fluidAnim = tm.getAssetAsTexture(pathFluid);
+                TextureHelper.colorize(fluidAnim, fluidColoramp);
+                TextureHelper.setAlpha(fluidAnim, fluid.opacity);
+                tm.addTexture(String.format("milite:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
+                tm.addMcMeta(String.format("milite:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -1,41 +1,18 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite;
 
-import aztech.milite.blocks.TrashCanBlock;
+import static net.minecraft.world.level.material.MapColor.STONE;
+
 import aztech.milite.blocks.creativestorageunit.CreativeStorageUnitBlock;
 import aztech.milite.blocks.forgehammer.ForgeHammerBlock;
 import aztech.milite.blocks.processingtable.ProcessingTableBlock;
-import aztech.milite.blocks.storage.StorageBehaviour;
 import aztech.milite.blocks.storage.barrel.BarrelBlock;
 import aztech.milite.blocks.storage.barrel.BarrelItem;
 import aztech.milite.blocks.storage.barrel.CreativeBarrelBlockEntity;
+import aztech.milite.blocks.storage.StorageBehaviour;
+import aztech.milite.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
 import aztech.milite.blocks.storage.tank.TankBlock;
 import aztech.milite.blocks.storage.tank.TankItem;
-import aztech.milite.blocks.storage.tank.creativetank.CreativeTankBlockEntity;
+import aztech.milite.blocks.TrashCanBlock;
 import aztech.milite.datagen.loot.MIBlockLoot;
 import aztech.milite.datagen.model.BaseModelProvider;
 import aztech.milite.definition.BlockDefinition;
@@ -68,8 +45,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import static net.minecraft.world.level.material.MapColor.STONE;
 
 @SuppressWarnings("unused")
 public class MIBlock {

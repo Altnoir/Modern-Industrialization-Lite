@@ -1,28 +1,3 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.machines.components;
 
 import aztech.milite.api.energy.CableTier;
@@ -35,13 +10,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
 public class CasingComponent implements MachineComponent, DropableComponent {
@@ -61,7 +36,16 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     }
 
     public CasingComponent() {
-        this(null);
+        this((UpdatedCallback) null);
+    }
+
+    public CasingComponent(@Nullable UpdatedCallback callback, CableTier initialTier) {
+        this(callback);
+        this.currentTier = initialTier;
+    }
+
+    public CasingComponent(CableTier initialTier) {
+        this((UpdatedCallback) null, initialTier);
     }
 
     /**
@@ -71,9 +55,9 @@ public class CasingComponent implements MachineComponent, DropableComponent {
         casingStack = stack;
 
         // Compute tier
-        currentTier = getCasingTier(stack.getItem());
-        if (currentTier == null) {
-            currentTier = CableTier.LV;
+        CableTier storedTier = getCasingTier(stack.getItem());
+        if (storedTier != null) {
+            currentTier = storedTier;
         }
     }
 
@@ -84,7 +68,10 @@ public class CasingComponent implements MachineComponent, DropableComponent {
 
     @Override
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        setCasingStack(ItemStack.parseOptional(registries, tag.getCompound("casing")));
+        ItemStack stack = ItemStack.parseOptional(registries, tag.getCompound("casing"));
+        if (!stack.isEmpty()) {
+            setCasingStack(stack);
+        }
     }
 
     @Override
@@ -175,8 +162,8 @@ public class CasingComponent implements MachineComponent, DropableComponent {
         }
     }
 
-    public MachineCasing getCasing() {
-        return currentTier.casing;
+    public @Nullable MachineCasing getCasing() {
+        return casingStack.isEmpty() ? null : currentTier.casing;
     }
 
     public boolean canInsertEu(CableTier tier) {
@@ -185,7 +172,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
 
     /**
      * @return The RF buffer capacity granted by the current casing. It is proportional to the tier of the
-     *         casing, and capped so that it always fits in NeoForge's int-based energy API.
+     * casing, and capped so that it always fits in NeoForge's int-based energy API.
      */
     public long getEuCapacity() {
         long capacity = currentTier.rf * 100;

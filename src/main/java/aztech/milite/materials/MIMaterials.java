@@ -1,48 +1,23 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.materials;
 
 import static aztech.milite.materials.part.MIParts.*;
 import static aztech.milite.materials.property.MaterialHardness.*;
 import static aztech.milite.materials.set.MaterialSet.*;
 
-import aztech.milite.MIItem;
 import aztech.milite.api.energy.CableTier;
 import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.items.SortOrder;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.materials.part.*;
 import aztech.milite.materials.property.MaterialProperty;
+import aztech.milite.materials.recipe.builder.MIRecipeBuilder;
 import aztech.milite.materials.recipe.ForgeHammerRecipes;
 import aztech.milite.materials.recipe.SmeltingRecipes;
 import aztech.milite.materials.recipe.StandardRecipes;
-import aztech.milite.materials.recipe.builder.MIRecipeBuilder;
 import aztech.milite.materials.set.MaterialBlockSet;
 import aztech.milite.materials.set.MaterialOreSet;
 import aztech.milite.materials.set.MaterialRawSet;
+import aztech.milite.MIItem;
 import aztech.milite.nuclear.IsotopeFuelParams;
 import aztech.milite.nuclear.NeutronBehaviour;
 import aztech.milite.nuclear.NuclearAbsorbable;

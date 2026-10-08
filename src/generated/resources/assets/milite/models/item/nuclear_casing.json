@@ -1,3 +1,6 @@
 {
-  "parent": "milite:block/nuclear_casing"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "milite:block/nuclear_casing"
+  }
 }

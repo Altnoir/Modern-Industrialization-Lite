@@ -1,41 +1,12 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.client.compat.viewer.impl.jei;
 
-import aztech.milite.MI;
 import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.milite.client.machines.gui.MachineScreen;
+import aztech.milite.MI;
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.milite.thirdparty.fabrictransfer.api.item.ItemVariant;
 import aztech.milite.thirdparty.fabrictransfer.api.storage.TransferVariant;
 import aztech.milite.util.TextHelper;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
@@ -46,20 +17,25 @@ import mezz.jei.api.gui.placement.HorizontalAlignment;
 import mezz.jei.api.gui.placement.VerticalAlignment;
 import mezz.jei.api.gui.widgets.IRecipeExtrasBuilder;
 import mezz.jei.api.helpers.IJeiHelpers;
+import mezz.jei.api.recipe.category.AbstractRecipeCategory;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.AbstractRecipeCategory;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.jspecify.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.function.Consumer;
+import java.util.List;
+import java.util.stream.Stream;
 
 class ViewerCategoryJei<D> extends AbstractRecipeCategory<D> {
     private final IJeiHelpers helpers;

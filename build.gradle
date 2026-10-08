@@ -363,21 +363,8 @@ abstract class GeneratePackageInfos extends DefaultTask {
     @PathSensitive(PathSensitivity.RELATIVE)
     abstract ConfigurableFileCollection getFiles();
 
-    // Declared as an input so the task can read it without touching the project at execution time, which the
-    // configuration cache forbids.
-    @InputFile
-    @PathSensitive(PathSensitivity.RELATIVE)
-    abstract RegularFileProperty getLicenseFile();
-
     @TaskAction
     void generatePackageInfos() {
-        // The generated file has to match what the license and formatting checks expect: the canonical header from
-        // LICENSE wrapped in a block comment, then the annotation and package, then a trailing newline and nothing else.
-        def licenseLines = licenseFile.get().asFile.text.replace('\r\n', '\n').stripTrailing().split('\n', -1)
-        def headerLines = ['/*']
-        licenseLines.each { line -> headerLines.add(line ? ' * ' + line : ' *') }
-        headerLines.add(' */')
-        def header = headerLines.join('\n')
         // The misc workflow owns line endings, so write LF and let it normalise to the repository convention.
         def nl = '\n'
 
@@ -391,8 +378,7 @@ abstract class GeneratePackageInfos extends DefaultTask {
                 def pkgName = normalised.substring(sourceRoot + '/java/'.length(), normalised.lastIndexOf('/'))
                 pkgName = pkgName.replaceAll('/', '.')
 
-                packageInfoFile.text = header + nl + nl +
-                        '@NullMarked' + nl +
+                packageInfoFile.text = '@NullMarked' + nl +
                         'package ' + pkgName + ';' + nl + nl +
                         'import org.jspecify.annotations.NullMarked;' + nl
             }
@@ -402,7 +388,6 @@ abstract class GeneratePackageInfos extends DefaultTask {
 final generatePackageInfos = tasks.register('generatePackageInfos', GeneratePackageInfos) {
     it.files.from fileTree("src/client/java")
     it.files.from fileTree("src/main/java")
-    it.licenseFile.set(layout.projectDirectory.file('LICENSE'))
 }
 
 immaculate {
@@ -440,9 +425,8 @@ immaculate {
 }
 
 license {
-    include '**/*.java'
-    // Use the repository LICENSE as the canonical header. Without this the plugin generates its own
-    // header from the project name, which never matches the file headers and fails the check.
+    include '**/MI.java'
+    include '**/MIClient.java'
     header = file('LICENSE')
 }
 

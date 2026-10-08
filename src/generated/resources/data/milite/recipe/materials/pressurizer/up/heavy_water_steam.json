@@ -1,0 +1,18 @@
+{
+  "type": "milite:pressurizer",
+  "duration": 1200,
+  "energy": 64,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:heavy_water_steam"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 125,
+      "fluid": "milite:high_pressure_heavy_water_steam"
+    }
+  ],
+  "level": "electric"
+}

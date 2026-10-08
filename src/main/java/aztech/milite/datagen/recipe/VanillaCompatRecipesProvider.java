@@ -1,40 +1,18 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.datagen.recipe;
 
-import aztech.milite.MIFluids;
-import aztech.milite.MIItem;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
+import aztech.milite.MIFluids;
+import aztech.milite.MIItem;
 import aztech.milite.recipe.json.ShapelessRecipeBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+
+import java.util.List;
 
 /**
  * Datagen for recipes that produce vanilla materials using MI machines.
@@ -46,6 +24,10 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
+        generateConcrete(exporter);
+        generateDyeMixing(exporter);
+        generateCoralPropagation(exporter);
+
         generateCopperOxidation(exporter, Items.COPPER_BLOCK, Items.EXPOSED_COPPER, Items.WEATHERED_COPPER, Items.OXIDIZED_COPPER);
         generateCopperOxidation(exporter, Items.CUT_COPPER, Items.EXPOSED_CUT_COPPER, Items.WEATHERED_CUT_COPPER, Items.OXIDIZED_CUT_COPPER);
         generateCopperOxidation(exporter, Items.CUT_COPPER_SLAB, Items.EXPOSED_CUT_COPPER_SLAB, Items.WEATHERED_CUT_COPPER_SLAB, Items.OXIDIZED_CUT_COPPER_SLAB);
@@ -109,6 +91,98 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
                 .addItemInput(Items.STONE, 1)
                 .addItemOutput(Items.COBBLESTONE, 1)
                 .offerTo(exporter, "vanilla_recipes/macerator/stone_to_cobblestone");
+    }
+
+    private void generateConcrete(RecipeOutput exporter) {
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
+                    .addItemInput(Items.SAND, 4)
+                    .addItemInput(Items.GRAVEL, 4)
+                    .addItemInput("minecraft:" + name + "_dye", 1)
+                    .addItemOutput("minecraft:" + name + "_concrete_powder", 8)
+                    .offerTo(exporter, "vanilla_recipes/mixer/concrete/" + name + "_concrete_powder");
+
+            new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
+                    .addItemInput("minecraft:" + name + "_concrete_powder", 1)
+                    .addFluidInput("minecraft:water", 1000)
+                    .addItemOutput("minecraft:" + name + "_concrete", 1)
+                    .offerTo(exporter, "vanilla_recipes/mixer/concrete/" + name + "_concrete");
+        }
+    }
+
+    private void generateCoralPropagation(RecipeOutput exporter) {
+        for (String coral : new String[] {"brain", "bubble", "fire", "horn", "tube"}) {
+            new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 6000)
+                    .addItemInput("minecraft:" + coral + "_coral_block", 1)
+                    .addItemInput(Items.BONE_MEAL, 4)
+                    .addItemInput("#c:dusts/salt", 4)
+                    .addFluidInput("minecraft:water", 9000)
+                    .addItemOutput("minecraft:" + coral + "_coral_block", 2)
+                    .addItemOutput("minecraft:" + coral + "_coral", 2)
+                    .addItemOutput("minecraft:" + coral + "_coral_fan", 2)
+                    .addFluidOutput("minecraft:water", 6000)
+                    .offerTo(exporter, "vanilla_recipes/chemical_reactor/" + coral + "_coral");
+        }
+    }
+
+    private void generateDyeMixing(RecipeOutput exporter) {
+        List<DyeMixRecipe> recipes = List.of(
+                new DyeMixRecipe("black_dye", "black", 1, List.of("milite:coal_dust"), "minecraft:water", 50),
+                new DyeMixRecipe("black_dye2", "black", 1, List.of("minecraft:ink_sac")),
+                new DyeMixRecipe("black_dye3", "black", 1, List.of("minecraft:wither_rose")),
+                new DyeMixRecipe("blue_dye2", "blue", 1, List.of("minecraft:cornflower")),
+                new DyeMixRecipe("brown_dye", "brown", 1, List.of("minecraft:cocoa_beans")),
+                new DyeMixRecipe("cyan_dye", "cyan", 2, List.of("minecraft:green_dye", "minecraft:blue_dye")),
+                new DyeMixRecipe("gray_dye", "gray", 2, List.of("minecraft:black_dye", "minecraft:white_dye")),
+                new DyeMixRecipe("light_blue_dye", "light_blue", 1, List.of("minecraft:blue_orchid")),
+                new DyeMixRecipe("light_blue_dye2", "light_blue", 2, List.of("minecraft:blue_dye", "minecraft:white_dye")),
+                new DyeMixRecipe("light_gray_dye1", "light_gray", 1, List.of("minecraft:azure_bluet")),
+                new DyeMixRecipe("light_gray_dye2", "light_gray", 1, List.of("minecraft:oxeye_daisy")),
+                new DyeMixRecipe("light_gray_dye3", "light_gray", 1, List.of("minecraft:white_tulip")),
+                new DyeMixRecipe("light_gray_dye4", "light_gray", 2, List.of("minecraft:gray_dye", "minecraft:white_dye")),
+                new DyeMixRecipe("light_gray_dye5", "light_gray", 3, List.of("minecraft:black_dye", "minecraft:white_dye*2")),
+                new DyeMixRecipe("lime_dye", "lime", 2, List.of("minecraft:green_dye", "minecraft:white_dye")),
+                new DyeMixRecipe("magenta_dye1", "magenta", 1, List.of("minecraft:allium")),
+                new DyeMixRecipe("magenta_dye2", "magenta", 2, List.of("minecraft:lilac")),
+                new DyeMixRecipe("magenta_dye3", "magenta", 2, List.of("minecraft:purple_dye", "minecraft:pink_dye")),
+                new DyeMixRecipe("magenta_dye4", "magenta", 4, List.of("minecraft:blue_dye", "minecraft:red_dye*2", "minecraft:white_dye")),
+                new DyeMixRecipe("magenta_dye5", "magenta", 3, List.of("minecraft:blue_dye", "minecraft:red_dye", "minecraft:pink_dye")),
+                new DyeMixRecipe("orange_dye1", "orange", 1, List.of("minecraft:orange_tulip")),
+                new DyeMixRecipe("orange_dye2", "orange", 2, List.of("minecraft:yellow_dye", "minecraft:red_dye")),
+                new DyeMixRecipe("pink_dye", "pink", 2, List.of("minecraft:peony")),
+                new DyeMixRecipe("pink_dye2", "pink", 1, List.of("minecraft:pink_tulip")),
+                new DyeMixRecipe("pink_dye3", "pink", 2, List.of("minecraft:red_dye", "minecraft:white_dye")),
+                new DyeMixRecipe("purple_dye", "purple", 2, List.of("minecraft:red_dye", "minecraft:blue_dye")),
+                new DyeMixRecipe("red_dye1", "red", 1, List.of("minecraft:beetroot")),
+                new DyeMixRecipe("red_dye2", "red", 1, List.of("minecraft:poppy")),
+                new DyeMixRecipe("red_dye3", "red", 2, List.of("minecraft:rose_bush")),
+                new DyeMixRecipe("red_dye4", "red", 1, List.of("minecraft:red_tulip")),
+                new DyeMixRecipe("white_dye1", "white", 1, List.of("minecraft:bone_meal")),
+                new DyeMixRecipe("white_dye2", "white", 1, List.of("minecraft:lily_of_the_valley")),
+                new DyeMixRecipe("yellow_dye", "yellow", 2, List.of("minecraft:sunflower")),
+                new DyeMixRecipe("yellow_dye2", "yellow", 1, List.of("minecraft:dandelion")));
+
+        for (DyeMixRecipe recipe : recipes) {
+            MachineRecipeBuilder builder = new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100);
+            for (String ingredient : recipe.ingredients()) {
+                int separator = ingredient.lastIndexOf('*');
+                String item = separator < 0 ? ingredient : ingredient.substring(0, separator);
+                int amount = separator < 0 ? 1 : Integer.parseInt(ingredient.substring(separator + 1));
+                builder.addItemInput(item, amount);
+            }
+            if (recipe.fluid() != null) {
+                builder.addFluidInput(recipe.fluid(), recipe.fluidAmount());
+            }
+            builder.addItemOutput("minecraft:" + recipe.color() + "_dye", recipe.outputAmount())
+                    .offerTo(exporter, "vanilla_recipes/mixer/dye/" + recipe.id());
+        }
+    }
+
+    private record DyeMixRecipe(String id, String color, int outputAmount, List<String> ingredients, String fluid, int fluidAmount) {
+        private DyeMixRecipe(String id, String color, int outputAmount, List<String> ingredients) {
+            this(id, color, outputAmount, ingredients, null, 0);
+        }
     }
 
     private void generateCopperOxidation(RecipeOutput exporter, Item unaffected, Item exposed, Item weathered, Item oxidized) {

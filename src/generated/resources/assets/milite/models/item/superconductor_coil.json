@@ -1,3 +1,7 @@
 {
-  "parent": "milite:block/superconductor_coil"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "end": "milite:block/superconductor_coil_top",
+    "side": "milite:block/superconductor_coil_side"
+  }
 }

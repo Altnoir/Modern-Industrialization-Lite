@@ -1,30 +1,7 @@
-/*
- * MIT License
- *
- * Copyright (c) 2026 Altnoir Null々
- * Copyright (c) 2020 Azercoco & Technici4n
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package aztech.milite.datagen.recipe;
 
+import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.materials.Material;
 import aztech.milite.materials.MaterialRegistry;
 import net.minecraft.data.PackOutput;
@@ -39,6 +16,33 @@ public class MaterialRecipesProvider extends MIRecipesProvider {
     protected void buildRecipes(RecipeOutput recipeOutput) {
         for (Material material : MaterialRegistry.getMaterials().values()) {
             material.registerRecipes.accept(recipeOutput);
+        }
+
+        generatePressurizerRecipes(recipeOutput);
+    }
+
+    private void generatePressurizerRecipes(RecipeOutput recipeOutput) {
+        String[][] fluids = {
+                {"minecraft:water", "milite:high_pressure_water"},
+                {"milite:steam", "milite:high_pressure_steam"},
+                {"milite:heavy_water", "milite:high_pressure_heavy_water"},
+                {"milite:heavy_water_steam", "milite:high_pressure_heavy_water_steam"}
+        };
+
+        for (String[] fluid : fluids) {
+            String input = fluid[0];
+            String highPressure = fluid[1];
+            String name = input.substring(input.indexOf(':') + 1);
+
+            new MachineRecipeBuilder(MIMachineRecipeTypes.PRESSURIZER, 64, 1200)
+                    .addFluidInput(input, 1000)
+                    .addFluidOutput(highPressure, 125)
+                    .offerTo(recipeOutput, "materials/pressurizer/up/" + name);
+
+            new MachineRecipeBuilder(MIMachineRecipeTypes.PRESSURIZER, 2, 100)
+                    .addFluidInput(highPressure, 125)
+                    .addFluidOutput(input, 1000)
+                    .offerTo(recipeOutput, "materials/pressurizer/down/" + name);
         }
     }
 }
