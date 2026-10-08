@@ -17,6 +17,26 @@ public record CasingPart(String englishName, PartKey key) implements PartKeyProv
         return regPart;
     }
 
+    /**
+     * Pipe casings carry a horizontal axis state so that connected textures can tell which way a run points.
+     */
+    public PartTemplate asPipe(PartEnglishNameFormatter formatter, @Nullable String path, float resistance) {
+        PartTemplate regPart = new PartTemplate(formatter, this.key)
+                .asPipeBlock(SortOrder.CASINGS, 5, resistance);
+        if (path != null) {
+            return regPart.withCustomPath(path, path);
+        }
+        return regPart;
+    }
+
+    public PartTemplate asPipe(float resistance) {
+        return asPipe(new PartEnglishNameFormatter.Default(englishName), null, resistance);
+    }
+
+    public PartTemplate asPipe() {
+        return asPipe(6);
+    }
+
     public PartTemplate of(String englishName, String path, float resistance) {
         return of(new PartEnglishNameFormatter.Overridden(englishName), path, resistance);
     }

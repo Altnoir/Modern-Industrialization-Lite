@@ -36,3 +36,15 @@ shell.nix
 
 # environment variables
 .env
+
+# scratch space: decompilation dumps, world rig scripts and local resource pack work
+.tmp-*/
+ModernRetexturization-milite/
+run/resourcepacks/CTMColorProbe/
+
+# vanilla pack that runData unpacks into the project root
+/assets/
+/data/
+/pack.png
+/version.json
+/flightrecorder-config.jfc

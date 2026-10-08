@@ -35,13 +35,16 @@ public class MIModelProvider extends BaseModelProvider {
             itemDefinition.modelGenerator.accept(itemDefinition.asItem(), itemModels());
         }
 
+        // Pipe casings are deliberately absent: they build their own item model, which inherits the block model so
+        // that it follows the connected texture slot naming. Re-adding one here would silently point it back at the
+        // plain "<blockId>" texture that no longer exists.
         for (String blockId : new String[]{
-                "blastproof_casing", "bronze_machine_casing_pipe", "bronze_plated_bricks",
+                "blastproof_casing", "bronze_plated_bricks",
                 "clean_stainless_steel_machine_casing", "cupronickel_coil", "frostproof_machine_casing",
-                "heatproof_machine_casing", "iridium_machine_casing_pipe", "kanthal_coil",
-                "nuclear_alloy_machine_casing_pipe", "nuclear_casing", "plasma_handling_iridium_machine_casing",
-                "solid_titanium_machine_casing", "stainless_steel_machine_casing_pipe", "steel_machine_casing_pipe",
-                "superconductor_coil", "titanium_machine_casing_pipe"}) {
+                "heatproof_machine_casing", "kanthal_coil",
+                "nuclear_casing", "plasma_handling_iridium_machine_casing",
+                "solid_titanium_machine_casing",
+                "superconductor_coil"}) {
             var itemModel = itemModels().getBuilder(blockId);
             if (blockId.endsWith("_coil")) {
                 itemModel.parent(itemModels().getExistingFile(ResourceLocation.withDefaultNamespace("block/cube_column")))

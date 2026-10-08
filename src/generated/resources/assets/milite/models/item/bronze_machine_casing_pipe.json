@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "milite:block/bronze_machine_casing_pipe"
-  }
+  "parent": "milite:block/bronze_machine_casing_pipe"
 }

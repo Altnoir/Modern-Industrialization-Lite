@@ -8,8 +8,11 @@ import aztech.milite.materials.MaterialProgression;
 import aztech.milite.MIBlock;
 import aztech.milite.MIItem;
 import aztech.milite.util.TagHelper;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class PartTemplate implements PartKeyProvider {
     private final PartEnglishNameFormatter englishNameFormatter;
@@ -151,8 +154,7 @@ public class PartTemplate implements PartKeyProvider {
         return asBlock(sortOrder, textureGenParams, hardness, resistance, miningLevel, true);
     }
 
-    public PartTemplate asColumnBlock(SortOrder sortOrder) {
-        Register columnBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
+    public PartTemplate asColumnBlock(SortOrder sortOrder) {        Register columnBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
 
             var blockDefinition = MIBlock.block(
                     itemEnglishName,
@@ -175,6 +177,51 @@ public class PartTemplate implements PartKeyProvider {
 
         };
         return new PartTemplate(englishNameFormatter, partKey, columnBlockRegister, new TextureGenParams.ColumnBlock(), itemPathFormatter);
+    }
+
+    /**
+     * A block that carries a horizontal axis, like vanilla logs do. Pipe casings are registered this way because the
+     * connected texture loader has to know which way a run of casing points: without an axis state every face looks
+     * alike, so one of the three axes can never be made to connect.
+     */
+    public PartTemplate asPipeBlock(SortOrder sortOrder, float hardness, float resistance) {
+        Register pipeBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
+
+            var blockDefinition = MIBlock.block(
+                    itemEnglishName,
+                    itemPath,
+                    MIBlock.BlockDefinitionParams.defaultStone()
+                            .clearTags()
+                            .addMoreTags(TagHelper.getMiningLevelTag(1))
+                            .sortOrder(sortOrder.and(partContext.getMaterialName()))
+                            .destroyTime(hardness)
+                            .explosionResistance(resistance)
+                            .withBlockConstructor(RotatedPillarBlock::new)
+                            .withModel((block, gen) -> {
+                                String name = gen.name(block);
+                                // Pipe casings keep every tile inside their own folder, named after the slot the
+                                // connected texture loader asks for, so the plain texture is "<name>/particle".
+                                var model = gen.models().cubeAll(name, gen.blockTexture(name + "/particle"));
+                                // The same rotations vanilla logs use: the unrotated model is the vertical pillar,
+                                // so the two horizontal variants turn the whole block a quarter turn.
+                                var variants = gen.getVariantBuilder(block);
+                                variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y)
+                                        .modelForState().modelFile(model).addModel();
+                                variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X)
+                                        .modelForState().modelFile(model).rotationX(90).rotationY(90).addModel();
+                                variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z)
+                                        .modelForState().modelFile(model).rotationX(90).addModel();
+                                // The item model has to inherit the block model instead of re-declaring its own
+                                // textures: a hand written "textures" block would point at "<name>" again.
+                                gen.itemModels().getBuilder(name).parent(model);
+                            })
+
+            );
+
+            setupTag(partContext, part, itemTag, blockDefinition);
+
+        };
+        return new PartTemplate(englishNameFormatter, partKey, pipeBlockRegister, new TextureGenParams.CasingBlock(), itemPathFormatter);
     }
 
     public PartTemplate withoutTextureRegister() {

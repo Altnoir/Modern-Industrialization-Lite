@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "axis=x": {
+      "model": "milite:block/bronze_machine_casing_pipe",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
       "model": "milite:block/bronze_machine_casing_pipe"
+    },
+    "axis=z": {
+      "model": "milite:block/bronze_machine_casing_pipe",
+      "x": 90
     }
   }
 }

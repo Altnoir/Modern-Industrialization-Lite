@@ -66,11 +66,11 @@ public class PartJsonCreator {
     }
 
     public PartTemplate pipeCasing(float resistance) {
-        return MIParts.MACHINE_CASING_PIPE.of(resistance);
+        return MIParts.MACHINE_CASING_PIPE.asPipe(resistance);
     }
 
     public PartTemplate pipeCasing() {
-        return MIParts.MACHINE_CASING_PIPE.of();
+        return MIParts.MACHINE_CASING_PIPE.asPipe();
     }
 
     public PartTemplate specialCasing(String englishName, String path) {
