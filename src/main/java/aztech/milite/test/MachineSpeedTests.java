@@ -33,31 +33,40 @@ import java.util.List;
 public class MachineSpeedTests {
     /**
      * The test recipe: one stone in, one cobblestone out, which is also the vanilla compatible recipe of the macerator
-     * ({@code milite:macerator/stone_to_cobblestone}). Its duration is written for the reference level, so it takes a
-     * hundred ticks and two RF per tick there.
+     * ({@code milite:macerator/stone_to_cobblestone}). Its duration is the number of ticks a bronze machine takes over
+     * it, so it takes a hundred ticks and two RF per tick there.
      */
     private static final String RECIPE = "stone_to_cobblestone";
 
-    /** The ticks the recipe takes at the reference level. */
+    /** The ticks the recipe takes on a bronze machine, the slowest level there is. */
     private static final long RECIPE_DURATION = 100;
 
     /** What one craft costs no matter how fast the machine is: the duration of the recipe times its energy. */
     private static final long RF_PER_CRAFT = 200;
 
-    /** What the recipe draws per tick at the reference speed, which is what a machine of the reference level eats. */
+    /** What a bronze machine eats per tick, and therefore what the recipe's own energy is. */
     private static final long RF_PER_TICK = RF_PER_CRAFT / RECIPE_DURATION;
 
-    /** How long every machine of a test is left to run before its counters are read. */
-    private static final int MEASURE_TICKS = 1000;
+    /** The level the single machine tests use, and how many times faster than bronze it works. */
+    private static final int ELECTRIC_SPEED = 4;
+
+    /** What an electric machine eats per tick, which is what a test about running out of power has to drain. */
+    private static final long ELECTRIC_RF_PER_TICK = RF_PER_TICK * ELECTRIC_SPEED;
+
+    /**
+     * How long every machine of a test is left to run before its counters are read, which is short enough that even an
+     * iridium machine cannot fill the four output slots of a macerator: it would need 512 ticks to do that.
+     */
+    private static final int MEASURE_TICKS = 400;
 
     /** How much stone one refill offers the input slot, which is more than the fastest machine of a test eats per tick. */
     private static final int STONE_PER_REFILL = 4;
 
     /**
-     * The ladder: every level crafts as many times faster than the reference level as its speed multiplier says, and an
-     * iridium machine therefore does in seven ticks what an electric one does in a hundred.
+     * The ladder: every level crafts as many times faster than bronze as its speed multiplier says, and an iridium
+     * machine therefore does in two ticks what a bronze one does in a hundred.
      */
-    @MIGameTest(timeoutTicks = 1400)
+    @MIGameTest(timeoutTicks = 800)
     public void higherLevelsCraftFasterForTheSameRfPerCraft(MIGameTestHelper helper) {
         List<Run> runs = new ArrayList<>();
         runs.add(start(helper, new BlockPos(0, 2, 0), "electric_macerator", false));
@@ -69,14 +78,15 @@ public class MachineSpeedTests {
         helper.startSequence()
                 .thenIdle(MEASURE_TICKS)
                 .thenExecute(() -> {
-                    // A craft needs a whole number of ticks, so a level that is not a divisor of the duration rounds up:
-                    // titanium eats 16 RF a tick and therefore needs 13 ticks for the 200 RF of a craft, iridium eats 32
-                    // and needs 7. Everything else divides the hundred ticks of the recipe exactly.
-                    assertCrafts(helper, runs.get(0), 10L, "electric", 1);
-                    assertCrafts(helper, runs.get(1), 20L, "aluminum", 2);
-                    assertCrafts(helper, runs.get(2), 40L, "stainless steel", 4);
-                    assertCrafts(helper, runs.get(3), 76L, "titanium", 8);
-                    assertCrafts(helper, runs.get(4), 142L, "iridium", 16);
+                    // A craft needs a whole number of ticks, so a level whose draw does not divide the 200 RF of a craft
+                    // rounds up: aluminum eats 16 RF a tick and therefore needs 13 ticks for a craft, stainless steel
+                    // eats 32 and needs 7, titanium eats 64 and needs 4, iridium eats 128 and needs 2. The electric
+                    // draw of 8 divides 200 exactly, so it needs the 25 ticks of a quarter of the bronze duration.
+                    assertCrafts(helper, runs.get(0), 16L, "electric", ELECTRIC_SPEED);
+                    assertCrafts(helper, runs.get(1), 30L, "aluminum", 8);
+                    assertCrafts(helper, runs.get(2), 57L, "stainless steel", 16);
+                    assertCrafts(helper, runs.get(3), 100L, "titanium", 32);
+                    assertCrafts(helper, runs.get(4), 200L, "iridium", 64);
 
                     for (Run run : runs) {
                         assertFirstCraftCost(helper, run);
@@ -89,7 +99,7 @@ public class MachineSpeedTests {
      * The overdrive module doubles the speed of a machine and leaves the cost of a craft alone, so an overdriven
      * machine makes exactly twice as much out of the same RF.
      */
-    @MIGameTest(timeoutTicks = 1400)
+    @MIGameTest(timeoutTicks = 800)
     public void overdriveModuleDoublesTheSpeedAndNotTheCost(MIGameTestHelper helper) {
         Run plain = start(helper, new BlockPos(0, 2, 0), "electric_macerator", false);
         Run overdriven = start(helper, new BlockPos(2, 2, 0), "electric_macerator", true);
@@ -97,8 +107,10 @@ public class MachineSpeedTests {
         helper.startSequence()
                 .thenIdle(MEASURE_TICKS)
                 .thenExecute(() -> {
-                    assertCrafts(helper, plain, 10L, "electric", 1);
-                    assertCrafts(helper, overdriven, 20L, "overdriven electric", 2);
+                    // An overdriven electric machine eats 16 RF a tick, so it needs 13 ticks a craft where the plain one
+                    // needs 25, and makes 30 where the plain one makes 16.
+                    assertCrafts(helper, plain, 16L, "electric", ELECTRIC_SPEED);
+                    assertCrafts(helper, overdriven, 30L, "overdriven electric", ELECTRIC_SPEED * 2);
                     assertFirstCraftCost(helper, plain);
                     assertFirstCraftCost(helper, overdriven);
                 })
@@ -111,25 +123,27 @@ public class MachineSpeedTests {
      */
     @MIGameTest(timeoutTicks = 800)
     public void progressWaitsForPowerAndResumesWhenItComesBack(MIGameTestHelper helper) {
-        // A buffer worth half a craft is worth fifty ticks of crafting, and fifty ticks are not enough for the 200 RF
-        // of a craft, so the machine is guaranteed to run dry part way through one.
-        int buffer = (int) (RF_PER_CRAFT / 2);
+        // A fifth of a craft is far less than the 200 RF a craft needs, so a machine that stops being fed always runs
+        // dry part way through the craft it is on, however much of it is left by then.
+        int buffer = (int) (RF_PER_CRAFT / 5);
         Run run = start(helper, new BlockPos(0, 2, 0), "electric_macerator", false, buffer);
 
-        // The machine drinks the whole buffer: the hundred RF it starts with and the eighty the first forty ticks put
-        // back in, which together are 20 RF short of a craft.
-        long drained = buffer + 40 * RF_PER_TICK;
-        float drainedProgress = (float) drained / RF_PER_CRAFT;
+        // Over the forty ticks it is fed for, the machine is handed the hundred RF it starts with plus eight RF a tick,
+        // which is 320 RF and so one craft and 120 RF of the next one. Then it drinks the forty RF that are left in the
+        // buffer and is 40 RF short of finishing that second craft.
+        long fedRf = 40 * ELECTRIC_RF_PER_TICK;
+        long drained = buffer + fedRf;
+        float drainedProgress = (float) (drained % RF_PER_CRAFT) / RF_PER_CRAFT;
 
         helper.startSequence()
-                // Forty ticks of crafting off a small buffer, by which point the machine has done 80 RF of the craft.
+                // Forty ticks of crafting off a buffer too small to finish a craft from.
                 .thenIdle(40)
                 .thenExecute(() -> run.feeding = false)
-                // Then it drains the buffer and runs dry 180 RF into the 200 RF craft, with the bar stuck at nine tenths.
+                // Then it drains the buffer and runs dry 160 RF into the second craft, with the bar stuck at eight tenths.
                 .thenIdle(80)
                 .thenExecute(() -> {
                     helper.assertValueEqual(run.consumed, drained, "RF a half crafted recipe cost before the buffer ran out");
-                    helper.assertValueEqual(run.crafts(), 0L, "crafts of a machine that ran out of power part way through");
+                    helper.assertValueEqual(run.crafts(), 1L, "crafts of a machine that ran out of power part way through");
                     assertProgress(helper, run, drainedProgress, "progress of a machine that ran out of power");
                     run.frozen = run.consumed;
                     run.frozenProgress = run.crafter.getProgress();
@@ -138,14 +152,14 @@ public class MachineSpeedTests {
                 .thenIdle(200)
                 .thenExecute(() -> {
                     helper.assertValueEqual(run.consumed, run.frozen, "RF eaten by a machine whose buffer is empty");
-                    helper.assertValueEqual(run.crafts(), 0L, "crafts of a machine whose buffer is empty");
+                    helper.assertValueEqual(run.crafts(), 1L, "crafts of a machine whose buffer is empty");
                     assertProgress(helper, run, run.frozenProgress, "progress of a machine that has sat without power");
                     run.feeding = true;
                 })
-                // The 20 RF that were missing finish the craft within ten ticks, and the craft still costs its 200.
+                // The 40 RF that were missing finish the craft within five ticks, and the craft still costs its 200.
                 .thenIdle(30)
                 .thenExecute(() -> {
-                    helper.assertValueEqual(run.crafts(), 1L, "crafts of a machine that got its power back");
+                    helper.assertValueEqual(run.crafts(), 2L, "crafts of a machine that got its power back");
                     assertFirstCraftCost(helper, run);
                 })
                 .thenSucceed();

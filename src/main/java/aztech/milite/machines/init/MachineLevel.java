@@ -22,24 +22,24 @@ import java.util.Locale;
  */
 public enum MachineLevel implements StringRepresentable {
     BRONZE("bronze", 1),
-    STEEL("steel", 1),
-    ELECTRIC("electric", 1),
-    ALUMINUM("aluminum", 2),
-    STAINLESS_STEEL("stainless_steel", 4),
-    TITANIUM("titanium", 8),
-    IRIDIUM("iridium", 16);
+    STEEL("steel", 2),
+    ELECTRIC("electric", 4),
+    ALUMINUM("aluminum", 8),
+    STAINLESS_STEEL("stainless_steel", 16),
+    TITANIUM("titanium", 32),
+    IRIDIUM("iridium", 64);
 
     public static final Codec<MachineLevel> CODEC = StringRepresentable.fromEnum(MachineLevel::values);
 
     /**
-     * How many times faster than the reference level this level works.
+     * How many times faster than {@link #BRONZE} this level works, which doubles at every step of the ladder.
      *
      * <p>
-     * A recipe duration is written for the {@link #ELECTRIC} level, which is the reference machine: it is the first
-     * level that runs on RF, and the one every other level is compared against. A faster level finishes a recipe in
-     * {@code 1 / multiplier} of that duration by eating the multiplier times as much RF per tick, so the total RF of a
-     * craft is the same on every level. An {@link #IRIDIUM} machine therefore turns a sixteen tick recipe into one
-     * tick, and a two tick recipe into a single tick.
+     * A recipe duration is the number of ticks a {@link #BRONZE} machine takes over it, and every level above bronze
+     * finishes the recipe in {@code 1 / multiplier} of that time by eating the multiplier times as much RF per tick. The
+     * total RF of a craft therefore does not depend on the level, only how long it takes. An {@link #IRIDIUM} machine is
+     * sixty-four times as fast as a bronze one, which turns the hundred tick recipe most machines use into two ticks,
+     * and one tick with an overdrive module in it.
      */
     private final int speedMultiplier;
 
@@ -52,7 +52,7 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     /**
-     * @return how many times faster than the reference machine ({@link #ELECTRIC}) this level works, always at least 1
+     * @return how many times faster than a {@link #BRONZE} machine this level works, always at least 1
      */
     public int speedMultiplier() {
         return speedMultiplier;
