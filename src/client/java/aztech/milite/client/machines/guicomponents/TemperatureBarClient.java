@@ -22,7 +22,7 @@ public class TemperatureBarClient extends GuiComponentClient<TemperatureBar.Para
     }
 
     public class Renderer implements ClientComponentRenderer {
-        private final ResourceLocation TEXTURE = MI.id("textures/gui/efficiency_bar.png");
+        private final ResourceLocation TEXTURE = MI.id("textures/gui/temperature_bar.png");
         private final int WIDTH = 100, HEIGHT = 2;
 
         @Override
