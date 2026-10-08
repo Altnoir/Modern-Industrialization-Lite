@@ -1,1 +1,1 @@
-aztech.modern_industrialization.compat.kubejs.MIKubeJSPlugin
+aztech.milite.compat.kubejs.MIKubeJSPlugin

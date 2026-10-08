@@ -1,0 +1,105 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2026 Altnoir Null々
+ * Copyright (c) 2020 Azercoco & Technici4n
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+package aztech.milite.machines.blockentities.hatches;
+
+import aztech.milite.MIText;
+import aztech.milite.MITooltips;
+import aztech.milite.inventory.ConfigurableFluidStack;
+import aztech.milite.inventory.MIInventory;
+import aztech.milite.machines.BEP;
+import aztech.milite.machines.components.OrientationComponent;
+import aztech.milite.machines.gui.MachineGuiParameters;
+import aztech.milite.machines.guicomponents.AutoExtract;
+import aztech.milite.machines.multiblocks.HatchBlockEntity;
+import aztech.milite.machines.multiblocks.HatchType;
+import aztech.milite.machines.multiblocks.HatchTypes;
+import aztech.milite.util.FluidHelper;
+import java.util.List;
+import net.minecraft.network.chat.Component;
+
+public class FluidHatch extends HatchBlockEntity {
+    public FluidHatch(BEP bep, MachineGuiParameters guiParams, boolean input, boolean upgradesToSteel, MIInventory inventory) {
+        super(bep, guiParams, OrientationComponent.Params.noFacing(false, true));
+
+        this.input = input;
+        this.upgradesToSteel = upgradesToSteel;
+        this.inventory = inventory;
+
+        registerComponents(inventory);
+        registerGuiComponent(new AutoExtract(orientation, input));
+    }
+
+    private final boolean input;
+    private final boolean upgradesToSteel;
+    private final MIInventory inventory;
+
+    @Override
+    public HatchType getHatchType() {
+        return input ? HatchTypes.FLUID_INPUT : HatchTypes.FLUID_OUTPUT;
+    }
+
+    @Override
+    public boolean upgradesToSteel() {
+        return upgradesToSteel;
+    }
+
+    @Override
+    public MIInventory getInventory() {
+        return inventory;
+    }
+
+    @Override
+    public void appendFluidInputs(List<ConfigurableFluidStack> list) {
+        if (input) {
+            list.addAll(inventory.getFluidStacks());
+        }
+    }
+
+    @Override
+    public void appendFluidOutputs(List<ConfigurableFluidStack> list) {
+        if (!input) {
+            list.addAll(inventory.getFluidStacks());
+        }
+    }
+
+    @Override
+    protected void tickTransfer() {
+        if (orientation.extractFluids) {
+            if (input) {
+                inventory.autoInsertFluids(level, worldPosition, orientation.outputDirection);
+            } else {
+                inventory.autoExtractFluids(level, worldPosition, orientation.outputDirection);
+            }
+        }
+    }
+
+    @Override
+    public List<Component> getTooltips() {
+        return List.of(MITooltips.line(MIText.HatchCapacityFluid)
+                .arg(FluidHelper.getFluidAmountLarge(inventory.getFluidStacks().getFirst().getCapacity()), t -> t.setStyle(MITooltips.NUMBER_TEXT))
+                .build());
+    }
+}

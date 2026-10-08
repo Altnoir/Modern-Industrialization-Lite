@@ -1,0 +1,58 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2026 Altnoir Null々
+ * Copyright (c) 2020 Azercoco & Technici4n
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+package aztech.milite.network.machines;
+
+import aztech.milite.inventory.MoveRecipeHandler;
+import aztech.milite.network.BasePacket;
+import aztech.milite.network.MIStreamCodecs;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+
+public record MoveRecipePacket(int containedId, ResourceLocation recipeId, int fillAction, int amount) implements BasePacket {
+    public static final StreamCodec<ByteBuf, MoveRecipePacket> STREAM_CODEC = StreamCodec.composite(
+            MIStreamCodecs.BYTE,
+            MoveRecipePacket::containedId,
+            ResourceLocation.STREAM_CODEC,
+            MoveRecipePacket::recipeId,
+            MIStreamCodecs.BYTE,
+            MoveRecipePacket::fillAction,
+            ByteBufCodecs.INT,
+            MoveRecipePacket::amount,
+            MoveRecipePacket::new);
+
+    @Override
+    public void handle(Context ctx) {
+        ctx.assertOnServer();
+
+        AbstractContainerMenu menu = ctx.getPlayer().containerMenu;
+        if (menu.containerId == containedId && menu instanceof MoveRecipeHandler handler) {
+            handler.moveRecipe(recipeId, fillAction, amount);
+        }
+    }
+}

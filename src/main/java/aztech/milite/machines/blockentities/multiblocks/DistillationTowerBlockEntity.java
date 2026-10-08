@@ -1,0 +1,140 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2026 Altnoir Null々
+ * Copyright (c) 2020 Azercoco & Technici4n
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+package aztech.milite.machines.blockentities.multiblocks;
+
+import aztech.milite.MI;
+import aztech.milite.MIBlock;
+import aztech.milite.MIText;
+import aztech.milite.api.machine.holder.EnergyListComponentHolder;
+import aztech.milite.compat.rei.machines.ReiMachineRecipes;
+import aztech.milite.config.MIStartupConfig;
+import aztech.milite.machines.BEP;
+import aztech.milite.machines.components.OrientationComponent;
+import aztech.milite.machines.components.OverdriveComponent;
+import aztech.milite.machines.guicomponents.ShapeSelection;
+import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
+import aztech.milite.machines.init.MachineTier;
+import aztech.milite.machines.models.MachineCasings;
+import aztech.milite.machines.multiblocks.HatchFlags;
+import aztech.milite.machines.multiblocks.HatchTypes;
+import aztech.milite.machines.multiblocks.ShapeTemplate;
+import aztech.milite.machines.multiblocks.SimpleMember;
+import aztech.milite.machines.recipe.MachineRecipeType;
+import java.util.stream.IntStream;
+import net.minecraft.network.chat.Component;
+
+public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultiblockBlockEntity implements EnergyListComponentHolder {
+    private static final int MAX_HEIGHT = MIStartupConfig.INSTANCE.maxDistillationTowerHeight.getAsInt();
+    private static final ShapeTemplate[] shapeTemplates;
+
+    public DistillationTowerBlockEntity(BEP bep) {
+        super(bep, "distillation_tower", new OrientationComponent.Params(false, false, false), shapeTemplates);
+        this.overdrive = new OverdriveComponent();
+        this.registerComponents(overdrive);
+        registerGuiComponent(new SlotPanel(this)
+                .withRedstoneControl(redstoneControl)
+                .withOverdrive(overdrive));
+
+        registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
+            @Override
+            public void handleClick(int clickedLine, int delta) {
+                activeShape.incrementShape(DistillationTowerBlockEntity.this, delta);
+            }
+
+            @Override
+            public int getCurrentIndex(int line) {
+                return activeShape.getActiveShapeIndex();
+            }
+        }, new ShapeSelection.LineInfo(
+                IntStream.range(1, MAX_HEIGHT + 1).<Component>mapToObj(MIText.ShapeTextHeight::text).toList(),
+                false)));
+    }
+
+    private final OverdriveComponent overdrive;
+
+    @Override
+    public MachineRecipeType recipeType() {
+        return MIMachineRecipeTypes.DISTILLATION_TOWER;
+    }
+
+    @Override
+    public MachineLevel getMachineLevel() {
+        return MachineLevel.STAINLESS_STEEL;
+    }
+
+    @Override
+    public long getBaseRecipeEu() {
+        return MachineTier.MULTIBLOCK.getBaseEu();
+    }
+
+    @Override
+    public long getMaxRecipeEu() {
+        return MachineTier.MULTIBLOCK.getMaxEu();
+    }
+
+    @Override
+    public boolean isOverdriving() {
+        return overdrive.shouldOverdrive();
+    }
+
+    @Override
+    public int getMaxFluidOutputs() {
+        return activeShape.getActiveShapeIndex() + 1;
+    }
+
+    @Override
+    public ShapeTemplate getBigShape() {
+        return shapeTemplates[shapeTemplates.length - 1];
+    }
+
+    public static void registerReiShapes() {
+        for (int i = 0; i < shapeTemplates.length; ++i) {
+            ReiMachineRecipes.registerMultiblockShape("distillation_tower", shapeTemplates[i], "" + i);
+        }
+    }
+
+    static {
+        shapeTemplates = new ShapeTemplate[MAX_HEIGHT];
+
+        SimpleMember casing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("clean_stainless_steel_machine_casing")));
+        SimpleMember pipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("stainless_steel_machine_casing_pipe")));
+        HatchFlags bottom = new HatchFlags.Builder().with(HatchTypes.ENERGY_INPUT, HatchTypes.FLUID_INPUT).build();
+        HatchFlags layer = new HatchFlags.Builder().with(HatchTypes.FLUID_OUTPUT).build();
+        for (int i = 0; i < MAX_HEIGHT; ++i) {
+            ShapeTemplate.Builder builder = new ShapeTemplate.Builder(MachineCasings.CLEAN_STAINLESS_STEEL);
+            for (int y = 0; y <= i + 1; ++y) {
+                builder.add3by3(y, casing, y != 0, y == 0 ? bottom : layer);
+                if (y != 0) {
+                    builder.add(0, y, 1, pipe, null);
+
+                }
+            }
+            shapeTemplates[i] = builder.build();
+        }
+    }
+}
