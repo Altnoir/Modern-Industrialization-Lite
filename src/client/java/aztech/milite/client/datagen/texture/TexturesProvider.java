@@ -61,7 +61,8 @@ public record TexturesProvider(PackOutput packOutput, ExistingFileHelper existin
             var extra = FMLPaths.GAMEDIR.get().resolve("milite").resolve("extra_datagen_resources");
             packs.add(new FastPathPackResources(makePackInfo("extra"), extra));
         } else {
-            var nonGeneratedResources = packOutput.getOutputFolder().resolve("../../main/resources");
+            // PathPackResources resolves resources against <root>/<packType>/<namespace>
+            var nonGeneratedResources = packOutput.getOutputFolder().getParent().getParent().resolve("main/resources").normalize();
             packs.add(new FastPathPackResources(makePackInfo("nonGen"), nonGeneratedResources));
         }
 
@@ -73,30 +74,17 @@ public record TexturesProvider(PackOutput packOutput, ExistingFileHelper existin
                 .thenRunAsync(() -> CompletableFuture.allOf(jsonSaveFutures.toArray(CompletableFuture[]::new)), Util.backgroundExecutor());
     }
 
-    private CompletableFuture<?> generateTextures(CachedOutput cache, ResourceProvider fallbackResourceProvider,
+    private CompletableFuture<?> generateTextures(CachedOutput cache, ResourceProvider resourceProvider,
             Consumer<CompletableFuture<?>> futureList) {
-        // This is the order for texture fetching:
-        // - texture overrides (in the datagen output folder)
-        // - generated textures (also in the output folder)
-        // - user-provided resource packs
+        // Textures are fetched from, in this order:
+        // - the main resources tree, which holds the hand drawn textures
         // - MI and MC jar textures
-        var generatedResources = packOutput.getOutputFolder();
-        List<PackResources> generatedPack = List.of(new FastPathPackResources(makePackInfo("gen"), generatedResources));
-
-        var outputPack = new MultiPackResourceManager(PackType.CLIENT_RESOURCES, generatedPack);
+        // A texture that already exists there is left alone, see MITextures.generateMaterialTexture.
         return MITextures.offerTextures(
                 (image, textureId) -> writeTexture(cache, image, textureId),
                 (json, path) -> futureList.accept(customJsonSave(cache, json, path)),
-                resourceLocation -> {
-                    // Generated first
-                    var generated = outputPack.getResource(resourceLocation);
-                    if (generated.isPresent()) {
-                        return generated;
-                    }
-                    return fallbackResourceProvider.getResource(resourceLocation);
-                },
-                existingFileHelper)
-                .whenComplete((result, throwable) -> outputPack.close());
+                resourceProvider,
+                existingFileHelper);
     }
 
     private void writeTexture(CachedOutput cache, NativeImage image, String textureId) {

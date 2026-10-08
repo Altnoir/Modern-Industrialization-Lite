@@ -17,7 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceProvider;
 import net.minecraft.Util;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jspecify.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,18 +39,12 @@ public final class MITextures {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         Consumer<IORunnable> defer = r -> futures.add(CompletableFuture.runAsync(r::safeRun, Util.backgroundExecutor()));
 
+        // Material parts are hand drawn textures, they live in src/main/resources/assets/milite/textures. Only the parts that
+        // cannot be baked into a static texture are generated, which is why this visits every part but almost all of them are
+        // ignored by PartTextureGenerator.
         for (Material material : MaterialRegistry.getMaterials().values()) {
-            var meanRgb = material.get(MaterialProperty.MEAN_RGB);
-
-            if (meanRgb == 0) {
-                MI.LOGGER.error("Missing mean RGB for material {}", material.name);
-                continue;
-            }
-
-            Coloramp coloramp = new TabulatedColoramp(mtm, meanRgb, material.name);
-
             for (MaterialItemPart part : material.getParts().values()) {
-                defer.accept(() -> PartTextureGenerator.processPart(coloramp, mtm, material, part));
+                defer.accept(() -> PartTextureGenerator.processPart(mtm, material, part));
             }
         }
 
@@ -65,7 +58,7 @@ public final class MITextures {
                 MI.id("textures/block/steel_machine_casing.png")));
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasTextureOverride("milite:textures/item/mixed_ingot_blastproof.png")) {
+            if (!mtm.hasAsset("milite:textures/item/mixed_ingot_blastproof.png")) {
                 mtm.addTexture("milite:textures/item/mixed_ingot_blastproof.png",
                         TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/stainless_steel_ingot.png"),
                                 mtm.getAssetAsTexture("milite:textures/item/titanium_ingot.png"),
@@ -74,7 +67,7 @@ public final class MITextures {
         });
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasTextureOverride("milite:textures/item/mixed_plate_nuclear.png")) {
+            if (!mtm.hasAsset("milite:textures/item/mixed_plate_nuclear.png")) {
                 mtm.addTexture("milite:textures/item/mixed_plate_nuclear.png",
                         TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/cadmium_plate.png"),
                                 mtm.getAssetAsTexture("milite:textures/item/beryllium_plate.png"),
@@ -83,7 +76,7 @@ public final class MITextures {
         });
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasTextureOverride("milite:textures/item/mixed_ingot_iridium.png")) {
+            if (!mtm.hasAsset("milite:textures/item/mixed_ingot_iridium.png")) {
                 mtm.addTexture("milite:textures/item/mixed_ingot_iridium.png",
                         TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"),
                                 mtm.getAssetAsTexture("milite:textures/item/iridium_ingot.png"),
@@ -102,65 +95,43 @@ public final class MITextures {
                 .thenRun(() -> MI.LOGGER.info("I used the png to destroy the png."));
     }
 
-    private static String getTemplate(String materialSet, String part, String suffix) {
-        return String.format("milite:textures/materialsets/%s/%s%s.png", materialSet, part, suffix);
-    }
-
-    private static final String[] LAYERS = new String[] { "_underlay", "", "_overlay" };
-
     /**
-     * Colorize layer if necessary.
+     * Recolors a material set template with the material's coloramp and writes it into the generated resources.
+     * <p>
+     * Nothing is generated for a texture that already exists in the main tree: those are hand drawn, and the generated
+     * resources are put in front of them, so writing one would replace the art.
+     *
+     * @param materialSet the material set whose template folder is searched first, {@code common} is the fallback
+     * @param part        the template name, a {@code folder/name} pair for the templates that live in a subfolder
      */
-    private static void colorizeLayer(NativeImage image, String layer, Coloramp coloramp) {
-        if (layer.equals("")) {
-            TextureHelper.colorize(image, coloramp);
-        }
-    }
-
-    public static void generateItemPartTexture(TextureManager mtm, String partTemplate, @Nullable String overlay, String materialSet, String path,
-            boolean isBlock, Coloramp coloramp) {
+    public static void generateMaterialTexture(TextureManager mtm, String materialSet, String part, String path, boolean isBlock,
+            Coloramp coloramp) {
         String outputPath = String.format("milite:textures/%s/%s.png", isBlock ? "block" : "item", path);
-        if (mtm.hasTextureOverride(outputPath)) {
+        if (mtm.hasAsset(outputPath)) {
             return;
         }
 
         try {
-            NativeImage texture = generateTexture(mtm, partTemplate, materialSet, coloramp);
-
-            if (overlay != null) {
-                String overlayTemplate = getTemplate("common", overlay, "");
-                NativeImage overlayTexture = mtm.getAssetAsTexture(overlayTemplate);
-                NativeImage oldTexture = texture;
-                texture = TextureHelper.blend(oldTexture, overlayTexture);
-                oldTexture.close();
-                overlayTexture.close();
+            NativeImage texture = generateTexture(mtm, materialSet, part, coloramp);
+            if (texture == null) {
+                throw new IOException("Could not find any texture for " + part);
             }
-
-            appendTexture(mtm, texture, path, isBlock);
+            mtm.addTexture(outputPath, texture);
             texture.close();
         } catch (Throwable throwable) {
-            logTextureGenerationError(throwable, path, materialSet, partTemplate);
+            MI.LOGGER.warn(String.format("Failed to generate texture for path %s, material set %s, partTemplate %s", path, materialSet,
+                    part), throwable);
         }
     }
 
-    public static void generateItemPartTexture(TextureManager mtm, String partTemplate, String materialSet, String path, boolean isBlock,
-            Coloramp coloramp) {
-        generateItemPartTexture(mtm, partTemplate, null, materialSet, path, isBlock, coloramp);
-    }
-
-    public static void logTextureGenerationError(Throwable throwable, String path, String materialSet, String part) {
-        MI.LOGGER.warn(
-                String.format("Failed to generate item part texture for path %s, material set %s, partTemplate %s", path, materialSet, part),
-                throwable);
-    }
-
-    public static NativeImage generateTexture(TextureManager mtm, String partTemplate, String materialSet, Coloramp coloramp) throws IOException {
+    private static NativeImage generateTexture(TextureManager mtm, String materialSet, String part, Coloramp coloramp)
+            throws IOException {
         NativeImage image = null;
+        boolean explicitPath = part.startsWith("materialsets/");
         for (String layer : LAYERS) {
-            String template;
-            template = getTemplate(materialSet, partTemplate, layer);
+            String template = getTemplate(materialSet, explicitPath, part, layer);
             if (!mtm.hasAsset(template)) {
-                template = getTemplate("common", partTemplate, layer);
+                template = getTemplate("common", explicitPath, part, layer);
             }
 
             if (mtm.hasAsset(template)) {
@@ -180,52 +151,25 @@ public final class MITextures {
         return image;
     }
 
-    public static void appendTexture(TextureManager mtm, NativeImage texture, String path, boolean isBlock) throws IOException {
-        if (texture != null) {
-            String texturePath;
-            if (isBlock) {
-                texturePath = String.format("milite:textures/block/%s.png", path);
-            } else {
-                texturePath = String.format("milite:textures/item/%s.png", path);
-            }
-            mtm.addTexture(texturePath, texture);
-            texture.close();
-        } else {
-            throw new RuntimeException("Could not find any texture!");
+    private static String getTemplate(String materialSet, boolean explicitPath, String part, String suffix) {
+        String template = explicitPath ? part : "materialsets/" + materialSet + "/" + part;
+        return String.format("milite:textures/%s%s.png", template, suffix);
+    }
+
+    private static final String[] LAYERS = new String[] { "_underlay", "", "_overlay" };
+
+    /**
+     * Colorize layer if necessary.
+     */
+    private static void colorizeLayer(NativeImage image, String layer, Coloramp coloramp) {
+        if (layer.equals("")) {
+            TextureHelper.colorize(image, coloramp);
         }
     }
 
-    public static void generateDoubleIngot(TextureManager mtm, String materialName) throws IOException {
-        String itemPath = materialName + "_double_ingot";
-        if (mtm.hasTextureOverride(String.format("milite:textures/item/%s.png", itemPath))) {
-            return;
-        }
-
-        String ingotTexture = String.format("milite:textures/item/%s_ingot.png", materialName);
-        if (materialName.equals("gold") || materialName.equals("iron") || materialName.equals("copper")) {
-            ingotTexture = String.format("minecraft:textures/item/%s_ingot.png", materialName);
-        }
-        NativeImage image = mtm.getAssetAsTexture(ingotTexture);
-        TextureHelper.doubleIngot(image);
-        mtm.addTexture(String.format("milite:textures/item/%s.png", itemPath), image);
-        image.close();
-    }
-
-    public static void casingFromTexture(TextureManager tm, String casing, NativeImage texture) {
-        for (String side : new String[] { "top", "side", "bottom" }) {
-
-            try {
-                String s = String.format("milite:textures/block/casings/%s/%s.png", casing, side);
-                tm.addTexture(s, TextureHelper.copy(texture));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void casingFromTextureBricked(TextureManager tm, MachineCasing casing, ResourceLocation topTexturePath) {
+    private static void casingFromTextureBricked(TextureManager tm, MachineCasing casing, ResourceLocation topTexturePath) {
         String outputPath = String.format("%s:textures/block/casings/%s.png", casing.key.getNamespace(), casing.key.getPath());
-        if (tm.hasTextureOverride(outputPath)) {
+        if (tm.hasAsset(outputPath)) {
             return;
         }
 
@@ -258,7 +202,7 @@ public final class MITextures {
         Coloramp fluidColoramp = new TabulatedColoramp(fluid.color);
 
         // Bucket
-        if (!tm.hasTextureOverride(String.format("milite:textures/item/%s_bucket.png", fluid.path()))) {
+        if (!tm.hasAsset(String.format("milite:textures/item/%s_bucket.png", fluid.path()))) {
             try {
                 NativeImage bucket_image = tm.getAssetAsTexture(bucket);
                 NativeImage bucket_content_image = tm.getAssetAsTexture(bucket_content);
@@ -279,7 +223,7 @@ public final class MITextures {
 
         String pathFluid = path + String.format("template/%s.png", fluid.fluidTexture.path);
 
-        if (!tm.hasTextureOverride(String.format("milite:textures/fluid/%s_still.png", fluid.path()))) {
+        if (!tm.hasAsset(String.format("milite:textures/fluid/%s_still.png", fluid.path()))) {
             try {
                 NativeImage fluidAnim = tm.getAssetAsTexture(pathFluid);
                 TextureHelper.colorize(fluidAnim, fluidColoramp);

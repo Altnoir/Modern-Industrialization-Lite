@@ -10,11 +10,14 @@ import net.minecraft.server.packs.resources.IoSupplier;
 import org.jspecify.annotations.Nullable;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A PathPackResources that uses {@link File#exists()} instead of {@link Files#exists} with the default FS.
@@ -32,6 +35,24 @@ public class FastPathPackResources extends PathPackResources {
     public IoSupplier<InputStream> getResource(PackType packType, ResourceLocation location) {
         Path path = this.root.resolve(packType.getDirectory()).resolve(location.getNamespace());
         return getResource(location, path);
+    }
+
+    /**
+     * The inherited implementation looks for a ".mcassetsroot" marker instead of listing the directory, which never exists in
+     * a plain resource folder, so a pack built on one would report no namespace at all.
+     */
+    @Override
+    public Set<String> getNamespaces(PackType packType) {
+        var namespaces = new java.util.HashSet<String>();
+        if (Files.exists(this.root.resolve(packType.getDirectory()).resolve(".mcassetsroot"))) {
+            namespaces.add("minecraft");
+        }
+        try (var stream = Files.list(this.root.resolve(packType.getDirectory()))) {
+            stream.filter(Files::isDirectory).map(p -> p.getFileName().toString()).forEach(namespaces::add);
+        } catch (IOException e) {
+            LogUtils.getLogger().error("Cannot list the namespaces of {}", this.root, e);
+        }
+        return namespaces;
     }
 
     public static IoSupplier<InputStream> getResource(ResourceLocation location, Path path) {

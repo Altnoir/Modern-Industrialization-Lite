@@ -42,10 +42,6 @@ public class RuntimeDataGen {
                 .resolve("assets")
                 .resolve("milite")
                 .resolve("textures"));
-        Files.createDirectories(datagenOverridesFolder
-                .resolve("assets")
-                .resolve("milite")
-                .resolve("datagen_texture_overrides"));
 
         var dataOutput = miFolder.resolve("runtime_datagen");
 

@@ -39,15 +39,6 @@ public class TextureManager {
         return rm.getResource(ResourceLocation.parse(asset)).isPresent();
     }
 
-    public boolean hasTextureOverride(String textureId) {
-        if (!textureId.contains(":textures/")) {
-            throw new IllegalArgumentException("Invalid texture location: " + textureId);
-        }
-
-        String overrideId = textureId.replace(":textures/", ":datagen_texture_overrides/");
-        return rm.getResource(ResourceLocation.parse(overrideId)).isPresent();
-    }
-
     public NativeImage getAssetAsTexture(String textureId) throws IOException {
         var resource = rm.getResource(ResourceLocation.parse(textureId));
         if (resource.isPresent()) {
@@ -67,27 +58,12 @@ public class TextureManager {
     }
 
     public void addTexture(String textureId, NativeImage image, boolean closeImage) throws IOException {
-        // The texture adding logic is as follows:
-        // - if there is an override, we copy the override over to the output
-        // - otherwise, we write the texture to the output
+        // Every caller checks hasAsset first, so a texture that already exists in the main tree is never replaced.
         if (!textureId.contains(":textures/")) {
             throw new IllegalArgumentException("Invalid texture location: " + textureId);
         }
 
-        Optional<Resource> overrideResource = hasTextureOverride(textureId)
-                ? rm.getResource(ResourceLocation.parse(textureId.replace(":textures/", ":datagen_texture_overrides/")))
-                : Optional.empty();
-
-        if (overrideResource.isPresent()) {
-            // Copy the override over
-            try (var stream = overrideResource.get().open();
-                    var overrideImage = NativeImage.read(stream)) {
-                textureWriter.accept(overrideImage, textureId);
-            }
-        } else {
-            // Write generated texture
-            textureWriter.accept(image, textureId);
-        }
+        textureWriter.accept(image, textureId);
 
         generatedTextures.add(textureId.replace(":textures/", ":"));
 
