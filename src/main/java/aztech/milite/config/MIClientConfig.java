@@ -21,7 +21,6 @@ public final class MIClientConfig {
     public final ModConfigSpec.IntValue maxMultiblockHighlightOverlayRange;
     public final ModConfigSpec.BooleanValue interMachineConnectedTextures;
 
-    public final ModConfigSpec.BooleanValue fuelTooltips;
     public final ModConfigSpec.BooleanValue itemTagTooltips;
     public final ModConfigSpec.BooleanValue defaultOreGenTooltips;
 
@@ -57,10 +56,6 @@ public final class MIClientConfig {
         builder.popSection();
 
         builder.pushSection("tooltips", "Tooltips");
-        this.fuelTooltips = builder.start("fuelTooltips",
-                "Fuel tooltips",
-                "Add the total FE value of fuel items to their tooltips.")
-                .define("fuelTooltips", true);
         this.itemTagTooltips = builder.start("itemTagTooltips",
                 "Item tag tooltips",
                 "Add item tags to item tooltips.")

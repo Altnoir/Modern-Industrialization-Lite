@@ -59,7 +59,6 @@ import aztech.milite.datagen.model.DelegatingModelBuilder;
 import aztech.milite.items.RedstoneControlModuleItem;
 import aztech.milite.items.SteamDrillItem;
 import aztech.milite.machines.blockentities.multiblocks.LargeTankMultiblockBlockEntity;
-import aztech.milite.machines.components.FuelBurningComponent;
 import aztech.milite.machines.MachineBlock;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
@@ -127,20 +126,6 @@ public class MIClient {
         });
         NeoForge.EVENT_BUS.addListener(ItemTooltipEvent.class, event -> {
             MITooltips.attachTooltip(event.getItemStack(), event.getToolTip());
-
-            // Apparently tooltips are accessed from the main menu, or something, hence the
-            // != null check
-            if (Minecraft.getInstance().level != null && MIClientConfig.INSTANCE.fuelTooltips.getAsBoolean()) {
-                try {
-                    int fuelTime = event.getItemStack().getBurnTime(null);
-                    if (fuelTime > 0) {
-                        long totalFe = fuelTime * FuelBurningComponent.FE_PER_BURN_TICK;
-                        event.getToolTip().add(new MITooltips.Line(MIText.BaseFeTotalStored).arg(totalFe, MITooltips.FE_PARSER).build());
-                    }
-                } catch (Exception e) {
-                    MI.LOGGER.warn("Could not show MI fuel tooltip.", e);
-                }
-            }
 
             if (event.getFlags().isAdvanced() && MIClientConfig.INSTANCE.itemTagTooltips.getAsBoolean()) {
                 var ids = event.getItemStack().getTags().map(TagKey::location).sorted().toList();

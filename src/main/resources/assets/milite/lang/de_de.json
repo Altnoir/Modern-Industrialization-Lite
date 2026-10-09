@@ -775,7 +775,7 @@
   "tag.milite.forge_hammer_tools": "Schmiedehammer-Werkzeuge",
   "tag.milite.replicator_blacklist": "Replikator-Blacklist",
   "text.milite.AcceptAnyFluidFuels": "Verbraucht jeden flüssigen Brennstoff (Prüfe REI für die FE/mb-Produktion)",
-  "text.milite.AcceptAnyItemFuels": "Verbraucht jeden Ofenbrennstoff (Prüfe Gegenstandhinweistext für FE-Produktion)",
+  "text.milite.AcceptAnyItemFuels": "Verbraucht jeden Ofenbrennstoff",
   "text.milite.ClickToSeeRecipes": "Klicken, um Rezepte zu sehen",
   "text.milite.GeneratorCurrentFe": "Produktion: %s",
   "text.milite.GeneratorMaxFe": "Maximale Produktion: %s",
