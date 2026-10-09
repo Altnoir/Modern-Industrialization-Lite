@@ -61,6 +61,11 @@ public class MachineMenuServer extends MachineMenuCommon implements MoveRecipeHa
     }
 
     @Override
+    protected void markDirty() {
+        blockEntity.setChanged();
+    }
+
+    @Override
     public void readClientComponentSyncData(int componentIndex, RegistryFriendlyByteBuf buf) {
         throw new UnsupportedOperationException("Data can only be read on the client side!");
     }
