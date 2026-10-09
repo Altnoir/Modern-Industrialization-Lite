@@ -107,12 +107,9 @@ public class SteamHeaterComponent extends TemperatureComponent {
                     int waterToSteam = MIServerConfig.INSTANCE.steamPerWater.getAsInt();
                     // Round water consumption up
                     long waterToUse = (inserted - steamBuffer.getLong(steam) + waterToSteam - 1) / waterToSteam;
-                    // Extract water
                     long extracted = input.extractAllSlot(waterKey, waterToUse, tx);
-                    // Add to steam buffer
                     steamBuffer.mergeLong(steam, extracted * waterToSteam, Long::sum);
 
-                    // Produce steam
                     long producedSteam = output.insertAllSlot(steamKey, Math.min(steamProduction, steamBuffer.getLong(steam)), tx);
                     steamBuffer.mergeLong(steam, -producedSteam, Long::sum);
 

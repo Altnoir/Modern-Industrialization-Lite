@@ -46,33 +46,27 @@ public final class MIItem {
     // Guide book first so people read it!
     public static final ItemDefinition<GuideBookItem> GUIDE_BOOK = item("MI Guidebook", "guidebook", GuideBookItem::new, SortOrder.GUIDE_BOOK);
 
-    // Forge hammer, then the various hammers!
     public static final ItemDefinition<ForgeTool> IRON_HAMMER = itemHandheld("Iron Hammer", "iron_hammer", p -> new ForgeTool(Tiers.IRON, p), ITEMS_ORDERED.next());
     public static final ItemDefinition<ForgeTool> STEEL_HAMMER = itemHandheld("Steel Hammer", "steel_hammer", p -> new ForgeTool(ForgeTool.STEEL, p), ITEMS_ORDERED.next());
     public static final ItemDefinition<ForgeTool> DIAMOND_HAMMER = itemHandheld("Diamond Hammer", "diamond_hammer", p -> new ForgeTool(Tiers.DIAMOND, p), ITEMS_ORDERED.next());
     public static final ItemDefinition<ForgeTool> NETHERITE_HAMMER = itemHandheld("Netherite Hammer", "netherite_hammer", p -> new ForgeTool(Tiers.NETHERITE, p), ITEMS_ORDERED.next());
 
-    // Steam tier stuff
     public static final ItemDefinition<Item> RUBBER_SHEET = item("Rubber Sheet", "rubber_sheet", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PACKER_BLOCK_TEMPLATE = item("Packer Block Template", "packer_block_template", p -> new Item(p.rarity(Rarity.RARE).stacksTo(1)), ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PACKER_DOUBLE_INGOT_TEMPLATE = item("Packer Double Ingot Template", "packer_double_ingot_template", p -> new Item(p.rarity(Rarity.RARE).stacksTo(1)), ITEMS_ORDERED.next());
 
-    // Mechanical components: motors
     public static final ItemDefinition<Item> MOTOR = item("Motor", "motor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_MOTOR = item("Large Motor", "large_motor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ADVANCED_MOTOR = item("Advanced Motor", "advanced_motor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_ADVANCED_MOTOR = item("Large Advanced Motor", "large_advanced_motor", ITEMS_ORDERED.next());
-    // Mechanical components: pumps
     public static final ItemDefinition<Item> PUMP = item("Pump", "pump", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_PUMP = item("Large Pump", "large_pump", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ADVANCED_PUMP = item("Advanced Pump", "advanced_pump", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_ADVANCED_PUMP = item("Large Advanced Pump", "large_advanced_pump", ITEMS_ORDERED.next());
-    // Mechanical components: others
     public static final ItemDefinition<Item> PISTON = item("Piston", "piston", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> CONVEYOR = item("Conveyor", "conveyor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ROBOT_ARM = item("Robot Arm", "robot_arm", ITEMS_ORDERED.next());
 
-    // Circuits
     public static final ItemDefinition<Item> CIRCUIT_BOARD = item("Analog Circuit Board", "analog_circuit_board", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ANALOG_CIRCUIT = item("Analog Circuit", "analog_circuit", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ELECTRONIC_CIRCUIT_BOARD = item("Electronic Circuit Board", "electronic_circuit_board", ITEMS_ORDERED.next());
@@ -84,24 +78,20 @@ public final class MIItem {
     public static final ItemDefinition<Item> QUANTUM_CIRCUIT_BOARD = item("Quantum Circuit Board", "quantum_circuit_board", (p) -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> QUANTUM_CIRCUIT = item("Quantum Circuit", "quantum_circuit", (p) -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
 
-    // LV circuits
     public static final ItemDefinition<Item> RESISTOR = item("Resistor", "resistor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> CAPACITOR = item("Capacitor", "capacitor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> INDUCTOR = item("Inductor", "inductor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> WOOD_PULP = item("Wood Pulp", "wood_pulp", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> INVAR_ROTARY_BLADE = item("Invar Rotary Blade", "invar_rotary_blade", ITEMS_ORDERED.next());
 
-    // MV circuits
     public static final ItemDefinition<Item> DIODE = item("Diode", "diode", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> TRANSISTOR = item("Transistor", "transistor", ITEMS_ORDERED.next());
 
-    // HV circuits
     public static final ItemDefinition<Item> OP_AMP = item("Op Amp", "op_amp", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> AND_GATE = item("AND Gate", "and_gate", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> OR_GATE = item("OR Gate", "or_gate", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> NOT_GATE = item("NOT Gate", "not_gate", ITEMS_ORDERED.next());
 
-    // EV circuits
     public static final ItemDefinition<Item> AIR_INTAKE = item("Air Intake", "air_intake", p -> new Item(p.stacksTo(1)), ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> MONOCRYSTALLINE_SILICON = item("Monocrystalline Silicon", "monocrystalline_silicon", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> SILICON_WAFER = item("Silicon Wafer", "silicon_wafer", ITEMS_ORDERED.next());
@@ -121,7 +111,6 @@ public final class MIItem {
     public static final ItemDefinition<Item> STEEL_UPGRADE = item("Steel Upgrade", "steel_upgrade", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> QUANTUM_UPGRADE = item("Quantum Upgrade", "quantum_upgrade", (p) -> new Item(p.stacksTo(1).rarity(Rarity.RARE)), ITEMS_ORDERED.next());
 
-    // Tools
     public static final ItemDefinition<WrenchItem> WRENCH = itemNoModel("Wrench", "wrench", WrenchItem::new, ITEMS_ORDERED.next());
 
     public static final ItemDefinition<SteamDrillItem> STEAM_MINING_DRILL = itemHandheld("Steam Mining Drill", "steam_mining_drill", SteamDrillItem::new, ITEMS_ORDERED.next());
@@ -146,7 +135,6 @@ public final class MIItem {
                 });
             });
 
-    // Armor
     public static final ItemDefinition<ArmorItem> RUBBER_HELMET = item("Rubber Helmet", "rubber_helmet", s -> new ArmorItem(MIArmorMaterials.RUBBER, ArmorItem.Type.HELMET, s.stacksTo(1).durability(400)), ITEMS_ORDERED.next());
     public static final ItemDefinition<ArmorItem> RUBBER_BOOTS = item("Rubber Boots", "rubber_boots", s -> new ArmorItem(MIArmorMaterials.RUBBER, ArmorItem.Type.BOOTS, s.stacksTo(1).durability(400)), ITEMS_ORDERED.next());
     public static final ItemDefinition<JetpackItem> DIESEL_JETPACK = item("Diesel Jetpack", "diesel_jetpack", JetpackItem::new, ITEMS_ORDERED.next())
@@ -169,13 +157,11 @@ public final class MIItem {
     public static final ItemDefinition<QuantumArmorItem> QUANTUM_LEGGINGS = item("Quantum Leggings", "quantum_leggings", s -> new QuantumArmorItem(ArmorItem.Type.LEGGINGS, s), ITEMS_ORDERED.next());
     public static final ItemDefinition<QuantumArmorItem> QUANTUM_BOOTS = item("Quantum Boots", "quantum_boots", s -> new QuantumArmorItem(ArmorItem.Type.BOOTS, s), ITEMS_ORDERED.next());
 
-    // Material-like items
     public static final ItemDefinition<Item> UNCOOKED_STEEL_DUST = item("Uncooked Steel Dust", "uncooked_steel_dust", MATERIALS.and(MaterialProgression.rankOf("steel")));
     public static final ItemDefinition<Item> MIXED_INGOT_BLASTPROOF = item("Mixed Blastproof Ingot", "mixed_ingot_blastproof", MATERIALS.and(MaterialProgression.rankOf("blastproof_alloy")));
     public static final ItemDefinition<Item> MIXED_INGOT_IRIDIUM = item("Mixed Iridium Ingot", "mixed_ingot_iridium", s -> new Item(s.food(new FoodProperties.Builder().nutrition(20).saturationModifier(1).build())), MATERIALS.and(MaterialProgression.rankOf("iridium")));
     public static final ItemDefinition<Item> MIXED_PLATE_NUCLEAR = item("Nuclear Mixed Plate", "mixed_plate_nuclear", MATERIALS.and(MaterialProgression.rankOf("nuclear_alloy")));
 
-    // Others
     public static final ItemDefinition<Item> WAX = item("Wax", "wax", WaxItem::new, ITEMS_ORDERED.next());
     public static final ItemDefinition<NuclearComponentItem> SMALL_HEAT_EXCHANGER = NuclearComponentItem.of(
             "Small Heat Exchanger", "small_heat_exchanger",

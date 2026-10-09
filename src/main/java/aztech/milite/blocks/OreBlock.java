@@ -18,7 +18,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
-// An MIBlock that converts a book into the guide book when right clicked
 public class OreBlock extends Block {
     public final OrePart.OrePartParams params;
     public final String materialName;

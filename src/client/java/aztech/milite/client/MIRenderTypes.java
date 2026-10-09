@@ -32,7 +32,6 @@ public class MIRenderTypes {
         return TRANSLUCENT_HIGHLIGHT;
     }
 
-    // This is a subclass to get access to a bunch of fields and classes.
     // TODO: PR more transitive access wideners to fabric
     private static class Factory extends RenderType {
         private Factory(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int i, boolean bl, boolean bl2, Runnable runnable,

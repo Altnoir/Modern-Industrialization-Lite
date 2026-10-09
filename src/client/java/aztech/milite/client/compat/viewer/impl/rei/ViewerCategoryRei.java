@@ -269,10 +269,8 @@ class ViewerCategoryRei<D> implements DisplayCategory<ViewerCategoryRei<D>.Viewe
     public List<Widget> setupDisplay(ViewerDisplay display, Rectangle bounds) {
         List<Widget> widgets = new ArrayList<>();
 
-        // Recipe base
         widgets.add(Widgets.createRecipeBase(bounds));
 
-        // Extra widgets
         wrapped.buildWidgets(display.recipe, new ViewerCategory.WidgetList() {
             @Override
             public void text(Component text, float x, float y, ViewerCategory.TextAlign align, boolean shadow, boolean overrideColor,
@@ -328,7 +326,6 @@ class ViewerCategoryRei<D> implements DisplayCategory<ViewerCategoryRei<D>.Viewe
             public void scrollableSlots(int cols, int rows, List<SizedIngredient> ingredients) {}
         });
 
-        // Inputs and outputs
         {
             List<IngredientBuilder> inputs = new ArrayList<>();
             List<IngredientBuilder> outputs = new ArrayList<>();

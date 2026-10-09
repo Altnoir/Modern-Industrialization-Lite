@@ -21,7 +21,6 @@ class ForgeHammerRecipeHandler implements StandardRecipeHandler<ForgeHammerScree
         for (int i = 0; i < 36; ++i) {
             inputs.add(handler.getSlot(i));
         }
-        // Extra
         inputs.add(handler.input);
         inputs.add(handler.tool);
         return inputs;

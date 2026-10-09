@@ -57,17 +57,14 @@ public class MIBlock {
     }
 
     // @formatter:off
-    // Forge hammer
     public static final BlockDefinition<ForgeHammerBlock> FORGE_HAMMER = block("Forge Hammer", "forge_hammer",
             BlockDefinitionParams.defaultStone().withBlockConstructor(ForgeHammerBlock::new).sortOrder(SortOrder.FORGE_HAMMER).noModel().destroyTime(6.0f).explosionResistance(1200)
                     .sound(SoundType.ANVIL));
 
-    // Processing table, the early game machine crafting station
     public static final BlockDefinition<ProcessingTableBlock> PROCESSING_TABLE = block("Processing Table", "processing_table",
             BlockDefinitionParams.defaultStone().withBlockConstructor(ProcessingTableBlock::new).sortOrder(SortOrder.PROCESSING_TABLE).noModel()
                     .destroyTime(6.0f).explosionResistance(1200).sound(SoundType.WOOD));
 
-    // Bronze stuff
     public static final BlockDefinition<TrashCanBlock> TRASH_CAN = block("Automatic Trash Can", "trash_can",
             BlockDefinitionParams.defaultStone().withBlockConstructor(TrashCanBlock::new).destroyTime(6.0f).explosionResistance(1200).dontConductRedstone())
             .withBlockRegistrationEvent(TrashCanBlock::onRegister);
@@ -125,7 +122,6 @@ public class MIBlock {
     public static final BlockDefinition<CreativeStorageUnitBlock> CREATIVE_STORAGE_UNIT = block("Creative Storage Unit",
             "creative_storage_unit", BlockDefinitionParams.defaultStone().withBlockConstructor(CreativeStorageUnitBlock::new).dontConductRedstone());
 
-    // Materials
     public static final BlockDefinition<Block> BLOCK_FIRE_CLAY_BRICKS = block("Fire Clay Bricks", "fire_clay_bricks",
             BlockDefinitionParams.of(BlockBehaviour.Properties.of().mapColor(STONE)).sortOrder(SortOrder.MATERIALS.and(MaterialProgression.rankOf("fire_clay"))).destroyTime(2.0f).explosionResistance(6.0f).requiresCorrectToolForDrops());
 
@@ -178,8 +174,6 @@ public class MIBlock {
                 BlockDefinitionParams.of(
                                 BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).ignitedByLava().instabreak().sound(SoundType.GRASS))
                         .clearTags().noModel());
-
-        // TODO : Datagen model
     }
 
     public static class BlockDefinitionParams<T extends Block> {
@@ -307,7 +301,6 @@ public class MIBlock {
 
         public BlockDefinitionParams<T> noModel() {
             this.modelGenerator = (block, modelGenerator) -> modelGenerator.existingModelWithItem(block);
-            // still creating the blockstate
             return this;
         }
 
@@ -335,7 +328,6 @@ public class MIBlock {
             return this;
         }
 
-        // Bouncers to inner properties
         public BlockDefinitionParams<T> isValidSpawn(BlockBehaviour.StateArgumentPredicate<EntityType<?>> isValidSpawn) {
             this.props.isValidSpawn(isValidSpawn);
             return this;

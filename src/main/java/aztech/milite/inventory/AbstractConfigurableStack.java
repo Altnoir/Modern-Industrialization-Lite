@@ -213,9 +213,6 @@ public abstract class AbstractConfigurableStack<T, K extends TransferVariant<T>>
         return playerLockable;
     }
 
-    /**
-     * Lock range of stacks (without overriding existing locks).
-     */
     public static <T, K extends TransferVariant<T>> void playerLockNoOverride(T instance, long requiredAmount,
             List<? extends AbstractConfigurableStack<T, K>> stacks) {
         for (int iter = 0; iter < 2; ++iter) {

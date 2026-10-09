@@ -44,7 +44,6 @@ public class ShapedRecipeJson implements MIRecipeBuilder {
     }
 
     public void validate() {
-        // check pattern size
         if (pattern.length == 0 || pattern.length > 3) {
             throw new IllegalArgumentException("Invalid length " + pattern.length);
         }
@@ -53,7 +52,7 @@ public class ShapedRecipeJson implements MIRecipeBuilder {
                 throw new IllegalArgumentException("Pattern length mismatch: " + string.length() + ", expected " + pattern[0].length());
             }
         }
-        // check mapping
+
         for (String string : pattern) {
             for (int i = 0; i < string.length(); ++i) {
                 if (string.charAt(i) != ' ' && !key.containsKey(string.charAt(i))) {

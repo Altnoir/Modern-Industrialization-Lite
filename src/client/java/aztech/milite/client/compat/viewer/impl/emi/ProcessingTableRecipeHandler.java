@@ -21,7 +21,6 @@ class ProcessingTableRecipeHandler implements StandardRecipeHandler<ProcessingTa
         for (int i = 0; i < 36; ++i) {
             inputs.add(handler.getSlot(i));
         }
-        // Extra
         inputs.add(handler.leftInput);
         inputs.add(handler.keyInput);
         inputs.add(handler.rightInput);

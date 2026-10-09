@@ -22,7 +22,6 @@ public class SmeltingRecipeBuilder implements MaterialRecipeBuilder {
     public static void smeltAndBlast(MaterialBuilder.RecipeContext context, PartKeyProvider inputPart, PartKeyProvider outputPart,
             float experience) {
         if (context.hasInternalPart(inputPart) || context.hasInternalPart(outputPart)) {
-            // Skip if both are external, vanilla already has the recipe
             new SmeltingRecipeBuilder(context, inputPart, outputPart, experience, false);
             new SmeltingRecipeBuilder(context, inputPart, outputPart, experience, true);
         }

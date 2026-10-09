@@ -138,13 +138,6 @@ public abstract sealed class MachineComponentProvider<S, C>
                     var progressData = new ViewGroup<CompoundTag>(new ArrayList<>());
 
                     // TODO potentially add inventory information if the Jade API ever supports it
-//                    for (var stack : inventory.getItemInputs()) {
-//                        progressData.input(stack.toStack());
-//                    }
-//
-//                    for (var stack : inventory.getItemOutputs()) {
-//                        progressData.output(stack.toStack());
-//                    }
 
                     progressData.views.add(ProgressView.create(progress));
                     return List.of(progressData);

@@ -46,8 +46,6 @@ public class ProcessingTableScreen extends MIHandledScreen<ProcessingTableScreen
     @Override
     protected void renderSlot(GuiGraphics guiGraphics, Slot slot) {
         super.renderSlot(guiGraphics, slot);
-        // The slots are drawn with the pose already moved to the top left corner of the screen, so the raw slot
-        // position is what the X has to be drawn at. Drawing it after super keeps it over the slot background.
         if (!this.menu.areSideSlotsUnlocked() && (slot == this.menu.leftInput || slot == this.menu.rightInput)) {
             guiGraphics.blit(PROCESSING_TABLE_GUI, slot.x - 1, slot.y - 1, LOCKED_SLOT_U, LOCKED_SLOT_V, SLOT_SIZE, SLOT_SIZE);
         }

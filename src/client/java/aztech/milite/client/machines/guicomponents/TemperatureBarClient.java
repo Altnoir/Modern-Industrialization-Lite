@@ -27,7 +27,6 @@ public class TemperatureBarClient extends GuiComponentClient<TemperatureBar.Para
 
         @Override
         public void renderBackground(GuiGraphics guiGraphics, int x, int y) {
-            // background
             guiGraphics.blit(TEXTURE, x + params.renderX() - 1, y + params.renderY() - 1, 0, 2,
                     WIDTH + 2, HEIGHT + 2, 102, 6);
             int barPixels = (int) ((float) data / params.temperatureMax() * WIDTH);

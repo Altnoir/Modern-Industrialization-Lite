@@ -31,7 +31,6 @@ import java.util.Objects;
  * not a cable voltage.
  */
 public final class CableTier implements Comparable<CableTier> {
-    // static references
     public static CableTier ELECTRIC = new CableTier("electric", "Electric", "Low Voltage", 32, null);
     public static CableTier ALUMINUM = new CableTier("aluminum", "Aluminum", "Medium Voltage", 128,
             MIBlockKeys.ALUMINUM_MACHINE_HULL);
@@ -119,7 +118,6 @@ public final class CableTier implements Comparable<CableTier> {
         return name;
     }
 
-    // "registry" of name -> instance.
     private final static Map<String, CableTier> tiers = new HashMap<>();
     private final static Map<String, String> LEGACY_NAMES = Map.of("lv", "electric", "mv", "aluminum", "hv",
             "stainless_steel", "ev", "titanium", "superconductor", "iridium");

@@ -116,9 +116,7 @@ public class MachineBakedModel implements IDynamicBakedModel {
         var vc = new QuadBakingVertexConsumer();
 
         if (side != null) {
-            // Casing
             quads.addAll(getCasingModel(casing).getQuads(state, side, rand, extraData, renderType));
-            // Machine overlays
             if (!noOverlayOnOutputSide || side != data.outputDirection) {
                 // Draw the "front" texture on the north side if the machine has no facing
                 var facingDirection = Objects.requireNonNullElse(data.frontDirection, Direction.NORTH);
@@ -129,7 +127,6 @@ public class MachineBakedModel implements IDynamicBakedModel {
             }
         }
 
-        // Output overlays
         if (data.outputDirection != null && side == data.outputDirection) {
             if (sprites[24] != null) {
                 quads.add(ModelHelper.bakeSprite(vc, data.outputDirection, sprites[24], -3 * Z_OFFSET));

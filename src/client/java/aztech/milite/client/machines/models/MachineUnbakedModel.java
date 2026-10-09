@@ -74,7 +74,6 @@ public class MachineUnbakedModel implements IUnbakedGeometry<MachineUnbakedModel
     }
 
     private static class OverlaysJson {
-        // All fields are nullable.
         private @Nullable ResourceLocation top;
         private @Nullable ResourceLocation top_active;
         private @Nullable ResourceLocation side;

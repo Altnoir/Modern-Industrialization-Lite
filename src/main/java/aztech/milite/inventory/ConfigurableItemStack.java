@@ -22,9 +22,6 @@ import java.util.function.Predicate;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * An item stack that can be configured.
- */
 public class ConfigurableItemStack extends AbstractConfigurableStack<Item, ItemVariant> implements ItemAccess {
     private int adjustedCapacity = 64;
 
@@ -138,9 +135,6 @@ public class ConfigurableItemStack extends AbstractConfigurableStack<Item, ItemV
         return Math.min(ItemVariant.of(instance).getMaxStackSize(), adjustedCapacity);
     }
 
-    /**
-     * Create a copy of a list of configurable fluid stacks.
-     */
     public static ArrayList<ConfigurableItemStack> copyList(List<ConfigurableItemStack> list) {
         ArrayList<ConfigurableItemStack> copy = new ArrayList<>(list.size());
         for (ConfigurableItemStack stack : list) {

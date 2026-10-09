@@ -124,7 +124,6 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
         inputs.removeIf(b -> b.ing.isEmpty());
         outputs.removeIf(b -> b.ing.isEmpty());
 
-        // Separate catalysts
         List<IngredientBuilder> catalysts = inputs.stream().filter(b -> b.isCatalyst).toList();
         inputs.removeIf(b -> b.isCatalyst);
 
@@ -136,7 +135,6 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
     }
 
     private static List<EmiStack> convertOutputs(List<IngredientBuilder> list) {
-        // A bit cursed... but we know that there's always one stack per output ;)
         return list.stream().flatMap(b -> b.ing.getEmiStacks().stream()).toList();
     }
 
@@ -277,7 +275,6 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
 
         @Override
         public void addWidgets(WidgetHolder widgets) {
-            // Extra widgets
             wrapped.buildWidgets(recipe, new ViewerCategory.WidgetList() {
                 @Override
                 public void text(Component text, float x, float y, ViewerCategory.TextAlign align, boolean shadow, boolean overrideColor,
@@ -376,7 +373,6 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
                 }
             });
 
-            // Inputs and outputs
             {
                 List<IngredientBuilder> inputs = new ArrayList<>();
                 List<IngredientBuilder> outputs = new ArrayList<>();

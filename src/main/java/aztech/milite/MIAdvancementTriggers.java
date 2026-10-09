@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 public final class MIAdvancementTriggers {
     private MIAdvancementTriggers() {}
 
-    // Triggers
     private static final DeferredRegister<CriterionTrigger<?>> DR = DeferredRegister.create(Registries.TRIGGER_TYPE, MI.ID);
 
     public static final Supplier<PlayerTrigger> PLAYER_LOGGED_IN = DR.register("player_logged_in", PlayerTrigger::new);

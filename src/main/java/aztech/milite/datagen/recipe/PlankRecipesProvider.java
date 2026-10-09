@@ -50,8 +50,6 @@ public final class PlankRecipesProvider extends MIRecipesProvider {
 
         slab.offerTo(consumer, "cutting_machine/slabs/" + prefix);
 
-        // packer
-
         var packedWood = new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100).addItemInput("minecraft:" + prefix + "_" + suffix, 4)
                 .addItemOutput("minecraft:" + prefix + "_" + packedSuffix, 3);
         packedWood.offerTo(consumer, "packer/wood/" + prefix);

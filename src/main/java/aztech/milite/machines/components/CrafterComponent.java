@@ -770,7 +770,6 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     public void lockRecipe(ResourceLocation recipeId, net.minecraft.world.entity.player.Inventory inventory) {
-        // Find MachineRecipe
         Optional<RecipeHolder<MachineRecipe>> optionalMachineRecipe = behavior.recipeTypes().stream()
                 .flatMap(recipeType -> recipeType.getRecipesWithCache(behavior.getCrafterWorld()).stream())
                 .filter(recipe -> recipe.id().equals(recipeId)).findFirst();
@@ -806,7 +805,6 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
                                 return item;
                             }
                         }
-                        // If there are items in the tag, pick the first one
                         if (!inputItems.isEmpty()) {
                             return inputItems.get(0);
                         }
@@ -844,7 +842,6 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
                                 return fluid;
                             }
                         }
-                        // If there are fluids in the tag, pick the first one
                         if (!inputFluids.isEmpty()) {
                             return inputFluids.get(0);
                         }

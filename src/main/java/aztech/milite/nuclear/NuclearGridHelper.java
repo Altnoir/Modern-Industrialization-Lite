@@ -121,7 +121,6 @@ public class NuclearGridHelper {
 
         // HEAT
 
-        // Cache heat transfer coefficients
         double[][] heatTransferCoeff = new double[grid.getSizeX()][grid.getSizeY()];
         for (int i = 0; i < sizeX; ++i) {
             for (int j = 0; j < sizeY; ++j) {

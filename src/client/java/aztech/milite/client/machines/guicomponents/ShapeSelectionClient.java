@@ -23,7 +23,6 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
 
     @Override
     public ClientComponentRenderer createRenderer(MachineScreen machineScreen) {
-        // Compute the max width of all the components!
         int maxWidth = 1;
         for (var line : params) {
             for (var tooltip : line.translations()) {

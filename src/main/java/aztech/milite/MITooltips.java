@@ -46,7 +46,6 @@ public class MITooltips {
     private static final Map<Class<?>, Style> DEFAULT_ARGUMENT_STYLE = new HashMap<>();
 
     public static int colorFromProgress(double progress, boolean zeroIsGreen) {
-        // clip to [0, 1]
         progress = Math.max(0, Math.min(1, progress));
         if (!zeroIsGreen) {
             progress = 1 - progress;
@@ -82,8 +81,6 @@ public class MITooltips {
             }
         }
     }
-
-    // Parser
 
     public static final Parser<Object> DEFAULT_PARSER = new Parser<>() {
         @Override
@@ -188,7 +185,6 @@ public class MITooltips {
 
     public static final Parser<Component> COMPONENT = state -> state;
 
-    // Data-driven tooltips
     public static final TooltipAttachment DATA_DRIVEN = TooltipAttachment.ofMultilines((stack, item) -> {
         var dataMap = stack.getItemHolder().getData(MIDataMaps.ITEM_TOOLTIPS);
         if (dataMap != null) {
@@ -197,8 +193,6 @@ public class MITooltips {
             return List.of();
         }
     }).setPriority(-100);
-
-    // Tooltips
 
     public static final TooltipAttachment BATTERIES = TooltipAttachment.of(
             (itemStack, item) -> {
@@ -339,8 +333,6 @@ public class MITooltips {
                 return tier == null ? Optional.empty()
                         : Optional.of(new Line(MIText.MachineCasingVoltage).arg(Component.translatable(tier.shortEnglishKey())).build());
             });
-
-    // Long Tooltip with only text, no need of MIText
 
     public static final Map<String, String> TOOLTIPS_ENGLISH_TRANSLATION = new HashMap<>();
 

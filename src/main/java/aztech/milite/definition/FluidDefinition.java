@@ -47,7 +47,7 @@ public class FluidDefinition extends Definition implements FluidLike {
                     var props = FluidType.Properties.create()
                             .descriptionId(fluidBlock.get().getDescriptionId());
                     if (isGas) {
-                        props.density(-1000); // Make it lighter than air!
+                        props.density(-1000);
                     }
                     return new MIFluidType(fluidBlock, props);
                 });

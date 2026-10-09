@@ -68,14 +68,12 @@ public class MachineOverlay {
         } else if (shapeDirections.size() == 3) {
             return hitFace.getOpposite(); // corner
         } else {
-            // one of the sides. There are 2 directions, so it must be the other one
             for (Direction direction : shapeDirections) {
                 if (direction != hitFace) {
                     return direction;
                 }
             }
         }
-        // hit from inside of machine - default to center
         return hitFace;
     }
 

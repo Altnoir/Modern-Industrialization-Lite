@@ -22,7 +22,6 @@ import net.neoforged.neoforge.common.Tags;
  */
 public final class StandardRecipes {
     public static void apply(MaterialBuilder.RecipeContext ctx) {
-        // CRAFTING
         add3By3Crafting(ctx, TINY_DUST, DUST, true);
         add3By3Crafting(ctx, NUGGET, INGOT, true);
         add3By3Crafting(ctx, ctx.get(MAIN_PART), BLOCK, false); // Not in packer due to conflicts with double ingots.
@@ -62,7 +61,6 @@ public final class StandardRecipes {
         new ShapedRecipeBuilder(ctx, DRILL_HEAD, 1, "drill_head", "bcp", "GRc", "bGb").addTaggedPart('G', GEAR).addPart('b', BOLT)
                 .addTaggedPart('c', PLATE).addTaggedPart('R', ROD).addTaggedPart('p', PLATE);
 
-        // MACERATOR
         addMaceratorRecycling(ctx, DOUBLE_INGOT, 18);
         addMaceratorRecycling(ctx, PLATE, 9);
         addMaceratorRecycling(ctx, NUGGET, 1);
@@ -88,15 +86,12 @@ public final class StandardRecipes {
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.MACERATOR, "raw_metal", 2, (int) (100 * ctx.get(HARDNESS).timeFactor))
                 .addTaggedPartInput(RAW_METAL, 1)
                 .addPartOutput(DUST, 1).addPartOutput(DUST, 1, 0.5f);
-        // COMPRESSOR
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "main").addTaggedPartInput(ctx.get(MAIN_PART), 1).addPartOutput(PLATE, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "double_ingot").addTaggedPartInput(DOUBLE_INGOT, 1).addPartOutput(PLATE, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "ring").addTaggedPartInput(ROD, 1).addPartOutput(RING, 1);
-        // CUTTING MACHINE
         addCuttingMachine(ctx, "main", ctx.get(MAIN_PART), ROD, 2);
         addCuttingMachine(ctx, "double_ingot", DOUBLE_INGOT, ROD, 4);
         addCuttingMachine(ctx, "rod", ROD, BOLT, 2);
-        // PACKER
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.PACKER, "block").addTaggedPartInput(ctx.get(MAIN_PART), 9)
                 .addItemInput(MIItem.PACKER_BLOCK_TEMPLATE, 1, 0.0f).addPartOutput(BLOCK, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.PACKER, "double_ingot").addTaggedPartInput(INGOT, 2)
@@ -109,12 +104,9 @@ public final class StandardRecipes {
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.PACKER, "fuel_rod_quad").addItemInput("#c:plates/nuclear_alloy", 2)
                 .addPartInput(FUEL_ROD_DOUBLE, 2)
                 .addPartOutput(FUEL_ROD_QUAD, 1);
-        // UNPACKER
 
-        // WIREMILL
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.WIREMILL, "wire").addTaggedPartInput(PLATE, 1).addPartOutput(WIRE, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.WIREMILL, "fine_wire").addTaggedPartInput(WIRE, 1).addPartOutput(FINE_WIRE, 4);
-        // EXTRA ASSEMBLER
         // These use the default energy of two, but the assembler only exists as an electric machine, so they still
         // belong to the electric level and have to say so.
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "rotor").level(MachineLevel.ELECTRIC)
@@ -134,7 +126,6 @@ public final class StandardRecipes {
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 500).addFluidInput(MIFluids.HELIUM, 100)
                 .addPartOutput(FUEL_ROD, 1);
 
-        // HEAT EXCHANGER
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.HEAT_EXCHANGER, "hot_ingot", 8, 10).addPartInput(HOT_INGOT, 1)
                 .addFluidInput(MIFluids.CRYOFLUID, 20)
                 .addPartOutput(INGOT, 1).addFluidOutput(MIFluids.ARGON, 13).addFluidOutput(MIFluids.HELIUM, 5);
@@ -170,7 +161,6 @@ public final class StandardRecipes {
      */
     private static void add3By3Crafting(MaterialBuilder.RecipeContext ctx, PartKeyProvider smallPart, PartKeyProvider bigPart, boolean packer) {
         if (ctx.hasInternalPart(smallPart) || ctx.hasInternalPart(bigPart)) {
-            // Don't add recipe if it's all external (vanilla already has it)
             new ShapedRecipeBuilder(ctx, bigPart, 1, bigPart.key() + "_from_" + smallPart.key(), "xxx", "xyx", "xxx")
                     .addPart('y', smallPart)
                     .addTaggedPart('x', smallPart);

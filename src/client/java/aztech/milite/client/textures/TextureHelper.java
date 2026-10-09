@@ -128,11 +128,9 @@ public class TextureHelper {
             int hFactor = maxHeight / image.getHeight();
 
             if (wFactor == 1 && hFactor == 1) {
-                // Correct size, nothing to do!
                 continue;
             }
 
-            // Create a new image.
             NativeImage newImage = new NativeImage(maxWidth, maxHeight, false);
 
             for (int i = 0; i < maxWidth; ++i) {
@@ -149,7 +147,6 @@ public class TextureHelper {
      * Blend top on top of source, return the result.
      */
     public static NativeImage blend(NativeImage originalSource, NativeImage originalTop) {
-        // Adjust dimensions
         List<NativeImage> images = Arrays.asList(originalSource, originalTop);
         adjustDimensions(images);
         NativeImage source = images.get(0), top = images.get(1);
@@ -178,7 +175,6 @@ public class TextureHelper {
     }
 
     public static NativeImage tripleTexture(NativeImage im1, NativeImage im2, NativeImage im3, int up, int down) {
-        // Copy and shift down
         NativeImage lowerIngot = new NativeImage(im1.getWidth(), im1.getHeight(), true);
         lowerIngot.copyFrom(im1);
         int shiftDown = lowerIngot.getHeight() * up / 16;
@@ -191,7 +187,6 @@ public class TextureHelper {
                 }
             }
         }
-        // Copy and shift up
         NativeImage upperIngot = new NativeImage(im3.getWidth(), im3.getHeight(), true);
         upperIngot.copyFrom(im3);
         int shiftUp = upperIngot.getHeight() * down / 16;
@@ -211,7 +206,6 @@ public class TextureHelper {
     }
 
     public static void doubleIngot(NativeImage image) {
-        // Copy and shift down
         NativeImage lowerIngot = new NativeImage(image.getWidth(), image.getHeight(), true);
         lowerIngot.copyFrom(image);
         int shiftDown = lowerIngot.getHeight() * 2 / 16;
@@ -224,7 +218,6 @@ public class TextureHelper {
                 }
             }
         }
-        // Copy and shift up
         NativeImage upperIngot = new NativeImage(image.getWidth(), image.getHeight(), true);
         upperIngot.copyFrom(image);
         int shiftUp = upperIngot.getHeight() * 2 / 16;
@@ -259,7 +252,6 @@ public class TextureHelper {
         return (color >> 16) & 0xff;
     }
 
-    // double values are from 0 to 255!!!!!
     public static int fromArgb(int a, double r, double g, double b) {
         return fromArgb(a, (int) r, (int) g, (int) b);
     }

@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * A fluid stack that can be configured.
- */
 public class ConfigurableFluidStack extends AbstractConfigurableStack<Fluid, FluidVariant> implements FluidAccess {
     private long capacity;
 
@@ -110,9 +107,6 @@ public class ConfigurableFluidStack extends AbstractConfigurableStack<Fluid, Flu
         return Objects.hash(super.hashCode(), capacity);
     }
 
-    /**
-     * Create a copy of a list of configurable fluid stacks.
-     */
     public static ArrayList<ConfigurableFluidStack> copyList(List<ConfigurableFluidStack> list) {
         ArrayList<ConfigurableFluidStack> copy = new ArrayList<>(list.size());
         for (ConfigurableFluidStack stack : list) {
@@ -201,13 +195,11 @@ public class ConfigurableFluidStack extends AbstractConfigurableStack<Fluid, Flu
             this.markDirty = markDirty;
         }
 
-        // We don't allow item insertion obviously.
         @Override
         public boolean mayPlace(ItemStack stack) {
             return false;
         }
 
-        // No extraction either.
         @Override
         public boolean mayPickup(Player playerEntity) {
             return false;

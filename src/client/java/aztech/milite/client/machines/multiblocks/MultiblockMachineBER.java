@@ -36,7 +36,6 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
             return;
         }
 
-        // Only render if holding a wrench AND if the shape is not valid.
         boolean drawHighlights = isHoldingWrench() && !be.isShapeValid();
         HatchType hatchType = getHeldHatchType();
         if (drawHighlights || hatchType != null) {
@@ -60,7 +59,6 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
                     if (!matcher.matches(pos, be.getLevel())) {
                         var existingState = be.getLevel().getBlockState(pos);
                         if (existingState.isAir() || /* approximate check for e.g. grass and snow */ existingState.canBeReplaced()) {
-                            // Enqueue state preview
                             var member = matcher.getSimpleMember(pos);
                             var state = ShapeMatcher.toWorldState(be.getLevel(), pos, member.getPreviewState(), matcher.controllerDirection);
                             var blockEntity = member.newBlockEntity(be.getLevel().registryAccess(), be.getLevel(), pos, state);

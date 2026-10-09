@@ -26,8 +26,6 @@ class MachineStackProvider implements EmiStackProvider<MachineScreen> {
             }
         } else if (slot instanceof ConfigurableItemStack.ConfigurableItemSlot) {
             ConfigurableItemStack stack = ((ConfigurableItemStack.ConfigurableItemSlot) slot).getConfStack();
-            // the normal stack is already handled by REI, we just need to handle the locked
-            // item!
             if (stack.getLockedInstance() != null) {
                 return new EmiStackInteraction(EmiStack.of(stack.getLockedInstance()), null, false);
             }

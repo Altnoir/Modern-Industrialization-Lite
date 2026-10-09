@@ -41,7 +41,6 @@ public class TabulatedColoramp implements Coloramp {
     }
 
     private void fillUniform() {
-        // Use uniform coloramp
         int meanR = TextureHelper.getRrgb(meanRGB);
         int meanG = TextureHelper.getGrgb(meanRGB);
         int meanB = TextureHelper.getBrgb(meanRGB);

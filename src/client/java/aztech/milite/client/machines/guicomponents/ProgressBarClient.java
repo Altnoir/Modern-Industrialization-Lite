@@ -12,9 +12,7 @@ public class ProgressBarClient extends GuiComponentClient<ProgressBar.Params, Fl
     }
 
     public static void renderProgress(GuiGraphics guiGraphics, int x, int y, ProgressBar.Params params, float progress) {
-        // background
         guiGraphics.blit(params.getTextureId(), x + params.renderX(), y + params.renderY(), 0, 0, params.width(), params.height(), params.width(), params.textureHeight());
-        // foreground
         if (progress > 0) {
             if (!params.isVertical()) {
                 int foregroundPixels = (int) (progress * params.width());

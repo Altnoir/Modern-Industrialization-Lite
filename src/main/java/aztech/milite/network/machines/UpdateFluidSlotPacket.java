@@ -30,9 +30,7 @@ public record UpdateFluidSlotPacket(int syncId, int stackId, ConfigurableFluidSt
         if (sh.containerId == syncId) {
             ConfigurableScreenHandler csh = (ConfigurableScreenHandler) sh;
             ConfigurableFluidStack oldStack = csh.inventory.getFluidStacks().get(stackId);
-            // update stack
             csh.inventory.getFluidStacks().set(stackId, newStack);
-            // update slot
             for (int i = 0; i < csh.slots.size(); ++i) {
                 Slot slot = csh.slots.get(i);
                 if (slot instanceof ConfigurableFluidStack.ConfigurableFluidSlot fs) {

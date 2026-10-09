@@ -38,13 +38,11 @@ public class MIStorage<T, K extends TransferVariant<T>, S extends AbstractConfig
                 if (isSlotEmpty) {
                     // Always check for the second iteration.
                     if (oneSlotPerResource) {
-                        // Additionally check that the resource is not contained yet.
                         canInsert = iter == 1 && !containsResourceAlready;
                     } else {
                         canInsert = iter == 1;
                     }
                 } else if (stack.getAmount() == 0) {
-                    // If the amount is 0, we check if the lock allows it.
                     canInsert = stack.isResourceAllowedByLock(resource);
                 } else {
                     // Otherwise we check that the resources match exactly.

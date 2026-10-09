@@ -169,7 +169,6 @@ public class MI {
                 }
             }
         });
-        // Setup after, so wrench has priority
         BarrelBlock.setupBarrelEvents();
 
         SteamDrillHooks.init();
@@ -178,8 +177,6 @@ public class MI {
             if ((event.getLeft().getItem() instanceof DynamicToolItem && !event.getRight().isEmpty()) ||
                     (!event.getLeft().isEmpty() && event.getRight().getItem() instanceof DynamicToolItem)) {
                 event.setCanceled(true);
-                // According to the documentation setCanceled should be all we need, but unfortunately we have to manually override the output and
-                // cost too??
                 if (event.getPlayer().containerMenu instanceof AnvilMenu anvilMenu) {
                     anvilMenu.getSlot(2).set(ItemStack.EMPTY);
                     anvilMenu.setMaximumCost(0);

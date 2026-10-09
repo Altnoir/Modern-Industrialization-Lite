@@ -137,8 +137,6 @@ record MachineGuiContainerHandler(IIngredientManager ingredientManager, Supplier
             }
         } else if (slot instanceof ConfigurableItemStack.ConfigurableItemSlot) {
             ConfigurableItemStack stack = ((ConfigurableItemStack.ConfigurableItemSlot) slot).getConfStack();
-            // the normal stack is already handled by REI, we just need to handle the locked
-            // item!
             if (stack.getLockedInstance() != null) {
                 return stack.getLockedInstance().getDefaultInstance();
             }

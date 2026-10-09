@@ -176,16 +176,13 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        // Update button visibility
         for (var element : renderables) {
             if (element instanceof MachineButton machineButton) {
                 machineButton.visible = machineButton.isPresent.get();
             }
         }
 
-        // Normal render - handles background and slots
         super.render(guiGraphics, mouseX, mouseY, delta);
-        // Tooltips
         for (ClientComponentRenderer renderer : renderers) {
             if (renderer.renderTooltip(this, font, guiGraphics, leftPos, topPos, mouseX, mouseY)) {
                 return;
@@ -291,7 +288,6 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         } else if (slot instanceof ConfigurableItemStack.ConfigurableItemSlot confSlot) {
             renderConfigurableItemStackTooltip(guiGraphics, confSlot.getConfStack(), mouseX, mouseY);
         } else if (slot != null && slot.hasItem()) {
-            // regular tooltip
             guiGraphics.renderTooltip(font, slot.getItem(), mouseX, mouseY);
         }
     }
@@ -299,7 +295,6 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     private void renderConfigurableItemStackTooltip(GuiGraphics guiGraphics, ConfigurableItemStack stack, int mouseX, int mouseY) {
         ItemStack vanillaStack = stack.isEmpty() ? stack.getLockedInstance() == null ? ItemStack.EMPTY : new ItemStack(stack.getLockedInstance())
                 : stack.getResource().toStack((int) stack.getAmount());
-        // Regular information
         List<Component> textTooltip;
         if (vanillaStack.isEmpty()) {
             textTooltip = new ArrayList<>();
@@ -308,13 +303,11 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
             textTooltip = getTooltipFromItem(Minecraft.getInstance(), vanillaStack);
         }
         Optional<TooltipComponent> data = vanillaStack.getTooltipImage();
-        // Append capacity
         var capacityText = Component.literal(String.valueOf(stack.getAdjustedCapacity()));
         if (stack.getAdjustedCapacity() != 64) {
             capacityText.setStyle(TextHelper.YELLOW_BOLD);
         }
         textTooltip.add(MIText.ConfigurableSlotCapacity.text(capacityText).setStyle(TextHelper.GRAY_TEXT));
-        // Render
         guiGraphics.renderTooltip(font, textTooltip, data, mouseX, mouseY);
     }
 

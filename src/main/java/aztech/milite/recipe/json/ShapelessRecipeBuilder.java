@@ -30,16 +30,10 @@ public class ShapelessRecipeBuilder implements MIRecipeBuilder {
         this.resultStack = result;
     }
 
-    /**
-     * Creates a new builder for a shapeless recipe.
-     */
     public static ShapelessRecipeBuilder shapeless(ItemLike pResult) {
         return new ShapelessRecipeBuilder(pResult, 1);
     }
 
-    /**
-     * Creates a new builder for a shapeless recipe.
-     */
     public static ShapelessRecipeBuilder shapeless(ItemLike pResult, int pCount) {
         return new ShapelessRecipeBuilder(pResult, pCount);
     }
@@ -55,9 +49,6 @@ public class ShapelessRecipeBuilder implements MIRecipeBuilder {
         return this.requires(Ingredient.of(pTag));
     }
 
-    /**
-     * Adds an ingredient of the given item.
-     */
     public ShapelessRecipeBuilder requires(ItemLike pItem) {
         return this.requires(pItem, 1);
     }
@@ -73,9 +64,6 @@ public class ShapelessRecipeBuilder implements MIRecipeBuilder {
         return this;
     }
 
-    /**
-     * Adds an ingredient.
-     */
     public ShapelessRecipeBuilder requires(Ingredient pIngredient) {
         return this.requires(pIngredient, 1);
     }

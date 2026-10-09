@@ -42,7 +42,6 @@ public abstract class AbstractStorageBlockEntity<T extends TransferVariant<?>> e
     private long version;
     private boolean isLocked;
 
-    // Only used when T extends ItemVariant
     private @Nullable ItemStack cachedItemStack;
 
     public final StorageBehaviour<T> behaviour;

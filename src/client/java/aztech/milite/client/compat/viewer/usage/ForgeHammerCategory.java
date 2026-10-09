@@ -62,10 +62,8 @@ public class ForgeHammerCategory extends ViewerCategory<RecipeHolder<ForgeHammer
     public void buildWidgets(RecipeHolder<ForgeHammerRecipe> holder, WidgetList widgets) {
         var recipe = holder.value();
 
-        // Draw arrow
         widgets.arrow(startPointX + 27, startPointY + 4);
 
-        // Draw hammer
         widgets.texture(ForgeHammerScreen.FORGE_HAMMER_GUI, startPointX - 24, startPointY + 5, 7, 32, 18, 18);
 
         Component text = recipe.hammerDamage() > 0 ? MIText.DurabilityCost.text(recipe.hammerDamage()) : MIText.NoToolRequired.text();

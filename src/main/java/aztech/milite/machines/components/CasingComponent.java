@@ -65,7 +65,6 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     private void setCasingStack(ItemStack stack) {
         casingStack = stack;
 
-        // Compute tier
         CableTier storedTier = getCasingTier(stack.getItem());
         if (storedTier != null) {
             currentTier = storedTier;
@@ -119,7 +118,6 @@ public class CasingComponent implements MachineComponent, DropableComponent {
                     be.sync();
                 }
                 be.getLevel().updateNeighborsAt(be.getBlockPos(), Blocks.AIR);
-                // Play a nice sound :)
                 playCasingPlaceSound(be);
                 if (callback != null) {
                     callback.onUpdated(previousTier, currentTier);
@@ -133,10 +131,9 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     private void playCasingPlaceSound(MachineBlockEntity be) {
         var blockKey = currentTier.itemKey;
         if (blockKey == null) {
-            return; // no sound for LV
+            return;
         }
 
-        // Look for corresponding block
         BuiltInRegistries.BLOCK.getOptional(blockKey).ifPresent(block -> {
             var casingState = block.defaultBlockState();
             var group = casingState.getSoundType();

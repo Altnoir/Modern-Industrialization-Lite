@@ -106,9 +106,7 @@ public abstract class ConfigurableScreenHandler extends AbstractContainerMenu {
                             itemStack.togglePlayerLock(getCarried().getItem());
                         }
                         case QUICK_MOVE -> {
-                            // Try to move everything to player inventory
                             insertItem(itemSlot, 0, PLAYER_SLOTS, true);
-                            // Lock to air if empty
                             if (slot.getItem().isEmpty()) {
                                 itemSlot.getConfStack().playerLock(Items.AIR, Simulation.ACT);
                             }
@@ -132,7 +130,6 @@ public abstract class ConfigurableScreenHandler extends AbstractContainerMenu {
 
         if (slot.hasItem() && slot.mayPickup(player)) {
             if (slotIndex < PLAYER_SLOTS) { // from player to container inventory
-                // try to shift-click fluid first
                 var ctx = SlotAccess.forContainer(player.getInventory(), slot.getContainerSlot());
                 for (var maybeFluidSlot : slots) {
                     if (maybeFluidSlot instanceof ConfigurableFluidStack.ConfigurableFluidSlot fluidSlot
@@ -164,7 +161,6 @@ public abstract class ConfigurableScreenHandler extends AbstractContainerMenu {
         throw new UnsupportedOperationException("Don't use this shit, use the one below instead.");
     }
 
-    // Rewrite of ScreenHandler's buggy, long and shitty logic.
     /**
      * @return True if something was inserted.
      */

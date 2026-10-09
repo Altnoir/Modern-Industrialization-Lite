@@ -57,7 +57,6 @@ public abstract class HatchBlockEntity extends MachineBlockEntity implements Tic
         return matchedCasing != null;
     }
 
-    // This amazing function is called when the block entity is loaded.
     @Override
     public void clearRemoved() {
         super.clearRemoved();

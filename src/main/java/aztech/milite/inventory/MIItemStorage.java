@@ -36,7 +36,6 @@ public class MIItemStorage extends MIStorage<Item, ItemVariant, ConfigurableItem
 
             var stack = stacks.get(slot);
             if (!stack.pipesInsert ||
-            // If there is no space for inserting into this slot, skip any further checks.
                     stack.getAmount() >= stack.getCapacity()) {
                 return item;
             }
@@ -104,7 +103,6 @@ public class MIItemStorage extends MIStorage<Item, ItemVariant, ConfigurableItem
 
         @Override
         public boolean currentlyWhitelisted() {
-            // Only whitelisted if everything is locked.
             for (ConfigurableItemStack stack : stacks) {
                 if (stack.pipesInsert && stack.getLockedInstance() == null) {
                     return false;

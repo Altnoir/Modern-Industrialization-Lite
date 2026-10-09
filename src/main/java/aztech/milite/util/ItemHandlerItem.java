@@ -46,7 +46,6 @@ public class ItemHandlerItem extends ForwardingItemHandler {
 
     private ItemStack doOnCopy(Supplier<ItemStack> runnable) {
         var slotStack = this.slot.get();
-        // Copy stack
         var stackCopy = slotStack.copy();
         stackCopy.shrink(1);
 

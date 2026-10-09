@@ -80,7 +80,6 @@ public class MachineBlock extends Block implements TickableBlock {
     @Override
     protected void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.is(newState.getBlock())) {
-            // Drop items
             BlockEntity be = world.getBlockEntity(pos);
 
             if (be instanceof MachineBlockEntity machine) {
@@ -136,7 +135,6 @@ public class MachineBlock extends Block implements TickableBlock {
     public BlockState getAppearance(BlockState state, BlockAndTintGetter renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState,
             @Nullable BlockPos sourcePos) {
         if (renderView instanceof ServerLevel) {
-            // Well... we pull the information from the model, so nothing to do here.
             return state;
         } else {
             return MICommonProxy.INSTANCE.getMachineCasingBlockState(state, renderView, pos);

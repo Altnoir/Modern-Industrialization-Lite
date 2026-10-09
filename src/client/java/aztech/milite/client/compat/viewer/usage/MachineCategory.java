@@ -138,14 +138,12 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
         var offset = getOffset();
         var recipe = recipeHolder.value();
 
-        // Draw progress bar
         double recipeMillis = getSeconds(recipe) * 1000;
         widgets.drawable(matrices -> {
             ProgressBarClient.renderProgress(matrices, offset.x, offset.y, params.progressBarParams,
                     (float) (System.currentTimeMillis() / recipeMillis % 1.0));
         });
 
-        // Draw filled energy bar
         widgets.drawable(guiGraphics -> {
             guiGraphics.pose().pushPose();
 
@@ -200,7 +198,6 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
                 graphics.pose().popPose();
             });
         }
-        // Tooltips
         List<Component> tooltips = params.getRecipeTooltip(recipe);
         if (!tooltips.isEmpty()) {
             widgets.tooltip(3, 3, width - 6, 13, tooltips);
@@ -212,7 +209,6 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
     }
 
     private DrawOffset getOffset() {
-        // Compute offset relative to the machine coordinates
         int x = 1000, X = 0, y = 1000, Y = 0;
         for (SlotPositions positions : new SlotPositions[] { params.itemInputs, params.itemOutputs, params.fluidInputs, params.fluidOutputs }) {
             for (int i = 0; i < positions.size(); ++i) {

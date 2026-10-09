@@ -30,7 +30,6 @@ public class MIModelProvider extends BaseModelProvider {
             existingModel(fluidDefinition.asFluidBlock(), Blocks.AIR);
         }
 
-        // Item models as well...
         for (ItemDefinition<?> itemDefinition : MIItem.ITEM_DEFINITIONS.values()) {
             itemDefinition.modelGenerator.accept(itemDefinition.asItem(), itemModels());
         }
@@ -56,7 +55,6 @@ public class MIModelProvider extends BaseModelProvider {
             }
         }
 
-        // Machine models
         for (var entry : MachineModelsToGenerate.props.entrySet()) {
             simpleBlockWithItem(BuiltInRegistries.BLOCK.get(MI.id(entry.getKey())), models()
                     .getBuilder(entry.getKey())

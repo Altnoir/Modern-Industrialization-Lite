@@ -91,12 +91,9 @@ public class RenderHelper {
 
         SodiumCompat.markSpriteActive(sprite);
 
-        // Make sure fill is within [TANK_W, 1 - TANK_W]
         fill = TANK_W + (1 - 2 * TANK_W) * Math.min(1, Math.max(fill, 0));
-        // Top and bottom positions of the fluid inside the tank
         float topHeight = fill;
         float bottomHeight = TANK_W;
-        // Render gas from top to bottom
         if (fluid.getFluid().getFluidType().isLighterThanAir()) {
             topHeight = 1 - TANK_W;
             bottomHeight = 1 - fill;
@@ -178,7 +175,6 @@ public class RenderHelper {
     public static void drawLockedTexture(BlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, int colorRgb) {
         VertexConsumer vc = vertexConsumers.getBuffer(Sheets.cutoutBlockSheet());
         var sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(LOCKED_TEXTURE_LOCATION);
-        // draw the sprite on each face
 
         var pos = entity.getBlockPos();
         var state = entity.getBlockState();
@@ -220,9 +216,7 @@ public class RenderHelper {
             Objects.requireNonNull(fakeBlockEntity);
             fakeBlockEntity.applyComponentsFromItemStack(stack);
 
-            // Render the base block first
             Minecraft.getInstance().getBlockRenderer().renderSingleBlock(fakeBlockEntity.getBlockState(), matrices, vertexConsumers, light, overlay);
-            // Render additional data using the block entity renderer
             var renderer = Minecraft.getInstance().getBlockEntityRenderDispatcher().getRenderer(fakeBlockEntity);
             Objects.requireNonNull(renderer).render(fakeBlockEntity, 0.0f, matrices, vertexConsumers, light,
                     overlay);

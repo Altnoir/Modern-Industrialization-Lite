@@ -114,7 +114,6 @@ public class MachineBlockEntityRenderer<T extends MachineBlockEntity> implements
             lastBlockState = state;
             model = getMachineModel(state);
         } else if (lastBlockState != state) {
-            // Sanity check.
             throw new IllegalStateException("Tried to use the same machine BER with two block states: " + state + " and " + lastBlockState);
         }
 

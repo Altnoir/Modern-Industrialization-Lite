@@ -17,9 +17,7 @@ public class FTBTeamsFacadeImpl implements FTBTeamsFacade {
     private final Map<UUID, Collection<UUID>> cachedPlayersInTeam = new HashMap<>();
 
     public FTBTeamsFacadeImpl() {
-        // Reset cache if teams are modified
         TeamEvent.PLAYER_CHANGED.register(event -> cachedPlayersInTeam.clear());
-        // Reset cache if the server stops
         NeoForge.EVENT_BUS.addListener(ServerStoppedEvent.class, event -> cachedPlayersInTeam.clear());
     }
 

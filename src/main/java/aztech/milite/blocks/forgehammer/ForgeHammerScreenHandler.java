@@ -365,7 +365,6 @@ public class ForgeHammerScreenHandler extends AbstractContainerMenu implements M
         while (totalRemainingAmount > 0) {
             int targetStackSize = Math.min(recipeAmount, input.getMaxStackSize(input.getItem()));
 
-            // Remove the items from the inventory
             var matchingStack = input.getItem().copy();
             int insertedAmount = matchingStack.getCount();
             int remainingAmount = targetStackSize - insertedAmount;
@@ -396,10 +395,8 @@ public class ForgeHammerScreenHandler extends AbstractContainerMenu implements M
                 return;
             }
 
-            // Put items in the input
             input.set(matchingStack.copyWithCount(insertedAmount));
 
-            // Move hammer into gui
             if (recipe.hammerDamage() > 0 && !tool.hasItem()) {
                 for (int index = 0; index < 36; index++) {
                     var slot = slots.get(index);
@@ -410,7 +407,6 @@ public class ForgeHammerScreenHandler extends AbstractContainerMenu implements M
                 }
             }
 
-            // Select recipe
             int recipeIndex = -1;
             for (int index = 0; index < availableRecipes.size(); index++) {
                 if (availableRecipes.get(index).id().equals(recipeId)) {
@@ -426,7 +422,6 @@ public class ForgeHammerScreenHandler extends AbstractContainerMenu implements M
             }
             this.populateResult();
 
-            // Process fill action
             var oldOutput = output.getItem().copy();
             switch (fillAction) {
                 case 1 -> clicked(output.index, 0, ClickType.PICKUP, player);

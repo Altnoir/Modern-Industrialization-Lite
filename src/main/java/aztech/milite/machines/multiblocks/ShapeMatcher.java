@@ -175,8 +175,6 @@ public class ShapeMatcher implements ChunkEventListener {
         matchSuccessful = true;
 
         for (BlockPos pos : simpleMembers.keySet()) {
-            // TODO: check if the chunk is loaded
-
             if (!matches(pos, world)) {
                 matchSuccessful = false;
             }

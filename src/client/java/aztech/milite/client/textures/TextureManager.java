@@ -67,7 +67,6 @@ public class TextureManager {
 
         generatedTextures.add(textureId.replace(":textures/", ":"));
 
-        // Close image in any case...
         if (closeImage) {
             image.close();
         }

@@ -111,7 +111,6 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
                             templateBuilder.add(x, y, z, steelCasing, hatchFlags);
                         }
                     }
-                    // TODO ADD AIR EMPTY CONDITION
 
                 }
             }

@@ -9,9 +9,6 @@ public class WorldHelper {
         return world.getChunkSource().isPositionTicking(packedChunkPos) && world.areEntitiesLoaded(packedChunkPos);
     }
 
-    /**
-     * Force chunk remesh.
-     */
     public static void forceChunkRemesh(Level world, BlockPos pos) {
         world.sendBlockUpdated(pos, null, null, 0);
     }

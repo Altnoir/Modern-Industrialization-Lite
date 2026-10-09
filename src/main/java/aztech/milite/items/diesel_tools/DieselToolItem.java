@@ -174,8 +174,6 @@ public class DieselToolItem extends Item implements DynamicToolItem {
         return super.use(world, user, hand);
     }
 
-    // TODO NEO override canPerformAction
-
     @Override
     public InteractionResult useOn(UseOnContext context) {
         ItemStack stack = context.getItemInHand();
@@ -206,26 +204,6 @@ public class DieselToolItem extends Item implements DynamicToolItem {
                     return InteractionResult.sidedSuccess(w.isClientSide);
                 }
             }
-            if (stack.is(ItemTags.HOES)) {
-                // TODO NEO: restore tilling
-//                Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = HoeItem.TILLABLES.get(state.getBlock());
-//                if (pair != null) {
-//                    Predicate<UseOnContext> predicate = pair.getFirst();
-//                    Consumer<UseOnContext> consumer = pair.getSecond();
-//                    if (predicate.test(context)) {
-//                        w.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-//                        if (!w.isClientSide) {
-//                            consumer.accept(context);
-//                            if (player != null) {
-//                                FluidFuelItemHelper.decrement(stack);
-//                            }
-//                        }
-//
-//                        return InteractionResult.sidedSuccess(w.isClientSide);
-//                    }
-//                }
-            }
-
         }
         return super.useOn(context);
     }

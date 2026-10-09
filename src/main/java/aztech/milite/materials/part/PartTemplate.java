@@ -66,7 +66,6 @@ public class PartTemplate implements PartKeyProvider {
     }
 
     private static void setupTag(MaterialBuilder.PartContext context, PartKey part, String itemTag, ItemLike item) {
-        // item tag
         // items whose path are overridden (such as fire clay ingot -> brick) are not
         // added to the tags
         for (PartKey partTagged : MIParts.TAGGED_PARTS) {

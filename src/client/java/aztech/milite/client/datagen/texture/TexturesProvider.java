@@ -1,15 +1,5 @@
 package aztech.milite.client.datagen.texture;
 
-// fetch:
-
-// - datagen override (des resource packs, MI jar)
-// - datagen
-// - resource pack utilisateur
-// - jar MI et MC client
-// generate texture:
-// - if override exists: copy from override
-// - else: generate
-
 import aztech.milite.client.textures.MITextures;
 import aztech.milite.MI;
 import aztech.milite.resource.FastPathPackResources;

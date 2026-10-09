@@ -30,9 +30,7 @@ public record UpdateItemSlotPacket(int syncId, int stackId, ConfigurableItemStac
         if (sh.containerId == syncId) {
             ConfigurableScreenHandler csh = (ConfigurableScreenHandler) sh;
             ConfigurableItemStack oldStack = csh.inventory.getItemStacks().get(stackId);
-            // update stack
             csh.inventory.getItemStacks().set(stackId, newStack);
-            // update slot
             for (int i = 0; i < csh.slots.size(); ++i) {
                 Slot slot = csh.slots.get(i);
                 if (slot instanceof ConfigurableItemStack.ConfigurableItemSlot is) {

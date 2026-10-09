@@ -278,18 +278,15 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
             ItemStack itemStack2 = slot.getItem();
             itemStack = itemStack2.copy();
             if (index == output.index) {
-                // Output slot: move the crafted machine to the player inventory.
                 if (!this.moveItemStackTo(itemStack2, 0, PLAYER_SLOTS, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickCraft(itemStack2, itemStack);
             } else if (index >= leftInput.index && index <= rightInput.index) {
-                // An input slot: send it back to the player inventory.
                 if (!this.moveItemStackTo(itemStack2, 0, PLAYER_SLOTS, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                // Player inventory: try the input slots first, then swap between the hotbar and the main inventory.
                 if (!this.moveItemStackTo(itemStack2, leftInput.index, rightInput.index + 1, false)) {
                     if (index < MAIN_SLOTS) {
                         if (!this.moveItemStackTo(itemStack2, MAIN_SLOTS, PLAYER_SLOTS, false)) {

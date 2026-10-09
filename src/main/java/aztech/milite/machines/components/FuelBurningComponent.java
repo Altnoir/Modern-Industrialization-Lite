@@ -117,7 +117,6 @@ public class FuelBurningComponent implements MachineComponent {
                     }
                 }
             }
-            // Break if not found
             break;
         }
         // Refill buffer with fluid fuel

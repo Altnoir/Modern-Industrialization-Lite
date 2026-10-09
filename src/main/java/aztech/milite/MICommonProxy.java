@@ -85,7 +85,6 @@ public class MICommonProxy {
         return false;
     }
 
-    // In case there is ever a client-side specific version of this...
     public List<Component> getFluidTooltip(FluidVariant variant) {
         List<Component> list = new ArrayList<>();
         list.add(FluidVariantAttributes.getName(variant));

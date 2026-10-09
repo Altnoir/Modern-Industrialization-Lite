@@ -101,21 +101,17 @@ public abstract class MachineBlockEntity extends FastBlockEntity
     }
 
     public final void writeScreenOpeningData(RegistryFriendlyByteBuf buf) {
-        // Write inventory
         MIInventory inv = getInventory();
         CompoundTag tag = new CompoundTag();
         NbtHelper.putList(tag, "items", inv.getItemStacks(), configurableItemStack -> configurableItemStack.toNbt(buf.registryAccess()));
         NbtHelper.putList(tag, "fluids", inv.getFluidStacks(), configurableFluidStack -> configurableFluidStack.toNbt(buf.registryAccess()));
         buf.writeNbt(tag);
-        // Write slot positions
         inv.itemPositions.write(buf);
         inv.fluidPositions.write(buf);
         buf.writeInt(guiComponents.size());
-        // Write components
         for (GuiComponentServer<?, ?> component : guiComponents) {
             writeInitialGuiComponent(buf, component);
         }
-        // Write GUI params
         guiParams.write(buf);
     }
 

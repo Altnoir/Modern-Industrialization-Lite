@@ -239,7 +239,6 @@ public class FluidItemConsumerComponent implements MachineComponent.ServerOnly {
             }
         }
 
-        // create an empty FEProductionMap
         static <T> FEProductionMap<T> empty() {
             return new FEProductionMap<>() {
                 @Override

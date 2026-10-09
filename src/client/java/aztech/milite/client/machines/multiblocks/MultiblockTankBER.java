@@ -46,7 +46,6 @@ public class MultiblockTankBER extends MultiblockMachineBER {
             int minZ = cornerPosition[5];
 
             float fullness = (float) tankBlockEntity.getFullnessFraction();
-            // Top and bottom positions of the fluid inside the tank
             float topHeight = fullness;
             float bottomHeight = 0;
             // Render gas from top to bottom

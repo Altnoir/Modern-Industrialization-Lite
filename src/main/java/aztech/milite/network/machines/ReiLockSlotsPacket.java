@@ -28,7 +28,6 @@ public record ReiLockSlotsPacket(int containedId, ResourceLocation recipeId) imp
             if (!slotLocking.allowLocking().get())
                 return;
 
-            // Lock
             slotLocking.slotLockable().lockSlots(recipeId, ctx.getPlayer().getInventory());
         }
     }

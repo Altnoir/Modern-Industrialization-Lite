@@ -35,7 +35,6 @@ public final class MITextures {
         // 2. textures that depend on other generated textures are submitted to {@code mtm.runAtEnd} are generated in parallel once phase 1. is
         // complete.
 
-        // Futures for the first work phase
         List<CompletableFuture<?>> futures = new ArrayList<>();
         Consumer<IORunnable> defer = r -> futures.add(CompletableFuture.runAsync(r::safeRun, Util.backgroundExecutor()));
 
@@ -86,7 +85,6 @@ public final class MITextures {
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
                 .thenComposeAsync(v -> {
-                    // Do second phase work
                     return mtm.doEndWork();
                 }, Util.backgroundExecutor())
                 .thenRun(() -> {
@@ -179,7 +177,6 @@ public final class MITextures {
             if (topTexture.getWidth() != brickTexture.getWidth() || topTexture.getHeight() != brickTexture.getHeight()) {
                 throw new IllegalArgumentException("Texture and Brick must have same dimension");
             }
-            // Copy image
             try (NativeImage copy = TextureHelper.copy(topTexture)) {
                 for (int i = 0; i < copy.getWidth(); ++i) {
                     for (int j = copy.getHeight() / 2; j < copy.getHeight(); j++) {
@@ -201,7 +198,6 @@ public final class MITextures {
 
         Coloramp fluidColoramp = new TabulatedColoramp(fluid.color);
 
-        // Bucket
         if (!tm.hasAsset(String.format("milite:textures/item/%s_bucket.png", fluid.path()))) {
             try {
                 NativeImage bucket_image = tm.getAssetAsTexture(bucket);
@@ -219,7 +215,6 @@ public final class MITextures {
             }
         }
 
-        // Flowing Textures
 
         String pathFluid = path + String.format("template/%s.png", fluid.fluidTexture.path);
 

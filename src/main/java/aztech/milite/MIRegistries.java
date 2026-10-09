@@ -42,7 +42,6 @@ import java.util.Set;
  * Misc registry objects.
  */
 public class MIRegistries {
-    // Block entities
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MI.ID);
 
     public static final Supplier<BlockEntityType<CreativeBarrelBlockEntity>> CREATIVE_BARREL_BE = BLOCK_ENTITIES.register("creative_barrel", () -> {
@@ -56,12 +55,10 @@ public class MIRegistries {
                 return BlockEntityType.Builder.of(CreativeStorageUnitBlockEntity::new, MIBlock.CREATIVE_STORAGE_UNIT.get()).build(null);
             });
 
-    // Conditions
     public static final DeferredRegister<MapCodec<? extends ICondition>> CONDITIONS = DeferredRegister.create(
             NeoForgeRegistries.CONDITION_SERIALIZERS,
             MI.ID);
 
-    // Menus
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MI.ID);
 
     public static final Supplier<MenuType<ForgeHammerScreenHandler>> FORGE_HAMMER_MENU = MENUS.register("forge_hammer", () -> {
@@ -74,14 +71,12 @@ public class MIRegistries {
         return IMenuTypeExtension.create(MICommonProxy.INSTANCE::createClientMachineMenu);
     })::get;
 
-    // POIs
     public static final DeferredRegister<PoiType> POIS = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MI.ID);
 
     public static final DeferredHolder<PoiType, PoiType> INDUSTRIALIST_POI = POIS.register("industrialist", () -> {
         return new PoiType(Set.copyOf(MIBlock.FORGE_HAMMER.asBlock().getStateDefinition().getPossibleStates()), 1, 1);
     });
 
-    // Recipe serializers
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, MI.ID);
 
     public static final Supplier<RecipeSerializer<ForgeHammerRecipe>> FORGE_HAMMER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("forge_hammer",
@@ -90,7 +85,6 @@ public class MIRegistries {
     public static final Supplier<RecipeSerializer<ProcessingTableRecipe>> PROCESSING_TABLE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
             .register("processing_table", ProcessingTableRecipe.Serializer::new);
 
-    // Recipe types
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MI.ID);
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<ForgeHammerRecipe>> FORGE_HAMMER_RECIPE_TYPE = RECIPE_TYPES.register("forge_hammer",
@@ -99,7 +93,6 @@ public class MIRegistries {
     public static final DeferredHolder<RecipeType<?>, RecipeType<ProcessingTableRecipe>> PROCESSING_TABLE_RECIPE_TYPE = RECIPE_TYPES
             .register("processing_table", () -> RecipeType.simple(MI.id("processing_table")));
 
-    // Creative tabs
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MI.ID);
 
     /**
@@ -123,7 +116,6 @@ public class MIRegistries {
                     CreativeSections.ALL.toArray(CreativeTabSection[]::new))
             .build());
 
-    // Villager professions
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(Registries.VILLAGER_PROFESSION, MI.ID);
 
     public static final Holder<VillagerProfession> INDUSTRIALIST = VILLAGER_PROFESSIONS.register("industrialist", () -> {
@@ -136,7 +128,6 @@ public class MIRegistries {
                 SoundEvents.VILLAGER_WORK_TOOLSMITH);
     });
 
-    // Attributes
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, MI.ID);
 
     public static final Holder<Attribute> QUANTUM_ARMOR = ATTRIBUTES.register("quantum_armor", () -> new QuantumArmorAttribute().setSyncable(true));

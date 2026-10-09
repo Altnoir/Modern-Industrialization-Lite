@@ -17,9 +17,5 @@ public interface DynamicToolItem {
                 || stack.is(ItemTags.SHOVELS) && state.is(BlockTags.MINEABLE_WITH_SHOVEL)
                 || stack.is(ItemTags.HOES) && state.is(BlockTags.MINEABLE_WITH_HOE)
                 || stack.is(ItemTags.SWORDS) && state.is(BlockTags.SWORD_EFFICIENT);
-        // TODO NEO
-//                || stack.is(Tags.Items.SHEARS) &&
-//                        (state.is(FabricMineableTags.SHEARS_MINEABLE) || Items.SHEARS.getDestroySpeed(
-//                                SHEAR_STACK, state) > 1.0f)
     }
 }

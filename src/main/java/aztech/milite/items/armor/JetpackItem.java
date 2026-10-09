@@ -137,34 +137,6 @@ public class JetpackItem extends ArmorItem implements ActivatableItem {
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player,
             SlotAccess cursorStackReference) {
-        // TODO NEO jetpack filling in inventory
-//        if (clickType == ClickAction.SECONDARY) {
-//            Storage<FluidVariant> jetpackStorage = getStackStorage(stack, player);
-//            Storage<FluidVariant> cursorStorage = ContainerItemContext.ofPlayerCursor(player, player.containerMenu).find(FluidStorage.ITEM);
-//
-//            return StorageUtil.move(cursorStorage, jetpackStorage, fk -> true, Long.MAX_VALUE, null) > 0;
-//        }
         return false;
     }
-
-    // TODO NEO
-//    @Nullable
-//    private static Storage<FluidVariant> getStackStorage(ItemStack stack, Player player) {
-//        Inventory inventory = player.getInventory();
-//        ContainerItemContext context = null;
-//
-//        for (int i = 0; i < inventory.getContainerSize(); ++i) {
-//            if (inventory.getItem(i) == stack) {
-//                InventoryStorage wrapper = PlayerInventoryStorage.of(inventory);
-//                context = ContainerItemContext.ofPlayerSlot(player, wrapper.getSlots().get(i));
-//                break;
-//            }
-//        }
-//
-//        if (context != null) {
-//            return context.find(FluidStorage.ITEM);
-//        } else {
-//            return null;
-//        }
-//    }
 }
