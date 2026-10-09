@@ -8,6 +8,7 @@ import aztech.milite.datagen.loot.MIBlockLoot;
 import aztech.milite.datagen.tag.TagsToGenerate;
 import aztech.milite.definition.BlockDefinition;
 import aztech.milite.items.SortOrder;
+import aztech.milite.materials.MaterialProgression;
 import aztech.milite.materials.set.MaterialOreSet;
 import aztech.milite.MI;
 import aztech.milite.MIBlock;
@@ -126,7 +127,9 @@ public class OrePart implements PartKeyProvider {
                             MIBlock.BlockDefinitionParams.of(BlockBehaviour.Properties.ofFullCopy(stoneBlock))
                                     .withBlockConstructor(s -> new OreBlock(s, oreParams, partContext.getMaterialName()))
                                     .withLoot(new MIBlockLoot.Ore(lootPart.getItemId()))
-                                    .sortOrder(SortOrder.ORES.and(partContext.getMaterialName()))
+                                    .sortOrder(SortOrder.ORES
+                                            .and(MaterialProgression.rankOf(partContext.getMaterialName()))
+                                            .and(stoneType.equals(TYPE_STONE) ? 0 : 1))
                                     .destroyTime(stoneBlock.defaultDestroyTime() + 1.5f)
                                     .requiresCorrectToolForDrops());
 
