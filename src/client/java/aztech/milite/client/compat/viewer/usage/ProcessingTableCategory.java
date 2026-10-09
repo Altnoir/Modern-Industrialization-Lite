@@ -1,10 +1,10 @@
 package aztech.milite.client.compat.viewer.usage;
 
-import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
-import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.milite.MI;
 import aztech.milite.MIBlock;
 import aztech.milite.MIRegistries;
+import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
+import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -53,8 +53,8 @@ public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<Process
     public void buildLayout(RecipeHolder<ProcessingTableRecipe> holder, LayoutBuilder builder) {
         var recipe = holder.value();
 
-        builder.inputSlot(8, startPointY).ingredient(recipe.key(), 1, 1);
-        builder.inputSlot(26, startPointY).ingredient(recipe.first(), 1, 1);
+        builder.inputSlot(8, startPointY).ingredient(recipe.first(), 1, 1);
+        builder.inputSlot(26, startPointY).ingredient(recipe.key(), 1, 1);
         builder.inputSlot(44, startPointY).ingredient(recipe.second(), 1, 1);
         builder.outputSlot(92, startPointY).item(recipe.result());
     }

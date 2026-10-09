@@ -1,8 +1,8 @@
 package aztech.milite.client.compat.viewer.impl.emi;
 
+import aztech.milite.MIRegistries;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.machines.gui.MachineMenuCommon;
-import aztech.milite.MIRegistries;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;

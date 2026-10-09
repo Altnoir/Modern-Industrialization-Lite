@@ -2,6 +2,7 @@ package aztech.milite.client.compat.viewer.impl.rei;
 
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.items.diesel_tools.DieselToolItem;
+import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
@@ -40,8 +41,7 @@ public class ManualPluginRei implements REIClientPlugin {
 
         registry.registerClickArea(MachineScreen.class, new MachineClickAreaHandler());
         registry.registerFocusedStack(new MachineFocusedStackProvider());
-        registry.exclusionZones().register(MachineScreen.class, screen -> {
-            return screen.getExtraBoxes().stream().map(r -> new me.shedaniel.math.Rectangle(r.x(), r.y(), r.w(), r.h())).toList();
-        });
+        registry.exclusionZones().register(MachineScreen.class, screen ->
+                screen.getExtraBoxes().stream().map(r -> new Rectangle(r.x(), r.y(), r.w(), r.h())).toList());
     }
 }
