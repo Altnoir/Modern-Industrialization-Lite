@@ -115,12 +115,12 @@ public class OverclockComponent implements MachineComponent {
         return tooltips;
     }
 
-    public long getRecipeRf(int rf) {
+    public long getRecipeFe(int fe) {
         var lastEntry = tickMap.lastEntry();
         if (lastEntry != null && lastEntry.getValue().value > 0) {
-            return Math.round(lastEntry.getKey().doubleValue() * rf);
+            return Math.round(lastEntry.getKey().doubleValue() * fe);
         } else {
-            return rf;
+            return fe;
         }
     }
 

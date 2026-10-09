@@ -52,7 +52,7 @@ public class MIFluids {
     public static final FluidDefinition HEAVY_WATER = fluid("Heavy Water", "heavy_water", 0xff6e18f0);
     public static final FluidDefinition HEAVY_WATER_STEAM = fluid("Heavy Water Steam", "heavy_water_steam", 0xffd9cfe8, MEDIUM_OPACITY, FluidTexture.STEAM_LIKE, true);
     public static final FluidDefinition HELIUM = fluid("Helium", "helium", 0xffe6e485, true);
-    public static final FluidDefinition HELIUM_PLASMA = fluid("Helium Plasma", "helium_plasma", 0xfffff85e, FULL_OPACITY, FluidTexture.PLASMA_LIKE, true); // 100 MEU / b
+    public static final FluidDefinition HELIUM_PLASMA = fluid("Helium Plasma", "helium_plasma", 0xfffff85e, FULL_OPACITY, FluidTexture.PLASMA_LIKE, true); // 100 MFE / b
     public static final FluidDefinition HELIUM_3 = fluid("Helium 3", "helium_3", 0xff83de52, true);
     public static final FluidDefinition HIGH_PRESSURE_HEAVY_WATER = fluid("High Pressure Heavy Water", "high_pressure_heavy_water", 0xff3d0b8a, MEDIUM_OPACITY);
     public static final FluidDefinition HIGH_PRESSURE_HEAVY_WATER_STEAM = fluid("High Pressure Heavy Water Steam", "high_pressure_heavy_water_steam", 0xff6d647a, NEAR_OPACITY, FluidTexture.STEAM_LIKE, true);

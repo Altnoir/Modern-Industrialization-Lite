@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "milite:aluminum_item_input_hatch"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "milite:blocks/aluminum_item_input_hatch"
+}

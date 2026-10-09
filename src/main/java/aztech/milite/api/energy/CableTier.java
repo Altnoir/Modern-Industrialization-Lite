@@ -21,8 +21,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
- * A single energy tier. In MI Lite the tiers are purely expressed in RF/t: the value of a tier is the base
- * amount of RF/t that a machine of that tier consumes or produces, and {@link #getMaxTransfer()} is the
+ * A single energy tier. In MI Lite the tiers are purely expressed in FE/t: the value of a tier is the base
+ * amount of FE/t that a machine of that tier consumes or produces, and {@link #getMaxTransfer()} is the
  * ceiling for machine buffers of that tier.
  *
  * <p>
@@ -32,20 +32,23 @@ import java.util.Objects;
  */
 public final class CableTier implements Comparable<CableTier> {
     // static references
-    public static CableTier LV = new CableTier("lv", "LV", "Low Voltage", 32, null);
-    public static CableTier MV = new CableTier("mv", "MV", "Medium Voltage", 128, MIBlockKeys.ADVANCED_MACHINE_HULL);
-    public static CableTier HV = new CableTier("hv", "HV", "High Voltage", 1024, MIBlockKeys.TURBO_MACHINE_HULL);
-    public static CableTier EV = new CableTier("ev", "EV", "Extreme Voltage", 8192, MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL);
-    public static CableTier SUPERCONDUCTOR = new CableTier("superconductor", "SV", "Superconductor", 128000000,
-            MIBlockKeys.QUANTUM_MACHINE_HULL);
+    public static CableTier ELECTRIC = new CableTier("electric", "Electric", "Low Voltage", 32, null);
+    public static CableTier ALUMINUM = new CableTier("aluminum", "Aluminum", "Medium Voltage", 128,
+            MIBlockKeys.ALUMINUM_MACHINE_HULL);
+    public static CableTier STAINLESS_STEEL = new CableTier("stainless_steel", "Stainless Steel", "High Voltage", 1024,
+            MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL);
+    public static CableTier TITANIUM = new CableTier("titanium", "Titanium", "Extreme Voltage", 8192,
+            MIBlockKeys.TITANIUM_MACHINE_HULL);
+    public static CableTier IRIDIUM = new CableTier("iridium", "Iridium", "Superconductor", 128000000,
+            MIBlockKeys.IRIDIUM_MACHINE_HULL);
 
     public final String name;
     public final String shortEnglishName;
     public final String longEnglishName;
     /**
-     * The base amount of RF/t of this tier.
+     * The base amount of FE/t of this tier.
      */
-    public final long rf;
+    public final long fe;
     /**
      * {@code null} for LV only.
      */
@@ -63,20 +66,20 @@ public final class CableTier implements Comparable<CableTier> {
     public final MachineCasing casing;
 
     @ApiStatus.Internal
-    public CableTier(String name, String shortEnglishName, String longEnglishName, long rf, ResourceLocation itemKey, boolean builtin) {
-        StoragePreconditions.notNegative(rf);
+    public CableTier(String name, String shortEnglishName, String longEnglishName, long fe, ResourceLocation itemKey, boolean builtin) {
+        StoragePreconditions.notNegative(fe);
 
         this.name = name;
         this.shortEnglishName = shortEnglishName;
         this.longEnglishName = longEnglishName;
-        this.rf = rf;
+        this.fe = fe;
         this.itemKey = itemKey;
         this.casing = MachineCasings.create(MI.id(name), shortEnglishName);
         this.builtin = builtin;
     }
 
-    private CableTier(String name, String shortEnglishName, String longEnglishName, long rf, @Nullable ResourceKey<Block> key) {
-        this(name, shortEnglishName, longEnglishName, rf, key == null ? null : key.location(), true);
+    private CableTier(String name, String shortEnglishName, String longEnglishName, long fe, @Nullable ResourceKey<Block> key) {
+        this(name, shortEnglishName, longEnglishName, fe, key == null ? null : key.location(), true);
     }
 
     public String shortEnglishKey() {
@@ -96,19 +99,19 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     /**
-     * @return The maximum RF/t that a machine of this tier can hold in its internal buffer.
+     * @return The maximum FE/t that a machine of this tier can hold in its internal buffer.
      */
     public long getMaxTransfer() {
-        return rf * 8;
+        return fe * 8;
     }
 
-    public long getRf() {
-        return rf;
+    public long getFe() {
+        return fe;
     }
 
     @Override
     public int compareTo(CableTier other) {
-        return Long.compare(rf, other.rf);
+        return Long.compare(fe, other.fe);
     }
 
     @Override
@@ -118,12 +121,14 @@ public final class CableTier implements Comparable<CableTier> {
 
     // "registry" of name -> instance.
     private final static Map<String, CableTier> tiers = new HashMap<>();
+    private final static Map<String, String> LEGACY_NAMES = Map.of("lv", "electric", "mv", "aluminum", "hv",
+            "stainless_steel", "ev", "titanium", "superconductor", "iridium");
 
     /**
-     * @return The largest base RF/t of all registered tiers, used to cap machine buffers.
+     * @return The largest base FE/t of all registered tiers, used to cap machine buffers.
      */
-    public static long maxRf() {
-        return allTiers().stream().mapToLong(t -> t.rf).max().orElse(0);
+    public static long maxFe() {
+        return allTiers().stream().mapToLong(t -> t.fe).max().orElse(0);
     }
 
     /**
@@ -138,8 +143,8 @@ public final class CableTier implements Comparable<CableTier> {
             if (existingTier.name.equals(tier.name)) {
                 throw new IllegalArgumentException("Tier " + tier + " already exists!");
             }
-            if (existingTier.rf == tier.rf) {
-                throw new IllegalArgumentException("A tier with rf " + tier.rf + " already exists!");
+            if (existingTier.fe == tier.fe) {
+                throw new IllegalArgumentException("A tier with fe " + tier.fe + " already exists!");
             }
             if (Objects.equals(existingTier.itemKey, tier.itemKey)) {
                 throw new IllegalArgumentException("A tier with block key " + tier.itemKey + " already exists!");
@@ -152,11 +157,12 @@ public final class CableTier implements Comparable<CableTier> {
     /**
      * Looks up a cable tier registered by name.
      *
-     * @param name The name of the tier, e.g. <code>lv</code>.
+     * @param name The name of the tier, e.g. <code>electric</code>.
      * @return An instance of the cable tier with the provided name.
      */
     public static CableTier getTier(String name) {
-        CableTier existing = tiers.get(name);
+        // Worlds saved before the tiers were named after their material still store the old voltage names.
+        CableTier existing = tiers.get(LEGACY_NAMES.getOrDefault(name, name));
 
         if (existing == null) {
             throw new NoSuchElementException("No such cable tier: " + name);
@@ -166,18 +172,18 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     /**
-     * @return A list of all registered CableTier instances, sorted by their EU.
+     * @return A list of all registered CableTier instances, sorted by their FE.
      */
     public static List<CableTier> allTiers() {
         return tiers.values().stream().sorted().toList();
     }
 
     static {
-        addTier(LV);
-        addTier(MV);
-        addTier(HV);
-        addTier(EV);
-        addTier(SUPERCONDUCTOR);
+        addTier(ELECTRIC);
+        addTier(ALUMINUM);
+        addTier(STAINLESS_STEEL);
+        addTier(TITANIUM);
+        addTier(IRIDIUM);
 
         KubeJSProxy.instance.fireCableTiersEvent();
     }

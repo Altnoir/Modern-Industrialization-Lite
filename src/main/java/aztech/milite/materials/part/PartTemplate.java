@@ -3,6 +3,7 @@ package aztech.milite.materials.part;
 import aztech.milite.datagen.tag.TagsToGenerate;
 import aztech.milite.definition.ItemDefinition;
 import aztech.milite.items.SortOrder;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.materials.MaterialBuilder;
 import aztech.milite.materials.MaterialProgression;
 import aztech.milite.MIBlock;
@@ -13,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
+import java.util.List;
 
 public class PartTemplate implements PartKeyProvider {
     private final PartEnglishNameFormatter englishNameFormatter;
@@ -131,7 +134,7 @@ public class PartTemplate implements PartKeyProvider {
             var blockParams = MIBlock.BlockDefinitionParams.defaultStone()
                     .clearTags()
                     .addMoreTags(TagHelper.getMiningLevelTag(miningLevel))
-                    .sortOrder(sortOrder.and(partContext.getMaterialName()))
+                    .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
                     .destroyTime(hardness)
                     .explosionResistance(resistance);
 
@@ -162,7 +165,7 @@ public class PartTemplate implements PartKeyProvider {
                     MIBlock.BlockDefinitionParams.defaultStone()
                             .clearTags()
                             .addMoreTags(TagHelper.getMiningLevelTag(1))
-                            .sortOrder(sortOrder.and(partContext.getMaterialName()))
+                            .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
                             .withModel((block, gen) -> {
                                 String name = gen.name(block);
                                 gen.simpleBlockWithItem(block,
@@ -193,7 +196,7 @@ public class PartTemplate implements PartKeyProvider {
                     MIBlock.BlockDefinitionParams.defaultStone()
                             .clearTags()
                             .addMoreTags(TagHelper.getMiningLevelTag(1))
-                            .sortOrder(sortOrder.and(partContext.getMaterialName()))
+                            .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
                             .destroyTime(hardness)
                             .explosionResistance(resistance)
                             .withBlockConstructor(RotatedPillarBlock::new)
@@ -269,6 +272,37 @@ public class PartTemplate implements PartKeyProvider {
         return new MaterialItemPartImpl(partKey, itemTag, itemId, ctx -> {
             register.register(ctx, partKey, itemPath, itemId, itemTag, itemEnglishName);
         }, this.textureGenParams, true);
+    }
+
+    /**
+     * Machine structures are listed by level first, then by the part a material makes, everything else by where the
+     * material sits in the progression.
+     */
+    private static SortOrder blockSortOrder(SortOrder sortOrder, String materialName, PartKey part) {
+        int rank = MaterialProgression.rankOf(materialName);
+        if (sortOrder.groupIndex() != SortOrder.STRUCTURES.groupIndex()) {
+            return sortOrder.and(rank);
+        }
+        MachineLevel level = MachineLevel.byNameOrNull(materialName);
+        return sortOrder.withLevel(level == null ? MachineLevel.values().length : level.ordinal())
+                .and(materialPartOrder(materialName, part.key)).and(rank);
+    }
+
+    /**
+     * The order the casing parts of a material are listed in, so the part that carries the character of a level is not
+     * pushed behind the plain casing of that level.
+     */
+    private static int materialPartOrder(String materialName, String part) {
+        List<String> order = switch (materialName) {
+            case "bronze", "stainless_steel" ->
+                List.of("machine_casing_special", "machine_casing", "machine_casing_pipe");
+            case "aluminum" -> List.of("machine_casing_special", "machine_casing");
+            case "titanium" -> List.of("machine_casing_special", "machine_casing_pipe", "machine_casing");
+            case "iridium" -> List.of("machine_casing_pipe", "machine_casing_special", "machine_casing");
+            default -> List.of();
+        };
+        int index = order.indexOf(part);
+        return index < 0 ? order.size() : index;
     }
 
     @Override

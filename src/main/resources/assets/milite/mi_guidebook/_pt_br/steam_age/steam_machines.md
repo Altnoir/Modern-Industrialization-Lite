@@ -17,7 +17,7 @@ item_ids:
 
 Agora é hora de construir algumas máquinas de bronze. A caldeira produzirá e enviará vapor automaticamente para máquinas adjacentes, até 8 milibuckets por tick.
 
-Máquinas de bronze só conseguem processar receitas de até 2RF/t, ou seja, a receita consome 2 Unidades de Energia por Tick. Como 1 milibucket de vapor = 1RF, uma caldeira na temperatura máxima pode alimentar 4 máquinas simultaneamente!
+Máquinas de bronze só conseguem processar receitas de até 2 RF/t, ou seja, a receita consome 2 Unidades de Energia por Tick. Como 1 milibucket de vapor = 1 RF, uma caldeira na temperatura máxima pode alimentar 4 máquinas simultaneamente!
 
 O Compressor transforma lingotes em chapas na proporção 1:1. Também pode transformar lingotes duplos em 2 chapas. Provavelmente será a primeira máquina que você vai querer construir!
 

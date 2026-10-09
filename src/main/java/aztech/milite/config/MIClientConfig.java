@@ -59,7 +59,7 @@ public final class MIClientConfig {
         builder.pushSection("tooltips", "Tooltips");
         this.fuelTooltips = builder.start("fuelTooltips",
                 "Fuel tooltips",
-                "Add the total EU value of fuel items to their tooltips.")
+                "Add the total FE value of fuel items to their tooltips.")
                 .define("fuelTooltips", true);
         this.itemTagTooltips = builder.start("itemTagTooltips",
                 "Item tag tooltips",

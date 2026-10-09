@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:mv_diesel_generator
+  - milite:aluminum_diesel_generator
 ---
 
 # 石油加工
@@ -23,9 +23,9 @@ item_ids:
 
 原油可以转化为多种燃料，并且可用于更高效的橡胶片生产。
 
-柴油发电机可以燃烧多种燃料，你可以在REI中查看每种燃料产生的EU量。柴油发电机最高可产出256RF/t，且只能与中压电缆连接。
+柴油发电机可以燃烧多种燃料，你可以在REI中查看每种燃料产生的RF量。柴油发电机最高可产出256 RF/t。
 
-<Recipe id="milite:electric_age/machine/diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
 
 柴油发电机仅在需要时消耗燃料，但如果你需要稳定的能量供应，也可以将液态燃料注入大型蒸汽锅炉以替代物品。
 

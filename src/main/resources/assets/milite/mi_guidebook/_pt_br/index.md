@@ -7,7 +7,7 @@ navigation:
 # Modern Industrialization
 Bem vindo ao **Modern Industrialization**!
 
-![Tubos, tubos e mais tubos](assets/pipes_pipes_pipes.png)
+![Tubos, tubos e mais tubos](/milogo.png)
 
 ## Introdução
 Modern Industrialization é um mod sobre automação! Isso significa que, em algum momento, qualquer recurso pode (e deve) ser automatizado.

@@ -18,9 +18,9 @@ item_ids:
 
 원요는 여러 연료들, 그리고 더 효율적인 고무 제작에 활용될 수 있습니다.
 
-디젤 발전기는 다양한 연료들을 사용할 수 있습니다. REI에서 연료들의 에너지 생산량을 확인할 수 있습니다. 디젤 발전기는 최대 256RF/t 의 전기를 생산하고, MV 전선에만 연결됩니다.
+디젤 발전기는 다양한 연료들을 사용할 수 있습니다. REI에서 연료들의 에너지 생산량을 확인할 수 있습니다. 디젤 발전기는 최대 256 RF/t 의 전기를 생산합니다.
 
-<Recipe id="milite:electric_age/machine/diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
 
 디젤 발전기는 연료가 필요할때만 사용합니다. 하지만 지속적인 전력 공급이 필요하다면, 액체 연료를 대형 증기 보일러에 투입할 수 있습니다.
 

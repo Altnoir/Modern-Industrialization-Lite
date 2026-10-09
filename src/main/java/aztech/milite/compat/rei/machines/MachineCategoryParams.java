@@ -71,7 +71,7 @@ public class MachineCategoryParams {
     }
 
     private boolean steelHatchRequired(MachineRecipe recipe) {
-        return steamMode.steam && isMultiblock && recipe.energy > MachineTier.BRONZE.getMaxRf();
+        return steamMode.steam && isMultiblock && recipe.energy > MachineTier.BRONZE.getMaxFe();
     }
 
     public boolean includeRecipeConditionDisplay(MachineRecipe recipe) {
@@ -99,7 +99,7 @@ public class MachineCategoryParams {
     public List<Component> getRecipeTooltip(MachineRecipe recipe) {
         List<Component> lines = new ArrayList<>();
         if (steamMode != SteamMode.NEITHER) {
-            lines.add(MIText.BaseRfTotal.text(TextHelper.getRfText((long) recipe.duration * recipe.energy)));
+            lines.add(MIText.BaseFeTotal.text(TextHelper.getFeText((long) recipe.duration * recipe.energy)));
         }
         if (steamMode.steam) {
             lines.add((steamMode.electric ? MIText.AcceptsSteamToo : MIText.AcceptsSteam).text().withStyle(ChatFormatting.GRAY));

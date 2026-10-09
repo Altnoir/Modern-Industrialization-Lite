@@ -91,6 +91,7 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
 
     private class SlotPanelRenderer implements ClientComponentRenderer {
         private static final int PLATE_U = 0;
+        private static final int SINGLE_SLOT_PLATE_U = 22;
         private static final int PLATE_V = 64;
         private static final int PLATE_WIDTH = 22;
         private static final int SLOT_BAND = 18;
@@ -98,9 +99,12 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
         private static final int PANEL_TOP = 23;
 
         private final MachineScreen machineScreen;
+        private final int plateU;
 
         private SlotPanelRenderer(MachineScreen machineScreen) {
             this.machineScreen = machineScreen;
+            this.plateU = params.size() == 1 && params.get(0) == SlotPanel.SlotType.REDSTONE_MODULE ? SINGLE_SLOT_PLATE_U
+                    : PLATE_U;
         }
 
         private Rectangle getBox(int leftPos, int topPos) {
@@ -120,7 +124,7 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
 
             // One blit of the whole panel: the sprite carries the plate edges and the rounded frame of every slot, so
             // the module slots must not draw a background of their own (see SlotWithBackground).
-            guiGraphics.blit(MachineScreen.SLOT_ATLAS, box.x(), box.y(), PLATE_U, PLATE_V, box.w(), box.h());
+            guiGraphics.blit(MachineScreen.SLOT_ATLAS, box.x(), box.y(), plateU, PLATE_V, box.w(), box.h());
         }
 
         @Override

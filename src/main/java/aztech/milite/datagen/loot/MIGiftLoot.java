@@ -26,7 +26,7 @@ public record MIGiftLoot(HolderLookup.Provider registries) implements LootTableS
                                         .add(LootItem.lootTableItem(MIItem.STEEL_UPGRADE))
                                         .add(LootItem.lootTableItem(MIItem.PISTON))
                                         .add(LootItem.lootTableItem(MIItem.ROBOT_ARM))
-                                        .add(LootItem.lootTableItem(MIBlock.BASIC_MACHINE_HULL))
+                                        .add(LootItem.lootTableItem(MIBlock.ELECTRIC_MACHINE_HULL))
                                         .add(LootItem.lootTableItem(MIMaterials.BRONZE.getPart(MIParts.DRILL)))
                                         .add(LootItem.lootTableItem(MIMaterials.STEEL.getPart(MIParts.DRILL)))));
     }

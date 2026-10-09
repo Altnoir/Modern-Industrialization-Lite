@@ -165,7 +165,7 @@ public final class SingleBlockCraftingMachines {
         return switch (level) {
             case BRONZE -> MachineTier.BRONZE;
             case STEEL -> MachineTier.STEEL;
-            default -> MachineTier.LV;
+            default -> MachineTier.ELECTRIC;
         };
     }
 
@@ -247,7 +247,7 @@ public final class SingleBlockCraftingMachines {
                                 buildComponent(itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount, items, fluids, 0,
                                         ioBucketCapacity),
                                 builtGuiParams,
-                                energyBarParams, guiProgressBarParams, MachineTier.LV,
+                                energyBarParams, guiProgressBarParams, MachineTier.ELECTRIC,
                                 level),
                         bet -> {
                             ElectricCraftingMachineBlockEntity.registerEnergyApi(bet);

@@ -36,12 +36,12 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
                 new SlotPositions.Builder().addSlot(OUTPUT_SLOT_X, OUTPUT_SLOT_Y).build());
         this.redstoneControl = new RedstoneControlComponent();
         this.casing = new CasingComponent();
-        this.energy = new EnergyComponent(this, casing::getRfCapacity);
+        this.energy = new EnergyComponent(this, casing::getFeCapacity);
         this.insertable = energy.buildInsertable();
 
         this.registerComponents(inventory, redstoneControl, casing, energy);
 
-        registerGuiComponent(new EnergyBar(new EnergyBar.Params(18, 32), energy::getRf, energy::getCapacity));
+        registerGuiComponent(new EnergyBar(new EnergyBar.Params(18, 32), energy::getFe, energy::getCapacity));
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl));
     }
@@ -53,10 +53,10 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
     private final IEnergyStorage insertable;
 
     @Override
-    protected long consumeRf(long max) {
+    protected long consumeFe(long max) {
         if (redstoneControl.doAllowNormalOperation(
                 this)) {
-            return energy.consumeRf(max, Simulation.ACT);
+            return energy.consumeFe(max, Simulation.ACT);
         } else {
             return 0;
         }

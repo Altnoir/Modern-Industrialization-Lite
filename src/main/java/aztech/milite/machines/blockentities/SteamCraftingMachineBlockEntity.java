@@ -35,8 +35,8 @@ public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBloc
     }
 
     @Override
-    public long consumeRf(long max, Simulation simulation) {
-        return SteamHelper.consumeSteamRf(getInventory().getFluidStacks(), max, simulation);
+    public long consumeFe(long max, Simulation simulation) {
+        return SteamHelper.consumeSteamFe(getInventory().getFluidStacks(), max, simulation);
     }
 
     @Override
@@ -57,11 +57,11 @@ public class SteamCraftingMachineBlockEntity extends AbstractCraftingMachineBloc
     }
 
     /**
-     * Steam machines get their speed from the gunpowder overclock, since their EU supply is fixed by the boiler.
+     * Steam machines get their speed from the gunpowder overclock, since their FE supply is fixed by the boiler.
      */
     @Override
     public int getSpeedBonus() {
-        return (int) Math.max(1, overclockComponent.getRecipeRf(1));
+        return (int) Math.max(1, overclockComponent.getRecipeFe(1));
     }
 
     public void tick() {

@@ -133,7 +133,7 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var resistor = createBasic(consumer, "resistor", steelWiremill, "The R in RLC", "Craft a Resistor", existingFileHelper);
         var capacitor = createBasic(consumer, "capacitor", steelWiremill, "The C in RLC", "Craft a Capacitor", existingFileHelper);
         var analogCircuit = createBasic(consumer, "analog_circuit", resistor, AdvancementType.GOAL, "RLC Circuits", "Craft an Analog Circuit and start the Electric Age", existingFileHelper);
-        var lvSteamTurbine = createBasic(consumer, "lv_steam_turbine", analogCircuit, "Better Than Solar Panels", "Craft a Steam Turbine", existingFileHelper);
+        var lvSteamTurbine = createBasic(consumer, "electric_steam_turbine", analogCircuit, "Better Than Solar Panels", "Craft a Steam Turbine", existingFileHelper);
         var polarizer = createBasic(consumer, "electric_polarizer", lvSteamTurbine, "One Recipe (+2) To Rule Them All", "Craft a Polarizer", existingFileHelper);
         var largeSteamBoiler = createBasic(consumer, "large_steam_boiler", analogCircuit, "Kiss Your Fuel Goodbye!", "Craft a Large Steam Boiler", existingFileHelper);
         var assembler = createBasic(consumer, "electric_assembler", analogCircuit, AdvancementType.GOAL, "Avengers, Assemble!", "Craft an Assembler", existingFileHelper);
@@ -149,12 +149,12 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var electricQuarry = createBasic(consumer, "electric_quarry", electronicCircuit, AdvancementType.CHALLENGE, "Resource Goes BRRRRRR!!!", "Craft an Electric Quarry", existingFileHelper);
         var oilDrillingRig = createBasic(consumer, "oil_drilling_rig", electronicCircuit, AdvancementType.GOAL, "Bringing Freedom To Your Country", "Craft an Oil Drilling Rig", existingFileHelper);
         var vacuumFreezer = createBasic(consumer, "vacuum_freezer", electronicCircuit, AdvancementType.GOAL, "Enslaved Winter", "Craft a Vacuum Freezer", existingFileHelper);
-        var mvSteamTurbine = createBasic(consumer, "mv_steam_turbine", electronicCircuit, AdvancementType.GOAL, "Better Than Wind Mills", "Craft an Advanced Steam Turbine", existingFileHelper);
-        var dieselGenerator = createBasic(consumer, "mv_diesel_generator", distillery, "Fast and Furious", "Craft an MV Diesel Generator", existingFileHelper);
+        var mvSteamTurbine = createBasic(consumer, "aluminum_steam_turbine", electronicCircuit, AdvancementType.GOAL, "Better Than Wind Mills", "Craft an Aluminum Steam Turbine", existingFileHelper);
+        var dieselGenerator = createBasic(consumer, "aluminum_diesel_generator", distillery, "Fast and Furious", "Craft an Aluminum Diesel Generator", existingFileHelper);
         var digitalCircuit = createBasic(consumer, "digital_circuit", distillery, "No need for Sodium anymore", "Craft a Digital Circuit", existingFileHelper);
-        var turboDieselGenerator = createBasic(consumer, "hv_diesel_generator", dieselGenerator, "Fast and Furious 2: Revenge", "Craft an HV Diesel Generator", existingFileHelper);
+        var turboDieselGenerator = createBasic(consumer, "stainless_steel_diesel_generator", dieselGenerator, "Fast and Furious 2: Revenge", "Craft a Stainless Steel Diesel Generator", existingFileHelper);
         var largeDieselGenerator = createBasic(consumer, "large_diesel_generator", turboDieselGenerator, "Fast and Furious 42: Armageddon", "Craft a Large Diesel Generator", existingFileHelper);
-        var hvSteamTurbine = createBasic(consumer, "hv_steam_turbine", mvSteamTurbine, "Better than Water Wheel", "Craft an HV Steam Turbine", existingFileHelper);
+        var hvSteamTurbine = createBasic(consumer, "stainless_steel_steam_turbine", mvSteamTurbine, "Better than Water Wheel", "Craft a Stainless Steel Steam Turbine", existingFileHelper);
         var largeSteamTurbine = createBasic(consumer, "large_steam_turbine", hvSteamTurbine, "Enslaved Hurricane", "Craft a Large Steam Turbine", existingFileHelper);
         var distillationTower = createBasic(consumer, "distillation_tower", digitalCircuit, AdvancementType.GOAL, "TOTAL™ Distillation", "Craft a Distillation Tower to unlock to full potential of oil processing", existingFileHelper);
         var heatExchanger = createBasic(consumer, "heat_exchanger", digitalCircuit, "Lava Power but Balanced",  "Craft a Heat Exchanger to avoid losing high pressure (and cheese easy energy from lava production)", existingFileHelper);

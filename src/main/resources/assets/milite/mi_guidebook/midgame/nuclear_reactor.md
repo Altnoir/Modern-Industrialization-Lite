@@ -18,7 +18,7 @@ item_ids:
     <MultiblockShape controller="nuclear_reactor" useBigShape={true} x="-11" z="-3" />
 </GameScene>
 
-The Nuclear Reactor is a large multiblock whose purpose is to generate massive amounts of energy by consuming nuclear fuel. It can produce 100s of times moreRF/t than diesel. It comes in several sizes from small to large.
+The Nuclear Reactor is a large multiblock whose purpose is to generate massive amounts of energy by consuming nuclear fuel. It can produce 100s of times more RF/t than diesel. It comes in several sizes from small to large.
 
 <Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
 

@@ -1,32 +1,34 @@
 ---
 navigation:
   title: "Eletricidade"
-  icon: "milite:lv_steam_turbine"
+  icon: "milite:electric_steam_turbine"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:lv_steam_turbine
-  - milite:lv_diesel_generator
+  - milite:electric_steam_turbine
+  - milite:electric_diesel_generator
 ---
 
 # Eletricidade
 
-A Turbina de Vapor usa vapor para produzir Eletricidade. Ela converte cada mb de vapor em 1RF, até 32 mb convertidos por tick.
+A Turbina de Vapor Elétrica usa vapor para produzir eletricidade. Ela converte cada mb de vapor em 1 RF, até 32 mb convertidos por tick.
 
-<Recipe id="milite:electric_age/machine/lv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
 
-A Turbina de Vapor enviará automaticamente Eletricidade para qualquer máquina conectada diretamente ao seu lado de saída. Ela só se conecta a cabos colocados no seu lado de saída. Ela tem o Tier Baixa Voltagem (LV).
+A Turbina de Vapor Elétrica enviará automaticamente eletricidade para qualquer máquina colocada diretamente contra o seu lado de saída. Seu buffer interno comporta 256 RF, e ela possui o *Tier* de Baixa Voltagem (LV).
 
-Cada cabo elétrico tem um Tier que determina quantosRF/t ele pode transferir e a quais máquinas pode se conectar. Cobre, Prata e Estanho são LV, Cuproníquel e Electrum são MV, e assim por diante...
+O Gerador à Diesel Elétrica é uma alternativa à Turbina de Vapor Elétrica. Ele usa vários combustíveis para produzir eletricidade. Por enquanto, você pode queimar Creosoto. (Consulte o REI para a lista de combustíveis que podem ser queimados.)
 
-O Gerador a Diesel é uma alternativa à Turbina de Vapor. Ele usa vários combustíveis para produzir Eletricidade. Por enquanto, você pode queimar Creosoto. (Consulte o REI para a lista de combustíveis que podem ser queimados).
+<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
 
-<Recipe id="milite:electric_age/machine/lv_diesel_generator_asbl" />
+## Energia no Modern Industrialization Lite
 
-Redes de cabos têm limitações na quantidade de energia que podem puxar para a rede: no máximo 256RF/t para cabos LV, 1024RF/t para cabos MV e 8192RF/t para cabos HV. Como não há limite de saída para a rede e os cabos têm um pequeno armazenamento interno, uma rede LV pode fornecer mais de 256RF/t por um curto período.
+O Modern Industrialization Lite **não** adiciona cabos nem transformadores próprios. Toda máquina elétrica simplesmente expõe a capacidade de energia padrão do NeoForge, então pode ser alimentada por um cabo de RF, tubo de energia ou bloco de armazenamento de energia de **qualquer outro mod**.
 
-Note, no entanto, que máquinas elétricas de bloco único só se conectarão a cabos LV!
+Isso significa que:
 
-Para transferir mais energia, você precisa criar múltiplas redes de cabos ou usar Transformadores.
+- Alimente uma máquina diretamente a partir do cabo ou tubo de outro mod, ou coloque um gerador bem ao lado dela.
+- Não há mais voltagem para combinar: você não precisa mais melhorar cascos de máquina nem passar energia por transformadores só para movê-la entre tiers.
+- Os tiers (LV, MV, HV, EV, SV) ainda existem, mas descrevem apenas para quantos RF/t a máquina foi construída e o tamanho do seu buffer interno. Uma máquina com o buffer cheio simplesmente para de aceitar mais RF - nada vai explodir.
 
-Um Transformador de tier baixo para alto (por exemplo, LV para MV) tem 5 entradas e 1 saída. Um Transformador de tier alto para baixo (por exemplo, MV para LV) tem 1 entrada e 5 saídas.
+Lembre-se de que as máquinas só aceitam energia pelos lados marcados como entradas, e que os geradores só enviam energia para fora pelo seu lado de saída.

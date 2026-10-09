@@ -74,8 +74,8 @@ public class SteamCraftingMultiblockBlockEntity extends AbstractCraftingMultiblo
 
     private class Behavior implements CrafterComponent.Behavior {
         @Override
-        public long consumeRf(long max, Simulation simulation) {
-            return SteamHelper.consumeSteamRf(inventory.getFluidInputs(), max, simulation);
+        public long consumeFe(long max, Simulation simulation) {
+            return SteamHelper.consumeSteamFe(inventory.getFluidInputs(), max, simulation);
         }
 
         @Override
@@ -90,7 +90,7 @@ public class SteamCraftingMultiblockBlockEntity extends AbstractCraftingMultiblo
 
         @Override
         public int getSpeedBonus() {
-            return (int) Math.max(1, overclockComponent.getRecipeRf(steelTier ? 2 : 1));
+            return (int) Math.max(1, overclockComponent.getRecipeFe(steelTier ? 2 : 1));
         }
 
         @Override

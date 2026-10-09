@@ -18,7 +18,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "milite:basic_machine_hull"
+          "name": "milite:electric_machine_hull"
         },
         {
           "type": "minecraft:item",

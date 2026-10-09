@@ -68,7 +68,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             return true;
         }
 
-        long consumeRf(long max, Simulation simulation);
+        long consumeFe(long max, Simulation simulation);
 
         default boolean banRecipe(MachineRecipe recipe) {
             return !getMachineLevel().canCraft(recipe.level);
@@ -149,13 +149,13 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     private boolean matchesMultipleRecipes;
 
-    /** The total RF a craft of the active recipe costs, which does not depend on how fast the machine is. */
-    private long recipeRf;
-    /** The RF per tick the active recipe wants at full speed, which a starved machine gets only part of. */
-    private long recipeRfPerTick;
-    private long usedRf;
-    /** The RF that went into the recipe during the last tick, which is the requested amount unless the machine is starved. */
-    private long lastConsumedRf;
+    /** The total FE a craft of the active recipe costs, which does not depend on how fast the machine is. */
+    private long recipeFe;
+    /** The FE per tick the active recipe wants at full speed, which a starved machine gets only part of. */
+    private long recipeFePerTick;
+    private long usedFe;
+    /** The FE that went into the recipe during the last tick, which is the requested amount unless the machine is starved. */
+    private long lastConsumedFe;
 
     private long lastSpeed = -1;
 
@@ -164,7 +164,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
     @Override
     public float getProgress() {
-        return recipeRf == 0 ? 0 : (float) usedRf / recipeRf;
+        return recipeFe == 0 ? 0 : (float) usedFe / recipeFe;
     }
 
     @Override
@@ -197,24 +197,24 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     /**
-     * The RF per tick the active recipe needs to run at the speed of this machine.
+     * The FE per tick the active recipe needs to run at the speed of this machine.
      */
-    public long getBaseRecipeRf() {
+    public long getBaseRecipeFe() {
         Preconditions.checkArgument(hasActiveRecipe());
-        return recipeRfPerTick;
+        return recipeFePerTick;
     }
 
     /**
-     * The RF the active recipe actually ate during the last tick. It is lower than {@link #getBaseRecipeRf()} while the
+     * The FE the active recipe actually ate during the last tick. It is lower than {@link #getBaseRecipeFe()} while the
      * machine is starved, which is what makes the recipe take longer than its speed allows.
      */
     @Override
-    public long getCurrentRecipeRf() {
+    public long getCurrentRecipeFe() {
         Preconditions.checkArgument(hasActiveRecipe());
-        return lastConsumedRf;
+        return lastConsumedFe;
     }
 
-    private long getRecipeRfPerTick(MachineRecipe recipe) {
+    private long getRecipeFePerTick(MachineRecipe recipe) {
         return Math.max(1, (long) recipe.energy * getSpeedMultiplier());
     }
 
@@ -232,10 +232,10 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         loadDelayedActiveRecipe();
 
         // START RECIPE IF NECESSARY
-        // usedRf == 0 means that no recipe is currently started
+        // usedFe == 0 means that no recipe is currently started
         boolean recipeStarted = false;
-        if (usedRf == 0 && isEnabled) {
-            if (behavior.consumeRf(1, SIMULATE) == 1) {
+        if (usedFe == 0 && isEnabled) {
+            if (behavior.consumeFe(1, SIMULATE) == 1) {
                 recipeStarted = updateActiveRecipe();
             }
         }
@@ -245,23 +245,23 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         }
 
         // PROCESS RECIPE TICK
-        long rf = 0;
+        long fe = 0;
         if (activeRecipe != null && isEnabled) {
-            if (usedRf > 0 || recipeStarted) {
+            if (usedFe > 0 || recipeStarted) {
                 // A starved machine eats what its buffer holds and keeps its progress until the power comes back.
-                long request = Math.min(recipeRfPerTick, recipeRf - usedRf);
-                rf = activeRecipe.value().conditionsMatch(conditionContext)
-                        ? behavior.consumeRf(request, ACT)
+                long request = Math.min(recipeFePerTick, recipeFe - usedFe);
+                fe = activeRecipe.value().conditionsMatch(conditionContext)
+                        ? behavior.consumeFe(request, ACT)
                         : 0;
-                lastConsumedRf = rf;
-                isActive = rf > 0;
-                usedRf += rf;
+                lastConsumedFe = fe;
+                isActive = fe > 0;
+                usedFe += fe;
 
-                if (usedRf >= recipeRf) {
+                if (usedFe >= recipeFe) {
                     putItemOutputs(activeRecipe.value(), false, false);
                     putFluidOutputs(activeRecipe.value(), false, false);
                     clearLocks();
-                    usedRf = 0;
+                    usedFe = 0;
                     behavior.onCraft();
                 }
             } else {
@@ -275,7 +275,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             long speed = getSpeedMultiplier();
             if (speed != lastSpeed) {
                 lastSpeed = speed;
-                recipeRfPerTick = getRecipeRfPerTick(activeRecipe.value());
+                recipeFePerTick = getRecipeFePerTick(activeRecipe.value());
             }
         }
 
@@ -286,7 +286,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     private void clearActiveRecipeIfPossible() {
-        if (usedRf == 0) {
+        if (usedFe == 0) {
             activeRecipe = null;
         }
     }
@@ -318,7 +318,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
             activeRecipe = findRecipe(delayedActiveRecipe);
             delayedActiveRecipe = null;
             if (activeRecipe == null) { // If a recipe got removed, the saved progress is meaningless and must go
-                usedRf = 0;
+                usedFe = 0;
             }
         }
     }
@@ -397,10 +397,10 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         matchesMultipleRecipes = false;
         if (newActiveRecipe != null && tryStartRecipe(newActiveRecipe.value())) {
             activeRecipe = newActiveRecipe;
-            recipeRf = newActiveRecipe.value().getTotalRf();
-            usedRf = 0;
+            recipeFe = newActiveRecipe.value().getTotalFe();
+            usedFe = 0;
             lastSpeed = getSpeedMultiplier();
-            recipeRfPerTick = getRecipeRfPerTick(newActiveRecipe.value());
+            recipeFePerTick = getRecipeFePerTick(newActiveRecipe.value());
             return true;
         }
         return false;
@@ -435,7 +435,7 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     private Iterable<RecipeHolder<MachineRecipe>> getRecipes() {
-        if (usedRf > 0) {
+        if (usedFe > 0) {
             return Collections.singletonList(activeRecipe);
         } else {
             return getRecipes(behavior.getCrafterWorld(), behavior.recipeTypes(), inventory.getItemInputs());
@@ -491,9 +491,9 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
      * where it stopped instead of starting over.
      */
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("usedRf", this.usedRf);
-        tag.putLong("recipeRf", this.recipeRf);
-        tag.putLong("recipeRfPerTick", this.recipeRfPerTick);
+        tag.putLong("usedFe", this.usedFe);
+        tag.putLong("recipeFe", this.recipeFe);
+        tag.putLong("recipeFePerTick", this.recipeFePerTick);
         if (activeRecipe != null) {
             tag.putString("activeRecipe", this.activeRecipe.id().toString());
         } else if (delayedActiveRecipe != null) {
@@ -502,15 +502,15 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
     }
 
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        this.usedRf = tag.getLong("usedRf");
-        this.recipeRf = tag.getLong("recipeRf");
-        this.recipeRfPerTick = tag.getLong("recipeRfPerTick");
+        this.usedFe = tag.getLong("usedFe");
+        this.recipeFe = tag.getLong("recipeFe");
+        this.recipeFePerTick = tag.getLong("recipeFePerTick");
         this.lastSpeed = -1;
         String recipeId = tag.getString("activeRecipe");
         this.delayedActiveRecipe = recipeId.isEmpty() ? null : ResourceLocation.tryParse(recipeId);
-        if (delayedActiveRecipe == null && usedRf > 0) {
-            usedRf = 0;
-            MI.LOGGER.error("Had to set the usedRf of CrafterComponent to 0, but that should never happen!");
+        if (delayedActiveRecipe == null && usedFe > 0) {
+            usedFe = 0;
+            MI.LOGGER.error("Had to set the usedFe of CrafterComponent to 0, but that should never happen!");
         }
     }
 

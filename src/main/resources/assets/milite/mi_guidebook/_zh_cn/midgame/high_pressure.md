@@ -10,7 +10,7 @@ item_ids:
   - milite:high_pressure_advanced_large_steam_boiler
   - milite:large_steam_turbine
   - milite:heat_exchanger
-  - milite:hv_steam_turbine
+  - milite:stainless_steel_steam_turbine
 ---
 
 # 高压！
@@ -33,7 +33,7 @@ item_ids:
 
 一旦能够制造高压水，你就可以使用高压大型蒸汽锅炉来生产高压蒸汽。
 
-1 mB高压蒸汽相当于8 mB普通蒸汽，等价于8RF。
+1 mB高压蒸汽相当于8 mB普通蒸汽，等价于8 RF。
 
 <Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
@@ -51,7 +51,7 @@ item_ids:
     <MultiblockShape controller="large_steam_turbine" />
 </GameScene>
 
-大型蒸汽涡轮机可将常规蒸汽（1 mB = 1RF）和高压蒸汽（1 mB = 8RF）转化为EU，且产出最高可达16384RF/t！**然而它既不会返还普通水，也不会返还高压水。**
+大型蒸汽涡轮机可将常规蒸汽（1 mB = 1 RF）和高压蒸汽（1 mB = 8 RF）转化为RF，且产出最高可达16384 RF/t！**然而它既不会返还普通水，也不会返还高压水。**
 
 <Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -65,9 +65,9 @@ item_ids:
 
 <Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
 
-## 高压蒸汽涡轮机
+## 不锈钢蒸汽涡轮机
 
-小型设施的另一种选择是使用高压蒸汽涡轮机。与其他高压发电机一样，它能产出512RF/t。它只接受普通蒸汽。
+小型设施的另一种选择是使用不锈钢蒸汽涡轮机。与其他同等级的发电机一样，它能产出512 RF/t。它只接受普通蒸汽。
 
-<Recipe id="milite:electric_age/machine/hv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
 

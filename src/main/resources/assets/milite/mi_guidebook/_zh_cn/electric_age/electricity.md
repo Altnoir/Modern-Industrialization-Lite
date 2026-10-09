@@ -1,32 +1,34 @@
 ---
 navigation:
   title: "电力"
-  icon: "milite:lv_steam_turbine"
+  icon: "milite:electric_steam_turbine"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:lv_steam_turbine
-  - milite:lv_diesel_generator
+  - milite:electric_steam_turbine
+  - milite:electric_diesel_generator
 ---
 
 # 电力
 
-蒸汽涡轮机使用蒸汽来发电。它将每mB蒸汽转换为1RF，每刻最多转换32 mB。
+电力蒸汽涡轮机使用蒸汽来发电。它将每 mb 蒸汽转换为 1 RF，每刻最多转换 32 mb。
 
-<Recipe id="milite:electric_age/machine/lv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
 
-蒸汽涡轮机会自动向与其输出端直接相连的任意机器输送电力，且仅会连接放置在其输出端上的电缆。它属于低压（LV）*等级*。
+电力蒸汽涡轮机会自动向紧贴其输出面放置的任意机器输送电力。它的内部缓存可容纳 256 RF，并且具有低压（LV）*等级*。
 
-每钟电缆均有其等级，这决定了它能传输的RF/t上限，以及可连接的机器类型。铜、银和锡电缆为低压等级，白铜和琥珀金电缆为中压（MV）等级，依此类推……
+电力柴油发电机是电力蒸汽涡轮机的替代选择。它使用多种燃料发电。目前你可以燃烧杂酚油。（可用燃料列表请查阅 REI）。
 
-柴油发电机是蒸汽涡轮机的替代选择。它使用多种燃料发电。目前你可使用杂酚油。（可用燃料列表请查阅REI）。
+<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
 
-<Recipe id="milite:electric_age/machine/lv_diesel_generator_asbl" />
+## Modern Industrialization Lite 中的电力
 
-电缆网络存在能量输入上限：低压电缆网络最多接收256RF/t，中压电缆为1024RF/t，高压（HV）电缆为8192RF/t。由于网络输出无限制，且电缆具有少量内部储能，低压网络可在短时间内提供超过256RF/t的能量。
+Modern Industrialization Lite **并不**添加任何自带的电缆或变压器。每台电力机器都只是对外提供标准的 NeoForge 能量能力，因此可以**由任何其它模组**的 RF 电缆、能量管道或储能方块来供电。
 
-但请注意，单个电力机器只能连接到低压电缆！
+这意味着：
 
-要传输更多能量，你需要创建多个电缆网络，或使用变压器。
+- 直接用其它模组的电缆或管道给机器供电，或者把发电机紧挨着机器放置。
+- 再也不需要匹配电压：你不必仅仅为了在等级之间传输电力而升级机器外壳，也不必让电力经过变压器。
+- 等级（LV、MV、HV、EV、SV）依然存在，但它们只描述机器是按多少 RF/t 设计的，以及其内部缓存有多大。缓存已满的机器只是停止接收更多 RF——不会发生爆炸。
 
-低等级向高等级转换的变压器（例如低压至中压）具有5个输入面和1个输出面。高等级向低等级转换的变压器（例如中压至高压）则具有1个输入面和5个输出面。
+请记住，机器只在标记为输入的面接收能量，而发电机只从其输出面输出能量。

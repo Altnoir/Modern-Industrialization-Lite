@@ -78,8 +78,8 @@ public class MachineRegistrationHelper {
      *
      * <p>
      * The material tiers come from {@link MachineLevel}, which is the ladder this mod already keeps, so the two cannot
-     * drift apart. The voltage tiers and the tiers only the hatches use follow after it; their numbers only ever get
-     * compared against machines that share their name, so the two ladders never have to agree on anything.
+     * drift apart. The tiers only the multiblocks use follow after it; their numbers only ever get compared against
+     * machines that share their name, so the two ladders never have to agree on anything.
      */
     private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
 
@@ -96,17 +96,13 @@ public class MachineRegistrationHelper {
         for (var level : MachineLevel.values()) {
             prefixes.add(level.getSerializedName());
         }
-        prefixes.addAll(List.of("lv", "mv", "hv", "ev", "superconductor", "advanced", "turbo", "highly_advanced", "nuclear"));
+        prefixes.addAll(List.of("advanced", "turbo", "highly_advanced", "nuclear"));
         return List.copyOf(prefixes);
     }
 
     /**
-     * Where a machine sits in the creative tab: the machine it is first, the tier it is a version of second, so every
-     * furnace sits together with the bronze one ahead of the iridium one.
-     *
-     * <p>
-     * A name that carries no known tier is a machine of its own and sorts ahead of the tiered versions of the same
-     * name, which keeps the four large boilers next to each other.
+     * Where a machine sits in the creative tab: the tier it is a version of first, the machine it is second, so the tab
+     * reads as the upgrade path, every bronze machine together and ahead of the steel ones.
      *
      * @param id - the machine block id, for example {@code electric_macerator}.
      * @returns the order to register the machine with.
@@ -119,32 +115,48 @@ public class MachineRegistrationHelper {
         for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
             var prefix = MACHINE_TIER_PREFIXES.get(tier);
             if (id.startsWith(prefix + "_")) {
-                return SortOrder.MACHINES.and(id.substring(prefix.length() + 1)).and(tier);
+                var machine = id.substring(prefix.length() + 1);
+                return SortOrder.MACHINES.and(tier).and(machineKindOrder(machine)).and(machine);
             }
         }
-        return SortOrder.MACHINES.and(id).and(-1);
+        return SortOrder.MACHINES.and(MACHINE_TIER_PREFIXES.size()).and(machineKindOrder(id)).and(id);
     }
 
     /**
-     * Where a hatch sits in the creative tab: its kind first, then the tier it is a version of, so the item hatches come
-     * before the fluid ones and the bronze ones come before the steel ones.
+     * The order machine kinds are listed in inside one tier. The blast furnace comes first: it is the machine that turns
+     * a metal into the plates the rest of the tier is built from, so it reads as the head of its row.
+     */
+    private static int machineKindOrder(String machine) {
+        return machine.equals("blast_furnace") ? 0 : 1;
+    }
+
+    /**
+     * The level a structure of the given name belongs to.
+     */
+    private static int structureLevel(String prefix) {
+        var level = MachineLevel.byNameOrNull(prefix);
+        return level == null ? MachineLevel.values().length : level.ordinal();
+    }
+
+    /**
+     * Where a hatch sits in the creative tab: the level it belongs to first, its kind second, so the item hatches come
+     * before the fluid and energy ones of the same level.
      *
      * @param id - the hatch block id, for example {@code bronze_item_input_hatch}.
      * @returns the order to register the hatch with.
      */
     private static SortOrder hatchSortOrder(String id) {
         var kind = id.substring(0, id.length() - "_hatch".length());
-        var tier = -1;
-        for (int i = 0; i < MACHINE_TIER_PREFIXES.size(); i++) {
-            var prefix = MACHINE_TIER_PREFIXES.get(i);
+        var level = MachineLevel.values().length;
+        for (var prefix : MACHINE_TIER_PREFIXES) {
             if (id.startsWith(prefix + "_")) {
                 kind = id.substring(prefix.length() + 1, id.length() - "_hatch".length());
-                tier = i;
+                level = structureLevel(prefix);
                 break;
             }
         }
         var kindOrder = HATCH_KINDS.indexOf(kind);
-        return SortOrder.HATCHES.and(kindOrder < 0 ? HATCH_KINDS.size() : kindOrder).and(tier);
+        return SortOrder.HATCHES.withLevel(level).and(kindOrder < 0 ? HATCH_KINDS.size() : kindOrder);
     }
 
     /**
@@ -176,22 +188,22 @@ public class MachineRegistrationHelper {
         return switch (level) {
             case BRONZE -> MachineCasings.BRONZE;
             case STEEL -> MachineCasings.STEEL;
-            case ELECTRIC -> CableTier.LV.casing;
-            case ALUMINUM -> CableTier.MV.casing;
-            case STAINLESS_STEEL -> CableTier.HV.casing;
-            case TITANIUM -> CableTier.EV.casing;
-            case IRIDIUM -> CableTier.SUPERCONDUCTOR.casing;
+            case ELECTRIC -> CableTier.ELECTRIC.casing;
+            case ALUMINUM -> CableTier.ALUMINUM.casing;
+            case STAINLESS_STEEL -> CableTier.STAINLESS_STEEL.casing;
+            case TITANIUM -> CableTier.TITANIUM.casing;
+            case IRIDIUM -> CableTier.IRIDIUM.casing;
         };
     }
 
     /** The built-in energy casing tier for electric machines at a given machine level. */
     public static CableTier casingTierOf(MachineLevel level) {
         return switch (level) {
-            case BRONZE, STEEL, ELECTRIC -> CableTier.LV;
-            case ALUMINUM -> CableTier.MV;
-            case STAINLESS_STEEL -> CableTier.HV;
-            case TITANIUM -> CableTier.EV;
-            case IRIDIUM -> CableTier.SUPERCONDUCTOR;
+            case BRONZE, STEEL, ELECTRIC -> CableTier.ELECTRIC;
+            case ALUMINUM -> CableTier.ALUMINUM;
+            case STAINLESS_STEEL -> CableTier.STAINLESS_STEEL;
+            case TITANIUM -> CableTier.TITANIUM;
+            case IRIDIUM -> CableTier.IRIDIUM;
         };
     }
 
@@ -216,7 +228,7 @@ public class MachineRegistrationHelper {
         } else if (tier.equals("steel")) {
             defaultCasing = MachineCasings.STEEL;
         } else if (tier.equals("electric")) {
-            defaultCasing = CableTier.LV.casing;
+            defaultCasing = CableTier.ELECTRIC.casing;
         } else {
             throw new RuntimeException("Invalid tier: " + tier);
         }

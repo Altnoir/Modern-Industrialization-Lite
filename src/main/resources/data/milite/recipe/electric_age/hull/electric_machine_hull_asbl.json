@@ -1,0 +1,27 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    " A ",
+    "BCB",
+    "ccc"
+  ],
+  "key":
+  {
+    "A" : {
+      "item" : "milite:analog_circuit"
+    },
+    "c" : {
+      "item" : "milite:tin_wire"
+    },
+    "B" : {
+      "item" : "milite:redstone_battery"
+    },
+    "C" :{
+      "item" : "milite:steel_machine_casing"
+    }
+  },
+
+  "result": {
+    "id": "milite:electric_machine_hull"
+  }
+}

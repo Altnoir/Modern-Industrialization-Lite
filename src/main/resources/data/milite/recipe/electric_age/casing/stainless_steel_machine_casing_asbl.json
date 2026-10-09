@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "AAA",
+    "AHA",
+    "AAA"
+  ],
+  "key": {
+    "A" : {
+      "tag" : "c:plates/stainless_steel"
+    },
+    "H" : {
+      "item" : "milite:aluminum_machine_hull"
+    }
+  },
+  "result": {
+    "id": "milite:stainless_steel_machine_casing"
+  }
+}

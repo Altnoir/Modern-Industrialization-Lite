@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "Elektrikli Makineler"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 105
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
 ---
 
 # Elektrikli Makineler
 
-Elektrikli makineler, buhar yerine elektrik gerektirmeleri ve 32RF/t'ye kadar aşamalı olarak hız aşırtma yapmaları dışında buharlı makinelerle tamamen aynı şekilde çalışır.
+Elektrikli makineler, buhar yerine elektrik gerektirmeleri ve 32 RF/t'ye kadar aşamalı olarak hız aşırtma yapmaları dışında buharlı makinelerle tamamen aynı şekilde çalışır.
 
 Zaten aşina olduğunuz makinelerin elektrikli versiyonlarının tariflerini görüntülemek için REI'yi kullanabilirsiniz.
 
@@ -45,7 +45,7 @@ Modülü elinizde yapılandırın, ardından makineye veya çoklu blok denetleyi
 
 ## Hız Aşırtma Yükseltmeleri
 
-Normal elektrikli makinelerde hız aşırtma 32RF/t ile sınırlandırılmıştır ve elektrikli çoklu bloklarda hız aşırtma 128RF/t ile sınırlandırılmıştır.
+Normal elektrikli makinelerde hız aşırtma 32 RF/t ile sınırlandırılmıştır ve elektrikli çoklu bloklarda hız aşırtma 128 RF/t ile sınırlandırılmıştır.
 
 Makine veya çoklu blok menüsünde, maksimum hız aşırtmayı artırmak için yükseltmeler ekleyin! Kesin miktarlar için REI'yi kontrol edin.
 

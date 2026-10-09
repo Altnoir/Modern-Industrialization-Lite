@@ -1,0 +1,22 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:iridium_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:superconductor_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:iridium_energy_output_hatch"
+    }
+  ],
+  "level": "electric"
+}

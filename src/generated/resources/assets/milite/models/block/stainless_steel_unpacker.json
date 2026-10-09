@@ -1,5 +1,5 @@
 {
-  "casing": "hv",
+  "casing": "stainless_steel",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/unpacker/overlay_front",

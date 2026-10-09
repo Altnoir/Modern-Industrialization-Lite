@@ -192,7 +192,7 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
                 ItemStack displayedItem = displayedItems.get(itemIndex).copyWithCount(1);
 
                 graphics.pose().pushPose();
-                // Make sure that we don't overlap with the EU/t text
+                // Make sure that we don't overlap with the FE/t text
                 double itemx = Math.max(x, endOfLevelText + 1);
                 graphics.pose().translate(itemx, y, 0);
                 graphics.pose().scale((float) wh / 16, (float) wh / 16, 1);

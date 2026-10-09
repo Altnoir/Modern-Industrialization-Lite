@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:mv_diesel_generator
+  - milite:aluminum_diesel_generator
 ---
 
 # Oil Processing
@@ -23,9 +23,9 @@ The structure of the multiblock is made of: Steel Machine Casings, Steel Pipe Ma
 
 Crude Oil can be turned into various fuels and used for more efficient Rubber Sheet production.
 
-Various fuels can be burned in the Diesel Generator, and you can check in REI how manyRF each fuel produces. TheRF produced by these fuels in the Diesel Generator is doubled. The Diesel Generator will produce up to 256RF/t and will only connect to MV cables.
+Various fuels can be burned in the Diesel Generator, and you can check in REI how many RF each fuel produces. The RF produced by these fuels in the Diesel Generator is doubled. The Diesel Generator will produce up to 256 RF/t.
 
-<Recipe id="milite:electric_age/machine/mv_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
 
 Diesel Generators will only use fuel when they need to, but if you need a constant supply of energy, you can put liquid fuels in the Large Steam Boiler instead of items.
 

@@ -39,20 +39,30 @@ public final class SortOrder implements Comparable<SortOrder> {
      */
     public static final SortOrder TANKS = new SortOrder();
     public static final SortOrder BARRELS = new SortOrder();
-    public static final SortOrder CASINGS = new SortOrder();
+
+    private static final int KIND_CASING = 0;
+    private static final int KIND_HULL = 1;
+    private static final int KIND_HATCH = 2;
+    private static final int KIND_COIL = 3;
+    private static final int KIND_FUSION_CHAMBER = 4;
+
     /**
-     * The machine hull a machine is built into, which belongs beside the casings rather than with the leftovers.
+     * The blocks a machine is built from. They share one group so the tab lists them by the level they belong to: every
+     * bronze casing, hull and hatch together, and ahead of the steel ones, rather than one kind of part after another.
      */
-    public static final SortOrder MACHINE_HULLS = new SortOrder();
-    public static final SortOrder COILS = new SortOrder();
+    public static final SortOrder STRUCTURES = new SortOrder();
+    public static final SortOrder CASINGS = STRUCTURES.and(KIND_CASING);
+    public static final SortOrder MACHINE_HULLS = STRUCTURES.and(KIND_HULL);
     /**
      * Multiblock hatches, which a multiblock uses to exchange items, fluids and energy with the outside.
      */
-    public static final SortOrder HATCHES = new SortOrder();
+    public static final SortOrder HATCHES = STRUCTURES.and(KIND_HATCH);
+    public static final SortOrder COILS = STRUCTURES.and(KIND_COIL);
     /**
-     * The fusion chamber, a structural block of the fusion reactor rather than a block in its own right.
+     * The fusion chamber, a structural block of the fusion reactor rather than a block in its own right. It is listed
+     * with the structures of the level it is built from, after the hulls and hatches of that level.
      */
-    public static final SortOrder FUSION_CHAMBER = new SortOrder();
+    public static final SortOrder FUSION_CHAMBER = STRUCTURES.and(KIND_FUSION_CHAMBER);
     public static final SortOrder MACHINES = new SortOrder();
     /**
      * The material forms, in the order a player meets them: ore, raw block, block, then the items made from it.
@@ -89,12 +99,34 @@ public final class SortOrder implements Comparable<SortOrder> {
     }
 
     /**
+     * Puts a level ahead of the kind this order names, so that every structure of one level is listed together instead
+     * of one kind of structure after another.
+     */
+    public SortOrder withLevel(Comparable level) {
+        Comparable[] newArray = new Comparable[objects.length + 1];
+        newArray[0] = objects[0];
+        newArray[1] = level;
+        System.arraycopy(objects, 1, newArray, 2, objects.length - 1);
+        return new SortOrder(newArray);
+    }
+
+    /**
      * The group this order belongs to: the constant it was derived from, or itself when it is a constant. A group takes
      * the next number for itself when the class is initialised and everything derived from it with {@link #and} carries
      * that number first, so this names the group without having to keep a list of the constants.
      */
     public int groupIndex() {
         return ((Number) objects[0]).intValue();
+    }
+
+    /**
+     * Whether this order names a block that is part of a machine: a machine itself, or a casing, hull, coil, hatch or
+     * fusion chamber it is built from. Those blocks are heard as metal rather than as the stone they are made of.
+     */
+    public boolean isMachineStructure() {
+        int group = groupIndex();
+        return group == MACHINES.groupIndex() || group == CASINGS.groupIndex() || group == MACHINE_HULLS.groupIndex()
+                || group == COILS.groupIndex() || group == HATCHES.groupIndex() || group == FUSION_CHAMBER.groupIndex();
     }
 
     @Override

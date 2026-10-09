@@ -34,7 +34,7 @@ public enum MachineLevel implements StringRepresentable {
     /**
      * How many times faster than {@link #BRONZE} this level works: a recipe duration is the number of ticks a bronze
      * machine takes over it, and every level above bronze finishes it in {@code 1 / multiplier} of that time by eating
-     * the multiplier times as much RF per tick, so a craft costs the same RF on every level.
+     * the multiplier times as much FE per tick, so a craft costs the same FE on every level.
      */
     private final int speedMultiplier;
 
@@ -78,7 +78,7 @@ public enum MachineLevel implements StringRepresentable {
         return switch (tier) {
             case BRONZE -> BRONZE;
             case STEEL -> STEEL;
-            case LV -> ELECTRIC;
+            case ELECTRIC -> ELECTRIC;
             case MULTIBLOCK, UNLIMITED -> throw new IllegalArgumentException("Machine tier " + tier + " has no level of its own");
         };
     }
@@ -118,11 +118,23 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     public static MachineLevel byName(String name) {
+        MachineLevel level = byNameOrNull(name);
+        if (level == null) {
+            throw new IllegalArgumentException("Unknown machine level " + name);
+        }
+        return level;
+    }
+
+    /**
+     * The level of the given name, or null when the name is not a level at all, which is the case for every other
+     * material a machine structure can be made of.
+     */
+    public static MachineLevel byNameOrNull(String name) {
         for (MachineLevel level : values()) {
             if (level.levelName.equals(name.toLowerCase(Locale.ROOT))) {
                 return level;
             }
         }
-        throw new IllegalArgumentException("Unknown machine level " + name);
+        return null;
     }
 }

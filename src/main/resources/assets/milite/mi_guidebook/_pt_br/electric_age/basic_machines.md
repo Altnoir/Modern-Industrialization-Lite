@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "Máquinas Elétricas"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 105
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
 ---
 
 # Máquinas Elétricas
 
-Máquinas Elétricas funcionam exatamente como as máquinas a vapor, exceto que elas usam eletricidade em vez de vapor e fazem overclock progressivo nas receitas até 32RF/t.
+Máquinas Elétricas funcionam exatamente como as máquinas a vapor, exceto que elas usam eletricidade em vez de vapor e fazem overclock progressivo nas receitas até 32 RF/t.
 
 Você pode usar o JEI para ver as receitas da versão elétrica das máquinas que já conhece.
 
@@ -47,7 +47,7 @@ Configure o módulo na mão e depois insira-o no controlador da máquina ou mult
 
 ## Melhorias de Overclock
 
-Máquinas Elétricas comuns têm overclock limitado a 32RF/t, e multiblocos elétricos têm overclock limitado a 128RF/t.
+Máquinas Elétricas comuns têm overclock limitado a 32 RF/t, e multiblocos elétricos têm overclock limitado a 128 RF/t.
 
 No menu da máquina ou multibloco, adicione upgrades para aumentar o overclock máximo! Confira no REI os valores exatos.
 

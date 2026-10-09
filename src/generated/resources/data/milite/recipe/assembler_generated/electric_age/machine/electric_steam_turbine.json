@@ -1,0 +1,34 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit"
+    },
+    {
+      "amount": 4,
+      "item": "milite:motor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electric_machine_hull"
+    },
+    {
+      "amount": 2,
+      "item": "milite:tin_rotor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tin_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:electric_steam_turbine"
+    }
+  ],
+  "level": "electric"
+}

@@ -43,13 +43,13 @@ public abstract class CompatRecipesProvider extends MIRecipesProvider {
         addMiRecipe(machine, input, output, outputAmount, 2, 200);
     }
 
-    protected final void addMiRecipe(MachineRecipeType machine, String input, String output, int outputAmount, int rf, int duration) {
-        addMiRecipe(machine, input, 1, output, outputAmount, rf, duration);
+    protected final void addMiRecipe(MachineRecipeType machine, String input, String output, int outputAmount, int fe, int duration) {
+        addMiRecipe(machine, input, 1, output, outputAmount, fe, duration);
     }
 
-    protected final void addMiRecipe(MachineRecipeType machine, String input, int inputAmount, String output, int outputAmount, int rf, int duration) {
+    protected final void addMiRecipe(MachineRecipeType machine, String input, int inputAmount, String output, int outputAmount, int fe, int duration) {
         String id = "%s/%s".formatted(machine.getPath(), formatRecipePath(input, output));
-        addCompatRecipe(id, new MachineRecipeBuilder(machine, rf, duration).addItemInput(input, inputAmount).addItemOutput(output, outputAmount));
+        addCompatRecipe(id, new MachineRecipeBuilder(machine, fe, duration).addItemInput(input, inputAmount).addItemOutput(output, outputAmount));
     }
 
     protected final void addCompatRecipe(String id, MIRecipeBuilder recipeJson) {

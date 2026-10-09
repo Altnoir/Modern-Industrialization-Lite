@@ -11,8 +11,8 @@ item_ids:
   - milite:cupronickel_coil
   - milite:kanthal_coil
   - milite:superconductor_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # Electric Blast Furnace
@@ -33,11 +33,11 @@ Every furnace is made of one layer of Heatproof Machine Casings, two hollow laye
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-Don't forget to add Energy Input Hatch(es) or the EBF won't have energy! The LV Energy Input Hatch will only connect to LV cables.
+Don't forget to add Energy Input Hatch(es) or the EBF won't have energy! An Electric Energy Input Hatch feeds at most 32 RF/t into the furnace.
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-MV Energy Input Hatches will only connect to MV cables, which can be useful if you need a ton of energy for your EBF! You can't craft them yet, but keep in mind they exist...
+Aluminum Energy Input Hatches move up to 128 RF/t, which can be useful if you need a ton of energy for your EBF!
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

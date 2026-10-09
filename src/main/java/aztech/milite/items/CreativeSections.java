@@ -85,8 +85,8 @@ public final class CreativeSections {
         add(byGroup, NUCLEAR, SortOrder.NUCLEAR.root());
         add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         // Everything a machine or a multiblock is built from: only the machines themselves belong to the next section.
-        add(byGroup, MACHINE_PARTS, SortOrder.CASINGS, SortOrder.MACHINE_HULLS, SortOrder.COILS, SortOrder.HATCHES,
-                SortOrder.FUSION_CHAMBER);
+        // Casings, hulls, coils and hatches share one group so that they are listed by level rather than by kind.
+        add(byGroup, MACHINE_PARTS, SortOrder.STRUCTURES);
         add(byGroup, MACHINES, SortOrder.MACHINES);
         add(byGroup, ORES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
         add(byGroup, MATERIALS, SortOrder.MATERIALS);

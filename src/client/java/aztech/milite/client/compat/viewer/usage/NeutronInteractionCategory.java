@@ -125,17 +125,17 @@ public class NeutronInteractionCategory extends ViewerCategory<NeutronInteractio
                         MIText.NeutronTemperatureVariation.text());
 
                 widgets.text(
-                        Component.literal(String.format("%d EU", NuclearConstant.EU_FOR_FAST_NEUTRON)).setStyle(TextHelper.NEUTRONS),
+                        Component.literal(String.format("%d FE", NuclearConstant.FE_FOR_FAST_NEUTRON)).setStyle(TextHelper.NEUTRONS),
                         centerX - 18, centerY + 23, TextAlign.CENTER, false, false,
                         MIText.FastNeutronEnergy.text());
 
                 widgets.text(
-                        Component.literal(String.format("%d EU", fuel.directEUbyDesintegration)),
+                        Component.literal(String.format("%d FE", fuel.directFEbyDesintegration)),
                         centerX + 55, centerY + 23, TextAlign.CENTER, false, true,
                         MIText.DirectEnergy.text());
 
                 widgets.text(
-                        Component.literal(String.format("%.2f °C", (double) fuel.directEUbyDesintegration / NuclearConstant.EU_PER_DEGREE)),
+                        Component.literal(String.format("%.2f °C", (double) fuel.directFEbyDesintegration / NuclearConstant.FE_PER_DEGREE)),
                         centerX + 55, centerY - 12, TextAlign.CENTER, false, true,
                         MIText.DirectHeatByDesintegration.text());
             }

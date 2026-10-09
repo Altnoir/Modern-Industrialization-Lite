@@ -33,24 +33,24 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
     protected final IEnergyStorage insertable;
     protected final IEnergyStorage extractable;
 
-    protected final long rfCapacity;
+    protected final long feCapacity;
     protected final CableTier from, to;
 
     protected boolean extractableOnOutputDirection;
 
-    public AbstractStorageMachineBlockEntity(BEP bep, CableTier from, CableTier to, String name, long rfCapacity) {
-        this(bep, from, to, name, rfCapacity, true);
+    public AbstractStorageMachineBlockEntity(BEP bep, CableTier from, CableTier to, String name, long feCapacity) {
+        this(bep, from, to, name, feCapacity, true);
     }
 
-    public AbstractStorageMachineBlockEntity(BEP bep, CableTier from, CableTier to, String name, long rfCapacity,
+    public AbstractStorageMachineBlockEntity(BEP bep, CableTier from, CableTier to, String name, long feCapacity,
             boolean extractableOnOutputDirection) {
         super(bep, new MachineGuiParameters.Builder(name, false).build(), OrientationComponent.Params.noFacing(false, false));
 
         this.from = from;
         this.to = to;
-        this.rfCapacity = rfCapacity;
+        this.feCapacity = feCapacity;
 
-        this.energy = new EnergyComponent(this, rfCapacity);
+        this.energy = new EnergyComponent(this, feCapacity);
         this.redstoneControl = new RedstoneControlComponent();
 
         this.insertable = energy.buildInsertable();
@@ -94,7 +94,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
         this.registerComponents(energy, redstoneControl);
 
         EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
-        registerGuiComponent(new EnergyBar(energyBarParams, energy::getRf, energy::getCapacity),
+        registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity),
                 new SlotPanel(this).withRedstoneControl(redstoneControl));
 
         this.extractableOnOutputDirection = extractableOnOutputDirection;
@@ -106,7 +106,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
     }
 
     public static MachineCasing getCasingFromTier(CableTier from, CableTier to) {
-        if (from.rf > to.rf) {
+        if (from.fe > to.fe) {
             return from.casing;
         } else {
             return to.casing;
@@ -152,7 +152,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
                 for (int i = 0; i < 10000; ++i) { // Try up to 10000 times to bypass I/O limits
                     try (Transaction transaction = Transaction.openRoot()) {
-                        int inserted = energyItem.receiveEnergy((int) Math.min(Integer.MAX_VALUE, energy.getRf() / stackSize), false);
+                        int inserted = energyItem.receiveEnergy((int) Math.min(Integer.MAX_VALUE, energy.getFe() / stackSize), false);
 
                         if (inserted == 0) {
                             break;
@@ -160,7 +160,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
                             insertedSomething = true;
                         }
 
-                        energy.consumeRf((long) inserted * stackSize, Simulation.ACT);
+                        energy.consumeFe((long) inserted * stackSize, Simulation.ACT);
                         transaction.commit();
                     }
                 }
@@ -175,7 +175,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
                                 break;
                             }
 
-                            energy.insertRf((long) extracted * stackSize, Simulation.ACT);
+                            energy.insertFe((long) extracted * stackSize, Simulation.ACT);
                             transaction.commit();
                         }
                     }

@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:mv_diesel_generator
+  - milite:aluminum_diesel_generator
 ---
 
 # 石油精製
@@ -19,9 +19,9 @@ item_ids:
 
 原油は様々な燃料に加工することができ、より効率的なゴムの板の生産に使用することができる。
 
-ディーゼル発電機では様々な燃料を燃やすことができ、REIで各燃料がどれだけのEUを生成するかを確認することができる。ディーゼル発電機は最大256RF/tを生産し、MVケーブルとのみ接続する。
+ディーゼル発電機では様々な燃料を燃やすことができ、REIで各燃料がどれだけのRFを生成するかを確認することができる。ディーゼル発電機は最大256 RF/tを生産する。
 
-<Recipe id="milite:electric_age/machine/mv_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
 
 ディーゼル発電機は必要な時だけ燃料を使うが、常にエネルギーを供給する必要がある場合にはアイテムの代わりに液体燃料を大型蒸気ボイラーに入れることができる。
 

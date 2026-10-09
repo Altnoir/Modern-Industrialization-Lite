@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "U": {
+      "item": "milite:aluminum_machine_hull"
+    },
+    "V": {
+      "item": "milite:electrum_wire"
+    }
+  },
+  "pattern": [
+    "U",
+    "V"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_energy_output_hatch"
+  }
+}

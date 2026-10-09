@@ -1,32 +1,34 @@
 ---
 navigation:
   title: "Elektrik"
-  icon: "milite:lv_steam_turbine"
+  icon: "milite:electric_steam_turbine"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:lv_steam_turbine
-  - milite:lv_diesel_generator
+  - milite:electric_steam_turbine
+  - milite:electric_diesel_generator
 ---
 
 # Elektrik
 
-Buhar Türbini elektrik üretmek için Buhar kullanır. Her mb Buhar'ı 1RF'ya dönüştürür, her tikte 32 mb'a kadar dönüştürülür.
+Elektrik Buhar Türbini elektrik üretmek için buhar kullanır. Her mb buharı 1 RF'ye dönüştürür ve her tikte en fazla 32 mb dönüştürür.
 
-<Recipe id="milite:electric_age/machine/lv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
 
-Buhar Türbini, doğrudan çıkış tarafına bağlanan herhangi bir makineye otomatik olarak elektrik gönderecektir. Sadece çıkış tarafına yerleştirilen kablolara bağlanacaktır. Alçak Gerilime sahiptir (AG) *Tier*.
+Elektrik Buhar Türbini, çıkış tarafına doğrudan bitişik yerleştirilmiş her makineye otomatik olarak elektrik gönderir. Dahili arabelleği 256 RF tutabilir ve Alçak Gerilim (LV) *Kademesine* sahiptir.
 
-Her elektrik kablosunun kaçRF/t aktarabileceğini ve hangi makinelere bağlanabileceğini belirleyen bir Kademesi vardır. Bakır, Gümüş ve Kalay AG, Kupronikel ve Elektrum OG, vb....
+Elektrik Dizel Jeneratör, Elektrik Buhar Türbinine bir alternatiftir. Elektrik üretmek için çeşitli yakıtlar kullanır. Şimdilik Kreozot yakabilirsiniz. (Yakılabilir yakıtların listesi için REI'ye bakın).
 
-Dizel Jeneratör, Buhar Türbinine bir alternatiftir. Elektrik üretmek için çeşitli yakıtlar kullanır. Şimdilik Kreozot yakabilirsiniz. (Yakılabilir yakıtların listesi için REI'ye bakın).
+<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
 
-<Recipe id="milite:electric_age/machine/lv_diesel_generator_asbl" />
+## Modern Industrialization Lite'ta Enerji
 
-Kablo ağları, ağa çekecekleri enerji miktarı konusunda sınırlamalara sahiptir: AG kabloları için en fazla 256RF/t, OG kabloları için 1024RF/t ve YG kabloları için 8192RF/t. Şebeke için çıkış sınırı olmadığından ve kablolar küçük bir dahili depoya sahip olduğundan, bir AG şebekesi kısa bir süre için 256RF/t'den daha fazlasını sağlayabilir.
+Modern Industrialization Lite **kendine ait kablo veya transformatör eklemez**. Her elektrikli makine yalnızca standart NeoForge enerji yeteneğini sunar, bu yüzden **başka herhangi bir modun** RF kablosu, enerji borusu veya enerji depolama bloğu ile beslenebilir.
 
-Ancak tek bloklu elektrikli makinelerin yalnızca AG kablolarına bağlanacağını unutmayın!
+Yani:
 
-Daha fazla enerji aktarmak için ya birden fazla boru ağı oluşturmanız ya da Transformatör kullanmanız gerekir.
+- Bir makineyi doğrudan başka bir modun kablosundan veya borusundan besleyin ya da bir jeneratörü makinenin hemen yanına koyun.
+- Artık eşleştirilecek bir voltaj yok: gücü kademeler arasında taşımak için makine gövdelerini yükseltmenize veya gücü transformatörlerden geçirmenize gerek yok.
+- Kademeler (LV, MV, HV, EV, SV) hâlâ var, ancak yalnızca makinenin kaç RF/t için üretildiğini ve dahili arabelleğinin ne kadar büyük olduğunu belirtirler. Arabelleği dolu olan bir makine daha fazla RF almayı durdurur - hiçbir şey patlamaz.
 
-Düşük kademeden yüksek kademeye bir Transformatörün (örneğin AG'den OG'ye) 5 girişi ve 1 çıkışı vardır. Yüksek kademeden düşük kademeye (örneğin OG'den AG'ye) Transformatörün 1 girişi ve 5 çıkışı vardır.
+Makinelerin enerjiyi yalnızca giriş olarak işaretlenmiş yüzlerden kabul ettiğini ve jeneratörlerin enerjiyi yalnızca çıkış tarafından dışarı verdiğini unutmayın.

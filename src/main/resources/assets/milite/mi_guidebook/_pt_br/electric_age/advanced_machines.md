@@ -1,14 +1,14 @@
 ---
 navigation:
   title: "Máquinas Avançadas"
-  icon: "milite:advanced_machine_hull"
+  icon: "milite:aluminum_machine_hull"
   position: 107
   parent: milite:electric_age.md
 item_ids:
-  - milite:centrifuge
-  - milite:chemical_reactor
-  - milite:distillery
-  - milite:electrolyzer
+  - milite:electric_centrifuge
+  - milite:electric_chemical_reactor
+  - milite:electric_distillery
+  - milite:electric_electrolyzer
   - milite:configurable_tank
 ---
 
@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim como as outras máquinas elétricas, essas novas máquinas só se conectam a cabos de BT. Coloque pó de bauxita em um Alto-forno Elétrico e você obterá pepitas de alumínio.
+O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim como as outras máquinas elétricas, essas novas máquinas aceitam no máximo 32 RF/t. Coloque pó de bauxita em um Alto-forno Elétrico e você obterá pepitas de alumínio.
 
 A Centrífuga separa itens girando-os em alta velocidade. Você pode usá-la para fazer pó de carbono e desbloquear receitas melhores para aço e silício.
 

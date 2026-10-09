@@ -9,7 +9,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
  * Pushes energy out of a machine into the neighbouring block, using NeoForge's standard energy capability so
- * that any RF cable or energy pipe from another mod can receive it.
+ * that any FE cable or energy pipe from another mod can receive it.
  */
 public class EnergyHelper {
     public static void autoOutput(MachineBlockEntity machine, OrientationComponent orientation, IEnergyStorage energySource) {

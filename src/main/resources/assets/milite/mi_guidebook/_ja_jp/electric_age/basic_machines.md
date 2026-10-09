@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "電気機械"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 105
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
 ---
 
 # 電気機械
 
-電動機械は蒸気の代わりに電気を必要とすることと、レシピを段階的に32RF/tまで加速させることを除けば蒸気機械とまったく同じ働きをする。
+電動機械は蒸気の代わりに電気を必要とすることと、レシピを段階的に32 RF/tまで加速させることを除けば蒸気機械とまったく同じ働きをする。
 
 REIを使えば、すでに使い慣れた機械の電動版レシピを見ることができる。
 

@@ -11,8 +11,8 @@ item_ids:
   - milite:cupronickel_coil
   - milite:kanthal_coil
   - milite:superconductor_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # 电力高炉
@@ -33,11 +33,11 @@ item_ids:
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-不要忘记添加能量输入仓，否则电力高炉将没有能量！低压能量输入仓仅能与低压电缆连接。
+不要忘记添加能量输入仓，否则电力高炉将没有能量！电力能量输入仓最多向高炉输入32 RF/t。
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-中压能量输入仓能与中压电缆连接，如果你的电力高炉需要大量能量，这会非常有用！你还不能制作它们，但请记住它们的存在……
+铝能量输入仓最多传输128 RF/t，如果你的电力高炉需要大量能量，这会非常有用！
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

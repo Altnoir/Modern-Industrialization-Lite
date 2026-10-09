@@ -7,13 +7,13 @@ navigation:
 item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # Elektrikli Maden Eritme Ocağı
 
-Elektrikli Maden Eritme Ocağı, Buharlı Maden Eritme Ocağının elektrikli versiyonudur. Yeni tariflerin kilidini açar ve diğer çok bloklu elektrikli makineler gibi hız aşırtması varsayılan olarak 128RF/t ile sınırlandırılmıştır.
+Elektrikli Maden Eritme Ocağı, Buharlı Maden Eritme Ocağının elektrikli versiyonudur. Yeni tariflerin kilidini açar ve diğer çok bloklu elektrikli makineler gibi hız aşırtması varsayılan olarak 128 RF/t ile sınırlandırılmıştır.
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
@@ -21,11 +21,11 @@ EMEO, bir kat Isıya Dayanıklı Makine Muhafazası, iki içi boş Cupronickel B
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-Enerji Giriş Kapakları eklemeyi unutmayın, aksi takdirde EMEO enerjisiz kalır! AG Enerji Giriş Kapağı yalnızca AG kablolarına bağlanacaktır.
+Enerji Giriş Kapakları eklemeyi unutmayın, aksi takdirde EMEO enerjisiz kalır! Elektrik Enerji Giriş Kapağı ocağa en fazla 32 RF/t aktarır.
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-OG Enerji Girişi Kapakları yalnızca OG kablolarına bağlanır, bu da EMEO'nuz için bir ton enerjiye ihtiyacınız varsa yararlı olabilir! Bunları henüz üretemezsiniz, ancak var olduklarını unutmayın...
+Alüminyum Enerji Giriş Kapakları 128 RF/t'ye kadar aktarır, bu da EMEO'nuz için bir ton enerjiye ihtiyacınız varsa yararlı olabilir!
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

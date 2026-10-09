@@ -7,8 +7,8 @@ navigation:
 item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # Alto-forno Elétrico
@@ -17,7 +17,7 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-O Alto-forno Elétrico é a versão elétrica do Alto-forno a Vapor. Ele desbloqueia novas receitas e, como outras máquinas multibloco elétricas, seu overclock é limitado a 128RF/t por padrão.
+O Alto-forno Elétrico é a versão elétrica do Alto-forno a Vapor. Ele desbloqueia novas receitas e, como outras máquinas multibloco elétricas, seu overclock é limitado a 128 RF/t por padrão.
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
@@ -25,11 +25,11 @@ O EBF é composto por uma camada de Estruturas de Máquina à Prova de Calor, du
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-Não esqueça de adicionar Escotilha(s) de Entrada de Energia ou o EBF não terá energia! A Escotilha de Entrada de Energia LV conecta-se apenas a cabos LV.
+Não esqueça de adicionar Escotilha(s) de Entrada de Energia ou o EBF não terá energia! Uma Escotilha de Entrada de Energia Elétrica fornece no máximo 32 RF/t ao EBF.
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-Escotilha de Entrada de Energia MV conectam-se apenas a cabos MV, o que pode ser útil se você precisar de muita energia para o seu EBF! Você ainda não pode fabricá-los, mas fique sabendo que eles existem...
+Escotilhas de Entrada de Energia de Alumínio movem até 128 RF/t, o que pode ser útil se você precisar de muita energia para o seu EBF!
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

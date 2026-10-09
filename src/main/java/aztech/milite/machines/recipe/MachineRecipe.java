@@ -117,7 +117,7 @@ public class MachineRecipe implements Recipe<RecipeInput> {
         this.type = type;
     }
 
-    public long getTotalRf() {
+    public long getTotalFe() {
         return (long) energy * duration;
     }
 

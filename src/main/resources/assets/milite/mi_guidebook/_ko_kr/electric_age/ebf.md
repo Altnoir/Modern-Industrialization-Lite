@@ -7,13 +7,13 @@ navigation:
 item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # 전기 용광로
 
-전기 용광로는 전기로 작동하는 용광로입니다. 새로운 조합법들을 활용할 수 있고, 다른 전기 멀티블록 기계들처럼 최대 128RF/t 만큼의 오버클럭을 지원합니다.
+전기 용광로는 전기로 작동하는 용광로입니다. 새로운 조합법들을 활용할 수 있고, 다른 전기 멀티블록 기계들처럼 최대 128 RF/t 만큼의 오버클럭을 지원합니다.
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
@@ -21,11 +21,11 @@ item_ids:
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-전기 용광로는 전기를 받아들일 에너지 반입 해치가 없다면 작동하지 않습니다. LV 에너지 반입 해치는 LV 전선에만 연결됩니다.
+전기 용광로는 전기를 받아들일 에너지 반입 해치가 없다면 작동하지 않습니다. 전력 에너지 반입 해치는 전기 용광로에 최대 32 RF/t까지 공급합니다.
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-MV 에너지 반입 해치는 MV 전선에만 연결됩니다. 만약 전기 용광로에 많은 에너지를 공급하고 싶다면, MV 해치 사용을 추천드립니다. 아직 만들 수는 없지만요...
+알루미늄 에너지 반입 해치는 최대 128 RF/t까지 공급합니다. 전기 용광로에 많은 에너지를 공급하고 싶다면 유용할 것입니다!
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

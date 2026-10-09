@@ -7,7 +7,7 @@
   ],
   "key": {
     "g": {
-      "item" : "milite:hv_diesel_generator"
+      "item" : "milite:stainless_steel_diesel_generator"
     },
     "p" : {
       "item" : "milite:advanced_pump"
@@ -19,7 +19,7 @@
       "item" : "milite:advanced_motor"
     },
     "H" :{
-      "item" : "milite:highly_advanced_machine_hull"
+      "item" : "milite:titanium_machine_hull"
     },
     "G" : {
       "item" : "milite:titanium_gear"

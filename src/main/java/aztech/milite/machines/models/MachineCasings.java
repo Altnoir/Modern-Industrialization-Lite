@@ -44,8 +44,6 @@ public class MachineCasings {
             () -> MIMaterials.INVAR.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL = createBlockImitation(MI.id("steel"), () -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING).asBlock());
     public static final MachineCasing STEEL_CRATE = create(MI.id("steel_crate"), "Steel Crate");
-    public static final MachineCasing TITANIUM = createBlockImitation(MI.id("titanium"),
-            () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING).asBlock());
     public static final MachineCasing TITANIUM_PIPE = createBlockImitation(MI.id("titanium_machine_casing_pipe"),
             () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING_PIPE).asBlock());
     public static final MachineCasing SOLID_TITANIUM = createBlockImitation(MI.id("solid_titanium_machine_casing"),

@@ -7,8 +7,8 @@ navigation:
 item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # Електрична доменна піч
@@ -17,7 +17,7 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-Електрична доменна піч — це електрична версія парової доменної печі. Вона розблоковує нові рецепти, і, як і інші багатоблокові електричні машини, її розгін обмежено 128RF/т усталено.
+Електрична доменна піч — це електрична версія парової доменної печі. Вона розблоковує нові рецепти, і, як і інші багатоблокові електричні машини, її розгін обмежено 128 RF/т усталено.
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
@@ -25,11 +25,11 @@ item_ids:
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-Не забудьте додати вхідні шлюзи енергії, інакше електрична доменна піч не матиме енергії! НН роз'єм входу енергії приєднуватиметься лише до кабелів низької напруги.
+Не забудьте додати вхідні шлюзи енергії, інакше електрична доменна піч не матиме енергії! Електричний роз'єм для подачі енергії подає в піч щонайбільше 32 RF/т.
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-СН роз'єм входу енергії підключаються лише до кабелів середньої напруги, що може бути корисним, якщо вам потрібна дуже багато енергії для електричної доменної печі! Ви ще не можете створити їх, але майте на увазі, що вони існують…
+Алюмінієвий роз'єм для подачі енергії передає до 128 RF/т, що може бути корисним, якщо вам потрібна дуже багато енергії для електричної доменної печі!
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

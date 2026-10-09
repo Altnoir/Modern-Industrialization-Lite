@@ -1,14 +1,14 @@
 ---
 navigation:
   title: "Advanced Machines"
-  icon: "milite:advanced_machine_hull"
+  icon: "milite:aluminum_machine_hull"
   position: 107
   parent: milite:electric_age.md
 item_ids:
-  - milite:centrifuge
-  - milite:chemical_reactor
-  - milite:distillery
-  - milite:electrolyzer
+  - milite:electric_centrifuge
+  - milite:electric_chemical_reactor
+  - milite:electric_distillery
+  - milite:electric_electrolyzer
   - milite:configurable_tank
 ---
 
@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Aluminum is a material used to make more advanced machines. Like the other electric machines, these new machines will only connect to LV cables. Put bauxite dust in an Electric Blast Furnace and you'll get aluminum nuggets.
+Aluminum is a material used to make more advanced machines. Like the other Electric machines, these accept at most 32 RF/t. Put bauxite dust in an Electric Blast Furnace and you'll get aluminum nuggets.
 
 The Centrifuge splits items by spinning them very fast. You can use it to make carbon dust and unlock better recipes for steel and silicon.
 

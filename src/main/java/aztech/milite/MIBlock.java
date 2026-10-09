@@ -18,6 +18,7 @@ import aztech.milite.datagen.model.BaseModelProvider;
 import aztech.milite.definition.BlockDefinition;
 import aztech.milite.items.ContainerItem;
 import aztech.milite.items.SortOrder;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.materials.MaterialProgression;
 import aztech.milite.materials.part.TankPart;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -71,18 +72,22 @@ public class MIBlock {
             BlockDefinitionParams.defaultStone().withBlockConstructor(TrashCanBlock::new).destroyTime(6.0f).explosionResistance(1200).dontConductRedstone())
             .withBlockRegistrationEvent(TrashCanBlock::onRegister);
 
-    // Machine hulls. They are the casing a machine is built into, so the tab lists them beside the casings rather than
-    // with the odds and ends, and the tier number is the upgrade path, weakest first.
-    public static final BlockDefinition<Block> BASIC_MACHINE_HULL = machineHull("Basic Machine Hull", MIBlockKeys.BASIC_MACHINE_HULL.location().getPath(), 0);
-    public static final BlockDefinition<Block> ADVANCED_MACHINE_HULL = machineHull("Advanced Machine Hull", MIBlockKeys.ADVANCED_MACHINE_HULL.location().getPath(), 1);
-    public static final BlockDefinition<Block> TURBO_MACHINE_HULL = machineHull("Turbo Machine Hull", MIBlockKeys.TURBO_MACHINE_HULL.location().getPath(), 2);
-    public static final BlockDefinition<Block> HIGHLY_ADVANCED_MACHINE_HULL = machineHull("Highly Advanced Machine Hull",
-            MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL.location().getPath(), 3);
-    public static final BlockDefinition<Block> QUANTUM_MACHINE_HULL = block("Quantum Machine Hull", MIBlockKeys.QUANTUM_MACHINE_HULL.location().getPath(),
-            machineHullParams(4).explosionResistance(6000f));
+    // Machine hulls. They are the casing a machine is built into, so the tab lists them beside the casings of the same
+    // level rather than with the odds and ends.
+    public static final BlockDefinition<Block> ELECTRIC_MACHINE_HULL = machineHull("Electric Machine Hull",
+            MIBlockKeys.ELECTRIC_MACHINE_HULL.location().getPath(), MachineLevel.ELECTRIC);
+    public static final BlockDefinition<Block> ALUMINUM_MACHINE_HULL = machineHull("Aluminum Machine Hull",
+            MIBlockKeys.ALUMINUM_MACHINE_HULL.location().getPath(), MachineLevel.ALUMINUM);
+    public static final BlockDefinition<Block> STAINLESS_STEEL_MACHINE_HULL = machineHull("Stainless Steel Machine Hull",
+            MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL.location().getPath(), MachineLevel.STAINLESS_STEEL);
+    public static final BlockDefinition<Block> TITANIUM_MACHINE_HULL = machineHull("Titanium Machine Hull",
+            MIBlockKeys.TITANIUM_MACHINE_HULL.location().getPath(), MachineLevel.TITANIUM);
+    public static final BlockDefinition<Block> IRIDIUM_MACHINE_HULL = block("Iridium Machine Hull",
+            MIBlockKeys.IRIDIUM_MACHINE_HULL.location().getPath(),
+            machineHullParams(MachineLevel.IRIDIUM).explosionResistance(6000f));
 
     public static final BlockDefinition<Block> FUSION_CHAMBER = nonConductorBlock("Fusion Chamber", "fusion_chamber",
-            SortOrder.FUSION_CHAMBER);
+            SortOrder.FUSION_CHAMBER.withLevel(MachineLevel.TITANIUM.ordinal()));
     public static final BlockDefinition<Block> INDUSTRIAL_TNT = blockExplosive("Industrial TNT", "industrial_tnt");
     public static final BlockDefinition<Block> NUKE = blockExplosive("Nuke", "nuke");
 
@@ -128,6 +133,9 @@ public class MIBlock {
 
     public static <T extends Block> BlockDefinition<T> block(
             String englishName, String id, BlockDefinitionParams<T> params) {
+        if (params.sortOrder.isMachineStructure()) {
+            params.props.sound(SoundType.NETHERITE_BLOCK);
+        }
         var holder = BLOCKS.registerBlock(id, params.ctor, params.props);
         var def = new BlockDefinition<>(
                 englishName,
@@ -152,15 +160,15 @@ public class MIBlock {
     }
 
     /**
-     * The parameters of a machine hull of the given tier. The tier is the upgrade path, weakest hull first, so the hulls
-     * are listed in the order a player unlocks them instead of alphabetically.
+     * A machine hull sits at the level of the casing it is made of, so it is listed with the rest of that level.
      */
-    private static BlockDefinitionParams<Block> machineHullParams(int tier) {
-        return BlockDefinitionParams.defaultStone().dontConductRedstone().sortOrder(SortOrder.MACHINE_HULLS.and(tier));
+    private static BlockDefinitionParams<Block> machineHullParams(MachineLevel level) {
+        return BlockDefinitionParams.defaultStone().dontConductRedstone()
+                .sortOrder(SortOrder.MACHINE_HULLS.withLevel(level.ordinal()));
     }
 
-    private static BlockDefinition<Block> machineHull(String englishName, String id, int tier) {
-        return MIBlock.block(englishName, id, machineHullParams(tier));
+    private static BlockDefinition<Block> machineHull(String englishName, String id, MachineLevel level) {
+        return MIBlock.block(englishName, id, machineHullParams(level));
     }
 
     public static BlockDefinition<Block> blockExplosive(String englishName, String id) {

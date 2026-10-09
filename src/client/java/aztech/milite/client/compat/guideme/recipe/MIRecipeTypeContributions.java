@@ -4,7 +4,7 @@ import aztech.milite.blocks.forgehammer.ForgeHammerRecipe;
 import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
 import aztech.milite.client.compat.guideme.recipe.header.LytMachineRecipeHeader;
 import aztech.milite.client.compat.guideme.recipe.header.LytMachineRecipeHeaderConditionItemImage;
-import aztech.milite.client.compat.guideme.recipe.header.LytMachineRecipeHeaderRfCostImage;
+import aztech.milite.client.compat.guideme.recipe.header.LytMachineRecipeHeaderFeCostImage;
 import aztech.milite.client.compat.guideme.recipe.item.LytMIItemSlot;
 import aztech.milite.compat.rei.machines.MachineCategoryParams;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
@@ -117,12 +117,12 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
         header.setGap(2);
         header.setAlignItems(AlignItems.CENTER);
 
-        header.append(new LytMachineRecipeHeaderRfCostImage(params.steamMode));
+        header.append(new LytMachineRecipeHeaderFeCostImage(params.steamMode));
 
-        var rfCost = new LytParagraph();
-        rfCost.setStyle(DefaultStyles.CRAFTING_RECIPE_TYPE);
-        rfCost.appendText(recipe.level.getDisplayName().getString());
-        header.append(rfCost);
+        var feCost = new LytParagraph();
+        feCost.setStyle(DefaultStyles.CRAFTING_RECIPE_TYPE);
+        feCost.appendText(recipe.level.getDisplayName().getString());
+        header.append(feCost);
 
         boolean includeRecipeConditionDisplay = params.includeRecipeConditionDisplay(recipe);
         if (includeRecipeConditionDisplay) {

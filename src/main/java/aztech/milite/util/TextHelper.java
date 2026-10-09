@@ -119,37 +119,37 @@ public class TextHelper {
         }
     }
 
-    public static MutableComponent getRfTextMaxed(Number rf, Number max) {
-        var amount = getMaxedAmountGeneric(rf, max);
-        return MIText.RfMaxed.text(amount.digit(), amount.maxDigit(), amount.unit());
+    public static MutableComponent getFeTextMaxed(Number fe, Number max) {
+        var amount = getMaxedAmountGeneric(fe, max);
+        return MIText.FeMaxed.text(amount.digit(), amount.maxDigit(), amount.unit());
     }
 
-    public static MutableComponent getRfText(double rf) {
-        var amount = getAmount(rf);
-        return MIText.Rf.text(amount.digit(),
+    public static MutableComponent getFeText(double fe) {
+        var amount = getAmount(fe);
+        return MIText.Fe.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getRfTextTick(double rf) {
-        var amount = getAmount(rf);
-        return MIText.RfT.text(amount.digit(),
+    public static MutableComponent getFeTextTick(double fe) {
+        var amount = getAmount(fe);
+        return MIText.FeT.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getRfText(long rf) {
-        var amount = getAmount(rf);
-        return MIText.Rf.text(amount.digit(),
+    public static MutableComponent getFeText(long fe) {
+        var amount = getAmount(fe);
+        return MIText.Fe.text(amount.digit(),
                 amount.unit());
     }
 
-    public static MutableComponent getRfTextTick(long rf) {
-        var amount = getAmount(rf);
-        return MIText.RfT.text(amount.digit(),
+    public static MutableComponent getFeTextTick(long fe) {
+        var amount = getAmount(fe);
+        return MIText.FeT.text(amount.digit(),
                 amount.unit());
     }
 
-    public static Component getRfTextTick(double rf, boolean style) {
-        MutableComponent text = getRfTextTick(rf);
+    public static Component getFeTextTick(double fe, boolean style) {
+        MutableComponent text = getFeTextTick(fe);
         if (style) {
             text.setStyle(TextHelper.NUMBER_TEXT);
         }

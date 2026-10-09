@@ -61,7 +61,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         this.redstoneControl = new RedstoneControlComponent();
 
         EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
-        registerGuiComponent(new EnergyBar(energyBarParams, energy::getRf, energy::getCapacity));
+        registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity));
 
         List<ConfigurableItemStack> itemStacks;
         List<ConfigurableFluidStack> fluidStacks;
@@ -69,8 +69,8 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         SlotPositions itemPositions = SlotPositions.empty();
         SlotPositions fluidPositions = SlotPositions.empty();
 
-        var numberOfFluid = fluidItemConsumer.fluidEUProductionMap.getNumberOfFuel();
-        var numberOfItem = fluidItemConsumer.itemEUProductionMap.getNumberOfFuel();
+        var numberOfFluid = fluidItemConsumer.fluidFEProductionMap.getNumberOfFuel();
+        var numberOfItem = fluidItemConsumer.itemFEProductionMap.getNumberOfFuel();
 
         if (numberOfFluid == NONE
                 && numberOfItem == NONE) {
@@ -83,7 +83,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
                 itemStacks = List.of(ConfigurableItemStack.standardInputSlot());
             } else {
                 itemStacks = List.of(ConfigurableItemStack.lockedInputSlot(
-                        fluidItemConsumer.itemEUProductionMap.getAllAccepted().iterator().next()));
+                        fluidItemConsumer.itemFEProductionMap.getAllAccepted().iterator().next()));
             }
         } else {
             itemStacks = Collections.emptyList();
@@ -102,7 +102,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
                 fluidStacks = List.of(ConfigurableFluidStack.standardInputSlot(fluidCapacity));
             } else {
                 fluidStacks = List.of(ConfigurableFluidStack.lockedInputSlot(fluidCapacity,
-                        fluidItemConsumer.fluidEUProductionMap.getAllAccepted().iterator().next()));
+                        fluidItemConsumer.fluidFEProductionMap.getAllAccepted().iterator().next()));
             }
 
             if (numberOfItem != NONE) {
@@ -130,12 +130,12 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
             long fluidCapacity,
             long maxEnergyOutput,
             FluidDefinition acceptedFluid,
-            long fluidEUperMb) {
+            long fluidFEperMb) {
         this(bep, name, hasFacing, outputTier, energyCapacity, fluidCapacity,
                 FluidItemConsumerComponent.ofSingleFluid(
                         maxEnergyOutput,
                         acceptedFluid,
-                        fluidEUperMb));
+                        fluidFEperMb));
     }
 
     @Override
@@ -159,12 +159,12 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         if (!redstoneControl.doAllowNormalOperation(this)) {
             isActiveComponent.updateActive(false, this);
         } else {
-            long rfProduced = fluidItemConsumer.getRfProduction(inventory.getFluidStacks(),
+            long feProduced = fluidItemConsumer.getFeProduction(inventory.getFluidStacks(),
                     inventory.getItemStacks(),
                     energy.getRemainingCapacity());
 
-            energy.insertRf(rfProduced, Simulation.ACT);
-            isActiveComponent.updateActive(0 != rfProduced, this);
+            energy.insertFe(feProduced, Simulation.ACT);
+            isActiveComponent.updateActive(0 != feProduced, this);
         }
         EnergyHelper.autoOutput(this, orientation, extractable);
         setChanged();

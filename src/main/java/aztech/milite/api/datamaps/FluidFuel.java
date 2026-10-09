@@ -5,15 +5,15 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.material.Fluid;
 
-public record FluidFuel(int rfPerMb) {
+public record FluidFuel(int fePerMb) {
     public static final Codec<FluidFuel> CODEC = RecordCodecBuilder.create(
             instance -> instance
                     .group(
-                            ExtraCodecs.POSITIVE_INT.fieldOf("eu_per_mb").forGetter(FluidFuel::rfPerMb))
+                            ExtraCodecs.POSITIVE_INT.fieldOf("eu_per_mb").forGetter(FluidFuel::fePerMb))
                     .apply(instance, FluidFuel::new));
 
-    public static int getRf(Fluid fluid) {
+    public static int getFe(Fluid fluid) {
         var data = fluid.builtInRegistryHolder().getData(MIDataMaps.FLUID_FUELS);
-        return data == null ? 0 : data.rfPerMb();
+        return data == null ? 0 : data.fePerMb();
     }
 }

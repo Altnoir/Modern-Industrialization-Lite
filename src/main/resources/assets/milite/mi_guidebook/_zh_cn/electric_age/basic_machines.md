@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "电力机器"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 105
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
 ---
 
 # 电力机器
 
-电力机器的工作原理与蒸汽机器完全相同，不同之处在于它们需要电力而不是蒸汽，并且可将配方逐步超频至最大32RF/t。
+电力机器的工作原理与蒸汽机器完全相同，不同之处在于它们需要电力而不是蒸汽，并且可将配方逐步超频至最大32 RF/t。
 
 你可以使用REI查看你已经熟悉的机器的电力版本的配方。
 
@@ -47,7 +47,7 @@ item_ids:
 
 ## 超频升级
 
-常规电力机器的超频上限为32RF/t，电力多方块结构的超频上限为128RF/t。
+常规电力机器的超频上限为32 RF/t，电力多方块结构的超频上限为128 RF/t。
 
 在机器或多方块结构的界面中加装超频升级，即可提升其超频上限！具体数值请查阅REI。
 

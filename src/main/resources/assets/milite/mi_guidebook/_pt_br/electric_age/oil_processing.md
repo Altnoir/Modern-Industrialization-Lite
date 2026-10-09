@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:mv_diesel_generator
+  - milite:aluminum_diesel_generator
 ---
 
 # Processamento de Petróleo
@@ -23,9 +23,9 @@ A estrutura do multibloco é feita de: Estruturas de Máquina de Aço, Estrutura
 
 O Petróleo Bruto pode ser transformado em vários combustíveis e usado para uma produção mais eficiente de Folhas de Borracha.
 
-Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantosRF cada combustível produz. O Gerador a Diesel produzirá até 256RF/t e só se conectará a cabos MV.
+Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantos RF cada combustível produz. O Gerador a Diesel produzirá até 256 RF/t.
 
-<Recipe id="milite:electric_age/machine/mv_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
 
 Os Geradores a Diesel só usarão combustível quando precisarem, mas se você precisar de um suprimento constante de energia, pode colocar combustíveis líquidos na Caldeira de Vapor Grande em vez de itens.
 

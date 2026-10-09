@@ -44,7 +44,7 @@ public class NuclearGridHelper {
                 hasFuel = true;
                 NuclearFuel fuel = maybeFuel.orElseThrow(() -> new IllegalStateException("Neutron generated without fuel"));
 
-                tile.putHeat(neutronNumberPrime * fuel.directEUbyDesintegration / fuel.neutronMultiplicationFactor);
+                tile.putHeat(neutronNumberPrime * fuel.directFEbyDesintegration / fuel.neutronMultiplicationFactor);
 
                 int split = Math.min(neutronNumberPrime, MAX_SPLIT);
                 int neutronNumberPerSplit = neutronNumberPrime / split;
@@ -89,7 +89,7 @@ public class NuclearGridHelper {
                                         secondTile.absorbNeutrons(neutronNumber, type);
 
                                         if (type == NeutronType.FAST) {
-                                            secondTile.putHeat(neutronNumber * NuclearConstant.EU_FOR_FAST_NEUTRON);
+                                            secondTile.putHeat(neutronNumber * NuclearConstant.FE_FOR_FAST_NEUTRON);
                                         }
 
                                         if (secondTile.getFuel().isPresent()) {
@@ -105,7 +105,7 @@ public class NuclearGridHelper {
                                         if (type == NeutronType.FAST
                                                 && rand.nextDouble() < component.getNeutronBehaviour().neutronSlowingProbability()) {
                                             type = NeutronType.THERMAL;
-                                            secondTile.putHeat(neutronNumber * NuclearConstant.EU_FOR_FAST_NEUTRON);
+                                            secondTile.putHeat(neutronNumber * NuclearConstant.FE_FOR_FAST_NEUTRON);
                                         }
                                     }
                                 }

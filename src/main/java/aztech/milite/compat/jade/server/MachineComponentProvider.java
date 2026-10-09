@@ -43,7 +43,7 @@ public abstract sealed class MachineComponentProvider<S, C>
                     long capacity = 0;
 
                     for (var component : components) {
-                        stored += component.getRf();
+                        stored += component.getFe();
                         capacity += component.getCapacity();
                     }
 
@@ -51,7 +51,7 @@ public abstract sealed class MachineComponentProvider<S, C>
                 }
             } else if (accessor.getTarget() instanceof EnergyComponentHolder holder) {
                 var component = holder.getEnergyComponent();
-                return List.of(new ViewGroup<>(List.of(EnergyView.of(component.getRf(), component.getCapacity()))));
+                return List.of(new ViewGroup<>(List.of(EnergyView.of(component.getFe(), component.getCapacity()))));
             }
 
             return List.of();
@@ -59,8 +59,8 @@ public abstract sealed class MachineComponentProvider<S, C>
 
         @Override
         public List<ClientViewGroup<EnergyView>> getClientGroups(Accessor<?> accessor, List<ViewGroup<CompoundTag>> list) {
-            // MI Lite exposes machine energy through NeoForge's RF-compatible energy API.
-            return ClientViewGroup.map(list, tag -> EnergyView.read(tag, " RF"), null);
+            // MI Lite exposes machine energy through NeoForge's FE-compatible energy API.
+            return ClientViewGroup.map(list, tag -> EnergyView.read(tag, " FE"), null);
         }
     }
 

@@ -267,12 +267,12 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
     public static class FluidItemConsumerBuilder {
         long maxEnergyProduction;
 
-        double rfMultiplier = 1;
+        double feMultiplier = 1;
 
-        FluidItemConsumerComponent.RfProductionMapBuilder<Item> itemRfProductionMapBuilder = new FluidItemConsumerComponent.RfProductionMapBuilder<>(
+        FluidItemConsumerComponent.FeProductionMapBuilder<Item> itemFeProductionMapBuilder = new FluidItemConsumerComponent.FeProductionMapBuilder<>(
                 BuiltInRegistries.ITEM);
 
-        FluidItemConsumerComponent.RfProductionMapBuilder<Fluid> fluidRfProductionMapBuilder = new FluidItemConsumerComponent.RfProductionMapBuilder<>(
+        FluidItemConsumerComponent.FeProductionMapBuilder<Fluid> fluidFeProductionMapBuilder = new FluidItemConsumerComponent.FeProductionMapBuilder<>(
                 BuiltInRegistries.FLUID);
 
         boolean doesAcceptAllFluidFuels = false;
@@ -284,8 +284,8 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             this.maxEnergyProduction = maxEnergyProduction;
         }
 
-        public FluidItemConsumerBuilder rfMultiplier(double rfMultiplier) {
-            this.rfMultiplier = rfMultiplier;
+        public FluidItemConsumerBuilder feMultiplier(double feMultiplier) {
+            this.feMultiplier = feMultiplier;
             return this;
         }
 
@@ -299,13 +299,13 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
             return this;
         }
 
-        public FluidItemConsumerBuilder fluid(ResourceLocation fluidId, long rfPerMb) {
-            fluidRfProductionMapBuilder.add(fluidId, rfPerMb);
+        public FluidItemConsumerBuilder fluid(ResourceLocation fluidId, long fePerMb) {
+            fluidFeProductionMapBuilder.add(fluidId, fePerMb);
             return this;
         }
 
-        public FluidItemConsumerBuilder item(ResourceLocation itemId, long rfPerItem) {
-            itemRfProductionMapBuilder.add(itemId, rfPerItem);
+        public FluidItemConsumerBuilder item(ResourceLocation itemId, long fePerItem) {
+            itemFeProductionMapBuilder.add(itemId, fePerItem);
             return this;
         }
 
@@ -317,9 +317,9 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
         public FluidItemConsumerComponent build() {
             return new FluidItemConsumerComponent(
                     maxEnergyProduction,
-                    rfMultiplier,
-                    doesAcceptAllItemFuels ? FluidItemConsumerComponent.itemFuels() : itemRfProductionMapBuilder.build(),
-                    doesAcceptAllFluidFuels ? FluidItemConsumerComponent.fluidFuels() : fluidRfProductionMapBuilder.build(),
+                    feMultiplier,
+                    doesAcceptAllItemFuels ? FluidItemConsumerComponent.itemFuels() : itemFeProductionMapBuilder.build(),
+                    doesAcceptAllFluidFuels ? FluidItemConsumerComponent.fluidFuels() : fluidFeProductionMapBuilder.build(),
                     hideEfficiencyTooltip);
         }
     }

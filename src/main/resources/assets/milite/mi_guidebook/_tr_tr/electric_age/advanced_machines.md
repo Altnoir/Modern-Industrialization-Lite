@@ -1,14 +1,14 @@
 ---
 navigation:
   title: "Gelişmiş Makineler"
-  icon: "milite:advanced_machine_hull"
+  icon: "milite:aluminum_machine_hull"
   position: 107
   parent: milite:electric_age.md
 item_ids:
-  - milite:centrifuge
-  - milite:chemical_reactor
-  - milite:distillery
-  - milite:electrolyzer
+  - milite:electric_centrifuge
+  - milite:electric_chemical_reactor
+  - milite:electric_distillery
+  - milite:electric_electrolyzer
   - milite:configurable_tank
 ---
 
@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Alüminyum, daha gelişmiş makineler yapmak için kullanılan bir malzemedir. Diğer elektrikli makineler gibi, bu yeni makineler de yalnızca AG kablolarına bağlanacaktır. Boksit tozunu bir Elektrikli Maden Eritme Ocağı'na koyun ve alüminyum parçaları elde edin.
+Alüminyum, daha gelişmiş makineler yapmak için kullanılan bir malzemedir. Diğer elektrikli makineler gibi, bu yeni makineler de en fazla 32 RF/t kabul eder. Boksit tozunu bir Elektrikli Maden Eritme Ocağı'na koyun ve alüminyum parçaları elde edin.
 
 Santrifüj, nesneleri çok hızlı döndürerek ayırır. Karbon tozu yapmak ve çelik ve silikon için daha iyi tariflerin kilidini açmak için kullanabilirsiniz.
 

@@ -1,0 +1,22 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "ACA",
+    "CHC",
+    "ACA"
+  ],
+  "key": {
+    "A" : {
+      "tag" : "c:plates/titanium"
+    },
+    "C" : {
+      "tag" : "c:plates/chromium"
+    },
+    "H" : {
+      "item" : "milite:stainless_steel_machine_hull"
+    }
+  },
+  "result": {
+    "id": "milite:titanium_machine_casing"
+  }
+}

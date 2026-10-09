@@ -65,8 +65,8 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
             fluidStack.add(ConfigurableFluidStack.standardOutputSlot(capacity));
             fluidStack.add(ConfigurableFluidStack.standardOutputSlot(capacity));
             inventory = new MIInventory(Collections.emptyList(), fluidStack, SlotPositions.empty(), slotPos);
-            nuclearReactorComponent = new SteamHeaterComponent(NuclearConstant.MAX_TEMPERATURE, NuclearConstant.MAX_HATCH_EU_PRODUCTION,
-                    NuclearConstant.EU_PER_DEGREE, true, true, false);
+            nuclearReactorComponent = new SteamHeaterComponent(NuclearConstant.MAX_TEMPERATURE, NuclearConstant.MAX_HATCH_FE_PRODUCTION,
+                    NuclearConstant.FE_PER_DEGREE, true, true, false);
         }
 
         neutronHistory = new NeutronHistoryComponent();
@@ -161,8 +161,8 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     }
 
     @Override
-    public double getMeanRfGeneration() {
-        return neutronHistory.getAverageRfGeneration();
+    public double getMeanFeGeneration() {
+        return neutronHistory.getAverageFeGeneration();
     }
 
     @Override
@@ -194,10 +194,10 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     }
 
     @Override
-    public void putHeat(double rf) {
-        Preconditions.checkArgument(rf >= 0);
-        setTemperature(getTemperature() + rf / NuclearConstant.EU_PER_DEGREE);
-        neutronHistory.addValue(rfGeneration, (int) rf);
+    public void putHeat(double fe) {
+        Preconditions.checkArgument(fe >= 0);
+        setTemperature(getTemperature() + fe / NuclearConstant.FE_PER_DEGREE);
+        neutronHistory.addValue(feGeneration, (int) fe);
     }
 
     @Override
@@ -312,9 +312,9 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
         fluidNeutronProductTick(randIntFromDouble(neutronHistory.getAverageReceived(NeutronType.BOTH), this.getLevel().getRandom()), false);
 
         if (isFluid) {
-            double rfProduced = ((SteamHeaterComponent) nuclearReactorComponent).tick(Collections.singletonList(inventory.getFluidStacks().get(0)),
+            double feProduced = ((SteamHeaterComponent) nuclearReactorComponent).tick(Collections.singletonList(inventory.getFluidStacks().get(0)),
                     inventory.getFluidStacks().stream().filter(AbstractConfigurableStack::canPipesExtract).collect(Collectors.toList()));
-            efficiencyHistory.registerRfProduction(rfProduced);
+            efficiencyHistory.registerFeProduction(feProduced);
         }
 
         checkComponentMaxTemperature();
@@ -357,9 +357,9 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     @Override
     public List<Component> getTooltips() {
         if (isFluid) {
-            return List.of(new MITooltips.Line(MIText.MaxRfProductionSteam).arg(
-                    NuclearConstant.MAX_HATCH_EU_PRODUCTION,
-                    MITooltips.EU_PER_TICK_PARSER).arg(MIFluids.STEAM).build(),
+            return List.of(new MITooltips.Line(MIText.MaxFeProductionSteam).arg(
+                    NuclearConstant.MAX_HATCH_FE_PRODUCTION,
+                    MITooltips.FE_PER_TICK_PARSER).arg(MIFluids.STEAM).build(),
                     new MITooltips.Line(MIText.AcceptLowAndHighPressure).arg(Fluids.WATER).arg(MIFluids.HEAVY_WATER)
                             .arg(MIFluids.HIGH_PRESSURE_WATER).arg(MIFluids.HIGH_PRESSURE_HEAVY_WATER).build());
         } else {

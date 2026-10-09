@@ -85,17 +85,17 @@ public class ShapedRecipeJson implements MIRecipeBuilder {
      * @param level the machine level the exported recipe needs, since the machine it is exported to cannot be inferred
      *              from the recipe itself
      */
-    public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int rf, int duration, int division,
+    public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int fe, int duration, int division,
             MachineLevel level) {
-        return exportToMachine(machine, rf, duration, division).level(level);
+        return exportToMachine(machine, fe, duration, division).level(level);
     }
 
-    public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int rf, int duration, int division) {
+    public MachineRecipeBuilder exportToMachine(MachineRecipeType machine, int fe, int duration, int division) {
         if (result.getCount() % division != 0) {
             throw new IllegalArgumentException("Output must be divisible by division");
         }
 
-        var assemblerJson = new MachineRecipeBuilder(machine, rf, duration).addItemOutput(result.getItem(), result.getCount() / division);
+        var assemblerJson = new MachineRecipeBuilder(machine, fe, duration).addItemOutput(result.getItem(), result.getCount() / division);
         for (Map.Entry<Character, Ingredient> entry : key.entrySet()) {
             int count = 0;
             for (String row : pattern) {

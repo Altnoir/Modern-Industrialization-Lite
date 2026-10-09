@@ -29,7 +29,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     private final UpdatedCallback callback;
 
     private ItemStack casingStack = ItemStack.EMPTY;
-    private CableTier currentTier = CableTier.LV;
+    private CableTier currentTier = CableTier.ELECTRIC;
     private int speedMultiplier = 1;
 
     public CasingComponent(@Nullable UpdatedCallback callback) {
@@ -50,7 +50,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     }
 
     /**
-     * @param speedMultiplier how many times faster than the reference level the machine runs. It scales the RF buffer,
+     * @param speedMultiplier how many times faster than the reference level the machine runs. It scales the FE buffer,
      *                        because a machine that eats {@code n} times as much per tick needs {@code n} times as
      *                        much energy waiting for it to keep running at full speed between two insertions.
      */
@@ -109,7 +109,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
             var previousTier = currentTier;
             var newTier = getCasingTier(stackInHand.getItem());
             if (newTier != null && newTier != currentTier) {
-                if (currentTier != CableTier.LV) {
+                if (currentTier != CableTier.ELECTRIC) {
                     dropCasing(be.getLevel(), be.getBlockPos());
                 }
                 setCasingStack(stackInHand.copyWithCount(1));
@@ -177,17 +177,17 @@ public class CasingComponent implements MachineComponent, DropableComponent {
         return casingStack.isEmpty() ? null : currentTier.casing;
     }
 
-    public boolean canInsertRf(CableTier tier) {
+    public boolean canInsertFe(CableTier tier) {
         return true;
     }
 
     /**
-     * @return The RF buffer capacity granted by the current casing. It is proportional to the tier of the
+     * @return The FE buffer capacity granted by the current casing. It is proportional to the tier of the
      * casing and to the speed of the machine, and capped so that it always fits in NeoForge's int-based energy API.
      */
-    public long getRfCapacity() {
-        long capacity = currentTier.rf * 100 * speedMultiplier;
-        long maxCapacity = CableTier.maxRf() * 100;
+    public long getFeCapacity() {
+        long capacity = currentTier.fe * 100 * speedMultiplier;
+        long maxCapacity = CableTier.maxFe() * 100;
         return Math.min(capacity, maxCapacity);
     }
 }

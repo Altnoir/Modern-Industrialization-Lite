@@ -38,7 +38,7 @@ public class CraftingMultiblockGui implements GuiComponentServer<Unit, CraftingM
         boolean shapeValid = isShapeValid.get();
         Optional<RecipeData> activeRecipe;
         if (shapeValid && crafter.hasActiveRecipe()) {
-            activeRecipe = Optional.of(new RecipeData(progressSupplier.get(), crafter.getCurrentRecipeRf(), crafter.getBaseRecipeRf()));
+            activeRecipe = Optional.of(new RecipeData(progressSupplier.get(), crafter.getCurrentRecipeFe(), crafter.getBaseRecipeFe()));
         } else {
             activeRecipe = Optional.empty();
         }
@@ -63,14 +63,14 @@ public class CraftingMultiblockGui implements GuiComponentServer<Unit, CraftingM
                 Data::new);
     }
 
-    public record RecipeData(float progress, long currentRecipeRf, long baseRecipeRf) {
+    public record RecipeData(float progress, long currentRecipeFe, long baseRecipeFe) {
         public static final StreamCodec<RegistryFriendlyByteBuf, RecipeData> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.FLOAT,
                 RecipeData::progress,
                 ByteBufCodecs.VAR_LONG,
-                RecipeData::currentRecipeRf,
+                RecipeData::currentRecipeFe,
                 ByteBufCodecs.VAR_LONG,
-                RecipeData::baseRecipeRf,
+                RecipeData::baseRecipeFe,
                 RecipeData::new);
     }
 

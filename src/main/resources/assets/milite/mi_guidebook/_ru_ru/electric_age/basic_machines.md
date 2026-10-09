@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "Электрические машины"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
   - milite:configurable_chest
 ---
 
 # Электрические машины
 
-Электрические машины работают точно так же, как паровые, за исключением того, что им требуется электричество вместо пара, и они постепенно разгоняют рецепты до 32RF/т.
+Электрические машины работают точно так же, как паровые, за исключением того, что им требуется электричество вместо пара, и они постепенно разгоняют рецепты до 32 RF/т.
 
 Вы можете использовать REI, чтобы просмотреть рецепты для электрических версий машин, с которыми вы уже знакомы.
 

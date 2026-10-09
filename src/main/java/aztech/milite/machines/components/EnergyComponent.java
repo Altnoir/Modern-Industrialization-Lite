@@ -12,7 +12,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import java.util.function.Supplier;
 
 public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAccess {
-    private long storedRf;
+    private long storedFe;
     private final Supplier<Long> capacity;
     private final BlockEntity blockEntity; // used to call setChanged()
 
@@ -27,8 +27,8 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     @Override
-    public long getRf() {
-        return Math.min(storedRf, capacity.get());
+    public long getFe() {
+        return Math.min(storedFe, capacity.get());
     }
 
     @Override
@@ -37,46 +37,46 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     public long getRemainingCapacity() {
-        return capacity.get() - getRf();
+        return capacity.get() - getFe();
     }
 
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putLong("storedEu", getRf());
+        tag.putLong("storedEu", getFe());
     }
 
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        setRf(tag.getLong("storedEu"), false);
+        setFe(tag.getLong("storedEu"), false);
     }
 
-    private void setRf(long rf, boolean update) {
-        this.storedRf = Math.min(rf, capacity.get());
+    private void setFe(long fe, boolean update) {
+        this.storedFe = Math.min(fe, capacity.get());
 
         if (update) {
             blockEntity.setChanged();
         }
     }
 
-    public long consumeRf(long max, Simulation simulation) {
+    public long consumeFe(long max, Simulation simulation) {
         Preconditions.checkArgument(max >= 0, "May not consume < 0 energy.");
-        long ext = Math.min(max, getRf());
+        long ext = Math.min(max, getFe());
         if (simulation.isActing()) {
-            setRf(getRf() - ext, true);
+            setFe(getFe() - ext, true);
         }
         return ext;
     }
 
-    public long insertRf(long max, Simulation simulation) {
+    public long insertFe(long max, Simulation simulation) {
         Preconditions.checkArgument(max >= 0, "May not insert < 0 energy.");
-        long ext = Math.min(max, capacity.get() - getRf());
+        long ext = Math.min(max, capacity.get() - getFe());
         if (simulation.isActing()) {
-            setRf(getRf() + ext, true);
+            setFe(getFe() + ext, true);
         }
         return ext;
     }
 
     private abstract class EnergyStorage implements IEnergyStorage {
         protected long longAmount() {
-            return storedRf;
+            return storedFe;
         }
 
         protected long longCapacity() {
@@ -85,17 +85,17 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
 
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
-            return (int) Math.min(Integer.MAX_VALUE, insertRf(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
+            return (int) Math.min(Integer.MAX_VALUE, insertFe(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
-            return (int) Math.min(Integer.MAX_VALUE, consumeRf(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
+            return (int) Math.min(Integer.MAX_VALUE, consumeFe(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int getEnergyStored() {
-            return (int) Math.min(Integer.MAX_VALUE, storedRf);
+            return (int) Math.min(Integer.MAX_VALUE, storedFe);
         }
 
         @Override
@@ -135,7 +135,7 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     /**
      * Moves as much energy as possible from {@code source} to {@code target}, using the NeoForge energy API.
      *
-     * @return the amount of RF that was actually moved.
+     * @return the amount of FE that was actually moved.
      */
     public static long moveEnergy(IEnergyStorage source, IEnergyStorage target) {
         if (!source.canExtract() || !target.canReceive()) {

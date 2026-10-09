@@ -1,0 +1,22 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:hopper"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_item_output_hatch"
+    }
+  ],
+  "level": "electric"
+}

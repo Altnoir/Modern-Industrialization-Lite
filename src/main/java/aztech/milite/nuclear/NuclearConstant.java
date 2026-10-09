@@ -1,13 +1,13 @@
 package aztech.milite.nuclear;
 
 public class NuclearConstant {
-    public static final int EU_FOR_FAST_NEUTRON = 8;
+    public static final int FE_FOR_FAST_NEUTRON = 8;
     public static final int DESINTEGRATION_BY_ROD = 10240000;
     public static final double BASE_HEAT_CONDUCTION = 0.01;
     public static final double BASE_NEUTRON = 0.1;
     public static final int MAX_TEMPERATURE = 3250;
-    public static final int EU_PER_DEGREE = 64;
-    public static final int MAX_HATCH_EU_PRODUCTION = 8192;
+    public static final int FE_PER_DEGREE = 64;
+    public static final int MAX_HATCH_FE_PRODUCTION = 8192;
 
     public enum ScatteringType {
         ULTRA_LIGHT(0.05),

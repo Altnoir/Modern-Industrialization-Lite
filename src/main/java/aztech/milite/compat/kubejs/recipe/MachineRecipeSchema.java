@@ -22,7 +22,7 @@ public final class MachineRecipeSchema {
                 .optional(List.of());
     }
 
-    public static final RecipeKey<Integer> EU = NumberComponent.intRange(1, Integer.MAX_VALUE).inputKey("eu");
+    public static final RecipeKey<Integer> FE = NumberComponent.intRange(1, Integer.MAX_VALUE).inputKey("eu");
     public static final RecipeKey<TickDuration> DURATION = TimeComponent.TICKS.inputKey("duration");
     public static final RecipeKey<List<MachineRecipe.ItemOutput>> ITEM_OUTPUTS = optionalList(ItemOutputComponent.TYPE, "item_outputs",
             ComponentRole.OUTPUT);
@@ -36,7 +36,7 @@ public final class MachineRecipeSchema {
             MachineProcessConditionComponent.TYPE, "process_conditions", ComponentRole.OTHER);
 
     public static final RecipeSchema SCHEMA = new RecipeSchema(
-            EU,
+            FE,
             DURATION,
             ITEM_OUTPUTS,
             FLUID_OUTPUTS,
@@ -44,7 +44,7 @@ public final class MachineRecipeSchema {
             FLUID_INPUTS,
             MACHINE_PROCESS_CONDITIONS)
                     .factory(MachineKubeRecipe.FACTORY)
-                    .constructor(EU, DURATION);
+                    .constructor(FE, DURATION);
 
     public static final RecipeSchema FORGE_HAMMER_SCHEMA = new RecipeSchema(
             ItemStackComponent.ITEM_STACK.outputKey("result"),

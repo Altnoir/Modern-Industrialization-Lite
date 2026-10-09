@@ -3,20 +3,20 @@ package aztech.milite.machines.init;
 public enum MachineTier {
     BRONZE("bronze", true, 2, 2),
     STEEL("steel", true, 4, 4),
-    LV("lv", false, 32, 8),
+    ELECTRIC("electric", false, 32, 8),
     MULTIBLOCK("multiblock", false, 128, 8),
     UNLIMITED("unlimited", false, Integer.MAX_VALUE, 8);
 
     private final String name;
     private final boolean steam;
-    private final int maxRf;
-    private final int baseRf;
+    private final int maxFe;
+    private final int baseFe;
 
-    MachineTier(String name, boolean steam, int maxRf, int baseRf) {
+    MachineTier(String name, boolean steam, int maxFe, int baseFe) {
         this.name = name;
         this.steam = steam;
-        this.maxRf = maxRf;
-        this.baseRf = baseRf;
+        this.maxFe = maxFe;
+        this.baseFe = baseFe;
     }
 
     public boolean isSteam() {
@@ -27,12 +27,12 @@ public enum MachineTier {
         return !steam;
     }
 
-    public int getBaseRf() {
-        return baseRf;
+    public int getBaseFe() {
+        return baseFe;
     }
 
-    public int getMaxRf() {
-        return maxRf;
+    public int getMaxFe() {
+        return maxFe;
     }
 
     @Override
@@ -40,7 +40,7 @@ public enum MachineTier {
         return name;
     }
 
-    public int getMaxStoredRf() {
-        return isSteam() ? 0 : getMaxRf() * 100;
+    public int getMaxStoredFe() {
+        return isSteam() ? 0 : getMaxFe() * 100;
     }
 }

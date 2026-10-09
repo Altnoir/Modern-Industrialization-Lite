@@ -10,7 +10,7 @@ item_ids:
   - milite:high_pressure_advanced_large_steam_boiler
   - milite:large_steam_turbine
   - milite:heat_exchanger
-  - milite:hv_steam_turbine
+  - milite:stainless_steel_steam_turbine
 ---
 
 # Високий тиск!
@@ -33,7 +33,7 @@ item_ids:
 
 Отримавши доступ до високотискної води, ви можете використовувати вискотискний великий паровий котел для виробництва високотискного пару.
 
-Одне мВ високотискного пару коштує 8 мВ звичайного пару, тобто 8RF.
+Одне мВ високотискного пару коштує 8 мВ звичайного пару, тобто 8 RF.
 
 <Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
@@ -51,7 +51,7 @@ item_ids:
     <MultiblockShape controller="large_steam_turbine" />
 </GameScene>
 
-Велика парова турбіна прийматиме вRF як звичайну пару (1 мВ = 1RF), так високотискний пар (1 мВ = 8RF) і генеруватиме до 16384RF/т! **Однак це не поверне вам звичайну воду чи високотисну воду**.
+Велика парова турбіна прийматиме вRF як звичайну пару (1 мВ = 1 RF), так високотискний пар (1 мВ = 8 RF) і генеруватиме до 16384 RF/т! **Однак це не поверне вам звичайну воду чи високотисну воду**.
 
 <Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -65,9 +65,9 @@ item_ids:
 
 <Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
 
-## Парова турбіна ВН
+## Парова турбіна з нержавіючої сталі
 
-Іншим варіантом для невеликих установок є використання парової турбіни високої напруги. Як і інші генератори високої напруги, він вироблятиме 512RF/т. Він приймає лише звичайний пар.
+Іншим варіантом для невеликих установок є використання парової турбіни з нержавіючої сталі. Як і інші генератори цього рівня, він вироблятиме 512 RF/т. Він приймає лише звичайний пар.
 
-<Recipe id="milite:electric_age/machine/hv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
 

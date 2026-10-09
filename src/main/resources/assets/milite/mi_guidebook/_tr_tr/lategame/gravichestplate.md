@@ -11,7 +11,7 @@ navigation:
 <ItemImage id="milite:gravichestplate" />
 
 Gravichestplate, onu giyen oyuncunun etrafındaki yerçekimi alanını tersine çevirmek için gelişmiş süper iletken teknolojisini kullanır.
-RF kullanır ve bir Depo Ünitesine veya Transformatöre sağ tıklanarak şarj edilebilir.
+RF kullanır ve bir Depo Ünitesine sağ tıklanarak şarj edilebilir.
 
 Mevcut GSP teknolojisinin uçmayı sağladığını ve düşme hasarını önlediğini, ancak diğer hasar türlerine karşı koruma sağlamadığını unutmayın.
 

@@ -80,7 +80,7 @@ public class MultiblockMachines {
 
     private static SimpleMember blastProofCasing;
 
-    private static SimpleMember highlyAdvancedHull;
+    private static SimpleMember titaniumHull;
     private static SimpleMember fusionChamber;
 
     private static SimpleMember plasmaHandlingIridium;
@@ -331,7 +331,7 @@ public class MultiblockMachines {
                 "large_steam_turbine", bet ->
                         new GeneratorMultiblockBlockEntity(bet, "large_steam_turbine", largeSteamTurbineShape,
                                 FluidItemConsumerComponent.ofFluid(16384,
-                                        new FluidItemConsumerComponent.RfProductionMapBuilder<>(BuiltInRegistries.FLUID)
+                                        new FluidItemConsumerComponent.FeProductionMapBuilder<>(BuiltInRegistries.FLUID)
                                                 .add(MIFluids.STEAM.getId(), 1)
                                                 .add(MIFluids.HIGH_PRESSURE_STEAM.getId(), 8)
                                                 .add(MIFluids.HEAVY_WATER_STEAM.getId(), 1)
@@ -432,7 +432,7 @@ public class MultiblockMachines {
     }
 
     private static void fusionReactor() {
-        ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(CableTier.EV.casing);
+        ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(CableTier.TITANIUM.casing);
         int[][] shapeEdge = new int[][]{
                 {6, 1, 0, 0},
                 {4, 3, 0, 0},
@@ -469,10 +469,10 @@ public class MultiblockMachines {
                     int z3 = z2 + placement[3];
                     for (int z = z0; z < z3; z++) {
                         if (z < z1 || z >= z2) {
-                            fusionReactorShapeBuilder.add(x, y, z, highlyAdvancedHull);
-                            fusionReactorShapeBuilder.add(-x, y, z, highlyAdvancedHull);
-                            fusionReactorShapeBuilder.add(x, y, 14 - z, highlyAdvancedHull);
-                            fusionReactorShapeBuilder.add(-x, y, 14 - z, highlyAdvancedHull);
+                            fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
+                            fusionReactorShapeBuilder.add(-x, y, z, titaniumHull);
+                            fusionReactorShapeBuilder.add(x, y, 14 - z, titaniumHull);
+                            fusionReactorShapeBuilder.add(-x, y, 14 - z, titaniumHull);
                         } else if (z >= z1) {
                             fusionReactorShapeBuilder.add(x, y, z, fusionChamber);
                             fusionReactorShapeBuilder.add(-x, y, z, fusionChamber);
@@ -492,11 +492,11 @@ public class MultiblockMachines {
                     HatchFlags currentFlag = l == 0 ? flags : null;
 
                     if (l != 0 || y != 0) {
-                        fusionReactorShapeBuilder.add(0, y, l, highlyAdvancedHull, currentFlag);
+                        fusionReactorShapeBuilder.add(0, y, l, titaniumHull, currentFlag);
                     }
-                    fusionReactorShapeBuilder.add(0, y, 14 - l, highlyAdvancedHull, currentFlag);
-                    fusionReactorShapeBuilder.add(-7 + l, y, 7, highlyAdvancedHull, currentFlag);
-                    fusionReactorShapeBuilder.add(7 - l, y, 7, highlyAdvancedHull, currentFlag);
+                    fusionReactorShapeBuilder.add(0, y, 14 - l, titaniumHull, currentFlag);
+                    fusionReactorShapeBuilder.add(-7 + l, y, 7, titaniumHull, currentFlag);
+                    fusionReactorShapeBuilder.add(7 - l, y, 7, titaniumHull, currentFlag);
                 } else {
                     fusionReactorShapeBuilder.add(0, y, l, fusionChamber);
                     fusionReactorShapeBuilder.add(0, y, 14 - l, fusionChamber);
@@ -550,7 +550,7 @@ public class MultiblockMachines {
         blastProofCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("blastproof_casing")));
 
 
-        highlyAdvancedHull = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("highly_advanced_machine_hull")));
+        titaniumHull = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("titanium_machine_hull")));
         fusionChamber = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("fusion_chamber")));
 
         plasmaHandlingIridium = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("plasma_handling_iridium_machine_casing")));
@@ -665,7 +665,7 @@ public class MultiblockMachines {
                 "large_tank", MachineCasings.STEEL, true, false, false, false);
 
         MachineRegistrationHelper.addMachineModel("fusion_reactor",
-                "fusion_reactor", CableTier.EV.casing, true, false, false, true);
+                "fusion_reactor", CableTier.TITANIUM.casing, true, false, false, true);
         new Rei("Fusion Reactor", "fusion_reactor", MIMachineRecipeTypes.FUSION_REACTOR, new ProgressBar.Params(66, 33, "arrow"))
                 .fluids(inputs -> inputs.addSlots(26, 35, 2, 1), outputs -> outputs.addSlots(92, 35, 3, 1))
                 .register();

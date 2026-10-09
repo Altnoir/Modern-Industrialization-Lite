@@ -29,21 +29,21 @@ public class MultiblockHatches {
 
     public static final HatchPair<ItemHatch> BRONZE_ITEM = registerItemHatches("Bronze", "bronze", MachineCasings.BRONZE, 1, 1, 80, 40);
     public static final HatchPair<ItemHatch> STEEL_ITEM = registerItemHatches("Steel", "steel", MachineCasings.STEEL, 2, 1, 80, 30);
-    public static final HatchPair<ItemHatch> ADVANCED_ITEM = registerItemHatches("Advanced", "advanced", CableTier.MV.casing, 2, 2, 71, 30);
-    public static final HatchPair<ItemHatch> TURBO_ITEM = registerItemHatches("Turbo", "turbo", CableTier.HV.casing, 3, 3, 62, 21);
-    public static final HatchPair<ItemHatch> HIGHLY_ADVANCED_ITEM = registerItemHatches("Highly Advanced", "highly_advanced", CableTier.EV.casing, 3, 5, 44, 18);
+    public static final HatchPair<ItemHatch> ALUMINUM_ITEM = registerItemHatches("Aluminum", "aluminum", CableTier.ALUMINUM.casing, 2, 2, 71, 30);
+    public static final HatchPair<ItemHatch> STAINLESS_STEEL_ITEM = registerItemHatches("Stainless Steel", "stainless_steel", CableTier.STAINLESS_STEEL.casing, 3, 3, 62, 21);
+    public static final HatchPair<ItemHatch> TITANIUM_ITEM = registerItemHatches("Titanium", "titanium", CableTier.TITANIUM.casing, 3, 5, 44, 18);
 
     public static final HatchPair<FluidHatch> BRONZE_FLUID = registerFluidHatches("Bronze", "bronze", MachineCasings.BRONZE, 4);
     public static final HatchPair<FluidHatch> STEEL_FLUID = registerFluidHatches("Steel", "steel", MachineCasings.STEEL, 16);
-    public static final HatchPair<FluidHatch> ADVANCED_FLUID = registerFluidHatches("Advanced", "advanced", CableTier.MV.casing, 64);
-    public static final HatchPair<FluidHatch> TURBO_FLUID = registerFluidHatches("Turbo", "turbo", CableTier.HV.casing, 256);
-    public static final HatchPair<FluidHatch> HIGHLY_ADVANCED_FLUID = registerFluidHatches("Highly Advanced", "highly_advanced", CableTier.EV.casing, 1024);
+    public static final HatchPair<FluidHatch> ALUMINUM_FLUID = registerFluidHatches("Aluminum", "aluminum", CableTier.ALUMINUM.casing, 64);
+    public static final HatchPair<FluidHatch> STAINLESS_STEEL_FLUID = registerFluidHatches("Stainless Steel", "stainless_steel", CableTier.STAINLESS_STEEL.casing, 256);
+    public static final HatchPair<FluidHatch> TITANIUM_FLUID = registerFluidHatches("Titanium", "titanium", CableTier.TITANIUM.casing, 1024);
 
-    public static final HatchPair<EnergyHatch> LV_ENERGY = registerEnergyHatches(CableTier.LV);
-    public static final HatchPair<EnergyHatch> MV_ENERGY = registerEnergyHatches(CableTier.MV);
-    public static final HatchPair<EnergyHatch> HV_ENERGY = registerEnergyHatches(CableTier.HV);
-    public static final HatchPair<EnergyHatch> EV_ENERGY = registerEnergyHatches(CableTier.EV);
-    public static final HatchPair<EnergyHatch> SUPERCONDUCTOR_ENERGY = registerEnergyHatches(CableTier.SUPERCONDUCTOR);
+    public static final HatchPair<EnergyHatch> ELECTRIC_ENERGY = registerEnergyHatches(CableTier.ELECTRIC);
+    public static final HatchPair<EnergyHatch> ALUMINUM_ENERGY = registerEnergyHatches(CableTier.ALUMINUM);
+    public static final HatchPair<EnergyHatch> STAINLESS_STEEL_ENERGY = registerEnergyHatches(CableTier.STAINLESS_STEEL);
+    public static final HatchPair<EnergyHatch> TITANIUM_ENERGY = registerEnergyHatches(CableTier.TITANIUM);
+    public static final HatchPair<EnergyHatch> IRIDIUM_ENERGY = registerEnergyHatches(CableTier.IRIDIUM);
 
     public static final MachineDefinition<NuclearHatch> NUCLEAR_ITEM = MachineRegistrationHelper.registerMachine(
             "Nuclear Item Hatch", "nuclear_item_hatch",

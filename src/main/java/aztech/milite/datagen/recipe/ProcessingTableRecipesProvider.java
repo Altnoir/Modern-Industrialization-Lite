@@ -113,11 +113,11 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         return switch (level) {
             case BRONZE -> MIMaterials.BRONZE.getPart(MIParts.MACHINE_CASING);
             case STEEL -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING);
-            case ELECTRIC -> lookupItem(MIBlockKeys.BASIC_MACHINE_HULL.location());
-            case ALUMINUM -> lookupItem(MIBlockKeys.ADVANCED_MACHINE_HULL.location());
-            case STAINLESS_STEEL -> lookupItem(MIBlockKeys.TURBO_MACHINE_HULL.location());
-            case TITANIUM -> lookupItem(MIBlockKeys.HIGHLY_ADVANCED_MACHINE_HULL.location());
-            case IRIDIUM -> lookupItem(MIBlockKeys.QUANTUM_MACHINE_HULL.location());
+            case ELECTRIC -> lookupItem(MIBlockKeys.ELECTRIC_MACHINE_HULL.location());
+            case ALUMINUM -> lookupItem(MIBlockKeys.ALUMINUM_MACHINE_HULL.location());
+            case STAINLESS_STEEL -> lookupItem(MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL.location());
+            case TITANIUM -> lookupItem(MIBlockKeys.TITANIUM_MACHINE_HULL.location());
+            case IRIDIUM -> lookupItem(MIBlockKeys.IRIDIUM_MACHINE_HULL.location());
         };
     }
 

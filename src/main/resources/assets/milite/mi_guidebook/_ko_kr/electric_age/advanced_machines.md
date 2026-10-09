@@ -1,14 +1,14 @@
 ---
 navigation:
   title: "발전된 기계들"
-  icon: "milite:advanced_machine_hull"
+  icon: "milite:aluminum_machine_hull"
   position: 106
   parent: milite:electric_age.md
 item_ids:
-  - milite:centrifuge
-  - milite:chemical_reactor
-  - milite:distillery
-  - milite:electrolyzer
+  - milite:electric_centrifuge
+  - milite:electric_chemical_reactor
+  - milite:electric_distillery
+  - milite:electric_electrolyzer
 ---
 
 # 발전된 기계들
@@ -17,7 +17,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-알루미늄은 훨씬 발전된 기계들을 만드는데 사용되는 재료입니다. 다른 전기 기계들처럼, 새로운 기계들은 LV 전선에만 연결됩니다. 보크사이트 가루를 전기 용광로에서 구우면 알루미늄 조각을 얻을 수 있습니다.
+알루미늄은 훨씬 발전된 기계들을 만드는데 사용되는 재료입니다. 다른 전기 기계들처럼, 새로운 기계들은 최대 32 RF/t까지만 받아들입니다. 보크사이트 가루를 전기 용광로에서 구우면 알루미늄 조각을 얻을 수 있습니다.
 
 원심분리기는 고속으로 회전하면서 아이템들을 분해합니다. 탄소 가루를 만들 수 있고, 강철과 실리콘의 더 좋은 조합법에도 활용됩니다.
 

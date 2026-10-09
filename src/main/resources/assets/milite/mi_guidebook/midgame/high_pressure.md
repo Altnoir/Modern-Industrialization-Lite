@@ -10,7 +10,7 @@ item_ids:
   - milite:high_pressure_advanced_large_steam_boiler
   - milite:large_steam_turbine
   - milite:heat_exchanger
-  - milite:hv_steam_turbine
+  - milite:stainless_steel_steam_turbine
 ---
 
 # High Pressure!
@@ -33,7 +33,7 @@ The Pressurizer is a new multiblock made of titanium that can turn water into HP
 
 Once you have access to HP water, you can use a High Pressure Large Steam Boiler to produce HP steam.
 
-One millibucket of HP steam is worth 8 mb of regular steam, that is 8RF.
+One millibucket of HP steam is worth 8 mb of regular steam, that is 8 RF.
 
 <Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
@@ -51,7 +51,7 @@ Later on, you will also be able to build the advanced version of the HP Large St
     <MultiblockShape controller="large_steam_turbine" />
 </GameScene>
 
-A Large Steam Turbine will accept both regular steam (1 mb = 1RF) and HP steam (1 mb = 8RF) intoRF, and will generate up to 16384RF/t! **However it will not give you back regular nor HP water.**
+A Large Steam Turbine will accept both regular steam (1 mb = 1 RF) and HP steam (1 mb = 8 RF) into RF, and will generate up to 16384 RF/t! **However it will not give you back regular nor HP water.**
 
 <Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -65,9 +65,9 @@ Remember that pressurizing water into HP water costs a lot of energy, but the tu
 
 <Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
 
-## HV Steam Turbine
+## Stainless Steel Steam Turbine
 
-Another option for small setups is to use an HV steam turbine. Like other HV generators, it will produce 512RF/t. This one will only accept regular steam.
+Another option for small setups is to use a Stainless Steel Steam Turbine. Like other generators of that tier, it will produce 512 RF/t. This one will only accept regular steam.
 
-<Recipe id="milite:electric_age/machine/hv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
 

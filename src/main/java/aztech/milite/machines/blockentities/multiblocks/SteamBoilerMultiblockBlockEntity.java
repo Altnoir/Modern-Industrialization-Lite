@@ -36,7 +36,7 @@ public class SteamBoilerMultiblockBlockEntity extends MultiblockMachineBlockEnti
 
     public final boolean highPressure;
 
-    public SteamBoilerMultiblockBlockEntity(BEP bep, ShapeTemplate shapeTemplate, String name, long maxRfProduction, boolean highPressure) {
+    public SteamBoilerMultiblockBlockEntity(BEP bep, ShapeTemplate shapeTemplate, String name, long maxFeProduction, boolean highPressure) {
         super(bep, new MachineGuiParameters.Builder(name, false).build(), new OrientationComponent.Params(false, false, false));
 
         this.highPressure = highPressure;
@@ -46,8 +46,8 @@ public class SteamBoilerMultiblockBlockEntity extends MultiblockMachineBlockEnti
         this.inventory = new MultiblockInventoryComponent();
         this.redstoneControl = new RedstoneControlComponent();
 
-        this.steamHeater = new SteamHeaterComponent(2500, maxRfProduction,
-                maxRfProduction / 32, !highPressure, highPressure, true);
+        this.steamHeater = new SteamHeaterComponent(2500, maxFeProduction,
+                maxFeProduction / 32, !highPressure, highPressure, true);
         this.fuelBurning = new FuelBurningComponent(steamHeater, 2);
 
         this.registerComponents(isActiveComponent, steamHeater, fuelBurning, redstoneControl);

@@ -7,7 +7,7 @@
   ],
   "key": {
     "t": {
-      "item" : "milite:hv_steam_turbine"
+      "item" : "milite:stainless_steel_steam_turbine"
     },
     "p" : {
       "item" : "milite:advanced_pump"
@@ -19,7 +19,7 @@
       "item" : "milite:advanced_motor"
     },
     "H" :{
-      "item" : "milite:highly_advanced_machine_hull"
+      "item" : "milite:titanium_machine_hull"
     },
     "R" : {
       "item" : "milite:stainless_steel_rotor"

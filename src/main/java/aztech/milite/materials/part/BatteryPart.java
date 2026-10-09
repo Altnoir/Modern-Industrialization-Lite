@@ -22,6 +22,6 @@ public class BatteryPart implements PartKeyProvider {
     public PartTemplate of(CableTier tier) {
         // A factor of 60*20*8 = 9600 would be one minute at the max tier power. 10000 is nicer in the tooltips.
         // Clamped so that the capacity still fits in NeoForge's int-based energy API.
-        return of(Math.min(10000L * tier.rf, Integer.MAX_VALUE));
+        return of(Math.min(10000L * tier.fe, Integer.MAX_VALUE));
     }
 }

@@ -63,7 +63,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
             NEUTRON_ABSORPTION(2),
             NEUTRON_FLUX(3),
             NEUTRON_GENERATION(4),
-            EU_GENERATION(5);
+            FE_GENERATION(5);
 
             final int index;
 
@@ -73,7 +73,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
         }
 
         Component[] modeTooltip = new Component[] { MIText.NuclearFuelMode.text(), MIText.TemperatureMode.text(), MIText.NeutronAbsorptionMode.text(),
-                MIText.NeutronFluxMode.text(), MIText.NeutronGenerationMode.text(), MIText.RfGenerationMode.text() };
+                MIText.NeutronFluxMode.text(), MIText.NeutronGenerationMode.text(), MIText.FeGenerationMode.text() };
 
         Component[] neutronModeTooltip = new Component[] { MIText.FastNeutron.text(), MIText.ThermalNeutron.text(), MIText.Both.text() };
 
@@ -115,9 +115,9 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                                 if (currentMode == Renderer.Mode.TEMPERATURE) {
                                     v = 30;
                                     u = (int) (299 * tileData.getTemperature() / NuclearConstant.MAX_TEMPERATURE);
-                                } else if (currentMode == Renderer.Mode.EU_GENERATION) {
+                                } else if (currentMode == Renderer.Mode.FE_GENERATION) {
                                     v = 30;
-                                    u = (int) (299 * Math.min(1.0, tileData.getMeanRfGeneration() / (2 * NuclearConstant.MAX_HATCH_EU_PRODUCTION)));
+                                    u = (int) (299 * Math.min(1.0, tileData.getMeanFeGeneration() / (2 * NuclearConstant.MAX_HATCH_FE_PRODUCTION)));
                                 } else {
                                     double neutronRate;
                                     double factor = neutronMode == BOTH ? 2 : 1;
@@ -167,7 +167,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                     }
                 }
 
-                if (data.rfFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
+                if (data.feFuelConsumption() > 0 && currentMode == Renderer.Mode.FE_GENERATION) {
                     Font font = Minecraft.getInstance().font;
                     guiGraphics.pose().translate(0, 0, 256);
                     guiGraphics.drawString(font, getEfficiencyText(), x + 8, y + 16, 0xFFFFFF, false);
@@ -223,9 +223,9 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                             guiGraphics.renderTooltip(font, tooltip, Optional.empty(), cursorX, cursorY);
                             return true;
 
-                        } else if (currentMode == Renderer.Mode.EU_GENERATION) {
-                            double rfGeneration = tileData.getMeanRfGeneration();
-                            guiGraphics.renderTooltip(font, TextHelper.getRfTextTick(rfGeneration, true), cursorX, cursorY);
+                        } else if (currentMode == Renderer.Mode.FE_GENERATION) {
+                            double feGeneration = tileData.getMeanFeGeneration();
+                            guiGraphics.renderTooltip(font, TextHelper.getFeTextTick(feGeneration, true), cursorX, cursorY);
                             return true;
                         } else {
                             double neutronRateFast;
@@ -300,15 +300,15 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                 }
             }
 
-            if (data.rfFuelConsumption() > 0 && currentMode == Renderer.Mode.EU_GENERATION) {
+            if (data.feFuelConsumption() > 0 && currentMode == Renderer.Mode.FE_GENERATION) {
                 Font renderer = Minecraft.getInstance().font;
                 int width = renderer.width(getEfficiencyText().getString());
                 if (cursorX > x + 8 && cursorX < x + 8 + width && cursorY >= y + 15 && cursorY < y + 24) {
 
-                    Component rfProduction = TextHelper.getRfTextTick(data.rfProduction(), true);
-                    Component rfFuelConsumption = TextHelper.getRfTextTick(data.rfFuelConsumption(), true);
+                    Component feProduction = TextHelper.getFeTextTick(data.feProduction(), true);
+                    Component feFuelConsumption = TextHelper.getFeTextTick(data.feFuelConsumption(), true);
 
-                    Component tooltip = MIText.NuclearFuelEfficiencyTooltip.text(rfProduction, rfFuelConsumption);
+                    Component tooltip = MIText.NuclearFuelEfficiencyTooltip.text(feProduction, feFuelConsumption);
 
                     guiGraphics.renderTooltip(font, tooltip, cursorX, cursorY);
                     return true;
@@ -318,7 +318,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
         }
 
         public Component getEfficiencyText() {
-            String eff = String.format("%.1f", 100 * data.rfProduction() / data.rfFuelConsumption());
+            String eff = String.format("%.1f", 100 * data.feProduction() / data.feFuelConsumption());
             return MIText.EfficiencyNuclear.text(eff).setStyle(TextHelper.RED);
         }
 
@@ -375,7 +375,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                         button.renderVanilla(guiGraphics, mouseX, mouseY, delta);
                         if (currentMode == Renderer.Mode.NUCLEAR_FUEL) {
                             RenderHelper.renderAndDecorateItem(guiGraphics, fuelStack, button.getX() + 1, button.getY() + 1);
-                        } else if (currentMode == Renderer.Mode.EU_GENERATION) {
+                        } else if (currentMode == Renderer.Mode.FE_GENERATION) {
                             guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX() + 4, button.getY() + 2, 243, 1, 13, 17);
                         } else {
                             guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX(), button.getY(), 124 + currentMode.index * 20, 0, 20, 20);

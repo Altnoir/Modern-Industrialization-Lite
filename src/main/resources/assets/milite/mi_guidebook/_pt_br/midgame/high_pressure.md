@@ -10,7 +10,7 @@ item_ids:
   - milite:high_pressure_advanced_large_steam_boiler
   - milite:large_steam_turbine
   - milite:heat_exchanger
-  - milite:hv_steam_turbine
+  - milite:stainless_steel_steam_turbine
 ---
 
 # Alta Pressão!
@@ -33,7 +33,7 @@ O Pressurizador é um novo multibloco feito de titânio que pode transformar ág
 
 Quando você tiver acesso à água HP, poderá usar uma Caldeira de Vapor Grande de Alta Pressão para produzir vapor HP.
 
-Um milibalde de vapor HP vale 8 mb de vapor comum, ou seja, 8RF.
+Um milibalde de vapor HP vale 8 mb de vapor comum, ou seja, 8 RF.
 
 <Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
@@ -51,7 +51,7 @@ Mais adiante, você também poderá construir a versão avançada da Caldeira de
     <MultiblockShape controller="large_steam_turbine" />
 </GameScene>
 
-Uma Turbina de Vapor Grande aceitará tanto vapor comum (1 mb = 1RF) quanto vapor HP (1 mb = 8RF) e os converterá emRF, podendo gerar até 16384RF/t! **No entanto, ela não devolverá nem água comum nem água HP.**
+Uma Turbina de Vapor Grande aceitará tanto vapor comum (1 mb = 1 RF) quanto vapor HP (1 mb = 8 RF) e os converterá em RF, podendo gerar até 16384 RF/t! **No entanto, ela não devolverá nem água comum nem água HP.**
 
 <Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -65,9 +65,9 @@ Lembre-se de que pressurizar água em água HP consome muita energia, e a turbin
 
 <Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
 
-## Turbina a Vapor HV
+## Turbina de Vapor de Aço Inoxidável
 
-Outra opção para instalações menores é usar uma turbina a vapor HV. Como outros geradores HV, ela produzirá 512RF/t. Esta aceitará apenas vapor comum.
+Outra opção para instalações menores é usar uma Turbina de Vapor de Aço Inoxidável. Como outros geradores desse nível, ela produzirá 512 RF/t. Esta aceitará apenas vapor comum.
 
-<Recipe id="milite:electric_age/machine/hv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
 

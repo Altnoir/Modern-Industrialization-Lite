@@ -27,27 +27,27 @@ public class SingleBlockSpecialMachines {
                 MachineBlockEntity::registerFluidApi,
                 ElectricWaterPumpBlockEntity::registerEnergyApi);
 
-        registerEUStorage();
+        registerFEStorage();
 
-        registerSteamTurbine(CableTier.LV, 32, 16000);
-        registerSteamTurbine(CableTier.MV, 128, 32000);
-        registerSteamTurbine(CableTier.HV, 512, 64000);
+        registerSteamTurbine(CableTier.ELECTRIC, 32, 16000);
+        registerSteamTurbine(CableTier.ALUMINUM, 128, 32000);
+        registerSteamTurbine(CableTier.STAINLESS_STEEL, 512, 64000);
 
-        MachineRegistrationHelper.registerMachine("LV Diesel Generator", "lv_diesel_generator",
-                bet -> new GeneratorMachineBlockEntity(bet, "lv_diesel_generator", false,
-                        CableTier.LV, 4000, 16000,
+        MachineRegistrationHelper.registerMachine("Electric Diesel Generator", "electric_diesel_generator",
+                bet -> new GeneratorMachineBlockEntity(bet, "electric_diesel_generator", false,
+                        CableTier.ELECTRIC, 4000, 16000,
                         FluidItemConsumerComponent.ofFluidFuels(64, 2)),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 
-        MachineRegistrationHelper.registerMachine("MV Diesel Generator", "mv_diesel_generator",
-                bet -> new GeneratorMachineBlockEntity(bet, "mv_diesel_generator", false,
-                        CableTier.MV, 12000, 32000,
+        MachineRegistrationHelper.registerMachine("Aluminum Diesel Generator", "aluminum_diesel_generator",
+                bet -> new GeneratorMachineBlockEntity(bet, "aluminum_diesel_generator", false,
+                        CableTier.ALUMINUM, 12000, 32000,
                         FluidItemConsumerComponent.ofFluidFuels(256, 2)),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 
-        MachineRegistrationHelper.registerMachine("HV Diesel Generator", "hv_diesel_generator",
-                bet -> new GeneratorMachineBlockEntity(bet, "hv_diesel_generator", false,
-                        CableTier.HV, 60000, 64000,
+        MachineRegistrationHelper.registerMachine("Stainless Steel Diesel Generator", "stainless_steel_diesel_generator",
+                bet -> new GeneratorMachineBlockEntity(bet, "stainless_steel_diesel_generator", false,
+                        CableTier.STAINLESS_STEEL, 60000, 64000,
                         FluidItemConsumerComponent.ofFluidFuels(1024, 2)),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 
@@ -63,12 +63,12 @@ public class SingleBlockSpecialMachines {
         MachineRegistrationHelper.addModelsForTiers("water_pump", true, true, true, "bronze", "steel", "electric");
         MachineRegistrationHelper.addMachineModel("bronze_boiler", "boiler", MachineCasings.BRICKED_BRONZE, true, false, false);
         MachineRegistrationHelper.addMachineModel("steel_boiler", "boiler", MachineCasings.BRICKED_STEEL, true, false, false);
-        addDieselGeneratorModel("lv_diesel_generator", CableTier.LV.casing);
-        addDieselGeneratorModel("mv_diesel_generator", CableTier.MV.casing);
-        addDieselGeneratorModel("hv_diesel_generator", CableTier.HV.casing);
+        addDieselGeneratorModel("electric_diesel_generator", CableTier.ELECTRIC.casing);
+        addDieselGeneratorModel("aluminum_diesel_generator", CableTier.ALUMINUM.casing);
+        addDieselGeneratorModel("stainless_steel_diesel_generator", CableTier.STAINLESS_STEEL.casing);
         MachineRegistrationHelper.addMachineModel("configurable_chest", "", MachineCasings.STEEL_CRATE, false, false, false, false);
         MachineRegistrationHelper.addMachineModel("configurable_tank", "", MachineCasings.CONFIGURABLE_TANK, false, false, false, false);
-        MachineRegistrationHelper.addMachineModel("replicator", "replicator", CableTier.SUPERCONDUCTOR.casing, true, false, true, true);
+        MachineRegistrationHelper.addMachineModel("replicator", "replicator", CableTier.IRIDIUM.casing, true, false, true, true);
     }
 
     private static void addDieselGeneratorModel(String id, MachineCasing casing) {
@@ -81,12 +81,12 @@ public class SingleBlockSpecialMachines {
                 .build());
     }
 
-    private static void registerSteamTurbine(CableTier tier, int rf, int fluidCapacity) {
+    private static void registerSteamTurbine(CableTier tier, int fe, int fluidCapacity) {
         String id = tier.name + "_steam_turbine";
         String englishName = tier.shortEnglishName + " Steam Turbine";
         MachineRegistrationHelper.registerMachine(englishName, id,
                 bet -> new GeneratorMachineBlockEntity(bet, id, true,
-                        tier, rf * 100L, fluidCapacity, rf,
+                        tier, fe * 100L, fluidCapacity, fe,
                         MIFluids.STEAM, 1),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 
@@ -97,11 +97,11 @@ public class SingleBlockSpecialMachines {
                 .build());
     }
 
-    private static void registerEUStorage() {
+    private static void registerFEStorage() {
         for (CableTier tier : CableTier.allTiers()) {
             String id = tier.name + "_storage_unit";
             String englishName = tier.shortEnglishName + " Storage Unit";
-            MachineRegistrationHelper.registerMachine(englishName, id, bet -> new StorageMachineBlockEntity(bet, tier, id, Math.min(100000L * tier.rf, Integer.MAX_VALUE)),
+            MachineRegistrationHelper.registerMachine(englishName, id, bet -> new StorageMachineBlockEntity(bet, tier, id, Math.min(100000L * tier.fe, Integer.MAX_VALUE)),
                     AbstractStorageMachineBlockEntity::registerEnergyApi);
 
             MachineModelsToGenerate.register(id, new MachineModelProperties.Builder(tier.casing)

@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    " c ",
+    "BCB",
+    "ppp"
+  ],
+  "key": {
+    "B" : {
+      "item" : "milite:silicon_battery"
+    },
+    "c" : {
+      "item" : "milite:electronic_circuit"
+    },
+    "C" : {
+      "item" : "milite:aluminum_machine_casing"
+    },
+    "p" : {
+      "item" : "milite:electrum_wire"
+    }
+  },
+  "result": {
+    "id": "milite:aluminum_machine_hull"
+  }
+}

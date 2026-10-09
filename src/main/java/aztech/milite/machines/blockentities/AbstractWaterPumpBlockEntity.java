@@ -45,7 +45,7 @@ public abstract class AbstractWaterPumpBlockEntity extends MachineBlockEntity im
         });
     }
 
-    abstract protected long consumeRf(long max);
+    abstract protected long consumeFe(long max);
 
     abstract protected int getWaterMultiplier();
 
@@ -60,9 +60,9 @@ public abstract class AbstractWaterPumpBlockEntity extends MachineBlockEntity im
             if (waterStack.getRemainingSpace() < FluidType.BUCKET_VOLUME / 8) {
                 updateActive(false);
             } else {
-                long rf = consumeRf(1);
-                pumpingTicks += rf;
-                updateActive(rf > 0);
+                long fe = consumeFe(1);
+                pumpingTicks += fe;
+                updateActive(fe > 0);
 
                 if (pumpingTicks == OPERATION_TICKS) {
                     waterStack.setKey(FluidVariant.of(Fluids.WATER));

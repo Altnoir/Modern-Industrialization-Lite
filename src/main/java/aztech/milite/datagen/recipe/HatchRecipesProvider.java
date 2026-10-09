@@ -16,11 +16,10 @@ public class HatchRecipesProvider extends MIRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
-        String[] casings = { "bronze", "steel", "basic", "advanced", "turbo", "highly_advanced", "quantum" };
+        String[] casings = { "bronze", "steel", "electric", "aluminum", "stainless_steel", "titanium", "iridium" };
         String[] tanks = { "bronze", "steel", "", "aluminum", "stainless_steel", "titanium", "" };
         // MI Lite has no cables, so energy hatches are crafted with the wire of the same material.
         String[] wires = { "", "", "tin", "electrum", "aluminum", "annealed_copper", "superconductor" };
-        String[] voltage = { "", "", "lv", "mv", "hv", "ev", "superconductor" };
 
         for (int i = 0; i < casings.length; i++) {
 
@@ -34,8 +33,8 @@ public class HatchRecipesProvider extends MIRecipesProvider {
             String fluidOutput = String.format("milite:%s_fluid_output_hatch", casings[i]);
             String itemInput = String.format("milite:%s_item_input_hatch", casings[i]);
             String itemOutput = String.format("milite:%s_item_output_hatch", casings[i]);
-            String energyInput = String.format("milite:%s_energy_input_hatch", voltage[i]);
-            String energyOutput = String.format("milite:%s_energy_output_hatch", voltage[i]);
+            String energyInput = String.format("milite:%s_energy_input_hatch", casings[i]);
+            String energyOutput = String.format("milite:%s_energy_output_hatch", casings[i]);
             String wire = String.format("milite:%s_wire", wires[i]);
             String hopper = "minecraft:hopper";
 
@@ -45,7 +44,7 @@ public class HatchRecipesProvider extends MIRecipesProvider {
 
             for (int j = 0; j < ABs.length; j++) {
 
-                if (((j != 2) && !casings[i].equals("basic") && !casings[i].equals("quantum")) || (j == 2 && !wires[i].equals(""))) {
+                if (((j != 2) && !casings[i].equals("electric") && !casings[i].equals("iridium")) || (j == 2 && !wires[i].equals(""))) {
 
                     String[] AB = ABs[j];
                     String other = others[j];

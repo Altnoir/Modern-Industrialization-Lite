@@ -19,8 +19,8 @@ public class NuclearFuel extends NuclearAbsorbable {
 
     public final int size;
 
-    public final int directEUbyDesintegration;
-    public final int totalEUbyDesintegration;
+    public final int directFEbyDesintegration;
+    public final int totalFEbyDesintegration;
 
     public final int tempLimitLow;
     public final int tempLimitHigh;
@@ -50,8 +50,8 @@ public class NuclearFuel extends NuclearAbsorbable {
         this.tempLimitLow = clampTemp(tempLimitLow);
         this.tempLimitHigh = clampTemp(tempLimitHigh);
 
-        this.directEUbyDesintegration = (int) (NuclearConstant.EU_FOR_FAST_NEUTRON * directEnergyFactor * neutronMultiplicationFactor);
-        this.totalEUbyDesintegration = (int) (NuclearConstant.EU_FOR_FAST_NEUTRON * (1.0 + directEnergyFactor) * neutronMultiplicationFactor);
+        this.directFEbyDesintegration = (int) (NuclearConstant.FE_FOR_FAST_NEUTRON * directEnergyFactor * neutronMultiplicationFactor);
+        this.totalFEbyDesintegration = (int) (NuclearConstant.FE_FOR_FAST_NEUTRON * (1.0 + directEnergyFactor) * neutronMultiplicationFactor);
     }
 
     public static ItemDefinition<NuclearFuel> of(String englishName, String id, NuclearFuelParams params, NeutronBehaviour neutronBehaviour,
@@ -82,8 +82,8 @@ public class NuclearFuel extends NuclearAbsorbable {
     public int simulateDesintegration(double neutronsReceived, ItemStack stack, double temperature, RandomSource rand,
             NuclearEfficiencyHistoryComponent efficiencyHistory) {
         int absorption = simulateAbsorption(neutronsReceived, stack, rand);
-        double fuelRfConsumed = absorption * totalEUbyDesintegration;
-        efficiencyHistory.registerRfFuelConsumption(fuelRfConsumed);
+        double fuelFeConsumed = absorption * totalFEbyDesintegration;
+        efficiencyHistory.registerFeFuelConsumption(fuelFeConsumed);
         return randIntFromDouble(efficiencyFactor(temperature) * absorption * neutronMultiplicationFactor, rand);
     }
 }

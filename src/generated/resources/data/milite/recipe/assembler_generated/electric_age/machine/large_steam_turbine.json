@@ -5,7 +5,7 @@
   "item_inputs": [
     {
       "amount": 1,
-      "item": "milite:hv_steam_turbine"
+      "item": "milite:stainless_steel_steam_turbine"
     },
     {
       "amount": 2,
@@ -21,7 +21,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:highly_advanced_machine_hull"
+      "item": "milite:titanium_machine_hull"
     },
     {
       "amount": 2,

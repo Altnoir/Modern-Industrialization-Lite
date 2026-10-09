@@ -1,5 +1,5 @@
 {
-  "parent": "milite:hv_diesel_generator",
+  "parent": "milite:stainless_steel_diesel_generator",
   "criteria": {
     "checkInv": {
       "conditions": {

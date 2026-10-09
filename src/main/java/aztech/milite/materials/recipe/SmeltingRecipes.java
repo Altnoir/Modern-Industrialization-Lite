@@ -25,18 +25,18 @@ public final class SmeltingRecipes {
         SmeltingRecipeBuilder.smeltAndBlast(ctx, ORE_DEEPSLATE, GEM, 0.7f);
     }
 
-    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int rf, int duration) {
+    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int fe, int duration) {
         // The steam blast furnace and the electric ones do not share a recipe type, so a recipe is written for the one
         // that can actually run it.
-        MachineRecipeType type = rf <= STEAM_MAX_ENERGY ? MIMachineRecipeTypes.STEAM_BLAST_FURNACE : MIMachineRecipeTypes.BLAST_FURNACE;
-        MachineLevel level = blastFurnaceLevel(ctx, rf);
+        MachineRecipeType type = fe <= STEAM_MAX_ENERGY ? MIMachineRecipeTypes.STEAM_BLAST_FURNACE : MIMachineRecipeTypes.BLAST_FURNACE;
+        MachineLevel level = blastFurnaceLevel(ctx, fe);
         if (hotIngot) {
-            new MIRecipeBuilder(ctx, type, "dust", rf, duration).level(level)
+            new MIRecipeBuilder(ctx, type, "dust", fe, duration).level(level)
                     .addTaggedPartInput(DUST, 1).addPartOutput(HOT_INGOT, 1);
         } else {
-            new MIRecipeBuilder(ctx, type, "dust", rf, duration).level(level)
+            new MIRecipeBuilder(ctx, type, "dust", fe, duration).level(level)
                     .addTaggedPartInput(DUST, 1).addPartOutput(INGOT, 1);
-            new MIRecipeBuilder(ctx, type, "tiny_dust", rf, duration / 10).level(level)
+            new MIRecipeBuilder(ctx, type, "tiny_dust", fe, duration / 10).level(level)
                     .addTaggedPartInput(TINY_DUST, 1).addPartOutput(NUGGET, 1);
         }
     }
@@ -52,8 +52,8 @@ public final class SmeltingRecipes {
      * the cost: a coil must be reachable with the furnace one tier below the one it unlocks, so the three coil
      * materials sit one step below their own furnace and only the endgame materials ask for the iridium one.
      */
-    private static MachineLevel blastFurnaceLevel(MaterialBuilder.RecipeContext ctx, int rf) {
-        if (rf <= STEAM_MAX_ENERGY) {
+    private static MachineLevel blastFurnaceLevel(MaterialBuilder.RecipeContext ctx, int fe) {
+        if (fe <= STEAM_MAX_ENERGY) {
             return MachineLevel.BRONZE;
         }
         return switch (ctx.getMaterialName()) {
@@ -64,12 +64,12 @@ public final class SmeltingRecipes {
         };
     }
 
-    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int rf) {
-        applyBlastFurnace(ctx, hotIngot, rf, 200);
+    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, boolean hotIngot, int fe) {
+        applyBlastFurnace(ctx, hotIngot, fe, 200);
     }
 
-    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, int rf) {
-        applyBlastFurnace(ctx, false, rf);
+    public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx, int fe) {
+        applyBlastFurnace(ctx, false, fe);
     }
 
     public static void applyBlastFurnace(MaterialBuilder.RecipeContext ctx) {

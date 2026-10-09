@@ -19,7 +19,7 @@ public interface NuclearTileData {
 
     double getMeanNeutronGeneration();
 
-    double getMeanRfGeneration();
+    double getMeanFeGeneration();
 
     TransferVariant getVariant();
 
@@ -61,7 +61,7 @@ public interface NuclearTileData {
             buf.writeDouble(tile.getMeanNeutronGeneration());
 
             buf.writeDouble(tile.getHeatTransferCoeff());
-            buf.writeDouble(tile.getMeanRfGeneration());
+            buf.writeDouble(tile.getMeanFeGeneration());
 
             buf.writeBoolean(!tile.isFluid());
             tile.getVariant().toPacket(buf);
@@ -87,7 +87,7 @@ public interface NuclearTileData {
             final double meanNeutronGeneration = buf.readDouble();
 
             final double heatTransferCoeff = buf.readDouble();
-            final double rfGeneration = buf.readDouble();
+            final double feGeneration = buf.readDouble();
 
             final boolean isItem = buf.readBoolean();
             final TransferVariant variant = isItem ? ItemVariant.fromPacket(buf) : FluidVariant.fromPacket(buf);
@@ -130,8 +130,8 @@ public interface NuclearTileData {
                 }
 
                 @Override
-                public double getMeanRfGeneration() {
-                    return rfGeneration;
+                public double getMeanFeGeneration() {
+                    return feGeneration;
                 }
 
                 @Override
@@ -171,7 +171,7 @@ public interface NuclearTileData {
             }
             return A.getTemperature() == B.getTemperature() && A.getHeatTransferCoeff() == B.getTemperature()
                     && A.getVariantAmount() == B.getVariantAmount() && A.getMeanNeutronGeneration() == B.getMeanNeutronGeneration()
-                    && A.getVariant().equals(B.getVariant()) && A.getMeanRfGeneration() == B.getMeanRfGeneration();
+                    && A.getVariant().equals(B.getVariant()) && A.getMeanFeGeneration() == B.getMeanFeGeneration();
         } else {
             return true;
         }

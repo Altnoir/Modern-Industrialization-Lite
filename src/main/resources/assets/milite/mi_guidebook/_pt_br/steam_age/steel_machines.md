@@ -13,7 +13,7 @@ item_ids:
 
 # Melhorando para Aço
 
-Agora que você tem aço, pode fazer o upgrade das suas máquinas de bronze, se quiser. Máquinas de aço processam receitas até 4RF/t e funcionarão com o dobro da velocidade, desde que o uso de energia não ultrapasse 4RF/t. Basicamente, são duas vezes mais rápidas que as de bronze e podem desbloquear novas receitas.
+Agora que você tem aço, pode fazer o upgrade das suas máquinas de bronze, se quiser. Máquinas de aço processam receitas até 4 RF/t e funcionarão com o dobro da velocidade, desde que o uso de energia não ultrapasse 4 RF/t. Basicamente, são duas vezes mais rápidas que as de bronze e podem desbloquear novas receitas.
 
 Para fazer o upgrade de uma máquina de bronze, fabrique um Upgrade de Aço e aplique em uma Mesa de Trabalho.
 
@@ -21,9 +21,9 @@ Você também pode agachar e clicar com o botão direito em uma máquina de bron
 
 <Recipe id="milite:steam_age/steel/steel_upgrade_asbl" />
 
-As escotilhas de aço têm mais capacidade que as de bronze, e um multiblocos com pelo menos uma escotilha de aço será atualizado para o nível aço. Isso significa que ele funcionará duas vezes mais rápido, desde que o consumo de energia não ultrapasse 4RF/t.
+As escotilhas de aço têm mais capacidade que as de bronze, e um multiblocos com pelo menos uma escotilha de aço será atualizado para o nível aço. Isso significa que ele funcionará duas vezes mais rápido, desde que o consumo de energia não ultrapasse 4 RF/t.
 
-Uma caldeira de aço produzirá o dobro de vapor que uma de bronze, ou seja, até 16RF/t, e uma bomba de água de aço produzirá o dobro de água que a versão de bronze, até 2 baldes a cada 5 segundos.
+Uma caldeira de aço produzirá o dobro de vapor que uma de bronze, ou seja, até 16 RF/t, e uma bomba de água de aço produzirá o dobro de água que a versão de bronze, até 2 baldes a cada 5 segundos.
 
 Tanques de Aço armazenam até 16 baldes.
 

@@ -1,5 +1,5 @@
 {
-  "parent": "milite:hv_steam_turbine",
+  "parent": "milite:stainless_steel_steam_turbine",
   "criteria": {
     "checkInv": {
       "conditions": {

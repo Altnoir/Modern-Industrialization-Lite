@@ -35,10 +35,10 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
      * @param id          the block id of this furnace
      * @param englishName its name, which is also the name of its recipe category
      * @param coilBlockId the coil its structure is built with, and the only coil that fits it
-     * @param maxBaseRF   the energy per tick the coil lets the furnace draw, shown on the coil tooltip
+     * @param maxBaseFE   the energy per tick the coil lets the furnace draw, shown on the coil tooltip
      * @param level       the level of recipe it runs, and of every furnace below it
      */
-    public record Tier(String id, String englishName, ResourceLocation coilBlockId, long maxBaseRF, MachineLevel level) {}
+    public record Tier(String id, String englishName, ResourceLocation coilBlockId, long maxBaseFE, MachineLevel level) {}
 
     public static final List<Tier> tiers;
     public static final Map<ResourceLocation, Tier> tiersByCoil;
@@ -54,7 +54,7 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
                 MachineLevel.IRIDIUM));
 
         KubeJSProxy.instance.fireAddEbfTiersEvent(tier -> {
-            Preconditions.checkArgument(tier.maxBaseRF() > 4, "EBF tier RF/t must be greater than 4.");
+            Preconditions.checkArgument(tier.maxBaseFE() > 4, "EBF tier FE/t must be greater than 4.");
             for (var t : registrationTiers) {
                 if (t.id().equals(tier.id())) {
                     throw new IllegalArgumentException("An EBF with id " + tier.id() + " is already registered.");

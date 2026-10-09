@@ -32,9 +32,9 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
         this.redstoneControl = new RedstoneControlComponent();
         this.casing = new CasingComponent(MachineRegistrationHelper.casingTierOf(level), level.speedMultiplier());
         this.overdrive = new OverdriveComponent();
-        this.energy = new EnergyComponent(this, casing::getRfCapacity);
+        this.energy = new EnergyComponent(this, casing::getFeCapacity);
         this.insertable = energy.buildInsertable();
-        registerGuiComponent(new EnergyBar(energyBarParams, energy::getRf, energy::getCapacity));
+        registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity));
         registerGuiComponent(new SlotPanel(this)
                 .withRedstoneControl(redstoneControl)
                 .withOverdrive(overdrive));
@@ -53,8 +53,8 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
     }
 
     @Override
-    public long consumeRf(long max, Simulation simulation) {
-        return energy.consumeRf(max, simulation);
+    public long consumeFe(long max, Simulation simulation) {
+        return energy.consumeFe(max, simulation);
     }
 
     @Override

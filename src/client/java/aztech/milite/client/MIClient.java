@@ -134,8 +134,8 @@ public class MIClient {
                 try {
                     int fuelTime = event.getItemStack().getBurnTime(null);
                     if (fuelTime > 0) {
-                        long totalRf = fuelTime * FuelBurningComponent.EU_PER_BURN_TICK;
-                        event.getToolTip().add(new MITooltips.Line(MIText.BaseRfTotalStored).arg(totalRf, MITooltips.EU_PARSER).build());
+                        long totalFe = fuelTime * FuelBurningComponent.FE_PER_BURN_TICK;
+                        event.getToolTip().add(new MITooltips.Line(MIText.BaseFeTotalStored).arg(totalFe, MITooltips.FE_PARSER).build());
                     }
                 } catch (Exception e) {
                     MI.LOGGER.warn("Could not show MI fuel tooltip.", e);

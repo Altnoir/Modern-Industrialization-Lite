@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "Electric Machines"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 105
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
 ---
 
 # Electric Machines
 
-Electric machines work exactly the same as steam machines, except that they require electricity instead of steam and they progressively overclock recipes up to 32RF/t.
+Electric machines work exactly the same as steam machines, except that they require electricity instead of steam and they progressively overclock recipes up to 32 RF/t.
 
 You can use REI to view the recipes for the electric version of the machines you are already familiar with.
 
@@ -45,7 +45,7 @@ Configure the module in your hand, then insert it into the machine or multiblock
 
 ## Overclock Upgrades
 
-Regular electric machines have an overclock capped at 32RF/t, and electric multiblocks have an overclock capped at 128RF/t.
+Regular electric machines have an overclock capped at 32 RF/t, and electric multiblocks have an overclock capped at 128 RF/t.
 
 In the machine or multiblock's menu, add upgades to increase its maximum overclock! Check REI for the exact amounts.
 

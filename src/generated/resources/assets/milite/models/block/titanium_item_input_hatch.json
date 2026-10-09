@@ -1,0 +1,9 @@
+{
+  "casing": "titanium",
+  "default_overlays": {
+    "item_auto": "milite:block/overlays/item_auto",
+    "output": "milite:block/overlays/output_item",
+    "side": "milite:block/machines/hatch_item/overlay_side"
+  },
+  "loader": "milite:machine"
+}

@@ -116,29 +116,29 @@ public class MITooltips {
         }
     };
 
-    public static final Parser<Number> EU_PER_TICK_PARSER = new Parser<>() {
+    public static final Parser<Number> FE_PER_TICK_PARSER = new Parser<>() {
         @Override
         public Component parse(Number number) {
             TextHelper.Amount amount = TextHelper.getAmountGeneric(number);
-            return MIText.RfT.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
+            return MIText.FeT.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
         }
     };
 
-    public static final Parser<Number> EU_PARSER = new Parser<>() {
+    public static final Parser<Number> FE_PARSER = new Parser<>() {
         @Override
         public Component parse(Number number) {
             TextHelper.Amount amount = TextHelper.getAmountGeneric(number);
-            return MIText.Rf.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
+            return MIText.Fe.text(amount.digit(), amount.unit()).withStyle(NUMBER_TEXT);
         }
     };
 
     public record NumberWithMax(Number number, Number max) {
     }
 
-    public static final Parser<NumberWithMax> EU_MAXED_PARSER = new Parser<>() {
+    public static final Parser<NumberWithMax> FE_MAXED_PARSER = new Parser<>() {
         @Override
         public Component parse(NumberWithMax numberWithMax) {
-            MutableComponent component = TextHelper.getRfTextMaxed(numberWithMax.number, numberWithMax.max);
+            MutableComponent component = TextHelper.getFeTextMaxed(numberWithMax.number, numberWithMax.max);
             return component.withStyle(NUMBER_TEXT);
         }
     };
@@ -204,7 +204,7 @@ public class MITooltips {
             (itemStack, item) -> {
                 if (PortableStorageUnit.CAPACITY_PER_BATTERY.containsKey(item)) {
                     var capacity = PortableStorageUnit.CAPACITY_PER_BATTERY.get(itemStack.getItem());
-                    return Optional.of(new Line(MIText.BatteryInStorageUnit).arg(capacity, EU_PARSER).build());
+                    return Optional.of(new Line(MIText.BatteryInStorageUnit).arg(capacity, FE_PARSER).build());
                 } else {
                     return Optional.empty();
                 }
@@ -214,10 +214,10 @@ public class MITooltips {
             (itemStack, item) -> {
                 if (item instanceof BlockItem blockItem
                         && ElectricBlastFurnaceBlockEntity.tiersByCoil.containsKey(BuiltInRegistries.BLOCK.getKey(blockItem.getBlock()))) {
-                    long rf = ElectricBlastFurnaceBlockEntity.tiersByCoil
+                    long fe = ElectricBlastFurnaceBlockEntity.tiersByCoil
                             .get(BuiltInRegistries.BLOCK.getKey(((BlockItem) itemStack.getItem()).getBlock()))
-                            .maxBaseRF();
-                    return Optional.of(new Line(MIText.EbfMaxRF).arg(rf).build());
+                            .maxBaseFE();
+                    return Optional.of(new Line(MIText.EbfMaxFE).arg(fe).build());
                 } else {
                     return Optional.empty();
                 }
@@ -234,7 +234,7 @@ public class MITooltips {
                         long capacity = energyStorage.getMaxEnergyStored();
                         if (capacity > 0) {
                             return Optional.of(new Line(MIText.EnergyStored)
-                                    .arg(new NumberWithMax(stored, capacity), EU_MAXED_PARSER).build());
+                                    .arg(new NumberWithMax(stored, capacity), FE_MAXED_PARSER).build());
                         }
                     }
                 }
@@ -260,8 +260,8 @@ public class MITooltips {
                     tooltips.add(new MITooltips.Line(MIText.RemAbsorption).arg(remAbs)
                             .arg(((NuclearAbsorbable) itemStack.getItem()).desintegrationMax).build());
                     if (itemStack.getItem() instanceof NuclearFuel fuel) {
-                        long totalRf = (long) fuel.totalEUbyDesintegration * fuel.desintegrationMax;
-                        tooltips.add(new MITooltips.Line(MIText.BaseRfTotalStored).arg(totalRf, MITooltips.EU_PARSER).build());
+                        long totalFe = (long) fuel.totalFEbyDesintegration * fuel.desintegrationMax;
+                        tooltips.add(new MITooltips.Line(MIText.BaseFeTotalStored).arg(totalFe, MITooltips.FE_PARSER).build());
                     }
                     return tooltips;
                 } else {
@@ -378,7 +378,7 @@ public class MITooltips {
         add(MIBlock.FORGE_HAMMER, "Use it to increase the yield of your ore blocks early game!",
                 "(Use the Steam Mining Drill for an easy to get Silk Touch.)");
         add("stainless_steel_dust", "Use Slot-Locking with REI to differentiate its recipe from the invar dust");
-        add("steam_blast_furnace", "Needs at least one Steel or higher tier hatch for 3 and 4 EU/t recipes");
+        add("steam_blast_furnace", "Needs at least one Steel or higher tier hatch for 3 and 4 FE/t recipes");
         add(MIBlock.TRASH_CAN, "Will delete any item or fluid sent into it.",
                 "Can also be used to empty a fluid slot by Right-Clicking on it with a Trash Can");
 

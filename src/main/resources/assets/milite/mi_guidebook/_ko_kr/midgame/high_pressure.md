@@ -9,7 +9,7 @@ item_ids:
   - milite:high_pressure_large_steam_boiler
   - milite:large_steam_turbine
   - milite:heat_exchanger
-  - milite:hv_steam_turbine
+  - milite:stainless_steel_steam_turbine
 ---
 
 # 고압!
@@ -24,7 +24,7 @@ item_ids:
 
 <Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
 
-대형 증기 터빈은 증기나 고압 증기 둘 다 전력으로 변환할 수 있습니다. 최대 발전량은 16384RF/t 입니다.**하지만, 고압 증기를 넣는다고 해서 고압 물을 다시 되돌려받지는 못합니다.**
+대형 증기 터빈은 증기나 고압 증기 둘 다 전력으로 변환할 수 있습니다. 최대 발전량은 16384 RF/t 입니다.**하지만, 고압 증기를 넣는다고 해서 고압 물을 다시 되돌려받지는 못합니다.**
 
 <Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
 
@@ -32,7 +32,7 @@ item_ids:
 
 <Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
 
-좀 작은 규모의 발전을 원하신다면, HV 증기 터빈을 사용해보세요. 512RF/t 만큼의 발전이 가능하지만, 일반적인 증기만을 받아들입니다.
+좀 작은 규모의 발전을 원하신다면, 스테인리스강 증기 터빈을 사용해보세요. 512 RF/t 만큼의 발전이 가능하지만, 일반적인 증기만을 받아들입니다.
 
-<Recipe id="milite:electric_age/machine/hv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
 

@@ -13,7 +13,7 @@ public class NeutronHistoryComponent extends IntegerHistoryComponent<NeutronHist
         thermalNeutronReceived,
         thermalNeutronFlux,
         neutronGeneration,
-        rfGeneration
+        feGeneration
     }
 
     public NeutronHistoryComponent() {
@@ -48,7 +48,7 @@ public class NeutronHistoryComponent extends IntegerHistoryComponent<NeutronHist
         return getAverage(Type.neutronGeneration);
     }
 
-    public double getAverageRfGeneration() {
-        return getAverage(Type.rfGeneration);
+    public double getAverageFeGeneration() {
+        return getAverage(Type.feGeneration);
     }
 }

@@ -1,14 +1,14 @@
 ---
 navigation:
   title: "Покращені механізми"
-  icon: "milite:advanced_machine_hull"
+  icon: "milite:aluminum_machine_hull"
   position: 107
   parent: milite:electric_age.md
 item_ids:
-  - milite:centrifuge
-  - milite:chemical_reactor
-  - milite:distillery
-  - milite:electrolyzer
+  - milite:electric_centrifuge
+  - milite:electric_chemical_reactor
+  - milite:electric_distillery
+  - milite:electric_electrolyzer
   - milite:configurable_tank
 ---
 
@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Алюміній є матеріалом, який використовується для виготовлення більш досконалих машин. Як і інші електричні машини, ці нові машини приєднуватимуться лише до низьконапружних кабелів. Помістіть бокситовий пил в електричну доменну піч, і ви отримаєте алюмінієві самородки.
+Алюміній є матеріалом, який використовується для виготовлення більш досконалих машин. Як і інші електричні машини, ці нові машини приймають щонайбільше 32 RF/т. Помістіть бокситовий пил в електричну доменну піч, і ви отримаєте алюмінієві самородки.
 
 Центрифуга розділяє предмети, обертаючи їх дуже швидко. Ви можете використовувати його для створення вуглецевого пилу та відкривати кращі рецепти для сталі та кремнію.
 

@@ -7,13 +7,13 @@ navigation:
 item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
-  - milite:lv_energy_input_hatch
-  - milite:mv_energy_input_hatch
+  - milite:electric_energy_input_hatch
+  - milite:aluminum_energy_input_hatch
 ---
 
 # 電動高炉
 
-電動高炉は蒸気高炉の電気版である。新しいレシピが解放され、他のマルチブロック電気マシンと同様にオーバークロックはデフォルトで128RF/tまでに制限されている。
+電動高炉は蒸気高炉の電気版である。新しいレシピが解放され、他のマルチブロック電気マシンと同様にオーバークロックはデフォルトで128 RF/tまでに制限されている。
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
@@ -21,11 +21,11 @@ item_ids:
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 
-エネルギー搬入ハッチを忘れずに追加するように！LVエネルギー入力ハッチはLVケーブルとのみ接続できる。
+エネルギー搬入ハッチを忘れずに追加するように！電力エネルギー搬入ハッチは電動高炉へ最大32 RF/tまで供給できる。
 
-<Recipe id="milite:hatches/basic/energy_input_hatch" />
+<Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-MVエネルギー搬入ハッチはMVケーブルとのみ接続可能で、電動高炉に大量のエネルギーが必要な場合に役立つ！まだクラフトはできないが、存在することは覚えておこう……
+アルミニウムエネルギー搬入ハッチは最大128 RF/tを搬入でき、電動高炉に大量のエネルギーが必要な場合に役立つ！
 
-<Recipe id="milite:hatches/advanced/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
 

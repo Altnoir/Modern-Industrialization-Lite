@@ -17,7 +17,7 @@ item_ids:
 
 <Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
 
-크고, 더 나은 대형 증기 보일러입니다. 1024RF/t 만큼의 증기를 소비하고, 그만큼의 전기를 만들 수 있습니다.
+크고, 더 나은 대형 증기 보일러입니다. 1024 RF/t 만큼의 증기를 소비하고, 그만큼의 전기를 만들 수 있습니다.
 
 <Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
 

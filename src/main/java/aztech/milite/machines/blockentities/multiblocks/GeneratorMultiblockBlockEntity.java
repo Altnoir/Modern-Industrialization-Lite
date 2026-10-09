@@ -38,7 +38,7 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
 
         this.registerComponents(activeShape, isActiveComponent, fluidConsumer, redstoneControl);
         registerGuiComponent(new SlotPanel(this).withRedstoneControl(redstoneControl));
-        registerGuiComponent(new GeneratorMultiblockGui(() -> shapeValid.shapeValid, () -> lastRfProduction, fluidConsumer.maxRfProduction));
+        registerGuiComponent(new GeneratorMultiblockGui(() -> shapeValid.shapeValid, () -> lastFeProduction, fluidConsumer.maxFeProduction));
     }
 
     private boolean allowNormalOperation = false;
@@ -49,7 +49,7 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
     private final RedstoneControlComponent redstoneControl;
     private final List<EnergyComponent> energyOutputs = new ArrayList<>();
     private final FluidItemConsumerComponent fluidConsumer;
-    private long lastRfProduction;
+    private long lastFeProduction;
 
     public ShapeTemplate getActiveShape() {
         return activeShape.getActiveShape();
@@ -79,15 +79,15 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
     public final void tick() {
         if (!level.isClientSide) {
             link();
-            lastRfProduction = 0;
+            lastFeProduction = 0;
             if (allowNormalOperation) {
                 if (this.redstoneControl.doAllowNormalOperation(this)) {
-                    long rfProduced = fluidConsumer.getRfProduction(inventory.getFluidInputs(),
+                    long feProduced = fluidConsumer.getFeProduction(inventory.getFluidInputs(),
                             inventory.getItemInputs(),
                             insertEnergy(Long.MAX_VALUE, Simulation.SIMULATE));
-                    lastRfProduction = rfProduced;
-                    insertEnergy(rfProduced, Simulation.ACT);
-                    isActiveComponent.updateActive(rfProduced != 0, this);
+                    lastFeProduction = feProduced;
+                    insertEnergy(feProduced, Simulation.ACT);
+                    isActiveComponent.updateActive(feProduced != 0, this);
                 } else {
                     isActiveComponent.updateActive(false, this);
                 }
@@ -103,7 +103,7 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
         long inserted = 0;
         for (EnergyComponent e : energyOutputs) {
             if (rem > 0) {
-                inserted += e.insertRf(rem, simulation);
+                inserted += e.insertFe(rem, simulation);
                 rem -= inserted;
             }
         }

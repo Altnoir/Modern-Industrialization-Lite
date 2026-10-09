@@ -65,11 +65,11 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
     /**
      * Generate both the full distillation tower recipe, and each distillery recipe.
      */
-    private void generateDistillation(RecipeOutput consumer, int rf, int duration, FluidEntry input, FluidEntry... outputs) {
+    private void generateDistillation(RecipeOutput consumer, int fe, int duration, FluidEntry input, FluidEntry... outputs) {
         String basePath = "petrochem/distillation/" + BuiltInRegistries.FLUID.getKey(input.fluid).getPath() + "_";
 
         // Full recipe
-        var full = new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLATION_TOWER, rf * outputs.length, duration);
+        var full = new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLATION_TOWER, fe * outputs.length, duration);
         full.addFluidInput(input.fluid, input.amount);
         for (var output : outputs) {
             full.addFluidOutput(output.fluid, output.amount);
@@ -79,7 +79,7 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
         // Partial recipes
         for (int i = 0; i < outputs.length; ++i) {
             var output = outputs[i];
-            new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLERY, rf, duration)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLERY, fe, duration)
                     .addFluidInput(input.fluid, input.amount).addFluidOutput(output.fluid, output.amount)
                     .offerTo(consumer, basePath + i);
         }

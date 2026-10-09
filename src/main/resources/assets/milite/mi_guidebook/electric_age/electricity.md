@@ -1,25 +1,25 @@
 ---
 navigation:
   title: "Electricity"
-  icon: "milite:lv_steam_turbine"
+  icon: "milite:electric_steam_turbine"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:lv_steam_turbine
-  - milite:lv_diesel_generator
+  - milite:electric_steam_turbine
+  - milite:electric_diesel_generator
 ---
 
 # Electricity
 
 The Steam Turbine uses Steam to produce electricity. It converts every mb of Steam to 1 RF, up to 32 mb converted every tick.
 
-<Recipe id="milite:electric_age/machine/lv_steam_turbine_asbl" />
+<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
 
 The Steam Turbine will automatically send electricity to any machine placed directly against its output side. Its internal buffer can hold 256 RF, and it has the Low Voltage (LV) *Tier*.
 
 The Diesel Generator is an alternative to the Steam Turbine. It uses various fuels to produce electricity. For now, you can burn Creosote. (See REI for the list of burnable fuels).
 
-<Recipe id="milite:electric_age/machine/lv_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
 
 ## Power in Modern Industrialization Lite
 

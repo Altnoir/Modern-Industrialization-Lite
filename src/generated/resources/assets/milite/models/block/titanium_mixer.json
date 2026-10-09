@@ -1,5 +1,5 @@
 {
-  "casing": "ev",
+  "casing": "titanium",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/mixer/overlay_front",

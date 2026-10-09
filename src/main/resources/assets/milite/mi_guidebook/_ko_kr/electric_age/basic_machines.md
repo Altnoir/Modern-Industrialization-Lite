@@ -1,18 +1,18 @@
 ---
 navigation:
   title: "전기 기계들"
-  icon: "milite:assembler"
+  icon: "milite:electric_assembler"
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:polarizer
-  - milite:assembler
+  - milite:electric_polarizer
+  - milite:electric_assembler
   - milite:configurable_chest
 ---
 
 # 전기 기계들
 
-전기 기계들은 증기 기계들과 정확히 똑같은 일을 하지만, 증기 대신 전기를 요구하며 32RF/t 까지 오버클럭될 수 있습니다.
+전기 기계들은 증기 기계들과 정확히 똑같은 일을 하지만, 증기 대신 전기를 요구하며 32 RF/t 까지 오버클럭될 수 있습니다.
 
 REI를 사용해서 각종 전기 기계들의 사용처를 확인하실 수 있습니다.
 

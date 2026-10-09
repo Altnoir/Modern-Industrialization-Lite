@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "PCP",
+    "GHG",
+    "ccc"
+  ],
+  "key" : {
+  "H" : { "item" : "milite:aluminum_machine_hull"},
+    "P": { "item" : "milite:large_pump"},
+    "G": { "tag" : "c:gears/aluminum"},
+    "c" : {"item" : "milite:electrum_wire"},
+    "C" : {"item" : "milite:electronic_circuit"}
+
+},
+  "result": {
+    "id": "milite:aluminum_diesel_generator"
+  }
+}

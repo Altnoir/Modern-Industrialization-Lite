@@ -17,12 +17,12 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 public class GeneratorTests {
     /**
      * Regression test for <a href="https://github.com/AztechMC/Modern-Industrialization/issues/1152">issue 1152</a>:
-     * "EU is left in a hidden buffer when Diesel Generator runs out of fuel".
+     * "FE is left in a hidden buffer when Diesel Generator runs out of fuel".
      */
     @MIGameTest
-    public void testGeneratorEmptiesRfBuffer(MIGameTestHelper helper) {
+    public void testGeneratorEmptiesFeBuffer(MIGameTestHelper helper) {
         var generatorPos = new BlockPos(0, 1, 0);
-        var lvDieselGeneratorBlock = BuiltInRegistries.BLOCK.getOptional(MI.id("lv_diesel_generator")).orElseThrow();
+        var lvDieselGeneratorBlock = BuiltInRegistries.BLOCK.getOptional(MI.id("electric_diesel_generator")).orElseThrow();
         helper.setBlock(generatorPos, lvDieselGeneratorBlock);
 
         var dieselGenerator = (GeneratorMachineBlockEntity) helper.getBlockEntity(generatorPos);
@@ -45,7 +45,7 @@ public class GeneratorTests {
     /**
      * Regression test for a client crash: the energy tooltip of an energy-storing item threw
      * {@code IllegalArgumentException: Number 0 or 16777216 is neither long, int, double or float} because
-     * NeoForge's int-based energy capability handed mixed number types to {@link TextHelper#getRfTextMaxed}.
+     * NeoForge's int-based energy capability handed mixed number types to {@link TextHelper#getFeTextMaxed}.
      * <p>
      * This runs headless on the game test server; a throw here would fail the test.
      */
@@ -58,8 +58,8 @@ public class GeneratorTests {
         }
 
         // Exactly the values that MITooltips.ENERGY_STORED_ITEM feeds into the tooltip parser.
-        var fromCapability = TextHelper.getRfTextMaxed(storage.getEnergyStored(), storage.getMaxEnergyStored());
-        var fromLongs = TextHelper.getRfTextMaxed(0L, 1L << 24);
+        var fromCapability = TextHelper.getFeTextMaxed(storage.getEnergyStored(), storage.getMaxEnergyStored());
+        var fromLongs = TextHelper.getFeTextMaxed(0L, 1L << 24);
         if (fromCapability == null || fromLongs == null) {
             helper.fail("energy tooltip text should be built without throwing");
         }

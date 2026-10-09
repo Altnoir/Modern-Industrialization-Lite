@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
  * Event class for registering new cable tiers.
  */
 public final class RegisterCableTiersEventJS implements KubeEvent {
-    // useful primarily for setting EU based off of a previous tier's value.
+    // useful primarily for setting FE based off of a previous tier's value.
     @Info("""
             Gets a previously registered cable tier by name.
             """)
@@ -21,8 +21,8 @@ public final class RegisterCableTiersEventJS implements KubeEvent {
     @Info("""
             Registers a new cable tier.
             """)
-    public CableTier register(String name, String shortEnglishName, String longEnglishName, long rf, ResourceLocation itemKey) {
-        CableTier tier = new CableTier(name, shortEnglishName, longEnglishName, rf, itemKey, false);
+    public CableTier register(String name, String shortEnglishName, String longEnglishName, long fe, ResourceLocation itemKey) {
+        CableTier tier = new CableTier(name, shortEnglishName, longEnglishName, fe, itemKey, false);
         CableTier.addTier(tier);
         return tier;
     }
