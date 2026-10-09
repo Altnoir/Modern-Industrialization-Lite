@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:bronze_drill_head"
+  },
+  "key": {
     "item": "milite:steel_machine_casing"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:steel_macerator"
   },
   "second": {
-    "item": "milite:bronze_drill_head"
+    "item": "milite:bronze_barrel"
   }
 }

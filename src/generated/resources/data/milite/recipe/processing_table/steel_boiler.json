@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "minecraft:furnace"
+  },
+  "key": {
     "item": "milite:bronze_boiler"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:steel_boiler"
   },
   "second": {
-    "item": "minecraft:furnace"
+    "item": "milite:steel_plate"
   }
 }

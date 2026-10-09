@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:aluminum_rotor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:aluminum_tank"
     }
   ],
   "item_outputs": [

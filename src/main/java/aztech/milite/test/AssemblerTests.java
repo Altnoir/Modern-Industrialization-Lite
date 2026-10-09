@@ -38,8 +38,8 @@ public class AssemblerTests {
 
         for (var holder : machineRecipes) {
             var recipe = holder.value();
-            if (recipe.itemInputs.size() != 2) {
-                helper.fail("recipe %s should take exactly two inputs, it takes %d".formatted(holder.id(), recipe.itemInputs.size()));
+            if (recipe.itemInputs.size() != 3) {
+                helper.fail("recipe %s should take exactly three inputs, it takes %d".formatted(holder.id(), recipe.itemInputs.size()));
             }
             // An assembler looks recipes up by the items it holds, so every input has to lead back to the recipe.
             for (var input : recipe.itemInputs) {

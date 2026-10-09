@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "minecraft:piston"
+  },
+  "key": {
     "item": "milite:quantum_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:iridium_compressor"
   },
   "second": {
-    "item": "minecraft:piston"
+    "item": "milite:bronze_gear"
   }
 }

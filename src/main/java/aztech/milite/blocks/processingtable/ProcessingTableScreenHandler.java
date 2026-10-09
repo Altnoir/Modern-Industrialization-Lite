@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -22,19 +23,31 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 
 /**
- * The Processing Table: the player puts a machine casing and a characterising item in the two input slots and takes
- * the resulting machine from the output slot. Input order does not matter.
+ * The Processing Table: the player puts a machine casing in the middle input slot to unlock the two side slots, then
+ * puts a characterising item in each of them and takes the resulting machine from the output slot. Which side slot
+ * holds which of the two characterising items does not matter.
  */
 public class ProcessingTableScreenHandler extends AbstractContainerMenu implements MoveRecipeHandler {
     /**
      * Slot positions, taken from the processing_table.png background.
      */
-    public static final int FIRST_INPUT_X = 27, FIRST_INPUT_Y = 47;
-    public static final int SECOND_INPUT_X = 76, SECOND_INPUT_Y = 47;
+    public static final int LEFT_INPUT_X = 26, SIDE_INPUT_Y = 47;
+    public static final int KEY_INPUT_X = 44;
+    public static final int RIGHT_INPUT_X = 62;
     public static final int OUTPUT_X = 134, OUTPUT_Y = 47;
+    /**
+     * The 36 player slots are added first, so the four table slots come after them.
+     */
+    public static final int PLAYER_SLOTS = 36, MAIN_SLOTS = 27;
 
-    public final Slot firstInput;
-    public final Slot secondInput;
+    /**
+     * The middle slot, which only takes a casing some recipe asks for.
+     */
+    public final Slot keyInput;
+    /**
+     * The two outer slots, which stay locked until the key slot holds a casing.
+     */
+    public final Slot leftInput, rightInput;
     public final Slot output;
 
     private final ContainerLevelAccess context;
@@ -42,7 +55,9 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
     private final Player player;
     private long lastSoundTime = 0;
 
-    private ItemStack firstCache = ItemStack.EMPTY, secondCache = ItemStack.EMPTY;
+    private ItemStack keyCache = ItemStack.EMPTY, leftCache = ItemStack.EMPTY, rightCache = ItemStack.EMPTY;
+    private boolean sideUnlocked = false;
+    private boolean returningSideContents = false;
 
     @Nullable
     private RecipeHolder<ProcessingTableRecipe> lastCraftedRecipe;
@@ -67,8 +82,9 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
             this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 58 + 84));
         }
 
-        this.firstInput = inputSlot(FIRST_INPUT_X, FIRST_INPUT_Y);
-        this.secondInput = inputSlot(SECOND_INPUT_X, SECOND_INPUT_Y);
+        this.leftInput = sideInputSlot(LEFT_INPUT_X, SIDE_INPUT_Y);
+        this.keyInput = inputSlot(KEY_INPUT_X, SIDE_INPUT_Y);
+        this.rightInput = sideInputSlot(RIGHT_INPUT_X, SIDE_INPUT_Y);
 
         // Note: don't use new SimpleInventory(1), as ResultContainer always returns the full stack in removeItem!
         // This ensures that the whole item is always removed from the slot, even if someone right-clicks the output slot.
@@ -91,8 +107,9 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
             }
         };
 
-        this.addSlot(firstInput);
-        this.addSlot(secondInput);
+        this.addSlot(leftInput);
+        this.addSlot(keyInput);
+        this.addSlot(rightInput);
         this.addSlot(output);
     }
 
@@ -100,13 +117,29 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
      * @return a single-slot input container that notifies this menu when its contents change
      */
     private Slot inputSlot(int x, int y) {
-        return new Slot(new SimpleContainer(1) {
+        return new Slot(notifyingContainer(), 0, x, y);
+    }
+
+    /**
+     * @return an input slot that refuses everything until the key slot holds a casing
+     */
+    private Slot sideInputSlot(int x, int y) {
+        return new Slot(notifyingContainer(), 0, x, y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return ProcessingTableScreenHandler.this.sideUnlocked;
+            }
+        };
+    }
+
+    private Container notifyingContainer() {
+        return new SimpleContainer(1) {
             @Override
             public void setChanged() {
                 super.setChanged();
                 ProcessingTableScreenHandler.this.slotsChanged(this);
             }
-        }, 0, x, y);
+        };
     }
 
     @Nullable
@@ -114,9 +147,26 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
         return lastCraftedRecipe;
     }
 
+    /**
+     * @return whether the two side slots currently accept items, which is what tells the screen to draw the locking X
+     */
+    public boolean areSideSlotsUnlocked() {
+        return sideUnlocked;
+    }
+
+    /**
+     * @return whether the player has put something in the key slot that no recipe completes, which is what tells the
+     *         screen to draw the crossed out arrow
+     */
+    public boolean isCraftBlocked() {
+        return !keyInput.getItem().isEmpty() && output.getItem().isEmpty();
+    }
+
     @Override
     public void slotsChanged(Container inventory) {
-        if (!ItemStack.matches(this.firstCache, firstInput.getItem()) || !ItemStack.matches(this.secondCache, secondInput.getItem())) {
+        if (!ItemStack.matches(this.keyCache, keyInput.getItem())
+                || !ItemStack.matches(this.leftCache, leftInput.getItem())
+                || !ItemStack.matches(this.rightCache, rightInput.getItem())) {
             updateStatus();
         }
 
@@ -124,9 +174,42 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
     }
 
     public void updateStatus() {
-        this.firstCache = firstInput.getItem().copy();
-        this.secondCache = secondInput.getItem().copy();
+        this.keyCache = keyInput.getItem().copy();
+        this.leftCache = leftInput.getItem().copy();
+        this.rightCache = rightInput.getItem().copy();
+        this.sideUnlocked = isKeyAccepted();
+        if (!this.sideUnlocked && !this.world.isClientSide) {
+            // The sides just locked again, so hand back what they were holding instead of leaving it stuck in a slot
+            // the player can no longer fill.
+            handBackSideContents();
+        }
         populateResult();
+    }
+
+    private void handBackSideContents() {
+        // Handing an item back empties its slot, which brings us back here, so the two slots have to be emptied once
+        // and only once.
+        if (returningSideContents) {
+            return;
+        }
+        returningSideContents = true;
+        try {
+            handBack(leftInput);
+            handBack(rightInput);
+        } finally {
+            returningSideContents = false;
+        }
+    }
+
+    private void handBack(Slot slot) {
+        ItemStack stack = slot.getItem();
+        if (stack.isEmpty()) {
+            return;
+        }
+        slot.set(ItemStack.EMPTY);
+        if (!player.getInventory().add(stack)) {
+            player.drop(stack, false);
+        }
     }
 
     private void populateResult() {
@@ -137,18 +220,39 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
 
     @Nullable
     private RecipeHolder<ProcessingTableRecipe> findRecipe() {
-        ItemStack first = firstInput.getItem();
-        ItemStack second = secondInput.getItem();
-        if (first.isEmpty() || second.isEmpty()) {
+        ItemStack key = keyInput.getItem();
+        ItemStack left = leftInput.getItem();
+        ItemStack right = rightInput.getItem();
+        if (key.isEmpty() || left.isEmpty() || right.isEmpty()) {
             return null;
         }
 
-        for (var holder : this.world.getRecipeManager().getAllRecipesFor(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get())) {
-            if (holder.value().matches(first, second)) {
+        for (var holder : recipes()) {
+            if (holder.value().matches(key, left, right)) {
                 return holder;
             }
         }
         return null;
+    }
+
+    /**
+     * @return whether the key slot holds an item some recipe asks for, which is all it takes to unlock the sides
+     */
+    private boolean isKeyAccepted() {
+        ItemStack key = keyInput.getItem();
+        if (key.isEmpty()) {
+            return false;
+        }
+        for (var holder : recipes()) {
+            if (holder.value().matchesKey(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<RecipeHolder<ProcessingTableRecipe>> recipes() {
+        return this.world.getRecipeManager().getAllRecipesFor(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get());
     }
 
     private void onCraft() {
@@ -157,10 +261,12 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
             return;
         }
         lastCraftedRecipe = recipe;
-        firstInput.getItem().shrink(1);
-        secondInput.getItem().shrink(1);
-        firstInput.setChanged();
-        secondInput.setChanged();
+        keyInput.getItem().shrink(1);
+        leftInput.getItem().shrink(1);
+        rightInput.getItem().shrink(1);
+        keyInput.setChanged();
+        leftInput.setChanged();
+        rightInput.setChanged();
         updateStatus();
     }
 
@@ -171,25 +277,25 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
         if (slot.hasItem()) {
             ItemStack itemStack2 = slot.getItem();
             itemStack = itemStack2.copy();
-            if (index == 2) {
+            if (index == output.index) {
                 // Output slot: move the crafted machine to the player inventory.
-                if (!this.moveItemStackTo(itemStack2, 3, 39, true)) {
+                if (!this.moveItemStackTo(itemStack2, 0, PLAYER_SLOTS, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickCraft(itemStack2, itemStack);
-            } else if (index < 3) {
+            } else if (index >= leftInput.index && index <= rightInput.index) {
                 // An input slot: send it back to the player inventory.
-                if (!this.moveItemStackTo(itemStack2, 3, 39, false)) {
+                if (!this.moveItemStackTo(itemStack2, 0, PLAYER_SLOTS, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                // Player inventory: try the input slots first, then the other inventory section.
-                if (!this.moveItemStackTo(itemStack2, 0, 2, false)) {
-                    if (index < 30) {
-                        if (!this.moveItemStackTo(itemStack2, 30, 39, false)) {
+                // Player inventory: try the input slots first, then swap between the hotbar and the main inventory.
+                if (!this.moveItemStackTo(itemStack2, leftInput.index, rightInput.index + 1, false)) {
+                    if (index < MAIN_SLOTS) {
+                        if (!this.moveItemStackTo(itemStack2, MAIN_SLOTS, PLAYER_SLOTS, false)) {
                             return ItemStack.EMPTY;
                         }
-                    } else if (!this.moveItemStackTo(itemStack2, 3, 30, false)) {
+                    } else if (!this.moveItemStackTo(itemStack2, 0, MAIN_SLOTS, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
@@ -223,22 +329,22 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
     public void removed(Player player) {
         super.removed(player);
         this.context.execute((world, blockPos) -> {
-            this.clearContainer(player, this.firstInput.container);
-            this.clearContainer(player, this.secondInput.container);
+            this.clearContainer(player, this.keyInput.container);
+            this.clearContainer(player, this.leftInput.container);
+            this.clearContainer(player, this.rightInput.container);
         });
     }
 
     @Override
     public void moveRecipe(ResourceLocation recipeId, int fillAction, int amount) {
-        var holder = world.getRecipeManager().getAllRecipesFor(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get()).stream()
-                .filter(r -> r.id().equals(recipeId)).findFirst().orElse(null);
+        var holder = recipes().stream().filter(r -> r.id().equals(recipeId)).findFirst().orElse(null);
         if (holder == null) {
             return;
         }
 
+        // The recipe viewer only knows about the ingredients, so put them in the input slots directly.
         var recipe = holder.value();
-        // The recipe viewer only knows about the ingredients, so put them in the two input slots directly.
-        if (!tryPlace(recipe.first()) || !tryPlace(recipe.second())) {
+        if (!placeIngredient(keyInput, recipe.key()) || !placeSideIngredient(recipe.first()) || !placeSideIngredient(recipe.second())) {
             return;
         }
         populateResult();
@@ -250,27 +356,39 @@ public class ProcessingTableScreenHandler extends AbstractContainerMenu implemen
     }
 
     /**
-     * Move one matching item from the player inventory into the first free input slot.
-     *
-     * @return whether a matching item was found and moved
+     * @return whether {@code target} already holds a matching item, or a matching item was moved there from the player
+     *         inventory
      */
-    private boolean tryPlace(net.minecraft.world.item.crafting.Ingredient ingredient) {
-        List<Slot> inputs = List.of(firstInput, secondInput);
-        for (var input : inputs) {
-            if (input.hasItem() && ingredient.test(input.getItem())) {
+    private boolean placeIngredient(Slot target, Ingredient ingredient) {
+        if (target.hasItem()) {
+            return ingredient.test(target.getItem());
+        }
+        return takeFromPlayer(ingredient, target);
+    }
+
+    /**
+     * @return whether either side slot already holds a matching item, or one was moved into a free side slot
+     */
+    private boolean placeSideIngredient(Ingredient ingredient) {
+        for (Slot side : List.of(leftInput, rightInput)) {
+            if (side.hasItem() && ingredient.test(side.getItem())) {
                 return true;
             }
         }
-        for (var input : inputs) {
-            if (input.hasItem()) {
-                continue;
+        for (Slot side : List.of(leftInput, rightInput)) {
+            if (!side.hasItem() && takeFromPlayer(ingredient, side)) {
+                return true;
             }
-            for (int index = 3; index < 39; index++) {
-                var slot = slots.get(index);
-                if (ingredient.test(slot.getItem())) {
-                    input.set(slot.remove(1));
-                    return true;
-                }
+        }
+        return false;
+    }
+
+    private boolean takeFromPlayer(Ingredient ingredient, Slot target) {
+        for (int index = 0; index < PLAYER_SLOTS; index++) {
+            var slot = slots.get(index);
+            if (ingredient.test(slot.getItem())) {
+                target.set(slot.remove(1));
+                return true;
             }
         }
         return false;

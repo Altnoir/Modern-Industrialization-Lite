@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:inductor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:copper_wire"
     }
   ],
   "item_outputs": [

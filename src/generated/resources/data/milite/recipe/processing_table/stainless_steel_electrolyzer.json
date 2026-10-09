@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:electronic_circuit"
+  },
+  "key": {
     "item": "milite:turbo_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:stainless_steel_electrolyzer"
   },
   "second": {
-    "item": "milite:electronic_circuit"
+    "item": "milite:aluminum_wire"
   }
 }

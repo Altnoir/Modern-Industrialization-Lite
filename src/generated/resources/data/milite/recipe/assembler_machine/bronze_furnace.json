@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "minecraft:blast_furnace"
+    },
+    {
+      "amount": 1,
+      "item": "milite:fire_clay_bricks"
     }
   ],
   "item_outputs": [

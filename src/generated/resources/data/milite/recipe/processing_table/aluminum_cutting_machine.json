@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:invar_rotary_blade"
+  },
+  "key": {
     "item": "milite:advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:aluminum_cutting_machine"
   },
   "second": {
-    "item": "milite:invar_rotary_blade"
+    "item": "milite:invar_gear"
   }
 }

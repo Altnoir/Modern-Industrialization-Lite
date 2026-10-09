@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:bronze_furnace"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_tank"
     }
   ],
   "item_outputs": [

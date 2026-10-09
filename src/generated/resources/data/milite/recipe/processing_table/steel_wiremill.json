@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:motor"
+  },
+  "key": {
     "item": "milite:steel_machine_casing"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:steel_wiremill"
   },
   "second": {
-    "item": "milite:motor"
+    "item": "milite:invar_rod"
   }
 }

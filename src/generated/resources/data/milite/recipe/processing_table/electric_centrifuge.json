@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:large_motor"
+  },
+  "key": {
     "item": "milite:basic_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:electric_centrifuge"
   },
   "second": {
-    "item": "milite:large_motor"
+    "item": "milite:aluminum_gear"
   }
 }

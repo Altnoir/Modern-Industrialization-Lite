@@ -51,6 +51,7 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
         grid.setAlignItems(AlignItems.CENTER);
         grid.setWrap(false);
 
+        grid.append(new LytMIItemSlot(recipe.key(), 1, 1, true));
         grid.append(new LytMIItemSlot(recipe.first(), 1, 1, true));
         grid.append(new LytMIItemSlot(recipe.second(), 1, 1, true));
 

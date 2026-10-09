@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:bronze_furnace"
+  },
+  "key": {
     "item": "milite:fire_clay_bricks"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:bronze_boiler"
   },
   "second": {
-    "item": "milite:bronze_furnace"
+    "item": "milite:bronze_tank"
   }
 }

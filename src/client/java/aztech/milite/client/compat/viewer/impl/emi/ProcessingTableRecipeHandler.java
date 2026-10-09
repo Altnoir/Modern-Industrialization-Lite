@@ -22,14 +22,15 @@ class ProcessingTableRecipeHandler implements StandardRecipeHandler<ProcessingTa
             inputs.add(handler.getSlot(i));
         }
         // Extra
-        inputs.add(handler.firstInput);
-        inputs.add(handler.secondInput);
+        inputs.add(handler.keyInput);
+        inputs.add(handler.leftInput);
+        inputs.add(handler.rightInput);
         return inputs;
     }
 
     @Override
     public List<Slot> getCraftingSlots(ProcessingTableScreenHandler handler) {
-        return List.of(handler.firstInput, handler.secondInput);
+        return List.of(handler.keyInput, handler.leftInput, handler.rightInput);
     }
 
     @Override

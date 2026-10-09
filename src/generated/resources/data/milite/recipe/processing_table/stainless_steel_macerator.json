@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:bronze_drill_head"
+  },
+  "key": {
     "item": "milite:turbo_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:stainless_steel_macerator"
   },
   "second": {
-    "item": "milite:bronze_drill_head"
+    "item": "milite:bronze_barrel"
   }
 }

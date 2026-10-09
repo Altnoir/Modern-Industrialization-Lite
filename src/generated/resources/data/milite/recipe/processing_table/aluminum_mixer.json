@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:tin_rotor"
+  },
+  "key": {
     "item": "milite:advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:aluminum_mixer"
   },
   "second": {
-    "item": "milite:tin_rotor"
+    "item": "milite:bronze_tank"
   }
 }

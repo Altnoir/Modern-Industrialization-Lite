@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:large_motor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:aluminum_gear"
     }
   ],
   "item_outputs": [

@@ -1,37 +1,38 @@
 package aztech.milite.datagen.recipe;
 
-import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
-import aztech.milite.machines.init.MachineLevel;
-import aztech.milite.machines.init.MIMachineRecipeTypes;
-import aztech.milite.machines.recipe.MachineRecipeBuilder;
-import aztech.milite.materials.Material;
-import aztech.milite.materials.MIMaterials;
-import aztech.milite.materials.part.MIParts;
-import aztech.milite.materials.part.PartKeyProvider;
 import aztech.milite.MI;
 import aztech.milite.MIBlock;
 import aztech.milite.MIBlockKeys;
 import aztech.milite.MIItem;
-import aztech.milite.recipe.json.ShapelessRecipeBuilder;
+import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
+import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
+import aztech.milite.machines.recipe.MachineRecipeBuilder;
+import aztech.milite.materials.MIMaterials;
+import aztech.milite.materials.Material;
+import aztech.milite.materials.part.MIParts;
+import aztech.milite.materials.part.PartKeyProvider;
+import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Generates the Processing Table recipes: one machine casing plus one characterising item make a machine.
+ * Generates the Processing Table recipes: one machine casing plus two characterising items make a machine.
  *
  * <p>
  * This is the only way a machine is crafted. Every level a machine exists at gets its own recipe here, using the casing
- * of that level, so the ingredient a player needs depends on which level they are building.
+ * of that level, so the ingredients a player needs depend on which level they are building.
  *
  * <p>
  * Everything in the table below is referenced through the game classes rather than through ids, so a rename is caught by
@@ -40,9 +41,10 @@ import java.util.List;
  */
 public class ProcessingTableRecipesProvider extends MIRecipesProvider {
     /**
-     * A machine to craft, and the item that characterises it.
+     * A machine to craft, and the two items that characterise it.
      */
-    private record Family(String machine, String levels, ItemLike ingredient) {}
+    private record Family(String machine, String levels, ItemLike first, ItemLike second) {
+    }
 
     private static final List<Family> FAMILIES = new ArrayList<>();
 
@@ -53,30 +55,30 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
     private static final String STEEL_TO_IRIDIUM = "steel_to_iridium";
     private static final String ELECTRIC_TO_IRIDIUM = "electric_to_iridium";
 
-    private static void family(String machine, String levels, ItemLike ingredient) {
-        FAMILIES.add(new Family(machine, levels, ingredient));
+    private static void family(String machine, String levels, ItemLike first, ItemLike second) {
+        FAMILIES.add(new Family(machine, levels, first, second));
     }
 
     static {
         // Bronze machines, which also exist at every level above.
-        family("compressor", BRONZE_TO_IRIDIUM, Items.PISTON);
-        family("cutting_machine", BRONZE_TO_IRIDIUM, MIItem.INVAR_ROTARY_BLADE);
-        family("furnace", BRONZE_TO_IRIDIUM, Items.BLAST_FURNACE);
-        family("macerator", BRONZE_TO_IRIDIUM, MIMaterials.BRONZE.getPart(MIParts.DRILL_HEAD));
-        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR));
+        family("compressor", BRONZE_TO_IRIDIUM, Items.PISTON, MIMaterials.BRONZE.getPart(MIParts.GEAR));
+        family("cutting_machine", BRONZE_TO_IRIDIUM, MIItem.INVAR_ROTARY_BLADE, MIMaterials.INVAR.getPart(MIParts.GEAR));
+        family("furnace", BRONZE_TO_IRIDIUM, Items.BLAST_FURNACE, MIBlock.BLOCK_FIRE_CLAY_BRICKS);
+        family("macerator", BRONZE_TO_IRIDIUM, MIMaterials.BRONZE.getPart(MIParts.DRILL_HEAD), MIMaterials.BRONZE.getPart(MIParts.BARREL));
+        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR), MIMaterials.BRONZE.getPart(MIParts.TANK));
 
         // Steel machines.
-        family("packer", STEEL_TO_IRIDIUM, MIItem.CONVEYOR);
-        family("unpacker", STEEL_TO_IRIDIUM, Items.CHEST);
-        family("wiremill", STEEL_TO_IRIDIUM, MIItem.MOTOR);
+        family("packer", STEEL_TO_IRIDIUM, MIItem.CONVEYOR, MIMaterials.STEEL.getPart(MIParts.PLATE));
+        family("unpacker", STEEL_TO_IRIDIUM, Items.CHEST, MIMaterials.STEEL.getPart(MIParts.GEAR));
+        family("wiremill", STEEL_TO_IRIDIUM, MIItem.MOTOR, MIMaterials.INVAR.getPart(MIParts.ROD));
 
         // Electric machines.
-        family("assembler", ELECTRIC_TO_IRIDIUM, MIItem.ROBOT_ARM);
-        family("centrifuge", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_MOTOR);
-        family("chemical_reactor", ELECTRIC_TO_IRIDIUM, MIMaterials.ALUMINUM.getPart(MIParts.ROTOR));
-        family("distillery", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_PUMP);
-        family("electrolyzer", ELECTRIC_TO_IRIDIUM, MIItem.ELECTRONIC_CIRCUIT);
-        family("polarizer", ELECTRIC_TO_IRIDIUM, MIItem.INDUCTOR);
+        family("assembler", ELECTRIC_TO_IRIDIUM, MIItem.ROBOT_ARM, MIItem.CONVEYOR);
+        family("centrifuge", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_MOTOR, MIMaterials.ALUMINUM.getPart(MIParts.GEAR));
+        family("chemical_reactor", ELECTRIC_TO_IRIDIUM, MIMaterials.ALUMINUM.getPart(MIParts.ROTOR), MIMaterials.ALUMINUM.getPart(MIParts.TANK));
+        family("distillery", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_PUMP, MIMaterials.CUPRONICKEL.getPart(MIParts.PLATE));
+        family("electrolyzer", ELECTRIC_TO_IRIDIUM, MIItem.ELECTRONIC_CIRCUIT, MIMaterials.ALUMINUM.getPart(MIParts.WIRE));
+        family("polarizer", ELECTRIC_TO_IRIDIUM, MIItem.INDUCTOR, MIMaterials.COPPER.getPart(MIParts.WIRE));
     }
 
     public ProcessingTableRecipesProvider(PackOutput packOutput) {
@@ -88,28 +90,22 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         for (Family family : FAMILIES) {
             for (MachineLevel level : levelsOf(family.levels())) {
                 offer(consumer, "processing_table/" + prefixOf(level) + family.machine(),
-                        casingOf(level), family.ingredient(),
+                        casingOf(level), family.first(), family.second(),
                         MI.id(prefixOf(level) + family.machine()));
             }
         }
-
-        // These two are not built from a machine casing, so they are listed on their own. The boilers are upgraded by
-        // rebuilding them around the previous boiler.
         offer(consumer, "processing_table/bronze_boiler", MIBlock.BLOCK_FIRE_CLAY_BRICKS,
-                lookupItem(MI.id("bronze_furnace")), MI.id("bronze_boiler"));
+                lookupItem(MI.id("bronze_furnace")), item(MIMaterials.BRONZE, MIParts.TANK), MI.id("bronze_boiler"));
         offer(consumer, "processing_table/steel_boiler", lookupItem(MI.id("bronze_boiler")),
-                Items.FURNACE, MI.id("steel_boiler"));
+                Items.FURNACE, item(MIMaterials.STEEL, MIParts.PLATE), MI.id("steel_boiler"));
         offer(consumer, "processing_table/steam_quarry", casingOf(MachineLevel.STEEL),
-                MIItem.INVAR_ROTARY_BLADE, MI.id("steam_quarry"));
-
-        // Water pumps are not in the family list because they are registered with the special machines.
+                MIItem.INVAR_ROTARY_BLADE, item(MIMaterials.STEEL, MIParts.DRILL_HEAD), MI.id("steam_quarry"));
         offer(consumer, "processing_table/bronze_water_pump", casingOf(MachineLevel.BRONZE),
-                item(MIMaterials.BRONZE, MIParts.TANK), MI.id("bronze_water_pump"));
+                item(MIMaterials.BRONZE, MIParts.TANK), item(MIMaterials.BRONZE, MIParts.ROTOR), MI.id("bronze_water_pump"));
 
-        // The Processing Table itself is an ordinary shapeless crafting recipe, not a Processing Table recipe.
-        ShapelessRecipeBuilder.shapeless(MIBlock.PROCESSING_TABLE)
-                .requires(Items.CRAFTING_TABLE)
-                .requires(MIBlock.FORGE_HAMMER)
+        new ShapedRecipeJson(idOf(MIBlock.PROCESSING_TABLE.get()), 1, "II", "WW", "WW")
+                .addInput('I', idOf(Items.HEAVY_WEIGHTED_PRESSURE_PLATE))
+                .addInput('W', "#" + ItemTags.PLANKS.location())
                 .offerTo(consumer, "processing_table/processing_table");
     }
 
@@ -118,12 +114,14 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
      */
     private static List<MachineLevel> levelsOf(String levels) {
         return switch (levels) {
-            case BRONZE_TO_IRIDIUM -> List.of(MachineLevel.BRONZE, MachineLevel.STEEL, MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
-                    MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
+            case BRONZE_TO_IRIDIUM ->
+                    List.of(MachineLevel.BRONZE, MachineLevel.STEEL, MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
+                            MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
             case STEEL_TO_IRIDIUM -> List.of(MachineLevel.STEEL, MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
                     MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
-            case ELECTRIC_TO_IRIDIUM -> List.of(MachineLevel.ELECTRIC, MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL,
-                    MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
+            case ELECTRIC_TO_IRIDIUM ->
+                    List.of(MachineLevel.ELECTRIC, MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL,
+                            MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
             default -> throw new IllegalArgumentException("Unknown level list " + levels);
         };
     }
@@ -162,13 +160,14 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
      * is what lets an assembler build machines, and it is written in exactly the same shape as the assembler recipes
      * that are converted from 3x3 crafting, so the assembler needs no special case to read it.
      */
-    private static void offer(RecipeOutput consumer, String path, ItemLike first, ItemLike second, ResourceLocation result) {
-        var recipe = new ProcessingTableRecipe(Ingredient.of(first), Ingredient.of(second), new ItemStack(lookupItem(result)));
+    private static void offer(RecipeOutput consumer, String path, ItemLike key, ItemLike first, ItemLike second, ResourceLocation result) {
+        var recipe = new ProcessingTableRecipe(Ingredient.of(key), Ingredient.of(first), Ingredient.of(second), new ItemStack(lookupItem(result)));
         consumer.accept(MI.id(path), recipe, null);
 
         // A machine crafts at the same pace whatever the recipe, and at the lowest energy a machine can draw.
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, MACHINE_ADAPTER_ENERGY, MACHINE_ADAPTER_DURATION)
                 .level(MachineLevel.BRONZE)
+                .addItemInput(Ingredient.of(key), 1, 1)
                 .addItemInput(Ingredient.of(first), 1, 1)
                 .addItemInput(Ingredient.of(second), 1, 1)
                 .addItemOutput(lookupItem(result), 1)
@@ -197,5 +196,12 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
             throw new IllegalStateException("The processing table recipe table refers to " + id + ", which is not a registered item");
         }
         return item;
+    }
+
+    /**
+     * The id of an item, in the shape the json recipe builders take.
+     */
+    private static String idOf(ItemLike item) {
+        return BuiltInRegistries.ITEM.getKey(item.asItem()).toString();
     }
 }

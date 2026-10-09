@@ -14,17 +14,17 @@ import java.util.Comparator;
 import java.util.function.Consumer;
 
 /**
- * Recipe viewer category of the Processing Table: two inputs make one machine.
+ * Recipe viewer category of the Processing Table: a casing and two characterising items make one machine.
  *
  * <p>
- * The geometry deliberately matches {@link ForgeHammerCategory}: same 150x40 box, the first input
- * on the Forge Hammer's input position and the arrow on the Forge Hammer's arrow position, so both
- * hand-crafted stations look alike in EMI, JEI and REI. No tooltip is registered.
+ * The geometry deliberately matches {@link ForgeHammerCategory}: same 40 pixel tall box, the inputs on the Forge
+ * Hammer's input positions and the arrow on the Forge Hammer's arrow position, so both hand-crafted stations look
+ * alike in EMI, JEI and REI. No tooltip is registered.
  */
 public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<ProcessingTableRecipe>> {
     public static final ResourceLocation ID = MI.id("processing_table");
 
-    private static final int WIDTH = 98;
+    private static final int WIDTH = 116;
     private static final int HEIGHT = 28;
 
     private final int startPointY;
@@ -53,15 +53,16 @@ public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<Process
     public void buildLayout(RecipeHolder<ProcessingTableRecipe> holder, LayoutBuilder builder) {
         var recipe = holder.value();
 
-        builder.inputSlot(8, startPointY).ingredient(recipe.first(), 1, 1);
-        builder.inputSlot(26, startPointY).ingredient(recipe.second(), 1, 1);
-        builder.outputSlot(74, startPointY).item(recipe.result());
+        builder.inputSlot(8, startPointY).ingredient(recipe.key(), 1, 1);
+        builder.inputSlot(26, startPointY).ingredient(recipe.first(), 1, 1);
+        builder.inputSlot(44, startPointY).ingredient(recipe.second(), 1, 1);
+        builder.outputSlot(92, startPointY).item(recipe.result());
     }
 
     @Override
     public void buildWidgets(RecipeHolder<ProcessingTableRecipe> holder, WidgetList widgets) {
-        // Same arrow position and size as the Forge Hammer category, centred on the two inputs.
-        widgets.arrow(46, startPointY);
+        // Same arrow position and size as the Forge Hammer category, centred on the inputs.
+        widgets.arrow(64, startPointY);
     }
 
     @Override

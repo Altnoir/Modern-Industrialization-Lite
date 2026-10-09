@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:robot_arm"
+  },
+  "key": {
     "item": "milite:advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:aluminum_assembler"
   },
   "second": {
-    "item": "milite:robot_arm"
+    "item": "milite:conveyor"
   }
 }

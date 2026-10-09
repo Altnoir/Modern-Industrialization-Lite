@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "minecraft:blast_furnace"
+  },
+  "key": {
     "item": "milite:advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:aluminum_furnace"
   },
   "second": {
-    "item": "minecraft:blast_furnace"
+    "item": "milite:fire_clay_bricks"
   }
 }

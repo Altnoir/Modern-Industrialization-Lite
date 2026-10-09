@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "minecraft:chest"
+  },
+  "key": {
     "item": "milite:highly_advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:titanium_unpacker"
   },
   "second": {
-    "item": "minecraft:chest"
+    "item": "milite:steel_gear"
   }
 }

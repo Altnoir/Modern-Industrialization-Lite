@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:invar_rotary_blade"
+  },
+  "key": {
     "item": "milite:steel_machine_casing"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:steam_quarry"
   },
   "second": {
-    "item": "milite:invar_rotary_blade"
+    "item": "milite:steel_drill_head"
   }
 }

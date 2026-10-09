@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:conveyor"
+  },
+  "key": {
     "item": "milite:steel_machine_casing"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:steel_packer"
   },
   "second": {
-    "item": "milite:conveyor"
+    "item": "milite:steel_plate"
   }
 }

@@ -7,6 +7,7 @@ import aztech.milite.test.CreativeOrderDump;
 import aztech.milite.test.GeneratorTests;
 import aztech.milite.test.MachineSpeedTests;
 import aztech.milite.test.MultiblockTests;
+import aztech.milite.test.ProcessingTableTests;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.StructureUtils;
 import net.minecraft.gametest.framework.TestFunction;
@@ -24,7 +25,8 @@ public final class MIGameTests {
             CreativeOrderDump.class,
             GeneratorTests.class,
             MachineSpeedTests.class,
-            MultiblockTests.class);
+            MultiblockTests.class,
+            ProcessingTableTests.class);
 
     @GameTestGenerator
     public static List<TestFunction> generateTests() {

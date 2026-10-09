@@ -48,10 +48,10 @@ public class ManualPluginJei implements IModPlugin {
             registration.addRecipeTransferHandler(new MachineSlotLockingHandler(helper, () -> jeiRuntime, type), type);
         }
 
-        // The Processing Table has two input slots (36 and 37) and one output slot (38).
+        // The Processing Table has three input slots (36, 37 and 38) and one output slot (39).
         registration.addRecipeTransferHandler(helper.createBasicRecipeTransferInfo(
                 ProcessingTableScreenHandler.class, MIRegistries.PROCESSING_TABLE_MENU.get(), getProcessingTableCategory(),
-                36, 2, 0, 36));
+                36, 3, 0, 36));
     }
 
     @Override

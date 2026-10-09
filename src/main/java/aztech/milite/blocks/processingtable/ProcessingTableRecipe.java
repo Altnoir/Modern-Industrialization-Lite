@@ -18,24 +18,32 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 /**
- * A recipe for the Processing Table: one machine casing plus one characterising item make a machine.
+ * A recipe for the Processing Table: a machine casing plus two characterising items make a machine.
  *
  * <p>
- * Both ingredients are plain {@link Ingredient}s, so a recipe may ask for a tag or an exact item in either slot. The
+ * The casing is the {@link #key}, and it is the only ingredient the middle input slot accepts. The other two go in the
+ * two side slots, which stay locked until the key is in place and which do not care which of them holds what.
+ *
+ * <p>
+ * All three ingredients are plain {@link Ingredient}s, so a recipe may ask for a tag or an exact item anywhere. The
  * result is always a single item, machines are never crafted in bulk.
  */
 public record ProcessingTableRecipe(
+        Ingredient key,
         Ingredient first,
         Ingredient second,
         ItemStack result) implements Recipe<RecipeInput> {
     private static final MapCodec<ProcessingTableRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
+                    Ingredient.CODEC_NONEMPTY.fieldOf("key").forGetter(ProcessingTableRecipe::key),
                     Ingredient.CODEC_NONEMPTY.fieldOf("first").forGetter(ProcessingTableRecipe::first),
                     Ingredient.CODEC_NONEMPTY.fieldOf("second").forGetter(ProcessingTableRecipe::second),
                     ItemStack.STRICT_CODEC.fieldOf("result").forGetter(ProcessingTableRecipe::result))
                     .apply(instance, ProcessingTableRecipe::new));
 
     private static final StreamCodec<RegistryFriendlyByteBuf, ProcessingTableRecipe> STREAM_CODEC = StreamCodec.composite(
+            Ingredient.CONTENTS_STREAM_CODEC,
+            ProcessingTableRecipe::key,
             Ingredient.CONTENTS_STREAM_CODEC,
             ProcessingTableRecipe::first,
             Ingredient.CONTENTS_STREAM_CODEC,
@@ -45,9 +53,19 @@ public record ProcessingTableRecipe(
             ProcessingTableRecipe::new);
 
     /**
-     * @return whether the two given stacks match this recipe's inputs, either way around
+     * @return whether this recipe's key is the given stack, which is what unlocks the two side slots
      */
-    public boolean matches(ItemStack firstStack, ItemStack secondStack) {
+    public boolean matchesKey(ItemStack keyStack) {
+        return key.test(keyStack);
+    }
+
+    /**
+     * @return whether the three given stacks match this recipe's inputs, with the two side stacks either way around
+     */
+    public boolean matches(ItemStack keyStack, ItemStack firstStack, ItemStack secondStack) {
+        if (!key.test(keyStack)) {
+            return false;
+        }
         return (first.test(firstStack) && second.test(secondStack)) || (first.test(secondStack) && second.test(firstStack));
     }
 
@@ -74,7 +92,7 @@ public record ProcessingTableRecipe(
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return NonNullList.copyOf(List.of(first, second));
+        return NonNullList.copyOf(List.of(key, first, second));
     }
 
     @Override

@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:inductor"
+  },
+  "key": {
     "item": "milite:quantum_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:iridium_polarizer"
   },
   "second": {
-    "item": "milite:inductor"
+    "item": "milite:copper_wire"
   }
 }

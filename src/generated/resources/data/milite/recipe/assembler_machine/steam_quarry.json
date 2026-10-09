@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:invar_rotary_blade"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_drill_head"
     }
   ],
   "item_outputs": [

@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "milite:robot_arm"
+    },
+    {
+      "amount": 1,
+      "item": "milite:conveyor"
     }
   ],
   "item_outputs": [

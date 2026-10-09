@@ -1,6 +1,9 @@
 {
   "type": "milite:processing_table",
   "first": {
+    "item": "milite:aluminum_rotor"
+  },
+  "key": {
     "item": "milite:highly_advanced_machine_hull"
   },
   "result": {
@@ -8,6 +11,6 @@
     "id": "milite:titanium_chemical_reactor"
   },
   "second": {
-    "item": "milite:aluminum_rotor"
+    "item": "milite:aluminum_tank"
   }
 }

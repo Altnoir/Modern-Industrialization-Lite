@@ -10,6 +10,10 @@
     {
       "amount": 1,
       "item": "minecraft:chest"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_gear"
     }
   ],
   "item_outputs": [
