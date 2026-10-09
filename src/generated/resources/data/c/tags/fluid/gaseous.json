@@ -15,8 +15,8 @@
     "milite:methane",
     "milite:nitrogen",
     "milite:oxygen",
-    "milite:polyvinyl_chloride",
     "milite:steam",
-    "milite:tritium"
+    "milite:tritium",
+    "milite:vinyl_chloride"
   ]
 }
