@@ -1,23 +1,23 @@
 # Adding hatches
-To add new energy, fluid, or item hatches, use the `MIRegistrationEvents.registerHatches` startup event.
+To add new energy, fluid, or item hatches, use the `MIMachineEvents.registerHatches` startup event.
 
 ## Energy
-Use the `energy` registration method to register energy input and output hatches for the given cable tier.
+Use the `energy` registration method to register energy input and output hatches for the given tier.
 For example:
 ```js
 MIMachineEvents.registerHatches(event => {
-    // Takes the internal name for the cable tier.
+    // Takes the internal name of the tier.
     event.energy("iv");
 });
 ```
 
-The default generated model for energy hatches will use the casing corresponding to the cable tier.
+The default generated model for energy hatches will use the casing corresponding to the tier.
 
-See also [Adding cable tiers](ADDING_CABLE_TIERS.md) for more information on how to add a cable tier.
+See also [Adding machine tiers](ADDING_TIERS.md) for more information on how to add a tier.
 
 ## Fluid
 Use the `fluid` registration method to register fluid input and output hatches.
-These hatches are not necessarily bound to a cable or progression tier.
+These hatches are not bound to a machine tier.
 
 Here is an example:
 ```js
@@ -29,7 +29,7 @@ MIMachineEvents.registerHatches(event => {
         // In this cases, the block IDs of the hatches will be huge_fluid_input_hatch and huge_fluid_output_hatch.
         "huge",
         // Machine casing for the model of the hatch.
-        "superconductor",
+        "iridium",
         // Number of buckets that the hatch can hold.
         1000,
     );
@@ -38,7 +38,7 @@ MIMachineEvents.registerHatches(event => {
 
 ## Item
 Use the `item` registration method to register item input and output hatches.
-These hatches are not necessarily bound to a cable or progression tier.
+These hatches are not bound to a machine tier.
 
 Here is an example:
 ```js
@@ -50,7 +50,7 @@ MIMachineEvents.registerHatches(event => {
         // In this cases, the block IDs of the hatches will be huge_item_input_hatch and huge_item_output_hatch.
         "huge",
         // Machine casing for the model of the hatch.
-        "superconductor",
+        "iridium",
         // Number of slot rows and columns for the hatch slots:
         3, 7, // 3 rows and 7 columns here
         // Starting position of the slot grid:
