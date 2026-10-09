@@ -2,6 +2,7 @@ package aztech.milite.compat.ftbquests;
 
 import aztech.milite.config.MIStartupConfig;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.ModList;
 
 import java.util.UUID;
@@ -22,5 +23,9 @@ public interface FTBQuestsFacade {
         return (uuid, item, amount) -> {};
     }
 
+    default void init() {}
+
     void addCompleted(UUID uuid, Item item, long amount);
+
+    default void addCompleted(UUID uuid, Fluid fluid, long amount) {}
 }

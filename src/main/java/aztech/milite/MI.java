@@ -28,6 +28,7 @@ package aztech.milite;
 import aztech.milite.api.datamaps.MIDataMaps;
 import aztech.milite.blocks.storage.barrel.BarrelBlock;
 import aztech.milite.blocks.WrenchableBlockEntity;
+import aztech.milite.compat.ftbquests.FTBQuestsFacade;
 import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.config.MIServerConfig;
 import aztech.milite.config.MIStartupConfig;
@@ -129,6 +130,7 @@ public class MI {
         KubeJSProxy.instance.fireRegisterMachinesEvent();
 
         MICommonProxy.initEvents();
+        FTBQuestsFacade.INSTANCE.init();
         ChunkEventListeners.init();
         DebugCommands.init();
         GuidebookEvents.init();
