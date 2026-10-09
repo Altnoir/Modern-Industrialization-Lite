@@ -3,6 +3,7 @@ package aztech.milite.machines.components;
 import aztech.milite.inventory.ConfigurableFluidStack;
 import aztech.milite.inventory.MIFluidStorage;
 import aztech.milite.MIFluids;
+import aztech.milite.config.MIServerConfig;
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
 import aztech.milite.thirdparty.fabrictransfer.api.transaction.Transaction;
 import it.unimi.dsi.fastutil.objects.Reference2LongMap;
@@ -17,8 +18,6 @@ import net.minecraft.world.level.material.Fluids;
 import java.util.List;
 
 public class SteamHeaterComponent extends TemperatureComponent {
-    private static final int STEAM_TO_WATER = 16;
-
     /**
      * mb/t of steam produced at max heat, assuming enough water
      */
@@ -105,12 +104,13 @@ public class SteamHeaterComponent extends TemperatureComponent {
                     inserted = output.insertAllSlot(steamKey, steamProduction, simul);
                 }
                 if (inserted > 0) {
+                    int waterToSteam = MIServerConfig.INSTANCE.steamPerWater.getAsInt();
                     // Round water consumption up
-                    long waterToUse = (inserted - steamBuffer.getLong(steam) + STEAM_TO_WATER - 1) / STEAM_TO_WATER;
+                    long waterToUse = (inserted - steamBuffer.getLong(steam) + waterToSteam - 1) / waterToSteam;
                     // Extract water
                     long extracted = input.extractAllSlot(waterKey, waterToUse, tx);
                     // Add to steam buffer
-                    steamBuffer.mergeLong(steam, extracted * STEAM_TO_WATER, Long::sum);
+                    steamBuffer.mergeLong(steam, extracted * waterToSteam, Long::sum);
 
                     // Produce steam
                     long producedSteam = output.insertAllSlot(steamKey, Math.min(steamProduction, steamBuffer.getLong(steam)), tx);

@@ -17,6 +17,7 @@ public final class MIServerConfig {
 
     public final ModConfigSpec.BooleanValue compostableToPlantOil;
     public final ModConfigSpec.BooleanValue stonecutterToCuttingMachine;
+    public final ModConfigSpec.IntValue steamPerWater;
 
     private MIServerConfig(MIConfigBuilder builder) {
         this.spawnWithGuideBook = builder.start("spawnWithGuideBook",
@@ -27,6 +28,11 @@ public final class MIServerConfig {
                 "Respawn with guidebook",
                 "Grant guidebook when a player respawns after death.")
                 .define("respawnWithGuideBook", true);
+
+        this.steamPerWater = builder.start("steamPerWater",
+                "Steam per Water",
+                "How much steam should be produced per mb of water that is boiled.")
+                .defineInRange("steamPerWater", 16, 1, 1000);
 
         builder.pushSection("recipes", "Recipes");
         this.compostableToPlantOil = builder.start("compostableToPlantOil",

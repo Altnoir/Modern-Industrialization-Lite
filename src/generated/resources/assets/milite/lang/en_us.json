@@ -1099,6 +1099,8 @@
   "milite.configuration.respawnWithGuideBook.tooltip": "Grant guidebook when a player respawns after death.",
   "milite.configuration.spawnWithGuideBook": "Spawn with guidebook",
   "milite.configuration.spawnWithGuideBook.tooltip": "Grant guidebook the first time a player joins the server.",
+  "milite.configuration.steamPerWater": "Steam per Water",
+  "milite.configuration.steamPerWater.tooltip": "How much steam should be produced per mb of water that is boiled.",
   "milite.configuration.stonecutterToCuttingMachine": "Stonecutter cutting machine recipes",
   "milite.configuration.stonecutterToCuttingMachine.tooltip": "Generate cutting machine recipes for all stonecutter recipes.",
   "milite.configuration.tooltips": "Tooltips",
