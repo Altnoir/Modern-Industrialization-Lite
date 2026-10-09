@@ -83,6 +83,11 @@ public class MachineRegistrationHelper {
      */
     private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
 
+    private static final List<String> MACHINE_HEAD = List.of("coke_oven");
+    private static final List<String> MACHINE_TAIL = List.of("configurable_chest", "configurable_tank");
+    private static final int MACHINE_HEAD_RANK = -1;
+    private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
+
     /**
      * The kinds of hatch, in the order the tab lists them: what moves items, then what moves fluids, then what moves
      * energy, each with its inputs ahead of its outputs. A hatch of any other kind sorts after these.
@@ -111,6 +116,14 @@ public class MachineRegistrationHelper {
         // A hatch is a part a multiblock is built from rather than a machine of its own, so it goes with the casings.
         if (id.endsWith("_hatch")) {
             return hatchSortOrder(id);
+        }
+        int head = MACHINE_HEAD.indexOf(id);
+        if (head >= 0) {
+            return SortOrder.MACHINES.and(MACHINE_HEAD_RANK).and(head);
+        }
+        int tail = MACHINE_TAIL.indexOf(id);
+        if (tail >= 0) {
+            return SortOrder.MACHINES.and(MACHINE_TAIL_RANK).and(tail);
         }
         for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
             var prefix = MACHINE_TIER_PREFIXES.get(tier);
