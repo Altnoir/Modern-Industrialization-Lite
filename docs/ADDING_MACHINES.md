@@ -6,28 +6,15 @@ MI supports adding new EBF tiers from KubeJS using the `addEbfTiers` event. The 
 
 For each tier, call `event.add` with:
 - The ID of the coil block, used inside of the shape. Can be any block that also has an item.
-- The maximum allowed EU/t of the recipe. This is the maximum EU/t that the coil can handle.
+- The maximum allowed FE/t of the recipe. This is the maximum FE/t that the coil can handle.
 - The English name for display in the EBF shape selector and in REI. MI will automatically wrap that in `EBF (... Tier)` for REI.
 
-Here is an example that adds gold blocks as an EBF coil with a maximum EU/t of 64:
+Here is an example that adds gold blocks as an EBF coil with a maximum FE/t of 64:
 ```js
 MIMachineEvents.addEbfTiers(event => {
-    // ID of the coil block, max EU/t, English name
+    // ID of the coil block, max FE/t, English name
     event.add("minecraft:gold_block", 64, "Gold");
 })
-```
-
-## Adding electric machine upgrades
-You can add electric machine upgrades using the `modern_industrialization:machine_upgrades` item data map.
-For example, in `data/modern_industrialization/data_maps/item/machine_upgrades.json`:
-```json
-{
-  "values": {
-    "minecraft:diamond": {
-      "extraMaxEu": 42
-    }
-  }
-}
 ```
 
 ## Registering a recipe type
@@ -58,19 +45,19 @@ Single block crafting machines are the "standard" single block crafting machines
 Examples include the macerators, the chemical reactor, the distillery, etc...
 
 They come in 3 tiers:
-- `bronze`: Limited to 2 EU/t recipes, steam powered.
-- `steel`: Limited to 4 EU/t recipes, steam powered.
-- `electric`: Base speed of 8 EU/t recipes, overclock up to 32 EU/t without upgrades. Supports upgrades. Electricity powered, casings can be installed to change the cable tier.
+- `bronze`: Limited to 2 FE/t recipes, steam powered.
+- `steel`: Limited to 4 FE/t recipes, steam powered.
+- `electric`: Base speed of 8 FE/t recipes, overclock up to 32 FE/t without upgrades. Supports upgrades. Electricity powered, casings can be installed to change the machine tier.
 
 The following parameters need to be provided, in order:
 - First, a few general parameters:
   - 1: English name of the machine. This is the name that players see when they over the stack, look at the machine, etc...
-  - 2: Internal name of the machine. The registration id of the machine is always `modern_industrialization:` followed by the internal name.
+  - 2: Internal name of the machine. The registration id of the machine is always `milite:` followed by the internal name.
   - 3: Recipe type. The recipes that the machine can process. See above how to register a recipe type.
   - 4: List of tiers for the machine. List containing any of `"bronze"`, `"steel"` and/or `"electric"`.
 - GUI configuration:
   - 5: Height of the background in the machine screen.
-  - 6: Where the progress bar is located, in pixels, and the type of progress bar to use. You can look at the available progress bars [here](../src/main/resources/assets/modern_industrialization/textures/gui/progress_bar/).
+  - 6: Where the progress bar is located, in pixels, and the type of progress bar to use. You can look at the available progress bars [here](../src/main/resources/assets/milite/textures/gui/progress_bar/).
 
     By default, the progress bar has 20x20 pixels. This can be changed by adding a width and a height as 4th and 5th parameters when creating it.
     For example, for a 40x20 long arrow: `event.progressBar(x pos, y pos, "long_arrow", 40, 20)`.
@@ -85,7 +72,7 @@ The following parameters need to be provided, in order:
   - 14: Positions of the item input and output slots. Grids of slots are added using `.addSlots(x in pixels, y in pixels, grid width in slots, grid height in slots)`.
   - 15: Positions of the fluid input and output slots.
 - Model configuration. Here you can choose which overlays are available in your machine. The overlays are the machine-specific textures.
-  - You can find overlay examples [here](../src/main/resources/assets/modern_industrialization/textures/block/machines/).
+  - You can find overlay examples [here](../src/main/resources/assets/milite/textures/block/machines/).
   - 16: Choose whether the machine has a front overlay (`overlay_front.png` and `overlay_front_active.png`).
   - 17: Choose whether the machine has a top overlay (`overlay_top.png` and `overlay_top_active.png`).
   - 18: Choose whether the machine has a side overlay (`overlay_side.png` and `overlay_side_active.png`).
@@ -163,8 +150,8 @@ Here is an example of how to create the shape for a pyrolyse oven multiblock:
 ```js
 MIMachineEvents.registerMachines(event => {
     const pyrolyseHatch = event.hatchOf("item_input", "item_output", "fluid_input", "fluid_output", "energy_input");
-    const heatproofMember = event.memberOfBlock("modern_industrialization:heatproof_machine_casing");
-    const cupronickelCoilMember = event.memberOfBlock("modern_industrialization:cupronickel_coil");
+    const heatproofMember = event.memberOfBlock("milite:heatproof_machine_casing");
+    const cupronickelCoilMember = event.memberOfBlock("milite:cupronickel_coil");
     const pyrolyseShapeBuilder = event.startShape("heatproof_machine_casing");
     for (let x = -1; x <= 1; x++) {
         for (let y= -1; y <= 1; y++) {
@@ -195,8 +182,8 @@ The character `#` is used for the controller, and a space is used for air.
 ```js
 MIMachineEvents.registerMachines(event => {
     const pyrolyseHatch = event.hatchOf("item_input", "item_output", "fluid_input", "fluid_output", "energy_input");
-    const heatproofMember = event.memberOfBlock("modern_industrialization:heatproof_machine_casing");
-    const cupronickelCoilMember = event.memberOfBlock("modern_industrialization:cupronickel_coil");
+    const heatproofMember = event.memberOfBlock("milite:heatproof_machine_casing");
+    const cupronickelCoilMember = event.memberOfBlock("milite:cupronickel_coil");
     const pyrolyseShape = event.layeredShape("heatproof_machine_casing", [
         [ "HHH", "HHH", "HHH" ],
         [ "CCC", "C C", "CCC" ],
@@ -272,12 +259,12 @@ Here is an example creating an electric pyrolyse oven:
 
 For this example, we only register a front overlay, and the overlay folder is `pyrolyse_overlays`.
 Hence, we need 2 textures for the controller to render correctly:
-- `modern_industrialization:textures/blocks/machines/pyrolyse_overlays/overlay_front.png` used when the machine is not working.
-- `modern_industrialization:textures/blocks/machines/pyrolyse_overlays/overlay_front_active.png` used when the machine is working (i.e. active).
+- `milite:textures/block/machines/pyrolyse_overlays/overlay_front.png` used when the machine is not working.
+- `milite:textures/block/machines/pyrolyse_overlays/overlay_front_active.png` used when the machine is working (i.e. active).
 
 With KubeJS, the texture can go in the following folders respectively:
-- `kubejs/assets/modern_industrialization/textures/blocks/machines/pyrolyse_overlays/overlay_front.png`.
-- `kubejs/assets/modern_industrialization/textures/blocks/machines/pyrolyse_overlays/overlay_front_active.png`.
+- `kubejs/assets/milite/textures/block/machines/pyrolyse_overlays/overlay_front.png`.
+- `kubejs/assets/milite/textures/block/machines/pyrolyse_overlays/overlay_front_active.png`.
 
 ### Extra multiblock configuration options
 Both steam and electric have an optional config function parameter that can be added to the end for further customization.
@@ -325,7 +312,7 @@ You can add new casings using the `MIMachineEvents.registerCasings` event.
 - Use the `registerBlockImitation` function to add a casing that will imitate another block.
 
 If you use `register` and want a texture-based casing model,
-remember that the top, side and bottom textures of a casing must be `modern_industrialization:textures/block/casings/<casing name>/{top,side,bottom}.png`.
+remember that the top, side and bottom textures of a casing must be `milite:textures/block/casings/<casing name>/{top,side,bottom}.png`.
 
 For example:
 ```js
@@ -352,18 +339,18 @@ For example,
 ```js
 MIMachineEvents.registerMachines(event => {
     event.simpleGeneratorSingleBlock(
-        "EV Diesel Generator", // the generator english name
+        "Titanium Diesel Generator", // the generator english name
         "ev_diesel_generator", // its internal name/id
-        "ev", // the cable tier it can connect to (eg: lv, mv, hv, ev, superconductor)
-        8192, // its maximum energy generation rate (eu/tick)
-        50000, // its internal energy storage (eu)
+        "titanium", // the tier of the generator (electric, aluminum, stainless_steel, titanium, iridium)
+        8192, // its maximum energy generation rate (FE/tick)
+        50000, // its internal energy storage (FE)
         128000, // its fluid storage (mB), this is optional if it doesn't consume fluids (default is 0)
         builder => {
             builder.fluidFuels() // the builder is used to specify which kind of fuel it will accept and
             // how much energy it will generate from it. (See below)
         },
             // ---- SAME AS FOR A SINGLE BLOCK CRAFTING MACHINE ----
-        "ev",  // the casing
+        "titanium",  // the casing
         "diesel_generator", // the folder of the model
             // front overlay?, top overlay?, side overlay?
         true, true, true
@@ -374,18 +361,18 @@ The builder accepts the following methods (which can be chained):
 
 ```js
 
-builder.fluidFuels() // This will make the generator accept any fluid fuels with their standard EU/mb value (same fuels as the diesel generator)
-builder.furnaceFuels() // This will make the generator any combustible items. The EU/item is 20 x the number of burning ticks.
-builder.item("minecraft:coal", 100) // This will make the generator accept coal and generate 100 EU/item. Cannot be combined with furnaceFuels().
-builder.fluid("minecraft:lava", 10) // This will make the generator accept lava and generate 10 EU/mb. Cannot be combined with fluidFuels().
+builder.fluidFuels() // This will make the generator accept any fluid fuels with their standard FE/mb value (same fuels as the diesel generator)
+builder.furnaceFuels() // This will make the generator any combustible items. The FE/item is 20 x the number of burning ticks.
+builder.item("minecraft:coal", 100) // This will make the generator accept coal and generate 100 FE/item. Cannot be combined with furnaceFuels().
+builder.fluid("minecraft:lava", 10) // This will make the generator accept lava and generate 10 FE/mb. Cannot be combined with fluidFuels().
 
 // multiple fuels can be added ex:
 builder.item("minecraft:coal", 100).fluid("minecraft:lava", 10);
 // will automatically add the correct input slot in the machine inventory
 
-builder.euMultiplier(2) // This will make the fuels burned in the generator be twice as efficient
-builder.euMultiplier(1.5) // This will make the fuels burned in the generator be 50% more efficient
-builder.euMultiplier(0.5) // This will make the fuels burned in the generator be 50% less efficient
+builder.feMultiplier(2) // This will make the fuels burned in the generator be twice as efficient
+builder.feMultiplier(1.5) // This will make the fuels burned in the generator be 50% more efficient
+builder.feMultiplier(0.5) // This will make the fuels burned in the generator be 50% less efficient
 
 builder.hideEfficiencyTooltip() // Hides the "Accepts item/fluid fuel at X efficiency" tooltip lines. Used for turbines, for example
 ```
@@ -401,9 +388,9 @@ MIMachineEvents.registerMachines(event => {
         "Large Solid Diesel Generator", // The english name
         "large_solid_diesel_generator", // The internal name
         largeSolidDieselGeneratorShape, // The multiblock shape
-        512, // Maximum energy generation rate (eu/tick)
+        512, // Maximum energy generation rate (FE/tick)
         builder => { // The builder (same as for a single block generator)
-            builder.furnaceFuels().fluid("modern_industrialization:synthetic_oil", 100);
+            builder.furnaceFuels().fluid("milite:synthetic_oil", 100);
         },
             // --- Standard model configuration --- //
         "heatproof_machine_casing", // casing

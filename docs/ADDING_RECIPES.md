@@ -1,6 +1,6 @@
 # Recipe format and KubeJS integration
 In general, a machine recipe JSON in MI has the following properties:
-- `eu`: How many EU/t it uses.
+- `eu`: How many FE/t it uses.
 - `duration`: How many ticks it takes to complete.
 - `item_inputs`: The list of items it consumes.
 - `item_outputs`: The list of items it produces.
@@ -8,8 +8,8 @@ In general, a machine recipe JSON in MI has the following properties:
 - `fluid_outputs`: The list of fluids it produces.
 - `process_conditions`: A list of additional conditions for the recipe to be processed by the machine.
 
-You can find plenty of examples for the JSON format in [our files](../src/main/resources/data/modern_industrialization/recipes).
-For example, the assembler recipe for the trash can looks [like this](../src/main/resources/data/modern_industrialization/recipes/trash_can_assembler.json).
+You can find plenty of examples for the JSON format in [our files](../src/generated/resources/data/milite/recipe).
+For example, the assembler recipe for the trash can looks [like this](../src/main/resources/data/milite/recipe/trash_can_assembler.json).
 
 MI adds a nicer syntax when the recipes are being registered by KubeJS:
 - You need to create the recipe by specifying the values for `eu` and `duration`.
@@ -23,13 +23,13 @@ MI adds a nicer syntax when the recipes are being registered by KubeJS:
 Here is an example to get you started:
 ```js
 ServerEvents.recipes(event => {
-    // start a new recipe for the blast furnace, with 128 EU/t and a duration of 100 ticks
-    event.recipes.modern_industrialization.blast_furnace(128, 100)
+    // start a new recipe for the blast furnace, with 128 FE/t and a duration of 100 ticks
+    event.recipes.milite.blast_furnace(128, 100)
         // add all the inputs and outputs:
         .itemIn("64x #minecraft:logs_that_burn")
         .itemOut("64x minecraft:charcoal")
-        .fluidIn("1000x modern_industrialization:oxygen")
-        .fluidOut("5000x modern_industrialization:creosote")
+        .fluidIn("1000x milite:oxygen")
+        .fluidOut("5000x milite:creosote")
 })
 ```
 
@@ -47,13 +47,13 @@ Here is the list of currently supported conditions:
 Here is an example that removes the default bronze drill quarry recipe, and adds one that requires the machine to be in the overworld and right above bedrock:
 ```js
 ServerEvents.recipes(event => {
-    event.remove({id: "modern_industrialization:quarry/bronze"})
-    event.recipes.modern_industrialization.quarry(4, 600)
-        .itemIn("modern_industrialization:bronze_drill", 0.04)
+    event.remove({id: "milite:quarry/bronze"})
+    event.recipes.milite.quarry(4, 600)
+        .itemIn("milite:bronze_drill", 0.04)
         .itemOut("minecraft:iron_ore", 0.4)
         .itemOut("minecraft:coal_ore", 0.4)
         .itemOut("minecraft:copper_ore", 0.2)
-        .itemOut("modern_industrialization:tin_ore", 0.3)
+        .itemOut("milite:tin_ore", 0.3)
         .itemOut("minecraft:gold_ore", 0.15)
         .itemOut("minecraft:redstone_ore", 0.2)
         .dimension("overworld")
@@ -82,7 +82,7 @@ MIRecipeEvents.customCondition(event => {
 
 // Add recipe that uses the condition, see above
 ServerEvents.recipes(event => {
-    event.recipes.modern_industrialization.compressor(2, 200)
+    event.recipes.milite.compressor(2, 200)
         .itemIn("dirt")
         .itemOut("diamond")
         // Use custom condition defined above
@@ -96,11 +96,11 @@ If a process condition doesn't have direct KubeJS support (like from an addon mo
 ```js
 // Manually adding a dimension condition - of course, this is just an example and you don't have a reason to actually do it this way.
 ServerEvents.recipes(event => {
-    event.recipes.modern_industrialization.compressor(2, 200)
+    event.recipes.milite.compressor(2, 200)
         .itemIn("dirt")
         .itemOut("diamond")
         .registeredCondition({
-          "modern_industrialization:dimension": {
+          "milite:dimension": {
             "dimension": "minecraft:the_nether"
           }
         })
@@ -123,15 +123,12 @@ The `<type of slots>` can be one of the following:
 - `fluidInputs`,
 - `fluidOutputs`.
 
-Here is an example to add a fluid output slot to all 3 blast furnace categories:
+Here is an example to add a fluid output slot to the steam blast furnace and to the electric blast furnace:
 ```js
 MIMachineEvents.addMultiblockSlots("steam_blast_furnace", event => {
     event.fluidOutputs.addSlot(122, 53);
 })
-MIMachineEvents.addMultiblockSlots("electric_blast_furnace_cupronickel_coil", event => {
-    event.fluidOutputs.addSlot(122, 53);
-})
-MIMachineEvents.addMultiblockSlots("electric_blast_furnace_kanthal_coil", event => {
+MIMachineEvents.addMultiblockSlots("electric_blast_furnace", event => {
     event.fluidOutputs.addSlot(122, 53);
 })
 ```
@@ -139,8 +136,9 @@ MIMachineEvents.addMultiblockSlots("electric_blast_furnace_kanthal_coil", event 
 The category ID can be found in various ways, for example by inspecting the `en_us.json` lang file:
 ```json
 {
-  "rei_categories.modern_industrialization.electric_blast_furnace_0": "EBF (Cupronickel Tier)",
-  "rei_categories.modern_industrialization.electric_blast_furnace_1": "EBF (Kanthal Tier)"
+  "rei_categories.milite.electric_blast_furnace": "Electric Blast Furnace"
 }
 ```
-From this we deduce that the EBF categories are `electric_blast_furnace_0` and `electric_blast_furnace_1`.
+From this we deduce that the category is `electric_blast_furnace`.
+
+All three electric blast furnaces share this single category: they only differ by the level of the recipes they can run, which is a property of the recipe, so a category per furnace would only show the same list three times. A new blast furnace added through `MIMachineEvents.addEbfTiers` becomes a workstation of the same category.

@@ -22,17 +22,16 @@ MIMaterialEvents.addMaterials(event => {
             // addParts adds the simple parts to the material ie, the one already defined in MI and that don't need more parameters
             .addParts("ingot", "nugget", "dust", "tiny_dust", "rod", "gear", "ring", "blade", "rotor", "coil", "plate", "bolt", "large_plate")
             // add a part that doesn't exist in MI
-            // template texture goes in modern_industrialization/extra_datagen_resources/assets/modern_industrialization/textures/materialsets/common/long_rod.png
+            // template texture goes in milite/extra_datagen_resources/assets/milite/textures/materialsets/common/long_rod.png
             .customRegularPart("Long Rod", "long_rod")
             .barrel("Super Barrel", "super_barrel", 69) // add a barrel with 69 stacks capacity and custom english name and path (both optional)
             .tank("Super Tank", "super_tank", 42) // add a tank same as above but for buckets capacity
             .block("copper") // add a simple block with the "copper" texture (found in "textures/materialsets/blocks")
-            .cable("ev") // add an EV tiers cable
             .specialCasing("Super Zinc Casing", "super_zinc_casing", 8.0) // add a special casing with custom english name and path (both required)
             // and 8.0 blast resistance (also optional, default is 6.0)
             .machineCasing(8.0) // same as above but for machine casings but the custom name and path are optional
             .pipeCasing(8.0) // add a pipe casing, only blast resistance can be specified
-            .battery(5000000) // add a battery with 5M EU capacity for the Portable Storage Unit
+            .battery(5000000) // add a battery with 5M FE capacity for the Portable Storage Unit
             .ore({
                 "ore_set": "copper", // texture set, same principle as for blocks (found in "textures/materialsets/ores")
                 "generate": true, // does the ore generate in the world? (default: true)

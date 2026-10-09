@@ -95,7 +95,7 @@ Here's an example script that adds tritium turning into hydrogen-4:
 ```js
 MIRegistrationEvents.registerFluidNeutronInteractions(event => {
     event.register(
-        'modern_industrialization:tritium',    // The fluid being added as a nuclear component
+        'milite:tritium',    // The fluid being added as a nuclear component
         5,                                     // Heat conduction factor (later multiplied by the base heat conduction, 0.01)
         1,                                     // Density
         'ultra_light',                         // Scattering type
@@ -103,7 +103,7 @@ MIRegistrationEvents.registerFluidNeutronInteractions(event => {
         0.01,                                  // Fast absorption probability
         0.15,                                  // Thermal scattering probability
         0.65,                                  // Fast scattering probability
-        'modern_industrialization:hydrogen_4', // The fluid product
+        'milite:hydrogen_4', // The fluid product
         1,                                     // Amount of converted product fluid per consumed input fluid
         1.0);                                  // Probability of converting 1 of input fluid per received neutron
 });
@@ -132,7 +132,7 @@ MIRegistrationEvents.registerFluidNeutronInteractions(event => {
         0.01,
         0.15,
         0.65,
-        'modern_industrialization:heavy_water',
+        'milite:heavy_water',
         1,
         1.0);
 });

@@ -5,39 +5,39 @@ Each machine model in MI consists of two parts:
 
 ## Casing models
 Casing models can either be a normal block model, or pull their model directly from a block.
-They are located at `modern_industrialization:models/machine_casing/<casing name>.json`.
+They are located at `milite:models/machine_casing/<casing name>.json`.
 
 ### Normal model
-Place a standard block model at `modern_industrialization:models/machine_casing/<casing name>.json`, for example:
+Place a standard block model at `milite:models/machine_casing/<casing name>.json`, for example:
 ```json5
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "modern_industrialization:block/casings/configurable_tank"
+    "all": "milite:block/casings/configurable_tank"
   }
 }
 ```
 
 ### Pull the model from a block
-To use a block's model for a casing, you must use the `modern_industrialization:use_block_model` loader.
+To use a block's model for a casing, you must use the `milite:use_block_model` loader.
 You must also define a single `block` key, telling MI which block to use for the casing.
 ```json5
 {
   "block": "<block id to use for the casing>",
-  "loader": "modern_industrialization:use_block_model"
+  "loader": "milite:use_block_model"
 }
 ```
 **Connected textures applied to the target block (for example with Athena) will be applied to the casing.**
 
 ## Machine models
 A machine model JSON file defines which overlays are applied on which sides of the machine.
-The JSON file must be located at `modern_industrialization:models/machine/<machine name>.json`.
+The JSON file must be located at `milite:models/block/<machine name>.json`.
 
 Example JSON:
 ```json5
 {
-  // The loader must always be "modern_industrialization:machine".
-  "loader": "modern_industrialization:machine",
+  // The loader must always be "milite:machine".
+  "loader": "milite:machine",
   // Casing to use for the model. Will be used by all machines except for multiblock hatches linked to a controller.
   "casing": "<casing name>",
   // Set of overlays to use for all casings unless overridden below.
