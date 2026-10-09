@@ -51,9 +51,7 @@ Modpack and resource pack developers should have a look at [docs/README.md](docs
 ## Credits and license
 
 This fork is based on [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization) by Azerococo
-and Technici4n: the design, the code and most of the assets are theirs. Thanks also to GregoriusT for the original
-GregTech textures, Falkory for redoing many textures, Spool for some of the crafting component textures, and
-VirtualLilith for the rotary blade texture.
+and Technici4n: the design, the code and most of the assets are theirs.
 
 The code is under the MIT license and the assets are under CC0, see [LICENSE](LICENSE).
 
