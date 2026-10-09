@@ -27,30 +27,12 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Generates the Processing Table recipes: one machine casing plus two characterising items make a machine.
- *
- * <p>
- * This is the only way a machine is crafted. Every level a machine exists at gets its own recipe here, using the casing
- * of that level, so the ingredients a player needs depend on which level they are building.
- *
- * <p>
- * Everything in the table below is referenced through the game classes rather than through ids, so a rename is caught by
- * the compiler instead of producing a recipe that silently never matches. The ids only appear again in the generated
- * json, because that is what the game reads.
- */
 public class ProcessingTableRecipesProvider extends MIRecipesProvider {
-    /**
-     * A machine to craft, and the two items that characterise it.
-     */
     private record Family(String machine, String levels, ItemLike first, ItemLike second) {
     }
 
     private static final List<Family> FAMILIES = new ArrayList<>();
 
-    /**
-     * Levels a machine is registered at, in the same shape {@code SingleBlockCraftingMachines} uses.
-     */
     private static final String BRONZE_TO_IRIDIUM = "bronze_to_iridium";
     private static final String STEEL_TO_IRIDIUM = "steel_to_iridium";
     private static final String ELECTRIC_TO_IRIDIUM = "electric_to_iridium";
@@ -109,9 +91,6 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
                 .offerTo(consumer, "processing_table/processing_table");
     }
 
-    /**
-     * @return the levels a machine with this level list id is registered at
-     */
     private static List<MachineLevel> levelsOf(String levels) {
         return switch (levels) {
             case BRONZE_TO_IRIDIUM ->
@@ -126,18 +105,10 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         };
     }
 
-    /**
-     * The id prefix of a machine at {@code level}. Every level carries its own prefix, so "assembler" alone is never a
-     * machine id and the id of a variant always says which level it is.
-     */
     private static String prefixOf(MachineLevel level) {
         return level.getSerializedName() + "_";
     }
 
-    /**
-     * The block a machine of this level is built around: the material casing for the two steam levels, the machine hull
-     * for the electric ones.
-     */
     private static ItemLike casingOf(MachineLevel level) {
         return switch (level) {
             case BRONZE -> MIMaterials.BRONZE.getPart(MIParts.MACHINE_CASING);
@@ -150,16 +121,9 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         };
     }
 
-    /**
-     * Where the machine copies of the Processing Table recipes are written, relative to the recipe folder.
-     */
     public static final String MACHINE_RECIPE_FOLDER = "assembler_machine/";
 
-    /**
-     * Writes one recipe twice: once for the Processing Table, and once as an ordinary assembler recipe. The second copy
-     * is what lets an assembler build machines, and it is written in exactly the same shape as the assembler recipes
-     * that are converted from 3x3 crafting, so the assembler needs no special case to read it.
-     */
+
     private static void offer(RecipeOutput consumer, String path, ItemLike key, ItemLike first, ItemLike second, ResourceLocation result) {
         var recipe = new ProcessingTableRecipe(Ingredient.of(key), Ingredient.of(first), Ingredient.of(second), new ItemStack(lookupItem(result)));
         consumer.accept(MI.id(path), recipe, null);
@@ -174,22 +138,13 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
                 .offerTo(consumer, MACHINE_RECIPE_FOLDER + path.substring("processing_table/".length()));
     }
 
-    /**
-     * Enough energy that even a bronze machine, the weakest one, can run the adapter recipes.
-     */
     private static final int MACHINE_ADAPTER_ENERGY = 2;
-    /**
-     * Ten seconds by default, matching the pace of the other machine recipes.
-     */
     private static final int MACHINE_ADAPTER_DURATION = 200;
 
     private static Item item(Material material, PartKeyProvider part) {
         return material.getPart(part).asItem();
     }
 
-    /**
-     * Machine blocks are registered while the game starts and have no static field, so they can only be looked up by id.
-     */
     private static Item lookupItem(ResourceLocation id) {
         Item item = BuiltInRegistries.ITEM.get(id);
         if (item == Items.AIR) {
@@ -198,9 +153,6 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         return item;
     }
 
-    /**
-     * The id of an item, in the shape the json recipe builders take.
-     */
     private static String idOf(ItemLike item) {
         return BuiltInRegistries.ITEM.getKey(item.asItem()).toString();
     }
