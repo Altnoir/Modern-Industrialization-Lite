@@ -5,7 +5,7 @@ To add materials, you will need to use a startup script and the events in `MIMat
 
 Modern Industrialization uses a material system to determine the properties of items and
 blocks. Each material has a list of parts, each one associated to one and only one `PartKey`.
-Modern Industrialization will create the item/block and its texture automatically.
+Modern Industrialization will create the item/block automatically. Textures are hand drawn, see the [textures section](#textures).
 
 ## Add a Material
 
@@ -18,22 +18,22 @@ MIMaterialEvents.addMaterials(event => {
         builder => {
         builder
             .hardness("soft") // hardness controls the speed of some recipes, can be "soft", "average", "hard", "very_hard" (default is "average")
-            .materialSet("shiny") // controls the texture set used by the material, can be "metallic", "shiny", "stone", "dull" (default is "metallic")
+            .materialSet("shiny") // the set the material belongs to, can be "metallic", "shiny", "stone", "dull" (default is "metallic").
+            // it is only used to pick the template folder of generated barrel and coil textures, see the textures section
             // addParts adds the simple parts to the material ie, the one already defined in MI and that don't need more parameters
             .addParts("ingot", "nugget", "dust", "tiny_dust", "rod", "gear", "ring", "blade", "rotor", "coil", "plate", "bolt", "large_plate")
-            // add a part that doesn't exist in MI
-            // template texture goes in milite/extra_datagen_resources/assets/milite/textures/materialsets/common/long_rod.png
+            // add a part that doesn't exist in MI, its texture has to be drawn by hand
             .customRegularPart("Long Rod", "long_rod")
             .barrel("Super Barrel", "super_barrel", 69) // add a barrel with 69 stacks capacity and custom english name and path (both optional)
             .tank("Super Tank", "super_tank", 42) // add a tank same as above but for buckets capacity
-            .block("copper") // add a simple block with the "copper" texture (found in "textures/materialsets/blocks")
+            .block("copper") // add a simple storage block, its texture has to be drawn by hand
             .specialCasing("Super Zinc Casing", "super_zinc_casing", 8.0) // add a special casing with custom english name and path (both required)
             // and 8.0 blast resistance (also optional, default is 6.0)
             .machineCasing(8.0) // same as above but for machine casings but the custom name and path are optional
             .pipeCasing(8.0) // add a pipe casing, only blast resistance can be specified
             .battery(5000000) // add a battery with 5M FE capacity for the Portable Storage Unit
             .ore({
-                "ore_set": "copper", // texture set, same principle as for blocks (found in "textures/materialsets/ores")
+                "ore_set": "copper", // texture set, same principle as for blocks
                 "generate": true, // does the ore generate in the world? (default: true)
                 // these generation parameters are only required if generate is true
                 "vein_size": 8, // the vein size
@@ -47,7 +47,8 @@ MIMaterialEvents.addMaterials(event => {
                  */
             }) // }, "minecraft:tuff") a second optional string parameter can be passed to dictate what stone type the ore is made of.
             // default behavior will create stone and deepslate ores
-            .rawMetal("copper") // add a raw metal with the "copper" texture (found in "textures/materialsets/raw"), same principle as for blocks
+            .rawMetal("copper") // add a raw metal. The raw block is generated from the background of the given set
+            // (see the textures section), the raw item has to be drawn by hand
             // as for ore, a second boolean optional parameter can be passed to only add the raw ore block if true or the raw ore item if false
             // default is to add both, equivalent to .rawMetal("copper", true).rawMetal("copper", false)
             .defaultRecipes() // add the default recipes for the material (crafting, smelting and machines)
@@ -83,6 +84,23 @@ MIMaterialEvents.addMaterials(event => {
 });
 
 ```
+
+## Textures
+
+Almost every texture is hand drawn. A part is textured by
+`assets/milite/textures/item/<material>_<part>.png` and a block by
+`assets/milite/textures/block/<material>_<part>.png`, so a new material needs new art, shipped in a
+resource pack. Generated resources are loaded in front of resource packs, so anything that is
+generated wins over your art.
+
+Only the textures that cannot be baked into a static image are generated from a template in
+`assets/milite/textures/materialsets`:
+- the raw metal block, which is the hand drawn raw shape over the stone background of the set the
+  material uses (`materialsets/raw/<set>_block.png`)
+- the side and the top of barrels and coils that have no art of their own
+  (`materialsets/<set>/<part>_side.png` and `_top.png`, falling back to `materialsets/common/`)
+
+There is no template folder for plates, gears, ingots, blocks, ores or gems anymore.
 
 ## Modify a Material
 

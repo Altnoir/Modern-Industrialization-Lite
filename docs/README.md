@@ -41,11 +41,12 @@ However, files can be placed in the `milite/extra_datagen_resources` folder if t
 and they take precedence over the files in the MI jar.
 At the moment, this only works for textures.
 Here are some examples to get you started:
-- Placing a texture in `milite/extra_datagen_resources/assets/milite/textures/materialsets/common/plate.png`
-  will change the template used for most plates.
+- Barrels and coils draw their side and their top from a template, so placing
+  `milite/extra_datagen_resources/assets/milite/textures/materialsets/common/barrel_side.png` changes the template
+  used for every barrel that has no hand drawn art.
 - Nothing is generated for a texture that already exists, so placing
-  `assets/milite/textures/item/aluminum_plate.png` in the extra resources folder keeps the aluminium plate texture
-  out of the generated resources, and the texture from your own resource pack is used instead.
+  `assets/milite/textures/block/raw_antimony_block.png` in the extra resources folder keeps the antimony raw block
+  texture out of the generated resources, and the texture from your own resource pack is used instead.
 - Refer to the contents of the MI .jar for more details on the file structure.
 
 ### Adding content

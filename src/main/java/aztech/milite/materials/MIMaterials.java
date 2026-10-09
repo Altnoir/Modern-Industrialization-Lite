@@ -90,31 +90,6 @@ public class MIMaterials {
         // init static
     }
 
-    public static final String commonPath = "milite:textures/materialsets/common/";
-    public static final String templatePath = "milite:textures/template/";
-    public static final String mcPath = "minecraft:textures/item/";
-    public static final String miPath = "milite:textures/item/";
-
-    public static String common(String name) {
-        return commonPath + name + ".png";
-    }
-
-    public static String common(PartKeyProvider part) {
-        return common(part.key().key);
-    }
-
-    public static String mcitem(String name) {
-        return mcPath + name + ".png";
-    }
-
-    public static String miitem(String name) {
-        return miPath + name + ".png";
-    }
-
-    public static String template(String name) {
-        return templatePath + name + ".png";
-    }
-
     public static MaterialBuilder addVanillaMetal(boolean nugget, MaterialBuilder builder) {
         String n = builder.getMaterialName();
         MaterialBuilder res = builder.addMaterialItemParts(MaterialItemPart.external(INGOT, "#c:ingots/" + n, "minecraft:" + n + "_ingot"))
