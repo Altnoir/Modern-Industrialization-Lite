@@ -90,7 +90,6 @@ public class SteamHeaterComponent extends TemperatureComponent {
         return tryMakeSteam(new MIFluidStorage(input), new MIFluidStorage(output), water, steam, fePerSteamMb);
     }
 
-    // Return true if any steam was made.
     private double tryMakeSteam(MIFluidStorage input, MIFluidStorage output, Fluid water, Fluid steam, int fePerSteamMb) {
         FluidVariant waterKey = FluidVariant.of(water);
         FluidVariant steamKey = FluidVariant.of(steam);
