@@ -8,7 +8,7 @@ item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # 電動高炉
@@ -25,7 +25,7 @@ item_ids:
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-アルミニウムエネルギー搬入ハッチは最大128 RF/tを搬入でき、電動高炉に大量のエネルギーが必要な場合に役立つ！
+アルミニウム合金エネルギー搬入ハッチは最大128 RF/tを搬入でき、電動高炉に大量のエネルギーが必要な場合に役立つ！
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

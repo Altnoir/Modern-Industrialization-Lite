@@ -16,7 +16,7 @@ public class HatchRecipesProvider extends MIRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
-        String[] casings = { "bronze", "steel", "electric", "aluminum", "stainless_steel", "titanium", "iridium" };
+        String[] casings = { "bronze", "steel", "electric", "aluminum_alloy", "stainless_steel", "titanium", "iridium" };
         String[] tanks = { "bronze", "steel", "", "aluminum", "stainless_steel", "titanium", "" };
         // MI Lite has no cables, so energy hatches are crafted with the wire of the same material.
         String[] wires = { "", "", "tin", "electrum", "aluminum", "annealed_copper", "superconductor" };

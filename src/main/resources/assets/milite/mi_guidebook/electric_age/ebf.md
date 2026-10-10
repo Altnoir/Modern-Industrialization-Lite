@@ -12,7 +12,7 @@ item_ids:
   - milite:kanthal_coil
   - milite:superconductor_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # Electric Blast Furnace
@@ -37,7 +37,7 @@ Don't forget to add Energy Input Hatch(es) or the EBF won't have energy! An Elec
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-Aluminum Energy Input Hatches move up to 128 RF/t, which can be useful if you need a ton of energy for your EBF!
+Aluminum Alloy Energy Input Hatches move up to 128 RF/t, which can be useful if you need a ton of energy for your EBF!
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

@@ -149,8 +149,8 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var electricQuarry = createBasic(consumer, "electric_quarry", electronicCircuit, AdvancementType.CHALLENGE, "Resource Goes BRRRRRR!!!", "Craft an Electric Quarry", existingFileHelper);
         var oilDrillingRig = createBasic(consumer, "oil_drilling_rig", electronicCircuit, AdvancementType.GOAL, "Bringing Freedom To Your Country", "Craft an Oil Drilling Rig", existingFileHelper);
         var vacuumFreezer = createBasic(consumer, "vacuum_freezer", electronicCircuit, AdvancementType.GOAL, "Enslaved Winter", "Craft a Vacuum Freezer", existingFileHelper);
-        var mvSteamTurbine = createBasic(consumer, "aluminum_steam_turbine", electronicCircuit, AdvancementType.GOAL, "Better Than Wind Mills", "Craft an Aluminum Steam Turbine", existingFileHelper);
-        var dieselGenerator = createBasic(consumer, "aluminum_diesel_generator", distillery, "Fast and Furious", "Craft an Aluminum Diesel Generator", existingFileHelper);
+        var mvSteamTurbine = createBasic(consumer, "aluminum_alloy_steam_turbine", electronicCircuit, AdvancementType.GOAL, "Better Than Wind Mills", "Craft an Aluminum Alloy Steam Turbine", existingFileHelper);
+        var dieselGenerator = createBasic(consumer, "aluminum_alloy_diesel_generator", distillery, "Fast and Furious", "Craft an Aluminum Alloy Diesel Generator", existingFileHelper);
         var digitalCircuit = createBasic(consumer, "digital_circuit", distillery, "No need for Sodium anymore", "Craft a Digital Circuit", existingFileHelper);
         var turboDieselGenerator = createBasic(consumer, "stainless_steel_diesel_generator", dieselGenerator, "Fast and Furious 2: Revenge", "Craft a Stainless Steel Diesel Generator", existingFileHelper);
         var largeDieselGenerator = createBasic(consumer, "large_diesel_generator", turboDieselGenerator, "Fast and Furious 42: Armageddon", "Craft a Large Diesel Generator", existingFileHelper);

@@ -24,7 +24,7 @@ public enum MachineLevel implements StringRepresentable {
     BRONZE("bronze", 1),
     STEEL("steel", 2),
     ELECTRIC("electric", 4),
-    ALUMINUM("aluminum", 8),
+    ALUMINUM("aluminum_alloy", 8),
     STAINLESS_STEEL("stainless_steel", 16),
     TITANIUM("titanium", 32),
     IRIDIUM("iridium", 64);

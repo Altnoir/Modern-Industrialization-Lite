@@ -32,7 +32,7 @@ import java.util.Objects;
  */
 public final class CableTier implements Comparable<CableTier> {
     public static CableTier ELECTRIC = new CableTier("electric", "Electric", "Low Voltage", 32, null);
-    public static CableTier ALUMINUM = new CableTier("aluminum", "Aluminum", "Medium Voltage", 128,
+    public static CableTier ALUMINUM = new CableTier("aluminum_alloy", "Aluminum Alloy", "Medium Voltage", 128,
             MIBlockKeys.ALUMINUM_MACHINE_HULL);
     public static CableTier STAINLESS_STEEL = new CableTier("stainless_steel", "Stainless Steel", "High Voltage", 1024,
             MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL);
@@ -119,8 +119,8 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     private final static Map<String, CableTier> tiers = new HashMap<>();
-    private final static Map<String, String> LEGACY_NAMES = Map.of("lv", "electric", "mv", "aluminum", "hv",
-            "stainless_steel", "ev", "titanium", "superconductor", "iridium");
+    private final static Map<String, String> LEGACY_NAMES = Map.of("lv", "electric", "mv", "aluminum_alloy", "aluminum",
+            "aluminum_alloy", "hv", "stainless_steel", "ev", "titanium", "superconductor", "iridium");
 
     /**
      * @return The largest base FE/t of all registered tiers, used to cap machine buffers.

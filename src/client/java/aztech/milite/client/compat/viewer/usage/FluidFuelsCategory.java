@@ -25,7 +25,7 @@ public class FluidFuelsCategory extends ViewerCategory<Fluid> {
 
     @Override
     public void buildWorkstations(WorkstationConsumer consumer) {
-        consumer.accept("electric_diesel_generator", "aluminum_diesel_generator", "stainless_steel_diesel_generator", "large_diesel_generator", "large_steam_boiler",
+        consumer.accept("electric_diesel_generator", "aluminum_alloy_diesel_generator", "stainless_steel_diesel_generator", "large_diesel_generator", "large_steam_boiler",
                 "advanced_large_steam_boiler",
                 "high_pressure_large_steam_boiler",
                 "high_pressure_advanced_large_steam_boiler");

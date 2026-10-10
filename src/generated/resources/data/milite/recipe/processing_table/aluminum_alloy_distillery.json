@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:large_pump"
+  },
+  "key": {
+    "item": "milite:aluminum_alloy_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_alloy_distillery"
+  },
+  "second": {
+    "item": "milite:cupronickel_plate"
+  }
+}

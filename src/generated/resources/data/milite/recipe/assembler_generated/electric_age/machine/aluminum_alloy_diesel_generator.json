@@ -1,0 +1,34 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_alloy_machine_hull"
+    },
+    {
+      "amount": 2,
+      "item": "milite:large_pump"
+    },
+    {
+      "amount": 2,
+      "tag": "c:gears/aluminum"
+    },
+    {
+      "amount": 3,
+      "item": "milite:electrum_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electronic_circuit"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:aluminum_alloy_diesel_generator"
+    }
+  ],
+  "level": "electric"
+}

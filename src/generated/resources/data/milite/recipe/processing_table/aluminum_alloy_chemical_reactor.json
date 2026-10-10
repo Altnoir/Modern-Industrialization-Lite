@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:aluminum_rotor"
+  },
+  "key": {
+    "item": "milite:aluminum_alloy_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_alloy_chemical_reactor"
+  },
+  "second": {
+    "item": "milite:aluminum_tank"
+  }
+}

@@ -29,13 +29,13 @@ public class MultiblockHatches {
 
     public static final HatchPair<ItemHatch> BRONZE_ITEM = registerItemHatches("Bronze", "bronze", MachineCasings.BRONZE, 1, 1, 80, 40);
     public static final HatchPair<ItemHatch> STEEL_ITEM = registerItemHatches("Steel", "steel", MachineCasings.STEEL, 2, 1, 80, 30);
-    public static final HatchPair<ItemHatch> ALUMINUM_ITEM = registerItemHatches("Aluminum", "aluminum", CableTier.ALUMINUM.casing, 2, 2, 71, 30);
+    public static final HatchPair<ItemHatch> ALUMINUM_ITEM = registerItemHatches("Aluminum Alloy", "aluminum_alloy", CableTier.ALUMINUM.casing, 2, 2, 71, 30);
     public static final HatchPair<ItemHatch> STAINLESS_STEEL_ITEM = registerItemHatches("Stainless Steel", "stainless_steel", CableTier.STAINLESS_STEEL.casing, 3, 3, 62, 21);
     public static final HatchPair<ItemHatch> TITANIUM_ITEM = registerItemHatches("Titanium", "titanium", CableTier.TITANIUM.casing, 3, 5, 44, 18);
 
     public static final HatchPair<FluidHatch> BRONZE_FLUID = registerFluidHatches("Bronze", "bronze", MachineCasings.BRONZE, 4);
     public static final HatchPair<FluidHatch> STEEL_FLUID = registerFluidHatches("Steel", "steel", MachineCasings.STEEL, 16);
-    public static final HatchPair<FluidHatch> ALUMINUM_FLUID = registerFluidHatches("Aluminum", "aluminum", CableTier.ALUMINUM.casing, 64);
+    public static final HatchPair<FluidHatch> ALUMINUM_FLUID = registerFluidHatches("Aluminum Alloy", "aluminum_alloy", CableTier.ALUMINUM.casing, 64);
     public static final HatchPair<FluidHatch> STAINLESS_STEEL_FLUID = registerFluidHatches("Stainless Steel", "stainless_steel", CableTier.STAINLESS_STEEL.casing, 256);
     public static final HatchPair<FluidHatch> TITANIUM_FLUID = registerFluidHatches("Titanium", "titanium", CableTier.TITANIUM.casing, 1024);
 

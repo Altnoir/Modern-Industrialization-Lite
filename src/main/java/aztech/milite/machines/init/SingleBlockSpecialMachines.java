@@ -39,8 +39,8 @@ public class SingleBlockSpecialMachines {
                         FluidItemConsumerComponent.ofFluidFuels(64, 2)),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
 
-        MachineRegistrationHelper.registerMachine("Aluminum Diesel Generator", "aluminum_diesel_generator",
-                bet -> new GeneratorMachineBlockEntity(bet, "aluminum_diesel_generator", false,
+        MachineRegistrationHelper.registerMachine("Aluminum Alloy Diesel Generator", "aluminum_alloy_diesel_generator",
+                bet -> new GeneratorMachineBlockEntity(bet, "aluminum_alloy_diesel_generator", false,
                         CableTier.ALUMINUM, 12000, 32000,
                         FluidItemConsumerComponent.ofFluidFuels(256, 2)),
                 MachineBlockEntity::registerFluidApi, GeneratorMachineBlockEntity::registerEnergyApi);
@@ -64,7 +64,7 @@ public class SingleBlockSpecialMachines {
         MachineRegistrationHelper.addMachineModel("bronze_boiler", "boiler", MachineCasings.BRICKED_BRONZE, true, false, false);
         MachineRegistrationHelper.addMachineModel("steel_boiler", "boiler", MachineCasings.BRICKED_STEEL, true, false, false);
         addDieselGeneratorModel("electric_diesel_generator", CableTier.ELECTRIC.casing);
-        addDieselGeneratorModel("aluminum_diesel_generator", CableTier.ALUMINUM.casing);
+        addDieselGeneratorModel("aluminum_alloy_diesel_generator", CableTier.ALUMINUM.casing);
         addDieselGeneratorModel("stainless_steel_diesel_generator", CableTier.STAINLESS_STEEL.casing);
         MachineRegistrationHelper.addMachineModel("configurable_chest", "", MachineCasings.STEEL_CRATE, false, false, false, false);
         MachineRegistrationHelper.addMachineModel("configurable_tank", "", MachineCasings.CONFIGURABLE_TANK, false, false, false, false);

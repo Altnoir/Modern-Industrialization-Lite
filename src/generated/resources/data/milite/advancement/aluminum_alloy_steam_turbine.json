@@ -1,0 +1,34 @@
+{
+  "parent": "milite:electronic_circuit",
+  "criteria": {
+    "checkInv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "milite:aluminum_alloy_steam_turbine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.milite.aluminum_alloy_steam_turbine.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "milite:aluminum_alloy_steam_turbine"
+    },
+    "title": {
+      "translate": "advancements.milite.aluminum_alloy_steam_turbine"
+    }
+  },
+  "requirements": [
+    [
+      "checkInv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

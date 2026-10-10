@@ -41,7 +41,7 @@ public class MachineCasings {
     public static final MachineCasing FROSTPROOF = createBlockImitation(MI.id("frostproof_machine_casing"),
             () -> MIMaterials.ALUMINUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing ALUMINUM_ALLOY = createBlockImitation(MI.id("aluminum_alloy_machine_casing"),
-            () -> MIMaterials.ALUMINUM_ALLOY.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
+            () -> MIMaterials.ALUMINUM.getPart(MIParts.MACHINE_CASING).asBlock());
     public static final MachineCasing HEATPROOF = createBlockImitation(MI.id("heatproof_machine_casing"),
             () -> MIMaterials.INVAR.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL = createBlockImitation(MI.id("steel"), () -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING).asBlock());

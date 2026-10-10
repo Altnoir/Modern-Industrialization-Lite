@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "进阶机器"
-  icon: "milite:aluminum_machine_hull"
+  icon: "milite:aluminum_alloy_machine_hull"
   position: 107
   parent: milite:electric_age.md
 item_ids:

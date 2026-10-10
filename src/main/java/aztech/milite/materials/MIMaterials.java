@@ -304,7 +304,8 @@ public class MIMaterials {
                         .set(MaterialProperty.SET, METALLIC)
                         .set(MaterialProperty.MEAN_RGB, 0x3fcaff)
                         .addParts(BOLT, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
-                        .addParts(WIRE).addParts(BLOCK.of(MaterialBlockSet.GOLD)).addParts(MACHINE_CASING.of())
+                        .addParts(WIRE).addParts(BLOCK.of(MaterialBlockSet.GOLD))
+                        .addParts(MACHINE_CASING.of("Aluminum Alloy Machine Casing", "aluminum_alloy_machine_casing"))
                         .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing")).addParts(TANK.of(64))
                         .addParts(BARREL.of(512)).addRecipes(StandardRecipes::apply)
                         .addRecipes(SmeltingRecipes::applyBlastFurnace));
@@ -315,7 +316,6 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0x699fc9)
                         .set(MaterialProperty.HARDNESS, HARD)
                         .addParts(BOLT, RING, GEAR, ROD, DUST, INGOT, LARGE_PLATE, PLATE, TINY_DUST)
-                        .addParts(MACHINE_CASING_SPECIAL.of("Aluminum Alloy Machine Casing", "aluminum_alloy_machine_casing"))
                         .addRecipes(StandardRecipes::apply)
                         .addRecipes(SmeltingRecipes::applyBlastFurnace));
 

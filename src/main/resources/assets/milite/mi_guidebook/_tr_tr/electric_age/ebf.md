@@ -8,7 +8,7 @@ item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # Elektrikli Maden Eritme Ocağı
@@ -25,7 +25,7 @@ Enerji Giriş Kapakları eklemeyi unutmayın, aksi takdirde EMEO enerjisiz kalı
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-Alüminyum Enerji Giriş Kapakları 128 RF/t'ye kadar aktarır, bu da EMEO'nuz için bir ton enerjiye ihtiyacınız varsa yararlı olabilir!
+Alüminyum Alaşımı Enerji Giriş Kapakları 128 RF/t'ye kadar aktarır, bu da EMEO'nuz için bir ton enerjiye ihtiyacınız varsa yararlı olabilir!
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

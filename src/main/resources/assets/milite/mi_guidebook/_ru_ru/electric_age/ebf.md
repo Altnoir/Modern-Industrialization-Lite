@@ -8,7 +8,7 @@ item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # Электрическая доменная печь
@@ -25,7 +25,7 @@ item_ids:
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-Алюминиевые энергетические шлюзы ввода передают до 128 RF/т, что может быть полезно, если вам требуется тонна энергии для вашей ЭДП!
+Энергетические шлюзы ввода из алюминиевого сплава передают до 128 RF/т, что может быть полезно, если вам требуется тонна энергии для вашей ЭДП!
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

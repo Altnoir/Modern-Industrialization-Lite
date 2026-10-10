@@ -8,7 +8,7 @@ item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # 전기 용광로
@@ -25,7 +25,7 @@ item_ids:
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-알루미늄 에너지 반입 해치는 최대 128 RF/t까지 공급합니다. 전기 용광로에 많은 에너지를 공급하고 싶다면 유용할 것입니다!
+알루미늄 합금 에너지 반입 해치는 최대 128 RF/t까지 공급합니다. 전기 용광로에 많은 에너지를 공급하고 싶다면 유용할 것입니다!
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

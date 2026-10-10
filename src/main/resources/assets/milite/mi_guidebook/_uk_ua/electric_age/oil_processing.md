@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:aluminum_diesel_generator
+  - milite:aluminum_alloy_diesel_generator
 ---
 
 # Переробка нафти
@@ -25,7 +25,7 @@ item_ids:
 
 У дизельному генераторі можна спалювати різні види палива, і ви можете перевірити в REI, скількиRF виробляє кожне паливо. Дизельний генератор вироблятиме до 256 RF/т.
 
-<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
 
 Дизельні генератори використовуватимуть паливо лише тоді, коли їм це необхідно, але якщо вам потрібна постійна подача енергії, ви можете додати рідке паливо у великий паровий котел замість предметів.
 

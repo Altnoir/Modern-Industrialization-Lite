@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
  */
 public class MIBlockKeys {
     public static final ResourceKey<Block> ELECTRIC_MACHINE_HULL = block("electric_machine_hull");
-    public static final ResourceKey<Block> ALUMINUM_MACHINE_HULL = block("aluminum_machine_hull");
+    public static final ResourceKey<Block> ALUMINUM_MACHINE_HULL = block("aluminum_alloy_machine_hull");
     public static final ResourceKey<Block> STAINLESS_STEEL_MACHINE_HULL = block("stainless_steel_machine_hull");
     public static final ResourceKey<Block> TITANIUM_MACHINE_HULL = block("titanium_machine_hull");
     public static final ResourceKey<Block> IRIDIUM_MACHINE_HULL = block("iridium_machine_hull");

@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:aluminum_diesel_generator
+  - milite:aluminum_alloy_diesel_generator
 ---
 
 # Processamento de Petróleo
@@ -25,7 +25,7 @@ O Petróleo Bruto pode ser transformado em vários combustíveis e usado para um
 
 Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantos RF cada combustível produz. O Gerador a Diesel produzirá até 256 RF/t.
 
-<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
 
 Os Geradores a Diesel só usarão combustível quando precisarem, mas se você precisar de um suprimento constante de energia, pode colocar combustíveis líquidos na Caldeira de Vapor Grande em vez de itens.
 

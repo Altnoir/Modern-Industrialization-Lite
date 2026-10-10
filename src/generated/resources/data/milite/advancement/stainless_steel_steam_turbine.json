@@ -1,5 +1,5 @@
 {
-  "parent": "milite:aluminum_steam_turbine",
+  "parent": "milite:aluminum_alloy_steam_turbine",
   "criteria": {
     "checkInv": {
       "conditions": {

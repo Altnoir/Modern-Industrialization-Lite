@@ -12,7 +12,7 @@ item_ids:
   - milite:kanthal_coil
   - milite:superconductor_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # 电力高炉
@@ -37,7 +37,7 @@ item_ids:
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-铝能量输入仓最多传输128 RF/t，如果你的电力高炉需要大量能量，这会非常有用！
+铝合金能量输入仓最多传输128 RF/t，如果你的电力高炉需要大量能量，这会非常有用！
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

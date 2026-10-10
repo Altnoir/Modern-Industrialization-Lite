@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "발전된 기계들"
-  icon: "milite:aluminum_machine_hull"
+  icon: "milite:aluminum_alloy_machine_hull"
   position: 106
   parent: milite:electric_age.md
 item_ids:

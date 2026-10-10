@@ -92,7 +92,7 @@ public class MachineRegistrationHelper {
             "steam_blast_furnace", List.of("bronze_boiler", "large_steam_boiler", "advanced_large_steam_boiler"),
             "steel_boiler", List.of("steam_quarry"),
             "steel_wiremill", List.of("large_tank"),
-            "aluminum_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
+            "aluminum_alloy_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
             "stainless_steel_distillery", List.of("distillation_tower"),
             "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
             "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",

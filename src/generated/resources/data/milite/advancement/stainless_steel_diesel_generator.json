@@ -1,5 +1,5 @@
 {
-  "parent": "milite:aluminum_diesel_generator",
+  "parent": "milite:aluminum_alloy_diesel_generator",
   "criteria": {
     "checkInv": {
       "conditions": {

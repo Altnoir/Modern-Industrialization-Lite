@@ -73,7 +73,7 @@ public class MIBlock {
     // level rather than with the odds and ends.
     public static final BlockDefinition<Block> ELECTRIC_MACHINE_HULL = machineHull("Electric Machine Hull",
             MIBlockKeys.ELECTRIC_MACHINE_HULL.location().getPath(), MachineLevel.ELECTRIC);
-    public static final BlockDefinition<Block> ALUMINUM_MACHINE_HULL = machineHull("Aluminum Machine Hull",
+    public static final BlockDefinition<Block> ALUMINUM_MACHINE_HULL = machineHull("Aluminum Alloy Machine Hull",
             MIBlockKeys.ALUMINUM_MACHINE_HULL.location().getPath(), MachineLevel.ALUMINUM);
     public static final BlockDefinition<Block> STAINLESS_STEEL_MACHINE_HULL = machineHull("Stainless Steel Machine Hull",
             MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL.location().getPath(), MachineLevel.STAINLESS_STEEL);

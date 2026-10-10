@@ -8,7 +8,7 @@ item_ids:
   - milite:electric_blast_furnace
   - milite:cupronickel_coil
   - milite:electric_energy_input_hatch
-  - milite:aluminum_energy_input_hatch
+  - milite:aluminum_alloy_energy_input_hatch
 ---
 
 # Alto-forno Elétrico
@@ -29,7 +29,7 @@ Não esqueça de adicionar Escotilha(s) de Entrada de Energia ou o EBF não ter�
 
 <Recipe id="milite:hatches/electric/energy_input_hatch" />
 
-Escotilhas de Entrada de Energia de Alumínio movem até 128 RF/t, o que pode ser útil se você precisar de muita energia para o seu EBF!
+Escotilhas de Entrada de Energia de Liga de Alumínio movem até 128 RF/t, o que pode ser útil se você precisar de muita energia para o seu EBF!
 
-<Recipe id="milite:hatches/aluminum/energy_input_hatch" />
+<Recipe id="milite:hatches/aluminum_alloy/energy_input_hatch" />
 

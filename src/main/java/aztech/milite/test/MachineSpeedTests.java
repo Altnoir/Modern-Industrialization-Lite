@@ -45,7 +45,7 @@ public class MachineSpeedTests {
     public void higherLevelsCraftFasterForTheSameFePerCraft(MIGameTestHelper helper) {
         List<Run> runs = new ArrayList<>();
         runs.add(start(helper, new BlockPos(0, 2, 0), "electric_macerator", false));
-        runs.add(start(helper, new BlockPos(1, 2, 0), "aluminum_macerator", false));
+        runs.add(start(helper, new BlockPos(1, 2, 0), "aluminum_alloy_macerator", false));
         runs.add(start(helper, new BlockPos(2, 2, 0), "stainless_steel_macerator", false));
         runs.add(start(helper, new BlockPos(3, 2, 0), "titanium_macerator", false));
         runs.add(start(helper, new BlockPos(4, 2, 0), "iridium_macerator", false));
@@ -54,9 +54,9 @@ public class MachineSpeedTests {
                 .thenIdle(MEASURE_TICKS)
                 .thenExecute(() -> {
                     // A craft takes a whole number of ticks, so a level whose draw does not divide the 200 FE of a craft
-                    // rounds up: 13 ticks for aluminum, 7 for stainless steel, 4 for titanium and 2 for iridium.
+                    // rounds up: 13 ticks for aluminum alloy, 7 for stainless steel, 4 for titanium and 2 for iridium.
                     assertCrafts(helper, runs.get(0), 16L, "electric", ELECTRIC_SPEED);
-                    assertCrafts(helper, runs.get(1), 30L, "aluminum", 8);
+                    assertCrafts(helper, runs.get(1), 30L, "aluminum alloy", 8);
                     assertCrafts(helper, runs.get(2), 57L, "stainless steel", 16);
                     assertCrafts(helper, runs.get(3), 100L, "titanium", 32);
                     assertCrafts(helper, runs.get(4), 200L, "iridium", 64);

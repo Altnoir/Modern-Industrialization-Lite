@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:oil_drilling_rig
-  - milite:aluminum_diesel_generator
+  - milite:aluminum_alloy_diesel_generator
 ---
 
 # Petrol İşleme
@@ -21,7 +21,7 @@ Ham Petrol çeşitli yakıtlara dönüştürülebilir ve daha verimli Kauçuk Le
 
 Dizel Jeneratörde çeşitli yakıtlar yakılabilir ve REI'de her yakıtın kaçRF ürettiğini kontrol edebilirsiniz. Dizel Jeneratör 256 RF/t'ye kadar üretecek.
 
-<Recipe id="milite:electric_age/machine/aluminum_diesel_generator_asbl" />
+<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
 
 Dizel Jeneratörler yalnızca ihtiyaç duyduklarında yakıt kullanır, ancak sürekli bir enerji kaynağına ihtiyacınız varsa, eşyalar yerine Büyük Buhar Kazanına sıvı yakıtlar koyabilirsiniz.
 
