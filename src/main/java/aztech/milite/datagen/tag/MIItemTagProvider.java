@@ -74,10 +74,10 @@ public class MIItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.DURABILITY_ENCHANTABLE).add(MIItem.IRON_HAMMER.asItem(), MIItem.STEEL_HAMMER.asItem(), MIItem.DIAMOND_HAMMER.asItem(),
                 MIItem.NETHERITE_HAMMER.asItem());
 
-        tag(ItemTags.HEAD_ARMOR).add(MIItem.RUBBER_HELMET.asItem(), MIItem.QUANTUM_HELMET.asItem());
+        tag(ItemTags.HEAD_ARMOR).add(MIItem.QUANTUM_HELMET.asItem());
         tag(ItemTags.CHEST_ARMOR).add(MIItem.QUANTUM_CHESTPLATE.asItem());
         tag(ItemTags.LEG_ARMOR).add(MIItem.QUANTUM_LEGGINGS.asItem());
-        tag(ItemTags.FOOT_ARMOR).add(MIItem.RUBBER_BOOTS.asItem(), MIItem.QUANTUM_BOOTS.asItem());
+        tag(ItemTags.FOOT_ARMOR).add(MIItem.QUANTUM_BOOTS.asItem());
 
         tag(ItemTags.COALS).add(ResourceKey.create(Registries.ITEM, MI.id("lignite_coal")));
     }

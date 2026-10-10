@@ -6,25 +6,17 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:diesel_jetpack
-  - milite:rubber_helmet
-  - milite:rubber_boots
   - milite:diesel_mining_drill
   - milite:diesel_chainsaw
 ---
 
 # Дизельный реактивный ранец и инструменты
 
-Реактивный ранец делает врум-врум... Чем мощнее топливо, тем быстрее реактивный ранец! Мы рекомендуем вместе с ранцем использовать резиновые сапоги и резиновый шлем...
+Реактивный ранец делает врум-врум... Чем мощнее топливо, тем быстрее реактивный ранец!
 
 Не забудьте активировать его с помощью сочетания клавиш *Toggle Flight*!
 
 <Recipe id="milite:armor/diesel_jetpack" />
-
-
-
-<Recipe id="milite:armor/rubber_helmet" />
-
-<Recipe id="milite:armor/rubber_boots" />
 
 Этот шахтёрский бур, наконец, сможет заменить ваши кирки и лопаты. Заполните его мощным топливом для максимальной скорости!
 

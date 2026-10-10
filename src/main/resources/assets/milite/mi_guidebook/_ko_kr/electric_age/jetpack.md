@@ -6,8 +6,6 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:diesel_jetpack
-  - milite:rubber_helmet
-  - milite:rubber_boots
   - milite:diesel_mining_drill
   - milite:diesel_chainsaw
 ---
@@ -15,17 +13,11 @@ item_ids:
 # 디젤 제트백, 그리고 각종 도구들
 
 제트팩이 부릉부릉.
-연료가 좋을수록, 제트팩은 빨라집니다. 고무 장화와 고무 투구를 쓰시는걸 추천드립니다...
+연료가 좋을수록, 제트팩은 빨라집니다.
 
 *비행 활성화* 키를 눌러 제트팩을 켜세요!
 
 <Recipe id="milite:armor/diesel_jetpack" />
-
-
-
-<Recipe id="milite:armor/rubber_helmet" />
-
-<Recipe id="milite:armor/rubber_boots" />
 
 디젤 채광 드릴이 있으면, 더 이상 삽과 곡괭이는 필요없습니다. 강력한 연료로 구동시켜서 속도를 최대한 높이세요!
 

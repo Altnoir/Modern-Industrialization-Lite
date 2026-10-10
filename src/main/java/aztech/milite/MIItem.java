@@ -9,7 +9,6 @@ import aztech.milite.guidebook.GuideBookItem;
 import aztech.milite.items.*;
 import aztech.milite.items.armor.GraviChestPlateItem;
 import aztech.milite.items.armor.JetpackItem;
-import aztech.milite.items.armor.MIArmorMaterials;
 import aztech.milite.items.armor.QuantumArmorItem;
 import aztech.milite.items.diesel_tools.DieselToolItem;
 import aztech.milite.items.tools.QuantumSword;
@@ -135,8 +134,6 @@ public final class MIItem {
                 });
             });
 
-    public static final ItemDefinition<ArmorItem> RUBBER_HELMET = item("Rubber Helmet", "rubber_helmet", s -> new ArmorItem(MIArmorMaterials.RUBBER, ArmorItem.Type.HELMET, s.stacksTo(1).durability(400)), ITEMS_ORDERED.next());
-    public static final ItemDefinition<ArmorItem> RUBBER_BOOTS = item("Rubber Boots", "rubber_boots", s -> new ArmorItem(MIArmorMaterials.RUBBER, ArmorItem.Type.BOOTS, s.stacksTo(1).durability(400)), ITEMS_ORDERED.next());
     public static final ItemDefinition<JetpackItem> DIESEL_JETPACK = item("Diesel Jetpack", "diesel_jetpack", JetpackItem::new, ITEMS_ORDERED.next())
             .withItemRegistrationEvent(item -> {
                 MICapabilities.onEvent(event -> {

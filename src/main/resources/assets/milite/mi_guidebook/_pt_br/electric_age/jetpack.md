@@ -6,25 +6,17 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:diesel_jetpack
-  - milite:rubber_helmet
-  - milite:rubber_boots
   - milite:diesel_mining_drill
   - milite:diesel_chainsaw
 ---
 
 # Jetpack a Diesel e Ferramentas
 
-Jetpack vai brrr... Quanto mais potente o combustível, mais rápido o jetpack! Recomendamos Botas de Borracha e um Capacete de Borracha...
+Jetpack vai brrr... Quanto mais potente o combustível, mais rápido o jetpack!
 
 Não esqueça de ativá-lo usando a tecla de *Alternar Voo*!
 
 <Recipe id="milite:armor/diesel_jetpack" />
-
-
-
-<Recipe id="milite:armor/rubber_helmet" />
-
-<Recipe id="milite:armor/rubber_boots" />
 
 Esta Broca de Mineração pode finalmente substituir suas Picaretas e Pás. Carregue-a com combustível potente para a melhor velocidade!
 

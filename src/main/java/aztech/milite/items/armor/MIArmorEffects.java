@@ -20,11 +20,11 @@ public class MIArmorEffects {
     }
 
     public static boolean canTankFlyIntoWall(ItemStack helmet) {
-        return helmet.getItem() == MIItem.RUBBER_HELMET.asItem() || helmet.getItem() == MIItem.QUANTUM_HELMET.asItem();
+        return helmet.getItem() == MIItem.QUANTUM_HELMET.asItem();
     }
 
     public static boolean canTankFall(ItemStack boots) {
-        return boots.getItem() == MIItem.RUBBER_BOOTS.asItem() || boots.getItem() == MIItem.QUANTUM_BOOTS.asItem();
+        return boots.getItem() == MIItem.QUANTUM_BOOTS.asItem();
     }
 
     public static void init() {

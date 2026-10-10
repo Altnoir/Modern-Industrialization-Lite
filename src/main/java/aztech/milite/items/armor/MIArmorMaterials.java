@@ -2,17 +2,12 @@ package aztech.milite.items.armor;
 
 import aztech.milite.MI;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.Util;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,18 +31,6 @@ public final class MIArmorMaterials {
             () -> {
                 throw new UnsupportedOperationException("Cannot repair GraviChestPlate");
             },
-            List.of(new ArmorMaterial.Layer(location)),
-            0,
-            0));
-    public static final Holder<ArmorMaterial> RUBBER = DR.register("rubber", location -> new ArmorMaterial(
-            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                for (var value : ArmorItem.Type.values()) {
-                    map.put(value, 1);
-                }
-            }),
-            10,
-            SoundEvents.ARMOR_EQUIP_GENERIC,
-            () -> Ingredient.of(BuiltInRegistries.ITEM.get(MI.id("rubber_sheet"))),
             List.of(new ArmorMaterial.Layer(location)),
             0,
             0));
