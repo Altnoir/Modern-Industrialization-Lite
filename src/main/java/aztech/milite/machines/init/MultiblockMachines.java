@@ -433,75 +433,20 @@ public class MultiblockMachines {
 
     private static void fusionReactor() {
         ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(CableTier.TITANIUM.casing);
-        int[][] shapeEdge = new int[][]{
-                {6, 1, 0, 0},
-                {4, 3, 0, 0},
-                {3, 3, 0, 0},
-                {2, 2, 0, 0},
-                {1, 2, 0, 0},
-                {1, 2, 0, 0},
-                {0, 2, 0, 0},
-        };
-
-
-        int[][] shapeCenter = new int[][]{
-                {5, 2, 0, 0},
-                {3, 2, 2, 0},
-                {2, 1, 2, 2},
-                {1, 1, 2, 1},
-                {1, 1, 1, 1},
-                {0, 1, 1, 1},
-                {0, 1, 1, 1}
-        };
-
+        // A square ring: a 15x15 ring of titanium hulls, with a ring of fusion chambers on the inside of its middle
+        // layer. The middle of each side is hatchable, for fluid and energy hatches.
+        HatchFlags flags = new HatchFlags.Builder().with(FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
         for (int y = -1; y <= 1; y++) {
+            for (int x = -7; x <= 7; x++) {
+                for (int z = 0; z <= 14; z++) {
+                    int ring = Math.max(Math.abs(x), Math.abs(z - 7));
+                    boolean hatchable = (x == 0 && (z == 0 || z == 14)) || (z == 7 && (x == -7 || x == 7));
 
-            int[][] shape = (y == 0) ? shapeCenter : shapeEdge;
-
-            for (int i = 0; i < 7; i++) {
-                int x = i + 1;
-
-                for (int k = 0; k < 4; k++) {
-                    int[] placement = shape[6 - i];
-                    int z0 = placement[0];
-                    int z1 = z0 + placement[1];
-                    int z2 = z1 + placement[2];
-                    int z3 = z2 + placement[3];
-                    for (int z = z0; z < z3; z++) {
-                        if (z < z1 || z >= z2) {
-                            fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
-                            fusionReactorShapeBuilder.add(-x, y, z, titaniumHull);
-                            fusionReactorShapeBuilder.add(x, y, 14 - z, titaniumHull);
-                            fusionReactorShapeBuilder.add(-x, y, 14 - z, titaniumHull);
-                        } else if (z >= z1) {
-                            fusionReactorShapeBuilder.add(x, y, z, fusionChamber);
-                            fusionReactorShapeBuilder.add(-x, y, z, fusionChamber);
-                            fusionReactorShapeBuilder.add(x, y, 14 - z, fusionChamber);
-                            fusionReactorShapeBuilder.add(-x, y, 14 - z, fusionChamber);
-                        }
+                    if (ring == 7) {
+                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull, hatchable ? flags : null);
+                    } else if (ring == 6 && y == 0) {
+                        fusionReactorShapeBuilder.add(x, y, z, fusionChamber);
                     }
-                }
-
-            }
-
-            HatchFlags flags = new HatchFlags.Builder().with(FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
-
-            for (int l = 0; l < ((y == 0) ? 3 : 2); l++) {
-                if (!(y == 0 && l == 1)) {
-
-                    HatchFlags currentFlag = l == 0 ? flags : null;
-
-                    if (l != 0 || y != 0) {
-                        fusionReactorShapeBuilder.add(0, y, l, titaniumHull, currentFlag);
-                    }
-                    fusionReactorShapeBuilder.add(0, y, 14 - l, titaniumHull, currentFlag);
-                    fusionReactorShapeBuilder.add(-7 + l, y, 7, titaniumHull, currentFlag);
-                    fusionReactorShapeBuilder.add(7 - l, y, 7, titaniumHull, currentFlag);
-                } else {
-                    fusionReactorShapeBuilder.add(0, y, l, fusionChamber);
-                    fusionReactorShapeBuilder.add(0, y, 14 - l, fusionChamber);
-                    fusionReactorShapeBuilder.add(-7 + l, y, 7, fusionChamber);
-                    fusionReactorShapeBuilder.add(7 - l, y, 7, fusionChamber);
                 }
             }
         }
