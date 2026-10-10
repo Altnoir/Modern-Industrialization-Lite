@@ -444,7 +444,7 @@ public class MultiblockMachines {
                         fusionReactorShapeBuilder.add(x, y, z, titaniumHull, hatchable ? flags : null);
                     } else if (ring == 4) {
                         fusionReactorShapeBuilder.add(x, y, z, y == 0 ? fusionChamber : titaniumHull);
-                    } else if (ring == 3 && y == 0) {
+                    } else if (ring == 3) {
                         fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
                     }
                 }
