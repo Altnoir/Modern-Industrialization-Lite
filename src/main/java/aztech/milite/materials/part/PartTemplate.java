@@ -1,13 +1,13 @@
 package aztech.milite.materials.part;
 
+import aztech.milite.MIBlock;
+import aztech.milite.MIItem;
 import aztech.milite.datagen.tag.TagsToGenerate;
 import aztech.milite.definition.ItemDefinition;
 import aztech.milite.items.SortOrder;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.materials.MaterialBuilder;
 import aztech.milite.materials.MaterialProgression;
-import aztech.milite.MIBlock;
-import aztech.milite.MIItem;
 import aztech.milite.util.TagHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
@@ -51,7 +51,7 @@ public class PartTemplate implements PartKeyProvider {
     }
 
     private PartTemplate(PartEnglishNameFormatter englishNameFormatter, PartKey key, Register register, TextureGenParams textureGenParams,
-            PartItemPathFormatter itemPathFormatter) {
+                         PartItemPathFormatter itemPathFormatter) {
         this.partKey = key;
         this.englishNameFormatter = englishNameFormatter;
         this.register = register;
@@ -126,8 +126,28 @@ public class PartTemplate implements PartKeyProvider {
         return sb.toString();
     }
 
+    /**
+     * The order the casing parts of a material are listed in, so the part that carries the character of a level is not
+     * pushed behind the plain casing of that level.
+     */
+    private static int materialPartOrder(String materialName, String part) {
+        List<String> order = switch (materialName) {
+            case "bronze", "stainless_steel" ->
+                    List.of("machine_casing_special", "machine_casing", "machine_casing_pipe");
+            case "aluminum" -> List.of("machine_casing_special", "machine_casing");
+            case "titanium", "iridium" -> List.of("machine_casing_special", "machine_casing_pipe", "machine_casing");
+            default -> List.of();
+        };
+        int index = order.indexOf(part);
+        return index < 0 ? order.size() : index;
+    }
+
+    public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel) {
+        return asBlock(sortOrder, textureGenParams, hardness, resistance, miningLevel, true);
+    }
+
     public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel,
-            boolean doAllowSpawn) {
+                                boolean doAllowSpawn) {
         Register blockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
 
             var blockParams = MIBlock.BlockDefinitionParams.defaultStone()
@@ -150,35 +170,6 @@ public class PartTemplate implements PartKeyProvider {
 
         };
         return new PartTemplate(englishNameFormatter, partKey, blockRegister, textureGenParams, itemPathFormatter);
-    }
-
-    public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel) {
-        return asBlock(sortOrder, textureGenParams, hardness, resistance, miningLevel, true);
-    }
-
-    public PartTemplate asColumnBlock(SortOrder sortOrder) {        Register columnBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
-
-            var blockDefinition = MIBlock.block(
-                    itemEnglishName,
-                    itemPath,
-                    MIBlock.BlockDefinitionParams.defaultStone()
-                            .clearTags()
-                            .addMoreTags(TagHelper.getMiningLevelTag(1))
-                            .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
-                            .withModel((block, gen) -> {
-                                String name = gen.name(block);
-                                gen.simpleBlockWithItem(block,
-                                        gen.models().cubeColumn(name, gen.blockTexture(name + "_side"), gen.blockTexture(name + "_top")));
-                            })
-                            .destroyTime(5.0f)
-                            .explosionResistance(6.0f)
-
-            );
-
-            setupTag(partContext, part, itemTag, blockDefinition);
-
-        };
-        return new PartTemplate(englishNameFormatter, partKey, columnBlockRegister, new TextureGenParams.ColumnBlock(), itemPathFormatter);
     }
 
     /**
@@ -287,21 +278,30 @@ public class PartTemplate implements PartKeyProvider {
                 .and(materialPartOrder(materialName, part.key)).and(rank);
     }
 
-    /**
-     * The order the casing parts of a material are listed in, so the part that carries the character of a level is not
-     * pushed behind the plain casing of that level.
-     */
-    private static int materialPartOrder(String materialName, String part) {
-        List<String> order = switch (materialName) {
-            case "bronze", "stainless_steel" ->
-                List.of("machine_casing_special", "machine_casing", "machine_casing_pipe");
-            case "aluminum" -> List.of("machine_casing_special", "machine_casing");
-            case "titanium" -> List.of("machine_casing_special", "machine_casing_pipe", "machine_casing");
-            case "iridium" -> List.of("machine_casing_pipe", "machine_casing_special", "machine_casing");
-            default -> List.of();
+    public PartTemplate asColumnBlock(SortOrder sortOrder) {
+        Register columnBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
+
+            var blockDefinition = MIBlock.block(
+                    itemEnglishName,
+                    itemPath,
+                    MIBlock.BlockDefinitionParams.defaultStone()
+                            .clearTags()
+                            .addMoreTags(TagHelper.getMiningLevelTag(1))
+                            .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
+                            .withModel((block, gen) -> {
+                                String name = gen.name(block);
+                                gen.simpleBlockWithItem(block,
+                                        gen.models().cubeColumn(name, gen.blockTexture(name + "_side"), gen.blockTexture(name + "_top")));
+                            })
+                            .destroyTime(5.0f)
+                            .explosionResistance(6.0f)
+
+            );
+
+            setupTag(partContext, part, itemTag, blockDefinition);
+
         };
-        int index = order.indexOf(part);
-        return index < 0 ? order.size() : index;
+        return new PartTemplate(englishNameFormatter, partKey, columnBlockRegister, new TextureGenParams.ColumnBlock(), itemPathFormatter);
     }
 
     @Override

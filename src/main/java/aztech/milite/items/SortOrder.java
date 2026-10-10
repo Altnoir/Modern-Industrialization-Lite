@@ -17,26 +17,13 @@ import aztech.milite.nuclear.NuclearOrder;
  * with {@link #and}.
  */
 public final class SortOrder implements Comparable<SortOrder> {
-    /**
-     * The guidebook, so the first thing in the tab is how to play.
-     */
     public static final SortOrder GUIDE_BOOK = new SortOrder();
-    /**
-     * The forge hammer and the processing table, the two blocks the mod starts with.
-     */
     public static final SortOrder FORGE_HAMMER = new SortOrder();
     public static final SortOrder PROCESSING_TABLE = new SortOrder();
-    /**
-     * Loose items: components, circuits, tools and armour, numbered in the order they are declared in MIItem.
-     */
+
     public static final SortOrderGroup.Counted ITEMS_ORDERED = new SortOrderGroup.Counted(new SortOrder());
-    /**
-     * Nuclear parts, ordered by their role and then by material.
-     */
     public static final SortOrderGroup.Parametrized<NuclearOrder> NUCLEAR = new SortOrderGroup.Parametrized<>(new SortOrder());
-    /**
-     * Blocks by family: what stores things, what a machine is built from, then the machines themselves.
-     */
+
     public static final SortOrder TANKS = new SortOrder();
     public static final SortOrder BARRELS = new SortOrder();
 
@@ -46,36 +33,19 @@ public final class SortOrder implements Comparable<SortOrder> {
     private static final int KIND_COIL = 3;
     private static final int KIND_FUSION_CHAMBER = 4;
 
-    /**
-     * The blocks a machine is built from. They share one group so the tab lists them by the level they belong to: every
-     * bronze casing, hull and hatch together, and ahead of the steel ones, rather than one kind of part after another.
-     */
     public static final SortOrder STRUCTURES = new SortOrder();
     public static final SortOrder CASINGS = STRUCTURES.and(KIND_CASING);
     public static final SortOrder MACHINE_HULLS = STRUCTURES.and(KIND_HULL);
-    /**
-     * Multiblock hatches, which a multiblock uses to exchange items, fluids and energy with the outside.
-     */
     public static final SortOrder HATCHES = STRUCTURES.and(KIND_HATCH);
     public static final SortOrder COILS = STRUCTURES.and(KIND_COIL);
-    /**
-     * The fusion chamber, a structural block of the fusion reactor rather than a block in its own right. It is listed
-     * with the structures of the level it is built from, after the hulls and hatches of that level.
-     */
     public static final SortOrder FUSION_CHAMBER = STRUCTURES.and(KIND_FUSION_CHAMBER);
+
     public static final SortOrder MACHINES = new SortOrder();
-    /**
-     * The material forms, in the order a player meets them: ore, raw block, block, then the items made from it.
-     */
     public static final SortOrder ORES = new SortOrder();
     public static final SortOrder RAW_ORE_BLOCKS = new SortOrder();
     public static final SortOrder STORAGE_BLOCKS = new SortOrder();
     public static final SortOrder MATERIALS = new SortOrder();
     public static final SortOrder BUCKETS = new SortOrder();
-    /**
-     * The default for a block that never states an order, and the home of the odds and ends. It is last on purpose: a
-     * block that forgets to say where it goes is then found at the end rather than in the middle of a family.
-     */
     public static final SortOrder BLOCKS_OTHERS = new SortOrder();
 
     private static int nextGlobalOrder = 0;

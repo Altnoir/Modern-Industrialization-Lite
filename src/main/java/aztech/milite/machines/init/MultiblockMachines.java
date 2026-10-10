@@ -1,8 +1,8 @@
 package aztech.milite.machines.init;
 
-import static aztech.milite.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
-import static aztech.milite.machines.multiblocks.HatchTypes.*;
-
+import aztech.milite.MI;
+import aztech.milite.MIBlock;
+import aztech.milite.MIFluids;
 import aztech.milite.api.energy.CableTier;
 import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.compat.rei.machines.MachineCategoryParams;
@@ -21,9 +21,6 @@ import aztech.milite.machines.multiblocks.ShapeTemplate;
 import aztech.milite.machines.multiblocks.SimpleMember;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.machines.recipe.MachineRecipeType;
-import aztech.milite.MI;
-import aztech.milite.MIBlock;
-import aztech.milite.MIFluids;
 import aztech.milite.util.Rectangle;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -32,6 +29,9 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+
+import static aztech.milite.machines.models.MachineCasings.CLEAN_STAINLESS_STEEL;
+import static aztech.milite.machines.multiblocks.HatchTypes.*;
 
 public class MultiblockMachines {
     private static final Rectangle CRAFTING_GUI = new Rectangle(CraftingMultiblockGui.X, CraftingMultiblockGui.Y,
@@ -44,8 +44,7 @@ public class MultiblockMachines {
      * The electric blast furnaces, one per level. Keying them by level is what lets the rest of the code reach the
      * furnace a recipe needs without knowing about the blocks one by one.
      */
-    public static final Map<MachineLevel, MachineDefinition<ElectricBlastFurnaceBlockEntity>> ELECTRIC_BLAST_FURNACES = new EnumMap<>(
-            MachineLevel.class);
+    public static final Map<MachineLevel, MachineDefinition<ElectricBlastFurnaceBlockEntity>> ELECTRIC_BLAST_FURNACES = new EnumMap<>(MachineLevel.class);
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> LARGE_STEAM_BOILER;
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> ADVANCED_LARGE_STEAM_BOILER;
     public static MachineDefinition<SteamBoilerMultiblockBlockEntity> HIGH_PRESSURE_LARGE_STEAM_BOILER;
