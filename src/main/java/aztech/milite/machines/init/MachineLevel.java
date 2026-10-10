@@ -6,6 +6,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.StringRepresentable;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * The tier ladder of the mod. A recipe declares the level it needs, and a machine declares the level it is, so a recipe
@@ -126,15 +127,23 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     /**
+     * Names that are not the serialised name of a level but that still name the material its structures are built from.
+     * The aluminum alloy machines are made of aluminum, and the level itself was called {@code "aluminum"} before the
+     * alloy took that name over, so a block built from aluminum has to find the level under either name.
+     */
+    private static final Map<String, MachineLevel> MATERIAL_ALIASES = Map.of("aluminum", ALUMINUM);
+
+    /**
      * The level of the given name, or null when the name is not a level at all, which is the case for every other
      * material a machine structure can be made of.
      */
     public static MachineLevel byNameOrNull(String name) {
+        String lowerName = name.toLowerCase(Locale.ROOT);
         for (MachineLevel level : values()) {
-            if (level.levelName.equals(name.toLowerCase(Locale.ROOT))) {
+            if (level.levelName.equals(lowerName)) {
                 return level;
             }
         }
-        return null;
+        return MATERIAL_ALIASES.get(lowerName);
     }
 }
