@@ -433,19 +433,19 @@ public class MultiblockMachines {
 
     private static void fusionReactor() {
         ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(CableTier.TITANIUM.casing);
-        // A square ring: a 15x15 ring of titanium hulls, with a ring of fusion chambers on the inside of its middle
-        // layer. The middle of each side is hatchable, for fluid and energy hatches.
         HatchFlags flags = new HatchFlags.Builder().with(FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
         for (int y = -1; y <= 1; y++) {
-            for (int x = -7; x <= 7; x++) {
-                for (int z = 0; z <= 14; z++) {
-                    int ring = Math.max(Math.abs(x), Math.abs(z - 7));
-                    boolean hatchable = (x == 0 && (z == 0 || z == 14)) || (z == 7 && (x == -7 || x == 7));
+            for (int x = -5; x <= 5; x++) {
+                for (int z = 0; z <= 10; z++) {
+                    int ring = Math.max(Math.abs(x), Math.abs(z - 5));
+                    boolean hatchable = (x == 0 && (z == 0 || z == 10)) || (z == 5 && (x == -5 || x == 5));
 
-                    if (ring == 7) {
+                    if (ring == 5) {
                         fusionReactorShapeBuilder.add(x, y, z, titaniumHull, hatchable ? flags : null);
-                    } else if (ring == 6 && y == 0) {
-                        fusionReactorShapeBuilder.add(x, y, z, fusionChamber);
+                    } else if (ring == 4) {
+                        fusionReactorShapeBuilder.add(x, y, z, y == 0 ? fusionChamber : titaniumHull);
+                    } else if (ring == 3 && y == 0) {
+                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
                     }
                 }
             }
