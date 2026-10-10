@@ -534,8 +534,6 @@ public class MultiblockMachines {
 
         MachineRegistrationHelper.addMachineModel("steam_blast_furnace", "steam_blast_furnace", MachineCasings.FIREBRICKS, true, false, false);
 
-        // Each furnace has its own front panel, so a player can tell which one they are looking at. The panel keeps the
-        // green running lamps of every machine, only the furnace's own colour changes.
         for (ElectricBlastFurnaceBlockEntity.Tier tier : ElectricBlastFurnaceBlockEntity.tiers) {
             MachineRegistrationHelper.addMachineModel(tier.id(), tier.id(), MachineCasings.HEATPROOF, true, false, false);
         }
@@ -623,9 +621,6 @@ public class MultiblockMachines {
     }
 
     private static void registerEbfReiCategories() {
-        // The steam blast furnace keeps its own category: it is the small, steam driven one, it runs its own recipes,
-        // and it is built from fire bricks rather than from heatproof casings. The electric furnaces are workstations of
-        // it as well, because they run these recipes too.
         new Rei("Steam Blast Furnace", "steam_blast_furnace", MIMachineRecipeTypes.STEAM_BLAST_FURNACE,
                 new ProgressBar.Params(77, 33, "arrow"))
                         .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
@@ -633,10 +628,6 @@ public class MultiblockMachines {
                         .workstations(steamBlastFurnaceWorkstations())
                         .steam(false)
                         .register();
-
-        // The three electric furnaces share one category, and all three are workstations of it. What separates them is
-        // the level of recipe they reach, which is a property of the recipe, so a category per furnace would only be
-        // the same list three times over. Which furnace can run a recipe is decided when it is built, not shown here.
         new Rei("Electric Blast Furnace", "electric_blast_furnace", MIMachineRecipeTypes.BLAST_FURNACE,
                 new ProgressBar.Params(77, 33, "arrow"))
                         .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
@@ -648,10 +639,6 @@ public class MultiblockMachines {
                         .register();
     }
 
-    /**
-     * The steam blast furnace and the three electric ones. An electric furnace runs the steam recipes too, so the viewer
-     * lists a steam recipe under all four machines.
-     */
     private static String[] steamBlastFurnaceWorkstations() {
         List<String> workstations = new ArrayList<>();
         workstations.add("steam_blast_furnace");
@@ -667,8 +654,7 @@ public class MultiblockMachines {
         private final MachineRecipeType recipeType;
         private final ProgressBar.Params progressBarParams;
         private final List<ResourceLocation> workstations;
-        // extra workstations to be displayed in viewers, can be any item id
-            private Predicate<MachineRecipe> extraTest = recipe -> true;
+        private Predicate<MachineRecipe> extraTest = recipe -> true;
         private final SlotPositions.Builder itemInputs = new SlotPositions.Builder();
         private final SlotPositions.Builder itemOutputs = new SlotPositions.Builder();
         private final SlotPositions.Builder fluidInputs = new SlotPositions.Builder();
@@ -721,7 +707,6 @@ public class MultiblockMachines {
         }
 
         public final void register() {
-            // Allow KJS scripts to add slots
             KubeJSProxy.instance.fireAddMultiblockSlotsEvent(category.getPath(), itemInputs, itemOutputs, fluidInputs, fluidOutputs);
 
             ReiMachineRecipes.registerCategory(category, new MachineCategoryParams(englishName, category,

@@ -9,8 +9,6 @@ plugins {
     id 'me.modmuss50.mod-publish-plugin' version '2.1.0'
 }
 
-// MI_VERSION is only set by CI. Keep the workspace convention (see the sibling projects): the mod version
-// lives in gradle.properties as `mod_version`, so a local build reports a real version too.
 version = System.getenv("MI_VERSION")
         ? System.getenv("MI_VERSION")
         : project.mod_version
@@ -30,11 +28,6 @@ java {
 }
 
 repositories {
-    // Machine-local offline copy of dev.emi:emi-neoforge, used before the real EMI repository.
-    // repo.sleeping.town is DNS-hijacked on some machines (the name resolves to Meta/Facebook
-    // addresses), which makes the request hang and Gradle report "Repository maven3 is disabled".
-    // The directory is created by tooling outside the repository, so this entry only exists where
-    // it has been prepared; everywhere else the normal EMI repository below is used as before.
     def localShimRepo = file("$rootDir/../_shim/repo")
     if (localShimRepo.isDirectory()) {
         maven {
@@ -45,8 +38,7 @@ repositories {
             }
         }
     }
-    // AbyssLib and the other Altnoir libraries, published by the library's own CI. Scoped to that group so that the
-    // other dependencies are not looked up here first.
+    // AbyssLib
     maven {
         name "RingLoReleases"
         url "https://maven.ringlo.im/releases"

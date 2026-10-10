@@ -1,9 +1,9 @@
 package aztech.milite.datagen.recipe;
 
-import aztech.milite.machines.init.MIMachineRecipeTypes;
-import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.MIFluids;
 import aztech.milite.MIItem;
+import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapelessRecipeBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -48,12 +48,9 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
         generateCopperOxidation(exporter, Items.WAXED_CHISELED_COPPER, Items.WAXED_EXPOSED_CHISELED_COPPER, Items.WAXED_WEATHERED_CHISELED_COPPER, Items.WAXED_OXIDIZED_CHISELED_COPPER);
         generateCopperOxidation(exporter, Items.WAXED_COPPER_GRATE, Items.WAXED_EXPOSED_COPPER_GRATE, Items.WAXED_WEATHERED_COPPER_GRATE, Items.WAXED_OXIDIZED_COPPER_GRATE);
 
-        // wax
-        // Wax is what the mod waxes copper with, but nothing produced it: a honeycomb holds it, and the centrifuge
-        // is what takes it out.
         new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 2, 100)
                 .addItemInput(Items.HONEYCOMB, 1)
-                .addItemOutput(MIItem.WAX, 1)
+                .addItemOutput(MIItem.WAX, 4)
                 .offerTo(exporter, "vanilla_recipes/centrifuge/honeycomb");
 
         generateWax(exporter, Items.COPPER_BLOCK, Items.WAXED_COPPER_BLOCK);
@@ -123,7 +120,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
     }
 
     private void generateCoralPropagation(RecipeOutput exporter) {
-        for (String coral : new String[] {"brain", "bubble", "fire", "horn", "tube"}) {
+        for (String coral : new String[]{"brain", "bubble", "fire", "horn", "tube"}) {
             new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 6000)
                     .addItemInput("minecraft:" + coral + "_coral_block", 1)
                     .addItemInput(Items.BONE_MEAL, 4)
@@ -190,7 +187,8 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
         }
     }
 
-    private record DyeMixRecipe(String id, String color, int outputAmount, List<String> ingredients, String fluid, int fluidAmount) {
+    private record DyeMixRecipe(String id, String color, int outputAmount, List<String> ingredients, String fluid,
+                                int fluidAmount) {
         private DyeMixRecipe(String id, String color, int outputAmount, List<String> ingredients) {
             this(id, color, outputAmount, ingredients, null, 0);
         }

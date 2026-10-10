@@ -27,8 +27,6 @@ public class AlloyRecipesProvider extends MIRecipesProvider {
         new AlloyBuilder("kanthal").addIngredient("stainless_steel", 1).addIngredient("chromium", 1).addIngredient("aluminum", 1).Build(consumer);
         new AlloyBuilder("soldering_alloy").addIngredient("tin", 1).addIngredient("lead", 1).Build(consumer);
         new AlloyBuilder("aluminum_alloy").addIngredient("aluminum", 8).addIngredient("copper", 1).Build(consumer);
-        // The blast furnace alloys the dusts straight into ingots, one ingot for every dust. Invar brings the iron and
-        // the nickel that make the alloy hard, and it is cheaper in aluminum than mixing the dusts first.
         new MachineRecipeBuilder(MIMachineRecipeTypes.BLAST_FURNACE, 32, 200).level(MachineLevel.ELECTRIC)
                 .addItemInput("#c:dusts/aluminum", 3)
                 .addItemInput("#c:dusts/invar", 1)
