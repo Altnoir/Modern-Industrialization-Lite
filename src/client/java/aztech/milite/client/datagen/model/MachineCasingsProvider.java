@@ -36,6 +36,7 @@ public class MachineCasingsProvider extends ModelProvider<BlockModelBuilder> {
                 "block/casings/bricked_steel/top");
         cubeAll(MachineCasings.CONFIGURABLE_TANK, "block/casings/configurable_tank");
         cubeAll(MachineCasings.STEEL_CRATE, "block/casings/steel_crate");
+        cubeAll(MachineCasings.HARDENED, "block/hardened_machine_casing");
     }
 
     private void imitateBlock(MachineCasing casing, Block block) {

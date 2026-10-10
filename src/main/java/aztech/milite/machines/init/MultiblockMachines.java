@@ -560,7 +560,7 @@ public class MultiblockMachines {
                 .workstations("electric_quarry").extraTest(recipe -> recipe.energy > 4)
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("electric_quarry", "electric_quarry", MachineCasings.STEEL, true, false, false);
+        MachineRegistrationHelper.addMachineModel("electric_quarry", "electric_quarry", MachineCasings.HARDENED, true, false, false);
 
         MachineRegistrationHelper.addMachineModel("vacuum_freezer", "vacuum_freezer", MachineCasings.FROSTPROOF, true, false, false);
         new Rei("Vacuum Freezer", "vacuum_freezer", MIMachineRecipeTypes.VACUUM_FREEZER, new ProgressBar.Params(77, 33, "arrow"))
@@ -568,7 +568,7 @@ public class MultiblockMachines {
                 .fluids(inputs -> inputs.addSlots(36, 35, 1, 2), outputs -> outputs.addSlot(122, 35))
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("oil_drilling_rig", "oil_drilling_rig", MachineCasings.STEEL, true, false, false);
+        MachineRegistrationHelper.addMachineModel("oil_drilling_rig", "oil_drilling_rig", MachineCasings.HARDENED, true, false, false);
         new Rei("Oil Drilling Rig", "oil_drilling_rig", MIMachineRecipeTypes.OIL_DRILLING_RIG, new ProgressBar.Params(77, 33, "arrow"))
                 .items(inputs -> inputs.addSlot(36, 35), outputs -> {
                 })

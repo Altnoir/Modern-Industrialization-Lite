@@ -1,5 +1,5 @@
 {
-  "casing": "steel",
+  "casing": "hardened_machine_casing",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/electric_quarry/overlay_front",
