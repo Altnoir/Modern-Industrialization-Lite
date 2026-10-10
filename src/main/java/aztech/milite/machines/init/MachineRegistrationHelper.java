@@ -88,15 +88,15 @@ public class MachineRegistrationHelper {
     private static final int MACHINE_HEAD_RANK = -1;
     private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
 
-    private static final Map<String, String> MACHINE_FOLLOWS = machineFollows();
-
-    private static Map<String, String> machineFollows() {
-        var follows = new HashMap<String, String>();
-        follows.put("large_steam_boiler", "steam_blast_furnace");
-        follows.put("advanced_large_steam_boiler", "large_steam_boiler");
-        follows.put("steam_quarry", "steel_boiler");
-        return Map.copyOf(follows);
-    }
+    private static final Map<String, List<String>> MACHINE_FOLLOWS = Map.of(
+            "steam_blast_furnace", List.of("bronze_boiler", "large_steam_boiler", "advanced_large_steam_boiler"),
+            "steel_boiler", List.of("steam_quarry"),
+            "stainless_steel_distillery", List.of("distillation_tower"),
+            "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
+            "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",
+                    "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
+            "titanium_wiremill", List.of("fusion_reactor"),
+            "iridium_wiremill", List.of("plasma_turbine"));
 
     /**
      * The kinds of hatch, in the order the tab lists them: what moves items, then what moves fluids, then what moves
@@ -135,9 +135,11 @@ public class MachineRegistrationHelper {
         if (tail >= 0) {
             return SortOrder.MACHINES.and(MACHINE_TAIL_RANK).and(tail);
         }
-        var follows = MACHINE_FOLLOWS.get(id);
-        if (follows != null) {
-            return machineSortOrder(follows).and(0);
+        for (var entry : MACHINE_FOLLOWS.entrySet()) {
+            int index = entry.getValue().indexOf(id);
+            if (index >= 0) {
+                return machineSortOrder(entry.getKey()).and(index);
+            }
         }
         for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
             var prefix = MACHINE_TIER_PREFIXES.get(tier);
