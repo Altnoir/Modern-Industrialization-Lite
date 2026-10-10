@@ -440,12 +440,16 @@ public class MultiblockMachines {
                     int ring = Math.max(Math.abs(x), Math.abs(z - 5));
                     boolean hatchable = (x == 0 && (z == 0 || z == 10)) || (z == 5 && (x == -5 || x == 5));
 
-                    if (ring == 5) {
-                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull, hatchable ? flags : null);
-                    } else if (ring == 4) {
-                        fusionReactorShapeBuilder.add(x, y, z, y == 0 ? fusionChamber : titaniumHull);
-                    } else if (ring == 3) {
-                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
+                    if (hatchable) {
+                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull, flags);
+                    } else if (y == 0) {
+                        if (ring == 5) {
+                            fusionReactorShapeBuilder.add(x, y, z, titaniumHull, null);
+                        } else if (ring == 4) {
+                            fusionReactorShapeBuilder.add(x, y, z, fusionChamber);
+                        } else if (ring == 3) {
+                            fusionReactorShapeBuilder.add(x, y, z, titaniumHull);
+                        }
                     }
                 }
             }
