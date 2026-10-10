@@ -1,5 +1,5 @@
 {
-  "casing": "solid_titanium_machine_casing",
+  "casing": "blastproof_casing",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/compressor/overlay_front",

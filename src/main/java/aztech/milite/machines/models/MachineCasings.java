@@ -25,6 +25,8 @@ public class MachineCasings {
 
     public static final List<CasingName> translations = new ArrayList<>();
 
+    public static final MachineCasing BLASTPROOF = createBlockImitation(MI.id("blastproof_casing"),
+            () -> MIMaterials.BLASTPROOF_ALLOY.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing BRICKED_BRONZE = create(MI.id("bricked_bronze"), "Bricked Bronze");
     public static final MachineCasing BRICKED_STEEL = create(MI.id("bricked_steel"), "Bricked Steel");
     public static final MachineCasing BRICKS = createBlockImitation(MI.id("bricks"), () -> Blocks.BRICKS);

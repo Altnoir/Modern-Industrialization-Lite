@@ -403,12 +403,12 @@ public class MultiblockMachines {
     }
 
     private static void implosionCompressor() {
-        ShapeTemplate.Builder implosionCompressorShapeBuilder = new ShapeTemplate.Builder(MachineCasings.SOLID_TITANIUM);
+        ShapeTemplate.Builder implosionCompressorShapeBuilder = new ShapeTemplate.Builder(MachineCasings.BLASTPROOF);
         HatchFlags hatchs = new HatchFlags.Builder().with(ITEM_OUTPUT, ITEM_INPUT, ENERGY_INPUT).build();
-        implosionCompressorShapeBuilder.add3by3(0, titaniumCasing, false, hatchs);
+        implosionCompressorShapeBuilder.add3by3(0, blastProofCasing, false, hatchs);
         implosionCompressorShapeBuilder.add3by3(1, blastProofCasing, true, null);
         implosionCompressorShapeBuilder.add3by3(2, blastProofCasing, true, null);
-        implosionCompressorShapeBuilder.add3by3(3, titaniumCasing, false, null);
+        implosionCompressorShapeBuilder.add3by3(3, blastProofCasing, false, null);
 
         ShapeTemplate implosionCompressorShape = implosionCompressorShapeBuilder.build();
         IMPLOSION_COMPRESSOR = MachineRegistrationHelper.registerMachine(
@@ -597,7 +597,7 @@ public class MultiblockMachines {
                 .fluids(inputs -> inputs.addSlot(56, 35), outputs -> outputs.addSlot(102, 35))
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("implosion_compressor", "compressor", MachineCasings.SOLID_TITANIUM, true, false, false);
+        MachineRegistrationHelper.addMachineModel("implosion_compressor", "compressor", MachineCasings.BLASTPROOF, true, false, false);
         new Rei("Implosion Compressor", "implosion_compressor", MIMachineRecipeTypes.IMPLOSION_COMPRESSOR,
                 new ProgressBar.Params(77, 42, "compress"))
                         .items(inputs -> inputs.addSlots(36, 35, 2, 2), outputs -> outputs.addSlot(102, 42))
