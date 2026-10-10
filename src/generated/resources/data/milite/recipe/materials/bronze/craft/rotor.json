@@ -7,15 +7,12 @@
     },
     "R": {
       "item": "milite:bronze_ring"
-    },
-    "b": {
-      "item": "milite:bronze_bolt"
     }
   },
   "pattern": [
-    "bBb",
+    " B ",
     "BRB",
-    "bBb"
+    " B "
   ],
   "result": {
     "count": 1,

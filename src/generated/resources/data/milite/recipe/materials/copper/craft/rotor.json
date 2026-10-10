@@ -7,15 +7,12 @@
     },
     "R": {
       "item": "milite:copper_ring"
-    },
-    "b": {
-      "item": "milite:copper_bolt"
     }
   },
   "pattern": [
-    "bBb",
+    " B ",
     "BRB",
-    "bBb"
+    " B "
   ],
   "result": {
     "count": 1,

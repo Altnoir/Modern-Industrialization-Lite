@@ -36,8 +36,7 @@ public final class StandardRecipes {
         new ShapedRecipeBuilder(ctx, LARGE_PLATE, 1, "large_plate", "xx", "xx").addTaggedPart('x', PLATE)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
 
-        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", "bBb", "BRB", "bBb").addTaggedPart('b', BOLT).addTaggedPart('B', PLATE).addTaggedPart('R',
-                RING);
+        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", " B ", "BRB", " B ").addTaggedPart('B', PLATE).addTaggedPart('R', RING);
 
         new ShapedRecipeBuilder(ctx, GEAR, 1, "gear", "PbP", "bRb", "PbP").addTaggedPart('b', BOLT).addTaggedPart('P', PLATE).addTaggedPart('R',
                 RING);
