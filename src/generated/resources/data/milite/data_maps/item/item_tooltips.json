@@ -1,5 +1,14 @@
 {
   "values": {
+    "milite:aluminum_alloy_gear": {
+      "components": [
+        {
+          "color": "#A9A9A9",
+          "italic": false,
+          "translate": "text.milite.HasBetterYieldAssemblerRecipe"
+        }
+      ]
+    },
     "milite:aluminum_gear": {
       "components": [
         {

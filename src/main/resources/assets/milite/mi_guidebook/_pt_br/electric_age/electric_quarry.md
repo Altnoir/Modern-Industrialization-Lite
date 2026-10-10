@@ -19,7 +19,7 @@ item_ids:
 
 A Mineradora Elétrica é o equivalente elétrico da Mineradora a Vapor. Forneça a ela itens e energia, e veja seus recursos fazer BRRRRRR!
 
-Sua estrutura é a mesma da Mineradora a Vapor, exceto que as paredes são feitas de Estruturas de Máquina Endurecidas.
+Sua estrutura é a mesma da Mineradora a Vapor, exceto que as paredes são feitas de Estruturas de Máquina de Liga de Alumínio.
 
 <Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
 

@@ -28,6 +28,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 // @formatter:off
 public class MIMaterials {
     public static final Material ALUMINUM;
+    public static final Material ALUMINUM_ALLOY;
     public static final Material ANNEALED_COPPER;
     public static final Material ANTIMONY;
     public static final Material BATTERY_ALLOY;
@@ -284,7 +285,6 @@ public class MIMaterials {
                         .addParts(BOLT, RING, ROD, GEAR, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
                         .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(TANK.of(16)).addParts(BARREL.of(128))
-                        .addParts(MACHINE_CASING_SPECIAL.of("Hardened Machine Casing", "hardened_machine_casing"))
                         .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.STEEL_HAMMER.getId().toString()))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 
@@ -307,6 +307,16 @@ public class MIMaterials {
                         .addParts(WIRE).addParts(BLOCK.of(MaterialBlockSet.GOLD)).addParts(MACHINE_CASING.of())
                         .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing")).addParts(TANK.of(64))
                         .addParts(BARREL.of(512)).addRecipes(StandardRecipes::apply)
+                        .addRecipes(SmeltingRecipes::applyBlastFurnace));
+
+        ALUMINUM_ALLOY = MaterialRegistry.addMaterial(
+                new MaterialBuilder("Aluminum Alloy", "aluminum_alloy")
+                        .set(MaterialProperty.SET, METALLIC)
+                        .set(MaterialProperty.MEAN_RGB, 0x699fc9)
+                        .set(MaterialProperty.HARDNESS, HARD)
+                        .addParts(BOLT, RING, GEAR, ROD, DUST, INGOT, LARGE_PLATE, PLATE, TINY_DUST)
+                        .addParts(MACHINE_CASING_SPECIAL.of("Aluminum Alloy Machine Casing", "aluminum_alloy_machine_casing"))
+                        .addRecipes(StandardRecipes::apply)
                         .addRecipes(SmeltingRecipes::applyBlastFurnace));
 
         BAUXITE = MaterialRegistry.addMaterial(new MaterialBuilder("Bauxite", "bauxite")

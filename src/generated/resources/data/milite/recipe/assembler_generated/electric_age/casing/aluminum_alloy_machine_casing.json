@@ -5,17 +5,17 @@
   "item_inputs": [
     {
       "amount": 8,
-      "tag": "c:plates/steel"
+      "tag": "c:plates/aluminum_alloy"
     },
     {
       "amount": 1,
-      "item": "milite:steel_machine_casing"
+      "tag": "c:gears/aluminum_alloy"
     }
   ],
   "item_outputs": [
     {
       "amount": 1,
-      "item": "milite:hardened_machine_casing"
+      "item": "milite:aluminum_alloy_machine_casing"
     }
   ],
   "level": "electric"

@@ -23,7 +23,8 @@ public final class MaterialProgression {
             "bauxite", "lead", "nickel", "silver", "antimony", "manganese", "chromium", "beryllium", "monazite",
             "tungsten", "cadmium", "neodymium", "yttrium", "platinum", "sodium",
             // The electric age: aluminium from bauxite, then the alloys, the coils and the circuits.
-            "aluminum", "annealed_copper", "cupronickel", "kanthal", "electrum", "invar", "soldering_alloy", "silicon",
+            "aluminum", "aluminum_alloy", "annealed_copper", "cupronickel", "kanthal", "electrum", "invar", "soldering_alloy",
+            "silicon",
             "stainless_steel", "titanium", "battery_alloy", "blastproof_alloy", "iridium",
             // The last things a player gets hold of, and the nuclear fuel cycle.
             "nuclear_alloy", "superconductor", "uranium", "uranium_238", "uranium_235", "plutonium", "le_uranium",

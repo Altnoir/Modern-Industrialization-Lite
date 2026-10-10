@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:gears/aluminum",
+    "#c:gears/aluminum_alloy",
     "#c:gears/bronze",
     "#c:gears/copper",
     "#c:gears/gold",

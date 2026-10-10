@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:plates/aluminum",
+    "#c:plates/aluminum_alloy",
     "#c:plates/annealed_copper",
     "#c:plates/battery_alloy",
     "#c:plates/beryllium",

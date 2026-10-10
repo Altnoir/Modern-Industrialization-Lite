@@ -185,15 +185,15 @@ public class MultiblockMachines {
     private static void quarries() {
         SimpleMember steelCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing")));
         SimpleMember steelPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing_pipe")));
-        SimpleMember hardenedCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("hardened_machine_casing")));
+        SimpleMember aluminumAlloyCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("aluminum_alloy_machine_casing")));
         HatchFlags quarryHatchFlags = new HatchFlags.Builder().with(ITEM_INPUT, FLUID_INPUT, ITEM_OUTPUT).build();
         HatchFlags quarryElectricHatchFlags = new HatchFlags.Builder().with(ITEM_INPUT, ITEM_OUTPUT, ENERGY_INPUT).build();
 
         ShapeTemplate.Builder quarryShapeBuilder = new ShapeTemplate.Builder(MachineCasings.STEEL).add3by3(0, steelCasing, true, quarryHatchFlags)
                 .add3by3(1, steelCasing, true, quarryHatchFlags);
 
-        ShapeTemplate.Builder quarryElectricShapeBuilder = new ShapeTemplate.Builder(MachineCasings.HARDENED)
-                .add3by3(0, hardenedCasing, true, quarryElectricHatchFlags).add3by3(1, hardenedCasing, true, quarryElectricHatchFlags);
+        ShapeTemplate.Builder quarryElectricShapeBuilder = new ShapeTemplate.Builder(MachineCasings.ALUMINUM_ALLOY)
+                .add3by3(0, aluminumAlloyCasing, true, quarryElectricHatchFlags).add3by3(1, aluminumAlloyCasing, true, quarryElectricHatchFlags);
 
         for (int y = 2; y <= 4; y++) {
             quarryShapeBuilder.add(-1, y, 1, steelPipe, null);
@@ -202,7 +202,7 @@ public class MultiblockMachines {
             quarryElectricShapeBuilder.add(1, y, 1, steelPipe, null);
         }
         quarryShapeBuilder.add(0, 4, 1, steelCasing, null);
-        quarryElectricShapeBuilder.add(0, 4, 1, hardenedCasing, null);
+        quarryElectricShapeBuilder.add(0, 4, 1, aluminumAlloyCasing, null);
 
         SimpleMember chain = SimpleMember.verticalChain();
 
@@ -228,21 +228,21 @@ public class MultiblockMachines {
 
     private static void oilDrillingRig() {
         SimpleMember steelPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing_pipe")));
-        SimpleMember hardenedCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("hardened_machine_casing")));
+        SimpleMember aluminumAlloyCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("aluminum_alloy_machine_casing")));
         SimpleMember chain = SimpleMember.verticalChain();
         HatchFlags hatchFlags = new HatchFlags.Builder().with(ITEM_INPUT).with(FLUID_OUTPUT).with(ENERGY_INPUT).build();
 
-        ShapeTemplate oilDrillingRigShape = new ShapeTemplate.LayeredBuilder(MachineCasings.HARDENED, new String[][] {
+        ShapeTemplate oilDrillingRigShape = new ShapeTemplate.LayeredBuilder(MachineCasings.ALUMINUM_ALLOY, new String[][] {
                 { "C   C", "C   C", "C   C", "CCCCC", "     ", "     ", "     ", "     ", "     ", "     " },
                 { "     ", "     ", "     ", "C   C", " HHH ", "     ", "     ", "     ", "     ", "     " },
                 { " o o ", " o o ", " o o ", "CoPoC", " oPo ", " oPo ", " oPo ", " oPo ", " oPo ", "CCCCC" },
                 { "     ", "     ", "     ", "C   C", " H#H ", "     ", "     ", "     ", "     ", "     " },
                 { "C   C", "C   C", "C   C", "CCCCC", "     ", "     ", "     " , "     ", "     ", "     "},
         })
-                .key('C', hardenedCasing, null)
+                .key('C', aluminumAlloyCasing, null)
                 .key('o', chain, null)
                 .key('P', steelPipe, null)
-                .key('H', hardenedCasing, hatchFlags)
+                .key('H', aluminumAlloyCasing, hatchFlags)
                 .build();
 
         OIL_DRILLING_RIG = MachineRegistrationHelper.registerMachine(
@@ -561,7 +561,7 @@ public class MultiblockMachines {
                 .workstations("electric_quarry").extraTest(recipe -> recipe.energy > 4)
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("electric_quarry", "electric_quarry", MachineCasings.HARDENED, true, false, false);
+        MachineRegistrationHelper.addMachineModel("electric_quarry", "electric_quarry", MachineCasings.ALUMINUM_ALLOY, true, false, false);
 
         MachineRegistrationHelper.addMachineModel("vacuum_freezer", "vacuum_freezer", MachineCasings.FROSTPROOF, true, false, false);
         new Rei("Vacuum Freezer", "vacuum_freezer", MIMachineRecipeTypes.VACUUM_FREEZER, new ProgressBar.Params(77, 33, "arrow"))
@@ -569,7 +569,7 @@ public class MultiblockMachines {
                 .fluids(inputs -> inputs.addSlots(36, 35, 1, 2), outputs -> outputs.addSlot(122, 35))
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("oil_drilling_rig", "oil_drilling_rig", MachineCasings.HARDENED, true, false, false);
+        MachineRegistrationHelper.addMachineModel("oil_drilling_rig", "oil_drilling_rig", MachineCasings.ALUMINUM_ALLOY, true, false, false);
         new Rei("Oil Drilling Rig", "oil_drilling_rig", MIMachineRecipeTypes.OIL_DRILLING_RIG, new ProgressBar.Params(77, 33, "arrow"))
                 .items(inputs -> inputs.addSlot(36, 35), outputs -> {
                 })

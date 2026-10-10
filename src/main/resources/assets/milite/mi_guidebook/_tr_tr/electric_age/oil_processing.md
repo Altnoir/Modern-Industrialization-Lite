@@ -15,7 +15,7 @@ Petrol Sondaj Makinesi, matkaplar kullanarak ana kayanın altındaki Ham Petrol�
 
 <Recipe id="milite:oil/oil_drilling_rig_asbl" />
 
-Çoklu bloğun yapısı şunlardan oluşur: Sertleştirilmiş Makine Muhafazaları, Çelik Boru Makine Muhafazaları ve Zincirler, denetleyiciyi yerleştirerek ve bir Anahtar tutarak görebileceğiniz şekilde. Kapaklar Sertleştirilmiş Makine Muhafazaları ile değiştirilebilir, ancak en azından Eşya Girişi, Sıvı Çıkışı ve Enerji Girişi Kapaklarına sahip olduğunuzdan emin olun!
+Çoklu bloğun yapısı şunlardan oluşur: Alüminyum Alaşımı Makine Muhafazaları, Çelik Boru Makine Muhafazaları ve Zincirler, denetleyiciyi yerleştirerek ve bir Anahtar tutarak görebileceğiniz şekilde. Kapaklar Alüminyum Alaşımı Makine Muhafazaları ile değiştirilebilir, ancak en azından Eşya Girişi, Sıvı Çıkışı ve Enerji Girişi Kapaklarına sahip olduğunuzdan emin olun!
 
 Ham Petrol çeşitli yakıtlara dönüştürülebilir ve daha verimli Kauçuk Levha üretimi için kullanılabilir.
 

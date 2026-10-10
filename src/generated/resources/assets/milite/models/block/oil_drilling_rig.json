@@ -1,5 +1,5 @@
 {
-  "casing": "hardened_machine_casing",
+  "casing": "aluminum_alloy_machine_casing",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/oil_drilling_rig/overlay_front",

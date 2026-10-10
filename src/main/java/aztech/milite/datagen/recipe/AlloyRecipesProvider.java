@@ -25,6 +25,7 @@ public class AlloyRecipesProvider extends MIRecipesProvider {
                 .addIngredient("manganese", 1).Build(consumer);
         new AlloyBuilder("kanthal").addIngredient("stainless_steel", 1).addIngredient("chromium", 1).addIngredient("aluminum", 1).Build(consumer);
         new AlloyBuilder("soldering_alloy").addIngredient("tin", 1).addIngredient("lead", 1).Build(consumer);
+        new AlloyBuilder("aluminum_alloy").addIngredient("aluminum", 8).addIngredient("copper", 1).Build(consumer);
 
         new AlloyBuilder("le_uranium").addIngredient("uranium_238", 8).addIngredient("uranium_235", 1).Build(consumer);
         new AlloyBuilder("he_uranium").addIngredient("uranium_238", 6).addIngredient("uranium_235", 3).Build(consumer);

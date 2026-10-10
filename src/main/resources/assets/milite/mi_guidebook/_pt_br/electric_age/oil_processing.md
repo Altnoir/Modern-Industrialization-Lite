@@ -19,7 +19,7 @@ A Plataforma de Perfuração de Petróleo é um enorme multibloco que pode perfu
 
 <Recipe id="milite:oil/oil_drilling_rig_asbl" />
 
-A estrutura do multibloco é feita de: Estruturas de Máquina Endurecidas, Estruturas de Máquina com Tubulação de Aço e Correntes, como você pode ver ao colocar o controlador e segurar uma Chave Inglesa. As Escotilhas podem ser substituídas por Estruturas de Máquina Endurecidas, mas certifique-se de ter pelo menos Escotilhas de Entrada de Itens, Saída de Fluidos e Entrada de Energia!
+A estrutura do multibloco é feita de: Estruturas de Máquina de Liga de Alumínio, Estruturas de Máquina com Tubulação de Aço e Correntes, como você pode ver ao colocar o controlador e segurar uma Chave Inglesa. As Escotilhas podem ser substituídas por Estruturas de Máquina de Liga de Alumínio, mas certifique-se de ter pelo menos Escotilhas de Entrada de Itens, Saída de Fluidos e Entrada de Energia!
 
 O Petróleo Bruto pode ser transformado em vários combustíveis e usado para uma produção mais eficiente de Folhas de Borracha.
 

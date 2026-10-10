@@ -40,11 +40,11 @@ public class MachineCasings {
     public static final MachineCasing FIREBRICKS = createBlockImitation(MI.id("firebricks"), () -> MIBlock.BLOCK_FIRE_CLAY_BRICKS.asBlock());
     public static final MachineCasing FROSTPROOF = createBlockImitation(MI.id("frostproof_machine_casing"),
             () -> MIMaterials.ALUMINUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
+    public static final MachineCasing ALUMINUM_ALLOY = createBlockImitation(MI.id("aluminum_alloy_machine_casing"),
+            () -> MIMaterials.ALUMINUM_ALLOY.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing HEATPROOF = createBlockImitation(MI.id("heatproof_machine_casing"),
             () -> MIMaterials.INVAR.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL = createBlockImitation(MI.id("steel"), () -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING).asBlock());
-    public static final MachineCasing HARDENED = createBlockImitation(MI.id("hardened_machine_casing"),
-            () -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL_CRATE = create(MI.id("steel_crate"), "Steel Crate");
     public static final MachineCasing TITANIUM_PIPE = createBlockImitation(MI.id("titanium_machine_casing_pipe"),
             () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING_PIPE).asBlock());

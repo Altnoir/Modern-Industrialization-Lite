@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "milite:block/hardened_machine_casing"
+    "all": "milite:block/aluminum_alloy_machine_casing"
   }
 }
