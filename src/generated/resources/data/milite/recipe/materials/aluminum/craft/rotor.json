@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:aluminum_blade"
+      "tag": "c:plates/aluminum"
     },
     "R": {
       "item": "milite:aluminum_ring"

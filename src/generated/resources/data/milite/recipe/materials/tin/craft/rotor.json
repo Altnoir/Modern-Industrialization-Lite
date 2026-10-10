@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:tin_blade"
+      "tag": "c:plates/tin"
     },
     "R": {
       "item": "milite:tin_ring"

@@ -27,9 +27,6 @@ public final class StandardRecipes {
         add3By3Crafting(ctx, ctx.get(MAIN_PART), BLOCK, false); // Not in packer due to conflicts with double ingots.
         add3By3Crafting(ctx, RAW_METAL, RAW_METAL_BLOCK, true);
 
-        new ShapedRecipeBuilder(ctx, BLADE, 4, "blade", "P", "P", "I").addTaggedPart('P', PLATE).addTaggedPart('I', ROD)
-                .exportToMachine(MIMachineRecipeTypes.PACKER);
-
         // A coil used to be built from eight cables. Cables are gone, so it is built from the wire they carried instead,
         // which keeps the same material cost. Without this, a blast furnace could not be built at all.
         new ShapedRecipeBuilder(ctx, COIL, 1, "coil", "xxx", "x x", "xxx").addTaggedPart('x', WIRE).exportToAssembler();
@@ -39,7 +36,7 @@ public final class StandardRecipes {
         new ShapedRecipeBuilder(ctx, LARGE_PLATE, 1, "large_plate", "xx", "xx").addTaggedPart('x', PLATE)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
 
-        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", "bBb", "BRB", "bBb").addTaggedPart('b', BOLT).addTaggedPart('B', BLADE).addTaggedPart('R',
+        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", "bBb", "BRB", "bBb").addTaggedPart('b', BOLT).addTaggedPart('B', PLATE).addTaggedPart('R',
                 RING);
 
         new ShapedRecipeBuilder(ctx, GEAR, 1, "gear", "PbP", "bRb", "PbP").addTaggedPart('b', BOLT).addTaggedPart('P', PLATE).addTaggedPart('R',
@@ -73,7 +70,6 @@ public final class StandardRecipes {
         if (!ctx.get(MAIN_PART).equals(DUST)) {
             addMaceratorRecycling(ctx, ctx.get(MAIN_PART), 9);
         }
-        addMaceratorRecycling(ctx, BLADE, 5);
         addMaceratorRecycling(ctx, DRILL_HEAD, 7 * 9 + 4);
         addMaceratorRecycling(ctx, WIRE, 4);
 
@@ -110,7 +106,7 @@ public final class StandardRecipes {
         // These use the default energy of two, but the assembler only exists as an electric machine, so they still
         // belong to the electric level and have to say so.
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "rotor").level(MachineLevel.ELECTRIC)
-                .addTaggedPartInput(BLADE, 4).addTaggedPartInput(RING, 1)
+                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(ROTOR, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "gear").level(MachineLevel.ELECTRIC)
                 .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)

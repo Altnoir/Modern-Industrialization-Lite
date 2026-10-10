@@ -16,7 +16,6 @@ import java.util.Set;
 public class MIParts {
     public static final BatteryPart BATTERY = new BatteryPart();
     public static final BarrelPart BARREL = new BarrelPart();
-    public static final PartTemplate BLADE = new PartTemplate("Blade", "blade");
     public static final BlockPart BLOCK = new BlockPart();
     public static final PartTemplate BOLT = new PartTemplate("Bolt", "bolt");
     public static final PartTemplate COIL = new PartTemplate("Coil", "coil").asColumnBlock(SortOrder.COILS);

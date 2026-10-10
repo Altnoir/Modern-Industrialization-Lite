@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:copper_blade"
+      "tag": "c:plates/copper"
     },
     "R": {
       "item": "milite:copper_ring"

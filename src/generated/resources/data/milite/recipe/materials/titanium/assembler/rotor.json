@@ -11,7 +11,7 @@
   "item_inputs": [
     {
       "amount": 4,
-      "item": "milite:titanium_blade"
+      "tag": "c:plates/titanium"
     },
     {
       "amount": 1,

@@ -24,7 +24,7 @@ public final class PartProgression {
             "plate", "large_plate", "n_doped_plate", "p_doped_plate",
             // The machine parts, from the simple shapes to the assembled ones.
             "gear", "rod", "rod_magnetic", "bolt", "ring", "rotor", "wire", "wire_magnetic", "fine_wire",
-            "blade", "drill_head", "drill", "hammer",
+            "drill_head", "drill", "hammer",
             // The parts that are a device in their own right.
             "battery");
 

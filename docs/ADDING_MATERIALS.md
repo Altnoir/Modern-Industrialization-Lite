@@ -21,7 +21,7 @@ MIMaterialEvents.addMaterials(event => {
             .materialSet("shiny") // the set the material belongs to, can be "metallic", "shiny", "stone", "dull" (default is "metallic").
             // it is only used to pick the template folder of generated barrel and coil textures, see the textures section
             // addParts adds the simple parts to the material ie, the one already defined in MI and that don't need more parameters
-            .addParts("ingot", "nugget", "dust", "tiny_dust", "rod", "gear", "ring", "blade", "rotor", "coil", "plate", "bolt", "large_plate")
+            .addParts("ingot", "nugget", "dust", "tiny_dust", "rod", "gear", "ring", "rotor", "coil", "plate", "bolt", "large_plate")
             // add a part that doesn't exist in MI, its texture has to be drawn by hand
             .customRegularPart("Long Rod", "long_rod")
             .barrel("Super Barrel", "super_barrel", 69) // add a barrel with 69 stacks capacity and custom english name and path (both optional)

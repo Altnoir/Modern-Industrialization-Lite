@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:bronze_blade"
+      "tag": "c:plates/bronze"
     },
     "R": {
       "item": "milite:bronze_ring"

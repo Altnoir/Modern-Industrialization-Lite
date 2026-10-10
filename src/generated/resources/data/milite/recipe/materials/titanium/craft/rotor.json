@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:titanium_blade"
+      "tag": "c:plates/titanium"
     },
     "R": {
       "item": "milite:titanium_ring"

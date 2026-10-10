@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "milite:stainless_steel_blade"
+      "tag": "c:plates/stainless_steel"
     },
     "R": {
       "item": "milite:stainless_steel_ring"
