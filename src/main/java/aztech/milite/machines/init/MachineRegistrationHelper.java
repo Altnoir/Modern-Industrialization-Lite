@@ -88,6 +88,16 @@ public class MachineRegistrationHelper {
     private static final int MACHINE_HEAD_RANK = -1;
     private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
 
+    private static final Map<String, String> MACHINE_FOLLOWS = machineFollows();
+
+    private static Map<String, String> machineFollows() {
+        var follows = new HashMap<String, String>();
+        follows.put("large_steam_boiler", "steam_blast_furnace");
+        follows.put("advanced_large_steam_boiler", "large_steam_boiler");
+        follows.put("steam_quarry", "steel_boiler");
+        return Map.copyOf(follows);
+    }
+
     /**
      * The kinds of hatch, in the order the tab lists them: what moves items, then what moves fluids, then what moves
      * energy, each with its inputs ahead of its outputs. A hatch of any other kind sorts after these.
@@ -124,6 +134,10 @@ public class MachineRegistrationHelper {
         int tail = MACHINE_TAIL.indexOf(id);
         if (tail >= 0) {
             return SortOrder.MACHINES.and(MACHINE_TAIL_RANK).and(tail);
+        }
+        var follows = MACHINE_FOLLOWS.get(id);
+        if (follows != null) {
+            return machineSortOrder(follows).and(0);
         }
         for (int tier = 0; tier < MACHINE_TIER_PREFIXES.size(); tier++) {
             var prefix = MACHINE_TIER_PREFIXES.get(tier);
