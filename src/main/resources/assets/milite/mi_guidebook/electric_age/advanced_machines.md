@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Aluminum is a material used to make more advanced machines. Like the other Electric machines, these accept at most 32 RF/t. Put bauxite dust in an Electric Blast Furnace and you'll get aluminum nuggets.
+Aluminum is a material used to make more advanced machines. Like the other Electric machines, these accept at most 32 RF/t. Put bauxite dust in a regular Furnace or Blast Furnace and you'll get aluminum nuggets.
 
 The Centrifuge splits items by spinning them very fast. You can use it to make carbon dust and unlock better recipes for steel and silicon.
 

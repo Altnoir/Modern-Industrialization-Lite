@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Alüminyum, daha gelişmiş makineler yapmak için kullanılan bir malzemedir. Diğer elektrikli makineler gibi, bu yeni makineler de en fazla 32 RF/t kabul eder. Boksit tozunu bir Elektrikli Maden Eritme Ocağı'na koyun ve alüminyum parçaları elde edin.
+Alüminyum, daha gelişmiş makineler yapmak için kullanılan bir malzemedir. Diğer elektrikli makineler gibi, bu yeni makineler de en fazla 32 RF/t kabul eder. Boksit tozunu normal bir fırına veya yüksek fırına koyun ve alüminyum parçaları elde edin.
 
 Santrifüj, nesneleri çok hızlı döndürerek ayırır. Karbon tozu yapmak ve çelik ve silikon için daha iyi tariflerin kilidini açmak için kullanabilirsiniz.
 

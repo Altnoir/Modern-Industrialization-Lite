@@ -18,7 +18,7 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim como as outras máquinas elétricas, essas novas máquinas aceitam no máximo 32 RF/t. Coloque pó de bauxita em um Alto-forno Elétrico e você obterá pepitas de alumínio.
+O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim como as outras máquinas elétricas, essas novas máquinas aceitam no máximo 32 RF/t. Coloque pó de bauxita em uma Fornalha ou Alto-forno comum e você obterá pepitas de alumínio.
 
 A Centrífuga separa itens girando-os em alta velocidade. Você pode usá-la para fazer pó de carbono e desbloquear receitas melhores para aço e silício.
 
