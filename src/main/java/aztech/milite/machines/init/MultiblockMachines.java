@@ -625,8 +625,7 @@ public class MultiblockMachines {
                 new ProgressBar.Params(77, 33, "arrow"))
                         .items(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 1))
                         .fluids(fluids -> fluids.addSlots(36, 35, 1, 1), outputs -> outputs.addSlots(122, 35, 1, 1))
-                        .workstations(steamBlastFurnaceWorkstations())
-                        .steam(false)
+                        .steam(true)
                         .register();
         new Rei("Electric Blast Furnace", "electric_blast_furnace", MIMachineRecipeTypes.BLAST_FURNACE,
                 new ProgressBar.Params(77, 33, "arrow"))
@@ -635,17 +634,7 @@ public class MultiblockMachines {
                         .workstations(ElectricBlastFurnaceBlockEntity.tiers.stream()
                                 .map(ElectricBlastFurnaceBlockEntity.Tier::id)
                                 .toArray(String[]::new))
-                        .steam(false)
                         .register();
-    }
-
-    private static String[] steamBlastFurnaceWorkstations() {
-        List<String> workstations = new ArrayList<>();
-        workstations.add("steam_blast_furnace");
-        for (var tier : ElectricBlastFurnaceBlockEntity.tiers) {
-            workstations.add(tier.id());
-        }
-        return workstations.toArray(String[]::new);
     }
 
     public static class Rei {

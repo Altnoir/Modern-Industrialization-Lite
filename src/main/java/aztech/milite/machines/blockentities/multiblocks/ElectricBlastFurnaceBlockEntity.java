@@ -118,20 +118,6 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
     }
 
     /**
-     * A furnace also runs the recipes of the steam blast furnace. The steam one is the furnace of the age before, and
-     * everything it can make an electric one can make too, so the handful of recipes that only it knows are not a reason
-     * to keep a steam furnace standing next to an electric one.
-     *
-     * <p>
-     * The level check would let these through on its own: a steam recipe states no level, so it counts as a bronze one,
-     * and every electric furnace is above bronze.
-     */
-    @Override
-    public List<MachineRecipeType> recipeTypes() {
-        return List.of(MIMachineRecipeTypes.BLAST_FURNACE, MIMachineRecipeTypes.STEAM_BLAST_FURNACE);
-    }
-
-    /**
      * Which recipes the furnace runs is decided by the block a player built, not by anything inside it.
      */
     @Override
