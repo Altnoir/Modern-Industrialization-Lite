@@ -49,6 +49,13 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
         generateCopperOxidation(exporter, Items.WAXED_COPPER_GRATE, Items.WAXED_EXPOSED_COPPER_GRATE, Items.WAXED_WEATHERED_COPPER_GRATE, Items.WAXED_OXIDIZED_COPPER_GRATE);
 
         // wax
+        // Wax is what the mod waxes copper with, but nothing produced it: a honeycomb holds it, and the centrifuge
+        // is what takes it out.
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 2, 100)
+                .addItemInput(Items.HONEYCOMB, 1)
+                .addItemOutput(MIItem.WAX, 1)
+                .offerTo(exporter, "vanilla_recipes/centrifuge/honeycomb");
+
         generateWax(exporter, Items.COPPER_BLOCK, Items.WAXED_COPPER_BLOCK);
         generateWax(exporter, Items.CUT_COPPER, Items.WAXED_CUT_COPPER);
         generateWax(exporter, Items.CUT_COPPER_SLAB, Items.WAXED_CUT_COPPER_SLAB);

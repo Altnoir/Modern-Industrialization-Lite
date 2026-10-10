@@ -1,0 +1,17 @@
+{
+  "type": "milite:centrifuge",
+  "duration": 100,
+  "energy": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:wax"
+    }
+  ]
+}
