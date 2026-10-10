@@ -91,12 +91,14 @@ public class MachineRegistrationHelper {
     private static final Map<String, List<String>> MACHINE_FOLLOWS = Map.of(
             "steam_blast_furnace", List.of("bronze_boiler", "large_steam_boiler", "advanced_large_steam_boiler"),
             "steel_boiler", List.of("steam_quarry"),
+            "steel_wiremill", List.of("large_tank"),
+            "aluminum_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
             "stainless_steel_distillery", List.of("distillation_tower"),
             "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
             "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",
                     "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
             "titanium_wiremill", List.of("fusion_reactor"),
-            "iridium_wiremill", List.of("plasma_turbine"));
+            "iridium_wiremill", List.of("replicator", "plasma_turbine"));
 
     /**
      * The kinds of hatch, in the order the tab lists them: what moves items, then what moves fluids, then what moves
