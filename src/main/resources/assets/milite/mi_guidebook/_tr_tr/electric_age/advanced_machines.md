@@ -32,7 +32,7 @@ Damıtma Tesisi çeşitli sıvıları daha hafif parçalarına dönüştürecekt
 
 <Recipe id="milite:processing_table/electric_distillery" />
 
-Elektrolizör, güçlü elektrik akımları kullanarak malzemeleri farklı parçalarına ayırabilir. Alüminyum tozu elde etmek için boksit tozunu elektrolize edebilir ve daha sonra EMEO'da doğrudan alüminyum külçelere eritebilirsiniz.
+Elektrolizör, güçlü elektrik akımları kullanarak malzemeleri farklı parçalarına ayırabilir. Alüminyum tozu elde etmek için boksit tozunu elektrolize edebilir ve daha sonra normal bir fırında veya yüksek fırında alüminyum külçelere eritebilirsiniz.
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 

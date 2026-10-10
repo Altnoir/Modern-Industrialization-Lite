@@ -32,7 +32,7 @@ A Destilaria transformará vários fluidos em suas partes mais leves. Isso será
 
 <Recipe id="milite:processing_table/electric_distillery" />
 
-O Eletrólisador pode separar materiais em suas diferentes partes usando correntes elétricas fortes. Você pode eletrólisar pó de bauxita para obter pó de alumínio, que pode então ser fundido diretamente em lingotes de alumínio no AFE.
+O Eletrólisador pode separar materiais em suas diferentes partes usando correntes elétricas fortes. Você pode eletrólisar pó de bauxita para obter pó de alumínio, que pode então ser fundido em lingotes de alumínio em uma Fornalha ou Alto-forno comum.
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 

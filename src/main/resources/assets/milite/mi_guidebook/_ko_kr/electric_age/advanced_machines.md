@@ -32,7 +32,7 @@ item_ids:
 <Recipe id="milite:processing_table/electric_distillery" />
 
 전해조는 아이템에 강한 전류를 흘려 분해하는 기계입니다.
-보크사이트 가루를 알루미늄 가루로 만들 수 있고, 알루미늄 가루는 전기 용광로에서 바로 알루미늄 주괴로 구울 수 있습니다.
+보크사이트 가루를 알루미늄 가루로 만들 수 있고, 알루미늄 가루는 화로나 용광로에서 바로 알루미늄 주괴로 구울 수 있습니다.
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 

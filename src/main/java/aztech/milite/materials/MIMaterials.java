@@ -308,7 +308,7 @@ public class MIMaterials {
                         .addParts(MACHINE_CASING.of("Aluminum Alloy Machine Casing", "aluminum_alloy_machine_casing"))
                         .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing")).addParts(TANK.of(64))
                         .addParts(BARREL.of(512)).addRecipes(StandardRecipes::apply)
-                        .addRecipes(SmeltingRecipes::applyBlastFurnace));
+                        .addRecipes(SmeltingRecipes::apply));
 
         ALUMINUM_ALLOY = MaterialRegistry.addMaterial(
                 new MaterialBuilder("Aluminum Alloy", "aluminum_alloy")

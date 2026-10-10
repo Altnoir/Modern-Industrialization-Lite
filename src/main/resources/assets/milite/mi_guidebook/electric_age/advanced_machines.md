@@ -32,7 +32,7 @@ The Distillery will turn various fluids into their lighter parts. That will be v
 
 <Recipe id="milite:processing_table/electric_distillery" />
 
-The Electrolyzer can split materials into their different parts using strong electric currents. You can electrolyze bauxite dust to get aluminum dust, which you can then directly smelt into aluminum ingots in the EBF.
+The Electrolyzer can split materials into their different parts using strong electric currents. You can electrolyze bauxite dust to get aluminum dust, which you can then smelt into aluminum ingots in a regular Furnace or Blast Furnace.
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 

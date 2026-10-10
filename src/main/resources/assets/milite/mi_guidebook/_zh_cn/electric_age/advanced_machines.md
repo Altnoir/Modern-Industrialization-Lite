@@ -32,7 +32,7 @@ item_ids:
 
 <Recipe id="milite:processing_table/electric_distillery" />
 
-电解机能够利用强电流将材料分解为不同组分。你可以电解铝土矿粉以获得铝粉，随后即可直接在电力高炉中将其熔炼成铝锭。
+电解机能够利用强电流将材料分解为不同组分。你可以电解铝土矿粉以获得铝粉，随后即可像其他金属一样在熔炉或高炉中将其熔炼成铝锭。
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 

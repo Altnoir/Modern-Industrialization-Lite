@@ -32,7 +32,7 @@ item_ids:
 
 <Recipe id="milite:processing_table/electric_distillery" />
 
-電解機は電気を流すことで素材を分離することができる。ボーキサイトの粉を電気分解してアルミニウムの粉を作り、電気高炉で直接製錬してアルミニウムのインゴットにすることができる。
+電解機は電気を流すことで素材を分離することができる。ボーキサイトの粉を電気分解してアルミニウムの粉を作り、かまどや溶鉱炉で製錬してアルミニウムのインゴットにすることができる。
 
 <Recipe id="milite:processing_table/electric_electrolyzer" />
 
