@@ -19,7 +19,7 @@ item_ids:
 
 The Electric Quarry is the electric equivalent of the Steam Quarry. Provide it with items and energy, and watch your resources GO BRRR!
 
-Its structure is exactly the same as the Steam Quarry's.
+Its structure is the same as the Steam Quarry's, except that the walls are made of Hardened Machine Casings instead of Steel Machine Casings.
 
 <Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
 

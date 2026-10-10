@@ -19,7 +19,7 @@ item_ids:
 
 电动采石场是蒸汽采石场的电力版本。为它提供物品和能量，然后看着你的资源噌噌噌地变多！
 
-它的结构与蒸汽采石场完全相同。
+它的结构与蒸汽采石场相同，但墙体使用硬化机器外壳而非钢机器外壳。
 
 <Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
 

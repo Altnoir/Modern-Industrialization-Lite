@@ -19,7 +19,7 @@ The Oil Drilling Rig is a huge multiblock that can dig for Crude Oil under the b
 
 <Recipe id="milite:oil/oil_drilling_rig_asbl" />
 
-The structure of the multiblock is made of: Steel Machine Casings, Steel Pipe Machine Casings and Chains as you can see by placing the controller and holding a Wrench. The Hatches can be replaced by Steel Machine Casings, but be sure to have at least Item Input, Fluid Output and Energy Input Hatches!
+The structure of the multiblock is made of: Hardened Machine Casings, Steel Pipe Machine Casings and Chains as you can see by placing the controller and holding a Wrench. The Hatches can be replaced by Hardened Machine Casings, but be sure to have at least Item Input, Fluid Output and Energy Input Hatches!
 
 Crude Oil can be turned into various fuels and used for more efficient Rubber Sheet production.
 

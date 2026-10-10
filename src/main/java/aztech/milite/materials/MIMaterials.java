@@ -284,6 +284,7 @@ public class MIMaterials {
                         .addParts(BOLT, RING, ROD, GEAR, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
                         .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(TANK.of(16)).addParts(BARREL.of(128))
+                        .addParts(MACHINE_CASING_SPECIAL.of("Hardened Machine Casing", "hardened_machine_casing"))
                         .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.STEEL_HAMMER.getId().toString()))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 

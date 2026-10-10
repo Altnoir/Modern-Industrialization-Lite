@@ -40,7 +40,7 @@ public class MIModelProvider extends BaseModelProvider {
         for (String blockId : new String[]{
                 "blastproof_casing", "bronze_plated_bricks",
                 "clean_stainless_steel_machine_casing", "cupronickel_coil", "frostproof_machine_casing",
-                "heatproof_machine_casing", "kanthal_coil",
+                "hardened_machine_casing", "heatproof_machine_casing", "kanthal_coil",
                 "nuclear_casing", "plasma_handling_iridium_machine_casing",
                 "solid_titanium_machine_casing",
                 "superconductor_coil"}) {
