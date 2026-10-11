@@ -97,7 +97,7 @@ public class SlotPanel implements GuiComponentServer<List<SlotPanel.SlotType>, U
     }
 
     public static int getSlotX(MachineGuiParameters guiParameters) {
-        return guiParameters.backgroundWidth + 2;
+        return guiParameters.backgroundWidth + 4;
     }
 
     public enum SlotType {

@@ -75,10 +75,6 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
             super(container, index, x, y);
         }
 
-        /**
-         * The module slot frames are part of {@link SlotPanelRenderer}'s plate sprite, so this slot must not draw a
-         * slot atlas background of its own on top of it.
-         */
         @Override
         public @Nullable ResourceLocation getBackgroundAtlasLocation() {
             return null;
@@ -91,12 +87,12 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
 
     private class SlotPanelRenderer implements ClientComponentRenderer {
         private static final int PLATE_U = 0;
-        private static final int SINGLE_SLOT_PLATE_U = 22;
+        private static final int SINGLE_SLOT_PLATE_U = 26;
         private static final int PLATE_V = 64;
-        private static final int PLATE_WIDTH = 22;
+        private static final int PLATE_WIDTH = 26;
         private static final int SLOT_BAND = 18;
         private static final int PLATE_MARGIN = 5;
-        private static final int PANEL_TOP = 23;
+        private static final int PANEL_TOP = 21;
 
         private final MachineScreen machineScreen;
         private final int plateU;
@@ -122,8 +118,6 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
         public void renderBackground(GuiGraphics guiGraphics, int x, int y) {
             var box = getBox(x, y);
 
-            // One blit of the whole panel: the sprite carries the plate edges and the rounded frame of every slot, so
-            // the module slots must not draw a background of their own (see SlotWithBackground).
             guiGraphics.blit(MachineScreen.SLOT_ATLAS, box.x(), box.y(), plateU, PLATE_V, box.w(), box.h());
         }
 
