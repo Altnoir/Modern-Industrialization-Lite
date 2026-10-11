@@ -66,8 +66,6 @@ public class PartTemplate implements PartKeyProvider {
     }
 
     private static void setupTag(MaterialBuilder.PartContext context, PartKey part, String itemTag, ItemLike item) {
-        // items whose path are overridden (such as fire clay ingot -> brick) are not
-        // added to the tags
         for (PartKey partTagged : MIParts.TAGGED_PARTS) {
             if (partTagged.equals(part)) {
                 var generatedTag = itemTag.replaceFirst("#", "");
@@ -126,16 +124,11 @@ public class PartTemplate implements PartKeyProvider {
         return sb.toString();
     }
 
-    /**
-     * The order the casing parts of a material are listed in, so the part that carries the character of a level is not
-     * pushed behind the plain casing of that level.
-     */
     private static int materialPartOrder(String materialName, String part) {
         List<String> order = switch (materialName) {
-            case "bronze", "stainless_steel" ->
-                    List.of("machine_casing_special", "machine_casing", "machine_casing_pipe");
+            case "bronze", "stainless_steel", "titanium", "iridium" ->
+                    List.of("machine_casing_special", "machine_casing_pipe", "machine_casing");
             case "aluminum" -> List.of("machine_casing_special", "machine_casing");
-            case "titanium", "iridium" -> List.of("machine_casing_special", "machine_casing_pipe", "machine_casing");
             default -> List.of();
         };
         int index = order.indexOf(part);
@@ -172,11 +165,6 @@ public class PartTemplate implements PartKeyProvider {
         return new PartTemplate(englishNameFormatter, partKey, blockRegister, textureGenParams, itemPathFormatter);
     }
 
-    /**
-     * A block that carries a horizontal axis, like vanilla logs do. Pipe casings are registered this way because the
-     * connected texture loader has to know which way a run of casing points: without an axis state every face looks
-     * alike, so one of the three axes can never be made to connect.
-     */
     public PartTemplate asPipeBlock(SortOrder sortOrder, float hardness, float resistance) {
         Register pipeBlockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
 
@@ -192,20 +180,15 @@ public class PartTemplate implements PartKeyProvider {
                             .withBlockConstructor(RotatedPillarBlock::new)
                             .withModel((block, gen) -> {
                                 String name = gen.name(block);
-                                // Pipe casings keep every tile inside their own folder, named after the slot the
-                                // connected texture loader asks for, so the plain texture is "<name>/particle".
                                 var model = gen.models().cubeAll(name, gen.blockTexture(name + "/particle"));
-                                // The same rotations vanilla logs use: the unrotated model is the vertical pillar,
-                                // so the two horizontal variants turn the whole block a quarter turn.
                                 var variants = gen.getVariantBuilder(block);
+
                                 variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y)
                                         .modelForState().modelFile(model).addModel();
                                 variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X)
                                         .modelForState().modelFile(model).rotationX(90).rotationY(90).addModel();
                                 variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z)
                                         .modelForState().modelFile(model).rotationX(90).addModel();
-                                // The item model has to inherit the block model instead of re-declaring its own
-                                // textures: a hand written "textures" block would point at "<name>" again.
                                 gen.itemModels().getBuilder(name).parent(model);
                             })
 
@@ -264,10 +247,6 @@ public class PartTemplate implements PartKeyProvider {
         }, this.textureGenParams, true);
     }
 
-    /**
-     * Machine structures are listed by level first, then by the part a material makes, everything else by where the
-     * material sits in the progression.
-     */
     private static SortOrder blockSortOrder(SortOrder sortOrder, String materialName, PartKey part) {
         int rank = MaterialProgression.rankOf(materialName);
         if (sortOrder.groupIndex() != SortOrder.STRUCTURES.groupIndex()) {
