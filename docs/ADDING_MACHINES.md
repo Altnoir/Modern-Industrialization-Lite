@@ -308,17 +308,14 @@ Methods that config exposes:
 ## Adding new casing types
 See [MACHINE_MODELS.md](MACHINE_MODELS.md) for an explanation of machine models and what casings are.
 You can add new casings using the `MIMachineEvents.registerCasings` event.
-- Use the `register` function if you will also be adding a JSON model for the casing.
+- Use the `registerNamed` function if you will also be adding a JSON model for the casing.
 - Use the `registerBlockImitation` function to add a casing that will imitate another block.
-
-If you use `register` and want a texture-based casing model,
-remember that the top, side and bottom textures of a casing must be `milite:textures/block/casings/<casing name>/{top,side,bottom}.png`.
 
 For example:
 ```js
 MIMachineEvents.registerCasings(event => {
     // Register a casing.
-    // This doesn't register any model! Either add models or add the top/side/bottom textures.
+    // This doesn't register any model! Add a JSON model for it yourself.
     event.registerNamed("fancy_casing", "Fancy");
 
     // This registers a new casing with the same model as a diamond block!
