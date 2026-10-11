@@ -46,9 +46,9 @@ public final class CreativeSections {
         var byGroup = new HashMap<Integer, CreativeTabSection>();
         add(byGroup, ITEMS, SortOrder.GUIDE_BOOK, SortOrder.FORGE_HAMMER, SortOrder.PROCESSING_TABLE, SortOrder.ITEMS_ORDERED.root());
         add(byGroup, NUCLEAR, SortOrder.NUCLEAR.root());
+        add(byGroup, MACHINES, SortOrder.MACHINES);
         add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         add(byGroup, MACHINE_PARTS, SortOrder.STRUCTURES);
-        add(byGroup, MACHINES, SortOrder.MACHINES);
         add(byGroup, ORES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
         add(byGroup, MATERIALS, SortOrder.MATERIALS);
         add(byGroup, FLUIDS, SortOrder.BUCKETS);
