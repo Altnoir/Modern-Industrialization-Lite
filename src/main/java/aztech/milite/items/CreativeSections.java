@@ -20,7 +20,7 @@ public final class CreativeSections {
     public static final CreativeTabSection FLUIDS = section(MIText.SectionFluids);
     public static final CreativeTabSection MISC = section(MIText.SectionMisc);
 
-    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINE_PARTS, MACHINES, ORES, MATERIALS, FLUIDS, MISC);
+    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, STORAGE, MACHINES, MACHINE_PARTS, ORES, MATERIALS, FLUIDS, MISC);
 
     private static final Map<Integer, CreativeTabSection> BY_GROUP = byGroup();
 
