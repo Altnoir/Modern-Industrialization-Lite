@@ -9,6 +9,7 @@ import aztech.milite.test.GeneratorTests;
 import aztech.milite.test.MachineSpeedTests;
 import aztech.milite.test.MultiblockTests;
 import aztech.milite.test.ProcessingTableTests;
+import aztech.milite.test.SoundTests;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.StructureUtils;
 import net.minecraft.gametest.framework.TestFunction;
@@ -28,7 +29,8 @@ public final class MIGameTests {
             GeneratorTests.class,
             MachineSpeedTests.class,
             MultiblockTests.class,
-            ProcessingTableTests.class);
+            ProcessingTableTests.class,
+            SoundTests.class);
 
     @GameTestGenerator
     public static List<TestFunction> generateTests() {

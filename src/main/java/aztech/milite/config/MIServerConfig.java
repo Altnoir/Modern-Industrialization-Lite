@@ -19,6 +19,9 @@ public final class MIServerConfig {
     public final ModConfigSpec.BooleanValue stonecutterToCuttingMachine;
     public final ModConfigSpec.IntValue steamPerWater;
 
+    public final ModConfigSpec.BooleanValue machineSounds;
+    public final ModConfigSpec.DoubleValue machineSoundVolume;
+
     private MIServerConfig(MIConfigBuilder builder) {
         this.spawnWithGuideBook = builder.start("spawnWithGuideBook",
                 "Spawn with guidebook",
@@ -33,6 +36,17 @@ public final class MIServerConfig {
                 "Steam per Water",
                 "How much steam should be produced per mb of water that is boiled.")
                 .defineInRange("steamPerWater", 16, 1, 1000);
+
+        builder.pushSection("sounds", "Sounds");
+        this.machineSounds = builder.start("machineSounds",
+                "Machine sounds",
+                "Play a working sound while a machine is running.")
+                .define("machineSounds", true);
+        this.machineSoundVolume = builder.start("machineSoundVolume",
+                "Machine sound volume",
+                "Volume of the machine working sounds.")
+                .defineInRange("machineSoundVolume", 1.0, 0.0, 5.0);
+        builder.popSection();
 
         builder.pushSection("recipes", "Recipes");
         this.compostableToPlantOil = builder.start("compostableToPlantOil",

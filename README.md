@@ -55,6 +55,23 @@ and Technici4n: the design, the code and most of the assets are theirs.
 
 The code is under the MIT license and the assets are under CC0, see [LICENSE](LICENSE).
 
+### Sound credits
+
+The machine working sounds come from [MI-Sound-Addon](https://github.com/TheStaticVoid/MI-Sound-Addon) by TheStaticVoid
+(MIT), which takes most of them from [GregTech CEu Modern](https://github.com/GregTechCEu/GregTech-Modern) (CC0) and
+the Fusion Reactor sound from [Mekanism](https://github.com/mekanism/mekanism) (MIT). These sounds come from
+[Freesound](https://freesound.org):
+
+- blast_furnace: [iankath](https://freesound.org/people/iankath/sounds/173991/) - CC0
+- boiler: [Ezcah](https://freesound.org/people/Ezcah/sounds/248296/) - CC0
+- distillation_tower: [krypaw](https://freesound.org/people/krypaw/sounds/584898/) - CC0
+- oil_drilling_rig: [gecop](https://freesound.org/people/gecop/sounds/568860/) - CC0
+- packer, unpacker: [AGMoneyTrigga](https://freesound.org/people/AGMoneyTrigga/sounds/231347/) - CC0
+- polarizer: [DeVern](https://freesound.org/people/DeVern/sounds/346396/) - CC0
+- replicator: [GameAudio](https://freesound.org/people/GameAudio/sounds/220191/) - CC0
+- pressurizer: [beerbelly38](https://freesound.org/people/beerbelly38/sounds/77935/) - CC BY 4.0
+- wiremill: [tim.kahn](https://freesound.org/people/tim.kahn/sounds/622245/) - CC BY 4.0
+
 ---
 
 ## 现代工业化

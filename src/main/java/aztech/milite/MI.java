@@ -50,6 +50,7 @@ import aztech.milite.misc.runtime_datagen.RuntimeDataGen;
 import aztech.milite.network.MIPackets;
 import aztech.milite.nuclear.FluidNuclearComponent;
 import aztech.milite.resource.GeneratedPathPackResources;
+import aztech.milite.sounds.MISounds;
 import aztech.milite.stats.PlayerStatisticsData;
 import aztech.milite.test.framework.MIGameTests;
 import net.minecraft.resources.ResourceLocation;
@@ -119,6 +120,7 @@ public class MI {
         MIBlock.init(modBus);
         MIItem.init(modBus);
         MIRegistries.init(modBus);
+        MISounds.init(modBus);
         MIArmorMaterials.init(modBus);
         MIMaterials.init();
 

@@ -68,6 +68,8 @@ public abstract class MachineBlockEntity extends FastBlockEntity
     public final OrientationComponent orientation;
     public final PlacedByComponent placedBy;
 
+    public long lastSoundTick;
+
     public MachineBlockEntity(BEP bep, MachineGuiParameters guiParams, OrientationComponent.Params orientationParams) {
         super(bep.type(), bep.pos(), bep.state());
         this.guiParams = guiParams;

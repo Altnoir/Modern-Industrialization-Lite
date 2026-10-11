@@ -1,0 +1,182 @@
+{
+  "machine/assembler": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/assembler"
+    ]
+  },
+  "machine/blast_furnace": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/blast_furnace"
+    ]
+  },
+  "machine/boiler": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/boiler"
+    ]
+  },
+  "machine/centrifuge": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/centrifuge"
+    ]
+  },
+  "machine/chemical_reactor": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/chemical_reactor"
+    ]
+  },
+  "machine/coke_oven": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/coke_oven"
+    ]
+  },
+  "machine/compressor": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/compressor"
+    ]
+  },
+  "machine/cutting_machine": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/cutting_machine"
+    ]
+  },
+  "machine/diesel": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/diesel"
+    ]
+  },
+  "machine/distillation_tower": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/distillation_tower"
+    ]
+  },
+  "machine/distillery": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/distillery"
+    ]
+  },
+  "machine/electric_blast_furnace": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/electric_blast_furnace"
+    ]
+  },
+  "machine/electrolyzer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/electrolyzer"
+    ]
+  },
+  "machine/fission_reactor": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/fission_reactor"
+    ]
+  },
+  "machine/furnace": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/furnace"
+    ]
+  },
+  "machine/fusion_reactor": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/fusion_reactor"
+    ]
+  },
+  "machine/heat_exchanger": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/heat_exchanger"
+    ]
+  },
+  "machine/implosion_compressor": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/implosion_compressor"
+    ]
+  },
+  "machine/macerator": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/macerator"
+    ]
+  },
+  "machine/mixer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/mixer"
+    ]
+  },
+  "machine/oil_drilling_rig": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/oil_drilling_rig"
+    ]
+  },
+  "machine/packer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/packer"
+    ]
+  },
+  "machine/polarizer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/polarizer"
+    ]
+  },
+  "machine/pressurizer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/pressurizer"
+    ]
+  },
+  "machine/quarry": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/quarry"
+    ]
+  },
+  "machine/replicator": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/replicator"
+    ]
+  },
+  "machine/turbine": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/turbine"
+    ]
+  },
+  "machine/unpacker": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/unpacker"
+    ]
+  },
+  "machine/vacuum_freezer": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/vacuum_freezer"
+    ]
+  },
+  "machine/wiremill": {
+    "category": "block",
+    "sounds": [
+      "milite:machine/wiremill"
+    ]
+  }
+}
