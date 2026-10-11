@@ -37,8 +37,6 @@
   "advancements.milite.aluminum_alloy_steam_turbine.description": "製作高級蒸汽鍋輪機",
   "advancements.milite.oil_drilling_rig": "自由之風很快吹到你家門口",
   "advancements.milite.oil_drilling_rig.description": "建造石油鑽機",
-  "advancements.milite.polarizer": "聊勝於無",
-  "advancements.milite.polarizer.description": "製作電磁偏振器",
   "advancements.milite.processing_unit": "比特幣礦工",
   "advancements.milite.processing_unit.description": "製作處理器",
   "advancements.milite.resistor": "RLC裡的R",
@@ -451,14 +449,11 @@
   "tag.fluid.c.styrene_butadiene_rubber": "丁苯橡膠",
   "tag.fluid.c.synthetic_rubber": "合成橡膠",
   "text.autoconfig.milite.title": "現代工業化配置",
-  "text.milite.AcceptsUpgrades": "放置升級以提升最大FE/t。",
   "text.milite.EnergyInputHatch": "能量輸入倉",
   "text.milite.EnergyOutputHatch": "能量輸出倉",
   "text.milite.FluidInputHatch": "流體輸入倉",
   "text.milite.FluidOutputHatch": "流體輸出倉",
   "text.milite.ItemInputHatch": "物流輸入倉",
   "text.milite.ItemOutputHatch": "物流輸出倉",
-  "text.milite.MachineUpgrade": "電力機器升級：超頻上限 +%s",
-  "text.milite.MachineUpgradeStack": "此物品堆疊提升 +%s",
   "text.milite.RequiresSteelHatch1": "- 需要至少一個鋼倉室（任意）"
 }
