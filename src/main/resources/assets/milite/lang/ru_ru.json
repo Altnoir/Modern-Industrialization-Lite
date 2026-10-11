@@ -1601,7 +1601,7 @@
   "text.milite.RequiresUpgrades": "Требуется по крайней мере +%s модернизаций.",
   "text.milite.ScatteringProbability": "Вероятность рассеяния",
   "text.milite.SecondsLeft": "Осталось секунд: %s",
-  "text.milite.ShapeSelectionDescription": "Нажми, чтобы открыть панель выбора формы.",
+  "text.milite.ShapeSelectionDescription": "Перетащи ползунок, чтобы изменить размер мультиблока.",
   "text.milite.ShapeSelectionTitle": "Выбери форму мультиблока",
   "text.milite.ShapeTextDepth": "Глубина: %d",
   "text.milite.ShapeTextExtreme": "Чрезмерная",

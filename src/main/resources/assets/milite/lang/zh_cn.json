@@ -1617,7 +1617,7 @@
   "text.milite.SectionNuclear": "核工业",
   "text.milite.SectionOres": "矿物",
   "text.milite.SectionStorage": "储存",
-  "text.milite.ShapeSelectionDescription": "点击可打开结构选择面板。",
+  "text.milite.ShapeSelectionDescription": "拖动滑块以调整多方块结构的大小。",
   "text.milite.ShapeSelectionTitle": "选择多方块结构",
   "text.milite.ShapeTextDepth": "深度：%d",
   "text.milite.ShapeTextExtreme": "超大",

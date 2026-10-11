@@ -1605,7 +1605,7 @@
   "text.milite.RequiresUpgrades": "Requer ao menos +%s em melhorias.",
   "text.milite.ScatteringProbability": "Probabilidade de Espalhar",
   "text.milite.SecondsLeft": "Segundos restantes: %s",
-  "text.milite.ShapeSelectionDescription": "Clique para abrir o painel de seleção de formas",
+  "text.milite.ShapeSelectionDescription": "Arraste o controle deslizante para redimensionar o multibloco",
   "text.milite.ShapeSelectionTitle": "Selecione a forma Multibloco",
   "text.milite.ShapeTextDepth": "Profundidade: %d",
   "text.milite.ShapeTextExtreme": "Extremo",

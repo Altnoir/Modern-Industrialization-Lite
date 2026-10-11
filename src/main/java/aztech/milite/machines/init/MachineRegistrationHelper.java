@@ -137,6 +137,9 @@ public class MachineRegistrationHelper {
     }
 
     private static SortOrder hatchSortOrder(String id) {
+        if (id.equals("large_tank_hatch")) {
+            return SortOrder.HATCHES.withLevel(structureLevel("steel")).and(HATCH_KINDS.size());
+        }
         var kind = id.substring(0, id.length() - "_hatch".length());
         var level = MachineLevel.values().length;
         for (var prefix : MACHINE_TIER_PREFIXES) {

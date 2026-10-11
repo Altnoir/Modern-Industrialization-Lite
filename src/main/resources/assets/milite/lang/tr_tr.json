@@ -1527,7 +1527,7 @@
   "text.milite.RequiresUpgrades": "En az +%s yükseltme gerektirir.",
   "text.milite.ScatteringProbability": "Saçılma Olasılığı",
   "text.milite.SecondsLeft": "Saniye kaldı: %s",
-  "text.milite.ShapeSelectionDescription": "Şekil seçim panelini açmak için tıkla.",
+  "text.milite.ShapeSelectionDescription": "Çoklu bloğun boyutunu değiştirmek için kaydırıcıyı sürükle.",
   "text.milite.ShapeSelectionTitle": "Çoklu Blok Şeklini Seç",
   "text.milite.ShapeTextDepth": "Derinlik: %d",
   "text.milite.ShapeTextExtreme": "Aşırı",

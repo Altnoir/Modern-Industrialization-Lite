@@ -1493,7 +1493,7 @@
   "text.milite.RequiresUpgrades": "少なくとも+%sのアップグレードが必要。",
   "text.milite.ScatteringProbability": "散乱確率",
   "text.milite.SecondsLeft": "残り秒数：%s",
-  "text.milite.ShapeSelectionDescription": "クリックで形状選択パネルが表示",
+  "text.milite.ShapeSelectionDescription": "スライダーをドラッグしてマルチブロックのサイズを変更",
   "text.milite.ShapeSelectionTitle": "マルチブロック形状を選択",
   "text.milite.ShapeTextDepth": "深さ: %d",
   "text.milite.ShapeTextExtreme": "特大",

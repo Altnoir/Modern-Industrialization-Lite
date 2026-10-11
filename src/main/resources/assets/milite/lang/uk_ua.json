@@ -1612,7 +1612,7 @@
   "text.milite.RequiresUpgrades": "Потребує щонайменше +%s на суму модифікаторів.",
   "text.milite.ScatteringProbability": "Імовірність розсіювання",
   "text.milite.SecondsLeft": "Залишилося секунд: %s",
-  "text.milite.ShapeSelectionDescription": "Натисніть, щоб відкрити панель вибору форми.",
+  "text.milite.ShapeSelectionDescription": "Перетягніть повзунок, щоб змінити розмір мультиблока.",
   "text.milite.ShapeSelectionTitle": "Виберіть форму конструкції",
   "text.milite.ShapeTextDepth": "Глибина: %d",
   "text.milite.ShapeTextExtreme": "Величезна",

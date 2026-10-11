@@ -41,6 +41,9 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     public static final ResourceLocation SLOT_ATLAS = MI.id("textures/gui/container/slot_atlas.png");
     public static final ResourceLocation BACKGROUND = MI.id("textures/gui/container/background.png");
 
+    private static final int BACKGROUND_SIZE = 256;
+    private static final int INVENTORY_HEIGHT = 83;
+
     private final List<ClientComponentRenderer> renderers = new ArrayList<>();
 
     public MachineScreen(MachineMenuClient handler, Inventory inventory, Component title) {
@@ -66,8 +69,6 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     private static final int BUTTON_LOCK_U = 24;
     private static final int BUTTON_V_UP = 18;
     private static final int BUTTON_V_DOWN = 30;
-    private static final int BUTTON_HOVER_U = 60;
-    private static final int BUTTON_HOVER_V = 18;
 
     private int nextButtonX;
     private static final int BUTTON_Y = 6;
@@ -104,13 +105,6 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     }
 
     /**
-     * Helper method to draw a 20x20 button.
-     */
-    public void blitButton(Button button, GuiGraphics guiGraphics, int u, int v) {
-        blitButton(button, guiGraphics, u, v, BUTTON_HOVER_U, BUTTON_HOVER_V);
-    }
-
-    /**
      * Helper method to draw a 12x12 button.
      */
     public void blitButtonSmall(Button button, GuiGraphics guiGraphics, int u, int v) {
@@ -119,6 +113,14 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
 
     public void blitButtonNoHighlight(Button button, GuiGraphics guiGraphics, int u, int v) {
         guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), u, v, button.getWidth(), button.getHeight());
+    }
+
+    public static void blitStretched(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v, int cap, int middle) {
+        guiGraphics.blit(SLOT_ATLAS, x, y, u, v, cap, height);
+        for (int i = 0; i < (width - 2 * cap) / middle; i++) {
+            guiGraphics.blit(SLOT_ATLAS, x + cap + i * middle, y, u + cap, v, middle, height);
+        }
+        guiGraphics.blit(SLOT_ATLAS, x + width - cap, y, u + cap + middle, v, cap, height);
     }
 
     /**
@@ -216,8 +218,15 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     protected void renderBg(GuiGraphics guiGraphics, float delta, int mouseX, int mouseY) {
         int bw = menu.guiParams.backgroundWidth;
         int bh = menu.guiParams.backgroundHeight;
-        guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, 0, 256 - bh + 4, bw, bh - 4);
         guiGraphics.blit(BACKGROUND, leftPos, topPos, 0, 0, bw, 4);
+        if (bh <= BACKGROUND_SIZE) {
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, 0, BACKGROUND_SIZE - bh + 4, bw, bh - 4);
+        } else {
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, bw, bh - 4 - INVENTORY_HEIGHT, 0, 4, bw,
+                    BACKGROUND_SIZE - 4 - INVENTORY_HEIGHT, BACKGROUND_SIZE, BACKGROUND_SIZE);
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + bh - INVENTORY_HEIGHT, 0, BACKGROUND_SIZE - INVENTORY_HEIGHT, bw,
+                    INVENTORY_HEIGHT);
+        }
 
         for (ClientComponentRenderer renderer : renderers) {
             renderer.renderBackground(guiGraphics, leftPos, topPos);
@@ -309,6 +318,36 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         }
         textTooltip.add(MIText.ConfigurableSlotCapacity.text(capacityText).setStyle(TextHelper.GRAY_TEXT));
         guiGraphics.renderTooltip(font, textTooltip, data, mouseX, mouseY);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        for (ClientComponentRenderer renderer : renderers) {
+            if (renderer.mouseClicked(this, mouseX, mouseY, button)) {
+                return true;
+            }
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
+        for (ClientComponentRenderer renderer : renderers) {
+            if (renderer.mouseDragged(this, mouseX, mouseY, button, dragX, dragY)) {
+                return true;
+            }
+        }
+        return super.mouseDragged(mouseX, mouseY, button, dragX, dragY);
+    }
+
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        for (ClientComponentRenderer renderer : renderers) {
+            if (renderer.mouseReleased(this, mouseX, mouseY, button)) {
+                return true;
+            }
+        }
+        return super.mouseReleased(mouseX, mouseY, button);
     }
 
     @Override

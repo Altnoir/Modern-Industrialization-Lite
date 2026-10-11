@@ -1612,7 +1612,7 @@
   "text.milite.RequiresUpgrades": "Nécessite au moins +%s d'amélioration de vitesse.",
   "text.milite.ScatteringProbability": "Probabilité de dispersion",
   "text.milite.SecondsLeft": "Secondes restantes : %s",
-  "text.milite.ShapeSelectionDescription": "Cliquer pour ouvrir le menu de sélection de forme.",
+  "text.milite.ShapeSelectionDescription": "Faire glisser le curseur pour redimensionner le multi-bloc.",
   "text.milite.ShapeSelectionTitle": "Sélection d'une forme de multi bloc",
   "text.milite.ShapeTextDepth": "Profondeur : %d",
   "text.milite.ShapeTextExtreme": "Extrème",

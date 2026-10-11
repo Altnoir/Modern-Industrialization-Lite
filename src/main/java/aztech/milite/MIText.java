@@ -219,7 +219,7 @@ public enum MIText {
     SectionNuclear("Nuclear"),
     SectionOres("Ores"),
     SectionStorage("Storage"),
-    ShapeSelectionDescription("Click to open shape selection panel."),
+    ShapeSelectionDescription("Drag the slider to resize the multiblock."),
     ShapeSelectionTitle("Select Multiblock Shape"),
     ShapeTextDepth("Depth: %d"),
     ShapeTextExtreme("Extreme"),

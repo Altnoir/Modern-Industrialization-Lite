@@ -52,15 +52,10 @@ public class ShapeSelection implements GuiComponentServer<List<ShapeSelection.Li
         int getCurrentIndex(int line);
     }
 
-    /**
-     * @param useArrows True for arrows {@code < and >}, false for +/-.
-     */
-    public record LineInfo(List<Component> translations, boolean useArrows) {
+    public record LineInfo(List<Component> translations) {
         public static final StreamCodec<RegistryFriendlyByteBuf, LineInfo> STREAM_CODEC = StreamCodec.composite(
                 ComponentSerialization.STREAM_CODEC.apply(ByteBufCodecs.list()),
                 LineInfo::translations,
-                ByteBufCodecs.BOOL,
-                LineInfo::useArrows,
                 LineInfo::new);
 
         public int numValues() {

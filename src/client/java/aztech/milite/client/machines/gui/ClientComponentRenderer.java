@@ -26,6 +26,18 @@ public interface ClientComponentRenderer {
 
     default void addExtraBoxes(List<Rectangle> rectangles, int leftPos, int topPos) {}
 
+    default boolean mouseClicked(MachineScreen screen, double mouseX, double mouseY, int button) {
+        return false;
+    }
+
+    default boolean mouseDragged(MachineScreen screen, double mouseX, double mouseY, int button, double dragX, double dragY) {
+        return false;
+    }
+
+    default boolean mouseReleased(MachineScreen screen, double mouseX, double mouseY, int button) {
+        return false;
+    }
+
     interface ButtonContainer {
         /**
          * @param u               Texture button u.

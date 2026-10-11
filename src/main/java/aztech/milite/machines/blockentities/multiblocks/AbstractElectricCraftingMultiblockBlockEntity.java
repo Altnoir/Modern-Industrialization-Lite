@@ -23,14 +23,25 @@ import java.util.UUID;
 
 public abstract class AbstractElectricCraftingMultiblockBlockEntity extends AbstractCraftingMultiblockBlockEntity
         implements EnergyListComponentHolder, CrafterComponent.Behavior {
-    public AbstractElectricCraftingMultiblockBlockEntity(BEP bep, ResourceLocation blockId,
+    public AbstractElectricCraftingMultiblockBlockEntity(BEP bep, ResourceLocation blockId, int guiHeight,
             OrientationComponent.Params orientationParams,
             ShapeTemplate[] shapeTemplates) {
-        super(bep, blockId, orientationParams, shapeTemplates);
+        super(bep, blockId, guiHeight, orientationParams, shapeTemplates);
 
         this.redstoneControl = new RedstoneControlComponent();
         registerGuiComponent(new CraftingMultiblockGui(() -> shapeValid.shapeValid, crafter::getProgress, crafter, () -> 0));
         registerComponents(redstoneControl);
+    }
+
+    public AbstractElectricCraftingMultiblockBlockEntity(BEP bep, ResourceLocation blockId,
+            OrientationComponent.Params orientationParams,
+            ShapeTemplate[] shapeTemplates) {
+        this(bep, blockId, 200, orientationParams, shapeTemplates);
+    }
+
+    public AbstractElectricCraftingMultiblockBlockEntity(BEP bep, String name, int guiHeight, OrientationComponent.Params orientationParams,
+            ShapeTemplate[] shapeTemplates) {
+        this(bep, MI.id(name), guiHeight, orientationParams, shapeTemplates);
     }
 
     public AbstractElectricCraftingMultiblockBlockEntity(BEP bep, String name, OrientationComponent.Params orientationParams,

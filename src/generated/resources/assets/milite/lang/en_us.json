@@ -1748,7 +1748,7 @@
   "text.milite.SectionNuclear": "Nuclear",
   "text.milite.SectionOres": "Ores",
   "text.milite.SectionStorage": "Storage",
-  "text.milite.ShapeSelectionDescription": "Click to open shape selection panel.",
+  "text.milite.ShapeSelectionDescription": "Drag the slider to resize the multiblock.",
   "text.milite.ShapeSelectionTitle": "Select Multiblock Shape",
   "text.milite.ShapeTextDepth": "Depth: %d",
   "text.milite.ShapeTextExtreme": "Extreme",

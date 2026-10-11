@@ -56,9 +56,7 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
     }
 
     private static ShapeSelection.LineInfo createLineInfo(int[] sizes, MIText baseText) {
-        return new ShapeSelection.LineInfo(
-                IntStream.of(sizes).<Component>mapToObj(baseText::text).toList(),
-                false);
+        return new ShapeSelection.LineInfo(IntStream.of(sizes).<Component>mapToObj(baseText::text).toList());
     }
 
     private static final ShapeTemplate[] shapeTemplates;
@@ -125,13 +123,15 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
     private LargeTankFluidDisplay.Data oldFluidData;
 
     public LargeTankMultiblockBlockEntity(BEP bep) {
-        super(bep, new MachineGuiParameters.Builder("large_tank", false).build(), new OrientationComponent.Params(false, false, false));
+        super(bep, new MachineGuiParameters.Builder("large_tank", false).backgroundHeight(185).build(),
+                new OrientationComponent.Params(false, false, false));
 
         activeShape = new ActiveShapeComponent(shapeTemplates);
         fluidStorage = new FluidStorageComponent(this::setChanged);
 
         this.registerComponents(activeShape, fluidStorage);
 
+        this.registerGuiComponent(new LargeTankFluidDisplay(this::getFluidData));
         this.registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
             @Override
             public void handleClick(int clickedLine, int delta) {
@@ -165,8 +165,6 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
             }
         }, createLineInfo(X_SIZES, MIText.ShapeTextWidth), createLineInfo(Y_SIZES, MIText.ShapeTextHeight),
                 createLineInfo(Z_SIZES, MIText.ShapeTextDepth)));
-        // Must be after shape selection because we render text in the selection panel
-        this.registerGuiComponent(new LargeTankFluidDisplay(this::getFluidData));
     }
 
     public LargeTankFluidDisplay.Data getFluidData() {
