@@ -1,15 +1,13 @@
 {
   "parent": "milite:titanium_ingot",
   "criteria": {
-    "checkInv": {
+    "buildMultiblock": {
       "conditions": {
-        "items": [
-          {
-            "items": "milite:pressurizer"
-          }
-        ]
+        "multiblock": {
+          "id": "milite:pressurizer"
+        }
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "milite:built_multiblock"
     }
   },
   "display": {
@@ -26,7 +24,7 @@
   },
   "requirements": [
     [
-      "checkInv"
+      "buildMultiblock"
     ]
   ],
   "sends_telemetry_event": true

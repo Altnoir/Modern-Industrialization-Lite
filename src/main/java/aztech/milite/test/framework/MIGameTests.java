@@ -1,6 +1,7 @@
 package aztech.milite.test.framework;
 
 import aztech.milite.MI;
+import aztech.milite.test.AdvancementTests;
 import aztech.milite.test.AssemblerTests;
 import aztech.milite.test.BlastFurnaceTests;
 import aztech.milite.test.CreativeOrderDump;
@@ -20,6 +21,7 @@ public final class MIGameTests {
     private MIGameTests() {}
 
     private static final List<Class<?>> TEST_CLASSES = List.of(
+            AdvancementTests.class,
             AssemblerTests.class,
             BlastFurnaceTests.class,
             CreativeOrderDump.class,

@@ -1,15 +1,13 @@
 {
   "parent": "milite:stainless_steel_steam_turbine",
   "criteria": {
-    "checkInv": {
+    "buildMultiblock": {
       "conditions": {
-        "items": [
-          {
-            "items": "milite:large_steam_turbine"
-          }
-        ]
+        "multiblock": {
+          "id": "milite:large_steam_turbine"
+        }
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "milite:built_multiblock"
     }
   },
   "display": {
@@ -26,7 +24,7 @@
   },
   "requirements": [
     [
-      "checkInv"
+      "buildMultiblock"
     ]
   ],
   "sends_telemetry_event": true

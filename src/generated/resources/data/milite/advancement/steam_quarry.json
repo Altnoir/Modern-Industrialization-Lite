@@ -1,15 +1,13 @@
 {
   "parent": "milite:steel_machine_casing",
   "criteria": {
-    "checkInv": {
+    "buildMultiblock": {
       "conditions": {
-        "items": [
-          {
-            "items": "milite:steam_quarry"
-          }
-        ]
+        "multiblock": {
+          "id": "milite:steam_quarry"
+        }
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "milite:built_multiblock"
     }
   },
   "display": {
@@ -27,7 +25,7 @@
   },
   "requirements": [
     [
-      "checkInv"
+      "buildMultiblock"
     ]
   ],
   "sends_telemetry_event": true
