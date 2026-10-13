@@ -1,8 +1,6 @@
 package aztech.milite.machines.blockentities;
 
 import aztech.milite.MICapabilities;
-import aztech.milite.api.energy.CableTier;
-import aztech.milite.api.energy.CableTierHolder;
 import aztech.milite.api.machine.holder.EnergyComponentHolder;
 import aztech.milite.inventory.ConfigurableFluidStack;
 import aztech.milite.inventory.MIInventory;
@@ -26,7 +24,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidType;
 
-public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity implements EnergyComponentHolder, CableTierHolder {
+public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity implements EnergyComponentHolder {
     public ElectricWaterPumpBlockEntity(BEP bep) {
         super(bep, "electric_water_pump");
 
@@ -100,8 +98,4 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
         return result;
     }
 
-    @Override
-    public CableTier getCableTier() {
-        return casing.getCableTier();
-    }
 }

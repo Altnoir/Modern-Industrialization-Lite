@@ -12,7 +12,7 @@ item_ids:
 
 # Electric Machines
 
-Electric machines work exactly the same as steam machines, except that they require electricity instead of steam and they progressively overclock recipes up to 32 RF/t.
+Electric machines process recipes using FE instead of steam. The electric level has a fixed speed multiplier of 4; aluminum alloy, stainless steel, titanium and iridium increase it to 8, 16, 32 and 64. Faster processing draws proportionally more FE/t, while total FE per craft stays the same. Recipes also specify a minimum machine level.
 
 You can use REI to view the recipes for the electric version of the machines you are already familiar with.
 
@@ -43,9 +43,9 @@ A Redstone Control Module can be used to control the behavior of electric machin
 
 Configure the module in your hand, then insert it into the machine or multiblock controller.
 
-## Overclock Upgrades
+## Overdrive Module
 
-Regular electric machines have an overclock capped at 32 RF/t, and electric multiblocks have an overclock capped at 128 RF/t.
+An Overdrive Module doubles the speed of supported electric machines and multiblocks. Install it in the module slot or right-click the machine while holding it. The module is reusable and can be removed from the slot.
 
-In the machine or multiblock's menu, add upgades to increase its maximum overclock! Check REI for the exact amounts.
+The module doubles FE/t demand while keeping the same total FE per craft. Supply enough FE to reach full speed. Continuous processing and lubricant do not increase machine speed.
 

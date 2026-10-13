@@ -12,10 +12,10 @@ item_ids:
 
 # Upgrading To Steel
 
-Now that you have steel, you can upgrade your bronze machines if you want. Steel machines can process recipes up to 4 RF/t, and they will process recipes at twice the speed as long as the energy usage doesn't go above 4 RF/t. Basically, they are twice as fast as bronze machines and they may also unlock new recipes.
+Now that you have steel, you can upgrade your bronze machines. Steel machines process recipes at twice the bronze speed when enough steam is available, and can run recipes requiring the steel level or below.
 
 To upgrade a bronze machine, craft a Steel Machine Hull and apply it in a Crafting Table.
-Steel hatches have more capacity than bronze hatches, and a multiblock with at least one steel hatch will be upgraded to steel tier. This means that it will go twice as fast if its energy usage wouldn't exceed 4 RF/t.
+Steel hatches have more capacity than bronze hatches, and a steam multiblock with at least one steel hatch will be upgraded to steel level and run twice as fast when enough steam is available. Gunpowder provides a further temporary speed multiplier of 2.
 
 A steel boiler will produce twice as much steam as a bronze one, that means up to 16 RF/t, and a steel water pump will produce twice as much water as its bronze counterpart, so up to 2 buckets / 5 seconds.
 
@@ -23,7 +23,7 @@ Steel tanks store up to 16 buckets.
 
 You can check all recipes in REI!
 
-The Packer, a new machine only available in steel, can perform simple crafts for you. You can now automate double ingots and pipes, for example! Again, check REI.
+The Packer, a new machine only available in steel, can perform simple crafts for you. You can now automate double ingots and material bundles, for example! Again, check REI. Transport pipes come from other mods.
 
 <Recipe id="milite:processing_table/steel_packer" />
 

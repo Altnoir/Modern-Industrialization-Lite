@@ -90,7 +90,7 @@ public class SteamCraftingMultiblockBlockEntity extends AbstractCraftingMultiblo
 
         @Override
         public int getSpeedBonus() {
-            return (int) Math.max(1, overclockComponent.getRecipeFe(steelTier ? 2 : 1));
+            return (int) Math.max(1, overclockComponent.getRecipeFe(1));
         }
 
         @Override

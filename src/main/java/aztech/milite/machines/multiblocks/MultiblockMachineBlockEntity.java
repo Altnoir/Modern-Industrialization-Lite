@@ -1,6 +1,8 @@
 package aztech.milite.machines.multiblocks;
 
 import aztech.milite.MIAdvancementTriggers;
+import aztech.milite.advancement.BuiltMultiblockContext;
+import aztech.milite.compat.ftbquests.FTBQuestsFacade;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.ActiveShapeComponent;
@@ -62,6 +64,7 @@ public abstract class MultiblockMachineBlockEntity extends MachineBlockEntity {
             var multiblockId = guiParams.blockId;
             var shapeId = getActiveShapeId();
             MIAdvancementTriggers.BUILT_MULTIBLOCK.get().trigger(player, multiblockId, shapeId);
+            FTBQuestsFacade.INSTANCE.builtMultiblock(player, new BuiltMultiblockContext(multiblockId, shapeId));
         }
     }
 

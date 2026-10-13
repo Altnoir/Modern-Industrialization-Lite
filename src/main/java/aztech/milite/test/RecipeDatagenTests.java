@@ -3,6 +3,7 @@ package aztech.milite.test;
 import aztech.milite.MI;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.init.MachineLevel;
+import aztech.milite.machines.init.MachineRegistrationHelper;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.test.framework.MIGameTest;
@@ -24,6 +25,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RecipeDatagenTests {
+    @MIGameTest
+    public void builtInMachineRecipeLevelsAreReachable(MIGameTestHelper helper) {
+        var manager = helper.getLevel().getRecipeManager();
+        for (var type : MIMachineRecipeTypes.getRecipeTypes()) {
+            var highest = MachineRegistrationHelper.highestLevel(type);
+            if (highest == null) {
+                helper.fail("Missing machine level registration for " + type.getId());
+                return;
+            }
+            for (var holder : manager.getAllRecipesFor(type)) {
+                if (!highest.canCraft(holder.value().level)) {
+                    helper.fail(holder.id() + " requires " + holder.value().level + " but " + type.getId() + " reaches " + highest);
+                }
+            }
+        }
+        helper.succeed();
+    }
+
     @MIGameTest
     public void machineRecipeLevelStringsRoundTrip(MIGameTestHelper helper) {
         var captured = new ArrayList<MachineRecipe>();

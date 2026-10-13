@@ -5,12 +5,14 @@ import aztech.milite.test.AdvancementTests;
 import aztech.milite.test.AssemblerTests;
 import aztech.milite.test.BlastFurnaceTests;
 import aztech.milite.test.CreativeOrderDump;
+import aztech.milite.test.EnergyCapabilityTests;
 import aztech.milite.test.GeneratorTests;
 import aztech.milite.test.MachineSpeedTests;
 import aztech.milite.test.MultiblockTests;
 import aztech.milite.test.ProcessingTableTests;
 import aztech.milite.test.RecipeDatagenTests;
 import aztech.milite.test.SoundTests;
+import aztech.milite.test.UpstreamCompatTests;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.StructureUtils;
 import net.minecraft.gametest.framework.TestFunction;
@@ -27,12 +29,14 @@ public final class MIGameTests {
             AssemblerTests.class,
             BlastFurnaceTests.class,
             CreativeOrderDump.class,
+            EnergyCapabilityTests.class,
             GeneratorTests.class,
             MachineSpeedTests.class,
             MultiblockTests.class,
             ProcessingTableTests.class,
             RecipeDatagenTests.class,
-            SoundTests.class);
+            SoundTests.class,
+            UpstreamCompatTests.class);
 
     @GameTestGenerator
     public static List<TestFunction> generateTests() {

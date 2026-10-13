@@ -46,7 +46,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     }
 
     public CasingComponent(CableTier initialTier) {
-        this((UpdatedCallback) null, initialTier);
+        this(null, initialTier);
     }
 
     /**
@@ -55,7 +55,7 @@ public class CasingComponent implements MachineComponent, DropableComponent {
      *                        much energy waiting for it to keep running at full speed between two insertions.
      */
     public CasingComponent(CableTier initialTier, int speedMultiplier) {
-        this((UpdatedCallback) null, initialTier);
+        this(null, initialTier);
         this.speedMultiplier = Math.max(1, speedMultiplier);
     }
 
@@ -92,10 +92,6 @@ public class CasingComponent implements MachineComponent, DropableComponent {
     @Override
     public void readClientNbt(CompoundTag tag, HolderLookup.Provider registries) {
         currentTier = CableTier.getTier(tag.getString("casing"));
-    }
-
-    public CableTier getCableTier() {
-        return currentTier;
     }
 
     public void dropCasing(Level world, BlockPos pos) {
@@ -172,10 +168,6 @@ public class CasingComponent implements MachineComponent, DropableComponent {
 
     public @Nullable MachineCasing getCasing() {
         return casingStack.isEmpty() ? null : currentTier.casing;
-    }
-
-    public boolean canInsertFe(CableTier tier) {
-        return true;
     }
 
     /**

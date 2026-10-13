@@ -1,7 +1,7 @@
 # Recipe format and KubeJS integration
 In general, a machine recipe JSON in MI has the following properties:
-- `energy`: How many FE/t it uses.
-- `duration`: How many ticks it takes to complete.
+- `energy`: Reference FE/t before the machine's speed multiplier.
+- `duration`: Reference processing time in ticks; total recipe energy is `energy * duration`.
 - `level`: The minimum machine level; omitted JSON levels default to `bronze`.
 - `item_inputs`: The list of items it consumes.
 - `item_outputs`: The list of items it produces.
@@ -63,21 +63,28 @@ by other mods or data packs continue to participate. They should not be frozen i
 
 After generation, run `gradlew runGameTestServer` to check that `_asbl` counterparts are loaded with matching
 ingredients, quantities, energy, duration, and level, and that migrated recipes preserve their legacy default level.
+Built-in machine levels are also checked for reachability, including multiblocks. Enable `validateRecipeLevels` in
+the startup config for a log-only check of custom recipes. Custom machine registrations should call
+`MachineRegistrationHelper.recordMachineLevel(recipeType, highestLevel)` so this check can include them.
 
 MI adds a nicer syntax when the recipes are being registered by KubeJS:
-- You need to create the recipe by specifying the values for `eu` and `duration`.
+- Create the recipe with the reference FE/t and duration as the two constructor arguments.
+- Use `.level("electric")` to set its minimum machine level. Names and aliases match datagen; omitted levels remain `bronze`.
+- The energy key is `energy`. `.energy(...)`, `.fe(...)`, and legacy `.eu(...)` set that value; `eu` is also accepted
+  as an alternative input key when reading existing recipes through the schema.
 - Then you can add inputs and outputs by calling the following functions. The can be called multiple times of course:
   - `itemIn(input specification)`: Add a new input.
   - `itemIn(input specification, consumption chance)`: Add a new chanced input. Chance can be `0` if the input should not be consumable.
   - `itemOut(output specification)` and `itemOut(output specification, production chance)`: Add a new output.
-  - `fluidIn(fluid, amount in millibuckets)` and `fluidIn(fluid, amount in millibuckets, consumption chance)`: Add a new fluid input. Chance can be `0` if the input should not be consumable.
-  - `fluidOut(fluid, amount in millibuckets)` and `fluidOut(fluid, amount in millibuckets, production chance)`: Add a new fluid output.
+  - `fluidIn("1000x milite:oxygen")` and `fluidIn("1000x milite:oxygen", consumption chance)`: Add a fluid input in millibuckets. Chance can be `0` for a catalyst.
+  - `fluidOut("1000x milite:creosote")` and `fluidOut("1000x milite:creosote", production chance)`: Add a fluid output in millibuckets.
 
 Here is an example to get you started:
 ```js
 ServerEvents.recipes(event => {
     // start a new recipe for the blast furnace, with 128 FE/t and a duration of 100 ticks
     event.recipes.milite.blast_furnace(128, 100)
+        .level("electric")
         // add all the inputs and outputs:
         .itemIn("64x #minecraft:logs_that_burn")
         .itemOut("64x minecraft:charcoal")

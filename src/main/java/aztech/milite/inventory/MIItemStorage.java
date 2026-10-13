@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.List;
-import java.util.Set;
 
 public class MIItemStorage extends MIStorage<Item, ItemVariant, ConfigurableItemStack> {
     public final IItemHandler itemHandler = new ItemHandler();
@@ -17,7 +16,7 @@ public class MIItemStorage extends MIStorage<Item, ItemVariant, ConfigurableItem
         super(stacks, false);
     }
 
-    public class ItemHandler implements IItemHandler, WhitelistedItemStorage, FilledItemStorage {
+    public class ItemHandler implements IItemHandler, FilledItemStorage {
         @Override
         public int getSlots() {
             return stacks.size();
@@ -99,25 +98,6 @@ public class MIItemStorage extends MIStorage<Item, ItemVariant, ConfigurableItem
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             return stacks.get(slot).isResourceAllowedByLock(stack.getItem());
-        }
-
-        @Override
-        public boolean currentlyWhitelisted() {
-            for (ConfigurableItemStack stack : stacks) {
-                if (stack.pipesInsert && stack.getLockedInstance() == null) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        @Override
-        public void getWhitelistedItems(Set<Item> whitelist) {
-            for (ConfigurableItemStack stack : stacks) {
-                if (stack.pipesInsert && !stack.isLockedTo(Items.AIR)) {
-                    whitelist.add(stack.getLockedInstance());
-                }
-            }
         }
 
         @Override

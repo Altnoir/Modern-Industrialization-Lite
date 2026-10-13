@@ -2,6 +2,7 @@ package aztech.milite.compat.kubejs.recipe;
 
 import aztech.milite.machines.recipe.condition.MachineProcessCondition;
 import aztech.milite.machines.recipe.MachineRecipe;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.MI;
 import aztech.milite.thirdparty.fabrictransfer.api.item.ItemVariant;
 import com.mojang.logging.LogUtils;
@@ -24,12 +25,26 @@ public class MachineKubeRecipe extends KubeRecipe implements ProcessConditionHel
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(MI.id("machine"), MachineKubeRecipe.class, MachineKubeRecipe::new);
 
+    @Override
+    public void deserialize(boolean merge) {
+        super.deserialize(merge);
+        if (json.has("eu") && !json.has("energy")) {
+            setValue(MachineRecipeSchema.FE, getValue(MachineRecipeSchema.FE));
+            json.remove("eu");
+        }
+    }
+
     private <T> MachineKubeRecipe addToList(RecipeKey<List<T>> key, T element) {
         // In 1.21, this can be null when the recipe is constructed via a JS constructor apparently.
         var value = getValue(key);
         var list = value == null ? new ArrayList<T>() : new ArrayList<>(value);
         list.add(element);
         setValue(key, list);
+        return this;
+    }
+
+    public MachineKubeRecipe level(String level) {
+        setValue(MachineRecipeSchema.LEVEL, MachineLevel.byName(level).getSerializedName());
         return this;
     }
 

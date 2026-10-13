@@ -3,6 +3,9 @@ package aztech.milite.test;
 import aztech.milite.MI;
 import aztech.milite.machines.blockentities.multiblocks.ElectricCraftingMultiblockBlockEntity;
 import aztech.milite.machines.blockentities.multiblocks.LargeTankMultiblockBlockEntity;
+import aztech.milite.machines.blockentities.multiblocks.SteamCraftingMultiblockBlockEntity;
+import aztech.milite.machines.components.CrafterComponent;
+import aztech.milite.machines.components.OverclockComponent;
 import aztech.milite.machines.init.MultiblockHatches;
 import aztech.milite.machines.init.MultiblockMachines;
 import aztech.milite.test.framework.MIGameTest;
@@ -10,6 +13,7 @@ import aztech.milite.test.framework.MIGameTestHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.RedStoneWireBlock;
@@ -18,6 +22,39 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class MultiblockTests {
+    @MIGameTest
+    public void steamMultiblockCountsSteelSpeedOnce(MIGameTestHelper helper) {
+        var controllerPos = new BlockPos(3, 1, 2);
+        helper.setBlock(controllerPos, MultiblockMachines.STEAM_BLAST_FURNACE.asBlock());
+        SteamCraftingMultiblockBlockEntity furnace = helper.getBlockEntity(controllerPos);
+        var matcher = furnace.createShapeMatcher();
+        matcher.buildMultiblock(helper.getLevel());
+        var hatchPos = matcher.getPositions().stream()
+                .filter(pos -> matcher.getHatchFlags(pos) != null)
+                .findFirst().orElseThrow();
+        var crafter = furnace.components.getOrThrow(CrafterComponent.class);
+
+        helper.startSequence()
+                .thenIdle(1)
+                .thenExecute(() -> {
+                    helper.assertValueEqual(crafter.getSpeedMultiplier(), 1, "bronze steam multiblock speed");
+                    helper.getLevel().setBlockAndUpdate(hatchPos, MultiblockHatches.STEEL_ITEM.input().asBlock().defaultBlockState());
+                })
+                .thenIdle(1)
+                .thenExecute(() -> {
+                    if (!furnace.isShapeValid()) {
+                        helper.fail("steam blast furnace did not form with a steel hatch");
+                    }
+                    helper.assertValueEqual(crafter.getSpeedMultiplier(), 2, "steel steam multiblock speed");
+                    var overclockTag = new CompoundTag();
+                    overclockTag.putInt("overclock2.00", 2400);
+                    furnace.components.getOrThrow(OverclockComponent.class)
+                            .readNbt(overclockTag, helper.getLevel().registryAccess(), false);
+                    helper.assertValueEqual(crafter.getSpeedMultiplier(), 4, "steel steam multiblock with gunpowder");
+                })
+                .thenSucceed();
+    }
+
     @MIGameTest
     public void largeTankEmitsRedstone(MIGameTestHelper helper) {
         var controllerPos = new BlockPos(3, 1, 2);

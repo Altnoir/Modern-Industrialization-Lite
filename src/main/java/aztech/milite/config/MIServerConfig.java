@@ -18,11 +18,19 @@ public final class MIServerConfig {
     public final ModConfigSpec.BooleanValue compostableToPlantOil;
     public final ModConfigSpec.BooleanValue stonecutterToCuttingMachine;
     public final ModConfigSpec.IntValue steamPerWater;
+    public final ModConfigSpec.BooleanValue ftbQuestsIntegration;
 
     public final ModConfigSpec.BooleanValue machineSounds;
     public final ModConfigSpec.DoubleValue machineSoundVolume;
 
     private MIServerConfig(MIConfigBuilder builder) {
+        builder.pushSection("compat", "Mod Compatibility");
+        this.ftbQuestsIntegration = builder.start("ftbQuestsIntegration",
+                "FTB Quests integration",
+                "Enable machine production and built multiblock progress for FTB Quests, if present.")
+                .define("ftbQuestsIntegration", ConfigMigration.ftbQuestsDefault());
+        builder.popSection();
+
         this.spawnWithGuideBook = builder.start("spawnWithGuideBook",
                 "Spawn with guidebook",
                 "Grant guidebook the first time a player joins the server.")

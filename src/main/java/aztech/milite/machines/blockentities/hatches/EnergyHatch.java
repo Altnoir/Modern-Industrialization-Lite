@@ -2,7 +2,6 @@ package aztech.milite.machines.blockentities.hatches;
 
 import aztech.milite.MICapabilities;
 import aztech.milite.api.energy.CableTier;
-import aztech.milite.api.energy.CableTierHolder;
 import aztech.milite.api.machine.holder.EnergyComponentHolder;
 import aztech.milite.inventory.MIInventory;
 import aztech.milite.machines.BEP;
@@ -19,12 +18,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
-public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHolder, CableTierHolder {
+public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHolder {
     public EnergyHatch(BEP bep, MachineGuiParameters guiParams, boolean input, CableTier tier) {
         super(bep, guiParams, input ? OrientationComponent.Params.noFacingNoOutput() : OrientationComponent.Params.noFacing(false, false));
 
         this.input = input;
-        this.tier = tier;
 
         this.energy = new EnergyComponent(this, 30L * 20L * tier.getMaxTransfer());
         insertable = energy.buildInsertable();
@@ -36,7 +34,6 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
     }
 
     private final boolean input;
-    private final CableTier tier;
 
     private final EnergyComponent energy;
     private final IEnergyStorage insertable;
@@ -50,11 +47,6 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
     @Override
     public boolean upgradesToSteel() {
         return false;
-    }
-
-    @Override
-    public CableTier getCableTier() {
-        return tier;
     }
 
     @Override

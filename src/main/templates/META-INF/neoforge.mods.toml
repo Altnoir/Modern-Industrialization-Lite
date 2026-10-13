@@ -10,7 +10,42 @@ displayName="Modern Industrialization: Lite"
 displayURL="https://github.com/Altnoir/Modern-Industrialization-Lite"
 logoFile="assets/milite/milogo.png"
 authors="ALTNOIR,Azerococo,Technici4n;"
-description='''A simplified fork of Modern Industrialization. It removes the mod's own cables, fluid pipes, item pipes and transformers: machines expose NeoForge's standard energy, fluid and item capabilities, and all power and transport is expected to come from other mods. Energy is expressed directly in RF, and the LV/MV/HV/EV/SV tiers are kept only as machine classes.'''
+description='''A simplified fork of Modern Industrialization. Machines expose standard NeoForge energy, fluid and item capabilities, and electric machines use FE. Bring other mods for cables and pipes. Recipe levels and fixed machine speed multipliers replace gradual overclocking.'''
+
+[[dependencies.milite]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft_version}]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.milite]]
+modId="neoforge"
+type="required"
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.milite]]
+modId="guideme"
+type="required"
+versionRange="${guideme_version_range}"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.milite]]
+modId="kubejs"
+type="optional"
+versionRange="${kubejs_version_range}"
+ordering="AFTER"
+side="BOTH"
 
 [[mixins]]
 config="milite.mixins.json"
+
+[[dependencies.milite]]
+modId="ftbquests"
+type="optional"
+versionRange="${ftb_quests_version_range}"
+ordering="AFTER"
+side="BOTH"

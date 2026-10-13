@@ -13,7 +13,6 @@ public final class MIStartupConfig {
         SPEC = builder.build();
     }
 
-    public final ModConfigSpec.BooleanValue ftbQuestsIntegration;
     public final ModConfigSpec.BooleanValue almostUnifiedIntegration;
 
     public final ModConfigSpec.BooleanValue datagenOnStartup;
@@ -28,11 +27,6 @@ public final class MIStartupConfig {
 
     private MIStartupConfig(MIConfigBuilder builder) {
         builder.pushSection("compat", "Mod Compatibility");
-        this.ftbQuestsIntegration = builder.start("ftbQuestsIntegration",
-                "FTB Quests integration",
-                "Enable the FTB Quests integration, if present.")
-                .gameRestart()
-                .define("ftbQuestsIntegration", false);
         this.almostUnifiedIntegration = builder.start("almostUnifiedIntegration",
                 "Almost Unified integration",
                 "Enable the Almost Unified integration, if present.")

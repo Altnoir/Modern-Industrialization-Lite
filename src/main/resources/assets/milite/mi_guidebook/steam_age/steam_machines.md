@@ -17,7 +17,7 @@ item_ids:
 
 Now it's time to build some bronze machines. The boiler will automatically produce and send steam to adjacent machines, up to 8 millibuckets per tick.
 
-Bronze machines can only process recipes up to 2 RF/t, meaning that the recipe will use 2 Energy Units per Tick. As 1 millibucket of steam = 1 RF, a boiler at max temperature can power 4 machines simultaneously!
+Bronze machines process recipes requiring the bronze level. Most early recipes use 2 units of energy per tick; each millibucket of steam supplies one unit. A boiler at maximum temperature can supply four such machines. Recipes with higher energy demand require more steam, and gunpowder temporarily doubles processing speed and steam demand without changing total steam per craft.
 
 The Compressor will turn ingots into plates at 1:1 ratio. It can also turn each double ingot into 2 plates. This is probably the first machine you will want to build!
 

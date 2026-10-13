@@ -20,10 +20,6 @@ public class ModelHelper {
         DIRECTIONS_WITH_NULL[6] = null;
     }
 
-    public static int nullableDirectionIndex(@Nullable Direction side) {
-        return side == null ? 6 : side.get3DDataValue();
-    }
-
     public static BakedQuad bakeSprite(QuadBakingVertexConsumer vc, Direction d, TextureAtlasSprite sprite, float depth) {
         vc.setTintIndex(-1);
         vc.setDirection(d);

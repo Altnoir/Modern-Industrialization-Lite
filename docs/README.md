@@ -1,6 +1,6 @@
 # Developer-facing Documentation
-This is the Modern Industrialization documentation aimed at mod pack or resource pack developers.
-For questions, please ask on the `#dev-talk` channel on the Discord server.
+This is the Modern Industrialization: Lite documentation for modpack and resource pack developers.
+See [PROJECT_CLEANUP_AUDIT.md](PROJECT_CLEANUP_AUDIT.md) for the current cleanup and recipe-balance audit.
 
 ## Customizing machine models
 Refer to [MACHINE_MODELS.md](MACHINE_MODELS.md) for an explanation of how the machine model format works.

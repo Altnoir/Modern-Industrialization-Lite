@@ -136,11 +136,9 @@ repositories {
 
 sourceSets {
     main {
-        java {
-            srcDir "src/main"
-        }
         resources {
             srcDir "src/generated/resources"
+            exclude '.cache/**'
         }
     }
     client {
@@ -191,12 +189,12 @@ neoForge {
             sourceSet = sourceSets.client
             loadedMods = [mods.milite_with_client]
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            systemProperty 'forge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
         }
 
         server {
             server()
-            systemProperty 'forge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
         }
 
         data {
@@ -213,7 +211,7 @@ neoForge {
         gameTestServer {
             type = "gameTestServer"
             gameDirectory = project.file("build/gametest")
-            systemProperty 'forge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
         }
     }
 
@@ -293,8 +291,10 @@ dependencies {
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
+            minecraft_version: minecraft_version,
             neo_version: neo_version,
             neo_version_range: neo_version_range,
+            ftb_quests_version_range: ftb_quests_version_range,
             mod_version: mod_version,
             guideme_version_range: guideme_version_range,
             ae2_version_range: ae2_version_range,
@@ -307,26 +307,16 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     into layout.buildDirectory.dir('generated/sources/modMetadata')
     expand replaceProperties
 }
-sourceSets.main.resources.srcDir generateModMetadata
-
-// src/main/resources and src/generated/resources overlap: datagen writes the models, blockstates
-// and textures it generates into the generated tree, and stale copies of those same paths also sit
-// under main, left over from before the registry id rename. Without a strategy, processResources
-// fails with "Entry ... is a duplicate but no duplicate handling strategy has been set".
-//
-// The order below is what decides the winner: with DuplicatesStrategy.EXCLUDE the first file seen
-// for a given path is kept, so the freshly generated tree is listed ahead of src/main/resources.
-// Files that only exist under main are still packaged either way.
+// 资源冲突检查
 sourceSets.main.resources.setSrcDirs([
-        layout.buildDirectory.dir('generated/sources/modMetadata'),
+        generateModMetadata,
         'src/generated/resources',
         'src/main/resources'])
 processResources {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy = DuplicatesStrategy.FAIL
 }
-// sourcesJar copies the same trees, so it needs the same strategy.
 tasks.named('sourcesJar') {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy = DuplicatesStrategy.FAIL
 }
 tasks.named("neoForgeIdeSync").configure {
     dependsOn generateModMetadata
@@ -384,7 +374,9 @@ final generatePackageInfos = tasks.register('generatePackageInfos', GeneratePack
 
 immaculate {
     workflows.register('misc') {
-        files.from fileTree(projectDir).filter {
+        files.from fileTree(projectDir) {
+            exclude 'build/**', '.gradle/**', '.tmp*/**'
+        }.filter {
             it.name.endsWith('.gradle') || it.name.endsWith('.md') || it.name == '.gitignore'
         }
 

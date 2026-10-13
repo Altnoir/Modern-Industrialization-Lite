@@ -1,13 +1,12 @@
 package aztech.milite.machines.blockentities;
 
 import aztech.milite.api.energy.CableTier;
-import aztech.milite.api.energy.CableTierHolder;
 import aztech.milite.machines.BEP;
 import net.minecraft.util.Mth;
 
-public class StorageMachineBlockEntity extends AbstractStorageMachineBlockEntity implements CableTierHolder {
-    public StorageMachineBlockEntity(BEP bep, CableTier tier, String name, long eu_capacity) {
-        super(bep, tier, tier, name, eu_capacity);
+public class StorageMachineBlockEntity extends AbstractStorageMachineBlockEntity {
+    public StorageMachineBlockEntity(BEP bep, CableTier tier, String name, long feCapacity) {
+        super(bep, tier, tier, name, feCapacity);
     }
 
     @Override
@@ -21,8 +20,4 @@ public class StorageMachineBlockEntity extends AbstractStorageMachineBlockEntity
         return Mth.floor(fillPercentage * 14) + (energy.getFe() > 0 ? 1 : 0);
     }
 
-    @Override
-    public CableTier getCableTier() {
-        return to;
-    }
 }

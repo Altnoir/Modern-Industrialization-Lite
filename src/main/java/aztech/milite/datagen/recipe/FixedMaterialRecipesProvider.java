@@ -25,14 +25,6 @@ public class FixedMaterialRecipesProvider extends FixedRecipesProvider {
                 .addItemOutput("milite:nuke", 2, 1.0f)
                 .offerTo(consumer, "materials/assembler/nuke");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 32, 600)
-                .level("bronze")
-                .addItemInput("milite:superconductor_wire", 3, 1.0f)
-                .addItemInput("milite:cooling_cell", 2, 1.0f)
-                .addFluidInput("milite:polyvinyl_chloride", 1000, 1.0f)
-                .addItemOutput("milite:superconductor_wire", 6, 1.0f)
-                .offerTo(consumer, "materials/assembler/superconductor_cable");
-
         new MachineRecipeBuilder(MIMachineRecipeTypes.BLAST_FURNACE, 64, 600)
                 .level("stainless_steel")
                 .addItemInput("#c:dusts/copper", 1, 1.0f)

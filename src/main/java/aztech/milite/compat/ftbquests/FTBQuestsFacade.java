@@ -1,6 +1,7 @@
 package aztech.milite.compat.ftbquests;
 
-import aztech.milite.config.MIStartupConfig;
+import aztech.milite.advancement.BuiltMultiblockContext;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.ModList;
@@ -11,7 +12,7 @@ public interface FTBQuestsFacade {
     FTBQuestsFacade INSTANCE = getInstance();
 
     private static FTBQuestsFacade getInstance() {
-        if (ModList.get().isLoaded("ftbquests") && MIStartupConfig.INSTANCE.ftbQuestsIntegration.getAsBoolean()) {
+        if (ModList.get().isLoaded("ftbquests")) {
             try {
                 return Class.forName("aztech.milite.compat.ftbquests.FTBQuestsFacadeImpl")
                         .asSubclass(FTBQuestsFacade.class).getConstructor().newInstance();
@@ -28,4 +29,6 @@ public interface FTBQuestsFacade {
     void addCompleted(UUID uuid, Item item, long amount);
 
     default void addCompleted(UUID uuid, Fluid fluid, long amount) {}
+
+    default void builtMultiblock(ServerPlayer player, BuiltMultiblockContext context) {}
 }

@@ -34,11 +34,14 @@ public final class MachineLevelValidator {
         var recipeManager = server.getRecipeManager();
         // Group by level so the log stays readable when a whole tier is wrong.
         Map<MachineLevel, List<String>> unreachable = new TreeMap<>();
+        List<String> uncheckedTypes = new ArrayList<>();
 
         for (MachineRecipeType type : MIMachineRecipeTypes.getRecipeTypes()) {
             MachineLevel highest = MachineRegistrationHelper.highestLevel(type);
             if (highest == null) {
-                // Not a machine type with a level, for example a type only used by a multiblock.
+                if (!recipeManager.getAllRecipesFor(type).isEmpty()) {
+                    uncheckedTypes.add(type.getId().toString());
+                }
                 continue;
             }
             for (var holder : recipeManager.getAllRecipesFor(type)) {
@@ -50,8 +53,12 @@ public final class MachineLevelValidator {
             }
         }
 
+        if (!uncheckedTypes.isEmpty()) {
+            MI.LOGGER.warn("Machine level check: no machine level registered for recipe type(s): {}", uncheckedTypes);
+        }
+
         if (unreachable.isEmpty()) {
-            MI.LOGGER.info("Machine level check: every machine recipe can be crafted by some machine.");
+            MI.LOGGER.info("Machine level check: recipes with registered machine levels are reachable.");
             return;
         }
 

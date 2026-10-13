@@ -30,8 +30,6 @@ public class KubeJSProxy {
 
     public void fireRegisterHatchesEvent() {}
 
-    public void fireRegisterUpgradesEvent() {}
-
     public void fireAddMultiblockSlotsEvent(String category, SlotPositions.Builder itemInputs, SlotPositions.Builder itemOutputs,
             SlotPositions.Builder fluidInputs, SlotPositions.Builder fluidOutputs) {}
 

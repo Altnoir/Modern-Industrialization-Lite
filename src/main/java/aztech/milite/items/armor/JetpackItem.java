@@ -109,10 +109,6 @@ public class JetpackItem extends ArmorItem implements ActivatableItem {
         return (double) FluidFuelItemHelper.getAmount(stack) / CAPACITY;
     }
 
-    public boolean hasDurabilityBar(ItemStack itemStack) {
-        return true;
-    }
-
     @Override
     public int getBarColor(ItemStack stack) {
         Fluid fluid = FluidFuelItemHelper.getFluid(stack).getFluid();

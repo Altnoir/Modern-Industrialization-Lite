@@ -57,6 +57,8 @@ public final class TranslationProvider implements DataProvider {
         }
 
         addTranslation("entity.minecraft.villager.milite.industrialist", "Industrialist");
+        addTranslation("ftbquests.task.milite.built_multiblock", "Build Multiblock");
+        addTranslation("ftbquests.task.milite.built_multiblock.machine", "Machine");
 
         addTranslation("key.categories.milite.milite", "Modern Industrialization");
         addTranslation("key.milite.toggle_flight", "Toggle Flight");

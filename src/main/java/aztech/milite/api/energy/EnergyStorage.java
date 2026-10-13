@@ -11,41 +11,6 @@ public final class EnergyStorage {
     private EnergyStorage() {}
 
     /**
-     * An energy storage that cannot receive nor extract anything.
-     */
-    public static final IEnergyStorage EMPTY = new IEnergyStorage() {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            return 0;
-        }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            return 0;
-        }
-
-        @Override
-        public int getEnergyStored() {
-            return 0;
-        }
-
-        @Override
-        public int getMaxEnergyStored() {
-            return 0;
-        }
-
-        @Override
-        public boolean canExtract() {
-            return false;
-        }
-
-        @Override
-        public boolean canReceive() {
-            return false;
-        }
-    };
-
-    /**
      * An energy storage that can supply an infinite amount of FE, but cannot receive any.
      */
     public static final IEnergyStorage CREATIVE = new IEnergyStorage() {

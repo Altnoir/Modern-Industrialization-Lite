@@ -1,7 +1,6 @@
 package aztech.milite.util;
 
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -9,7 +8,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import org.jspecify.annotations.Nullable;
@@ -22,33 +20,6 @@ public class NbtHelper {
         CompoundTag savedTag = new CompoundTag();
         savedTag.put("fk", fluid.toNbt(registries));
         tag.put(key, savedTag);
-    }
-
-    public static Item getItem(CompoundTag tag, String key) {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.parse(tag.getString(key)));
-    }
-
-    public static void putItem(CompoundTag tag, String key, Item item) {
-        tag.putString(key, BuiltInRegistries.ITEM.getKey(item).toString());
-    }
-
-    public static byte encodeDirections(Iterable<Direction> directions) {
-        byte mask = 0;
-        for (Direction direction : directions) {
-            mask |= 1 << direction.get3DDataValue();
-        }
-        return mask;
-    }
-
-    public static Direction[] decodeDirections(byte mask) {
-        Direction[] directions = new Direction[Long.bitCount(mask)];
-        int j = 0;
-        for (int i = 0; i < 6; ++i) {
-            if ((mask & (1 << i)) != 0) {
-                directions[j++] = Direction.from3DDataValue(i);
-            }
-        }
-        return directions;
     }
 
     public static <T> void putList(CompoundTag tag, String key, List<T> list, Function<T, CompoundTag> encoder) {
@@ -92,11 +63,4 @@ public class NbtHelper {
         }
     }
 
-    public static void putNonzeroInt(CompoundTag tag, String key, int i) {
-        if (i == 0) {
-            tag.remove(key);
-        } else {
-            tag.putInt(key, i);
-        }
-    }
 }

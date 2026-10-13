@@ -2,18 +2,22 @@
 To add machines, you will need to use a startup script and the events in `MIMachineEvents`.
 
 ## Adding new tiers for the Electric Blast Furnace
-MI supports adding new EBF tiers from KubeJS using the `addEbfTiers` event. The two builtin tiers cannot be removed however.
+MI Lite supports adding EBF variants from KubeJS using the `addEbfTiers` event. The three builtin variants use the
+electric, stainless-steel and iridium levels.
 
 For each tier, call `event.add` with:
-- The ID of the coil block, used inside of the shape. Can be any block that also has an item.
-- The maximum allowed FE/t of the recipe. This is the maximum FE/t that the coil can handle.
-- The English name for display in the EBF shape selector and in REI. MI will automatically wrap that in `EBF (... Tier)` for REI.
+- The new controller's ID path, without the `milite:` namespace.
+- The controller's English name.
+- The coil block ID. Can be any block that also has an item.
+- The reference FE/t value shown for the coil.
+- The machine level, such as `aluminum_alloy` or `titanium`. Recipe eligibility uses this level.
+
+Controller IDs, coil block IDs and levels must be unique among EBF variants. A higher-level furnace can process lower-level EBF recipes.
 
 Here is an example that adds gold blocks as an EBF coil with a maximum FE/t of 64:
 ```js
 MIMachineEvents.addEbfTiers(event => {
-    // ID of the coil block, max FE/t, English name
-    event.add("minecraft:gold_block", 64, "Gold");
+    event.add("gold_blast_furnace", "Gold Blast Furnace", "minecraft:gold_block", 64, "aluminum_alloy");
 })
 ```
 
@@ -44,38 +48,37 @@ MIMachineEvents.registerRecipeTypes(event => {
 Single block crafting machines are the "standard" single block crafting machines.
 Examples include the macerators, the chemical reactor, the distillery, etc...
 
-They come in 3 tiers:
-- `bronze`: Limited to 2 FE/t recipes, steam powered.
-- `steel`: Limited to 4 FE/t recipes, steam powered.
-- `electric`: Base speed of 8 FE/t recipes, overclock up to 32 FE/t without upgrades. Supports upgrades. Electricity powered, casings can be installed to change the machine tier.
+Available machine levels are `bronze`, `steel`, `electric`, `aluminum_alloy`, `stainless_steel`, `titanium`, and `iridium`.
+Their fixed speed multipliers are 1, 2, 4, 8, 16, 32, and 64. Bronze and steel use steam; the others use FE.
+Recipe eligibility depends on `level`, and electric machines support an optional Overdrive Module. Casings size the
+energy buffer separately and do not change the registered machine's recipe level.
 
 The following parameters need to be provided, in order:
 - First, a few general parameters:
   - 1: English name of the machine. This is the name that players see when they over the stack, look at the machine, etc...
   - 2: Internal name of the machine. The registration id of the machine is always `milite:` followed by the internal name.
   - 3: Recipe type. The recipes that the machine can process. See above how to register a recipe type.
-  - 4: List of tiers for the machine. List containing any of `"bronze"`, `"steel"` and/or `"electric"`.
+  - 4: List of machine level names from the list above.
 - GUI configuration:
   - 5: Height of the background in the machine screen.
   - 6: Where the progress bar is located, in pixels, and the type of progress bar to use. You can look at the available progress bars [here](../src/main/resources/assets/milite/textures/gui/progress_bar/).
 
     By default, the progress bar has 20x20 pixels. This can be changed by adding a width and a height as 4th and 5th parameters when creating it.
     For example, for a 40x20 long arrow: `event.progressBar(x pos, y pos, "long_arrow", 40, 20)`.
-  - 7: Where the efficiency bar goes. This is where the current overclock is displayed (only in electric machines).
-  - 8: Where the energy bar goes. This is where the current energy is displayed (only in electric machines).
+  - 7: Where the energy bar goes. This displays stored energy in electric machines.
 - Slot configuration:
-  - 9: Number of item input slots.
-  - 10: Number of item output slots.
-  - 11: Number of fluid input slots. (Note that steam tier machines always have an extra input slot for steam).
-  - 12: Number of fluid output slots.
-  - 13: Capacity of each fluid slot, i.e. how many buckets of fluids it can hold.
-  - 14: Positions of the item input and output slots. Grids of slots are added using `.addSlots(x in pixels, y in pixels, grid width in slots, grid height in slots)`.
-  - 15: Positions of the fluid input and output slots.
+  - 8: Number of item input slots.
+  - 9: Number of item output slots.
+  - 10: Number of fluid input slots. Steam machines have an extra input slot for steam.
+  - 11: Number of fluid output slots.
+  - 12: Capacity of each fluid slot in buckets.
+  - 13: Positions of the item input and output slots. Grids use `.addSlots(x, y, width, height)`.
+  - 14: Positions of the fluid input and output slots.
 - Model configuration. Here you can choose which overlays are available in your machine. The overlays are the machine-specific textures.
   - You can find overlay examples [here](../src/main/resources/assets/milite/textures/block/machines/).
-  - 16: Choose whether the machine has a front overlay (`overlay_front.png` and `overlay_front_active.png`).
-  - 17: Choose whether the machine has a top overlay (`overlay_top.png` and `overlay_top_active.png`).
-  - 18: Choose whether the machine has a side overlay (`overlay_side.png` and `overlay_side_active.png`).
+  - 15: Choose whether the machine has a front overlay (`overlay_front.png` and `overlay_front_active.png`).
+  - 16: Choose whether the machine has a top overlay (`overlay_top.png` and `overlay_top_active.png`).
+  - 17: Choose whether the machine has a side overlay (`overlay_side.png` and `overlay_side_active.png`).
 
 Here is an example, where we add a circuit assembler that looks very much like a normal assembler:
 ```js
@@ -85,8 +88,8 @@ MIMachineEvents.registerMachines(event => {
       // English name, internal name, recipe type (see above), list of tiers (can be bronze/steel/electric)
       "Circuit Assembler", "circuit_assembler", CIRCUIT_ASSEMBLER, ["bronze", "steel", "electric"],
       /* GUI CONFIGURATION */
-      // Background height (or -1 for default value), progress bar, efficiency bar, energy bar
-      186, event.progressBar(105, 45, "circuit"), event.efficiencyBar(48, 86), event.energyBar(14, 44),
+      // Background height (or -1 for default value), progress bar, energy bar
+      186, event.progressBar(105, 45, "circuit"), event.energyBar(14, 44),
       /* SLOT CONFIGURATION */
       // Number of slots: item inputs, item outputs, fluid inputs, fluid outputs
       9, 3, 0, 0,

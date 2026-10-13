@@ -40,11 +40,7 @@ public class MIMachineRecipeTypes {
      * this does not.
      */
     public static final MachineRecipeType BLAST_FURNACE = create("blast_furnace").withItemInputs().withItemOutputs().withFluidInputs().withFluidOutputs();
-    /**
-     * What the steam blast furnace runs. It is the small, steam driven one and it has no levels, so it keeps a type of
-     * its own instead of being folded into the electric one. The electric furnaces run these recipes as well, by listing
-     * this type next to their own.
-     */
+    // 蒸汽高炉独立配方
     public static final MachineRecipeType STEAM_BLAST_FURNACE = create("steam_blast_furnace").withItemInputs().withItemOutputs()
             .withFluidInputs().withFluidOutputs();
     public static final MachineRecipeType COKE_OVEN = create("coke_oven").withItemInputs().withItemOutputs().withFluidOutputs();

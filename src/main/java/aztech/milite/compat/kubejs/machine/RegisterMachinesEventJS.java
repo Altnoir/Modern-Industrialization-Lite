@@ -140,6 +140,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
                 controllerCasingName, overlayFolder, frontOverlay, topOverlay, sideOverlay,
                 bep -> new ElectricCraftingMultiblockBlockEntity(bep, internalName, multiblockShape, recipeType),
                 config.reiConfigs);
+        MachineRegistrationHelper.recordMachineLevel(recipeType, MachineLevel.STAINLESS_STEEL);
     }
 
     public void simpleSteamCraftingMultiBlock(
@@ -177,6 +178,7 @@ public class RegisterMachinesEventJS implements KubeEvent, ShapeTemplateHelper {
                 controllerCasingName, overlayFolder, frontOverlay, topOverlay, sideOverlay,
                 bep -> new SteamCraftingMultiblockBlockEntity(bep, internalName, multiblockShape, recipeType, config.steamOverclockCatalysts),
                 config.reiConfigs);
+        MachineRegistrationHelper.recordMachineLevel(recipeType, MachineLevel.STEEL);
     }
 
     private void simpleCraftingMultiBlock(

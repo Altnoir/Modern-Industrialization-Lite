@@ -2,6 +2,7 @@ package aztech.milite.compat.kubejs.recipe;
 
 import aztech.milite.machines.recipe.condition.MachineProcessCondition;
 import aztech.milite.machines.recipe.MachineRecipe;
+import aztech.milite.machines.init.MachineLevel;
 import dev.latvian.mods.kubejs.recipe.component.*;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
@@ -22,8 +23,15 @@ public final class MachineRecipeSchema {
                 .optional(List.of());
     }
 
-    public static final RecipeKey<Integer> FE = NumberComponent.intRange(1, Integer.MAX_VALUE).inputKey("eu");
+    public static final RecipeKey<Integer> FE = NumberComponent.intRange(1, Integer.MAX_VALUE)
+            .inputKey("energy")
+            .alt("eu")
+            .functionNames(List.of("energy", "fe", "eu"));
     public static final RecipeKey<TickDuration> DURATION = TimeComponent.TICKS.inputKey("duration");
+    public static final RecipeKey<String> LEVEL = StringComponent.STRING.instance()
+            .otherKey("level")
+            .optional(MachineLevel.BRONZE.getSerializedName())
+            .noFunctions();
     public static final RecipeKey<List<MachineRecipe.ItemOutput>> ITEM_OUTPUTS = optionalList(ItemOutputComponent.TYPE, "item_outputs",
             ComponentRole.OUTPUT);
     public static final RecipeKey<List<MachineRecipe.FluidOutput>> FLUID_OUTPUTS = optionalList(FluidOutputComponent.TYPE, "fluid_outputs",
@@ -38,6 +46,7 @@ public final class MachineRecipeSchema {
     public static final RecipeSchema SCHEMA = new RecipeSchema(
             FE,
             DURATION,
+            LEVEL,
             ITEM_OUTPUTS,
             FLUID_OUTPUTS,
             ITEM_INPUTS,

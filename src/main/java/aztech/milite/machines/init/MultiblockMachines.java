@@ -97,6 +97,7 @@ public class MultiblockMachines {
         COKE_OVEN = MachineRegistrationHelper.registerMachine("Coke Oven", "coke_oven",
                 bet -> new SteamCraftingMultiblockBlockEntity(bet, "coke_oven", cokeOvenShape, MIMachineRecipeTypes.COKE_OVEN, OverclockComponent.getDefaultCatalysts()));
         ReiMachineRecipes.registerMultiblockShape("coke_oven", cokeOvenShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.COKE_OVEN, MachineLevel.STEEL);
     }
 
     private static void steamBlastFurnace() {
@@ -224,6 +225,7 @@ public class MultiblockMachines {
                 "electric_quarry",
                 bet -> new ElectricCraftingMultiblockBlockEntity(bet, "electric_quarry", quarryElectricShape, MIMachineRecipeTypes.QUARRY));
         ReiMachineRecipes.registerMultiblockShape("electric_quarry", quarryElectricShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.QUARRY, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void oilDrillingRig() {
@@ -250,6 +252,7 @@ public class MultiblockMachines {
                 "oil_drilling_rig", bet -> new ElectricCraftingMultiblockBlockEntity(bet,
                         "oil_drilling_rig", oilDrillingRigShape, MIMachineRecipeTypes.OIL_DRILLING_RIG));
         ReiMachineRecipes.registerMultiblockShape("oil_drilling_rig", oilDrillingRigShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.OIL_DRILLING_RIG, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void vacuumFreezer() {
@@ -262,6 +265,7 @@ public class MultiblockMachines {
                 "vacuum_freezer",
                 bet -> new ElectricCraftingMultiblockBlockEntity(bet, "vacuum_freezer", vacuumFreezerShape, MIMachineRecipeTypes.VACUUM_FREEZER));
         ReiMachineRecipes.registerMultiblockShape("vacuum_freezer", vacuumFreezerShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.VACUUM_FREEZER, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void distillationTower() {
@@ -269,6 +273,7 @@ public class MultiblockMachines {
                 "Large Distillation Tower",
                 "distillation_tower", DistillationTowerBlockEntity::new);
         DistillationTowerBlockEntity.registerReiShapes();
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.DISTILLATION_TOWER, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void largeDieselGenerator() {
@@ -373,6 +378,7 @@ public class MultiblockMachines {
                 "heat_exchanger",
                 bet -> new ElectricCraftingMultiblockBlockEntity(bet, "heat_exchanger", heatExchangerShape, MIMachineRecipeTypes.HEAT_EXCHANGER));
         ReiMachineRecipes.registerMultiblockShape("heat_exchanger", heatExchangerShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.HEAT_EXCHANGER, MachineLevel.STAINLESS_STEEL);
 
     }
 
@@ -400,6 +406,7 @@ public class MultiblockMachines {
                 "pressurizer",
                 bet -> new ElectricCraftingMultiblockBlockEntity(bet, "pressurizer", pressurizerShape, MIMachineRecipeTypes.PRESSURIZER));
         ReiMachineRecipes.registerMultiblockShape("pressurizer", pressurizerShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.PRESSURIZER, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void implosionCompressor() {
@@ -416,6 +423,7 @@ public class MultiblockMachines {
                 "implosion_compressor",
                 bet -> new ElectricCraftingMultiblockBlockEntity(bet, "implosion_compressor", implosionCompressorShape, MIMachineRecipeTypes.IMPLOSION_COMPRESSOR));
         ReiMachineRecipes.registerMultiblockShape("implosion_compressor", implosionCompressorShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.IMPLOSION_COMPRESSOR, MachineLevel.STAINLESS_STEEL);
     }
 
     private static void nuclearReactor() {
@@ -459,6 +467,7 @@ public class MultiblockMachines {
                 bet -> new FusionReactorBlockEntity(bet, "fusion_reactor",
                         fusionReactorShape));
         ReiMachineRecipes.registerMultiblockShape("fusion_reactor", fusionReactorShape);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.FUSION_REACTOR, MachineLevel.TITANIUM);
 
     }
 

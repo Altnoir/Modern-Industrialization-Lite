@@ -3,20 +3,22 @@
 A slimmed-down fork of [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization):
 **the machines stay, the logistics go.**
 
-Steam machines, electric machines, multiblocks (coke oven, EBF, distillation tower, assembly lines, fusion
-reactor), materials, tools and the in-game guidebook all work just like you know them. What this fork removes is
-MI's own transport layer:
+Steam machines, electric machines, multiblocks (coke oven, EBF, distillation tower, fusion
+reactor), materials, tools and the in-game guidebook form the factory progression:
 
 - no cables, no transformers, no fluid pipes, no item pipes;
 - machines, tanks, barrels and hatches simply expose the standard NeoForge energy, fluid and item capabilities;
-- energy is plain RF: power a machine from another mod's cable, energy pipe or energy storage block, or simply
+- electric machines use FE: power a machine from another mod's cable, energy pipe or energy storage block, or simply
   place a generator next to it;
-- the LV/MV/HV/EV/SV tiers still exist, but only as machine classes - they say how much RF/t a machine is built
-  for and how large its buffer is. A full buffer just stops accepting power, nothing explodes.
+- machine levels progress through bronze, steel, electric, aluminum alloy, stainless steel, titanium and iridium;
+- recipes specify their minimum machine level. Higher levels have fixed speed multipliers; there is no gradual
+  overclocking from continuous operation. Faster processing draws more FE/t while preserving total FE per craft;
+- gunpowder temporarily doubles steam-machine speed, and an Overdrive Module doubles the speed of supported
+  electric machines. A full energy buffer stops accepting power.
 
 **Bring your own logistics mod, and MI Lite supplies the factory.**
 
-The mod id is `milite`. This is a separate mod, so do not install it next to Modern Industrialization.
+The mod id is `milite`.
 
 ## Requirements
 
@@ -79,7 +81,10 @@ the Fusion Reactor sound from [Mekanism](https://github.com/mekanism/mekanism) (
 **Modern Industrialization: Lite** 是 [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization)
 的精简分支。
 
-模组 id 是 `milite`，它和原版 MI 是两个独立模组，按理说可以同时安装。
+模组 id 是 `milite`。模组保留机器与工业进度，移除了自带管道、电缆和变压器，物流与供电需要搭配其他模组。
+
+电动机器使用 FE，配方通过机器等级限制加工要求。各等级使用固定速度倍率，加速提高每刻能耗，但同一配方的总能耗不变。
+火药可临时加速蒸汽机器，超速模块可持续加速支持它的电动机器；连续加工不再逐步提升超频。
 
 - 需要：Minecraft 1.21.1、NeoForge 21.1.228+、[GuideME](https://modrinth.com/mod/guideme)
 - 可选：EMI / JEI / REI、Jade

@@ -28,19 +28,20 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
 
     @Override
     public long getFe() {
-        return Math.min(storedFe, capacity.get());
+        return Math.max(0, Math.min(storedFe, getCapacity()));
     }
 
     @Override
     public long getCapacity() {
-        return capacity.get();
+        return Math.max(0, capacity.get());
     }
 
     public long getRemainingCapacity() {
-        return capacity.get() - getFe();
+        return getCapacity() - getFe();
     }
 
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
+        // 旧存档键
         tag.putLong("storedEu", getFe());
     }
 
@@ -49,7 +50,7 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     private void setFe(long fe, boolean update) {
-        this.storedFe = Math.min(fe, capacity.get());
+        this.storedFe = Math.max(0, Math.min(fe, getCapacity()));
 
         if (update) {
             blockEntity.setChanged();
@@ -67,7 +68,7 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
 
     public long insertFe(long max, Simulation simulation) {
         Preconditions.checkArgument(max >= 0, "May not insert < 0 energy.");
-        long ext = Math.min(max, capacity.get() - getFe());
+        long ext = Math.min(max, getRemainingCapacity());
         if (simulation.isActing()) {
             setFe(getFe() + ext, true);
         }
@@ -75,32 +76,30 @@ public class EnergyComponent implements MachineComponent.ServerOnly, EnergyAcces
     }
 
     private abstract class EnergyStorage implements IEnergyStorage {
-        protected long longAmount() {
-            return storedFe;
-        }
-
-        protected long longCapacity() {
-            return capacity.get();
-        }
-
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
+            if (!canReceive() || maxReceive <= 0) {
+                return 0;
+            }
             return (int) Math.min(Integer.MAX_VALUE, insertFe(maxReceive, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
+            if (!canExtract() || maxExtract <= 0) {
+                return 0;
+            }
             return (int) Math.min(Integer.MAX_VALUE, consumeFe(maxExtract, simulate ? Simulation.SIMULATE : Simulation.ACT));
         }
 
         @Override
         public int getEnergyStored() {
-            return (int) Math.min(Integer.MAX_VALUE, storedFe);
+            return (int) Math.min(Integer.MAX_VALUE, getFe());
         }
 
         @Override
         public int getMaxEnergyStored() {
-            return (int) Math.min(Integer.MAX_VALUE, capacity.get());
+            return (int) Math.min(Integer.MAX_VALUE, getCapacity());
         }
 
         @Override

@@ -4,7 +4,6 @@ import static aztech.milite.machines.components.FluidItemConsumerComponent.Numbe
 
 import aztech.milite.MICapabilities;
 import aztech.milite.api.energy.CableTier;
-import aztech.milite.api.energy.CableTierHolder;
 import aztech.milite.api.machine.holder.EnergyComponentHolder;
 import aztech.milite.definition.FluidDefinition;
 import aztech.milite.inventory.ConfigurableFluidStack;
@@ -32,8 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
-public class GeneratorMachineBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder, CableTierHolder {
-    private final CableTier outputTier;
+public class GeneratorMachineBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder {
     private final IEnergyStorage extractable;
     private final RedstoneControlComponent redstoneControl;
 
@@ -53,7 +51,6 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         super(bep, new MachineGuiParameters.Builder(name, fluidItemConsumer.doAllowMoreThanOne()).build(),
                 hasFacing ? new OrientationComponent.Params(true, false, false) : OrientationComponent.Params.noFacing(false, false));
 
-        this.outputTier = outputTier;
         this.energy = new EnergyComponent(this, energyCapacity);
         this.extractable = energy.buildExtractable();
         this.isActiveComponent = new IsActiveComponent();
@@ -202,8 +199,4 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         return fluidItemConsumer.getTooltips();
     }
 
-    @Override
-    public CableTier getCableTier() {
-        return outputTier;
-    }
 }

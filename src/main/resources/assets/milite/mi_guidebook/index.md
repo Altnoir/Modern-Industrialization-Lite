@@ -4,10 +4,10 @@ navigation:
   icon: "milite:guidebook"
 ---
 
-# Modern Industrialization
-Welcome to **Modern Industrialization**!
+# Modern Industrialization: Lite
+Welcome to **Modern Industrialization: Lite**!
 
-![Pipes, pipes and more pipes](/milogo.png)
+![Modern Industrialization](/milogo.png)
 
 ## Introduction
 Modern Industrialization is a mod about automation! It means that, at some point, any resource can (and should) be automated.
@@ -18,8 +18,8 @@ Be aware that most setups will become obsolete once you finish the Steam Age, so
 
 The second part of the progression is the **Electric Age**. At this stage, you are strongly encouraged to automate every processing line.
 
-The setups you build at this stage are expected to be permanent as they can be continuously upgraded. The overclock system for electric machines will mean that your production will automatically adapt to your consumption.
+The setups you build at this stage can be upgraded with higher-level machines. Each level has a fixed processing speed, and recipes specify a minimum machine level.
 
 The challenge will come from building efficient and balanced processing lines, and prioritizing the most useful ones.
 
-The full power of the Electric Machines is reached when they operate continuously. That is why it is STRONGLY DISCOURAGED to use Modern Industrialization in unison with an On-Demand Automation Mod like AE2 or Refined Storage as it will make your progress extremely slow and inefficient.
+MI Lite uses FE for electric machines and exposes standard energy, item and fluid capabilities. Bring another mod's cables and pipes for transport. On-demand automation works with the fixed-speed system; continuous operation does not gradually increase machine speed.

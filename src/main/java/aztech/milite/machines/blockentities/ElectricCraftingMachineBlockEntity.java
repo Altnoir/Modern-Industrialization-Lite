@@ -1,7 +1,5 @@
 package aztech.milite.machines.blockentities;
 
-import aztech.milite.api.energy.CableTier;
-import aztech.milite.api.energy.CableTierHolder;
 import aztech.milite.api.machine.holder.EnergyComponentHolder;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.*;
@@ -24,7 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
-public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity implements EnergyComponentHolder, CableTierHolder {
+public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineBlockEntity implements EnergyComponentHolder {
     public ElectricCraftingMachineBlockEntity(BEP bep, MachineRecipeType recipeType, MachineInventoryComponent inventory,
             MachineGuiParameters guiParams, EnergyBar.Params energyBarParams, ProgressBar.Params progressBarParams,
             MachineTier tier, MachineLevel level) {
@@ -93,8 +91,4 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
         return energy;
     }
 
-    @Override
-    public CableTier getCableTier() {
-        return casing.getCableTier();
-    }
 }
