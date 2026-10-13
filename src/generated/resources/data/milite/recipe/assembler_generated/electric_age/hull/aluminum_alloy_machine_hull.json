@@ -4,6 +4,10 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 3,
+      "item": "milite:electrum_wire"
+    },
+    {
       "amount": 2,
       "item": "milite:silicon_battery"
     },
@@ -14,10 +18,6 @@
     {
       "amount": 1,
       "item": "milite:aluminum_alloy_machine_casing"
-    },
-    {
-      "amount": 3,
-      "item": "milite:electrum_wire"
     }
   ],
   "item_outputs": [

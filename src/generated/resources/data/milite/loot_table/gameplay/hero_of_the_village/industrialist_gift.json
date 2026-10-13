@@ -6,10 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "milite:steel_upgrade"
-        },
-        {
-          "type": "minecraft:item",
           "name": "milite:piston"
         },
         {

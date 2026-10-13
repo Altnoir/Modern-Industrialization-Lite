@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "milite:plasma_handling_iridium_machine_casing"
+    },
+    "P": {
+      "item": "milite:large_advanced_pump"
+    },
+    "p": {
+      "item": "milite:iridium_plate"
+    }
+  },
+  "pattern": [
+    "pPp",
+    "p#p",
+    "pPp"
+  ],
+  "result": {
+    "count": 2,
+    "id": "milite:iridium_machine_casing_pipe"
+  }
+}

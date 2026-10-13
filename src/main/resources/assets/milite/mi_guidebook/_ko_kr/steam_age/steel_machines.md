@@ -5,7 +5,6 @@ navigation:
   position: 11
   parent: milite:steam_age.md
 item_ids:
-  - milite:steel_upgrade
   - milite:steel_packer
   - milite:steel_unpacker
   - milite:trash_can
@@ -15,9 +14,7 @@ item_ids:
 
 강철을 만들었으니, 이제 청동 기계들을 업그레이드할 수 있습니다. 강철 기계들은 4 RF/t 의 에너지를 소모할 수 있고, 청동 기계보다 두 배 빠릅니다. 또한 여러 새로운 조합법들이 가능해집니다.
 
-강철 업그레이드를 만든 뒤, 청동 기계를 대장장이 작업대에서 업그레이드할 수 있습니다.
-
-<Recipe id="milite:steam_age/steel/steel_upgrade_asbl" />
+강철 기계 껕데기를 만든 뒤, 청동 기계와 함께 작업대에서 조합할 수 있습니다.
 
 강철 해치는 청동 해치보다 큰 용량을 가지고 있습니다. 또한 최소 하나의 해치가 강철인 멀티블록은 강철 단계로 업그레이드됩니다: 멀티블록의 에너지 소모가 최대 4 RF/t 이 되고, 기존의 조합법들은 두 배 빨라집니다.
 

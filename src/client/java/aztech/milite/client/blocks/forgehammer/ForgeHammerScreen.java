@@ -26,6 +26,7 @@ public class ForgeHammerScreen extends MIHandledScreen<ForgeHammerScreenHandler>
     public ForgeHammerScreen(ForgeHammerScreenHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
         this.handler = handler;
+        this.imageHeight = 168;
     }
 
     @Override

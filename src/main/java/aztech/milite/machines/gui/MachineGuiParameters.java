@@ -35,7 +35,7 @@ public class MachineGuiParameters {
 
     public static class Builder {
         private final ResourceLocation blockId;
-        public int playerInventoryX = 8, playerInventoryY = 84;
+        public int playerInventoryX = 8, playerInventoryY = 82;
         private final int backgroundSizeX = 176;
         private int backgroundSizeY = 166;
         public final boolean lockButton;
@@ -51,7 +51,7 @@ public class MachineGuiParameters {
 
         public Builder backgroundHeight(int height) {
             this.backgroundSizeY = height;
-            this.playerInventoryY = height - 82;
+            this.playerInventoryY = height - 84;
             return this;
         }
 

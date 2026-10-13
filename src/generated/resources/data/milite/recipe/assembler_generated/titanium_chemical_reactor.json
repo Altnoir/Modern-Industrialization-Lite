@@ -1,0 +1,25 @@
+{
+  "type": "milite:assembler",
+  "duration": 200,
+  "energy": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:titanium_machine_hull"
+    },
+    {
+      "amount": 1,
+      "item": "milite:large_motor"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:bucket"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:titanium_chemical_reactor"
+    }
+  ]
+}

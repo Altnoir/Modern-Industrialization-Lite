@@ -5,7 +5,6 @@ navigation:
   position: 11
   parent: milite:steam_age.md
 item_ids:
-  - milite:steel_upgrade
   - milite:steel_packer
   - milite:steel_unpacker
   - milite:trash_can
@@ -15,12 +14,7 @@ item_ids:
 
 现在你有了钢铁，如果你愿意，你可以升级你的青铜机器。钢铁机器可以处理高达4 RF/t的配方，而且只要能源消耗不超过4 RF/t，它们能以两倍的速度处理配方。它们的速度基本上是青铜机器的两倍，并且还可以解锁新的配方。
 
-要升级青铜机器，制作钢铁升级并使用原版的锻造台安装。
-
-你也可以使用此升级潜行右击青铜机器来直接应用。
-
-<Recipe id="milite:steam_age/steel/steel_upgrade_asbl" />
-
+要升级青铜机器，制作钢机器框架并使用工作台安装。
 钢质仓室比青铜仓室的容量更大，并且至少有一个钢质仓室的多方块结构将升级为钢质。这意味着，如果其能源使用量不超过4 RF/t，它将以两倍的速度运行。
 
 钢制锅炉产生的蒸汽量是青铜制锅炉的两倍，即高达16 RF/t，而钢制水泵的抽水量是青铜水泵的两倍，最多可达2桶/5秒。

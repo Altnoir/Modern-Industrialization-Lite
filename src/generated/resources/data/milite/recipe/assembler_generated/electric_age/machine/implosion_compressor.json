@@ -4,8 +4,8 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:advanced_motor"
+      "amount": 4,
+      "item": "milite:blastproof_alloy_large_plate"
     },
     {
       "amount": 2,
@@ -16,8 +16,8 @@
       "item": "milite:stainless_steel_machine_hull"
     },
     {
-      "amount": 4,
-      "item": "milite:blastproof_alloy_large_plate"
+      "amount": 2,
+      "item": "milite:advanced_motor"
     }
   ],
   "item_outputs": [

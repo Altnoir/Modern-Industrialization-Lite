@@ -8,16 +8,16 @@
       "tag": "c:plates/aluminum"
     },
     {
-      "amount": 4,
-      "item": "milite:electrum_wire"
-    },
-    {
       "amount": 1,
       "item": "milite:analog_circuit_board"
     },
     {
       "amount": 1,
       "item": "milite:redstone_battery"
+    },
+    {
+      "amount": 4,
+      "item": "milite:electrum_wire"
     }
   ],
   "item_outputs": [

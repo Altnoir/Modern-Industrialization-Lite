@@ -8,12 +8,12 @@
       "item": "milite:pump"
     },
     {
-      "amount": 2,
-      "item": "milite:electronic_circuit"
-    },
-    {
       "amount": 1,
       "item": "milite:large_steam_boiler"
+    },
+    {
+      "amount": 2,
+      "item": "milite:electronic_circuit"
     },
     {
       "amount": 2,

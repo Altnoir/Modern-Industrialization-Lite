@@ -1,0 +1,31 @@
+{
+  "type": "milite:assembler",
+  "duration": 400,
+  "energy": 16,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:cryofluid"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 3,
+      "item": "milite:bronze_plate"
+    },
+    {
+      "amount": 2,
+      "item": "milite:small_heat_exchanger"
+    },
+    {
+      "amount": 6,
+      "tag": "c:plates/tin"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:cooling_cell"
+    }
+  ]
+}

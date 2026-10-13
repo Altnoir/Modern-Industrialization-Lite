@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:pillar",
+  "ctm_textures": {
+    "bottom": "milite:block/titanium_machine_casing_pipe/bottom",
+    "center": "milite:block/titanium_machine_casing_pipe/center",
+    "particle": "milite:block/titanium_machine_casing_pipe/particle",
+    "self": "milite:block/titanium_machine_casing_pipe/self",
+    "top": "milite:block/titanium_machine_casing_pipe/top"
+  },
   "variants": {
     "axis=x": {
       "model": "milite:block/titanium_machine_casing_pipe",

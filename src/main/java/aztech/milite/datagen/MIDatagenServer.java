@@ -42,12 +42,22 @@ public class MIDatagenServer {
         aggregate.addProvider(AlloyRecipesProvider::new);
         aggregate.addProvider(MaterialRecipesProvider::new);
         aggregate.addProvider(DyeRecipesProvider::new);
-        aggregate.addProvider(AssemblerRecipesProvider::new);
+        aggregate.addProvider(ConditionalMachineRecipesProvider::new);
+        aggregate.addProvider(ElectricAgeRecipesProvider::new);
+        aggregate.addProvider(FixedMaterialRecipesProvider::new);
+        aggregate.addProvider(FixedVanillaRecipesProvider::new);
+        aggregate.addProvider(FusionRecipesProvider::new);
+        aggregate.addProvider(MiscRecipesProvider::new);
+        aggregate.addProvider(OilRecipesProvider::new);
+        aggregate.addProvider(QuarryRecipesProvider::new);
+        aggregate.addProvider(SteamAgeRecipesProvider::new);
+        aggregate.addProvider(ToolsRecipesProvider::new);
         aggregate.addProvider(ProcessingTableRecipesProvider::new);
         if (!runtimeDatagen) {
             aggregate.addProvider(CreateCompatRecipes::new);
         }
         aggregate.addProvider(UpgradeProvider::new);
+        aggregate.addProvider(MachineUpgradeRecipesProvider::new);
         aggregate.addProvider(VanillaCompatRecipesProvider::new);
 
         aggregate.addProvider(EmptyTestStructureGenerator::new);

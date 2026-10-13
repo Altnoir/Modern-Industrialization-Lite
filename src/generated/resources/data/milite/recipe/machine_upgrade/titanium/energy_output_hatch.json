@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:titanium_machine_hull"
+    },
+    {
+      "item": "milite:stainless_steel_energy_output_hatch"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:titanium_energy_output_hatch"
+  }
+}

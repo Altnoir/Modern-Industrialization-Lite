@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "milite:not_gate"
+    },
+    "P": {
+      "tag": "c:plates/diamond"
+    },
+    "a": {
+      "item": "milite:and_gate"
+    },
+    "o": {
+      "item": "milite:or_gate"
+    }
+  },
+  "pattern": [
+    "NaN",
+    "oPo",
+    "NaN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:arithmetic_logic_unit"
+  }
+}

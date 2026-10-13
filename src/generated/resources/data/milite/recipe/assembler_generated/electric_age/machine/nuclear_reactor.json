@@ -8,16 +8,16 @@
       "item": "milite:nuclear_alloy_large_plate"
     },
     {
+      "amount": 2,
+      "item": "milite:cadmium_control_rod"
+    },
+    {
       "amount": 1,
       "item": "milite:titanium_machine_hull"
     },
     {
       "amount": 2,
       "item": "milite:processing_unit"
-    },
-    {
-      "amount": 2,
-      "item": "milite:cadmium_control_rod"
     }
   ],
   "item_outputs": [

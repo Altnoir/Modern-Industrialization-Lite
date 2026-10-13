@@ -39,7 +39,6 @@ public class MIVillager {
         var level4 = event.getTrades().get(4);
         level4.add(buyItemsFromVillager(MIMaterials.STEEL.getPart(MIParts.GEAR), 5, 1, 5));
         level4.add(buyItemsFromVillager(MIMaterials.STEEL.getPart(MIParts.PLATE), 6, 3, 10));
-        level4.add(buyItemsFromVillager(MIItem.STEEL_UPGRADE, 20, 1, 20));
 
         var level5 = event.getTrades().get(5);
         level5.add(buyItemsFromVillager(MIItem.ANALOG_CIRCUIT, 12, 1, 20));

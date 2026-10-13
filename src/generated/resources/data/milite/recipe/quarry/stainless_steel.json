@@ -1,0 +1,34 @@
+{
+  "type": "milite:quarry",
+  "duration": 600,
+  "energy": 32,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_drill",
+      "probability": 0.04
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:titanium_ore",
+      "probability": 0.15
+    },
+    {
+      "amount": 1,
+      "item": "milite:tungsten_ore",
+      "probability": 0.2
+    },
+    {
+      "amount": 1,
+      "item": "milite:monazite_ore",
+      "probability": 0.25
+    },
+    {
+      "amount": 1,
+      "item": "milite:platinum_ore",
+      "probability": 0.12
+    }
+  ]
+}

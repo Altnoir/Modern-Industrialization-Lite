@@ -5,11 +5,11 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "minecraft:redstone"
+      "item": "milite:resistor"
     },
     {
       "amount": 1,
-      "item": "minecraft:redstone_torch"
+      "item": "milite:analog_circuit_board"
     },
     {
       "amount": 1,
@@ -17,11 +17,11 @@
     },
     {
       "amount": 2,
-      "item": "milite:resistor"
+      "item": "minecraft:redstone"
     },
     {
       "amount": 1,
-      "item": "milite:analog_circuit_board"
+      "item": "minecraft:redstone_torch"
     },
     {
       "amount": 2,

@@ -284,7 +284,8 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0x3f3f3f)
                         .addParts(BOLT, RING, ROD, GEAR, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
-                        .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(TANK.of(16)).addParts(BARREL.of(128))
+                        .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(MACHINE_CASING_SPECIAL.of("Steel Machine Hull", "steel_machine_hull"))
+                        .addParts(TANK.of(16)).addParts(BARREL.of(128))
                         .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.STEEL_HAMMER.getId().toString()))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 

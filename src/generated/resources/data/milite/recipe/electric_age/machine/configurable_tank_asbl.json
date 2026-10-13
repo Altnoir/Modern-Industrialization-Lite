@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "milite:steel_machine_casing"
+    },
+    "c": {
+      "item": "milite:analog_circuit"
+    },
+    "p": {
+      "item": "milite:pump"
+    },
+    "t": {
+      "item": "milite:aluminum_tank"
+    }
+  },
+  "pattern": [
+    "ctc",
+    "pCp",
+    "ctc"
+  ],
+  "result": {
+    "count": 4,
+    "id": "milite:configurable_tank"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "milite:chemical_reactor",
+  "duration": 200,
+  "energy": 8,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:oxygen"
+    },
+    {
+      "amount": 2000,
+      "fluid": "milite:deuterium"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 3000,
+      "fluid": "milite:heavy_water"
+    }
+  ]
+}

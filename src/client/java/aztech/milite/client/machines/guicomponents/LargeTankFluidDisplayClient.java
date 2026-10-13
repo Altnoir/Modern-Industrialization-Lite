@@ -19,10 +19,10 @@ import java.util.Optional;
 
 public class LargeTankFluidDisplayClient extends GuiComponentClient<Unit, LargeTankFluidDisplay.Data> {
     private static final int TANK_WIDTH = 46;
-    private static final int TANK_HEIGHT = 62;
-    private static final int TANK_Y = 12;
+    private static final int TANK_HEIGHT = 64;
+    private static final int TANK_Y = 10;
     private static final int BUTTON_WIDTH = 46;
-    private static final int BUTTON_HEIGHT = 12;
+    private static final int BUTTON_HEIGHT = 14;
     private static final int BUTTON_SPACING = 2;
 
     public LargeTankFluidDisplayClient(Unit params, LargeTankFluidDisplay.Data data) {
@@ -55,15 +55,15 @@ public class LargeTankFluidDisplayClient extends GuiComponentClient<Unit, LargeT
                             () -> List.of(),
                             (screen, button, guiGraphics, mouseX, mouseY, partialTicks) -> {
                                 MachineScreen.blitStretched(guiGraphics, button.getX(), button.getY(), button.getWidth(), button.getHeight(),
-                                        54, 6, 2, 14);
+                                        36, 18, 2, 14);
                                 if (renderer.getLineIndex() == line) {
                                     MachineScreen.blitStretched(guiGraphics, button.getX(), button.getY(), button.getWidth(), button.getHeight(),
-                                            70, 18, 2, 14);
+                                            54, 0, 2, 14);
                                 }
                                 var font = Minecraft.getInstance().font;
-                                var text = renderer.getLineText(line);
-                                guiGraphics.drawString(font, text, button.getX() + (button.getWidth() - font.width(text)) / 2, button.getY() + 2,
-                                        0xFFFFFF, true);
+                                var text = renderer.getButtonText(line);
+                                guiGraphics.drawString(font, text, button.getX() + (button.getWidth() - font.width(text)) / 2, button.getY() + 3,
+                                        0x505050, false);
                             });
                 }
             }
@@ -79,7 +79,7 @@ public class LargeTankFluidDisplayClient extends GuiComponentClient<Unit, LargeT
                 if (!fluid.isBlank()) {
                     for (int i = 0; i < 2; i++) {
                         for (int j = 0; j < 3; j++) {
-                            float localFullness = Math.min(Math.max(3 * fracFull - (2 - j), 0), 1);
+                            float localFullness = Math.clamp(3 * fracFull - (2 - j), 0, 1);
                             RenderHelper.drawFluidInGui(guiGraphics, fluid, leftPos + posX + 7 + i * 16,
                                     topPos + TANK_Y + 7 + j * 16 + (1 - localFullness) * 16, 16, localFullness);
                         }

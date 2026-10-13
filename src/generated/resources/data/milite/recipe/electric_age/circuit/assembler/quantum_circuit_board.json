@@ -1,0 +1,35 @@
+{
+  "type": "milite:assembler",
+  "duration": 2000,
+  "energy": 64,
+  "fluid_inputs": [
+    {
+      "amount": 50,
+      "fluid": "milite:helium_3"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 12,
+      "item": "milite:superconductor_wire"
+    },
+    {
+      "amount": 2,
+      "item": "milite:plutonium_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:processing_unit_board"
+    },
+    {
+      "amount": 6,
+      "tag": "c:plates/iridium"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:quantum_circuit_board"
+    }
+  ]
+}

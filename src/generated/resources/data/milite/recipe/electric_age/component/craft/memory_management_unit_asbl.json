@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:plates/emerald"
+    },
+    "W": {
+      "item": "milite:platinum_fine_wire"
+    },
+    "w": {
+      "item": "milite:silicon_wafer"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "wPw",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:memory_management_unit"
+  }
+}

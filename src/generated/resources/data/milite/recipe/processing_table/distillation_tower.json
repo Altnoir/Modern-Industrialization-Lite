@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:stainless_steel_distillery"
+  },
+  "key": {
+    "item": "milite:clean_stainless_steel_machine_casing"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:distillation_tower"
+  },
+  "second": {
+    "item": "milite:stainless_steel_distillery"
+  }
+}

@@ -8,16 +8,16 @@
       "item": "milite:small_heat_exchanger"
     },
     {
-      "amount": 1,
-      "item": "milite:stainless_steel_machine_hull"
-    },
-    {
       "amount": 2,
       "item": "milite:stainless_steel_machine_casing_pipe"
     },
     {
       "amount": 2,
       "item": "milite:frostproof_machine_casing"
+    },
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_machine_hull"
     },
     {
       "amount": 2,

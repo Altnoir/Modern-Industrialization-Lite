@@ -12,12 +12,12 @@
       "item": "milite:large_heat_exchanger"
     },
     {
-      "amount": 2,
-      "item": "milite:nuclear_alloy_large_plate"
-    },
-    {
       "amount": 1,
       "item": "milite:plasma_handling_iridium_machine_casing"
+    },
+    {
+      "amount": 2,
+      "item": "milite:nuclear_alloy_large_plate"
     }
   ],
   "item_outputs": [

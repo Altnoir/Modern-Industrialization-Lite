@@ -1,7 +1,7 @@
 {
   "type": "milite:processing_table",
   "first": {
-    "item": "milite:aluminum_rotor"
+    "item": "milite:large_motor"
   },
   "key": {
     "item": "milite:titanium_machine_hull"
@@ -11,6 +11,6 @@
     "id": "milite:titanium_chemical_reactor"
   },
   "second": {
-    "item": "milite:aluminum_tank"
+    "item": "minecraft:bucket"
   }
 }

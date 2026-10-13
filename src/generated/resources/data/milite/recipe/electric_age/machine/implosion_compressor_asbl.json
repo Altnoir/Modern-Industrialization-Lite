@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:blastproof_alloy_large_plate"
+    },
+    "H": {
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    "T": {
+      "item": "milite:titanium_large_plate"
+    },
+    "m": {
+      "item": "milite:advanced_motor"
+    }
+  },
+  "pattern": [
+    "BmB",
+    "THT",
+    "BmB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:implosion_compressor"
+  }
+}

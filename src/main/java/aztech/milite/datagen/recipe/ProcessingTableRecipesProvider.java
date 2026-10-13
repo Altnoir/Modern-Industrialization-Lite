@@ -47,7 +47,7 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         family("cutting_machine", BRONZE_TO_IRIDIUM, MIItem.INVAR_ROTARY_BLADE, MIMaterials.INVAR.getPart(MIParts.GEAR));
         family("furnace", BRONZE_TO_IRIDIUM, Items.BLAST_FURNACE, MIBlock.BLOCK_FIRE_CLAY_BRICKS);
         family("macerator", BRONZE_TO_IRIDIUM, MIMaterials.BRONZE.getPart(MIParts.DRILL_HEAD), MIMaterials.BRONZE.getPart(MIParts.BARREL));
-        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR), MIMaterials.BRONZE.getPart(MIParts.TANK));
+        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR), Items.BUCKET);
 
         // Steel machines.
         family("packer", STEEL_TO_IRIDIUM, MIItem.CONVEYOR, MIMaterials.STEEL.getPart(MIParts.PLATE));
@@ -57,7 +57,7 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         // Electric machines.
         family("assembler", ELECTRIC_TO_IRIDIUM, MIItem.ROBOT_ARM, MIItem.CONVEYOR);
         family("centrifuge", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_MOTOR, MIMaterials.ALUMINUM.getPart(MIParts.GEAR));
-        family("chemical_reactor", ELECTRIC_TO_IRIDIUM, MIMaterials.ALUMINUM.getPart(MIParts.ROTOR), MIMaterials.ALUMINUM.getPart(MIParts.TANK));
+        family("chemical_reactor", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_MOTOR, Items.BUCKET);
         family("distillery", ELECTRIC_TO_IRIDIUM, MIItem.LARGE_PUMP, MIMaterials.CUPRONICKEL.getPart(MIParts.PLATE));
         family("electrolyzer", ELECTRIC_TO_IRIDIUM, MIItem.ELECTRONIC_CIRCUIT, MIMaterials.ALUMINUM.getPart(MIParts.WIRE));
         family("polarizer", ELECTRIC_TO_IRIDIUM, MIItem.INDUCTOR, MIMaterials.COPPER.getPart(MIParts.WIRE));
@@ -77,13 +77,21 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
             }
         }
         offer(consumer, "processing_table/bronze_boiler", MIBlock.BLOCK_FIRE_CLAY_BRICKS,
-                lookupItem(MI.id("bronze_furnace")), item(MIMaterials.BRONZE, MIParts.TANK), MI.id("bronze_boiler"));
+                lookupItem(MI.id("bronze_furnace")), Items.BUCKET,
+                MI.id("bronze_boiler"));
         offer(consumer, "processing_table/steel_boiler", lookupItem(MI.id("bronze_boiler")),
-                Items.FURNACE, item(MIMaterials.STEEL, MIParts.PLATE), MI.id("steel_boiler"));
+                Items.FURNACE, item(MIMaterials.STEEL, MIParts.PLATE),
+                MI.id("steel_boiler"));
         offer(consumer, "processing_table/steam_quarry", casingOf(MachineLevel.STEEL),
-                MIItem.INVAR_ROTARY_BLADE, item(MIMaterials.STEEL, MIParts.DRILL_HEAD), MI.id("steam_quarry"));
+                MIItem.INVAR_ROTARY_BLADE, item(MIMaterials.STEEL, MIParts.DRILL_HEAD),
+                MI.id("steam_quarry"));
         offer(consumer, "processing_table/bronze_water_pump", casingOf(MachineLevel.BRONZE),
-                item(MIMaterials.BRONZE, MIParts.TANK), item(MIMaterials.BRONZE, MIParts.ROTOR), MI.id("bronze_water_pump"));
+                Items.BUCKET, item(MIMaterials.BRONZE, MIParts.ROTOR),
+                MI.id("bronze_water_pump"));
+
+        offer(consumer, "processing_table/distillation_tower", lookupItem(MI.id("clean_stainless_steel_machine_casing")),
+                lookupItem(MI.id("stainless_steel_distillery")), lookupItem(MI.id("stainless_steel_distillery")),
+                MI.id("distillation_tower"));
 
         new ShapedRecipeJson(idOf(MIBlock.PROCESSING_TABLE.get()), 1, "II", "WW", "WW")
                 .addInput('I', idOf(Items.HEAVY_WEIGHTED_PRESSURE_PLATE))
@@ -112,7 +120,7 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
     private static ItemLike casingOf(MachineLevel level) {
         return switch (level) {
             case BRONZE -> MIMaterials.BRONZE.getPart(MIParts.MACHINE_CASING);
-            case STEEL -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING);
+            case STEEL -> lookupItem(MIBlockKeys.STEEL_MACHINE_HULL.location());
             case ELECTRIC -> lookupItem(MIBlockKeys.ELECTRIC_MACHINE_HULL.location());
             case ALUMINUM -> lookupItem(MIBlockKeys.ALUMINUM_MACHINE_HULL.location());
             case STAINLESS_STEEL -> lookupItem(MIBlockKeys.STAINLESS_STEEL_MACHINE_HULL.location());
@@ -121,8 +129,8 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         };
     }
 
-    public static final String MACHINE_RECIPE_FOLDER = "assembler_machine/";
-
+    public static final String PROCESSING_TABLE_RECIPE_FOLDER = "processing_table/";
+    public static final String MACHINE_RECIPE_FOLDER = "assembler_generated/";
 
     private static void offer(RecipeOutput consumer, String path, ItemLike key, ItemLike first, ItemLike second, ResourceLocation result) {
         var recipe = new ProcessingTableRecipe(Ingredient.of(key), Ingredient.of(first), Ingredient.of(second), new ItemStack(lookupItem(result)));
@@ -135,7 +143,7 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
                 .addItemInput(Ingredient.of(first), 1, 1)
                 .addItemInput(Ingredient.of(second), 1, 1)
                 .addItemOutput(lookupItem(result), 1)
-                .offerTo(consumer, MACHINE_RECIPE_FOLDER + path.substring("processing_table/".length()));
+                .offerTo(consumer, MACHINE_RECIPE_FOLDER + path.substring(PROCESSING_TABLE_RECIPE_FOLDER.length()));
     }
 
     private static final int MACHINE_ADAPTER_ENERGY = 2;

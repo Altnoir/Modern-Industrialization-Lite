@@ -4,6 +4,10 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 1,
+      "item": "milite:electronic_circuit_board"
+    },
+    {
       "amount": 2,
       "item": "milite:diode"
     },
@@ -14,10 +18,6 @@
     {
       "amount": 4,
       "item": "milite:electrum_fine_wire"
-    },
-    {
-      "amount": 1,
-      "item": "milite:electronic_circuit_board"
     }
   ],
   "item_outputs": [

@@ -5,7 +5,6 @@ navigation:
   position: 11
   parent: milite:steam_age.md
 item_ids:
-  - milite:steel_upgrade
   - milite:steel_packer
   - milite:steel_unpacker
   - milite:trash_can
@@ -15,12 +14,7 @@ item_ids:
 
 Agora que você tem aço, pode fazer o upgrade das suas máquinas de bronze, se quiser. Máquinas de aço processam receitas até 4 RF/t e funcionarão com o dobro da velocidade, desde que o uso de energia não ultrapasse 4 RF/t. Basicamente, são duas vezes mais rápidas que as de bronze e podem desbloquear novas receitas.
 
-Para fazer o upgrade de uma máquina de bronze, fabrique um Upgrade de Aço e aplique em uma Mesa de Trabalho.
-
-Você também pode agachar e clicar com o botão direito em uma máquina de bronze segurando o upgrade para aplicá-lo diretamente.
-
-<Recipe id="milite:steam_age/steel/steel_upgrade_asbl" />
-
+Para fazer o upgrade de uma máquina de bronze, fabrique um Mecanismo de Máquina de Aço e aplique em uma Mesa de Trabalho.
 As escotilhas de aço têm mais capacidade que as de bronze, e um multiblocos com pelo menos uma escotilha de aço será atualizado para o nível aço. Isso significa que ele funcionará duas vezes mais rápido, desde que o consumo de energia não ultrapasse 4 RF/t.
 
 Uma caldeira de aço produzirá o dobro de vapor que uma de bronze, ou seja, até 16 RF/t, e uma bomba de água de aço produzirá o dobro de água que a versão de bronze, até 2 baldes a cada 5 segundos.

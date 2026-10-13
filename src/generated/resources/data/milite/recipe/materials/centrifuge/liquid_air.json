@@ -1,0 +1,25 @@
+{
+  "type": "milite:centrifuge",
+  "duration": 600,
+  "energy": 24,
+  "fluid_inputs": [
+    {
+      "amount": 3000,
+      "fluid": "milite:liquid_air"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 650,
+      "fluid": "milite:oxygen"
+    },
+    {
+      "amount": 2315,
+      "fluid": "milite:nitrogen"
+    },
+    {
+      "amount": 35,
+      "fluid": "milite:argon"
+    }
+  ]
+}

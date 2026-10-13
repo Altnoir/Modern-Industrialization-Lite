@@ -4,10 +4,6 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:stainless_steel_diesel_generator"
-    },
-    {
       "amount": 2,
       "item": "milite:advanced_pump"
     },
@@ -16,8 +12,12 @@
       "item": "milite:processing_unit"
     },
     {
+      "amount": 1,
+      "item": "milite:stainless_steel_diesel_generator"
+    },
+    {
       "amount": 2,
-      "item": "milite:advanced_motor"
+      "item": "milite:titanium_gear"
     },
     {
       "amount": 1,
@@ -25,7 +25,7 @@
     },
     {
       "amount": 2,
-      "item": "milite:titanium_gear"
+      "item": "milite:advanced_motor"
     }
   ],
   "item_outputs": [

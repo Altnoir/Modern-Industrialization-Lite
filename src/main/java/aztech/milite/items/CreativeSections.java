@@ -12,15 +12,15 @@ import java.util.Map;
 public final class CreativeSections {
     public static final CreativeTabSection ITEMS = section(MIText.SectionItems);
     public static final CreativeTabSection NUCLEAR = section(MIText.SectionNuclear);
-    public static final CreativeTabSection STORAGE = section(MIText.SectionStorage);
-    public static final CreativeTabSection MACHINE_PARTS = section(MIText.SectionMachineParts);
     public static final CreativeTabSection MACHINES = section(MIText.SectionMachines);
+    public static final CreativeTabSection MACHINE_PARTS = section(MIText.SectionMachineParts);
+    public static final CreativeTabSection STORAGE = section(MIText.SectionStorage);
     public static final CreativeTabSection ORES = section(MIText.SectionOres);
     public static final CreativeTabSection MATERIALS = section(MIText.SectionMaterials);
     public static final CreativeTabSection FLUIDS = section(MIText.SectionFluids);
     public static final CreativeTabSection MISC = section(MIText.SectionMisc);
 
-    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, MACHINES, STORAGE, MACHINE_PARTS, ORES, MATERIALS, FLUIDS, MISC);
+    public static final List<CreativeTabSection> ALL = List.of(ITEMS, NUCLEAR, MACHINES, MACHINE_PARTS, STORAGE, ORES, MATERIALS, FLUIDS, MISC);
 
     private static final Map<Integer, CreativeTabSection> BY_GROUP = byGroup();
 
@@ -47,8 +47,8 @@ public final class CreativeSections {
         add(byGroup, ITEMS, SortOrder.GUIDE_BOOK, SortOrder.FORGE_HAMMER, SortOrder.PROCESSING_TABLE, SortOrder.ITEMS_ORDERED.root());
         add(byGroup, NUCLEAR, SortOrder.NUCLEAR.root());
         add(byGroup, MACHINES, SortOrder.MACHINES);
-        add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         add(byGroup, MACHINE_PARTS, SortOrder.STRUCTURES);
+        add(byGroup, STORAGE, SortOrder.TANKS, SortOrder.BARRELS);
         add(byGroup, ORES, SortOrder.ORES, SortOrder.RAW_ORE_BLOCKS, SortOrder.STORAGE_BLOCKS);
         add(byGroup, MATERIALS, SortOrder.MATERIALS);
         add(byGroup, FLUIDS, SortOrder.BUCKETS);

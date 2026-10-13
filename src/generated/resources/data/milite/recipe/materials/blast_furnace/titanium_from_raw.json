@@ -1,0 +1,30 @@
+{
+  "type": "milite:blast_furnace",
+  "duration": 400,
+  "energy": 128,
+  "fluid_inputs": [
+    {
+      "amount": 3000,
+      "fluid": "milite:manganese_sulfuric_solution"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 2500,
+      "fluid": "milite:manganese_sulfuric_solution"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 3,
+      "tag": "c:raw_materials/titanium"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 4,
+      "item": "milite:titanium_hot_ingot"
+    }
+  ],
+  "level": "stainless_steel"
+}

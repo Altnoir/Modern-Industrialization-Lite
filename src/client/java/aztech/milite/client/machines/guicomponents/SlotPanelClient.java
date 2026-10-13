@@ -92,6 +92,7 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
         private static final int PLATE_WIDTH = 26;
         private static final int SLOT_BAND = 18;
         private static final int PLATE_MARGIN = 5;
+        private static final int PLATE_BOTTOM_MARGIN = 7;
         private static final int PANEL_TOP = 21;
 
         private final MachineScreen machineScreen;
@@ -104,7 +105,7 @@ public class SlotPanelClient extends GuiComponentClient<List<SlotPanel.SlotType>
         }
 
         private Rectangle getBox(int leftPos, int topPos) {
-            int height = PLATE_MARGIN * 2 + SLOT_BAND * params.size();
+            int height = PLATE_MARGIN + SLOT_BAND * params.size() + PLATE_BOTTOM_MARGIN;
             return new Rectangle(leftPos + machineScreen.getGuiParams().backgroundWidth,
                     topPos + PANEL_TOP, PLATE_WIDTH, height);
         }

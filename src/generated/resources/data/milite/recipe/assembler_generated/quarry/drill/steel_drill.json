@@ -4,6 +4,18 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 2,
+      "tag": "c:plates/steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tin_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit"
+    },
+    {
       "amount": 1,
       "item": "milite:steel_drill_head"
     },
@@ -13,19 +25,7 @@
     },
     {
       "amount": 2,
-      "tag": "c:plates/steel"
-    },
-    {
-      "amount": 2,
       "item": "milite:motor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:tin_wire"
-    },
-    {
-      "amount": 1,
-      "item": "milite:analog_circuit"
     }
   ],
   "item_outputs": [

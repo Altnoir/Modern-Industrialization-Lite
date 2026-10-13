@@ -8,12 +8,12 @@
       "item": "milite:op_amp"
     },
     {
-      "amount": 2,
-      "item": "milite:aluminum_wire"
-    },
-    {
       "amount": 1,
       "item": "milite:diode"
+    },
+    {
+      "amount": 2,
+      "item": "milite:aluminum_wire"
     }
   ],
   "item_outputs": [

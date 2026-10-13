@@ -44,7 +44,7 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
     private Supplier<NuclearReactorGui.Data> dataSupplier;
 
     public NuclearReactorMultiblockBlockEntity(BEP bep) {
-        super(bep, new MachineGuiParameters.Builder("nuclear_reactor", false).backgroundHeight(281).build(),
+        super(bep, new MachineGuiParameters.Builder("nuclear_reactor", false).backgroundHeight(274).build(),
                 new OrientationComponent.Params(false, false, false));
 
         this.activeShape = new ActiveShapeComponent(shapeTemplates);
@@ -65,7 +65,8 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
                 return activeShape.getActiveShapeIndex();
             }
         }, new ShapeSelection.LineInfo(
-                List.of(MIText.ShapeTextSmall.text(), MIText.ShapeTextMedium.text(), MIText.ShapeTextLarge.text(), MIText.ShapeTextExtreme.text()))));
+                List.of(MIText.ShapeTextSmall.text(), MIText.ShapeTextMedium.text(), MIText.ShapeTextLarge.text(), MIText.ShapeTextExtreme.text()),
+                List.of())));
     }
 
     public NuclearReactorGui.Data sendData() {

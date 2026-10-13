@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "milite:analog_circuit_board"
+    },
+    "c": {
+      "item": "milite:capacitor"
+    },
+    "d": {
+      "item": "minecraft:redstone"
+    },
+    "i": {
+      "item": "milite:inductor"
+    },
+    "r": {
+      "item": "milite:resistor"
+    },
+    "t": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    "dtd",
+    "rcr",
+    "ibi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:redstone_control_module"
+  }
+}

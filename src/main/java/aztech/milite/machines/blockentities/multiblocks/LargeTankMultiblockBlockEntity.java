@@ -56,7 +56,8 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
     }
 
     private static ShapeSelection.LineInfo createLineInfo(int[] sizes, MIText baseText) {
-        return new ShapeSelection.LineInfo(IntStream.of(sizes).<Component>mapToObj(baseText::text).toList());
+        return new ShapeSelection.LineInfo(IntStream.of(sizes).<Component>mapToObj(i -> baseText.text()).toList(),
+                IntStream.of(sizes).boxed().toList());
     }
 
     private static final ShapeTemplate[] shapeTemplates;

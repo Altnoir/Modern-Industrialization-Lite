@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "milite:bronze_machine_casing"
+    },
+    "p": {
+      "item": "milite:bronze_plate"
+    }
+  },
+  "pattern": [
+    "p p",
+    "p#p",
+    "p p"
+  ],
+  "result": {
+    "count": 2,
+    "id": "milite:bronze_machine_casing_pipe"
+  }
+}

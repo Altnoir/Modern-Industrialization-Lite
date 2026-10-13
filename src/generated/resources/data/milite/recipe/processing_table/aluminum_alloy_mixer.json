@@ -11,6 +11,6 @@
     "id": "milite:aluminum_alloy_mixer"
   },
   "second": {
-    "item": "milite:bronze_tank"
+    "item": "minecraft:bucket"
   }
 }

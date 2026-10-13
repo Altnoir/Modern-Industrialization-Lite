@@ -25,5 +25,5 @@ item_ids:
 
 デジタル回路をいくつか作ったら、蒸留塔を必ず制作すること。蒸溜機では1種類の石油精製しかできないが、タワーでは1層につき1種類できる！
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 

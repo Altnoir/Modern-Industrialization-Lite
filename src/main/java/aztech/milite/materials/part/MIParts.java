@@ -1,7 +1,5 @@
 package aztech.milite.materials.part;
 
-import static aztech.milite.materials.part.NuclearFuelPart.Type.*;
-
 import aztech.milite.datagen.tag.TagsToGenerate;
 import aztech.milite.items.SortOrder;
 import net.minecraft.tags.TagKey;
@@ -12,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static aztech.milite.materials.part.NuclearFuelPart.Type.*;
 
 public class MIParts {
     public static final BatteryPart BATTERY = new BatteryPart();
@@ -31,9 +31,9 @@ public class MIParts {
     public static final PartTemplate FINE_WIRE = new PartTemplate("Fine Wire", "fine_wire");
     public static final PartTemplate GEAR = new PartTemplate("Gear", "gear");
     public static final PartTemplate GEM = new PartTemplate("%s", "gem").withRegister((partContext, part, itemPath, itemId, itemTag, englishName) -> {
-        var item = PartTemplate.createSimpleItem(englishName, itemPath, partContext, part);
-        TagsToGenerate.generateTag("c:gems/" + itemPath, item, englishName + "s");
-    })
+                var item = PartTemplate.createSimpleItem(englishName, itemPath, partContext, part);
+                TagsToGenerate.generateTag("c:gems/" + itemPath, item, englishName + "s");
+            })
             .withTexture(new TextureGenParams.Gem())
             .withCustomPath("%s", "%s");
 
@@ -71,8 +71,8 @@ public class MIParts {
     public static final PartTemplate N_DOPED_PLATE = new PartTemplate("N-Doped %s Plate", "n_doped_plate").withOverlay(PLATE, "n_doped");
     public static final PartTemplate P_DOPED_PLATE = new PartTemplate("P-Doped %s Plate", "p_doped_plate").withOverlay(PLATE, "p_doped");
 
-    public static final PartTemplate[] ITEM_PURE_NON_METAL = new PartTemplate[] { TINY_DUST, DUST, CRUSHED_DUST };
-    public static final PartTemplate[] ITEM_PURE_METAL = new PartTemplate[] { INGOT, NUGGET, TINY_DUST, DUST };
+    public static final PartTemplate[] ITEM_PURE_NON_METAL = new PartTemplate[]{TINY_DUST, DUST, CRUSHED_DUST};
+    public static final PartTemplate[] ITEM_PURE_METAL = new PartTemplate[]{INGOT, NUGGET, TINY_DUST, DUST};
 
     public static final List<PartKey> TAGGED_PARTS_LIST = PartKeyProvider.of(BLOCK, DUST, GEAR, INGOT, NUGGET, ORE, PLATE, ROD,
             TINY_DUST, RAW_METAL, RAW_METAL_BLOCK);

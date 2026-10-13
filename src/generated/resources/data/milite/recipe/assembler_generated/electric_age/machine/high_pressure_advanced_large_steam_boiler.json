@@ -4,20 +4,20 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 4,
-      "item": "milite:large_pump"
+      "amount": 1,
+      "item": "milite:high_pressure_large_steam_boiler"
     },
     {
       "amount": 2,
       "item": "milite:processing_unit"
     },
     {
-      "amount": 1,
-      "item": "milite:high_pressure_large_steam_boiler"
-    },
-    {
       "amount": 2,
       "item": "milite:large_advanced_pump"
+    },
+    {
+      "amount": 4,
+      "item": "milite:large_pump"
     }
   ],
   "item_outputs": [

@@ -37,14 +37,14 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
     }
 
     class Renderer implements ClientComponentRenderer {
-        private static final int LABEL_WIDTH = 46;
         private static final int GAP = 4;
         private static final int STEP = 8;
         private static final int MAX_TRACK_WIDTH = 72;
-        private static final int KNOB_WIDTH = 8;
+        private static final int KNOB_WIDTH = 9;
         private static final int KNOB_HEIGHT = 12;
         private static final int TRACK_HEIGHT = 4;
-        private static final int BOTTOM_OFFSET = 103;
+        private static final int BOTTOM_OFFSET = 96;
+        private static final int ROW_SHIFT_X = 9;
         private static final int PENDING_TIMEOUT = 40;
 
         private final int backgroundWidth;
@@ -64,19 +64,19 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
         }
 
         private int getStep(int numValues) {
-            return Math.max(1, Math.min(STEP, MAX_TRACK_WIDTH / numValues));
+            return Math.clamp(MAX_TRACK_WIDTH / numValues, 1, STEP);
         }
 
         private int getTrackWidth(int numValues) {
             return getStep(numValues) * numValues;
         }
 
-        private int getTrackLeft(int leftPos, int numValues) {
-            return leftPos + (backgroundWidth - getTrackWidth(numValues)) / 2;
+        private int getTrackLeft(int leftPos) {
+            return leftPos + (backgroundWidth - MAX_TRACK_WIDTH) / 2 + ROW_SHIFT_X;
         }
 
         private int getLabelX(int leftPos, int numValues) {
-            return getTrackLeft(leftPos, numValues) - GAP - LABEL_WIDTH;
+            return getTrackLeft(leftPos) + getTrackWidth(numValues) + GAP;
         }
 
         private int getRowCenterY(int topPos) {
@@ -84,7 +84,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
         }
 
         private int getIndexAt(int leftPos, double mouseX, int numValues) {
-            return Mth.clamp((int) Math.floor((mouseX - getTrackLeft(leftPos, numValues)) / getStep(numValues)), 0, numValues - 1);
+            return Mth.clamp((int) Math.floor((mouseX - getTrackLeft(leftPos)) / getStep(numValues)), 0, numValues - 1);
         }
 
         private int getDisplayedIndex(int line) {
@@ -123,10 +123,19 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             return params.get(line).translations().get(getDisplayedIndex(line));
         }
 
+        String getButtonText(int line) {
+            var lineInfo = params.get(line);
+            String label = getLineText(line).getString();
+            if (!lineInfo.hasNumbers()) {
+                return label;
+            }
+            return label + "[" + lineInfo.number(getDisplayedIndex(line)) + "]";
+        }
+
         public boolean isRowHovered(int leftPos, int topPos, double cursorX, double cursorY) {
             int numValues = params.get(lineIndex).numValues();
-            int rowLeft = getLabelX(leftPos, numValues);
-            int rowRight = getTrackLeft(leftPos, numValues) + getTrackWidth(numValues);
+            int rowLeft = getTrackLeft(leftPos);
+            int rowRight = getLabelX(leftPos, numValues) + Minecraft.getInstance().font.width(getLineText(lineIndex));
             int rowCenterY = getRowCenterY(topPos);
             return cursorX >= rowLeft && cursorX < rowRight
                     && cursorY >= rowCenterY - KNOB_HEIGHT / 2 && cursorY < rowCenterY + KNOB_HEIGHT / 2;
@@ -141,7 +150,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             }
 
             int numValues = params.get(lineIndex).numValues();
-            if (mouseX < getTrackLeft(leftPos, numValues)) {
+            if (mouseX > getTrackLeft(leftPos) + getTrackWidth(numValues)) {
                 return false;
             }
 
@@ -179,22 +188,25 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             var line = params.get(lineIndex);
             int numValues = line.numValues();
             int index = getDisplayedIndex(lineIndex);
-            int trackLeft = getTrackLeft(leftPos, numValues);
+            int trackLeft = getTrackLeft(leftPos);
             int trackWidth = getTrackWidth(numValues);
             int labelX = getLabelX(leftPos, numValues);
             int knobX = trackLeft + getStep(numValues) * index;
             int knobY = rowCenterY - KNOB_HEIGHT / 2;
 
-            MachineScreen.blitStretched(guiGraphics, trackLeft, rowCenterY - TRACK_HEIGHT / 2, trackWidth, TRACK_HEIGHT, 54, 30, 4, 8);
+            MachineScreen.blitStretched(guiGraphics, trackLeft, rowCenterY - TRACK_HEIGHT / 2, trackWidth, TRACK_HEIGHT, 54, 30, 4, 8, 68);
 
             guiGraphics.blit(MachineScreen.SLOT_ATLAS, knobX, knobY, 54, 18, KNOB_WIDTH, KNOB_HEIGHT);
             if (draggingLine >= 0 || isRowHovered(leftPos, topPos, cursorX, cursorY)) {
-                guiGraphics.blit(MachineScreen.SLOT_ATLAS, knobX, knobY, 62, 18, KNOB_WIDTH, KNOB_HEIGHT);
+                guiGraphics.blit(MachineScreen.SLOT_ATLAS, knobX, knobY, 63, 18, KNOB_WIDTH, KNOB_HEIGHT);
             }
 
             var font = Minecraft.getInstance().font;
-            var text = line.translations().get(index);
-            guiGraphics.drawString(font, text, labelX + LABEL_WIDTH - font.width(text), rowCenterY - 4, 0x404040, false);
+            guiGraphics.drawString(font, line.translations().get(index), labelX, rowCenterY - 4, 0x404040, false);
+            if (line.hasNumbers()) {
+                String value = String.valueOf(line.number(index));
+                guiGraphics.drawString(font, value, knobX + (KNOB_WIDTH - font.width(value)) / 2 + 1, rowCenterY - 4, 0x404040, false);
+            }
         }
 
         @Override

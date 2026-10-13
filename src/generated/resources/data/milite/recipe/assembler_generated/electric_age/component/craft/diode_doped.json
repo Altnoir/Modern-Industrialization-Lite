@@ -4,20 +4,20 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:silicon_n_doped_plate"
+      "amount": 2,
+      "tag": "c:plates/steel"
     },
     {
-      "amount": 3,
-      "tag": "c:glass_blocks"
+      "amount": 1,
+      "item": "milite:silicon_n_doped_plate"
     },
     {
       "amount": 3,
       "item": "milite:electrum_fine_wire"
     },
     {
-      "amount": 2,
-      "tag": "c:plates/steel"
+      "amount": 3,
+      "tag": "c:glass_blocks"
     }
   ],
   "item_outputs": [

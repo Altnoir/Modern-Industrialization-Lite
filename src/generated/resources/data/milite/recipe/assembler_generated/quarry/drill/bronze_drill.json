@@ -4,16 +4,16 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 2,
+      "tag": "c:plates/bronze"
+    },
+    {
       "amount": 1,
       "item": "milite:bronze_drill_head"
     },
     {
       "amount": 2,
       "tag": "c:gears/iron"
-    },
-    {
-      "amount": 2,
-      "tag": "c:plates/bronze"
     }
   ],
   "item_outputs": [

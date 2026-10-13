@@ -35,6 +35,9 @@ public class ForgeHammerRecipes {
         addRecipe(ctx, DOUBLE_INGOT, 1, BOLT, 4);
         addRecipe(ctx, DOUBLE_INGOT, 1, BOLT, 8, 100);
 
+        addRecipe(ctx, DOUBLE_INGOT, 4, GEAR, 1);
+        addRecipe(ctx, DOUBLE_INGOT, 2, GEAR, 1, 100);
+
         addRecipe(ctx, ROD, 1, BOLT, 2, 20);
         addRecipe(ctx, ROD, 1, RING, 1, 20);
 

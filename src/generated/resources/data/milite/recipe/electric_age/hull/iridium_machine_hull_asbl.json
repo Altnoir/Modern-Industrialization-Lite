@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:plutonium_battery"
+    },
+    "C": {
+      "item": "milite:iridium_machine_casing"
+    },
+    "c": {
+      "item": "milite:quantum_circuit"
+    },
+    "p": {
+      "item": "milite:superconductor_wire"
+    }
+  },
+  "pattern": [
+    " c ",
+    "BCB",
+    "ppp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:iridium_machine_hull"
+  }
+}

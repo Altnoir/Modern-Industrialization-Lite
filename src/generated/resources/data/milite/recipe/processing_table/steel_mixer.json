@@ -4,13 +4,13 @@
     "item": "milite:tin_rotor"
   },
   "key": {
-    "item": "milite:steel_machine_casing"
+    "item": "milite:steel_machine_hull"
   },
   "result": {
     "count": 1,
     "id": "milite:steel_mixer"
   },
   "second": {
-    "item": "milite:bronze_tank"
+    "item": "minecraft:bucket"
   }
 }

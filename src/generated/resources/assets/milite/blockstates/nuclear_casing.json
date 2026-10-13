@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "center": "milite:block/nuclear_casing/center",
+    "empty": "milite:block/nuclear_casing/empty",
+    "horizontal": "milite:block/nuclear_casing/horizontal",
+    "particle": "milite:block/nuclear_casing/particle",
+    "vertical": "milite:block/nuclear_casing/vertical"
+  },
   "variants": {
     "": {
       "model": "milite:block/nuclear_casing"

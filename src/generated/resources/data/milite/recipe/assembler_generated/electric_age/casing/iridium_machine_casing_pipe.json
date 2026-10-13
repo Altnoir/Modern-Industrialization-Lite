@@ -4,16 +4,16 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:plasma_handling_iridium_machine_casing"
-    },
-    {
       "amount": 6,
       "item": "milite:iridium_plate"
     },
     {
       "amount": 2,
       "item": "milite:large_advanced_pump"
+    },
+    {
+      "amount": 1,
+      "item": "milite:plasma_handling_iridium_machine_casing"
     }
   ],
   "item_outputs": [

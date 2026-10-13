@@ -5,19 +5,19 @@
   "item_inputs": [
     {
       "amount": 2,
-      "item": "milite:small_heat_exchanger"
-    },
-    {
-      "amount": 1,
-      "item": "milite:large_advanced_pump"
-    },
-    {
-      "amount": 2,
       "item": "milite:aluminum_rotor"
     },
     {
       "amount": 4,
       "tag": "c:gears/invar"
+    },
+    {
+      "amount": 2,
+      "item": "milite:small_heat_exchanger"
+    },
+    {
+      "amount": 1,
+      "item": "milite:large_advanced_pump"
     }
   ],
   "item_outputs": [

@@ -25,5 +25,5 @@ item_ids:
 
 Как только у вас появятся цифровые схемы, обязательно построите дистилляционную башню. Дистиллятор даст вам только одну единицу результата переработки, в то время как башня даст вам ПО ОДНОМУ НА КАЖДЫЙ СЛОЙ!
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 

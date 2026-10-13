@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 20,
+  "ingredient": {
+    "tag": "c:ores/copper"
+  },
+  "result": {
+    "count": 8,
+    "id": "minecraft:raw_copper"
+  }
+}

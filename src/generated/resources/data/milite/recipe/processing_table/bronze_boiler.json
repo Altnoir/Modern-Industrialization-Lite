@@ -11,6 +11,6 @@
     "id": "milite:bronze_boiler"
   },
   "second": {
-    "item": "milite:bronze_tank"
+    "item": "minecraft:bucket"
   }
 }

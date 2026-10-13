@@ -4,20 +4,20 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:processing_unit"
+      "amount": 3,
+      "item": "milite:advanced_pump"
     },
     {
       "amount": 3,
       "item": "milite:titanium_rotor"
     },
     {
-      "amount": 1,
-      "item": "milite:large_advanced_motor"
+      "amount": 2,
+      "item": "milite:processing_unit"
     },
     {
-      "amount": 3,
-      "item": "milite:advanced_pump"
+      "amount": 1,
+      "item": "milite:large_advanced_motor"
     }
   ],
   "item_outputs": [

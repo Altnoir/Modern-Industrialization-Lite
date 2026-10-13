@@ -33,7 +33,7 @@ item_ids:
 
 一旦开始制作数字电路，务必建造一座蒸馏塔。蒸馏室只能提供单一的石油加工产物，但蒸馏塔保证能每层产出一种产物！
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 
 这里以最小尺寸与最大尺寸的并排对比为例。
 一座2层高的蒸馏塔只能提供配方中的第一项产出，3层高的则能提供前两项产出，依此类推……

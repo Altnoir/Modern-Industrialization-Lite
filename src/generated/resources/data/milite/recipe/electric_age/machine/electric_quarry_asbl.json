@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "milite:robot_arm"
+    },
+    "C": {
+      "item": "milite:aluminum_alloy_machine_hull"
+    },
+    "G": {
+      "item": "milite:electronic_circuit"
+    },
+    "L": {
+      "item": "milite:large_motor"
+    },
+    "P": {
+      "item": "milite:steam_quarry"
+    }
+  },
+  "pattern": [
+    "LAL",
+    "GCG",
+    "LPL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:electric_quarry"
+  }
+}

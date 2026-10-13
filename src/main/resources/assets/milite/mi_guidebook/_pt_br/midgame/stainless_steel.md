@@ -33,7 +33,7 @@ Você pode conferir os materiais base no JEI e a forma exata usando uma chave in
 
 Quando começar a produzir circuitos digitais, não deixe de construir uma Torre de Destilação. A Destilaria dá apenas uma saída no processamento de óleo, mas a torre fornece UMA saída POR CAMADA!
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 
 Aqui está um exemplo do menor e do maior tamanho lado a lado.
 Uma torre de tamanho 2 dará apenas a primeira saída da receita, uma torre de tamanho 3 dará as duas primeiras saídas, e assim por diante...

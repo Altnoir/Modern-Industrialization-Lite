@@ -4,6 +4,10 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 3,
+      "item": "milite:annealed_copper_wire"
+    },
+    {
       "amount": 2,
       "item": "milite:cadmium_battery"
     },
@@ -14,10 +18,6 @@
     {
       "amount": 1,
       "item": "milite:titanium_machine_casing"
-    },
-    {
-      "amount": 3,
-      "item": "milite:annealed_copper_wire"
     }
   ],
   "item_outputs": [

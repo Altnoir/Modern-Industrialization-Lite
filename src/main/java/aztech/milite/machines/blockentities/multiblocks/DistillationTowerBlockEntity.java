@@ -29,7 +29,7 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
     private static final ShapeTemplate[] shapeTemplates;
 
     public DistillationTowerBlockEntity(BEP bep) {
-        super(bep, "distillation_tower", 210, new OrientationComponent.Params(false, false, false), shapeTemplates);
+        super(bep, "distillation_tower", 200, new OrientationComponent.Params(false, false, false), shapeTemplates);
         this.overdrive = new OverdriveComponent();
         this.registerComponents(overdrive);
         registerGuiComponent(new SlotPanel(this)
@@ -47,7 +47,8 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
                 return activeShape.getActiveShapeIndex();
             }
         }, new ShapeSelection.LineInfo(
-                IntStream.range(1, MAX_HEIGHT + 1).<Component>mapToObj(MIText.ShapeTextHeight::text).toList())));
+                IntStream.range(1, MAX_HEIGHT + 1).<Component>mapToObj(i -> MIText.ShapeTextHeight.text()).toList(),
+                IntStream.range(1, MAX_HEIGHT + 1).boxed().toList())));
     }
 
     private final OverdriveComponent overdrive;

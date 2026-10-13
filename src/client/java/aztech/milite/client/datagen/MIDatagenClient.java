@@ -1,5 +1,6 @@
 package aztech.milite.client.datagen;
 
+import aztech.milite.client.datagen.model.ConnectedTexturesProvider;
 import aztech.milite.client.datagen.model.MachineCasingsProvider;
 import aztech.milite.client.datagen.model.MIModelProvider;
 import aztech.milite.client.datagen.texture.MISpriteSourceProvider;
@@ -21,5 +22,7 @@ public class MIDatagenClient {
         gen.addProvider(run, new TexturesProvider(gen.getPackOutput(), fileHelper, runtimeDatagen));
         gen.addProvider(run, new MachineCasingsProvider(gen.getPackOutput(), fileHelper));
         gen.addProvider(run, new MIModelProvider(gen.getPackOutput(), fileHelper));
+        // Must run after the model provider
+        gen.addProvider(run, new ConnectedTexturesProvider(gen.getPackOutput()));
     }
 }

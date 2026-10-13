@@ -54,7 +54,7 @@ public final class MITextures {
         mtm.runAtEnd(() -> casingFromTextureBricked(mtm, MachineCasings.BRICKED_BRONZE,
                 MI.id("textures/block/bronze_machine_casing.png")));
         mtm.runAtEnd(() -> casingFromTextureBricked(mtm, MachineCasings.BRICKED_STEEL,
-                MI.id("textures/block/steel_machine_casing.png")));
+                MI.id("textures/block/steel_machine_hull.png")));
 
         mtm.runAtEnd(() -> {
             if (!mtm.hasAsset("milite:textures/item/mixed_ingot_blastproof.png")) {

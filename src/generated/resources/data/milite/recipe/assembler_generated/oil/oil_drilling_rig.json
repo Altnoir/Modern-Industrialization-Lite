@@ -4,24 +4,24 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 4,
-      "item": "milite:steel_large_plate"
+      "amount": 2,
+      "item": "milite:large_pump"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_plate"
     },
     {
       "amount": 1,
       "item": "milite:electronic_circuit"
     },
     {
-      "amount": 2,
-      "item": "milite:large_pump"
-    },
-    {
       "amount": 1,
       "item": "milite:aluminum_alloy_machine_hull"
     },
     {
-      "amount": 1,
-      "item": "milite:bronze_plate"
+      "amount": 4,
+      "item": "milite:steel_large_plate"
     }
   ],
   "item_outputs": [

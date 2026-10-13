@@ -52,14 +52,24 @@ public class ShapeSelection implements GuiComponentServer<List<ShapeSelection.Li
         int getCurrentIndex(int line);
     }
 
-    public record LineInfo(List<Component> translations) {
+    public record LineInfo(List<Component> translations, List<Integer> numbers) {
         public static final StreamCodec<RegistryFriendlyByteBuf, LineInfo> STREAM_CODEC = StreamCodec.composite(
                 ComponentSerialization.STREAM_CODEC.apply(ByteBufCodecs.list()),
                 LineInfo::translations,
+                ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list()),
+                LineInfo::numbers,
                 LineInfo::new);
 
         public int numValues() {
             return translations.size();
+        }
+
+        public boolean hasNumbers() {
+            return numbers.size() == translations.size();
+        }
+
+        public int number(int index) {
+            return numbers.get(index);
         }
     }
 }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "milite:aluminum_wire"
+    },
+    "H": {
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    "P": {
+      "item": "milite:titanium_machine_casing_pipe"
+    },
+    "c": {
+      "item": "milite:digital_circuit"
+    },
+    "p": {
+      "item": "milite:advanced_pump"
+    }
+  },
+  "pattern": [
+    "pcp",
+    "PHP",
+    "pCp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:pressurizer"
+  }
+}

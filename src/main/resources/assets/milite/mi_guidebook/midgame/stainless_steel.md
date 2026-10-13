@@ -33,7 +33,7 @@ You can check the base materials with REI, and the exact shape with a wrench!
 
 Once you get some digital circuits going, make sure to build a Distillation Tower. The Distillery only gives you one oil processing output, but the tower gives you ONE PER LAYER!
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 
 Here is an example of the smallest size and the largest size side by side.
 A tower of size 2 will only give you the first output from the recipe, a tower of size 3 will give the first two outputs, and so on...

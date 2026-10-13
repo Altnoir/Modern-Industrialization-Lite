@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "milite:high_pressure_large_steam_boiler"
+    },
+    "L": {
+      "item": "milite:large_pump"
+    },
+    "c": {
+      "item": "milite:processing_unit"
+    },
+    "f": {
+      "item": "milite:large_advanced_pump"
+    }
+  },
+  "pattern": [
+    "LcL",
+    "fBf",
+    "LcL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:high_pressure_advanced_large_steam_boiler"
+  }
+}

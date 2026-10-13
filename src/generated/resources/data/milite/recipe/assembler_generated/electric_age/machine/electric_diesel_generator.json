@@ -4,16 +4,8 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:electric_machine_hull"
-    },
-    {
       "amount": 2,
       "item": "milite:pump"
-    },
-    {
-      "amount": 2,
-      "tag": "c:gears/tin"
     },
     {
       "amount": 3,
@@ -22,6 +14,14 @@
     {
       "amount": 1,
       "item": "milite:analog_circuit"
+    },
+    {
+      "amount": 2,
+      "tag": "c:gears/tin"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electric_machine_hull"
     }
   ],
   "item_outputs": [

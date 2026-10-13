@@ -8,16 +8,16 @@
       "item": "milite:steel_machine_casing"
     },
     {
-      "amount": 2,
-      "item": "milite:motor"
-    },
-    {
       "amount": 4,
       "item": "milite:analog_circuit"
     },
     {
       "amount": 2,
       "item": "minecraft:hopper"
+    },
+    {
+      "amount": 2,
+      "item": "milite:motor"
     }
   ],
   "item_outputs": [

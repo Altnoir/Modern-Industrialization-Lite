@@ -25,5 +25,5 @@ Temel malzemeleri REI ile ve tam şekli bir anahtarla kontrol edebilirsiniz!
 
 Bazı dijital devreler kurduktan sonra, bir Damıtma Kulesi inşa ettiğinizden emin olun. Damıtma Tesisi size yalnızca bir petrol işleme çıktısı verir, ancak kule size KATMAN BAŞINA BİR tane verir!
 
-<Recipe id="milite:electric_age/machine/distillation_tower_asbl" />
+<Recipe id="milite:processing_table/distillation_tower" />
 

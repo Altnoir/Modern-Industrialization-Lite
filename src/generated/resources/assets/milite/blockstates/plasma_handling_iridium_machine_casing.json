@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "center": "milite:block/plasma_handling_iridium_machine_casing/center",
+    "empty": "milite:block/plasma_handling_iridium_machine_casing/empty",
+    "horizontal": "milite:block/plasma_handling_iridium_machine_casing/horizontal",
+    "particle": "milite:block/plasma_handling_iridium_machine_casing/particle",
+    "vertical": "milite:block/plasma_handling_iridium_machine_casing/vertical"
+  },
   "variants": {
     "": {
       "model": "milite:block/plasma_handling_iridium_machine_casing"

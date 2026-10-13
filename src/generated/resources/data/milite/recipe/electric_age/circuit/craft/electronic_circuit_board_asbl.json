@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:plates/aluminum"
+    },
+    "B": {
+      "item": "milite:redstone_battery"
+    },
+    "b": {
+      "item": "milite:analog_circuit_board"
+    },
+    "e": {
+      "item": "milite:electrum_wire"
+    }
+  },
+  "pattern": [
+    "eAe",
+    "AbA",
+    "eBe"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:electronic_circuit_board"
+  }
+}

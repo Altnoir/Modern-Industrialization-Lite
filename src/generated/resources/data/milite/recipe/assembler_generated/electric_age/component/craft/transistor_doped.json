@@ -4,6 +4,10 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 3,
+      "tag": "c:plates/steel"
+    },
+    {
       "amount": 2,
       "item": "milite:silicon_p_doped_plate"
     },
@@ -14,10 +18,6 @@
     {
       "amount": 1,
       "item": "milite:electrum_fine_wire"
-    },
-    {
-      "amount": 3,
-      "tag": "c:plates/steel"
     }
   ],
   "item_outputs": [

@@ -4,20 +4,20 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:stainless_steel_steam_turbine"
+      "amount": 2,
+      "item": "milite:advanced_pump"
     },
     {
       "amount": 2,
-      "item": "milite:advanced_pump"
+      "item": "milite:stainless_steel_rotor"
     },
     {
       "amount": 1,
       "item": "milite:processing_unit"
     },
     {
-      "amount": 2,
-      "item": "milite:advanced_motor"
+      "amount": 1,
+      "item": "milite:stainless_steel_steam_turbine"
     },
     {
       "amount": 1,
@@ -25,7 +25,7 @@
     },
     {
       "amount": 2,
-      "item": "milite:stainless_steel_rotor"
+      "item": "milite:advanced_motor"
     }
   ],
   "item_outputs": [

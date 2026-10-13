@@ -4,24 +4,24 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:inductor"
-    },
-    {
-      "amount": 3,
-      "item": "milite:copper_wire"
-    },
-    {
       "amount": 2,
       "item": "milite:resistor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:analog_circuit_board"
     },
     {
       "amount": 2,
       "item": "milite:capacitor"
     },
     {
+      "amount": 3,
+      "item": "milite:copper_wire"
+    },
+    {
       "amount": 1,
-      "item": "milite:analog_circuit_board"
+      "item": "milite:inductor"
     }
   ],
   "item_outputs": [

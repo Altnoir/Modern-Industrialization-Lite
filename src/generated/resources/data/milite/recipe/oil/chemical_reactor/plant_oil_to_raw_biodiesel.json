@@ -1,0 +1,25 @@
+{
+  "type": "milite:chemical_reactor",
+  "duration": 300,
+  "energy": 12,
+  "fluid_inputs": [
+    {
+      "amount": 6000,
+      "fluid": "milite:plant_oil"
+    },
+    {
+      "amount": 400,
+      "fluid": "milite:ethanol"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:sodium_hydroxide"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 1500,
+      "fluid": "milite:raw_biodiesel"
+    }
+  ]
+}

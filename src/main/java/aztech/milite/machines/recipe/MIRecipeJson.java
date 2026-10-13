@@ -65,6 +65,14 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
         return (T) this;
     }
 
+    /**
+     * Sets the required level by its serialized name, such as {@code "bronze"}, {@code "electric"}, or
+     * {@code "stainless_steel"}. Unknown names fail during data generation instead of silently changing a recipe.
+     */
+    public T level(String level) {
+        return level(MachineLevel.byName(level));
+    }
+
     public static MIRecipeJson<MIRecipeJson<?>> create(MachineRecipeType machineRecipeType, int fe, int duration) {
         return new MIRecipeJson<>(machineRecipeType, fe, duration);
     }

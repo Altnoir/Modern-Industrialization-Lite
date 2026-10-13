@@ -1,0 +1,24 @@
+{
+  "type": "milite:coke_oven",
+  "duration": 600,
+  "energy": 2,
+  "fluid_outputs": [
+    {
+      "amount": 500,
+      "fluid": "milite:creosote",
+      "probability": 0.5
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:dusts/coal"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:coke_dust"
+    }
+  ]
+}

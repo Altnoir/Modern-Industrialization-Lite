@@ -4,8 +4,8 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:motor"
+      "amount": 1,
+      "item": "milite:piston"
     },
     {
       "amount": 2,
@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:piston"
+      "item": "milite:analog_circuit"
     },
     {
-      "amount": 1,
-      "item": "milite:analog_circuit"
+      "amount": 2,
+      "item": "milite:motor"
     }
   ],
   "item_outputs": [

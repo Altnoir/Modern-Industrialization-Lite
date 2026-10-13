@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "milite:cooling_cell"
+    },
+    "P": {
+      "item": "milite:processing_unit"
+    },
+    "Q": {
+      "item": "milite:qubit"
+    },
+    "b": {
+      "item": "milite:quantum_circuit_board"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "QbQ",
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:quantum_circuit"
+  }
+}

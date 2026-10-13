@@ -23,7 +23,6 @@ public record MIGiftLoot(HolderLookup.Provider registries) implements LootTableS
                         .withPool(
                                 LootPool.lootPool()
                                         .setRolls(ConstantValue.exactly(1.0F))
-                                        .add(LootItem.lootTableItem(MIItem.STEEL_UPGRADE))
                                         .add(LootItem.lootTableItem(MIItem.PISTON))
                                         .add(LootItem.lootTableItem(MIItem.ROBOT_ARM))
                                         .add(LootItem.lootTableItem(MIBlock.ELECTRIC_MACHINE_HULL))

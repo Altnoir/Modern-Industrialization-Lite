@@ -55,7 +55,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
 
         this.imageHeight = handler.guiParams.backgroundHeight;
         this.imageWidth = handler.guiParams.backgroundWidth;
-        this.inventoryLabelY = this.imageHeight - 94;
+        this.inventoryLabelY = this.imageHeight - 96;
     }
 
     public int x() {
@@ -71,7 +71,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     private static final int BUTTON_V_DOWN = 30;
 
     private int nextButtonX;
-    private static final int BUTTON_Y = 6;
+    private static final int BUTTON_Y = 4;
     private static final int BUTTON_SIZE = 12;
     private static final int BUTTON_SPACING = 2;
 
@@ -87,7 +87,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
     @Override
     protected void init() {
         super.init();
-        this.nextButtonX = 150;
+        this.nextButtonX = 160;
         if (menu.guiParams.lockButton) {
             addLockButton();
         }
@@ -97,38 +97,19 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         }
     }
 
-    public void blitButton(Button button, GuiGraphics guiGraphics, int baseU, int baseV, int selectedOverlayU, int selectedOverlayV) {
-        guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), baseU, baseV, button.getWidth(), button.getHeight());
-        if (button.isHoveredOrFocused()) {
-            guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), selectedOverlayU, selectedOverlayV, button.getWidth(), button.getHeight());
-        }
-    }
-
-    /**
-     * Helper method to draw a 12x12 button.
-     */
-    public void blitButtonSmall(Button button, GuiGraphics guiGraphics, int u, int v) {
-        blitButton(button, guiGraphics, u, v, 138, 58);
-    }
-
-    public void blitButtonNoHighlight(Button button, GuiGraphics guiGraphics, int u, int v) {
-        guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), u, v, button.getWidth(), button.getHeight());
-    }
-
     public static void blitStretched(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v, int cap, int middle) {
+        blitStretched(guiGraphics, x, y, width, height, u, v, cap, middle, u + cap + middle);
+    }
+
+    public static void blitStretched(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v, int cap, int middle, int rightU) {
         guiGraphics.blit(SLOT_ATLAS, x, y, u, v, cap, height);
         for (int i = 0; i < (width - 2 * cap) / middle; i++) {
             guiGraphics.blit(SLOT_ATLAS, x + cap + i * middle, y, u + cap, v, middle, height);
         }
-        guiGraphics.blit(SLOT_ATLAS, x + width - cap, y, u + cap + middle, v, cap, height);
+        guiGraphics.blit(SLOT_ATLAS, x + width - cap, y, rightU, v, cap, height);
     }
 
-    /**
-     * Draws one of the 12x12 buttons of the top left corner of the atlas. The released and pressed
-     * sprites are stacked one below the other, so the pressed state is the same u one row lower.
-     * These sprites already carry their own highlight, so no hover overlay is drawn on top of them.
-     */
-    public void blitButton12(Button button, GuiGraphics guiGraphics, int u, boolean pressed) {
+    public void blitButton(Button button, GuiGraphics guiGraphics, int u, boolean pressed) {
         guiGraphics.blit(SLOT_ATLAS, button.getX(), button.getY(), u, pressed ? BUTTON_V_DOWN : BUTTON_V_UP,
                 button.getWidth(), button.getHeight());
     }
@@ -139,7 +120,7 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         return addRenderableWidget(new MachineButton(buttonX(), buttonY(), BUTTON_SIZE, BUTTON_SIZE, b -> pressAction.accept(menu.containerId),
                 tooltipSupplier,
                 (screen, button, guiGraphics, mouseX, mouseY, delta) -> {
-                    blitButton12(button, guiGraphics, u, isPressed.get());
+                    blitButton(button, guiGraphics, u, isPressed.get());
                 }, () -> true));
     }
 
@@ -222,8 +203,14 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         if (bh <= BACKGROUND_SIZE) {
             guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, 0, BACKGROUND_SIZE - bh + 4, bw, bh - 4);
         } else {
-            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, bw, bh - 4 - INVENTORY_HEIGHT, 0, 4, bw,
-                    BACKGROUND_SIZE - 4 - INVENTORY_HEIGHT, BACKGROUND_SIZE, BACKGROUND_SIZE);
+            int sliceV = 80;
+            int machineBottom = BACKGROUND_SIZE - INVENTORY_HEIGHT;
+            int extraHeight = bh - 4 - INVENTORY_HEIGHT - (machineBottom - 4);
+            int topHeight = sliceV - 4;
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4, 0, 4, bw, topHeight);
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4 + topHeight, 0, sliceV, bw, extraHeight + 1);
+            guiGraphics.blit(BACKGROUND, leftPos, topPos + 4 + topHeight + extraHeight + 1, 0, sliceV + 1, bw,
+                    machineBottom - sliceV - 1);
             guiGraphics.blit(BACKGROUND, leftPos, topPos + bh - INVENTORY_HEIGHT, 0, BACKGROUND_SIZE - INVENTORY_HEIGHT, bw,
                     INVENTORY_HEIGHT);
         }

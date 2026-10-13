@@ -12,12 +12,12 @@
       "item": "milite:and_gate"
     },
     {
-      "amount": 2,
-      "item": "milite:or_gate"
-    },
-    {
       "amount": 4,
       "item": "milite:not_gate"
+    },
+    {
+      "amount": 2,
+      "item": "milite:or_gate"
     }
   ],
   "item_outputs": [

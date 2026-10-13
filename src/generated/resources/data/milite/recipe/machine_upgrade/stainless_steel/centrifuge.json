@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    {
+      "item": "milite:aluminum_alloy_centrifuge"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_centrifuge"
+  }
+}

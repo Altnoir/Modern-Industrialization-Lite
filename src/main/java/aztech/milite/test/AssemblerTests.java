@@ -2,14 +2,11 @@ package aztech.milite.test;
 
 import aztech.milite.datagen.recipe.ProcessingTableRecipesProvider;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
-import aztech.milite.machines.recipe.MachineRecipe;
+import aztech.milite.MI;
 import aztech.milite.MIRegistries;
 import aztech.milite.test.framework.MIGameTest;
 import aztech.milite.test.framework.MIGameTestHelper;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.crafting.RecipeHolder;
-
-import java.util.List;
 
 public class AssemblerTests {
     /**
@@ -23,20 +20,31 @@ public class AssemblerTests {
         var level = helper.getLevel();
         var assembler = MIMachineRecipeTypes.ASSEMBLER;
 
-        int tableRecipes = level.getRecipeManager().getAllRecipesFor(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get()).size();
-        List<RecipeHolder<MachineRecipe>> machineRecipes = assembler.getRecipesWithoutCache(level).stream()
-                .filter(holder -> holder.id().getPath().startsWith(ProcessingTableRecipesProvider.MACHINE_RECIPE_FOLDER))
-                .toList();
-
-        if (tableRecipes == 0) {
+        var tableRecipes = level.getRecipeManager().getAllRecipesFor(MIRegistries.PROCESSING_TABLE_RECIPE_TYPE.get());
+        if (tableRecipes.isEmpty()) {
             helper.fail("no Processing Table recipe is loaded, so this test cannot prove anything");
         }
-        if (machineRecipes.size() != tableRecipes) {
-            helper.fail("%d Processing Table recipes are loaded but only %d of them can be run by an assembler"
-                    .formatted(tableRecipes, machineRecipes.size()));
-        }
 
-        for (var holder : machineRecipes) {
+        for (var tableRecipe : tableRecipes) {
+            // Mirrors the Processing Table recipe name
+            String path = tableRecipe.id().getPath();
+            if (!path.startsWith(ProcessingTableRecipesProvider.PROCESSING_TABLE_RECIPE_FOLDER)) {
+                helper.fail("recipe %s is not in the %s folder".formatted(tableRecipe.id(),
+                        ProcessingTableRecipesProvider.PROCESSING_TABLE_RECIPE_FOLDER));
+                return;
+            }
+            var assemblerId = MI.id(ProcessingTableRecipesProvider.MACHINE_RECIPE_FOLDER
+                    + path.substring(ProcessingTableRecipesProvider.PROCESSING_TABLE_RECIPE_FOLDER.length()));
+
+            var holder = assembler.getRecipesWithoutCache(level).stream()
+                    .filter(candidate -> candidate.id().equals(assemblerId))
+                    .findFirst()
+                    .orElse(null);
+            if (holder == null) {
+                helper.fail("Processing Table recipe %s has no assembler recipe %s".formatted(tableRecipe.id(), assemblerId));
+                return;
+            }
+
             var recipe = holder.value();
             if (recipe.itemInputs.size() != 3) {
                 helper.fail("recipe %s should take exactly three inputs, it takes %d".formatted(holder.id(), recipe.itemInputs.size()));

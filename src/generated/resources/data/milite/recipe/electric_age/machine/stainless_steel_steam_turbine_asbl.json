@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "milite:digital_circuit"
+    },
+    "H": {
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    "c": {
+      "item": "milite:aluminum_wire"
+    },
+    "m": {
+      "item": "milite:advanced_motor"
+    },
+    "p": {
+      "item": "milite:bronze_plate"
+    },
+    "r": {
+      "item": "milite:stainless_steel_rotor"
+    }
+  },
+  "pattern": [
+    "pCp",
+    "rHr",
+    "mcm"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_steam_turbine"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "milite:aluminum_alloy_machine_hull"
+    },
+    {
+      "item": "milite:electric_unpacker"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:aluminum_alloy_unpacker"
+  }
+}

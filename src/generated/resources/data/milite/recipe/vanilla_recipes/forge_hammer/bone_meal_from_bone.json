@@ -1,0 +1,11 @@
+{
+  "type": "milite:forge_hammer",
+  "damage": 30,
+  "ingredient": {
+    "item": "minecraft:bone"
+  },
+  "result": {
+    "count": 6,
+    "id": "minecraft:bone_meal"
+  }
+}

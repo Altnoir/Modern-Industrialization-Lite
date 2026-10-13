@@ -4,16 +4,16 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:motor"
-    },
-    {
       "amount": 6,
       "item": "milite:rubber_sheet"
     },
     {
       "amount": 1,
       "item": "milite:tin_wire"
+    },
+    {
+      "amount": 2,
+      "item": "milite:motor"
     }
   ],
   "item_outputs": [

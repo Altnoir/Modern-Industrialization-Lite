@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "milite:aluminum_drill_head"
+    },
+    "M": {
+      "item": "milite:motor"
+    },
+    "P": {
+      "item": "milite:pump"
+    },
+    "c": {
+      "item": "milite:analog_circuit"
+    },
+    "r": {
+      "item": "milite:invar_rotary_blade"
+    },
+    "t": {
+      "item": "milite:aluminum_tank"
+    }
+  },
+  "pattern": [
+    "crH",
+    "MPr",
+    "tMc"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:diesel_mining_drill"
+  }
+}

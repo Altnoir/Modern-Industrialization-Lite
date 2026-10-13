@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    "L": {
+      "tag": "c:plates/battery_alloy"
+    },
+    "b": {
+      "item": "milite:sodium_battery"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "LHL",
+    "bbb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_storage_unit"
+  }
+}

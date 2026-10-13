@@ -1,0 +1,17 @@
+{
+  "type": "milite:steam_blast_furnace",
+  "duration": 60,
+  "energy": 4,
+  "fluid_outputs": [
+    {
+      "amount": 10,
+      "fluid": "milite:soldering_alloy"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:tiny_dusts/soldering_alloy"
+    }
+  ]
+}

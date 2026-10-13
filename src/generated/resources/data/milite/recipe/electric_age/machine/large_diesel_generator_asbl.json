@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "milite:titanium_gear"
+    },
+    "H": {
+      "item": "milite:titanium_machine_hull"
+    },
+    "c": {
+      "item": "milite:processing_unit"
+    },
+    "g": {
+      "item": "milite:stainless_steel_diesel_generator"
+    },
+    "m": {
+      "item": "milite:advanced_motor"
+    },
+    "p": {
+      "item": "milite:advanced_pump"
+    }
+  },
+  "pattern": [
+    "pcp",
+    "GHG",
+    "mgm"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:large_diesel_generator"
+  }
+}

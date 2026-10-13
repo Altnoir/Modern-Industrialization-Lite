@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "milite:stainless_steel_bolt"
+    },
+    "m": {
+      "item": "milite:advanced_motor"
+    },
+    "r": {
+      "item": "milite:stainless_steel_rotor"
+    }
+  },
+  "pattern": [
+    "brb",
+    "rmr",
+    "brb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:advanced_pump"
+  }
+}

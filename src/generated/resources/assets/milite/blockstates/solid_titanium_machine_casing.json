@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "center": "milite:block/solid_titanium_machine_casing/center",
+    "empty": "milite:block/solid_titanium_machine_casing/empty",
+    "horizontal": "milite:block/solid_titanium_machine_casing/horizontal",
+    "particle": "milite:block/solid_titanium_machine_casing/particle",
+    "vertical": "milite:block/solid_titanium_machine_casing/vertical"
+  },
   "variants": {
     "": {
       "model": "milite:block/solid_titanium_machine_casing"

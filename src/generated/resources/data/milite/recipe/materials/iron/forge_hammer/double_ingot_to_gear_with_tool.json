@@ -1,0 +1,12 @@
+{
+  "type": "milite:forge_hammer",
+  "count": 2,
+  "damage": 100,
+  "ingredient": {
+    "item": "milite:iron_double_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:iron_gear"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "milite:chemical_reactor",
+  "duration": 300,
+  "energy": 16,
+  "fluid_inputs": [
+    {
+      "amount": 750,
+      "fluid": "milite:ethanol"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 375,
+      "fluid": "milite:butadiene"
+    },
+    {
+      "amount": 750,
+      "fluid": "minecraft:water"
+    },
+    {
+      "amount": 250,
+      "fluid": "milite:hydrogen"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:tiny_dusts/aluminum"
+    }
+  ]
+}

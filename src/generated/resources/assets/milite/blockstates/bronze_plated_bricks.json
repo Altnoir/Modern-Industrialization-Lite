@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "center": "milite:block/bronze_plated_bricks/center",
+    "empty": "milite:block/bronze_plated_bricks/empty",
+    "horizontal": "milite:block/bronze_plated_bricks/horizontal",
+    "particle": "milite:block/bronze_plated_bricks/particle",
+    "vertical": "milite:block/bronze_plated_bricks/vertical"
+  },
   "variants": {
     "": {
       "model": "milite:block/bronze_plated_bricks"

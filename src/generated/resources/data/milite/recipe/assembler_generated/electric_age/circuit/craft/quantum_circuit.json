@@ -9,15 +9,15 @@
     },
     {
       "amount": 2,
-      "item": "milite:cooling_cell"
-    },
-    {
-      "amount": 2,
       "item": "milite:qubit"
     },
     {
       "amount": 1,
       "item": "milite:quantum_circuit_board"
+    },
+    {
+      "amount": 2,
+      "item": "milite:cooling_cell"
     }
   ],
   "item_outputs": [

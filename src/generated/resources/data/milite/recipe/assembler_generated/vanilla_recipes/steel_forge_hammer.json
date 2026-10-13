@@ -4,12 +4,12 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 3,
-      "tag": "c:plates/steel"
-    },
-    {
       "amount": 4,
       "tag": "c:ingots/steel"
+    },
+    {
+      "amount": 3,
+      "tag": "c:plates/steel"
     }
   ],
   "item_outputs": [

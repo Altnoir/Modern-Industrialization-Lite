@@ -9,11 +9,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:iridium_machine_hull"
+      "item": "milite:stainless_steel_blast_furnace"
     },
     {
       "amount": 1,
-      "item": "milite:stainless_steel_blast_furnace"
+      "item": "milite:iridium_machine_hull"
     }
   ],
   "item_outputs": [

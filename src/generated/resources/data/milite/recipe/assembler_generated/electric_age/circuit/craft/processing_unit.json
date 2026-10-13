@@ -4,24 +4,24 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 4,
-      "item": "milite:digital_circuit"
-    },
-    {
-      "amount": 2,
-      "item": "milite:random_access_memory"
-    },
-    {
-      "amount": 1,
-      "item": "milite:memory_management_unit"
-    },
-    {
       "amount": 1,
       "item": "milite:arithmetic_logic_unit"
     },
     {
       "amount": 1,
       "item": "milite:processing_unit_board"
+    },
+    {
+      "amount": 4,
+      "item": "milite:digital_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:memory_management_unit"
+    },
+    {
+      "amount": 2,
+      "item": "milite:random_access_memory"
     }
   ],
   "item_outputs": [

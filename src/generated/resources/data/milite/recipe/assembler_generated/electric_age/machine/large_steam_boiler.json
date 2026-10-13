@@ -8,12 +8,12 @@
       "item": "milite:bronze_plated_bricks"
     },
     {
-      "amount": 2,
-      "item": "milite:analog_circuit"
-    },
-    {
       "amount": 1,
       "item": "milite:bronze_boiler"
+    },
+    {
+      "amount": 2,
+      "item": "milite:analog_circuit"
     },
     {
       "amount": 2,

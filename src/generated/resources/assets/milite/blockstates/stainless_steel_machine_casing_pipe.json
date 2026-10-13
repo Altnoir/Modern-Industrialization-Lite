@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:pillar",
+  "ctm_textures": {
+    "bottom": "milite:block/stainless_steel_machine_casing_pipe/bottom",
+    "center": "milite:block/stainless_steel_machine_casing_pipe/center",
+    "particle": "milite:block/stainless_steel_machine_casing_pipe/particle",
+    "self": "milite:block/stainless_steel_machine_casing_pipe/self",
+    "top": "milite:block/stainless_steel_machine_casing_pipe/top"
+  },
   "variants": {
     "axis=x": {
       "model": "milite:block/stainless_steel_machine_casing_pipe",

@@ -4,18 +4,6 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:digital_circuit"
-    },
-    {
-      "amount": 2,
-      "item": "milite:advanced_motor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:stainless_steel_machine_hull"
-    },
-    {
       "amount": 2,
       "item": "milite:bronze_plate"
     },
@@ -25,7 +13,19 @@
     },
     {
       "amount": 1,
+      "item": "milite:digital_circuit"
+    },
+    {
+      "amount": 1,
       "item": "milite:aluminum_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_machine_hull"
+    },
+    {
+      "amount": 2,
+      "item": "milite:advanced_motor"
     }
   ],
   "item_outputs": [

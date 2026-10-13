@@ -1,7 +1,8 @@
 # Recipe format and KubeJS integration
 In general, a machine recipe JSON in MI has the following properties:
-- `eu`: How many FE/t it uses.
+- `energy`: How many FE/t it uses.
 - `duration`: How many ticks it takes to complete.
+- `level`: The minimum machine level; omitted JSON levels default to `bronze`.
 - `item_inputs`: The list of items it consumes.
 - `item_outputs`: The list of items it produces.
 - `fluid_inputs`: The list of fluids it consumes.
@@ -9,7 +10,59 @@ In general, a machine recipe JSON in MI has the following properties:
 - `process_conditions`: A list of additional conditions for the recipe to be processed by the machine.
 
 You can find plenty of examples for the JSON format in [our files](../src/generated/resources/data/milite/recipe).
-For example, the assembler recipe for the trash can looks [like this](../src/main/resources/data/milite/recipe/trash_can_assembler.json).
+For example, the assembler recipe for the trash can looks [like this](../src/generated/resources/data/milite/recipe/trash_can_assembler.json).
+
+## Built-in recipe datagen
+
+Built-in static recipes are defined in Java under `aztech.milite.datagen.recipe` and generated into
+`src/generated/resources/data/milite/recipe`. Run `gradlew runData` after editing their definitions and include the
+updated generated files with the change. Do not edit generated JSON directly.
+
+The fixed providers group recipes by materials, electric age, steam age, oil, quarry, fusion, tools, vanilla recipes,
+and miscellaneous recipes. They are registered in `MIDatagenServer` alongside the existing material and other bulk
+generators. Each recipe keeps its explicit path, so moving its definition between providers does not change its ID.
+
+Specify the required machine level explicitly when adding a recipe:
+
+```java
+new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
+        .level("bronze")
+        .addItemInput("minecraft:chest", 1)
+        .addItemOutput("milite:trash_can", 1)
+        .offerTo(consumer, "example/trash_can");
+```
+
+The string overload also accepts `steel`, `electric`, `aluminum_alloy`, `stainless_steel`, `titanium`, and `iridium`.
+It uses `MachineLevel.byName`, including its `aluminum` alias and case-insensitive lookup, and rejects unknown names.
+The enum overload `.level(MachineLevel.BRONZE)` remains available. The builder still derives its default level from
+energy, so the migrated recipes explicitly specify their original level instead of relying on that default.
+
+`FixedRecipesProvider.shaped` emits the shaped recipe and, for a path ending in `_asbl`, its assembler counterpart
+from the same definition. The counterpart retains the ID `assembler_generated/<path without _asbl>`, 8 FE/t,
+200 ticks, electric level, and the exact ingredient and result quantities. It does not read another provider's output
+or scan source files, so generation works both during development and with runtime datagen.
+
+`ConditionalMachineRecipesProvider` uses `ConditionalMachineRecipeBuilder` for recipes that reference optional mods,
+including conditional outputs inside otherwise unconditional quarry recipes. This builder writes item IDs and
+NeoForge conditions without looking up optional items or evaluating conditions at generation time. For example:
+
+```java
+new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
+        .level("bronze")
+        .addItemInput("milite:bronze_drill", 1, 0.04f)
+        .addItemOutput("minecraft:iron_ore", 1, 0.4f)
+        .addItemOutput("mekanism:osmium_ore", 1, 0.12f, new ModLoadedCondition("mekanism"))
+        .offerTo(consumer, "example/conditional_quarry");
+```
+
+For conditions on an entire typed recipe, use `consumer.withConditions(...)`. Conditions on individual optional
+outputs must remain in JSON until the game loads recipes; use the conditional builder for those.
+
+Runtime conversions of smelting, stonecutting, and compostable items remain in `RecipeConversions`, so recipes added
+by other mods or data packs continue to participate. They should not be frozen into the built-in datagen output.
+
+After generation, run `gradlew runGameTestServer` to check that `_asbl` counterparts are loaded with matching
+ingredients, quantities, energy, duration, and level, and that migrated recipes preserve their legacy default level.
 
 MI adds a nicer syntax when the recipes are being registered by KubeJS:
 - You need to create the recipe by specifying the values for `eu` and `duration`.

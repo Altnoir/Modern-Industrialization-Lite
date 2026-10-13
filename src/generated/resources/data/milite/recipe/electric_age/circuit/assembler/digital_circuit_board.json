@@ -1,0 +1,35 @@
+{
+  "type": "milite:assembler",
+  "duration": 500,
+  "energy": 16,
+  "fluid_inputs": [
+    {
+      "amount": 750,
+      "fluid": "milite:polyethylene"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 6,
+      "item": "milite:aluminum_wire"
+    },
+    {
+      "amount": 1,
+      "item": "milite:silicon_battery"
+    },
+    {
+      "amount": 1,
+      "item": "milite:electronic_circuit_board"
+    },
+    {
+      "amount": 4,
+      "item": "milite:stainless_steel_plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:digital_circuit_board"
+    }
+  ]
+}

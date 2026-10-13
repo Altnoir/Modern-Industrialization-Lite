@@ -8,12 +8,12 @@
       "item": "milite:analog_circuit"
     },
     {
-      "amount": 3,
-      "item": "milite:tin_wire"
-    },
-    {
       "amount": 2,
       "item": "milite:redstone_battery"
+    },
+    {
+      "amount": 3,
+      "item": "milite:tin_wire"
     },
     {
       "amount": 1,

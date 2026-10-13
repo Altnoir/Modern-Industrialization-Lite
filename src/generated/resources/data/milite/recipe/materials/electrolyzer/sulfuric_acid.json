@@ -1,0 +1,27 @@
+{
+  "type": "milite:electrolyzer",
+  "duration": 300,
+  "energy": 32,
+  "fluid_inputs": [
+    {
+      "amount": 500,
+      "fluid": "milite:sulfuric_acid"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 200,
+      "fluid": "milite:oxygen"
+    },
+    {
+      "amount": 200,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:sulfur_dust"
+    }
+  ]
+}

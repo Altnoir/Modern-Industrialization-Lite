@@ -25,6 +25,7 @@ public class ProcessingTableScreen extends MIHandledScreen<ProcessingTableScreen
         super(handler, inventory, title);
         this.titleLabelX = 54;
         this.titleLabelY = 15;
+        this.imageHeight = 168;
     }
 
     @Override

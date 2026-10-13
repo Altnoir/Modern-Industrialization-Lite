@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "item": "minecraft:brick"
+  },
+  "result": {
+    "count": 3,
+    "id": "milite:brick_tiny_dust"
+  }
+}

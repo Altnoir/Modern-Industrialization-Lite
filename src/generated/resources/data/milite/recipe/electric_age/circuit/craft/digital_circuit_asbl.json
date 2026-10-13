@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "milite:and_gate"
+    },
+    "N": {
+      "item": "milite:not_gate"
+    },
+    "O": {
+      "item": "milite:or_gate"
+    },
+    "b": {
+      "item": "milite:digital_circuit_board"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "cOc",
+    "NbN",
+    "cAc"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:digital_circuit"
+  }
+}

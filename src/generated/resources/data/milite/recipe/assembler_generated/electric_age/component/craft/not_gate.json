@@ -5,11 +5,11 @@
   "item_inputs": [
     {
       "amount": 1,
-      "item": "milite:resistor"
+      "item": "milite:op_amp"
     },
     {
       "amount": 1,
-      "item": "milite:op_amp"
+      "item": "milite:resistor"
     },
     {
       "amount": 1,

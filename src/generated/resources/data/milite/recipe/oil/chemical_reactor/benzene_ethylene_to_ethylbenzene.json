@@ -1,0 +1,25 @@
+{
+  "type": "milite:chemical_reactor",
+  "duration": 300,
+  "energy": 12,
+  "fluid_inputs": [
+    {
+      "amount": 750,
+      "fluid": "milite:benzene"
+    },
+    {
+      "amount": 750,
+      "fluid": "milite:ethylene"
+    },
+    {
+      "amount": 100,
+      "fluid": "milite:hydrochloric_acid"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 750,
+      "fluid": "milite:ethylbenzene"
+    }
+  ]
+}

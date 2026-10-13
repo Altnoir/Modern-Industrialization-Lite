@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "milite:op_amp"
+    },
+    "r": {
+      "item": "milite:resistor"
+    },
+    "w": {
+      "item": "milite:aluminum_wire"
+    }
+  },
+  "pattern": [
+    "wr ",
+    "wAw",
+    "wr "
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:and_gate"
+  }
+}

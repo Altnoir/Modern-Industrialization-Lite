@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "milite:analog_circuit"
+    },
+    "c": {
+      "item": "milite:tin_wire"
+    },
+    "d": {
+      "item": "milite:gold_drill_head"
+    },
+    "g": {
+      "tag": "c:gears/iron"
+    },
+    "m": {
+      "item": "milite:motor"
+    },
+    "p": {
+      "tag": "c:plates/gold"
+    }
+  },
+  "pattern": [
+    "gpd",
+    "mCp",
+    "cmg"
+  ],
+  "result": {
+    "count": 4,
+    "id": "milite:gold_drill"
+  }
+}

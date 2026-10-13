@@ -9,11 +9,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:electric_machine_hull"
+      "item": "minecraft:blast_furnace"
     },
     {
       "amount": 1,
-      "item": "minecraft:blast_furnace"
+      "item": "milite:electric_machine_hull"
     }
   ],
   "item_outputs": [

@@ -4,12 +4,12 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:resistor"
-    },
-    {
       "amount": 1,
       "item": "milite:op_amp"
+    },
+    {
+      "amount": 2,
+      "item": "milite:resistor"
     },
     {
       "amount": 4,

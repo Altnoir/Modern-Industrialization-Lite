@@ -8,16 +8,16 @@
       "tag": "c:plates/battery_alloy"
     },
     {
-      "amount": 2,
-      "item": "milite:aluminum_wire"
-    },
-    {
       "amount": 4,
       "item": "milite:battery_alloy_plate"
     },
     {
       "amount": 2,
       "tag": "c:dusts/sodium"
+    },
+    {
+      "amount": 2,
+      "item": "milite:aluminum_wire"
     }
   ],
   "item_outputs": [

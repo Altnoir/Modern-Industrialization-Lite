@@ -1,0 +1,21 @@
+{
+  "type": "milite:polarizer",
+  "duration": 400,
+  "energy": 16,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "tag": "c:rods/stainless_steel"
+    },
+    {
+      "amount": 1,
+      "item": "milite:neodymium_dust"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_rod_magnetic"
+    }
+  ]
+}

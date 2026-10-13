@@ -4,6 +4,10 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 3,
+      "item": "milite:aluminum_wire"
+    },
+    {
       "amount": 2,
       "item": "milite:sodium_battery"
     },
@@ -14,10 +18,6 @@
     {
       "amount": 1,
       "item": "milite:stainless_steel_machine_casing"
-    },
-    {
-      "amount": 3,
-      "item": "milite:aluminum_wire"
     }
   ],
   "item_outputs": [

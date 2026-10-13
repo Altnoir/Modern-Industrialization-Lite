@@ -4,8 +4,8 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 2,
-      "item": "milite:diode"
+      "amount": 1,
+      "item": "milite:electronic_circuit_board"
     },
     {
       "amount": 4,
@@ -13,11 +13,11 @@
     },
     {
       "amount": 2,
-      "item": "milite:transistor"
+      "item": "milite:diode"
     },
     {
-      "amount": 1,
-      "item": "milite:electronic_circuit_board"
+      "amount": 2,
+      "item": "milite:transistor"
     }
   ],
   "item_outputs": [

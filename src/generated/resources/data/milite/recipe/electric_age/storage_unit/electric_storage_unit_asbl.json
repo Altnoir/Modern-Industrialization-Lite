@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "milite:electric_machine_hull"
+    },
+    "L": {
+      "tag": "c:plates/battery_alloy"
+    },
+    "b": {
+      "item": "milite:redstone_battery"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "LHL",
+    "bbb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:electric_storage_unit"
+  }
+}

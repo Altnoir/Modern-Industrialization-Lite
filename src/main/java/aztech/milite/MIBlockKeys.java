@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
  * Holder for some keys that are needed before the block is even created.
  */
 public class MIBlockKeys {
+    public static final ResourceKey<Block> STEEL_MACHINE_HULL = block("steel_machine_hull");
     public static final ResourceKey<Block> ELECTRIC_MACHINE_HULL = block("electric_machine_hull");
     public static final ResourceKey<Block> ALUMINUM_MACHINE_HULL = block("aluminum_alloy_machine_hull");
     public static final ResourceKey<Block> STAINLESS_STEEL_MACHINE_HULL = block("stainless_steel_machine_hull");

@@ -8,12 +8,12 @@
       "item": "milite:tungsten_large_plate"
     },
     {
-      "amount": 4,
-      "tag": "c:plates/lead"
-    },
-    {
       "amount": 1,
       "tag": "c:plates/iridium"
+    },
+    {
+      "amount": 4,
+      "tag": "c:plates/lead"
     }
   ],
   "item_outputs": [

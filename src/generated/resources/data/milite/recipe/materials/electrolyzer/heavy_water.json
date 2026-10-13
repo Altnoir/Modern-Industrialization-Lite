@@ -1,0 +1,21 @@
+{
+  "type": "milite:electrolyzer",
+  "duration": 600,
+  "energy": 8,
+  "fluid_inputs": [
+    {
+      "amount": 3000,
+      "fluid": "milite:heavy_water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 2000,
+      "fluid": "milite:deuterium"
+    },
+    {
+      "amount": 1000,
+      "fluid": "milite:oxygen"
+    }
+  ]
+}

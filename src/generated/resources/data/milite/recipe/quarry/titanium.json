@@ -1,0 +1,36 @@
+{
+  "type": "milite:quarry",
+  "duration": 600,
+  "energy": 128,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:titanium_drill",
+      "probability": 0.04
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:uranium_ore",
+      "probability": 0.2
+    },
+    {
+      "amount": 1,
+      "item": "milite:iridium_ore",
+      "probability": 0.05
+    },
+    {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "mekanism"
+        }
+      ],
+      "amount": 1,
+      "item": "mekanism:fluorite_ore",
+      "probability": 0.3
+    }
+  ],
+  "level": "bronze"
+}

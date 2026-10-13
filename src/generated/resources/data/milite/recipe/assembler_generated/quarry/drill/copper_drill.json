@@ -4,16 +4,16 @@
   "energy": 8,
   "item_inputs": [
     {
+      "amount": 2,
+      "tag": "c:plates/copper"
+    },
+    {
       "amount": 1,
       "item": "milite:copper_drill_head"
     },
     {
       "amount": 2,
       "tag": "c:gears/iron"
-    },
-    {
-      "amount": 2,
-      "tag": "c:plates/copper"
     }
   ],
   "item_outputs": [

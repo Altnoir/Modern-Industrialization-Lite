@@ -5,19 +5,19 @@
   "item_inputs": [
     {
       "amount": 3,
-      "item": "milite:electronic_circuit"
-    },
-    {
-      "amount": 1,
-      "item": "milite:aluminum_alloy_machine_hull"
-    },
-    {
-      "amount": 3,
       "item": "milite:large_pump"
     },
     {
       "amount": 2,
       "item": "milite:aluminum_large_plate"
+    },
+    {
+      "amount": 3,
+      "item": "milite:electronic_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:aluminum_alloy_machine_hull"
     }
   ],
   "item_outputs": [

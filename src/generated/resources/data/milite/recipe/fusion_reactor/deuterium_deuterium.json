@@ -1,0 +1,25 @@
+{
+  "type": "milite:fusion_reactor",
+  "duration": 1200,
+  "energy": 16000,
+  "fluid_inputs": [
+    {
+      "amount": 1000,
+      "fluid": "milite:deuterium"
+    },
+    {
+      "amount": 1000,
+      "fluid": "milite:deuterium"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 500,
+      "fluid": "milite:helium_plasma"
+    },
+    {
+      "amount": 500,
+      "fluid": "milite:tritium"
+    }
+  ]
+}

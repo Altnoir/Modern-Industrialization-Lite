@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "milite:tin_bolt"
+    },
+    "m": {
+      "item": "milite:motor"
+    },
+    "r": {
+      "item": "milite:tin_rotor"
+    }
+  },
+  "pattern": [
+    "brb",
+    "rmr",
+    "brb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:pump"
+  }
+}

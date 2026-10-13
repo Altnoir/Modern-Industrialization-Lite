@@ -1,0 +1,71 @@
+{
+  "type": "milite:quarry",
+  "duration": 600,
+  "energy": 12,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:steel_drill",
+      "probability": 0.04
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:antimony_ore",
+      "probability": 0.2
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:diamond_ore",
+      "probability": 0.12
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:lapis_ore",
+      "probability": 0.1
+    },
+    {
+      "amount": 1,
+      "item": "milite:lead_ore",
+      "probability": 0.25
+    },
+    {
+      "amount": 1,
+      "item": "milite:nickel_ore",
+      "probability": 0.18
+    },
+    {
+      "amount": 1,
+      "item": "milite:bauxite_ore",
+      "probability": 0.4
+    },
+    {
+      "amount": 1,
+      "item": "milite:salt_ore",
+      "probability": 0.12
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:emerald_ore",
+      "probability": 0.1
+    },
+    {
+      "amount": 1,
+      "item": "milite:quartz_ore",
+      "probability": 0.2
+    },
+    {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "powah"
+        }
+      ],
+      "amount": 1,
+      "item": "powah:uraninite_ore",
+      "probability": 0.08
+    }
+  ],
+  "level": "bronze"
+}
