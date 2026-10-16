@@ -160,7 +160,7 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var distillationTower = createMultiblock(consumer, "distillation_tower", digitalCircuit, AdvancementType.GOAL, "TOTAL™ Distillation", "Build a Distillation Tower to unlock to full potential of oil processing", existingFileHelper);
         var heatExchanger = createMultiblock(consumer, "heat_exchanger", digitalCircuit, "Lava Power but Balanced",  "Build a Heat Exchanger to avoid losing high pressure (and cheese easy energy from lava production)", existingFileHelper);
         var stainlessSteel = createBasic(consumer, "stainless_steel_ingot", vacuumFreezer, AdvancementType.GOAL, "Invar with Slot Locking", "Craft a Stainless Steel Ingot", existingFileHelper);
-        var kanthalCoil = createMultiblock(consumer, "kanthal_coil", "stainless_steel_blast_furnace", "kanthal_coil", stainlessSteel, "Electric Better Furnace", "Build an EBF with Kanthal Coil to unlock new recipes", existingFileHelper);
+        var kanthalCoil = createMultiblock(consumer, "kanthal_coil", "electric_blast_furnace", "kanthal_coil", stainlessSteel, "Electric Better Furnace", "Build an EBF with Kanthal Coil to unlock new recipes", existingFileHelper);
         var processingUnit = createBasic(consumer, "processing_unit", kanthalCoil, "Bitcoin Miner", "Craft a Processing Unit", existingFileHelper);
         var titaniumIngot = createBasic(consumer, "titanium_ingot", kanthalCoil, "Steel but Pink", "Craft a Titanium Ingot", existingFileHelper);
         var blastProofAlloyPlate = createBasic(consumer, "blastproof_alloy_plate", titaniumIngot, "Creeper Nightmare", "Craft a Blastproof Alloy Plate in the compressor", existingFileHelper);

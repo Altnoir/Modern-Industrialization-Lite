@@ -35,7 +35,7 @@ public final class FTBQuestsTests {
         var task = new BuiltMultiblockQuestTask(0x7ffffff2L, quest);
         helper.assertTrue(task.getType() == TaskTypes.TYPES.get(MI.id("built_multiblock")), "registered Lite task type");
 
-        var context = new BuiltMultiblockContext(MI.id("stainless_steel_blast_furnace"), "kanthal_coil");
+        var context = new BuiltMultiblockContext(MI.id("electric_blast_furnace"), "kanthal_coil");
         var nbt = new CompoundTag();
         nbt.put("multiblock", BuiltMultiblockContext.CODEC.encodeStart(NbtOps.INSTANCE, context).getOrThrow());
         var registries = helper.getLevel().registryAccess();

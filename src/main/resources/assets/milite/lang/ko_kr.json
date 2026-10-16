@@ -1065,6 +1065,8 @@
   "text.milite.RequiresUpgrades": "최소 +%s의 업그레이드가 필요합니다.",
   "text.milite.ScatteringProbability": "산란 확률",
   "text.milite.SecondsLeft": "남은 초: %s",
+  "text.milite.ShapeSelectionCoilDescription": "슬라이더를 드래그하여 기계가 사용할 코일을 선택하세요",
+  "text.milite.ShapeSelectionCoilTitle": "코일 선택",
   "text.milite.ShapeSelectionTitle": "멀티블록 모양 선택",
   "text.milite.ShapeTextDepth": "깊이",
   "text.milite.ShapeTextExtreme": "초대형",

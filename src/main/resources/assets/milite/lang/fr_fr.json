@@ -1612,6 +1612,8 @@
   "text.milite.RequiresUpgrades": "Nécessite au moins +%s d'amélioration de vitesse.",
   "text.milite.ScatteringProbability": "Probabilité de dispersion",
   "text.milite.SecondsLeft": "Secondes restantes : %s",
+  "text.milite.ShapeSelectionCoilDescription": "Faire glisser le curseur pour choisir la bobine de la machine.",
+  "text.milite.ShapeSelectionCoilTitle": "Choisir la bobine",
   "text.milite.ShapeSelectionDescription": "Faire glisser le curseur pour redimensionner le multi-bloc.",
   "text.milite.ShapeSelectionTitle": "Sélection d'une forme de multi bloc",
   "text.milite.ShapeTextDepth": "Profondeur",

@@ -2,6 +2,7 @@ package aztech.milite.machines.guicomponents;
 
 import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.MI;
+import aztech.milite.MIText;
 import com.google.common.base.Preconditions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
@@ -12,35 +13,55 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class ShapeSelection implements GuiComponentServer<List<ShapeSelection.LineInfo>, List<Integer>> {
-    public static final Type<List<ShapeSelection.LineInfo>, List<Integer>> TYPE = new Type<>(
+public class ShapeSelection implements GuiComponentServer<ShapeSelection.Params, List<Integer>> {
+    public static final Type<Params, List<Integer>> TYPE = new Type<>(
             MI.id("shape_selection"),
-            LineInfo.STREAM_CODEC.apply(ByteBufCodecs.list()),
+            Params.STREAM_CODEC,
             ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list()));
 
     public final Behavior behavior;
-    private final List<LineInfo> lines;
+    private final Params params;
 
     public ShapeSelection(Behavior behavior, LineInfo... lines) {
+        this(behavior, MIText.ShapeSelectionTitle.text(), MIText.ShapeSelectionDescription.text(), lines);
+    }
+
+    public ShapeSelection(Behavior behavior, Component title, Component description, LineInfo... lines) {
         Preconditions.checkArgument(lines.length > 0);
 
         this.behavior = behavior;
-        this.lines = List.of(lines);
+        this.params = new Params(title, description, List.of(lines));
     }
 
     @Override
-    public List<LineInfo> params() {
-        return lines;
+    public Params params() {
+        return params;
     }
 
     @Override
     public List<Integer> extractData() {
-        return IntStream.range(0, lines.size()).map(behavior::getCurrentIndex).boxed().toList();
+        return IntStream.range(0, params.lines().size()).map(behavior::getCurrentIndex).boxed().toList();
     }
 
     @Override
-    public Type<List<LineInfo>, List<Integer>> getType() {
+    public Type<Params, List<Integer>> getType() {
         return TYPE;
+    }
+
+    /**
+     * @param title       the tooltip title of the slider
+     * @param description the tooltip below it
+     * @param lines       one slider per line
+     */
+    public record Params(Component title, Component description, List<LineInfo> lines) {
+        public static final StreamCodec<RegistryFriendlyByteBuf, Params> STREAM_CODEC = StreamCodec.composite(
+                ComponentSerialization.STREAM_CODEC,
+                Params::title,
+                ComponentSerialization.STREAM_CODEC,
+                Params::description,
+                LineInfo.STREAM_CODEC.apply(ByteBufCodecs.list()),
+                Params::lines,
+                Params::new);
     }
 
     public interface Behavior {

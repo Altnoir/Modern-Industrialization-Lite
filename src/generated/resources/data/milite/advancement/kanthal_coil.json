@@ -4,7 +4,7 @@
     "buildMultiblock": {
       "conditions": {
         "multiblock": {
-          "id": "milite:stainless_steel_blast_furnace",
+          "id": "milite:electric_blast_furnace",
           "shape": "kanthal_coil"
         }
       },

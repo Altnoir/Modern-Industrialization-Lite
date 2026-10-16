@@ -1605,6 +1605,8 @@
   "text.milite.RequiresUpgrades": "Requer ao menos +%s em melhorias.",
   "text.milite.ScatteringProbability": "Probabilidade de Espalhar",
   "text.milite.SecondsLeft": "Segundos restantes: %s",
+  "text.milite.ShapeSelectionCoilDescription": "Arraste o controle deslizante para escolher a bobina da máquina.",
+  "text.milite.ShapeSelectionCoilTitle": "Selecione a Bobina",
   "text.milite.ShapeSelectionDescription": "Arraste o controle deslizante para redimensionar o multibloco",
   "text.milite.ShapeSelectionTitle": "Selecione a forma Multibloco",
   "text.milite.ShapeTextDepth": "Profundidade",

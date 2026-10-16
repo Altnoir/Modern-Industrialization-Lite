@@ -29,6 +29,10 @@ public class AdvancementTests {
         helper.succeed();
     }
 
+    private static String machineId(String advancementId) {
+        return advancementId.equals("kanthal_coil") ? "electric_blast_furnace" : advancementId;
+    }
+
     @MIGameTest
     public void onlyTheKanthalAdvancementRequiresAShape(MIGameTestHelper helper) {
         var kanthal = predicate(helper, "kanthal_coil");
@@ -39,11 +43,11 @@ public class AdvancementTests {
             helper.fail("the kanthal coil advancement requires shape " + kanthal.get().shape());
             return;
         }
-        if (!kanthal.get().matches(MI.id("stainless_steel_blast_furnace"), "kanthal_coil")) {
+        if (!kanthal.get().matches(MI.id("electric_blast_furnace"), "kanthal_coil")) {
             helper.fail("the kanthal coil advancement does not match the kanthal coil shape");
             return;
         }
-        if (kanthal.get().matches(MI.id("stainless_steel_blast_furnace"), null) || kanthal.get().matches(MI.id("stainless_steel_blast_furnace"), "cupronickel_coil")) {
+        if (kanthal.get().matches(MI.id("electric_blast_furnace"), null) || kanthal.get().matches(MI.id("electric_blast_furnace"), "cupronickel_coil")) {
             helper.fail("the kanthal coil advancement matches other shapes");
             return;
         }
@@ -66,10 +70,6 @@ public class AdvancementTests {
             }
         }
         helper.succeed();
-    }
-
-    private static String machineId(String advancementId) {
-        return advancementId.equals("kanthal_coil") ? "stainless_steel_blast_furnace" : advancementId;
     }
 
     private static Optional<BuiltMultiblockTrigger.MultiblockPredicate> predicate(MIGameTestHelper helper, String id) {

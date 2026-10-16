@@ -1527,6 +1527,8 @@
   "text.milite.RequiresUpgrades": "En az +%s yükseltme gerektirir.",
   "text.milite.ScatteringProbability": "Saçılma Olasılığı",
   "text.milite.SecondsLeft": "Saniye kaldı: %s",
+  "text.milite.ShapeSelectionCoilDescription": "Makinenin kullanacağı bobini seçmek için kaydırıcıyı sürükle.",
+  "text.milite.ShapeSelectionCoilTitle": "Bobin Seç",
   "text.milite.ShapeSelectionDescription": "Çoklu bloğun boyutunu değiştirmek için kaydırıcıyı sürükle.",
   "text.milite.ShapeSelectionTitle": "Çoklu Blok Şeklini Seç",
   "text.milite.ShapeTextDepth": "Derinlik",

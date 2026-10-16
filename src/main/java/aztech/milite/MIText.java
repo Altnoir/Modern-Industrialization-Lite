@@ -220,6 +220,8 @@ public enum MIText {
     SectionNuclear("Nuclear"),
     SectionOres("Ores"),
     SectionStorage("Storage"),
+    ShapeSelectionCoilDescription("Drag the slider to pick the coil the furnace runs on"),
+    ShapeSelectionCoilTitle("Select Coil"),
     ShapeSelectionDescription("Drag the slider to resize the multiblock."),
     ShapeSelectionTitle("Select Multiblock Shape"),
     ShapeTextDepth("Depth"),

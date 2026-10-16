@@ -1612,6 +1612,8 @@
   "text.milite.RequiresUpgrades": "Потребує щонайменше +%s на суму модифікаторів.",
   "text.milite.ScatteringProbability": "Імовірність розсіювання",
   "text.milite.SecondsLeft": "Залишилося секунд: %s",
+  "text.milite.ShapeSelectionCoilDescription": "Перетягніть повзунок, щоб вибрати котушку для механізму.",
+  "text.milite.ShapeSelectionCoilTitle": "Вибери котушку",
   "text.milite.ShapeSelectionDescription": "Перетягніть повзунок, щоб змінити розмір мультиблока.",
   "text.milite.ShapeSelectionTitle": "Виберіть форму конструкції",
   "text.milite.ShapeTextDepth": "Глибина",

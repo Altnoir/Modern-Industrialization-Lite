@@ -6,8 +6,6 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:electric_blast_furnace
-  - milite:stainless_steel_blast_furnace
-  - milite:iridium_blast_furnace
   - milite:cupronickel_coil
   - milite:kanthal_coil
   - milite:superconductor_coil
@@ -21,15 +19,11 @@ item_ids:
     <MultiblockShape controller="electric_blast_furnace" />
 </GameScene>
 
-电力高炉是蒸汽高炉的电动版本。它一共有三种，每种对应一种线圈：电力高炉用白铜线圈搭建，不锈钢高炉用坎塔尔合金线圈搭建，铱高炉用超导线圈搭建。每种高炉运行自己等级的配方，而高级高炉还能处理所有低级高炉的配方，所以铱高炉也能做另外两种高炉的活。蒸汽高炉的配方仍归蒸汽高炉所有，只有它能处理，所以那几条只有它会做的配方还是得留着蒸汽高炉。
+电力高炉是蒸汽高炉的电动版本。现在只有这一台电力高炉，它有三个档位，用界面里的滑块选择：白铜线圈档、坎塔尔合金线圈档和超导线圈档。滑块拨到哪一档，机器就按那一档的等级运行，而高等级档位还能处理所有低等级档位的配方。结构里必须放所选档位对应的那种线圈，滑块的选择与结构里的线圈不一致时多方块不会成型。蒸汽高炉的配方仍归蒸汽高炉所有，只有它能处理，所以那几条只有它会做的配方还是得留着蒸汽高炉。
 
 <Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
 
-<Recipe id="milite:electric_age/machine/stainless_steel_blast_furnace_asbl" />
-
-<Recipe id="milite:electric_age/machine/iridium_blast_furnace_asbl" />
-
-每种电力高炉都由一层耐热机器外壳、两层中空的对应线圈和另一层耐热机器外壳制成。控制器必须放在底层，且仓室需放在顶层或底层。一种高炉只认它对应的那种线圈，所以界面里不需要选择任何东西。
+电力高炉由一层耐热机器外壳、两层中空的线圈和另一层耐热机器外壳制成，中间的两层要放滑块所选档位对应的线圈。控制器必须放在底层，且仓室需放在顶层或底层。
 
 <Recipe id="milite:materials/cupronickel/craft/coil" />
 

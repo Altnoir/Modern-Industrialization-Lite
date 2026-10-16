@@ -720,12 +720,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('H', "milite:stainless_steel_machine_hull")
                         .addInput('B', "milite:blastproof_alloy_large_plate"));
 
-        shaped(consumer, "electric_age/machine/iridium_blast_furnace_asbl",
-                new ShapedRecipeJson("milite:iridium_blast_furnace", 1, "CCC", "CHC", "CFC")
-                        .addInput('C', "milite:superconductor_double_ingot")
-                        .addInput('H', "milite:iridium_machine_hull")
-                        .addInput('F', "milite:stainless_steel_blast_furnace"));
-
         shaped(consumer, "electric_age/machine/large_diesel_generator_asbl",
                 new ShapedRecipeJson("milite:large_diesel_generator", 1, "pcp", "GHG", "mgm")
                         .addInput('g', "milite:stainless_steel_diesel_generator")
@@ -785,12 +779,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('c', "milite:digital_circuit")
                         .addInput('P', "milite:titanium_machine_casing_pipe")
                         .addInput('C', "milite:aluminum_wire"));
-
-        shaped(consumer, "electric_age/machine/stainless_steel_blast_furnace_asbl",
-                new ShapedRecipeJson("milite:stainless_steel_blast_furnace", 1, "CCC", "CHC", "CFC")
-                        .addInput('C', "milite:kanthal_double_ingot")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('F', "milite:electric_blast_furnace"));
 
         shaped(consumer, "electric_age/machine/stainless_steel_diesel_generator_asbl",
                 new ShapedRecipeJson("milite:stainless_steel_diesel_generator", 1, "PCP", "GHG", "ccc")

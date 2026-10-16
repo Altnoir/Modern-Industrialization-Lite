@@ -1,6 +1,5 @@
 package aztech.milite.client.machines.guicomponents;
 
-import aztech.milite.MIText;
 import aztech.milite.client.machines.gui.ClientComponentRenderer;
 import aztech.milite.client.machines.gui.GuiComponentClient;
 import aztech.milite.client.machines.gui.MachineScreen;
@@ -16,10 +15,10 @@ import net.minecraft.util.Mth;
 import java.util.List;
 import java.util.Optional;
 
-public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection.LineInfo>, List<Integer>> {
+public class ShapeSelectionClient extends GuiComponentClient<ShapeSelection.Params, List<Integer>> {
     private Renderer renderer;
 
-    public ShapeSelectionClient(List<ShapeSelection.LineInfo> params, List<Integer> data) {
+    public ShapeSelectionClient(ShapeSelection.Params params, List<Integer> data) {
         super(params, data);
     }
 
@@ -108,7 +107,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
         }
 
         int getLineCount() {
-            return params.size();
+            return params.lines().size();
         }
 
         int getLineIndex() {
@@ -116,15 +115,15 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
         }
 
         void setLineIndex(int line) {
-            lineIndex = Mth.clamp(line, 0, params.size() - 1);
+            lineIndex = Mth.clamp(line, 0, params.lines().size() - 1);
         }
 
         Component getLineText(int line) {
-            return params.get(line).translations().get(getDisplayedIndex(line));
+            return params.lines().get(line).translations().get(getDisplayedIndex(line));
         }
 
         String getButtonText(int line) {
-            var lineInfo = params.get(line);
+            var lineInfo = params.lines().get(line);
             String label = getLineText(line).getString();
             if (!lineInfo.hasNumbers()) {
                 return label;
@@ -133,7 +132,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
         }
 
         public boolean isRowHovered(int leftPos, int topPos, double cursorX, double cursorY) {
-            int numValues = params.get(lineIndex).numValues();
+            int numValues = params.lines().get(lineIndex).numValues();
             int rowLeft = getTrackLeft(leftPos);
             int rowRight = getLabelX(leftPos, numValues) + Minecraft.getInstance().font.width(getLineText(lineIndex));
             int rowCenterY = getRowCenterY(topPos);
@@ -149,7 +148,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
                 return false;
             }
 
-            int numValues = params.get(lineIndex).numValues();
+            int numValues = params.lines().get(lineIndex).numValues();
             if (mouseX > getTrackLeft(leftPos) + getTrackWidth(numValues)) {
                 return false;
             }
@@ -164,7 +163,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             if (draggingLine < 0) {
                 return false;
             }
-            sendIndex(screen, draggingLine, getIndexAt(screen.x(), mouseX, params.get(draggingLine).numValues()));
+            sendIndex(screen, draggingLine, getIndexAt(screen.x(), mouseX, params.lines().get(draggingLine).numValues()));
             return true;
         }
 
@@ -185,7 +184,7 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
             }
 
             int rowCenterY = getRowCenterY(topPos);
-            var line = params.get(lineIndex);
+            var line = params.lines().get(lineIndex);
             int numValues = line.numValues();
             int index = getDisplayedIndex(lineIndex);
             int trackLeft = getTrackLeft(leftPos);
@@ -218,8 +217,8 @@ public class ShapeSelectionClient extends GuiComponentClient<List<ShapeSelection
                 return false;
             }
 
-            guiGraphics.renderTooltip(font, List.of(MIText.ShapeSelectionTitle.text(),
-                    MIText.ShapeSelectionDescription.text().setStyle(TextHelper.GRAY_TEXT)), Optional.empty(), cursorX, cursorY);
+            guiGraphics.renderTooltip(font, List.of(params.title(),
+                    params.description().copy().setStyle(TextHelper.GRAY_TEXT)), Optional.empty(), cursorX, cursorY);
             return true;
         }
     }
