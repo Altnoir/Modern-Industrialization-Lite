@@ -38,5 +38,5 @@ Elektrolizör, güçlü elektrik akımları kullanarak malzemeleri farklı parç
 
 Yapılandırılabilir Tank, Yapılandırılabilir Sandık'ın akışkan eşdeğeridir. 16 kova alabilen 9 yapılandırılabilir yuvası ve otomatik çıkartma işlevi vardır! Birçok farklı sıvı ile otomasyon için kullanışlıdır!
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 

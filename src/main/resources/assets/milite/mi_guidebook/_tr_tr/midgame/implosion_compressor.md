@@ -18,5 +18,5 @@ item_ids:
 
 Umarım şimdiye kadar her REI tarifini kontrol etmeyi öğrenmişsinizdir, bu nedenle Patlamaya Dayanıklı Karışık Külçelerin ve Tungsten Külçelerinin bir Kompresör ile yapılabileceğini kolayca bulabilirsiniz... tabii ki ilk İçten Patlamalı Kompresörünüzü elde edene kadar!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

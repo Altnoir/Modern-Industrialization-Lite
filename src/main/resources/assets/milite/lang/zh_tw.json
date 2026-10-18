@@ -175,6 +175,7 @@
   "block.milite.stainless_steel_item_output_hatch": "不鏽鋼物流輸出倉",
   "block.milite.stainless_steel_machine_casing": "不鏽鋼機器外殼",
   "block.milite.stainless_steel_machine_hull": "不鏽鋼機器框架",
+  "block.milite.tungsten_casing": "鎢機殼",
   "block.milite.vacuum_freezer": "真空冷凍機",
   "cable_tier_long.milite.titanium": "超高壓",
   "cable_tier_short.milite.titanium": "超高壓",
@@ -449,11 +450,13 @@
   "tag.fluid.c.styrene_butadiene_rubber": "丁苯橡膠",
   "tag.fluid.c.synthetic_rubber": "合成橡膠",
   "text.autoconfig.milite.title": "現代工業化配置",
+  "text.milite.Build": "搭建",
   "text.milite.EnergyInputHatch": "能量輸入倉",
   "text.milite.EnergyOutputHatch": "能量輸出倉",
   "text.milite.FluidInputHatch": "流體輸入倉",
   "text.milite.FluidOutputHatch": "流體輸出倉",
   "text.milite.ItemInputHatch": "物流輸入倉",
   "text.milite.ItemOutputHatch": "物流輸出倉",
+  "text.milite.MissingMaterials": "所需材料",
   "text.milite.RequiresSteelHatch1": "- 需要至少一個鋼倉室（任意）"
 }

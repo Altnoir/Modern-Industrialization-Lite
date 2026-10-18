@@ -13,13 +13,13 @@ item_ids:
 
 The Steam Turbine uses steam to produce FE. It converts every mB of steam to 1 FE, up to 32 mB per tick.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 The electric Steam Turbine automatically sends FE to machines placed against its output side. Its internal buffer holds 3200 FE.
 
 The Diesel Generator is an alternative to the Steam Turbine. It uses various fuels to produce electricity. For now, you can burn Creosote. (See REI for the list of burnable fuels).
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Power in Modern Industrialization Lite
 

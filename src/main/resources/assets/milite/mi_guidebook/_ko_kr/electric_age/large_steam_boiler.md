@@ -15,7 +15,7 @@ item_ids:
 
 대형 증기 보일러는 청동 보일러나 강철 보일러의 업그레이드 버전입니다. 화로보다 8배 빠르게 연료를 소모하지만, 최대 온도에 도달하면 256 mB/t 만큼의 증기를 생산합니다. 물을 공급하지 않으면 작동하지 않습니다.
 
-<Recipe id="milite:electric_age/machine/large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/large_steam_boiler" />
 
 청동 도금 벽돌이 주로 필요하지만, 청동 파이프 기계 케이싱과 내열 기계 케이싱도 필요합니다.
 

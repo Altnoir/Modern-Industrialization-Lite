@@ -10,6 +10,7 @@ import aztech.milite.machines.components.OrientationComponent;
 import aztech.milite.machines.components.ShapeValidComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.MachineBlockEntity;
+import aztech.milite.machines.guicomponents.MultiblockBuild;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
@@ -23,6 +24,7 @@ public abstract class MultiblockMachineBlockEntity extends MachineBlockEntity {
         super(bep, guiParams, orientationParams);
         this.shapeValid = new ShapeValidComponent();
         registerComponents(shapeValid);
+        registerGuiComponent(new MultiblockBuild(this));
     }
 
     public final ShapeValidComponent shapeValid;

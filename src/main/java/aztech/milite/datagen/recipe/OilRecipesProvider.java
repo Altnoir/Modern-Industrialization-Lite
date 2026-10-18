@@ -2,7 +2,6 @@ package aztech.milite.datagen.recipe;
 
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
-import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 
@@ -175,14 +174,6 @@ public class OilRecipesProvider extends FixedRecipesProvider {
                 .addFluidInput("minecraft:water", 1000, 1.0f)
                 .addFluidOutput("milite:sugar_solution", 1000, 1.0f)
                 .offerTo(consumer, "oil/mixer/sugar_solution");
-
-        shaped(consumer, "oil/oil_drilling_rig_asbl",
-                new ShapedRecipeJson("milite:oil_drilling_rig", 1, "LGL", "PHP", "LpL")
-                        .addInput('L', "milite:steel_large_plate")
-                        .addInput('G', "milite:electronic_circuit")
-                        .addInput('P', "milite:large_pump")
-                        .addInput('H', "milite:aluminum_alloy_machine_hull")
-                        .addInput('p', "milite:bronze_plate"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.OIL_DRILLING_RIG, 32, 200)
                 .level("bronze")

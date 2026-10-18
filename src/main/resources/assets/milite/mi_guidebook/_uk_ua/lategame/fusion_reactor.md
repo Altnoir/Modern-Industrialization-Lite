@@ -19,7 +19,7 @@ item_ids:
 
 Термоядерний реактор — найкраще джерело енергії! Він може поєднувати дейтерій, тритій та/або гелій-3 у гелієву плазму, найпотужніше паливо в грі! Однак, щоб запалити реакцію, потрібна велика кількість енергії.
 
-<Recipe id="milite:electric_age/machine/fusion_reactor_asbl" />
+<Recipe id="milite:processing_table/fusion_reactor" />
 
 ## Плазмова турбіна
 
@@ -29,5 +29,5 @@ item_ids:
 
 Плазмова турбіна може перетворювати гелієву плазму в RF зі швидкістю 100 kRF на мВ. Його максимальна продуктивність становить приблизно 1 MRF/т.
 
-<Recipe id="milite:electric_age/machine/plasma_turbine_asbl" />
+<Recipe id="milite:processing_table/plasma_turbine" />
 

@@ -27,7 +27,7 @@ public class EnergyHatch extends HatchBlockEntity implements EnergyComponentHold
         this.energy = new EnergyComponent(this, 30L * 20L * tier.getMaxTransfer());
         insertable = energy.buildInsertable();
         extractable = energy.buildExtractable();
-        EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
+        EnergyBar.Params energyBarParams = new EnergyBar.Params(81, 32);
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity));
 
         this.registerComponents(energy);

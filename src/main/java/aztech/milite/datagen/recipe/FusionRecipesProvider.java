@@ -13,7 +13,7 @@ public class FusionRecipesProvider extends FixedRecipesProvider {
     @Override
     public void buildRecipes(RecipeOutput consumer) {
         new MachineRecipeBuilder(MIMachineRecipeTypes.FUSION_REACTOR, 16000, 1200)
-                .level("bronze")
+                .level("iridium")
                 .addFluidInput("milite:deuterium", 1000, 1.0f)
                 .addFluidInput("milite:deuterium", 1000, 1.0f)
                 .addFluidOutput("milite:helium_plasma", 500, 1.0f)
@@ -21,7 +21,7 @@ public class FusionRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "fusion_reactor/deuterium_deuterium");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.FUSION_REACTOR, 16000, 900)
-                .level("bronze")
+                .level("iridium")
                 .addFluidInput("milite:deuterium", 1000, 1.0f)
                 .addFluidInput("milite:tritium", 1000, 1.0f)
                 .addFluidOutput("milite:helium_plasma", 1000, 1.0f)
@@ -29,7 +29,7 @@ public class FusionRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "fusion_reactor/deuterium_tritium");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.FUSION_REACTOR, 16000, 600)
-                .level("bronze")
+                .level("iridium")
                 .addFluidInput("milite:helium_3", 1000, 1.0f)
                 .addFluidInput("milite:helium_3", 1000, 1.0f)
                 .addFluidOutput("milite:helium_plasma", 1000, 1.0f)
@@ -37,7 +37,7 @@ public class FusionRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "fusion_reactor/helium_helium");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.FUSION_REACTOR, 16000, 300)
-                .level("bronze")
+                .level("iridium")
                 .addFluidInput("milite:helium_3", 1000, 1.0f)
                 .addFluidInput("milite:tritium", 1000, 1.0f)
                 .addFluidOutput("milite:helium_plasma", 1000, 1.0f)

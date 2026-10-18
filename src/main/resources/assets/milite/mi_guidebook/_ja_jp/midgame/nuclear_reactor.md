@@ -15,7 +15,7 @@ item_ids:
 
 原子炉は、核燃料を消費して大量のエネルギーを生成することを目的とした大型のマルチブロックである。ディーゼルの100倍以上のRF/tを生み出すことができる。小型から大型までいくつかのサイズがある。
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 原子炉を使って発電するには、何らかの形の水を核流体ハッチに入れる必要がある。水は蒸気に変わり、熱交換器に通すことで発電に利用できるようになる。
 

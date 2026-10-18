@@ -54,6 +54,8 @@ public class MachineCasings {
             () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing NUCLEAR = createBlockImitation(MI.id("nuclear_casing"),
             () -> MIMaterials.NUCLEAR_ALLOY.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
+    public static final MachineCasing TUNGSTEN = createBlockImitation(MI.id("tungsten_casing"),
+            () -> MIMaterials.TUNGSTEN.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing PLASMA_HANDLING_IRIDIUM = createBlockImitation(MI.id("plasma_handling_iridium_machine_casing"),
             () -> MIMaterials.IRIDIUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
 

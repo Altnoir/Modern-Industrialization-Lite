@@ -21,7 +21,7 @@ Paslanmaz çelik tozunu bir EMEO'da eritmek size sıcak külçeler verecektir, b
 
 Temel malzemeleri REI ile ve tam şekli bir anahtarla kontrol edebilirsiniz!
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 Bazı dijital devreler kurduktan sonra, bir Damıtma Kulesi inşa ettiğinizden emin olun. Damıtma Tesisi size yalnızca bir petrol işleme çıktısı verir, ancak kule size KATMAN BAŞINA BİR tane verir!
 

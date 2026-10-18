@@ -18,5 +18,5 @@ item_ids:
 
 REI 조합법을 확인해보셨겠지만, 폭발내성 합금 주괴와 텅스텐 조각들은 압축기로 만들 수 있습니다... 첫 폭발 압축기 전까지 말이죠!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

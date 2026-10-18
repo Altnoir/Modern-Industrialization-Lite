@@ -139,30 +139,18 @@ public class PartTemplate implements PartKeyProvider {
         return asBlock(sortOrder, textureGenParams, hardness, resistance, miningLevel, true);
     }
 
-    public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel,
-                                boolean doAllowSpawn) {
-        Register blockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
+    private static SortOrder blockSortOrder(SortOrder sortOrder, String materialName, PartKey part) {
+        return blockSortOrder(sortOrder, materialName, part, false);
+    }
 
-            var blockParams = MIBlock.BlockDefinitionParams.defaultStone()
-                    .clearTags()
-                    .addMoreTags(TagHelper.getMiningLevelTag(miningLevel))
-                    .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part))
-                    .destroyTime(hardness)
-                    .explosionResistance(resistance);
-
-            if (!doAllowSpawn) {
-                blockParams.isValidSpawn((p1, p2, p3, p4) -> false);
-            }
-
-            var blockDefinition = MIBlock.block(
-                    itemEnglishName, itemPath, blockParams
-
-            );
-
-            setupTag(partContext, part, itemTag, blockDefinition);
-
-        };
-        return new PartTemplate(englishNameFormatter, partKey, blockRegister, textureGenParams, itemPathFormatter);
+    private static SortOrder blockSortOrder(SortOrder sortOrder, String materialName, PartKey part, boolean absoluteSortOrder) {
+        int rank = MaterialProgression.rankOf(materialName);
+        if (absoluteSortOrder || sortOrder.groupIndex() != SortOrder.STRUCTURES.groupIndex()) {
+            return sortOrder.and(rank);
+        }
+        MachineLevel level = MachineLevel.byNameOrNull(materialName);
+        return sortOrder.withLevel(level == null ? MachineLevel.values().length : level.ordinal())
+                .and(materialPartOrder(materialName, part.key)).and(rank);
     }
 
     public PartTemplate asPipeBlock(SortOrder sortOrder, float hardness, float resistance) {
@@ -247,14 +235,36 @@ public class PartTemplate implements PartKeyProvider {
         }, this.textureGenParams, true);
     }
 
-    private static SortOrder blockSortOrder(SortOrder sortOrder, String materialName, PartKey part) {
-        int rank = MaterialProgression.rankOf(materialName);
-        if (sortOrder.groupIndex() != SortOrder.STRUCTURES.groupIndex()) {
-            return sortOrder.and(rank);
-        }
-        MachineLevel level = MachineLevel.byNameOrNull(materialName);
-        return sortOrder.withLevel(level == null ? MachineLevel.values().length : level.ordinal())
-                .and(materialPartOrder(materialName, part.key)).and(rank);
+    public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel,
+                                boolean doAllowSpawn) {
+        return asBlock(sortOrder, textureGenParams, hardness, resistance, miningLevel, doAllowSpawn, false);
+    }
+
+    /** sortOrder 自带等级档，不再按材料补 */
+    public PartTemplate asBlock(SortOrder sortOrder, TextureGenParams textureGenParams, float hardness, float resistance, int miningLevel,
+                                boolean doAllowSpawn, boolean absoluteSortOrder) {
+        Register blockRegister = (partContext, part, itemPath, itemId, itemTag, itemEnglishName) -> {
+
+            var blockParams = MIBlock.BlockDefinitionParams.defaultStone()
+                    .clearTags()
+                    .addMoreTags(TagHelper.getMiningLevelTag(miningLevel))
+                    .sortOrder(blockSortOrder(sortOrder, partContext.getMaterialName(), part, absoluteSortOrder))
+                    .destroyTime(hardness)
+                    .explosionResistance(resistance);
+
+            if (!doAllowSpawn) {
+                blockParams.isValidSpawn((p1, p2, p3, p4) -> false);
+            }
+
+            var blockDefinition = MIBlock.block(
+                    itemEnglishName, itemPath, blockParams
+
+            );
+
+            setupTag(partContext, part, itemTag, blockDefinition);
+
+        };
+        return new PartTemplate(englishNameFormatter, partKey, blockRegister, textureGenParams, itemPathFormatter);
     }
 
     public PartTemplate asColumnBlock(SortOrder sortOrder) {

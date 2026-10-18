@@ -22,5 +22,5 @@ item_ids:
 
 Сподіваємось, ви вже навчилися перевіряти кожен рецепт REI, тож легко дізнаєтеся, що вибухостійкі злитки та вольфрамові самородки можна виготовляти за допомогою компресора… звичайно, поки у вас не буде першого вибухового компресора!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

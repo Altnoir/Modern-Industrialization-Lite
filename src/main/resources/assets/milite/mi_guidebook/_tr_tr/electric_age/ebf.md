@@ -15,7 +15,7 @@ item_ids:
 
 Elektrikli Maden Eritme Ocağı, Buharlı Maden Eritme Ocağının elektrikli versiyonudur. Yeni tariflerin kilidini açar ve diğer çok bloklu elektrikli makineler gibi hız aşırtması varsayılan olarak 128 RF/t ile sınırlandırılmıştır.
 
-<Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
+<Recipe id="milite:processing_table/electric_blast_furnace" />
 
 EMEO, bir kat Isıya Dayanıklı Makine Muhafazası, iki içi boş Cupronickel Bobini katmanı ve bir diğer Isıya Dayanıklı Makine Muhafazası katmanından oluşur. Denetleyici alt katmana, kapaklar ise üst veya alt katmana yerleştirilmelidir.
 

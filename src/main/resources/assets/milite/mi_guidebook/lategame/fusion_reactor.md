@@ -19,7 +19,7 @@ item_ids:
 
 The Fusion Reactor is the ultimate energy source! It can combine Deuterium, Tritium, and/or Helium-3 into Helium Plasma, the most powerful fuel in the game!. However, it requires a large amount of energy to ignite the reaction.
 
-<Recipe id="milite:electric_age/machine/fusion_reactor_asbl" />
+<Recipe id="milite:processing_table/fusion_reactor" />
 
 ## Plasma Turbine
 
@@ -29,5 +29,5 @@ The Fusion Reactor is the ultimate energy source! It can combine Deuterium, Trit
 
 The Plasma Turbine can turn Helium Plasma into RF, at the rate of 100 kRF per millibucket. Its maximum production rate is roughly 1 MRF/t.
 
-<Recipe id="milite:electric_age/machine/plasma_turbine_asbl" />
+<Recipe id="milite:processing_table/plasma_turbine" />
 

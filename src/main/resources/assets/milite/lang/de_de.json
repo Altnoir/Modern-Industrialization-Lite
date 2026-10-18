@@ -390,6 +390,7 @@
   "block.milite.trash_can": "Automatischer Mülleimer",
   "block.milite.tritium": "Tritium",
   "block.milite.tungsten_block": "Wolframblock",
+  "block.milite.tungsten_casing": "Wolfram-Gehäuse",
   "block.milite.tungsten_ore": "Wolframerz",
   "block.milite.stainless_steel_fluid_input_hatch": "Edelstahl-Flüssigkeits-Eingangsluke",
   "block.milite.stainless_steel_fluid_output_hatch": "Edelstahl-Flüssigkeits-Ausgangsluke",
@@ -758,6 +759,7 @@
   "tag.milite.replicator_blacklist": "Replikator-Blacklist",
   "text.milite.AcceptAnyFluidFuels": "Verbraucht jeden flüssigen Brennstoff (Prüfe REI für die FE/mb-Produktion)",
   "text.milite.AcceptAnyItemFuels": "Verbraucht jeden Ofenbrennstoff",
+  "text.milite.Build": "Bauen",
   "text.milite.ClickToSeeRecipes": "Klicken, um Rezepte zu sehen",
   "text.milite.GeneratorCurrentFe": "Produktion: %s",
   "text.milite.GeneratorMaxFe": "Maximale Produktion: %s",
@@ -766,11 +768,9 @@
   "text.milite.JetpackDisabled": "Jetpack deaktiviert!",
   "text.milite.JetpackEnabled": "Jetpack aktiviert!",
   "text.milite.JetpackFill": "Treibstoff: %d %%",
-  "text.milite.PriorityTransferHelp": "Rohre interagieren zuerst mit höheren Prioritäten.",
+  "text.milite.MissingMaterials": "Fehlende Materialien",
   "text.milite.SteamDrillFuelHelp": "- Platziere Brennstoff in den Bohrer mit %s.",
   "text.milite.SteamDrillProfit": "- Drücke %s um den 3x3-Abbau umzuschalten.",
   "text.milite.SteamDrillToggle": "- Schalte Behutsamkeit mit %s + %s um.",
-  "text.milite.SteamDrillWaterHelp": "- Drücke %s auf stehendes oder fließendes Wasser zum Füllen.",
-  "text.milite.TransparentCamouflageDisabled": "Transparente Tarndarstellung deaktiviert",
-  "text.milite.TransparentCamouflageEnabled": "Transparente Tarndarstellung aktiviert"
+  "text.milite.SteamDrillWaterHelp": "- Drücke %s auf stehendes oder fließendes Wasser zum Füllen."
 }

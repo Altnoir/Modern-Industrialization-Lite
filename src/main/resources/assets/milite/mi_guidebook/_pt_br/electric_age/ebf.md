@@ -19,7 +19,7 @@ item_ids:
 
 O Alto-forno Elétrico é a versão elétrica do Alto-forno a Vapor. Ele desbloqueia novas receitas e, como outras máquinas multibloco elétricas, seu overclock é limitado a 128 RF/t por padrão.
 
-<Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
+<Recipe id="milite:processing_table/electric_blast_furnace" />
 
 O EBF é composto por uma camada de Estruturas de Máquina à Prova de Calor, duas camadas vazadas de Bobinas de Cuproníquel e mais uma camada de Estruturas de Máquina à Prova de Calor. O controlador deve ficar na camada inferior, e as aberturas nas camadas superior ou inferior.
 

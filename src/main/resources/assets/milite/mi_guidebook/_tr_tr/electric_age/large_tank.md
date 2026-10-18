@@ -13,7 +13,7 @@ item_ids:
 
 Büyük Tank, buhar gibi bazı sıvıları büyük miktarlarda depolamanızı sağlayan bir çoklu bloktur. Yapıdaki her blok için 64 kova değerinde sıvı depolayabilir (kenarlar dahil).
 
-<Recipe id="milite:electric_age/machine/large_tank_asbl" />
+<Recipe id="milite:processing_table/large_tank" />
 
 Büyük Tank, ne kadar depolama alanına ihtiyacınız olduğuna bağlı olarak birçok olası boyuta sahiptir. Denetleyicideki bir düğmeye tıklayarak boyut yapılandırma panelini açabilirsiniz.
 
@@ -23,5 +23,5 @@ Denetleyiciyi kırmayın yoksa depolanan tüm sıvıyı kaybedersiniz!
 
 Büyük Tank Kapağı, Büyük Tank bloğunun bir uzantısı olarak işlev görür. Büyük Tankın menüsünü açmak için sağ tıklayabilirsiniz ve ona bağlı borular doğrudan Büyük Tankın deposuna erişecektir.
 
-<Recipe id="milite:electric_age/machine/large_tank_hatch_asbl" />
+<Recipe id="milite:electric_age/machine/large_tank_hatch" />
 

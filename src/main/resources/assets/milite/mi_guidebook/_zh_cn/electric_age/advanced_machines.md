@@ -40,5 +40,5 @@ item_ids:
 
 它拥有9个可配置槽位，每个槽位可存储16桶流体，并具备自动弹出功能！适用于需要处理多种不同流体的自动化系统！
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 

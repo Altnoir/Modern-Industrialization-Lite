@@ -21,7 +21,7 @@ A Mineradora Elétrica é o equivalente elétrico da Mineradora a Vapor. Forneç
 
 Sua estrutura é a mesma da Mineradora a Vapor, exceto que as paredes são feitas de Estruturas de Máquina de Liga de Alumínio.
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 ## Caldeira Grande de Vapor Avançada
 
@@ -31,5 +31,5 @@ Sua estrutura é a mesma da Mineradora a Vapor, exceto que as paredes são feita
 
 Uma Caldeira Grande de Vapor melhor e maior! Esta versão avançada pode produzir até 1024 mb/t de vapor!
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

@@ -6,7 +6,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.*;
 
@@ -15,6 +17,11 @@ public class TagsToGenerate {
     static final Set<TagKey<Item>> optionalTags = new HashSet<>();
     public static final Map<String, String> tagTranslations = new HashMap<>();
     static final Map<String, Set<String>> tagToBeAddedToAnotherTag = new HashMap<>();
+
+    static {
+        generateTag(Tags.Items.CHESTS, Items.CHEST, "Chests");
+        generateTag(Tags.Items.CHESTS, Items.TRAPPED_CHEST, "Chests");
+    }
 
     static Map<TagKey<Item>, List<Item>> getTags() {
         var ret = HashMap.<TagKey<Item>, List<Item>>newHashMap(tagToItemMap.size());

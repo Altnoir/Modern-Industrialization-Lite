@@ -13,7 +13,7 @@ item_ids:
 
 Petrol Sondaj Makinesi, matkaplar kullanarak ana kayanın altındaki Ham Petrolü kazabilen devasa bir çoklu bloktur. Evet, temelde bir petrol ocağı. Petrol işlemek size bir ton yan ürün ve enerji sağlayacaktır!
 
-<Recipe id="milite:oil/oil_drilling_rig_asbl" />
+<Recipe id="milite:processing_table/oil_drilling_rig" />
 
 Çoklu bloğun yapısı şunlardan oluşur: Alüminyum Alaşımı Makine Muhafazaları, Çelik Boru Makine Muhafazaları ve Zincirler, denetleyiciyi yerleştirerek ve bir Anahtar tutarak görebileceğiniz şekilde. Kapaklar Alüminyum Alaşımı Makine Muhafazaları ile değiştirilebilir, ancak en azından Eşya Girişi, Sıvı Çıkışı ve Enerji Girişi Kapaklarına sahip olduğunuzdan emin olun!
 
@@ -21,7 +21,7 @@ Ham Petrol çeşitli yakıtlara dönüştürülebilir ve daha verimli Kauçuk Le
 
 Dizel Jeneratörde çeşitli yakıtlar yakılabilir ve REI'de her yakıtın kaçRF ürettiğini kontrol edebilirsiniz. Dizel Jeneratör 256 RF/t'ye kadar üretecek.
 
-<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/aluminum_alloy_diesel_generator" />
 
 Dizel Jeneratörler yalnızca ihtiyaç duyduklarında yakıt kullanır, ancak sürekli bir enerji kaynağına ihtiyacınız varsa, eşyalar yerine Büyük Buhar Kazanına sıvı yakıtlar koyabilirsiniz.
 

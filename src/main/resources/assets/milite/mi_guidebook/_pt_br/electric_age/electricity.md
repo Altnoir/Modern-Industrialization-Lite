@@ -13,13 +13,13 @@ item_ids:
 
 A Turbina de Vapor Elétrica usa vapor para produzir eletricidade. Ela converte cada mb de vapor em 1 RF, até 32 mb convertidos por tick.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 A Turbina de Vapor Elétrica enviará automaticamente eletricidade para qualquer máquina colocada diretamente contra o seu lado de saída. Seu buffer interno comporta 256 RF, e ela possui o *Tier* de Baixa Voltagem (LV).
 
 O Gerador à Diesel Elétrica é uma alternativa à Turbina de Vapor Elétrica. Ele usa vários combustíveis para produzir eletricidade. Por enquanto, você pode queimar Creosoto. (Consulte o REI para a lista de combustíveis que podem ser queimados.)
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Energia no Modern Industrialization Lite
 

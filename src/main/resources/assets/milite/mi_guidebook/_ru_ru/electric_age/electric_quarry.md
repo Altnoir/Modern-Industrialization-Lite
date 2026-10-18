@@ -15,9 +15,9 @@ item_ids:
 
 Его структура в точности такая же, как у парового карьера.
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 Большой паровой котел лучше и больше обычного! Эта усовершенствованная версия может производить до 1024 мб/т пара!
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

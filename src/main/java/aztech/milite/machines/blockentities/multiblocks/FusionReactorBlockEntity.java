@@ -22,11 +22,11 @@ public class FusionReactorBlockEntity extends AbstractElectricCraftingMultiblock
     }
 
     /**
-     * The casing of the structure is the highly advanced machine hull, which is the titanium level.
+     * The reactor is the end of the mod's chain, so it runs the highest level of recipe there is.
      */
     @Override
     public MachineLevel getMachineLevel() {
-        return MachineLevel.TITANIUM;
+        return MachineLevel.IRIDIUM;
     }
 
 

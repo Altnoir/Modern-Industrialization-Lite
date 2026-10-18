@@ -20,14 +20,14 @@ public class ConfigurableChestMachineBlockEntity extends MachineBlockEntity impl
     private final MIInventory inventory;
 
     public ConfigurableChestMachineBlockEntity(BEP bep) {
-        super(bep, new MachineGuiParameters.Builder("configurable_chest", true).backgroundHeight(180).build(),
+        super(bep, new MachineGuiParameters.Builder("configurable_chest", true).backgroundHeight(173).build(),
                 new OrientationComponent.Params(true, true, false));
 
         List<ConfigurableItemStack> stacks = new ArrayList<>();
         for (int i = 0; i < 27; i++) {
             stacks.add(ConfigurableItemStack.standardIOSlot(true));
         }
-        SlotPositions itemPositions = new SlotPositions.Builder().addSlots(8, 30, 9, 3).build();
+        SlotPositions itemPositions = new SlotPositions.Builder().addSlots(8, 18, 9, 3).build();
         inventory = new MIInventory(stacks, Collections.emptyList(), itemPositions, SlotPositions.empty());
 
         registerGuiComponent(new AutoExtract(orientation));

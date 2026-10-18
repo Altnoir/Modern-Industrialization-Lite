@@ -7,6 +7,7 @@ import static aztech.milite.materials.set.MaterialSet.*;
 import aztech.milite.api.energy.CableTier;
 import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.items.SortOrder;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.materials.part.*;
 import aztech.milite.materials.property.MaterialProperty;
@@ -307,7 +308,10 @@ public class MIMaterials {
                         .addParts(BOLT, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(WIRE).addParts(BLOCK.of(MaterialBlockSet.GOLD))
                         .addParts(MACHINE_CASING.of("Aluminum Alloy Machine Casing", "aluminum_alloy_machine_casing"))
-                        .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing")).addParts(TANK.of(64))
+                        .addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_SPECIAL.of("Frostproof Machine Casing", "frostproof_machine_casing", 6f,
+                                // 跟耐热之后
+                                SortOrder.CASINGS.withLevel(MachineLevel.values().length).and(Integer.MIN_VALUE + 1),
+                                true)).addParts(TANK.of(64))
                         .addParts(BARREL.of(512)).addRecipes(StandardRecipes::apply)
                         .addRecipes(SmeltingRecipes::apply));
 
@@ -349,7 +353,11 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0xDCDC96)
                         .addParts(MACHINE_CASING_SPECIAL.of(
                                 "Heatproof Machine Casing",
-                                "heatproof_machine_casing"))
+                                "heatproof_machine_casing",
+                                6f,
+                                // 无等级档最前，防冻紧随其后
+                                SortOrder.CASINGS.withLevel(MachineLevel.values().length).and(Integer.MIN_VALUE),
+                                true))
                         .addParts(TINY_DUST, DUST, INGOT, ROD, DOUBLE_INGOT, RING, BOLT, PLATE, NUGGET, GEAR)
                         .addParts(
                                 LARGE_PLATE
@@ -664,6 +672,9 @@ public class MIMaterials {
                         .set(MaterialProperty.HARDNESS, VERY_HARD)
                         .addParts(RAW_METAL.ofAll(MaterialRawSet.COPPER))
                         .addParts(TINY_DUST, DUST, PLATE, INGOT, NUGGET, LARGE_PLATE, DOUBLE_INGOT)
+                        .addParts(MACHINE_CASING_SPECIAL.of("Tungsten Casing", "tungsten_casing", 12000f,
+                                // 线圈之前
+                                SortOrder.COILS.and(Integer.MIN_VALUE)))
                         .addParts(BLOCK.of(MaterialBlockSet.NETHERITE)).addParts(OrePart.ofAll(6, 5, 20, MaterialOreSet.IRON))
                         .addRecipes(StandardRecipes::apply));
 

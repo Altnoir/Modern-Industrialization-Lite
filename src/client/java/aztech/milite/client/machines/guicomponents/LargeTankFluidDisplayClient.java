@@ -20,7 +20,7 @@ import java.util.Optional;
 public class LargeTankFluidDisplayClient extends GuiComponentClient<Unit, LargeTankFluidDisplay.Data> {
     private static final int TANK_WIDTH = 46;
     private static final int TANK_HEIGHT = 64;
-    private static final int TANK_Y = 10;
+    static final int TANK_Y = 10;
     private static final int BUTTON_WIDTH = 46;
     private static final int BUTTON_HEIGHT = 14;
     private static final int BUTTON_SPACING = 2;

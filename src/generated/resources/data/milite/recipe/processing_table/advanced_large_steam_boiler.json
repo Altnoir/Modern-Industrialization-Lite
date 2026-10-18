@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:electronic_circuit"
+  },
+  "key": {
+    "item": "milite:large_steam_boiler"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:advanced_large_steam_boiler"
+  },
+  "second": {
+    "item": "milite:large_pump"
+  }
+}

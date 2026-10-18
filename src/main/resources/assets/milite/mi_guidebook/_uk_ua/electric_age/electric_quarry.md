@@ -21,7 +21,7 @@ item_ids:
 
 Його структура така ж, як у парового кар'єра, за винятком роз'єму входу енергії, але стіни зроблені з обшивок з алюмінієвого сплаву.
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 ## Покращений великий паровий котел
 
@@ -31,4 +31,4 @@ item_ids:
 
 Кращий і більший великий паровий котел! Ця вдосконалена версія може виробляти до 1024 мВ/т пари!
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />

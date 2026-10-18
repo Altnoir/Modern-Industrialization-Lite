@@ -15,7 +15,7 @@ item_ids:
 
 원자력 발전소는 엄청난 양의 전력을 생산하기 위한 멀티블록입니다. 디젤보다 100 배는 많은 양의 전력을 생산할 수 있습니다. 원자력 발전소의 크기는 매우 다양합니다.
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 다음 페이지부터 원자력 발전소의 작동 원리에 대해 설명하고 있지만, 이해하기 어려울 수 있습니다.
 

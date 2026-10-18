@@ -31,6 +31,25 @@ import java.util.function.Function;
 
 public class MachineRegistrationHelper {
 
+    private static final Map<String, List<String>> MACHINE_FOLLOWS = Map.of(
+            "steam_blast_furnace", List.of("bronze_boiler", "large_steam_boiler", "advanced_large_steam_boiler"),
+            "steel_boiler", List.of("steam_quarry"),
+            "steel_wiremill", List.of("large_tank"),
+            "aluminum_alloy_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
+            "stainless_steel_distillery", List.of("distillation_tower"),
+            "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
+            "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",
+                    "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
+            "nuclear_reactor", List.of("fusion_reactor"),
+            "iridium_wiremill", List.of("replicator", "plasma_turbine"));
+
+    private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
+
+    private static final List<String> MACHINE_HEAD = List.of("coke_oven");
+    private static final List<String> MACHINE_TAIL = List.of("configurable_chest", "configurable_tank");
+    private static final int MACHINE_HEAD_RANK = -1;
+    private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
+
     @SafeVarargs
     public static <T extends MachineBlockEntity> MachineDefinition<T> registerMachine(String englishName, String id,
                                                                                       Function<BEP, ? extends T> factory,
@@ -46,7 +65,7 @@ public class MachineRegistrationHelper {
                         .withBlockConstructor((s) -> new MachineBlock(ctor, s))
                         .sound(SoundType.NETHERITE_BLOCK)
                         .withModel((block, gen) -> {
-                            // Model generation is handled in the model provider already.
+                            // 模型在 model provider 里生成
                         })
                         .isValidSpawn(MobSpawning.NO_SPAWN)
                         .isRedstoneConductor(Blocks::never));
@@ -66,25 +85,6 @@ public class MachineRegistrationHelper {
         return new MachineDefinition<>(blockEntityType, blockDefinition);
     }
 
-    private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
-
-    private static final List<String> MACHINE_HEAD = List.of("coke_oven");
-    private static final List<String> MACHINE_TAIL = List.of("configurable_chest", "configurable_tank");
-    private static final int MACHINE_HEAD_RANK = -1;
-    private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
-
-    private static final Map<String, List<String>> MACHINE_FOLLOWS = Map.of(
-            "steam_blast_furnace", List.of("bronze_boiler", "large_steam_boiler", "advanced_large_steam_boiler"),
-            "steel_boiler", List.of("steam_quarry"),
-            "steel_wiremill", List.of("large_tank"),
-            "aluminum_alloy_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
-            "stainless_steel_distillery", List.of("distillation_tower"),
-            "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
-            "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",
-                    "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
-            "titanium_wiremill", List.of("fusion_reactor"),
-            "iridium_wiremill", List.of("replicator", "plasma_turbine"));
-
     private static final List<String> HATCH_KINDS = List.of("item_input", "item_output", "fluid_input", "fluid_output",
             "energy_input", "energy_output");
 
@@ -99,7 +99,7 @@ public class MachineRegistrationHelper {
     }
 
     private static SortOrder machineSortOrder(String id) {
-        // A hatch is a part a multiblock is built from rather than a machine of its own, so it goes with the casings.
+        // 仓是部件，跟机壳排一起
         if (id.endsWith("_hatch")) {
             return hatchSortOrder(id);
         }

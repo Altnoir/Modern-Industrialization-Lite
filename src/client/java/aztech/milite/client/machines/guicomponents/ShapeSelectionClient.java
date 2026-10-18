@@ -66,19 +66,19 @@ public class ShapeSelectionClient extends GuiComponentClient<ShapeSelection.Para
             return Math.clamp(MAX_TRACK_WIDTH / numValues, 1, STEP);
         }
 
-        private int getTrackWidth(int numValues) {
+        int getTrackWidth(int numValues) {
             return getStep(numValues) * numValues;
         }
 
-        private int getTrackLeft(int leftPos) {
+        int getTrackLeft(int leftPos) {
             return leftPos + (backgroundWidth - MAX_TRACK_WIDTH) / 2 + ROW_SHIFT_X;
         }
 
-        private int getLabelX(int leftPos, int numValues) {
+        int getLabelX(int leftPos, int numValues) {
             return getTrackLeft(leftPos) + getTrackWidth(numValues) + GAP;
         }
 
-        private int getRowCenterY(int topPos) {
+        int getRowCenterY(int topPos) {
             return topPos + backgroundHeight - BOTTOM_OFFSET;
         }
 

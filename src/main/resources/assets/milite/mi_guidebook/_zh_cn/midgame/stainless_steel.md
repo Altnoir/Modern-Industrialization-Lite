@@ -27,7 +27,7 @@ item_ids:
 
 你可以用REI查看基础材料，用扳手检查正确的形状！
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 ## 蒸馏塔
 

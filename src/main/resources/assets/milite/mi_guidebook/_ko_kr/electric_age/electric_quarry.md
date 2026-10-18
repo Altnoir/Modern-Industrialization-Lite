@@ -15,9 +15,9 @@ item_ids:
 
 멀티블록 구조는 증기 채석기와 동일합니다.
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 크고, 더 나은 대형 증기 보일러입니다. 1024 RF/t 만큼의 증기를 소비하고, 그만큼의 전기를 만들 수 있습니다.
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

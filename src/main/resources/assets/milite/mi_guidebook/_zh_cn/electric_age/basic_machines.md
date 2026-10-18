@@ -21,7 +21,7 @@ item_ids:
 
 它具备27个可配置槽位及自动弹出功能！对自动化系统非常实用！
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 两极磁化机用于极化物品。当前配方虽不多，但已可用于自动化生产马达！
 

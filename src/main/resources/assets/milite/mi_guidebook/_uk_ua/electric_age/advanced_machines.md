@@ -40,5 +40,5 @@ item_ids:
 
 Він має 9 налаштовуваних слотів, кожен з яких може вмістити 16 відер, і функцію автоматичного витягування! Корисно для автоматизації з багатьма різними рідинами!
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 

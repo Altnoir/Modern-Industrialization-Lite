@@ -9,6 +9,7 @@ import aztech.milite.machines.ComponentStorage;
 import aztech.milite.MIRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 
 public abstract class MachineMenuCommon extends ConfigurableScreenHandler implements GuiComponent.MenuFacade {
@@ -58,6 +59,10 @@ public abstract class MachineMenuCommon extends ConfigurableScreenHandler implem
     @Override
     public MIInventory getMachineInventory() {
         return inventory;
+    }
+
+    public Player getPlayer() {
+        return playerInventory.player;
     }
 
     @Override

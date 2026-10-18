@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:steam_quarry"
+  },
+  "key": {
+    "item": "milite:aluminum_alloy_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:electric_quarry"
+  },
+  "second": {
+    "item": "milite:electronic_circuit"
+  }
+}

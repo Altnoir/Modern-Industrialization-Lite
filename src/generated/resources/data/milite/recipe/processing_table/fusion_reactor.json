@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:quantum_circuit"
+  },
+  "key": {
+    "item": "milite:iridium_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:fusion_reactor"
+  },
+  "second": {
+    "item": "milite:tungsten_large_plate"
+  }
+}

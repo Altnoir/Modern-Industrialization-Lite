@@ -17,7 +17,7 @@ item_ids:
 
 A Plataforma de Perfuração de Petróleo é um enorme multibloco que pode perfurar para encontrar Petróleo Bruto sob a base de pedra usando brocas. Sim, basicamente é uma mina de petróleo. O processamento do petróleo te dará muitos subprodutos e energia!
 
-<Recipe id="milite:oil/oil_drilling_rig_asbl" />
+<Recipe id="milite:processing_table/oil_drilling_rig" />
 
 A estrutura do multibloco é feita de: Estruturas de Máquina de Liga de Alumínio, Estruturas de Máquina com Tubulação de Aço e Correntes, como você pode ver ao colocar o controlador e segurar uma Chave Inglesa. As Escotilhas podem ser substituídas por Estruturas de Máquina de Liga de Alumínio, mas certifique-se de ter pelo menos Escotilhas de Entrada de Itens, Saída de Fluidos e Entrada de Energia!
 
@@ -25,7 +25,7 @@ O Petróleo Bruto pode ser transformado em vários combustíveis e usado para um
 
 Diversos combustíveis podem ser queimados no Gerador a Diesel, e você pode verificar no JEI quantos RF cada combustível produz. O Gerador a Diesel produzirá até 256 RF/t.
 
-<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/aluminum_alloy_diesel_generator" />
 
 Os Geradores a Diesel só usarão combustível quando precisarem, mas se você precisar de um suprimento constante de energia, pode colocar combustíveis líquidos na Caldeira de Vapor Grande em vez de itens.
 

@@ -25,7 +25,7 @@ REIを使えば、すでに使い慣れた機械の電動版レシピを見る�
 
 27個の設定可能なスロットがあり、自動搬出機能がある！自動化にとても便利！
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 着磁機は物体を磁化する。まだレシピは多くないが、モーターの自動化にはもう役立っている！
 

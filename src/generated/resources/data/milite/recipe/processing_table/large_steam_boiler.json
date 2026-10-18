@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:analog_circuit"
+  },
+  "key": {
+    "item": "milite:bronze_boiler"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:large_steam_boiler"
+  },
+  "second": {
+    "item": "milite:bronze_plate"
+  }
+}

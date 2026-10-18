@@ -20,7 +20,7 @@ item_ids:
 
 The Nuclear Reactor is a large multiblock whose purpose is to generate massive amounts of energy by consuming nuclear fuel. It can produce 100s of times more RF/t than diesel. It comes in several sizes from small to large.
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 To produce power using the Nuclear Reactor, you need to place some form of Water in a Nuclear Fluid Hatch. It will turn into Steam that can then be used to produce power, possibly by running it through a Heat Exchanger first.
 

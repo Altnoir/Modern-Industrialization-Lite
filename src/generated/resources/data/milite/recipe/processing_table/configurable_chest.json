@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "tag": "c:chests"
+  },
+  "key": {
+    "item": "milite:steel_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:configurable_chest"
+  },
+  "second": {
+    "item": "milite:analog_circuit"
+  }
+}

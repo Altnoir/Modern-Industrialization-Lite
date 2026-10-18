@@ -15,7 +15,7 @@ item_ids:
 
 Nükleer Reaktör, amacı nükleer yakıt tüketerek büyük miktarlarda enerji üretmek olan büyük bir çoklu bloktur. Dizele göre 100'lerce kat daha fazla RF/t üretebilir. Küçükten büyüğe çeşitli boyutlarda mevcuttur.
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 Nükleer Reaktör kullanarak güç üretmek için Nükleer Sıvı Kapağına bir çeşit Su yerleştirmeniz gerekir. Buhar haline dönüşecek ve muhtemelen önce bir Isı Değiştiriciden geçirilerek güç üretmek için kullanılabilecektir.
 

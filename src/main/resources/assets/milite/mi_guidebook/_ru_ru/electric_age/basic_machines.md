@@ -30,5 +30,5 @@ item_ids:
 
 Он имеет 21 настраиваемый слот и функцию автоматического извлечения! Очень полезно для автоматизации!
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 

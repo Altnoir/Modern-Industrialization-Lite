@@ -13,9 +13,9 @@ item_ids:
 
 Kompakt güç üretimi için bir Paslanmaz Çelik Dizel Jeneratör kullanabileceğinizi unutmayın. Tahmin edebileceğiniz gibi, 1024 RF/t'ye kadar üretir. Her yakıtta depolanan enerji miktarını REI ile bulabileceğinizi unutmayın.
 
-<Recipe id="milite:electric_age/machine/stainless_steel_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/stainless_steel_diesel_generator" />
 
 İşleme ünitelerine ve son derece gelişmiş makine gövdelerine erişiminiz olduğunda, birkaç Büyük Dizel Jeneratör yapmayı düşünün. Bu kötü çocukların her biri yakıtı 16384 RF/t'ye kadar RF'ya dönüştürecektir!
 
-<Recipe id="milite:electric_age/machine/large_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/large_diesel_generator" />
 

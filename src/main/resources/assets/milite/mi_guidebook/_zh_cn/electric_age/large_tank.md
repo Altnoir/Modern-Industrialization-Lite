@@ -18,7 +18,7 @@ item_ids:
 
 大型储罐是一个多方块结构，可以储存大量流体，例如蒸汽。结构中的每个方块（包括侧面）都可以存储64桶流体。
 
-<Recipe id="milite:electric_age/machine/large_tank_asbl" />
+<Recipe id="milite:processing_table/large_tank" />
 
 大型储罐可根据存储需求配置多种尺寸。点击控制器上的按钮即可打开尺寸配置面板。
 
@@ -28,5 +28,5 @@ item_ids:
 
 大型储罐仓是大型储罐方块的延伸。右击仓室可打开大型储罐的界面，与之连接的管道将直接访问大型储罐的存储空间。
 
-<Recipe id="milite:electric_age/machine/large_tank_hatch_asbl" />
+<Recipe id="milite:electric_age/machine/large_tank_hatch" />
 

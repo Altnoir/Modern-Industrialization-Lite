@@ -13,13 +13,13 @@ item_ids:
 
 Електрична парова турбіна використовує пару для виробництва електроенергії. Він перетворює кожен mb пари на 1 RF, до 32 mb за кожен такт.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 Електрична парова турбіна автоматично надсилає електроенергію будь-якій машині, розміщеній безпосередньо впритул до її вихідної сторони. Його внутрішній буфер вміщує 256 RF, і він має *рівень* низької напруги (LV).
 
 Електричний дизельний генератор — альтернатива паровій турбіні. Він використовує різні види палива для виробництва електроенергії. Наразі ви можете спалювати креозот. (Перелік спалюваного палива див. у REI).
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Енергія в Modern Industrialization Lite
 

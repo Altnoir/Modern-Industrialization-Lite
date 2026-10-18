@@ -27,7 +27,7 @@ Fundir o pó de aço inoxidável no Alto-Forno Elétrico (EBF) vai gerar lingote
 
 Você pode conferir os materiais base no JEI e a forma exata usando uma chave inglesa!
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 ## Torre de Destilação
 

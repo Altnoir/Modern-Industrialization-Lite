@@ -22,5 +22,5 @@ Using Industrial TNT, the Implosion Compressor is able to compress dust and ingo
 
 Hopefully you have learned to check every REI recipe by now, so you should easily find that Blastproof Mixed Ingots and Tungsten Nuggets can be made with a Compressor... until you have your first Implosion Compressor of course!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

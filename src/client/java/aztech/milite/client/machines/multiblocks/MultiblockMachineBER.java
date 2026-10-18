@@ -8,23 +8,95 @@ import aztech.milite.machines.multiblocks.HatchFlags;
 import aztech.milite.machines.multiblocks.HatchType;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.milite.machines.multiblocks.ShapeMatcher;
+import aztech.milite.machines.multiblocks.ShapeTemplate;
+import aztech.milite.machines.multiblocks.SimpleMember;
 import aztech.milite.MITags;
+import aztech.milite.MI;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockMachineBlockEntity> {
+    private static final int HIGHLIGHT_CACHE_TICKS = 10;
+    private static final Map<MultiblockMachineBlockEntity, HighlightScan> highlightScans = new WeakHashMap<>();
+    private static boolean loggedOutlineHighlight = false;
+
     public MultiblockMachineBER(BlockEntityRendererProvider.Context ctx) {
         super(ctx);
+    }
+
+    private static boolean isClose(BlockPos pos, double maxDistanceSqr) {
+        Player player = Minecraft.getInstance().player;
+        return player == null || player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) <= maxDistanceSqr;
+    }
+
+    /**
+     * Returns the cached scan of the shape, recomputed at most once every {@link #HIGHLIGHT_CACHE_TICKS} ticks and
+     * invalidated by a shape change, a rotation or a shape validity change.
+     */
+    private static HighlightScan getScan(MultiblockMachineBlockEntity be, boolean shapeValid) {
+        Level level = be.getLevel();
+        ShapeTemplate shape = be.getActiveShape();
+        Direction facing = be.getOrientation().facingDirection;
+        long timeBucket = level.getGameTime() / HIGHLIGHT_CACHE_TICKS;
+
+        HighlightScan cached = highlightScans.get(be);
+        if (cached != null && cached.shape() == shape && cached.facing() == facing && cached.shapeValid() == shapeValid
+                && cached.timeBucket() == timeBucket) {
+            return cached;
+        }
+
+        HighlightScan scan = scan(be, level, shape, facing, shapeValid, timeBucket);
+        highlightScans.put(be, scan);
+        return scan;
+    }
+
+    private static HighlightScan scan(MultiblockMachineBlockEntity be, Level level, ShapeTemplate shape, Direction facing, boolean shapeValid,
+            long timeBucket) {
+        ShapeMatcher matcher = be.createShapeMatcher();
+        List<BlockPos> blocked = new ArrayList<>();
+        List<MissingPreview> previews = new ArrayList<>();
+        List<HatchPreview> hatches = new ArrayList<>();
+
+        for (BlockPos pos : matcher.getPositions()) {
+            HatchFlags hatchFlags = matcher.getHatchFlags(pos);
+            if (hatchFlags != null) {
+                hatches.add(new HatchPreview(pos, hatchFlags));
+            }
+
+            if (shapeValid || matcher.matches(pos, level)) {
+                // A completed shape has no blocked or missing position, so only the hatch positions are needed.
+                continue;
+            }
+
+            BlockState state = level.getBlockState(pos);
+            if (state.isAir() || state.canBeReplaced()) {
+                SimpleMember member = matcher.getSimpleMember(pos);
+                BlockState previewState = ShapeMatcher.toWorldState(level, pos, member.getPreviewState(), matcher.controllerDirection);
+                previews.add(new MissingPreview(pos, previewState, member.newBlockEntity(level.registryAccess(), level, pos, previewState)));
+            } else {
+                blocked.add(pos);
+            }
+        }
+
+        return new HighlightScan(shape, facing, shapeValid, timeBucket, List.copyOf(blocked), List.copyOf(previews), List.copyOf(hatches));
     }
 
     @Override
@@ -33,45 +105,63 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
 
         int maxHighlightDistance = MIClientConfig.INSTANCE.maxMultiblockHighlightOverlayRange.getAsInt();
         if (maxHighlightDistance == 0) {
+            highlightScans.remove(be);
             return;
         }
 
-        boolean drawHighlights = isHoldingWrench() && !be.isShapeValid();
+        boolean shapeValid = be.isShapeValid();
+        boolean holdingWrench = isHoldingWrench();
+        boolean drawWrenchHighlights = holdingWrench && !shapeValid;
+        boolean drawOutline = !holdingWrench && !shapeValid;
         HatchType hatchType = getHeldHatchType();
-        if (drawHighlights || hatchType != null) {
-            ShapeMatcher matcher = be.createShapeMatcher();
-            var player = Minecraft.getInstance().player;
 
-            for (BlockPos pos : matcher.getPositions()) {
-                if (player != null && player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) > maxHighlightDistance * maxHighlightDistance) {
-                    // Skip blocks that are far from the player to mitigate FPS drops.
-                    continue;
-                }
+        if ((!drawWrenchHighlights && !drawOutline && hatchType == null) || be.getLevel() == null) {
+            // Nothing to draw. In particular, a completed shape is never scanned again.
+            highlightScans.remove(be);
+            return;
+        }
 
-                HatchFlags hatchFlag = matcher.getHatchFlags(pos);
-                if (hatchType != null) {
-                    if (MIClientConfig.INSTANCE.hatchPlacementOverlay.getAsBoolean() && hatchFlag != null && hatchFlag.allows(hatchType)) {
-                        // Highlight placeable hatches in green
-                        MultiblockHighlight.enqueueHatchHighlight(pos);
-                    }
+        HighlightScan scan = getScan(be, shapeValid);
+        double maxDistanceSqr = (double) maxHighlightDistance * maxHighlightDistance;
+
+        if (hatchType != null && MIClientConfig.INSTANCE.hatchPlacementOverlay.getAsBoolean()) {
+            for (HatchPreview hatch : scan.hatches()) {
+                if (hatch.flags().allows(hatchType) && isClose(hatch.pos(), maxDistanceSqr)) {
+                    MultiblockHighlight.enqueueHatchHighlight(hatch.pos());
                 }
-                if (drawHighlights) {
-                    if (!matcher.matches(pos, be.getLevel())) {
-                        var existingState = be.getLevel().getBlockState(pos);
-                        if (existingState.isAir() || /* approximate check for e.g. grass and snow */ existingState.canBeReplaced()) {
-                            var member = matcher.getSimpleMember(pos);
-                            var state = ShapeMatcher.toWorldState(be.getLevel(), pos, member.getPreviewState(), matcher.controllerDirection);
-                            var blockEntity = member.newBlockEntity(be.getLevel().registryAccess(), be.getLevel(), pos, state);
-                            MultiblockHighlight.enqueueErrorHighlight(pos, state, blockEntity);
-                        } else {
-                            // Enqueue red cube
-                            MultiblockHighlight.enqueueErrorHighlight(pos, null, null);
-                        }
+            }
+        }
+
+        if (drawWrenchHighlights) {
+            for (MissingPreview preview : scan.previews()) {
+                if (isClose(preview.pos(), maxDistanceSqr)) {
+                    MultiblockHighlight.enqueueErrorHighlight(preview.pos(), preview.state(), preview.blockEntity());
+                }
+            }
+            for (BlockPos pos : scan.blocked()) {
+                if (isClose(pos, maxDistanceSqr)) {
+                    MultiblockHighlight.enqueueBlockedHighlight(pos);
+                }
+            }
+        } else if (drawOutline) {
+            for (BlockPos pos : scan.blocked()) {
+                if (isClose(pos, maxDistanceSqr)) {
+                    if (!loggedOutlineHighlight) {
+                        loggedOutlineHighlight = true;
+                        MI.LOGGER.debug("Highlighting the blocked multiblock position at {} (outline only)", pos);
                     }
+                    MultiblockHighlight.enqueueOutlineHighlight(pos);
                 }
             }
         }
     }
+
+    private record MissingPreview(BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {}
+
+    private record HatchPreview(BlockPos pos, HatchFlags flags) {}
+
+    private record HighlightScan(ShapeTemplate shape, Direction facing, boolean shapeValid, long timeBucket, List<BlockPos> blocked,
+            List<MissingPreview> previews, List<HatchPreview> hatches) {}
 
     private static boolean isHoldingWrench() {
         Player player = Minecraft.getInstance().player;

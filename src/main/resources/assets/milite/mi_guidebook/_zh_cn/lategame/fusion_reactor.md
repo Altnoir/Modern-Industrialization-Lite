@@ -19,7 +19,7 @@ item_ids:
 
 聚变反应堆是终极的能量源！它可以将氘、氚和/或氦-3结合成氦等离子体，这是游戏中最强大的燃料！然而，它需要大量的能量来点燃反应。
 
-<Recipe id="milite:electric_age/machine/fusion_reactor_asbl" />
+<Recipe id="milite:processing_table/fusion_reactor" />
 
 ## 等离子涡轮机
 
@@ -29,5 +29,5 @@ item_ids:
 
 等离子涡轮机可以将氦等离子体转化为RF，转化率为100 kRF/mB。其最大功率约为1 MRF/t。
 
-<Recipe id="milite:electric_age/machine/plasma_turbine_asbl" />
+<Recipe id="milite:processing_table/plasma_turbine" />
 

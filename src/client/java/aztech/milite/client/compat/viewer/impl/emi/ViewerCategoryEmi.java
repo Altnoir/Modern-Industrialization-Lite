@@ -223,6 +223,34 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
         }
     }
 
+    private static void processIngredient(EmiRecipe recipe, WidgetHolder widgets, IngredientBuilder ing, boolean isInput) {
+        if (!ing.isVisible) {
+            return;
+        }
+
+        if (ing.isFluid) {
+            createFluidSlotBackground(widgets, ing.x, ing.y);
+        }
+        var slot = widgets.addSlot(ing.ing, ing.x - 1 - 4, ing.y - 1 - 4);
+        if (!isInput) {
+            slot.recipeContext(recipe);
+        }
+        if (!ing.hasBackground) {
+            slot.drawBack(false);
+        } else if (!ing.isFluid) {
+            slot.customBackground(MachineScreen.SLOT_ATLAS, isInput ? 0 : 36, 0, 18, 18);
+        }
+        if (ing.isCatalyst) {
+            slot.catalyst(true);
+        }
+    }
+
+    private static void createFluidSlotBackground(WidgetHolder widgets, int x, int y) {
+        widgets.addDrawable(0, 0, 0, 0, (guiGraphics, mouseX, mouseY, delta) -> {
+            guiGraphics.blit(MachineScreen.SLOT_ATLAS, x - 1 - 4, y - 1 - 4, 18, 0, 18, 18);
+        });
+    }
+
     public class ViewerRecipe implements EmiRecipe {
         final D recipe;
         private final List<EmiIngredient> inputs;
@@ -365,10 +393,11 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
                                 draw.drawString(Minecraft.getInstance().font, amount, 0, 0, -1, true);
                                 draw.pose().popPose();
                             }
-                        });
+                        }).customBackground(MachineScreen.SLOT_ATLAS, 0, 0, 18, 18);
                     }
                     for (; index < pageSize; index++) {
-                        widgets.addSlot(EmiStack.EMPTY, index % cols * 18 + offsetX, index / cols * 18 + offsetY);
+                        widgets.addSlot(EmiStack.EMPTY, index % cols * 18 + offsetX, index / cols * 18 + offsetY)
+                                .customBackground(MachineScreen.SLOT_ATLAS, 0, 0, 18, 18);
                     }
                 }
             });
@@ -392,32 +421,6 @@ class ViewerCategoryEmi<D> extends EmiRecipeCategory {
         @Override
         public boolean supportsRecipeTree() {
             return !excludeFromTree && EmiRecipe.super.supportsRecipeTree();
-        }
-    }
-
-    private static void createFluidSlotBackground(WidgetHolder widgets, int x, int y) {
-        widgets.addDrawable(0, 0, 0, 0, (guiGraphics, mouseX, mouseY, delta) -> {
-            guiGraphics.blit(MachineScreen.SLOT_ATLAS, x - 1 - 4, y - 1 - 4, 18, 0, 18, 18);
-        });
-    }
-
-    private static void processIngredient(EmiRecipe recipe, WidgetHolder widgets, IngredientBuilder ing, boolean isInput) {
-        if (!ing.isVisible) {
-            return;
-        }
-
-        if (ing.isFluid) {
-            createFluidSlotBackground(widgets, ing.x, ing.y);
-        }
-        var slot = widgets.addSlot(ing.ing, ing.x - 1 - 4, ing.y - 1 - 4);
-        if (!isInput) {
-            slot.recipeContext(recipe);
-        }
-        if (!ing.hasBackground) {
-            slot.drawBack(false);
-        }
-        if (ing.isCatalyst) {
-            slot.catalyst(true);
         }
     }
 }

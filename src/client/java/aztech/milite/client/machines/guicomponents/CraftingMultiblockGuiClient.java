@@ -28,6 +28,10 @@ public class CraftingMultiblockGuiClient extends GuiComponentClient<Unit, Crafti
         return data.isShapeValid();
     }
 
+    boolean matchesMultipleRecipes() {
+        return data.matchesMultipleRecipes();
+    }
+
     @Override
     public ClientComponentRenderer createRenderer(MachineScreen machineScreen) {
         return new Renderer();

@@ -13,13 +13,13 @@ item_ids:
 
 Elektrik Buhar Türbini elektrik üretmek için buhar kullanır. Her mb buharı 1 RF'ye dönüştürür ve her tikte en fazla 32 mb dönüştürür.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 Elektrik Buhar Türbini, çıkış tarafına doğrudan bitişik yerleştirilmiş her makineye otomatik olarak elektrik gönderir. Dahili arabelleği 256 RF tutabilir ve Alçak Gerilim (LV) *Kademesine* sahiptir.
 
 Elektrik Dizel Jeneratör, Elektrik Buhar Türbinine bir alternatiftir. Elektrik üretmek için çeşitli yakıtlar kullanır. Şimdilik Kreozot yakabilirsiniz. (Yakılabilir yakıtların listesi için REI'ye bakın).
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Modern Industrialization Lite'ta Enerji
 

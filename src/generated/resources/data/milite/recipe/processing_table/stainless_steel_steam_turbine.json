@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:digital_circuit"
+  },
+  "key": {
+    "item": "milite:stainless_steel_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_steam_turbine"
+  },
+  "second": {
+    "item": "milite:stainless_steel_rotor"
+  }
+}

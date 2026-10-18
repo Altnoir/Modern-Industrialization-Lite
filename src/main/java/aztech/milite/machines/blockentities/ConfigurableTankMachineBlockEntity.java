@@ -21,14 +21,14 @@ public class ConfigurableTankMachineBlockEntity extends MachineBlockEntity imple
     private final MIInventory inventory;
 
     public ConfigurableTankMachineBlockEntity(BEP bep) {
-        super(bep, new MachineGuiParameters.Builder("configurable_tank", true).backgroundHeight(170).build(),
+        super(bep, new MachineGuiParameters.Builder("configurable_tank", true).backgroundHeight(173).build(),
                 new OrientationComponent.Params(true, false, true));
 
         List<ConfigurableFluidStack> stacks = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             stacks.add(ConfigurableFluidStack.standardIOSlot(16 * FluidType.BUCKET_VOLUME, true));
         }
-        SlotPositions fluidPositions = new SlotPositions.Builder().addSlots(68, 20, 3, 3).build();
+        SlotPositions fluidPositions = new SlotPositions.Builder().addSlots(62, 18, 3, 3).build();
         inventory = new MIInventory(Collections.emptyList(), stacks, SlotPositions.empty(), fluidPositions);
 
         registerGuiComponent(new AutoExtract(orientation));

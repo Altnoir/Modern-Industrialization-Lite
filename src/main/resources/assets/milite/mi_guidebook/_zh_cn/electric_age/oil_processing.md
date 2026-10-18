@@ -17,7 +17,7 @@ item_ids:
 
 石油钻机是一个巨大的多方块结构，它能利用钻头穿透基岩开采原油。是的，它本质上就是一个采油场。石油加工将为你提供大量副产品和能源！
 
-<Recipe id="milite:oil/oil_drilling_rig_asbl" />
+<Recipe id="milite:processing_table/oil_drilling_rig" />
 
 该多方块结构由以下部件构成：铝合金机器外壳、钢管道机器外壳和锁链，放置控制器后手持扳手即可查看。仓室可用铝合金机器外壳替代，但请确保至少保留物品输入仓、流体输出仓和能量输入仓！
 
@@ -25,7 +25,7 @@ item_ids:
 
 柴油发电机可以燃烧多种燃料，你可以在REI中查看每种燃料产生的RF量。柴油发电机最高可产出256 RF/t。
 
-<Recipe id="milite:electric_age/machine/aluminum_alloy_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/aluminum_alloy_diesel_generator" />
 
 柴油发电机仅在需要时消耗燃料，但如果你需要稳定的能量供应，也可以将液态燃料注入大型蒸汽锅炉以替代物品。
 

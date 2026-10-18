@@ -30,5 +30,5 @@ REI를 사용해서 각종 전기 기계들의 사용처를 확인하실 수 있
 
 21칸의 설정 가능한 슬롯을 가지고 있고, 자동 반출 기능도 있습니다. 자동화에 정말 유용한 상자입니다.
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 

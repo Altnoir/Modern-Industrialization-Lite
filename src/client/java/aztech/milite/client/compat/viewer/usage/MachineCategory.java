@@ -151,7 +151,7 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
             guiGraphics.pose().scale(0.5f, 0.5f, 0.5f);
             switch (params.steamMode) {
                 case BOTH -> {
-                    guiGraphics.blit(MachineScreen.SLOT_ATLAS, -2, -2, 94, 18, 20, 20);
+                    guiGraphics.blit(MachineScreen.SLOT_ATLAS, 0, 0, 80, 19, 18, 18);
                 }
                 case STEAM_ONLY -> {
                     guiGraphics.blit(MI.id("textures/item/steam_bucket.png"), 0, 0, 0, 0, 16, 16, 16, 16);

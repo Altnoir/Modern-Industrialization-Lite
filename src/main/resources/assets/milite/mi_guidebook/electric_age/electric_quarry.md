@@ -21,7 +21,7 @@ The Electric Quarry is the electric equivalent of the Steam Quarry. Provide it w
 
 Its structure is the same as the Steam Quarry's, except that the walls are made of Aluminum Alloy Machine Casings instead of Steel Machine Casings.
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 ## Advanced Large Steam Boiler
 
@@ -31,5 +31,5 @@ Its structure is the same as the Steam Quarry's, except that the walls are made 
 
 A better and bigger Large Steam Boiler! This advanced version can produce up to 1024 mb/t of steam!
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

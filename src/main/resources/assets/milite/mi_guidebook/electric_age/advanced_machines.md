@@ -40,5 +40,5 @@ The Configurable Tank is the fluid equivalent of the Configurable Chest.
 
 It has 9 configurable slots that can each hold 16 buckets, and auto-eject functionality! Useful for automation with many different fluids!
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 

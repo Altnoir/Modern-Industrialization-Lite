@@ -42,6 +42,8 @@ class ViewerCategoryJei<D> extends AbstractRecipeCategory<D> {
     public final ViewerCategory<D> wrapped;
     public final RecipeType<D> recipeType;
     private final IDrawable fluidSlot;
+    private final IDrawable itemSlot;
+    private final IDrawable outputSlot;
 
     public ViewerCategoryJei(IJeiHelpers helpers, ViewerCategory<D> wrapped) {
         super(
@@ -57,6 +59,8 @@ class ViewerCategoryJei<D> extends AbstractRecipeCategory<D> {
 
         var guiHelper = helpers.getGuiHelper();
         this.fluidSlot = guiHelper.createDrawable(MachineScreen.SLOT_ATLAS, 18, 0, 18, 18);
+        this.itemSlot = guiHelper.createDrawable(MachineScreen.SLOT_ATLAS, 0, 0, 18, 18);
+        this.outputSlot = guiHelper.createDrawable(MachineScreen.SLOT_ATLAS, 36, 0, 18, 18);
     }
 
     @Override
@@ -87,13 +91,13 @@ class ViewerCategoryJei<D> extends AbstractRecipeCategory<D> {
             @Override
             public void scrollableSlots(int cols, int rows, List<SizedIngredient> ingredients) {
                 for (var ingredient : ingredients) {
-                    builder.addInputSlot().addItemStacks(Arrays.asList(ingredient.getItems()));
+                    builder.addInputSlot().setBackground(itemSlot, -1, -1).addItemStacks(Arrays.asList(ingredient.getItems()));
                 }
             }
 
             private ViewerCategory.SlotBuilder slot(RecipeIngredientRole role, int x, int y) {
                 var slotBuilder = builder.addSlot(role, x - 4, y - 4)
-                        .setStandardSlotBackground();
+                        .setBackground(role == RecipeIngredientRole.OUTPUT ? outputSlot : itemSlot, -1, -1);
 
                 return new ViewerCategory.SlotBuilder() {
                     @Override

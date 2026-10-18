@@ -11,13 +11,13 @@ item_ids:
 
 Электрическая паровая турбина использует пар для производства электроэнергии. Она преобразует каждый mb пара в 1 RF, до 32 mb за каждый тик.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 Электрическая паровая турбина автоматически подаёт электричество любой машине, установленной вплотную к её выходной стороне. Её внутренний буфер вмещает 256 RF, а её *уровень* — низкое напряжение (LV).
 
 Электрический дизельный генератор — альтернатива паровой турбине. Он использует различные виды топлива для производства электроэнергии. Пока что вы можете сжигать креозот. (Список сжигаемых видов топлива см. в REI).
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Энергия в Modern Industrialization Lite
 

@@ -19,7 +19,7 @@ item_ids:
 
 大型蒸汽锅炉是较小型的青铜和钢锅炉的升级版本。其燃料消耗速度是熔炉的8倍，但在完全加热时能以256 mB/t的速度产生蒸汽。
 
-<Recipe id="milite:electric_age/machine/large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/large_steam_boiler" />
 
 与单方块版本不同，在大型蒸汽锅炉中，任何未消耗热量的80%都会损失掉。这意味着，当输出功率降至最大值以下时，燃料消耗产生的能量比例将大幅下降。这种情况会在锅炉未以最大输出功率持续运行时发生。
 

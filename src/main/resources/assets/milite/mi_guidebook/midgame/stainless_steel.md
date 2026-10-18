@@ -27,7 +27,7 @@ Smelting stainless steel dust in an EBF will give you hot ingots, which you can 
 
 You can check the base materials with REI, and the exact shape with a wrench!
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 ## Distillation Tower
 

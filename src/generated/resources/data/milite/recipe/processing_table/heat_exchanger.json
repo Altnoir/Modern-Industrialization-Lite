@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:large_heat_exchanger"
+  },
+  "key": {
+    "item": "milite:stainless_steel_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:heat_exchanger"
+  },
+  "second": {
+    "item": "milite:stainless_steel_machine_casing_pipe"
+  }
+}

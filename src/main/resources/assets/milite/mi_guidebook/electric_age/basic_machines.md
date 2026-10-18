@@ -23,7 +23,7 @@ The Configurable Chest is not a machine, but once you have Analog Circuits, you 
 
 It has 27 configurable slots, and auto-eject functionality! Very useful for automation!
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 The Polarizer polarizes stuff. It doesn't have many recipes yet, but it is already useful to automate Motors!
 

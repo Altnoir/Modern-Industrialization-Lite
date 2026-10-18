@@ -29,6 +29,7 @@ public class ConnectedTexturesProvider implements DataProvider {
             "nuclear_casing",
             "plasma_handling_iridium_machine_casing",
             "solid_titanium_machine_casing",
+            "tungsten_casing",
             "cupronickel_coil",
             "kanthal_coil",
             "superconductor_coil");

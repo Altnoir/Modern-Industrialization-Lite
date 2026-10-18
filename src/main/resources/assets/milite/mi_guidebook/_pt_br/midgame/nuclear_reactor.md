@@ -20,7 +20,7 @@ item_ids:
 
 O Reator Nuclear é um grande multibloco cujo propósito é gerar enormes quantidades de energia consumindo combustível nuclear. Ele pode produzir centenas de vezes mais RF/t do que o diesel. Existem versões de tamanhos variados, de pequenas a grandes.
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 Para gerar energia com o Reator Nuclear, você precisa colocar algum tipo de água em uma Escotilha de Fluidos Nucleares. Ela será convertida em vapor, que pode ser usado para gerar energia, possivelmente passando antes por um Trocador de Calor.
 

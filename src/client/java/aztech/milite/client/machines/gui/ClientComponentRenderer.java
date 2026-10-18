@@ -18,6 +18,11 @@ public interface ClientComponentRenderer {
     void renderBackground(GuiGraphics guiGraphics, int leftPos, int topPos);
 
     /**
+     * Called after the background of every other component was rendered.
+     */
+    default void renderForeground(GuiGraphics guiGraphics, int leftPos, int topPos) {}
+
+    /**
      * @return true if a tooltip was rendered, false otherwise
      */
     default boolean renderTooltip(MachineScreen screen, Font font, GuiGraphics guiGraphics, int leftPos, int topPos, int cursorX, int cursorY) {

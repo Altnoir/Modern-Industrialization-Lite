@@ -18,7 +18,7 @@ item_ids:
 
 O Tanque Grande é um multibloco que permite armazenar grandes quantidades de um fluido, por exemplo vapor. Ele pode armazenar 64 baldes de fluido para cada bloco na estrutura (incluindo as laterais).
 
-<Recipe id="milite:electric_age/machine/large_tank_asbl" />
+<Recipe id="milite:processing_table/large_tank" />
 
 O Tanque Grande tem vários tamanhos possíveis, dependendo de quanto armazenamento você precisa. Você pode abrir o painel de configuração de tamanho clicando em um botão no controlador.
 
@@ -28,5 +28,5 @@ Não quebre o controlador ou você perderá todo o fluido armazenado!
 
 A Escotilha Grande de Tanque funciona como uma extensão do bloco do Tanque Grande. Você pode clicar com o botão direito nela para abrir o menu do Tanque Grande, e os tubos conectados a ela acessarão diretamente o armazenamento do Tanque Grande.
 
-<Recipe id="milite:electric_age/machine/large_tank_hatch_asbl" />
+<Recipe id="milite:electric_age/machine/large_tank_hatch" />
 

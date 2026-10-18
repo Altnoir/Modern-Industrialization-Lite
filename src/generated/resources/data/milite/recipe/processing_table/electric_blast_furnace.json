@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "minecraft:blast_furnace"
+  },
+  "key": {
+    "item": "milite:electric_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:electric_blast_furnace"
+  },
+  "second": {
+    "item": "milite:cupronickel_wire_magnetic"
+  }
+}

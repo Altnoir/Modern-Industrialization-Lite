@@ -19,7 +19,7 @@ item_ids:
 
 The Large Steam Boiler is an upgraded version of the smaller Bronze and Steel Boilers. It uses fuels 8 times faster than the Furnace, but it produces 256 mb/t of Steam when fully heated. The Large Steam Boiler also produces twice as much energy when burning item fuels (such as coal). It does not receive this same benefit for fluid fuels.
 
-<Recipe id="milite:electric_age/machine/large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/large_steam_boiler" />
 
 Unlike its single block counterpart, in the Large Steam Boiler, 80% of any unconsumed heat will be lost. This means the ratio of energy produced by fuel consumed will drastically decrease when the output decreases below maximum. This will happen when the Boiler is not used continuously at maximum output.
 

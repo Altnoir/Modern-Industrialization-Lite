@@ -19,7 +19,7 @@ item_ids:
 
 O Reator de Fusão é a fonte de energia suprema! Ele pode combinar Deutério, Trítio e/ou Hélio-3 em Plasma de Hélio, o combustível mais poderoso do jogo! No entanto, é necessário uma grande quantidade de energia para iniciar a reação.
 
-<Recipe id="milite:electric_age/machine/fusion_reactor_asbl" />
+<Recipe id="milite:processing_table/fusion_reactor" />
 
 ## Turbina de Plasma
 
@@ -29,5 +29,5 @@ O Reator de Fusão é a fonte de energia suprema! Ele pode combinar Deutério, T
 
 A Turbina de Plasma pode converter o Plasma de Hélio em RF, na taxa de 100 kRF por milibalde. Sua taxa máxima de produção é de aproximadamente 1 MRF/t.
 
-<Recipe id="milite:electric_age/machine/plasma_turbine_asbl" />
+<Recipe id="milite:processing_table/plasma_turbine" />
 

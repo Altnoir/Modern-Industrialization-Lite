@@ -21,7 +21,7 @@ item_ids:
 
 REI를 사용해 필요한 재료를, 렌치를 사용해 멀티블록 구조를 확인하세요!
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 디지털 회로를 만들었다면, 증류탑을 꼭 건설하세요. 증류소는 원유 처리 부산물을 하나밖에 얻을 수 없었지만, 증류탑은 층 하나당 부산물을 하나씩 얻을 수 있습니다!
 

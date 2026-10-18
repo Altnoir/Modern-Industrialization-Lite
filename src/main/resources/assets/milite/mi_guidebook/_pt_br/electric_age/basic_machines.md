@@ -25,7 +25,7 @@ O Baú Configurável não é uma máquina, mas depois que você tiver Circuitos 
 
 Ele possui 27 slots configuráveis e funcionalidade de ejeção automática! Muito útil para automação!
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 O Polarizador polariza coisas. Ainda não tem muitas receitas, mas já é útil para automatizar Motores!
 

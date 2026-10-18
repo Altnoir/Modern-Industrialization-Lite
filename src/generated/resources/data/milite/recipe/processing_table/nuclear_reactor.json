@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:processing_unit"
+  },
+  "key": {
+    "item": "milite:titanium_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:nuclear_reactor"
+  },
+  "second": {
+    "item": "milite:nuclear_alloy_large_plate"
+  }
+}

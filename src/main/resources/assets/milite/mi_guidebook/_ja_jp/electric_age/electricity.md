@@ -13,13 +13,13 @@ item_ids:
 
 電力蒸気タービンは蒸気を利用して発電する。1mbの蒸気を1 RFに変換し、1tickあたり最大32mbまで変換する。
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 電力蒸気タービンは、出力側に直接接して設置された機械へ自動的に電気を送る。内部バッファは256 RFまで蓄えられ、低電圧(LV)の*級*である。
 
 電力ディーゼル発電機は、電力蒸気タービンに代わるものである。様々な燃料を使って電気を作る。今のところ、クレオソートを燃やすことができる。(燃やせる燃料のリストはREIを参照)
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Modern Industrialization Liteの電力
 

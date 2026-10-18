@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "minecraft:bucket"
+  },
+  "key": {
+    "item": "milite:steel_machine_hull"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:large_tank"
+  },
+  "second": {
+    "item": "milite:pump"
+  }
+}

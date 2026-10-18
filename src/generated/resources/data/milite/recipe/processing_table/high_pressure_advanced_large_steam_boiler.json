@@ -1,0 +1,16 @@
+{
+  "type": "milite:processing_table",
+  "first": {
+    "item": "milite:processing_unit"
+  },
+  "key": {
+    "item": "milite:high_pressure_large_steam_boiler"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:high_pressure_advanced_large_steam_boiler"
+  },
+  "second": {
+    "item": "milite:large_advanced_pump"
+  }
+}

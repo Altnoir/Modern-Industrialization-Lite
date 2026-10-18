@@ -22,5 +22,5 @@ item_ids:
 
 希望你现在已经学会了检查每一个REI配方，那样你应该很容易就能发现，防爆混合锭和钨粒可通过压缩机制造……当然，直到你拥有第一台内爆压缩机！
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

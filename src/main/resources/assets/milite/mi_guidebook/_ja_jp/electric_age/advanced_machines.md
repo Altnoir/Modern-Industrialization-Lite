@@ -40,5 +40,5 @@ item_ids:
 
 それぞれ16バケツまで保持できる9個の設定可能なスロットがあり、自動搬出機能がある！様々な液体を用いた自動化にとても便利！
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 

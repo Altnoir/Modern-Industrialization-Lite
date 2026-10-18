@@ -343,9 +343,9 @@ class ViewerCategoryRei<D> implements DisplayCategory<ViewerCategoryRei<D>.Viewe
         return widgets;
     }
 
-    private static Widget createFluidSlotBackground(Point point) {
+    private static Widget createSlotBackground(Point point, int u) {
         return Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, delta) -> {
-            guiGraphics.blit(MachineScreen.SLOT_ATLAS, point.x - 1, point.y - 1, 18, 0, 18, 18);
+            guiGraphics.blit(MachineScreen.SLOT_ATLAS, point.x - 1, point.y - 1, u, 0, 18, 18);
         });
     }
 
@@ -363,9 +363,11 @@ class ViewerCategoryRei<D> implements DisplayCategory<ViewerCategoryRei<D>.Viewe
         }
         if (!ing.hasBackground) {
             slot.disableBackground();
-        }
-        if (ing.isFluid) {
-            widgets.add(createFluidSlotBackground(point));
+        } else if (ing.isFluid) {
+            widgets.add(createSlotBackground(point, 18));
+        } else {
+            widgets.add(createSlotBackground(point, isInput ? 0 : 36));
+            slot.disableBackground();
         }
         widgets.add(slot);
     }

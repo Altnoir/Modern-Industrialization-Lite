@@ -34,6 +34,13 @@ ordering="AFTER"
 side="BOTH"
 
 [[dependencies.milite]]
+modId="abysslib_reginth"
+type="required"
+versionRange="${abysslib_version_range}"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.milite]]
 modId="kubejs"
 type="optional"
 versionRange="${kubejs_version_range}"

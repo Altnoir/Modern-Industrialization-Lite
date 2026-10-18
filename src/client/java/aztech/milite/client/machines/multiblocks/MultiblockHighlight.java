@@ -39,6 +39,20 @@ public class MultiblockHighlight {
         highlightQueue.put(pos.immutable(), new HatchHighlight());
     }
 
+    /**
+     * Marks a position that is blocked by a block which does not belong to the shape.
+     */
+    public static void enqueueBlockedHighlight(BlockPos pos) {
+        highlightQueue.put(pos.immutable(), new BlockedHighlight());
+    }
+
+    /**
+     * Marks a position that is blocked by a block which does not belong to the shape, without the red cube.
+     */
+    public static void enqueueOutlineHighlight(BlockPos pos) {
+        highlightQueue.put(pos.immutable(), new OutlineHighlight());
+    }
+
     private static void end(RenderLevelStageEvent event) {
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_LEVEL) {
             return;
@@ -100,6 +114,28 @@ public class MultiblockHighlight {
             poseStack.translate(-0.005, -0.005, -0.005);
             poseStack.scale(1.01f, 1.01f, 1.01f);
             RenderHelper.drawOverlay(poseStack, immediate, OverlayTexture.NO_OVERLAY);
+        }
+    }
+
+    /**
+     * The red cube for a position blocked by a foreign block.
+     */
+    private record BlockedHighlight() implements Highlight {
+        @Override
+        public void render(PoseStack poseStack) {
+            poseStack.translate(0.25, 0.25, 0.25);
+            poseStack.scale(0.5f, 0.5f, 0.5f);
+            RenderHelper.drawCube(poseStack, immediate, 1, 50f / 256, 50f / 256, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+        }
+    }
+
+    /**
+     * The red outline of a blocked position. Drawn without holding a wrench, as a permanent hint.
+     */
+    private record OutlineHighlight() implements Highlight {
+        @Override
+        public void render(PoseStack poseStack) {
+            RenderHelper.drawBlockOutline(poseStack, immediate, 1f, 0.15f, 0.15f, 1f);
         }
     }
 }

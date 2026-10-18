@@ -22,5 +22,5 @@ Usando TNT Industrial, o Compressor de Implosão é capaz de comprimir pós e li
 
 Esperamos que você já tenha aprendido a verificar todas as receitas no JEI, então deve ser fácil descobrir que Lingotes Mistos à Prova de Explosões e Nuggetes de Tungstênio podem ser feitos com um Compressor... até você conseguir seu primeiro Compressor de Implosão, é claro!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

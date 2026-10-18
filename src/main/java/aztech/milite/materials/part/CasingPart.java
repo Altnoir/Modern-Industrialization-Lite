@@ -41,8 +41,40 @@ public record CasingPart(String englishName, PartKey key) implements PartKeyProv
         return of(new PartEnglishNameFormatter.Overridden(englishName), path, resistance);
     }
 
+    public PartTemplate of(PartEnglishNameFormatter formatter, @Nullable String path, float resistance, SortOrder sortOrder) {
+        PartTemplate regPart = new PartTemplate(formatter, this.key)
+                .asBlock(sortOrder, new TextureGenParams.CasingBlock(), 5, resistance, 1, false);
+        if (path != null) {
+            return regPart.withCustomPath(path, path);
+        }
+        return regPart;
+    }
+
+    public PartTemplate of(String englishName, String path, float resistance, SortOrder sortOrder) {
+        return of(new PartEnglishNameFormatter.Overridden(englishName), path, resistance, sortOrder);
+    }
+
+    /** sortOrder 自带等级档，不再按材料补 */
+    public PartTemplate of(PartEnglishNameFormatter formatter, @Nullable String path, float resistance, SortOrder sortOrder,
+                           boolean absoluteSortOrder) {
+        PartTemplate regPart = new PartTemplate(formatter, this.key)
+                .asBlock(sortOrder, new TextureGenParams.CasingBlock(), 5, resistance, 1, false, absoluteSortOrder);
+        if (path != null) {
+            return regPart.withCustomPath(path, path);
+        }
+        return regPart;
+    }
+
+    public PartTemplate of(String englishName, String path, float resistance, SortOrder sortOrder, boolean absoluteSortOrder) {
+        return of(new PartEnglishNameFormatter.Overridden(englishName), path, resistance, sortOrder, absoluteSortOrder);
+    }
+
     public PartTemplate of(String englishName, String path) {
         return of(new PartEnglishNameFormatter.Overridden(englishName), path, 6f);
+    }
+
+    public PartTemplate of(String englishName, String path, SortOrder sortOrder) {
+        return of(new PartEnglishNameFormatter.Overridden(englishName), path, 6f, sortOrder);
     }
 
     public PartTemplate of(float resistance) {

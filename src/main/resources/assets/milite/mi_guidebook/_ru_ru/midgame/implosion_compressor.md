@@ -18,5 +18,5 @@ item_ids:
 
 Надеюсь, вы уже научились проверять каждый рецепт REI, так что вы легко обнаружите, что взрывоустойчивые смешанные слитки и самородки вольфрама можно изготавливать с помощью компрессора... до тех пор, пока вы не получите свой первый имплозионный компрессор!
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

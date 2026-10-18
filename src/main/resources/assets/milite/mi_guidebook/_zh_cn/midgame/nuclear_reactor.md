@@ -20,7 +20,7 @@ item_ids:
 
 核反应堆是一种大型多块结构，其目的是通过消耗核燃料来产生巨量能量。它的RF/t产量可以是柴油发电机的数百倍。反应堆有多种尺寸，从小型到大型不等。
 
-<Recipe id="milite:electric_age/machine/nuclear_reactor_asbl" />
+<Recipe id="milite:processing_table/nuclear_reactor" />
 
 要使用核反应堆发电，你需要在核流体仓中放入某种形式的水。水将转化为蒸汽，随后可用于发电——可能需要先通过热交换器处理。
 

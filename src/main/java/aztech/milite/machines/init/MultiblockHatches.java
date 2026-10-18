@@ -27,9 +27,9 @@ import java.util.List;
 public class MultiblockHatches {
     public record HatchPair<T extends HatchBlockEntity>(MachineDefinition<T> input, MachineDefinition<T> output) {}
 
-    public static final HatchPair<ItemHatch> BRONZE_ITEM = registerItemHatches("Bronze", "bronze", MachineCasings.BRONZE, 1, 1, 80, 40);
-    public static final HatchPair<ItemHatch> STEEL_ITEM = registerItemHatches("Steel", "steel", MachineCasings.STEEL, 2, 1, 80, 30);
-    public static final HatchPair<ItemHatch> ALUMINUM_ITEM = registerItemHatches("Aluminum Alloy", "aluminum_alloy", CableTier.ALUMINUM.casing, 2, 2, 71, 30);
+    public static final HatchPair<ItemHatch> BRONZE_ITEM = registerItemHatches("Bronze", "bronze", MachineCasings.BRONZE, 1, 1, 80, 28);
+    public static final HatchPair<ItemHatch> STEEL_ITEM = registerItemHatches("Steel", "steel", MachineCasings.STEEL, 2, 1, 80, 19);
+    public static final HatchPair<ItemHatch> ALUMINUM_ITEM = registerItemHatches("Aluminum Alloy", "aluminum_alloy", CableTier.ALUMINUM.casing, 2, 2, 71, 19);
     public static final HatchPair<ItemHatch> STAINLESS_STEEL_ITEM = registerItemHatches("Stainless Steel", "stainless_steel", CableTier.STAINLESS_STEEL.casing, 3, 3, 62, 21);
     public static final HatchPair<ItemHatch> TITANIUM_ITEM = registerItemHatches("Titanium", "titanium", CableTier.TITANIUM.casing, 3, 5, 44, 18);
 
@@ -74,10 +74,15 @@ public class MultiblockHatches {
 
         KubeJSProxy.instance.fireRegisterHatchesEvent();
     }
+    private static final int FLUID_HATCH_SLOT_Y = 35;
+
+    private static final int FLUID_HATCH_SLOT_X = 80;
 
     public static HatchPair<ItemHatch> registerItemHatches(
             String englishPrefix, String prefix, MachineCasing casing, int rows, int columns, int xStart, int yStart) {
         List<MachineDefinition<ItemHatch>> definitions = new ArrayList<>(2);
+        int slotY = yStart + 7;
+        int guiHeight = Math.max(166, slotY + rows * 18 + 108);
 
         for (int iter = 0; iter < 2; ++iter) {
             boolean input = iter == 0;
@@ -93,8 +98,9 @@ public class MultiblockHatches {
                     }
                 }
                 MIInventory inventory = new MIInventory(itemStacks, Collections.emptyList(),
-                        new SlotPositions.Builder().addSlots(xStart, yStart, columns, rows).build(), SlotPositions.empty());
-                return new ItemHatch(bet, new MachineGuiParameters.Builder(machine, true).build(), input, !prefix.equals("bronze"), inventory);
+                        new SlotPositions.Builder().addSlots(xStart, slotY, columns, rows).build(), SlotPositions.empty());
+                return new ItemHatch(bet, new MachineGuiParameters.Builder(machine, true).backgroundHeight(guiHeight).build(), input,
+                        !prefix.equals("bronze"), inventory);
             }, MachineBlockEntity::registerItemApi);
             definitions.add(def);
 
@@ -107,9 +113,6 @@ public class MultiblockHatches {
 
         return new HatchPair<>(definitions.get(0), definitions.get(1));
     }
-
-    private static final int FLUID_HATCH_SLOT_X = 80;
-    private static final int FLUID_HATCH_SLOT_Y = 40;
 
     public static HatchPair<FluidHatch> registerFluidHatches(String englishPrefix, String prefix, MachineCasing casing, int bucketCapacity) {
         List<MachineDefinition<FluidHatch>> definitions = new ArrayList<>(2);

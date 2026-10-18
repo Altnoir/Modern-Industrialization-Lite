@@ -25,7 +25,7 @@ item_ids:
 
 Він має 27 налаштовуваних слотів і функцію автоматичного забирання! Дуже корисно для автоматизації!
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 Намагнічувач намагнічує різні штуки. У ньому ще не так багато рецептів, але він уже корисний для автоматизації двигунів!
 

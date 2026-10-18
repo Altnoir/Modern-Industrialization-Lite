@@ -15,9 +15,9 @@ item_ids:
 
 その構造は蒸気クァーリーとまったく同じだ。
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 より優れた、より大きな大型蒸気ボイラー！最大1024 mb/tの蒸気を発生させることができる！
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

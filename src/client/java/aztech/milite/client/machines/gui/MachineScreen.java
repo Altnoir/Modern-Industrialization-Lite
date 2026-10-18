@@ -195,6 +195,18 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
     }
 
+    private static final int SLOT_FRAME_U = 26;
+    private static final int SLOT_FRAME_V = 94;
+    private static final int SLOT_FRAME_BORDER = 4;
+
+    private static void blitFrame(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {
+        blitFrame(guiGraphics, x, y, width, height, u, v, 4, 4);
+    }
+
+    private static void blitFrame(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v, int sliceWidth, int sliceHeight) {
+        guiGraphics.blit(SLOT_ATLAS, x, y, width, height, u, v, sliceWidth, sliceHeight, BACKGROUND_SIZE, BACKGROUND_SIZE);
+    }
+
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float delta, int mouseX, int mouseY) {
         int bw = menu.guiParams.backgroundWidth;
@@ -219,6 +231,10 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
             renderer.renderBackground(guiGraphics, leftPos, topPos);
         }
 
+        for (ClientComponentRenderer renderer : renderers) {
+            renderer.renderForeground(guiGraphics, leftPos, topPos);
+        }
+
         renderSlotBackgrounds(guiGraphics);
     }
 
@@ -227,6 +243,8 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
      * (their frames are part of the side panel sprite), so they are skipped here.
      */
     private void renderSlotBackgrounds(GuiGraphics guiGraphics) {
+        renderItemSlotFrame(guiGraphics);
+
         for (Slot slot : this.menu.slots) {
             if (slot instanceof BackgroundRenderedSlot brs) {
                 var atlas = brs.getBackgroundAtlasLocation();
@@ -238,6 +256,46 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
                 guiGraphics.blit(atlas, px, py, brs.getBackgroundU(), brs.getBackgroundV(), 18, 18);
             }
         }
+    }
+
+    private void renderItemSlotFrame(GuiGraphics guiGraphics) {
+        String id = menu.guiParams.blockId.getPath();
+        if (!id.endsWith("_item_input_hatch") && !id.endsWith("_item_output_hatch")
+                && !id.endsWith("_fluid_input_hatch") && !id.endsWith("_fluid_output_hatch")) {
+            return;
+        }
+
+        int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
+        for (Slot slot : this.menu.slots) {
+            if (!(slot instanceof BackgroundRenderedSlot)) {
+                continue;
+            }
+            minX = Math.min(minX, slot.x);
+            minY = Math.min(minY, slot.y);
+            maxX = Math.max(maxX, slot.x);
+            maxY = Math.max(maxY, slot.y);
+        }
+        if (minX == Integer.MAX_VALUE) {
+            return;
+        }
+
+        int b = SLOT_FRAME_BORDER;
+        int x = leftPos + minX - 1 - b;
+        int y = topPos + minY - 1 - b;
+        int width = maxX - minX + 18 + 2 * b;
+        int height = maxY - minY + 18 + 2 * b;
+        int middle = 18;
+        int right = SLOT_FRAME_U + b + middle;
+        int bottom = SLOT_FRAME_V + b + middle;
+
+        blitFrame(guiGraphics, x, y, b, b, SLOT_FRAME_U, SLOT_FRAME_V);
+        blitFrame(guiGraphics, x + width - b, y, b, b, right, SLOT_FRAME_V);
+        blitFrame(guiGraphics, x, y + height - b, b, b, SLOT_FRAME_U, bottom);
+        blitFrame(guiGraphics, x + width - b, y + height - b, b, b, right, bottom);
+        blitFrame(guiGraphics, x + b, y, width - 2 * b, b, SLOT_FRAME_U + b, SLOT_FRAME_V, middle, b);
+        blitFrame(guiGraphics, x + b, y + height - b, width - 2 * b, b, SLOT_FRAME_U + b, bottom, middle, b);
+        blitFrame(guiGraphics, x, y + b, b, height - 2 * b, SLOT_FRAME_U, SLOT_FRAME_V + b, b, middle);
+        blitFrame(guiGraphics, x + width - b, y + b, b, height - 2 * b, right, SLOT_FRAME_V + b, b, middle);
     }
 
     @Override

@@ -21,5 +21,6 @@
       "amount": 500,
       "fluid": "milite:tritium"
     }
-  ]
+  ],
+  "level": "iridium"
 }

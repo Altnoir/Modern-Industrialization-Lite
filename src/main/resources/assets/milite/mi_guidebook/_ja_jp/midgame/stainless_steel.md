@@ -21,7 +21,7 @@ item_ids:
 
 基本素材はREIで、正確な形状はレンチで確認できる！
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 デジタル回路をいくつか作ったら、蒸留塔を必ず制作すること。蒸溜機では1種類の石油精製しかできないが、タワーでは1層につき1種類できる！
 

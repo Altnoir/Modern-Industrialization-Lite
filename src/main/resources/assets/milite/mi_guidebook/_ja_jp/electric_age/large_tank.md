@@ -13,7 +13,7 @@ item_ids:
 
 大型タンクは蒸気のような流体を大量に貯蔵できるマルチブロックである。構造物内の(側面を含む)ブロックごとに64バケツ分の流体を貯蔵することができる。
 
-<Recipe id="milite:electric_age/machine/large_tank_asbl" />
+<Recipe id="milite:processing_table/large_tank" />
 
 大型タンクは求められる貯蔵量に応じて様々なのサイズに作ることができる。コントローラーのボタンをクリックすることで、サイズ設定画面を開くことが可能だ。
 
@@ -23,5 +23,5 @@ item_ids:
 
 大型タンクハッチは大型タンクブロックの延長として機能する。右クリックで大型タンクのメニューを開くことができ、ここに接続されたパイプは大型タンクの中身に直接アクセスできる。
 
-<Recipe id="milite:electric_age/machine/large_tank_hatch_asbl" />
+<Recipe id="milite:electric_age/machine/large_tank_hatch" />
 

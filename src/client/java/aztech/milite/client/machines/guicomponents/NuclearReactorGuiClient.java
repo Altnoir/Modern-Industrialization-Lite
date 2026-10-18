@@ -38,6 +38,8 @@ import java.util.Optional;
 
 public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearReactorGui.Data> {
     public static final ResourceLocation TEXTURE_ATLAS = MI.id("textures/gui/rei/texture_atlas.png");
+    static final int GRID_CENTER_X = 88;
+    static final int GRID_CENTER_Y = 88;
 
     public NuclearReactorGuiClient(Unit params, NuclearReactorGui.Data data) {
         super(params, data);
@@ -45,13 +47,18 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
 
     @Override
     public ClientComponentRenderer createRenderer(MachineScreen machineScreen) {
-        return new Renderer();
+        return new Renderer(machineScreen);
     }
 
     public class Renderer implements ClientComponentRenderer {
-        final int centerX = 88, centerY = 88;
+        final int centerX = GRID_CENTER_X, centerY = GRID_CENTER_Y;
+        private final MachineScreen screen;
         Renderer.Mode currentMode = Renderer.Mode.NUCLEAR_FUEL;
         NeutronType neutronMode = BOTH;
+
+        Renderer(MachineScreen screen) {
+            this.screen = screen;
+        }
 
         ItemStack fuelStack = new ItemStack(BuiltInRegistries.ITEM.get(MI.id("uranium_fuel_rod")), 1);
 
@@ -178,7 +185,8 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                 Font font = Minecraft.getInstance().font;
                 Component text = MIText.MultiblockShapeInvalid.text().setStyle(TextHelper.RED.withBold(true));
                 int width = font.width(text);
-                guiGraphics.drawString(font, text, x + centerX - width / 2, y + centerY, 0xFFFFFF, false);
+                guiGraphics.drawString(font, text, x + centerX - width / 2, y + MultiblockBuildClient.getReactorStatusTop(screen, font),
+                        0xFFFFFF, false);
             }
         }
 
@@ -364,7 +372,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
 
         @Override
         public void addButtons(ButtonContainer container) {
-            container.addButton(centerX + 64, 4, 20, 20,
+            container.addButton(centerX + 63, 7, 18, 18,
                     (i) -> currentMode = circulateMode(),
                     () -> List.of(modeTooltip[currentMode.index], MIText.ClickToSwitch
                             .text(modeTooltip[nextMode().index]).setStyle(TextHelper.GRAY_TEXT),
@@ -372,30 +380,32 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                                     .text(modeTooltip[previousMode().index])
                                     .setStyle(TextHelper.GRAY_TEXT)),
                     (screen, button, guiGraphics, mouseX, mouseY, delta) -> {
-                        button.renderVanilla(guiGraphics, mouseX, mouseY, delta);
+                        guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX(), button.getY(),
+                                button.isHoveredOrFocused() ? 126 : 108, 18, 18, 18);
                         if (currentMode == Renderer.Mode.NUCLEAR_FUEL) {
                             RenderHelper.renderAndDecorateItem(guiGraphics, fuelStack, button.getX() + 1, button.getY() + 1);
                         } else if (currentMode == Renderer.Mode.FE_GENERATION) {
-                            guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX() + 4, button.getY() + 2, 243, 1, 13, 17);
+                            guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX() + 3, button.getY() + 1, 243, 1, 13, 17);
                         } else {
-                            guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX(), button.getY(), 124 + currentMode.index * 20, 0, 20, 20);
+                            guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX() - 1, button.getY() - 1, 124 + currentMode.index * 20, 0, 20, 20);
                         }
                     }, this::drawButton);
 
-            container.addButton(centerX + 64, 150, 20, 20, (i) -> neutronMode = circulateNeutronMode(),
+            container.addButton(centerX + 63, 151, 18, 18, (i) -> neutronMode = circulateNeutronMode(),
                     () -> List.of(neutronModeTooltip[neutronMode.index],
                             MIText.ClickToSwitch.text(neutronModeTooltip[nextNeutronMode().index]).setStyle(TextHelper.GRAY_TEXT),
                             MIText.ShiftClickToSwitch.text(neutronModeTooltip[previousNeutronMode().index]).setStyle(TextHelper.GRAY_TEXT)),
                     (screen, button, guiGraphics, mouseX, mouseY, delta) -> {
 
-                        button.renderVanilla(guiGraphics, mouseX, mouseY, delta);
+                        guiGraphics.blit(MachineScreen.SLOT_ATLAS, button.getX(), button.getY(),
+                                button.isHoveredOrFocused() ? 126 : 108, 18, 18, 18);
 
                         if (neutronMode == FAST) {
-                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 2, button.getY() + 2, 0, 240, 16, 16);
+                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 1, button.getY() + 1, 0, 240, 16, 16);
                         } else if (neutronMode == NeutronType.THERMAL) {
-                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 2, button.getY() + 2, 160, 240, 16, 16);
+                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 1, button.getY() + 1, 160, 240, 16, 16);
                         } else if (neutronMode == BOTH) {
-                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 2, button.getY() + 2, 80, 240, 16, 16);
+                            guiGraphics.blit(TEXTURE_ATLAS, button.getX() + 1, button.getY() + 1, 80, 240, 16, 16);
                         }
                     }, this::drawNeutronButton);
         }

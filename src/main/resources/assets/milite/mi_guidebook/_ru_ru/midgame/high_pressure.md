@@ -16,23 +16,23 @@ item_ids:
 
 Компенсатор давления - это новый мультиблок из титана, который может превращать воду в воду высокого давления, пар в пар высокого давления и наоборот.
 
-<Recipe id="milite:electric_age/machine/pressurizer_asbl" />
+<Recipe id="milite:processing_table/pressurizer" />
 
 Как только вы получите доступ к воде высокого давления, вы сможете использовать большой паровой котёл высокого давления для производства пара высокого давления.
 
 Один миллибакет пара высокого давления стоит 8 мб обычного пара, то есть 8 RF.
 
-<Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/high_pressure_large_steam_boiler" />
 
 Большая паровая турбина будет принимать как обычный пар (1 мб = 1 RF), так и пар высокого давления (1 мб = 8 RF), и будет производить до 4096 RF/т! **Однако, она не вернет вам никакую воду.**
 
-<Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/large_steam_turbine" />
 
 Помните, что преобразование воды в воду высокого давления требует больших затрат энергии, но турбина не вернет ее! Вы можете использовать теплообменник для возврата воды высокого давления для другого цикла.
 
-<Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
+<Recipe id="milite:processing_table/heat_exchanger" />
 
 Другой вариант для небольших установок - использование паровой турбины из нержавеющей стали. Как и другие генераторы этого уровня, она будет производить 512 RF/т. Она принимает только обычный пар.
 
-<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/stainless_steel_steam_turbine" />
 

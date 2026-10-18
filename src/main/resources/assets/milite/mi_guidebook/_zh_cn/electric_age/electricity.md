@@ -13,13 +13,13 @@ item_ids:
 
 电力蒸汽涡轮机使用蒸汽产生 FE。每 1 mB 蒸汽转换为 1 FE，每刻最多转换 32 mB。
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 电力蒸汽涡轮机会自动向紧贴其输出面放置的机器输送 FE，内部缓存可容纳 3200 FE。
 
 电力柴油发电机是电力蒸汽涡轮机的替代选择。它使用多种燃料发电。目前你可以燃烧杂酚油。（可用燃料列表请查阅 REI）。
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Modern Industrialization Lite 中的电力
 

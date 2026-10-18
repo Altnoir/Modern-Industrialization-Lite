@@ -65,6 +65,14 @@ public class RenderHelper {
         }
     }
 
+    /**
+     * Draws the outline of a full block, using the vanilla line rendering path.
+     */
+    public static void drawBlockOutline(PoseStack poseStack, MultiBufferSource vcp, float red, float green, float blue, float alpha) {
+        // RenderType.lines() sets a thick, resolution-aware line width and restores it after the batch.
+        renderVoxelShape(poseStack, vcp.getBuffer(RenderType.lines()), Shapes.block(), 0, 0, 0, red, green, blue, alpha);
+    }
+
     private static final QuadCube whiteQuads = new QuadCube(ResourceLocation.fromNamespaceAndPath("neoforge", "white"));
 
     public static void drawCube(PoseStack ms, MultiBufferSource vcp, float r, float g, float b, int light, int overlay) {

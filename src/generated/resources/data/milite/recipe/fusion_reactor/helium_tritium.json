@@ -25,5 +25,6 @@
       "amount": 1000,
       "fluid": "milite:hydrogen"
     }
-  ]
+  ],
+  "level": "iridium"
 }

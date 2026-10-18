@@ -1,5 +1,5 @@
 {
-  "casing": "titanium",
+  "casing": "tungsten_casing",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/fusion_reactor/overlay_front",

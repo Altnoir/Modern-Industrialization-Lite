@@ -23,7 +23,7 @@ Her 25 mb yağlayıcı, makineye 1 (hız aşırtma) verimlilik tik'i ekleyecekti
 
 Yapılandırılabilir Sandık bir makine değildir, ancak Analog Devrelere sahip olduğunuzda onu üretebilirsiniz! 27 yapılandırılabilir yuvası ve otomatik çıkartma işlevi vardır! Otomasyon için çok kullanışlıdır!
 
-<Recipe id="milite:electric_age/machine/configurable_chest_asbl" />
+<Recipe id="milite:processing_table/configurable_chest" />
 
 Polarizör bir şeyleri polarize eder. Henüz çok fazla tarifi yok, ancak Motorları otomatikleştirmek için zaten kullanışlı!
 

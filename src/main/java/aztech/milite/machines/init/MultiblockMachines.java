@@ -3,7 +3,6 @@ package aztech.milite.machines.init;
 import aztech.milite.MI;
 import aztech.milite.MIBlock;
 import aztech.milite.MIFluids;
-import aztech.milite.api.energy.CableTier;
 import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.compat.rei.machines.MachineCategoryParams;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
@@ -75,8 +74,8 @@ public class MultiblockMachines {
 
     private static SimpleMember blastProofCasing;
 
-    private static SimpleMember titaniumHull;
     private static SimpleMember fusionChamber;
+    private static SimpleMember tungstenCasing;
 
     private static SimpleMember plasmaHandlingIridium;
     private static SimpleMember iridiumPipe;
@@ -434,7 +433,7 @@ public class MultiblockMachines {
     }
 
     private static void fusionReactor() {
-        ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(CableTier.TITANIUM.casing);
+        ShapeTemplate.Builder fusionReactorShapeBuilder = new ShapeTemplate.Builder(MachineCasings.TUNGSTEN);
         HatchFlags flags = new HatchFlags.Builder().with(FLUID_INPUT, FLUID_OUTPUT, ENERGY_INPUT).build();
         for (int y = -1; y <= 1; y++) {
             for (int x = -5; x <= 5; x++) {
@@ -444,11 +443,11 @@ public class MultiblockMachines {
                     boolean corner = ring == 5 && (z == 0 || z == 10) && (x == -5 || x == 5);
 
                     if (hatchable) {
-                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull, flags);
+                        fusionReactorShapeBuilder.add(x, y, z, tungstenCasing, flags);
                     } else if (ring == 4) {
-                        fusionReactorShapeBuilder.add(x, y, z, y == 0 ? fusionChamber : titaniumHull);
+                        fusionReactorShapeBuilder.add(x, y, z, y == 0 ? fusionChamber : tungstenCasing);
                     } else if (y == 0 && !corner && (ring == 3 || ring == 5)) {
-                        fusionReactorShapeBuilder.add(x, y, z, titaniumHull, null);
+                        fusionReactorShapeBuilder.add(x, y, z, tungstenCasing, null);
                     }
                 }
             }
@@ -461,7 +460,7 @@ public class MultiblockMachines {
                 bet -> new FusionReactorBlockEntity(bet, "fusion_reactor",
                         fusionReactorShape));
         ReiMachineRecipes.registerMultiblockShape("fusion_reactor", fusionReactorShape);
-        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.FUSION_REACTOR, MachineLevel.TITANIUM);
+        MachineRegistrationHelper.recordMachineLevel(MIMachineRecipeTypes.FUSION_REACTOR, MachineLevel.IRIDIUM);
 
     }
 
@@ -499,8 +498,8 @@ public class MultiblockMachines {
         blastProofCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("blastproof_casing")));
 
 
-        titaniumHull = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("titanium_machine_hull")));
         fusionChamber = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("fusion_chamber")));
+        tungstenCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("tungsten_casing")));
 
         plasmaHandlingIridium = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("plasma_handling_iridium_machine_casing")));
         iridiumPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("iridium_machine_casing_pipe")));
@@ -610,7 +609,7 @@ public class MultiblockMachines {
                 "large_tank", MachineCasings.STEEL, true, false, false, false);
 
         MachineRegistrationHelper.addMachineModel("fusion_reactor",
-                "fusion_reactor", CableTier.TITANIUM.casing, true, false, false, true);
+                "fusion_reactor", MachineCasings.TUNGSTEN, true, false, false, true);
         new Rei("Fusion Reactor", "fusion_reactor", MIMachineRecipeTypes.FUSION_REACTOR, new ProgressBar.Params(66, 33, "arrow"))
                 .fluids(inputs -> inputs.addSlots(26, 35, 2, 1), outputs -> outputs.addSlots(92, 35, 3, 1))
                 .register();

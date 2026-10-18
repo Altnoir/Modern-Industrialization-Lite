@@ -11,13 +11,13 @@ item_ids:
 
 전력 증기 터빈은 증기로 전력을 생산합니다. 증기 1 mb당 1 RF로 변환하며, 1틱당 최대 32 mb까지 변환합니다.
 
-<Recipe id="milite:electric_age/machine/electric_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/electric_steam_turbine" />
 
 전력 증기 터빈은 출력면에 바로 붙어 있는 모든 기계에 자동으로 전력을 보냅니다. 내부 버퍼는 256 RF를 저장할 수 있으며, 저전압(LV) *티어*입니다.
 
 전력 디젤 발전기는 전력 증기 터빈의 대안입니다. 다양한 연료로 전력을 생산합니다. 현재로서는 크레오소트를 태울 수 있습니다. (태울 수 있는 연료 목록은 REI를 참고하세요.)
 
-<Recipe id="milite:electric_age/machine/electric_diesel_generator_asbl" />
+<Recipe id="milite:processing_table/electric_diesel_generator" />
 
 ## Modern Industrialization Lite의 전력
 

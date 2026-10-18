@@ -19,7 +19,7 @@ item_ids:
 
 A Caldeira de Vapor Grande é uma versão aprimorada das Caldeiras de Bronze e Aço menores. Ela consome combustíveis 8 vezes mais rápido que a Fornalha, mas produz 256 mb/t de Vapor quando totalmente aquecida.
 
-<Recipe id="milite:electric_age/machine/large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/large_steam_boiler" />
 
 Ao contrário de sua contraparte de bloco único, na Caldeira de Vapor Grande, 80% de qualquer calor não utilizado será perdido. Isso significa que a proporção de energia produzida pelo combustível consumido diminuirá drasticamente quando a produção ficar abaixo do máximo. Isso acontecerá quando a Caldeira não for usada continuamente em capacidade máxima.
 

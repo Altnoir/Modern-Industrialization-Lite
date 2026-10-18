@@ -23,7 +23,7 @@ item_ids:
 
 Ущільнювач — це новий багатоблок із титану, який може перетворювати воду на високотисну воду, пару — на високотисну пару та навпаки.
 
-<Recipe id="milite:electric_age/machine/pressurizer_asbl" />
+<Recipe id="milite:processing_table/pressurizer" />
 
 ## Високотискний великий паровий котел
 
@@ -35,7 +35,7 @@ item_ids:
 
 Одне мВ високотискного пару коштує 8 мВ звичайного пару, тобто 8 RF.
 
-<Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/high_pressure_large_steam_boiler" />
 
 ## Покращений високотискний паровий котел
 
@@ -53,7 +53,7 @@ item_ids:
 
 Велика парова турбіна прийматиме вRF як звичайну пару (1 мВ = 1 RF), так високотискний пар (1 мВ = 8 RF) і генеруватиме до 16384 RF/т! **Однак це не поверне вам звичайну воду чи високотисну воду**.
 
-<Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/large_steam_turbine" />
 
 ## Heat Exchanger
 
@@ -63,11 +63,11 @@ item_ids:
 
 Пам'ятайте, що стискання води у високотискну воду вимагає багато енергії, але турбіна її не дасть! Ви можете використовувати теплообмінник для відновлення високотискної води для іншого циклу.
 
-<Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
+<Recipe id="milite:processing_table/heat_exchanger" />
 
 ## Парова турбіна з нержавіючої сталі
 
 Іншим варіантом для невеликих установок є використання парової турбіни з нержавіючої сталі. Як і інші генератори цього рівня, він вироблятиме 512 RF/т. Він приймає лише звичайний пар.
 
-<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/stainless_steel_steam_turbine" />
 

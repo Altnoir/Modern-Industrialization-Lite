@@ -23,7 +23,7 @@ item_ids:
 
 O Pressurizador é um novo multibloco feito de titânio que pode transformar água em água de Alta Pressão (HP), vapor em vapor de Alta Pressão e vice-versa.
 
-<Recipe id="milite:electric_age/machine/pressurizer_asbl" />
+<Recipe id="milite:processing_table/pressurizer" />
 
 ## Caldeira de Vapor Grande HP
 
@@ -35,7 +35,7 @@ Quando você tiver acesso à água HP, poderá usar uma Caldeira de Vapor Grande
 
 Um milibalde de vapor HP vale 8 mb de vapor comum, ou seja, 8 RF.
 
-<Recipe id="milite:electric_age/machine/high_pressure_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/high_pressure_large_steam_boiler" />
 
 ## Caldeira de Vapor Grande HP Avançada
 
@@ -53,7 +53,7 @@ Mais adiante, você também poderá construir a versão avançada da Caldeira de
 
 Uma Turbina de Vapor Grande aceitará tanto vapor comum (1 mb = 1 RF) quanto vapor HP (1 mb = 8 RF) e os converterá em RF, podendo gerar até 16384 RF/t! **No entanto, ela não devolverá nem água comum nem água HP.**
 
-<Recipe id="milite:electric_age/machine/large_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/large_steam_turbine" />
 
 ## Trocador de Calor
 
@@ -63,11 +63,11 @@ Uma Turbina de Vapor Grande aceitará tanto vapor comum (1 mb = 1 RF) quanto vap
 
 Lembre-se de que pressurizar água em água HP consome muita energia, e a turbina não a devolverá! Você pode usar um Trocador de Calor para recuperar a água HP para outro ciclo.
 
-<Recipe id="milite:electric_age/machine/heat_exchanger_asbl" />
+<Recipe id="milite:processing_table/heat_exchanger" />
 
 ## Turbina de Vapor de Aço Inoxidável
 
 Outra opção para instalações menores é usar uma Turbina de Vapor de Aço Inoxidável. Como outros geradores desse nível, ela produzirá 512 RF/t. Esta aceitará apenas vapor comum.
 
-<Recipe id="milite:electric_age/machine/stainless_steel_steam_turbine_asbl" />
+<Recipe id="milite:processing_table/stainless_steel_steam_turbine" />
 

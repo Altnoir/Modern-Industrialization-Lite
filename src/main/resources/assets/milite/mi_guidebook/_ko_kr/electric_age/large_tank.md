@@ -12,7 +12,7 @@ item_ids:
 
 대형 탱크는 대량의 액체를 저장하기에 적합한 멀티블록입니다. 대형 탱크는 멀티블록 구조 내의 블록 수마다 64B 의 액체를 저장 가능합니다.
 
-<Recipe id="milite:electric_age/machine/large_tank_asbl" />
+<Recipe id="milite:processing_table/large_tank" />
 
 렌치를 쥔 상태에서 보면 제일 작은 탱크의 미리보기를 볼 수 있습니다. 레이어 추가는 위, 뒤, 그리고 탱크의 양쪽으로 할 수 있습니다. 정면은 반드시 좌우 대칭으로 지어져야 합니다.
 

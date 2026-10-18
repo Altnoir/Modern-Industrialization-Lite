@@ -18,5 +18,5 @@ item_ids:
 
 もうREIのレシピをすべてチェックするようになっただろうから、耐爆積層インゴットとタングステンの塊が圧縮機で作れることはすぐにわかるはずだ……もちろん最初の爆縮圧縮機を作るまでの話だが！
 
-<Recipe id="milite:electric_age/machine/implosion_compressor_asbl" />
+<Recipe id="milite:processing_table/implosion_compressor" />
 

@@ -21,7 +21,7 @@ item_ids:
 
 它的结构与蒸汽采石场相同，但墙体使用铝合金机器外壳而非钢机器外壳。
 
-<Recipe id="milite:electric_age/machine/electric_quarry_asbl" />
+<Recipe id="milite:processing_table/electric_quarry" />
 
 ## Advanced Large Steam Boiler
 
@@ -31,5 +31,5 @@ item_ids:
 
 更好更大的大型蒸汽锅炉！这个高级版本的蒸汽产量最大可达1024 mB/t！
 
-<Recipe id="milite:electric_age/machine/advanced_large_steam_boiler_asbl" />
+<Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

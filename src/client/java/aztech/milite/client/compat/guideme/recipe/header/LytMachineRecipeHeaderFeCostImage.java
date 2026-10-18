@@ -32,7 +32,7 @@ public class LytMachineRecipeHeaderFeCostImage extends LytBlock {
     public void render(RenderContext context) {
         var bounds = getBounds();
         switch (steamMode) {
-            case BOTH -> MIGuideMeRenderHelper.fillTexturedRect(context, MachineScreen.SLOT_ATLAS, bounds.x(), bounds.y(), 9, 9, 94, 18, 20, 20);
+            case BOTH -> MIGuideMeRenderHelper.fillTexturedRect(context, MachineScreen.SLOT_ATLAS, bounds.x(), bounds.y(), 9, 9, 80, 19, 18, 18);
             case STEAM_ONLY -> MIGuideMeRenderHelper.fillTexturedRect(context, MI.id("textures/item/steam_bucket.png"), bounds.x(), bounds.y(), 9, 9, 0, 0, 16, 16, 16, 16);
             case ELECTRIC_ONLY -> MIGuideMeRenderHelper.fillTexturedRect(context, MachineScreen.SLOT_ATLAS, bounds.x() + 1, bounds.y(), 7, 9, 243, 0, 13, 18);
         }

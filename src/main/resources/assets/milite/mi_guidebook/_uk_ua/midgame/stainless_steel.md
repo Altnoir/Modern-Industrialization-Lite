@@ -27,7 +27,7 @@ item_ids:
 
 Основні матеріали можна перевірити за допомогою REI, а точну форму — за допомогою гайкового ключа!
 
-<Recipe id="milite:electric_age/machine/vacuum_freezer_asbl" />
+<Recipe id="milite:processing_table/vacuum_freezer" />
 
 ## Distillation Tower
 

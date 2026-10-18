@@ -15,7 +15,7 @@ item_ids:
 
 전기 용광로는 전기로 작동하는 용광로입니다. 새로운 조합법들을 활용할 수 있고, 다른 전기 멀티블록 기계들처럼 최대 128 RF/t 만큼의 오버클럭을 지원합니다.
 
-<Recipe id="milite:electric_age/machine/electric_blast_furnace_asbl" />
+<Recipe id="milite:processing_table/electric_blast_furnace" />
 
 전기 용광로는 내열 기계 케이싱 한 층과 중앙이 빈 백동 코일 두 층, 그리고 추가적인 내열 기계 케이싱 층으로 구성됩니다. 컨트롤러 블록은 제일 아래 층에 위치해야 합니다. 해치는 내열 기계 케이싱 위치에만 있을 수 있습니다.
 

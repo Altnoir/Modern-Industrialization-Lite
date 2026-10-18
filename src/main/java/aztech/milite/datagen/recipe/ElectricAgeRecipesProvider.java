@@ -3,6 +3,7 @@ package aztech.milite.datagen.recipe;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
+import aztech.milite.recipe.json.ShapelessRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 
@@ -128,6 +129,11 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 new ShapedRecipeJson("milite:nuclear_casing", 1, "AAA", "ACA", "AAA")
                         .addInput('A', "#c:plates/nuclear_alloy")
                         .addInput('C', "milite:stainless_steel_machine_hull"));
+
+        shaped(consumer, "electric_age/casing/tungsten_casing_asbl",
+                new ShapedRecipeJson("milite:tungsten_casing", 1, "AAA", "ACA", "AAA")
+                        .addInput('A', "#c:plates/tungsten")
+                        .addInput('C', "milite:titanium_machine_hull"));
 
         shaped(consumer, "electric_age/casing/nuclear_fluid_hatch_asbl",
                 new ShapedRecipeJson("milite:nuclear_fluid_hatch", 1, "AAA", "ACA", "AAA")
@@ -609,28 +615,11 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('C', "milite:titanium_machine_casing")
                         .addInput('p', "milite:annealed_copper_wire"));
 
-        shaped(consumer, "electric_age/machine/advanced_large_steam_boiler_asbl",
-                new ShapedRecipeJson("milite:advanced_large_steam_boiler", 1, "PcP", "LBL", "PcP")
-                        .addInput('P', "milite:pump")
-                        .addInput('c', "milite:electronic_circuit")
-                        .addInput('B', "milite:large_steam_boiler")
-                        .addInput('L', "milite:large_pump"));
 
-        shaped(consumer, "electric_age/machine/aluminum_alloy_diesel_generator_asbl",
-                new ShapedRecipeJson("milite:aluminum_alloy_diesel_generator", 1, "PCP", "GHG", "ccc")
-                        .addInput('H', "milite:aluminum_alloy_machine_hull")
-                        .addInput('P', "milite:large_pump")
-                        .addInput('G', "#c:gears/aluminum")
-                        .addInput('c', "milite:electrum_wire")
-                        .addInput('C', "milite:electronic_circuit"));
 
-        shaped(consumer, "electric_age/machine/aluminum_alloy_steam_turbine_asbl",
-                new ShapedRecipeJson("milite:aluminum_alloy_steam_turbine", 1, "mcm", "rHr", "mem")
-                        .addInput('H', "milite:aluminum_alloy_machine_hull")
-                        .addInput('c', "milite:electronic_circuit")
-                        .addInput('r', "milite:aluminum_rotor")
-                        .addInput('m', "milite:large_motor")
-                        .addInput('e', "milite:electrum_wire"));
+
+
+
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 32, 8000)
                 .level("bronze")
@@ -641,168 +630,50 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .addItemOutput("milite:replicator", 1, 1.0f)
                 .offerTo(consumer, "electric_age/machine/assembler/replicator");
 
-        shaped(consumer, "electric_age/machine/configurable_chest_asbl",
-                new ShapedRecipeJson("milite:configurable_chest", 4, "chc", "mCm", "chc")
-                        .addInput('C', "milite:steel_machine_casing")
-                        .addInput('m', "milite:motor")
-                        .addInput('c', "milite:analog_circuit")
-                        .addInput('h', "minecraft:hopper"));
 
-        shaped(consumer, "electric_age/machine/configurable_tank_asbl",
-                new ShapedRecipeJson("milite:configurable_tank", 4, "ctc", "pCp", "ctc")
-                        .addInput('C', "milite:steel_machine_casing")
-                        .addInput('p', "milite:pump")
-                        .addInput('c', "milite:analog_circuit")
-                        .addInput('t', "milite:aluminum_tank"));
 
-        shaped(consumer, "electric_age/machine/electric_blast_furnace_asbl",
-                new ShapedRecipeJson("milite:electric_blast_furnace", 1, "CCC", "CHC", "CFC")
-                        .addInput('C', "milite:cupronickel_wire_magnetic")
-                        .addInput('H', "milite:electric_machine_hull")
-                        .addInput('F', "minecraft:blast_furnace"));
 
-        shaped(consumer, "electric_age/machine/electric_diesel_generator_asbl",
-                new ShapedRecipeJson("milite:electric_diesel_generator", 1, "PCP", "GHG", "ccc")
-                        .addInput('H', "milite:electric_machine_hull")
-                        .addInput('P', "milite:pump")
-                        .addInput('G', "#c:gears/tin")
-                        .addInput('c', "milite:tin_wire")
-                        .addInput('C', "milite:analog_circuit"));
 
-        shaped(consumer, "electric_age/machine/electric_quarry_asbl",
-                new ShapedRecipeJson("milite:electric_quarry", 1, "LAL", "GCG", "LPL")
-                        .addInput('L', "milite:large_motor")
-                        .addInput('A', "milite:robot_arm")
-                        .addInput('G', "milite:electronic_circuit")
-                        .addInput('P', "milite:steam_quarry")
-                        .addInput('C', "milite:aluminum_alloy_machine_hull"));
 
-        shaped(consumer, "electric_age/machine/electric_steam_turbine_asbl",
-                new ShapedRecipeJson("milite:electric_steam_turbine", 1, "mCm", "rHr", "mcm")
-                        .addInput('C', "milite:analog_circuit")
-                        .addInput('m', "milite:motor")
-                        .addInput('H', "milite:electric_machine_hull")
-                        .addInput('r', "milite:tin_rotor")
-                        .addInput('c', "milite:tin_wire"));
 
-        shaped(consumer, "electric_age/machine/fusion_reactor_asbl",
-                new ShapedRecipeJson("milite:fusion_reactor", 1, "CCC", "QHQ", "CCC")
-                        .addInput('C', "milite:fusion_chamber")
-                        .addInput('H', "milite:iridium_machine_hull")
-                        .addInput('Q', "milite:quantum_circuit"));
 
-        shaped(consumer, "electric_age/machine/heat_exchanger_asbl",
-                new ShapedRecipeJson("milite:heat_exchanger", 1, "FpH", "PhP", "FpH")
-                        .addInput('p', "milite:small_heat_exchanger")
-                        .addInput('h', "milite:stainless_steel_machine_hull")
-                        .addInput('P', "milite:stainless_steel_machine_casing_pipe")
-                        .addInput('F', "milite:frostproof_machine_casing")
-                        .addInput('H', "milite:heatproof_machine_casing"));
 
-        shaped(consumer, "electric_age/machine/high_pressure_advanced_large_steam_boiler_asbl",
-                new ShapedRecipeJson("milite:high_pressure_advanced_large_steam_boiler", 1, "LcL", "fBf", "LcL")
-                        .addInput('L', "milite:large_pump")
-                        .addInput('c', "milite:processing_unit")
-                        .addInput('B', "milite:high_pressure_large_steam_boiler")
-                        .addInput('f', "milite:large_advanced_pump"));
 
-        shaped(consumer, "electric_age/machine/high_pressure_large_steam_boiler_asbl",
-                new ShapedRecipeJson("milite:high_pressure_large_steam_boiler", 1, "fcf", "PBP", "fcf")
-                        .addInput('P', "milite:clean_stainless_steel_machine_casing")
-                        .addInput('c', "milite:digital_circuit")
-                        .addInput('B', "milite:advanced_large_steam_boiler")
-                        .addInput('f', "milite:advanced_pump"));
 
-        shaped(consumer, "electric_age/machine/implosion_compressor_asbl",
-                new ShapedRecipeJson("milite:implosion_compressor", 1, "BmB", "THT", "BmB")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('T', "milite:titanium_large_plate")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('B', "milite:blastproof_alloy_large_plate"));
 
-        shaped(consumer, "electric_age/machine/large_diesel_generator_asbl",
-                new ShapedRecipeJson("milite:large_diesel_generator", 1, "pcp", "GHG", "mgm")
-                        .addInput('g', "milite:stainless_steel_diesel_generator")
-                        .addInput('p', "milite:advanced_pump")
-                        .addInput('c', "milite:processing_unit")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('H', "milite:titanium_machine_hull")
-                        .addInput('G', "milite:titanium_gear"));
 
-        shaped(consumer, "electric_age/machine/large_steam_boiler_asbl",
-                new ShapedRecipeJson("milite:large_steam_boiler", 1, "PcP", "fBf", "PcP")
-                        .addInput('P', "milite:bronze_plated_bricks")
-                        .addInput('c', "milite:analog_circuit")
-                        .addInput('B', "milite:bronze_boiler")
-                        .addInput('f', "milite:bronze_plate"));
 
-        shaped(consumer, "electric_age/machine/large_steam_turbine_asbl",
-                new ShapedRecipeJson("milite:large_steam_turbine", 1, "pcp", "RHR", "mtm")
-                        .addInput('t', "milite:stainless_steel_steam_turbine")
-                        .addInput('p', "milite:advanced_pump")
-                        .addInput('c', "milite:processing_unit")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('R', "milite:stainless_steel_rotor"));
 
-        shaped(consumer, "electric_age/machine/large_tank_asbl",
-                new ShapedRecipeJson("milite:large_tank", 1, "tpt", "RSR", "tpt")
-                        .addInput('t', "milite:steel_tank")
-                        .addInput('p', "milite:pump")
-                        .addInput('S', "milite:steel_machine_casing")
-                        .addInput('R', "milite:tin_rotor"));
 
-        shaped(consumer, "electric_age/machine/large_tank_hatch_asbl",
-                new ShapedRecipeJson("milite:large_tank_hatch", 1, "t", "p", "S")
-                        .addInput('t', "milite:steel_tank")
-                        .addInput('p', "milite:pump")
-                        .addInput('S', "milite:steel_machine_casing"));
 
-        shaped(consumer, "electric_age/machine/nuclear_reactor_asbl",
-                new ShapedRecipeJson("milite:nuclear_reactor", 1, "AcA", "RCR", "AcA")
-                        .addInput('A', "milite:nuclear_alloy_large_plate")
-                        .addInput('C', "milite:titanium_machine_hull")
-                        .addInput('c', "milite:processing_unit")
-                        .addInput('R', "milite:cadmium_control_rod"));
 
-        shaped(consumer, "electric_age/machine/plasma_turbine_asbl",
-                new ShapedRecipeJson("milite:plasma_turbine", 1, "tpt", "RHR", "tpt")
-                        .addInput('t', "milite:superconductor_coil")
-                        .addInput('p', "milite:quantum_circuit")
-                        .addInput('H', "milite:iridium_machine_hull")
-                        .addInput('R', "milite:titanium_rotor"));
 
-        shaped(consumer, "electric_age/machine/pressurizer_asbl",
-                new ShapedRecipeJson("milite:pressurizer", 1, "pcp", "PHP", "pCp")
-                        .addInput('p', "milite:advanced_pump")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('c', "milite:digital_circuit")
-                        .addInput('P', "milite:titanium_machine_casing_pipe")
-                        .addInput('C', "milite:aluminum_wire"));
 
-        shaped(consumer, "electric_age/machine/stainless_steel_diesel_generator_asbl",
-                new ShapedRecipeJson("milite:stainless_steel_diesel_generator", 1, "PCP", "GHG", "ccc")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('P', "milite:advanced_pump")
-                        .addInput('G', "#c:gears/stainless_steel")
-                        .addInput('c', "milite:aluminum_wire")
-                        .addInput('C', "milite:digital_circuit"));
 
-        shaped(consumer, "electric_age/machine/stainless_steel_steam_turbine_asbl",
-                new ShapedRecipeJson("milite:stainless_steel_steam_turbine", 1, "pCp", "rHr", "mcm")
-                        .addInput('C', "milite:digital_circuit")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('H', "milite:stainless_steel_machine_hull")
-                        .addInput('p', "milite:bronze_plate")
-                        .addInput('r', "milite:stainless_steel_rotor")
-                        .addInput('c', "milite:aluminum_wire"));
 
-        shaped(consumer, "electric_age/machine/vacuum_freezer_asbl",
-                new ShapedRecipeJson("milite:vacuum_freezer", 1, "PPP", "CHC", "pCp")
-                        .addInput('C', "milite:electronic_circuit")
-                        .addInput('H', "milite:aluminum_alloy_machine_hull")
-                        .addInput('P', "milite:large_pump")
-                        .addInput('p', "milite:aluminum_large_plate"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        new ShapelessRecipeBuilder("milite:large_tank_hatch", 1)
+                .requires("milite:steel_machine_hull")
+                .requires("minecraft:bucket")
+                .offerTo(consumer, "electric_age/machine/large_tank_hatch");
 
         shaped(consumer, "electric_age/storage_unit/aluminum_alloy_storage_unit_asbl",
                 new ShapedRecipeJson("milite:aluminum_alloy_storage_unit", 1, "bbb", "LHL", "bbb")

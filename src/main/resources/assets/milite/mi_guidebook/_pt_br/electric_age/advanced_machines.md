@@ -40,5 +40,5 @@ O Tanque Configurável é o equivalente fluido do Baú Configurável.
 
 Ele possui 9 compartimentos configuráveis que podem armazenar 16 baldes cada, e funcionalidade de ejeção automática! Útil para automação com muitos fluidos diferentes!
 
-<Recipe id="milite:electric_age/machine/configurable_tank_asbl" />
+<Recipe id="milite:processing_table/configurable_tank" />
 
