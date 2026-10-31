@@ -4,7 +4,6 @@ navigation:
   icon: "milite:forge_hammer"
   parent: milite:steam_age.md
 item_ids:
-  - milite:iron_hammer
   - milite:forge_hammer
   - milite:steam_mining_drill
 ---
@@ -13,11 +12,7 @@ item_ids:
 
 청동을 만들기에 앞서, 우선 기초적인 공정을 해결해줄 포지 해머를 제작해야 합니다.
 
-철 광석, 구리 광석이나 주석 광석을 포지 해머에 넣어서 두 배의 원석을 얻을 수 있습니다. 망치를 쓴다면 이 비율을 더 늘릴 수 있습니다.
-
-망치는 포지 해머의 효율을 높여주고, 새로운 조합법을 가능하게 해줍니다. 약간의 내구도만 쓴다면 말이죠.
-
-<Recipe id="milite:materials/iron/craft/hammer" />
+철 광석, 구리 광석이나 주석 광석을 포지 해머에 넣어서 두 배의 원석을 얻을 수 있습니다.
 
 어느정도 재료들을 모았다면, 섬세한 손길 없이 광석을 채취하기 위해 증기 채광용 드릴을 제작해보세요.
 

@@ -4,7 +4,6 @@ navigation:
   icon: "milite:forge_hammer"
   parent: milite:steam_age.md
 item_ids:
-  - milite:iron_hammer
   - milite:forge_hammer
   - milite:steam_mining_drill
 ---
@@ -13,11 +12,7 @@ item_ids:
 
 青銅を作る前に鍛冶台を作る必要がある。これは基本的な加工工程に使用される。
 
-鉄鉱石、銅鉱石、錫鉱石を鍛造用ハンマーに入れることで、1つの鉱石につき2つの原石を得ることができる。ハンマーを使うことでこの割合を増やすことができ、すべての原石はインゴットに製錬することが可能だ。
-
-ハンマーは鍛冶台の効率を高め、多くのレシピをアンロックする。
-
-<Recipe id="milite:materials/iron/craft/hammer" />
+鉄鉱石、銅鉱石、錫鉱石を鍛造用ハンマーに入れることで、1つの鉱石につき2つの原石を得ることができる。すべての原石はインゴットに製錬することが可能だ。
 
 ここでシルクタッチのツルハシを使わず鉱石を直接手に入れるために蒸気採掘ドリルを作ることを考えてもいいかもしれない。
 

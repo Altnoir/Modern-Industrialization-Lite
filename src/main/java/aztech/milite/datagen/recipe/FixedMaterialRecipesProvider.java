@@ -426,20 +426,17 @@ public class FixedMaterialRecipesProvider extends FixedRecipesProvider {
                         .addInput('C', "milite:brick_dust")
                         .addInput('T', "minecraft:clay_ball"));
 
-        forgeHammer(consumer, "materials/forge_hammer/brick_dust_with_tool", "minecraft:brick", 1,
-                "milite:brick_dust", 1, 20);
+        forgeHammer(consumer, "materials/forge_hammer/brick_to_dust", "minecraft:brick", 1,
+                "milite:brick_dust", 1);
 
         forgeHammer(consumer, "materials/forge_hammer/brick_dust", "minecraft:brick", 1,
-                "milite:brick_tiny_dust", 3, 0);
+                "milite:brick_tiny_dust", 3);
 
-        forgeHammer(consumer, "materials/forge_hammer/copper_ore_to_dust_with_tool", "#c:ores/copper", 1,
-                "milite:copper_dust", 12, 60);
-
-        forgeHammer(consumer, "materials/forge_hammer/copper_ore_to_raw_with_tool", "#c:ores/copper", 1,
-                "minecraft:raw_copper", 8, 20);
+        forgeHammer(consumer, "materials/forge_hammer/copper_ore_to_dust", "#c:ores/copper", 1,
+                "milite:copper_dust", 12);
 
         forgeHammer(consumer, "materials/forge_hammer/copper_ore_to_raw", "#c:ores/copper", 1,
-                "minecraft:raw_copper", 5, 0);
+                "minecraft:raw_copper", 5);
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.HEAT_EXCHANGER, 2, 400)
                 .level("bronze")

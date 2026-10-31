@@ -20,7 +20,6 @@ public class MIVillager {
         var level1 = event.getTrades().get(1);
         level1.add(sellItemsToVillager(MIMaterials.LIGNITE_COAL.getPart(MIParts.GEM).asItem(), 15, 16, 2));
         level1.add(buyItemsFromVillager(MIMaterials.FIRE_CLAY.getPart(MIParts.INGOT), 2, 6, 2));
-        level1.add(buyItemsFromVillager(MIItem.STEEL_HAMMER, 8, 1, 10));
         level1.add(buyItemsFromVillager(Items.COPPER_INGOT, 4, 8, 5));
         level1.add(buyItemsFromVillager(MIMaterials.TIN.getPart(MIParts.INGOT), 4, 3, 5));
 

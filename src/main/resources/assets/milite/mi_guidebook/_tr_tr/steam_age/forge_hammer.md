@@ -4,7 +4,6 @@ navigation:
   icon: "milite:forge_hammer"
   parent: milite:steam_age.md
 item_ids:
-  - milite:iron_hammer
   - milite:forge_hammer
   - milite:steam_mining_drill
 ---
@@ -13,11 +12,7 @@ item_ids:
 
 Bronz yapmadan önce bir Demirci Örsü oluşturmamız gerekecek. Temel işleme adımları için kullanılır.
 
-Demirci örsüne demir, bakır ve kalay cevheri koyabilirsiniz ve cevher başına 2 ham cevher alırsınız. Çekiç kullanarak bu oranı artırabilirsiniz. Her ham cevher eritilerek külçe haline getirilebilir.
-
-Çekiç, Demirci Örsü'ndeki oranı artırır ve bir miktar dayanıklılık pahasına daha fazla tarifin kilidini açar
-
-<Recipe id="milite:materials/iron/craft/hammer" />
+Demirci örsüne demir, bakır ve kalay cevheri koyabilirsiniz ve cevher başına 2 ham cevher alırsınız. Her ham cevher eritilerek külçe haline getirilebilir.
 
 Şimdi, İpeksi Dokunuşlu kazmaya ihtiyaç duymadan cevherleri doğrudan elde etmek için bir Buharlı Madencilik Matkabı yapmayı düşünebilirsiniz.
 

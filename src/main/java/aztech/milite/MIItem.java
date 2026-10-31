@@ -45,10 +45,7 @@ public final class MIItem {
     // Guide book first so people read it!
     public static final ItemDefinition<GuideBookItem> GUIDE_BOOK = item("MI Guidebook", "guidebook", GuideBookItem::new, SortOrder.GUIDE_BOOK);
 
-    public static final ItemDefinition<ForgeTool> IRON_HAMMER = itemHandheld("Iron Hammer", "iron_hammer", p -> new ForgeTool(Tiers.IRON, p), ITEMS_ORDERED.next());
-    public static final ItemDefinition<ForgeTool> STEEL_HAMMER = itemHandheld("Steel Hammer", "steel_hammer", p -> new ForgeTool(ForgeTool.STEEL, p), ITEMS_ORDERED.next());
-    public static final ItemDefinition<ForgeTool> DIAMOND_HAMMER = itemHandheld("Diamond Hammer", "diamond_hammer", p -> new ForgeTool(Tiers.DIAMOND, p), ITEMS_ORDERED.next());
-    public static final ItemDefinition<ForgeTool> NETHERITE_HAMMER = itemHandheld("Netherite Hammer", "netherite_hammer", p -> new ForgeTool(Tiers.NETHERITE, p), ITEMS_ORDERED.next());
+
 
     public static final ItemDefinition<Item> RUBBER_SHEET = item("Rubber Sheet", "rubber_sheet", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PACKER_BLOCK_TEMPLATE = item("Packer Block Template", "packer_block_template", p -> new Item(p.rarity(Rarity.RARE).stacksTo(1)), ITEMS_ORDERED.next());

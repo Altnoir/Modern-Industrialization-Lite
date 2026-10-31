@@ -144,8 +144,7 @@ public class MIMaterials {
                                 .set(MaterialProperty.SET, METALLIC)
                                 .set(MaterialProperty.MEAN_RGB, 0xC8C8C8)
                                 .addParts(BOLT, RING, GEAR, ROD, DOUBLE_INGOT, DUST, LARGE_PLATE, PLATE, TINY_DUST)
-                                .addParts(TANK.of(1)).addParts(BARREL.of(1))
-                                .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.IRON_HAMMER.getId().toString())))
+                                .addParts(TANK.of(1)).addParts(BARREL.of(1)))
         );
 
         COPPER = MaterialRegistry.addMaterial(addVanillaMetal(false,
@@ -157,8 +156,7 @@ public class MIMaterials {
                         .addParts(WIRE)
                         .addParts(FINE_WIRE)
                         .addParts(DRILL_HEAD, DRILL))
-                .cancelRecipes("macerator/ore_to_raw", "forge_hammer/ore_to_raw_metal",
-                        "forge_hammer/ore_to_raw_metal_with_tool", "forge_hammer/ore_to_dust_with_tool"));
+                .cancelRecipes("macerator/ore_to_raw", "forge_hammer/ore_to_raw_metal", "forge_hammer/ore_to_dust"));
 
         COAL = MaterialRegistry.addMaterial(addVanillaGem(true,
                 new MaterialBuilder("Coal", "coal")
@@ -177,8 +175,7 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0x48eeda)
                         .set(MaterialProperty.HARDNESS, VERY_HARD)
                         .addParts(ITEM_PURE_NON_METAL)
-                        .addParts(PLATE, LARGE_PLATE)
-                        .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.DIAMOND_HAMMER.getId().toString())))
+                        .addParts(PLATE, LARGE_PLATE))
         );
 
         EMERALD = MaterialRegistry.addMaterial(addVanillaGem(false,
@@ -287,7 +284,6 @@ public class MIMaterials {
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
                         .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(MACHINE_CASING_SPECIAL.of("Steel Machine Hull", "steel_machine_hull"))
                         .addParts(TANK.of(16)).addParts(BARREL.of(128))
-                        .addMaterialItemParts(MaterialItemPart.external(HAMMER, MIItem.STEEL_HAMMER.getId().toString()))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 
         LIGNITE_COAL = MaterialRegistry.addMaterial(new MaterialBuilder("Lignite Coal", "lignite_coal")

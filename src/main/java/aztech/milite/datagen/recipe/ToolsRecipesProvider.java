@@ -42,10 +42,6 @@ public class ToolsRecipesProvider extends FixedRecipesProvider {
                         .addInput('c', "milite:analog_circuit")
                         .addInput('H', "milite:aluminum_drill_head"));
 
-        smithing(consumer, "tools/smithing/netherite_hammer",
-                "minecraft:netherite_upgrade_smithing_template", "milite:diamond_hammer", "minecraft:netherite_ingot",
-                "milite:netherite_hammer", 1);
-
         shaped(consumer, "tools/steam_mining_drill",
                 new ShapedRecipeJson("milite:steam_mining_drill", 1, "fdd", "PDd", "bPf")
                         .addInput('P', "milite:iron_large_plate")

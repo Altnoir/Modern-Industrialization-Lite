@@ -1,6 +1,5 @@
 {
   "type": "milite:forge_hammer",
-  "damage": 30,
   "ingredient": {
     "item": "minecraft:bone"
   },

@@ -1,17 +1,12 @@
 package aztech.milite.client.compat.viewer.usage;
 
-import aztech.milite.blocks.forgehammer.ForgeHammerRecipe;
-import aztech.milite.client.blocks.forgehammer.ForgeHammerScreen;
-import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
-import aztech.milite.items.ForgeTool;
 import aztech.milite.MI;
 import aztech.milite.MIBlock;
 import aztech.milite.MIRegistries;
-import aztech.milite.MIText;
+import aztech.milite.blocks.forgehammer.ForgeHammerRecipe;
+import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
@@ -21,15 +16,27 @@ import java.util.function.Consumer;
 public class ForgeHammerCategory extends ViewerCategory<RecipeHolder<ForgeHammerRecipe>> {
     public static final ResourceLocation ID = MI.id("forge_hammer");
 
-    private final int startPointX;
-    private final int startPointY;
+    private static final int SLOT_SIZE = 18;
+    private static final int ARROW_WIDTH = 24;
+    private static final int ARROW_HEIGHT = 17;
+    private static final int GAP = 8;
+
+    private final int inputX;
+    private final int arrowX;
+    private final int outputX;
+    private final int slotY;
+    private final int arrowY;
 
     protected ForgeHammerCategory() {
         super(recipeHolderClass(), ID, MIBlock.FORGE_HAMMER.asBlock().getName(),
-                MIBlock.FORGE_HAMMER.asItem().getDefaultInstance(), 150, 40);
+                MIBlock.FORGE_HAMMER.asItem().getDefaultInstance(), 86, 30);
 
-        this.startPointX = width / 2 - 25;
-        this.startPointY = height / 2 - 18;
+        int contentWidth = SLOT_SIZE * 2 + ARROW_WIDTH + GAP * 2;
+        this.inputX = (width - contentWidth) / 2 + 1;
+        this.arrowX = inputX + SLOT_SIZE + GAP;
+        this.outputX = arrowX + ARROW_WIDTH + GAP;
+        this.slotY = (height - SLOT_SIZE) / 2 + 1;
+        this.arrowY = slotY + (SLOT_SIZE - ARROW_HEIGHT) / 2;
     }
 
     @Override
@@ -49,29 +56,18 @@ public class ForgeHammerCategory extends ViewerCategory<RecipeHolder<ForgeHammer
     public void buildLayout(RecipeHolder<ForgeHammerRecipe> holder, LayoutBuilder builder) {
         var recipe = holder.value();
 
-        builder.inputSlot(startPointX + 5, startPointY + 6).ingredient(recipe.ingredient(), recipe.count(), 1);
+        builder.inputSlot(inputX, slotY).ingredient(recipe.ingredient(), recipe.count(), 1);
 
-        if (recipe.hammerDamage() > 0) {
-            builder.inputSlot(startPointX - 23, startPointY + 6).ingredient(Ingredient.of(ForgeTool.TAG), 1, 1).removeBackground().markCatalyst();
-        }
-
-        builder.outputSlot(startPointX + 62, startPointY + 6).item(recipe.result());
+        builder.outputSlot(outputX, slotY).item(recipe.result());
     }
 
     @Override
     public void buildWidgets(RecipeHolder<ForgeHammerRecipe> holder, WidgetList widgets) {
-        var recipe = holder.value();
-
-        widgets.arrow(startPointX + 27, startPointY + 4);
-
-        widgets.texture(ForgeHammerScreen.FORGE_HAMMER_GUI, startPointX - 24, startPointY + 5, 7, 32, 18, 18);
-
-        Component text = recipe.hammerDamage() > 0 ? MIText.DurabilityCost.text(recipe.hammerDamage()) : MIText.NoToolRequired.text();
-        widgets.secondaryText(text, startPointX - 24, 28);
+        widgets.arrow(arrowX, arrowY);
     }
 
     @Override
-    public ResourceLocation getRecipeId(RecipeHolder<ForgeHammerRecipe> recipe) {
-        return recipe.id();
+    public ResourceLocation getRecipeId(RecipeHolder<ForgeHammerRecipe> holder) {
+        return holder.id();
     }
 }

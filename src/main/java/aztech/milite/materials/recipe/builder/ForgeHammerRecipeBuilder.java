@@ -13,11 +13,10 @@ public class ForgeHammerRecipeBuilder implements MaterialRecipeBuilder {
     private boolean canceled = false;
     private final ForgeHammerRecipe recipe;
 
-    public ForgeHammerRecipeBuilder(MaterialBuilder.RecipeContext context, String id, Ingredient input, int inputCount, ItemStack output,
-            int hammerDamage) {
+    public ForgeHammerRecipeBuilder(MaterialBuilder.RecipeContext context, String id, Ingredient input, int inputCount, ItemStack output) {
         this.recipeId = "forge_hammer/" + id;
         this.context = context;
-        this.recipe = new ForgeHammerRecipe(input, inputCount, output, hammerDamage);
+        this.recipe = new ForgeHammerRecipe(input, inputCount, output);
         context.addRecipe(this);
     }
 

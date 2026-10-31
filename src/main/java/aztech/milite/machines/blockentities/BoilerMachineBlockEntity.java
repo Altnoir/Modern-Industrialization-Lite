@@ -68,8 +68,8 @@ public class BoilerMachineBlockEntity extends MachineBlockEntity implements Tick
         this.isActiveComponent = new IsActiveComponent();
 
         registerGuiComponent(new AutoExtract(orientation));
-        ProgressBar.Params progressParams = new ProgressBar.Params(133, 50, "furnace", 14, 14, true);
-        TemperatureBar.Params temperatureParams = new TemperatureBar.Params(42, 75, 1500);
+        ProgressBar.Params progressParams = new ProgressBar.Params(135, 50, "furnace", 14, 14, true);
+        TemperatureBar.Params temperatureParams = new TemperatureBar.Params(42, 69, 1500);
         registerGuiComponent(new ProgressBar(progressParams, () -> (float) fuelBurning.getBurningProgress()));
         registerGuiComponent(new TemperatureBar(temperatureParams, () -> (int) steamHeater.getTemperature()));
 

@@ -52,9 +52,9 @@ public abstract class FixedRecipesProvider extends MIRecipesProvider {
     }
 
     protected static void forgeHammer(RecipeOutput output, String path, String input, int count,
-            String result, int resultCount, int damage) {
+            String result, int resultCount) {
         output.accept(id(path), new ForgeHammerRecipe(ingredient(input), count,
-                new ItemStack(item(result), resultCount), damage), null);
+                new ItemStack(item(result), resultCount)), null);
     }
 
     protected static void smelting(RecipeOutput output, String path, String input, String result,

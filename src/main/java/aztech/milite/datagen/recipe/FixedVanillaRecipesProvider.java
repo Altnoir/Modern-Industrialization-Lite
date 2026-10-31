@@ -161,16 +161,16 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                         .addInput('l', "#minecraft:logs"));
 
         forgeHammer(consumer, "vanilla_recipes/forge_hammer/bone_meal_from_block", "minecraft:bone_block", 1,
-                "minecraft:bone_meal", 9, 45);
+                "minecraft:bone_meal", 9);
 
         forgeHammer(consumer, "vanilla_recipes/forge_hammer/bone_meal_from_bone", "minecraft:bone", 1,
-                "minecraft:bone_meal", 6, 30);
+                "minecraft:bone_meal", 6);
 
         forgeHammer(consumer, "vanilla_recipes/forge_hammer/gravel", "minecraft:cobblestone", 1,
-                "minecraft:gravel", 1, 10);
+                "minecraft:gravel", 1);
 
         forgeHammer(consumer, "vanilla_recipes/forge_hammer/sand", "minecraft:gravel", 1,
-                "minecraft:sand", 1, 10);
+                "minecraft:sand", 1);
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.IMPLOSION_COMPRESSOR, 1, 10)
                 .level("bronze")

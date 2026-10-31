@@ -1,6 +1,5 @@
 {
   "type": "milite:forge_hammer",
-  "damage": 10,
   "ingredient": {
     "item": "minecraft:gravel"
   },

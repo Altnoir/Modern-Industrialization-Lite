@@ -22,13 +22,12 @@ class ForgeHammerRecipeHandler implements StandardRecipeHandler<ForgeHammerScree
             inputs.add(handler.getSlot(i));
         }
         inputs.add(handler.input);
-        inputs.add(handler.tool);
         return inputs;
     }
 
     @Override
     public List<Slot> getCraftingSlots(ForgeHammerScreenHandler handler) {
-        return List.of(handler.input, handler.tool);
+        return List.of(handler.input);
     }
 
     @Override

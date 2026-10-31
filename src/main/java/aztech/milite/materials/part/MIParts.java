@@ -37,8 +37,6 @@ public class MIParts {
             .withTexture(new TextureGenParams.Gem())
             .withCustomPath("%s", "%s");
 
-    public static final PartTemplate HAMMER = new PartTemplate("Hammer", "hammer");
-
     public static final PartTemplate HOT_INGOT = new PartTemplate("Hot Ingot", "hot_ingot")
             .withTexture(new TextureGenParams.HotIngot());
     public static final PartTemplate INGOT = new PartTemplate("Ingot", "ingot");

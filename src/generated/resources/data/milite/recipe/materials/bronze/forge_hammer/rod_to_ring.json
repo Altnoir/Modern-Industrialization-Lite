@@ -1,0 +1,10 @@
+{
+  "type": "milite:forge_hammer",
+  "ingredient": {
+    "tag": "c:rods/bronze"
+  },
+  "result": {
+    "count": 1,
+    "id": "milite:bronze_ring"
+  }
+}

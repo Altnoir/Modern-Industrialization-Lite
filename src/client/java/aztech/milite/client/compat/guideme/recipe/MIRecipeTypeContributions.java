@@ -8,7 +8,6 @@ import aztech.milite.client.compat.guideme.recipe.header.LytMachineRecipeHeaderF
 import aztech.milite.client.compat.guideme.recipe.item.LytMIItemSlot;
 import aztech.milite.compat.rei.machines.MachineCategoryParams;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
-import aztech.milite.items.ForgeTool;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.MIBlock;
@@ -64,29 +63,20 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
 
     private static LytStandardRecipeBox<ForgeHammerRecipe> forgeHammer(RecipeHolder<ForgeHammerRecipe> holder) {
         var recipe = holder.value();
-        var requiresTool = recipe.hammerDamage() > 0;
-
-        var durabilityText = new LytParagraph();
-        durabilityText.setStyle(DefaultStyles.CRAFTING_RECIPE_TYPE);
-        durabilityText.appendText(requiresTool ? MIText.DurabilityCost.text("" + recipe.hammerDamage()).getString() : MIText.NoToolRequired.text().getString());
 
         return LytStandardRecipeBox.builder()
                 .icon(MIBlock.FORGE_HAMMER)
                 .title(MIBlock.FORGE_HAMMER.asItem().getDescription().getString())
-                .addTop(durabilityText)
                 .customBody(forgeHammerGrid(recipe))
                 .build(holder);
     }
 
     private static LytBlock forgeHammerGrid(ForgeHammerRecipe recipe) {
-        var requiresTool = recipe.hammerDamage() > 0;
-
         var grid = new LytHBox();
         grid.setGap(2);
         grid.setAlignItems(AlignItems.CENTER);
         grid.setWrap(false);
 
-        grid.append(requiresTool ? new LytMIItemSlot(Ingredient.of(ForgeTool.TAG), 1, 1, true) : new LytMIItemSlot(true));
         grid.append(new LytMIItemSlot(recipe.ingredient(), recipe.count(), 1, true));
 
         grid.append(new LytGuiSprite(GuiAssets.ARROW, new LytSize(24, 17)));

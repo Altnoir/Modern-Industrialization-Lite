@@ -58,6 +58,5 @@ public final class MachineRecipeSchema {
     public static final RecipeSchema FORGE_HAMMER_SCHEMA = new RecipeSchema(
             ItemStackComponent.ITEM_STACK.outputKey("result"),
             IngredientComponent.INGREDIENT.inputKey("ingredient"),
-            NumberComponent.INT.min(0).otherKey("damage").optional(0),
             NumberComponent.INT.min(1).otherKey("count").optional(1));
 }

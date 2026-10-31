@@ -4,7 +4,6 @@ navigation:
   icon: "milite:forge_hammer"
   parent: milite:steam_age.md
 item_ids:
-  - milite:iron_hammer
   - milite:forge_hammer
   - milite:steam_mining_drill
 ---
@@ -13,11 +12,7 @@ item_ids:
 
 Antes de fazer bronze, precisamos criar um Martelo de Forja. Ele é usado para os passos básicos de processamento.
 
-Você pode colocar minério de ferro, cobre e estanho no martelo de forja e receberá 2 minérios crus por minério. Essa proporção pode ser aumentada usando um Martelo. Cada minério cru pode ser fundido em um lingote.
-
-O Martelo aumenta a proporção no Martelo de Forja e desbloqueia mais receitas, consumindo um pouco de durabilidade.
-
-<Recipe id="milite:materials/iron/craft/hammer" />
+Você pode colocar minério de ferro, cobre e estanho no martelo de forja e receberá 2 minérios crus por minério. Cada minério cru pode ser fundido em um lingote.
 
 Agora, você pode querer considerar fazer uma Broca de Mineração a Vapor para obter os minérios diretamente, sem precisar de uma picareta com Toque Suave.
 

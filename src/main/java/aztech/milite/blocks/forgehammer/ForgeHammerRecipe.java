@@ -22,14 +22,12 @@ import java.util.List;
 public record ForgeHammerRecipe(
         Ingredient ingredient,
         int count,
-        ItemStack result,
-        int hammerDamage) implements Recipe<RecipeInput> {
+        ItemStack result) implements Recipe<RecipeInput> {
     private static final MapCodec<ForgeHammerRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Ingredient.CODEC.fieldOf("ingredient").forGetter(ForgeHammerRecipe::ingredient),
                     ExtraCodecs.POSITIVE_INT.optionalFieldOf("count", 1).forGetter(ForgeHammerRecipe::count),
-                    ItemStack.CODEC.fieldOf("result").forGetter(ForgeHammerRecipe::result),
-                    ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("damage", 0).forGetter(ForgeHammerRecipe::hammerDamage))
+                    ItemStack.CODEC.fieldOf("result").forGetter(ForgeHammerRecipe::result))
                     .apply(instance, ForgeHammerRecipe::new));
 
     private static final StreamCodec<RegistryFriendlyByteBuf, ForgeHammerRecipe> STREAM_CODEC = StreamCodec.composite(
@@ -39,8 +37,6 @@ public record ForgeHammerRecipe(
             ForgeHammerRecipe::count,
             ItemStack.STREAM_CODEC,
             ForgeHammerRecipe::result,
-            ByteBufCodecs.VAR_INT,
-            ForgeHammerRecipe::hammerDamage,
             ForgeHammerRecipe::new);
 
     @Override

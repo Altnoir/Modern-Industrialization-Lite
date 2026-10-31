@@ -4,7 +4,6 @@ navigation:
   icon: "milite:forge_hammer"
   parent: milite:steam_age.md
 item_ids:
-  - milite:iron_hammer
   - milite:forge_hammer
   - milite:steam_mining_drill
 ---
@@ -13,11 +12,7 @@ item_ids:
 
 Before making bronze, we will need to create a Forge Hammer. It is used for basic processing steps.
 
-You can put iron, copper and tin ore in the forge hammer and you will receive 2 raw ores per ore. You can increase this ratio by using a Hammer. Every raw ores can be smelted into an ingot.
-
-The Hammer increases the ratio in the Forge Hammer and unlocks more recipes, at the cost of some durability
-
-<Recipe id="milite:materials/iron/craft/hammer" />
+You can put iron, copper and tin ore in the forge hammer and you will receive 2 raw ores per ore. Every raw ores can be smelted into an ingot.
 
 Now, you may want to consider making a Steam Mining Drill to obtain the ores directly without needing a Silk Touch pickaxe.
 
