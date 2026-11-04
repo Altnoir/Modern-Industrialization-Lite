@@ -13,6 +13,7 @@ import aztech.milite.MIText;
 import aztech.milite.MITooltips;
 import aztech.milite.util.FluidHelper;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class FluidHatch extends HatchBlockEntity {
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return List.of(MITooltips.line(MIText.HatchCapacityFluid)
                 .arg(FluidHelper.getFluidAmountLarge(inventory.getFluidStacks().getFirst().getCapacity()), t -> t.setStyle(MITooltips.NUMBER_TEXT))
                 .build());

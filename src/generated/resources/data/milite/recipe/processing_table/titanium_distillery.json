@@ -1,16 +1,32 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:large_pump"
-  },
-  "key": {
+  "casing": {
     "item": "milite:titanium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:large_pump"
+    },
+    "b": {
+      "item": "milite:cupronickel_plate"
+    },
+    "c": {
+      "item": "milite:processing_unit"
+    },
+    "d": {
+      "item": "milite:titanium_large_plate"
+    },
+    "e": {
+      "item": "milite:titanium_gear"
+    }
+  },
+  "pattern": [
+    "a b",
+    "ccd",
+    "d e"
+  ],
   "result": {
     "count": 1,
     "id": "milite:titanium_distillery"
-  },
-  "second": {
-    "item": "milite:cupronickel_plate"
   }
 }

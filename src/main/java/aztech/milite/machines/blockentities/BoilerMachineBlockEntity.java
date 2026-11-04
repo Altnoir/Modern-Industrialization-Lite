@@ -18,6 +18,7 @@ import aztech.milite.MIFluids;
 import aztech.milite.util.Tickable;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -107,7 +108,7 @@ public class BoilerMachineBlockEntity extends MachineBlockEntity implements Tick
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return fuelBurning.getTooltips(false);
     }
 

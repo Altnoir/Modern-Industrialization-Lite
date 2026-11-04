@@ -12,6 +12,7 @@ import aztech.milite.machines.multiblocks.HatchTypes;
 import aztech.milite.MIText;
 import aztech.milite.MITooltips;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class ItemHatch extends HatchBlockEntity {
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return List.of(MITooltips.line(MIText.HatchCapacityItem)
                 .arg(inventory.getItemStacks().size())
                 .build());

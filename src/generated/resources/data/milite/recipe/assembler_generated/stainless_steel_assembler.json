@@ -14,6 +14,18 @@
     {
       "amount": 1,
       "item": "milite:conveyor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:digital_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:stainless_steel_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:digital_circuit"
     }
   ],
   "item_outputs": [

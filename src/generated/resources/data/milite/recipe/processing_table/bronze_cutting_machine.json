@@ -1,16 +1,18 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:invar_rotary_blade"
-  },
-  "key": {
+  "casing": {
     "item": "milite:bronze_machine_casing"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:invar_rotary_blade"
+    }
+  },
+  "pattern": [
+    "a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:bronze_cutting_machine"
-  },
-  "second": {
-    "item": "milite:invar_gear"
   }
 }

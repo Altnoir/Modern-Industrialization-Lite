@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:motor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:motor"
+    },
+    "b": {
+      "item": "milite:invar_rod"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_wiremill"
-  },
-  "second": {
-    "item": "milite:invar_rod"
   }
 }

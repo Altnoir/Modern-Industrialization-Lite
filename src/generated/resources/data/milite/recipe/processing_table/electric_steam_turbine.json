@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:analog_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:analog_circuit"
+    },
+    "b": {
+      "item": "milite:tin_rotor"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_steam_turbine"
-  },
-  "second": {
-    "item": "milite:tin_rotor"
   }
 }

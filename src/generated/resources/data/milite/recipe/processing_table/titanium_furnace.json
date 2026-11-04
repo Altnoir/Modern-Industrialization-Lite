@@ -1,16 +1,32 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:blast_furnace"
-  },
-  "key": {
+  "casing": {
     "item": "milite:titanium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:blast_furnace"
+    },
+    "b": {
+      "item": "milite:fire_clay_bricks"
+    },
+    "c": {
+      "item": "milite:processing_unit"
+    },
+    "d": {
+      "item": "milite:titanium_large_plate"
+    },
+    "e": {
+      "item": "milite:titanium_gear"
+    }
+  },
+  "pattern": [
+    "a b",
+    "ccd",
+    "d e"
+  ],
   "result": {
     "count": 1,
     "id": "milite:titanium_furnace"
-  },
-  "second": {
-    "item": "milite:fire_clay_bricks"
   }
 }

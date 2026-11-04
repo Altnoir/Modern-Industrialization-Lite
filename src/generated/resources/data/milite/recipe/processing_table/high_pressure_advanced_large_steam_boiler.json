@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:processing_unit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:high_pressure_large_steam_boiler"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:processing_unit"
+    },
+    "b": {
+      "item": "milite:large_advanced_pump"
+    },
+    "c": {
+      "item": "milite:titanium_large_plate"
+    },
+    "d": {
+      "item": "milite:titanium_gear"
+    }
+  },
+  "pattern": [
+    "a b",
+    "aac",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:high_pressure_advanced_large_steam_boiler"
-  },
-  "second": {
-    "item": "milite:large_advanced_pump"
   }
 }

@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:chest"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:chest"
+    },
+    "b": {
+      "item": "milite:steel_gear"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    },
+    "d": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:aluminum_alloy_unpacker"
-  },
-  "second": {
-    "item": "milite:steel_gear"
   }
 }

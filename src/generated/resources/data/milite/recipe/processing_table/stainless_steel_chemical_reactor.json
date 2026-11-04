@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:large_motor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:large_motor"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "c": {
+      "item": "milite:digital_circuit"
+    },
+    "d": {
+      "item": "milite:stainless_steel_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    " c ",
+    "d c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:stainless_steel_chemical_reactor"
-  },
-  "second": {
-    "item": "minecraft:bucket"
   }
 }

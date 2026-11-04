@@ -71,14 +71,15 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
     private static HighlightScan scan(MultiblockMachineBlockEntity be, Level level, ShapeTemplate shape, Direction facing, boolean shapeValid,
             long timeBucket) {
         ShapeMatcher matcher = be.createShapeMatcher();
-        List<BlockPos> blocked = new ArrayList<>();
+        List<BlockedPos> blocked = new ArrayList<>();
         List<MissingPreview> previews = new ArrayList<>();
         List<HatchPreview> hatches = new ArrayList<>();
 
         for (BlockPos pos : matcher.getPositions()) {
+            SimpleMember member = matcher.getSimpleMember(pos);
             HatchFlags hatchFlags = matcher.getHatchFlags(pos);
             if (hatchFlags != null) {
-                hatches.add(new HatchPreview(pos, hatchFlags));
+                hatches.add(new HatchPreview(pos, hatchFlags, member));
             }
 
             if (shapeValid || matcher.matches(pos, level)) {
@@ -88,15 +89,32 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
 
             BlockState state = level.getBlockState(pos);
             if (state.isAir() || state.canBeReplaced()) {
-                SimpleMember member = matcher.getSimpleMember(pos);
                 BlockState previewState = ShapeMatcher.toWorldState(level, pos, member.getPreviewState(), matcher.controllerDirection);
-                previews.add(new MissingPreview(pos, previewState, member.newBlockEntity(level.registryAccess(), level, pos, previewState)));
+                previews.add(new MissingPreview(pos, previewState, member.newBlockEntity(level.registryAccess(), level, pos, previewState), member, hatchFlags));
             } else {
-                blocked.add(pos);
+                blocked.add(new BlockedPos(pos, member, hatchFlags));
             }
         }
 
         return new HighlightScan(shape, facing, shapeValid, timeBucket, List.copyOf(blocked), List.copyOf(previews), List.copyOf(hatches));
+    }
+
+    /**
+     * Whether the player's look ray hits the given block position.
+     */
+    private static boolean isTargetingPos(BlockPos pos, boolean isForHatch) {
+        var player = Minecraft.getInstance().player;
+        if (player == null) {
+            return false;
+        }
+        var eyePos = player.getEyePosition();
+        var view = player.getViewVector(1).scale(player.blockInteractionRange());
+        var endPos = eyePos.add(view);
+        var bounds = new AABB(pos);
+        if (!isForHatch) {
+            bounds = bounds.contract(0.5, 0.5, 0.5).move(0.25, 0.25, 0.25);
+        }
+        return bounds.clip(eyePos, endPos).isPresent();
     }
 
     @Override
@@ -124,10 +142,15 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
         HighlightScan scan = getScan(be, shapeValid);
         double maxDistanceSqr = (double) maxHighlightDistance * maxHighlightDistance;
 
+        boolean tooltipOverlay = MIClientConfig.INSTANCE.multiblockTooltipOverlay.getAsBoolean();
+
         if (hatchType != null && MIClientConfig.INSTANCE.hatchPlacementOverlay.getAsBoolean()) {
             for (HatchPreview hatch : scan.hatches()) {
                 if (hatch.flags().allows(hatchType) && isClose(hatch.pos(), maxDistanceSqr)) {
                     MultiblockHighlight.enqueueHatchHighlight(hatch.pos());
+                    if (tooltipOverlay && isTargetingPos(hatch.pos(), true)) {
+                        MultiblockHighlight.enqueueHighlightTargetPos(hatch.pos(), hatch.member(), hatch.flags());
+                    }
                 }
             }
         }
@@ -136,31 +159,43 @@ public class MultiblockMachineBER extends MachineBlockEntityRenderer<MultiblockM
             for (MissingPreview preview : scan.previews()) {
                 if (isClose(preview.pos(), maxDistanceSqr)) {
                     MultiblockHighlight.enqueueErrorHighlight(preview.pos(), preview.state(), preview.blockEntity());
+                    if (tooltipOverlay && isTargetingPos(preview.pos(), false)) {
+                        MultiblockHighlight.enqueueHighlightTargetPos(preview.pos(), preview.member(), preview.hatchFlags());
+                    }
                 }
             }
-            for (BlockPos pos : scan.blocked()) {
-                if (isClose(pos, maxDistanceSqr)) {
-                    MultiblockHighlight.enqueueBlockedHighlight(pos);
+            for (BlockedPos blockedPos : scan.blocked()) {
+                if (isClose(blockedPos.pos(), maxDistanceSqr)) {
+                    MultiblockHighlight.enqueueBlockedHighlight(blockedPos.pos());
+                    if (tooltipOverlay && isTargetingPos(blockedPos.pos(), false)) {
+                        MultiblockHighlight.enqueueHighlightTargetPos(blockedPos.pos(), blockedPos.member(), blockedPos.hatchFlags());
+                    }
                 }
             }
         } else if (drawOutline) {
-            for (BlockPos pos : scan.blocked()) {
-                if (isClose(pos, maxDistanceSqr)) {
+            for (BlockedPos blockedPos : scan.blocked()) {
+                if (isClose(blockedPos.pos(), maxDistanceSqr)) {
                     if (!loggedOutlineHighlight) {
                         loggedOutlineHighlight = true;
-                        MI.LOGGER.debug("Highlighting the blocked multiblock position at {} (outline only)", pos);
+                        MI.LOGGER.debug("Highlighting the blocked multiblock position at {} (outline only)", blockedPos.pos());
                     }
-                    MultiblockHighlight.enqueueOutlineHighlight(pos);
+                    MultiblockHighlight.enqueueOutlineHighlight(blockedPos.pos());
+                    if (tooltipOverlay && isTargetingPos(blockedPos.pos(), false)) {
+                        MultiblockHighlight.enqueueHighlightTargetPos(blockedPos.pos(), blockedPos.member(), blockedPos.hatchFlags());
+                    }
                 }
             }
         }
     }
 
-    private record MissingPreview(BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {}
+    private record BlockedPos(BlockPos pos, SimpleMember member, @Nullable HatchFlags hatchFlags) {}
 
-    private record HatchPreview(BlockPos pos, HatchFlags flags) {}
+    private record MissingPreview(BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, SimpleMember member,
+            @Nullable HatchFlags hatchFlags) {}
 
-    private record HighlightScan(ShapeTemplate shape, Direction facing, boolean shapeValid, long timeBucket, List<BlockPos> blocked,
+    private record HatchPreview(BlockPos pos, HatchFlags flags, SimpleMember member) {}
+
+    private record HighlightScan(ShapeTemplate shape, Direction facing, boolean shapeValid, long timeBucket, List<BlockedPos> blocked,
             List<MissingPreview> previews, List<HatchPreview> hatches) {}
 
     private static boolean isHoldingWrench() {

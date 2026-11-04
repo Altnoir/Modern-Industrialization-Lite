@@ -10,7 +10,7 @@ import aztech.milite.machines.components.CasingComponent;
 import aztech.milite.machines.components.EnergyComponent;
 import aztech.milite.machines.components.RedstoneControlComponent;
 import aztech.milite.machines.guicomponents.EnergyBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.util.Simulation;
 import java.util.Collections;
@@ -40,8 +40,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
         this.registerComponents(inventory, redstoneControl, casing, energy);
 
         registerGuiComponent(new EnergyBar(new EnergyBar.Params(18, 32), energy::getFe, energy::getCapacity));
-        registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
     }
 
     private final MIInventory inventory;
@@ -91,11 +90,7 @@ public class ElectricWaterPumpBlockEntity extends AbstractWaterPumpBlockEntity i
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 
 }

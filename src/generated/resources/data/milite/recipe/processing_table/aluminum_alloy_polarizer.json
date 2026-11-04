@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:inductor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:inductor"
+    },
+    "b": {
+      "item": "milite:copper_wire"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    },
+    "d": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:aluminum_alloy_polarizer"
-  },
-  "second": {
-    "item": "milite:copper_wire"
   }
 }

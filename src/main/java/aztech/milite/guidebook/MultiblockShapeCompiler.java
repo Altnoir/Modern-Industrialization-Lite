@@ -3,7 +3,7 @@ package aztech.milite.guidebook;
 import aztech.milite.machines.MachineBlock;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
 import aztech.milite.machines.multiblocks.ShapeMatcher;
-import aztech.milite.MIText;
+import aztech.milite.util.TextHelper;
 import guideme.color.ConstantColor;
 import guideme.color.SymbolicColor;
 import guideme.compiler.PageCompiler;
@@ -14,11 +14,8 @@ import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
 import guideme.scene.annotation.InWorldBoxAnnotation;
 import guideme.scene.element.SceneElementTagCompiler;
 import guideme.scene.GuidebookScene;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public class MultiblockShapeCompiler implements SceneElementTagCompiler {
@@ -54,19 +51,11 @@ public class MultiblockShapeCompiler implements SceneElementTagCompiler {
 
             // Annotations for allowed blocks and hatches
             var member = shape.simpleMembers.get(entry.getKey());
-            var ingredient = member.getItemPreviewState(scene.getLevel().registryAccess());
-            List<Component> tooltipLines = new ArrayList<>(member.getTooltipPreview(scene.getLevel().registryAccess()));
             var hatch = shape.hatchFlags.get(entry.getKey());
             boolean hasHatches = hatch != null && !hatch.values().isEmpty();
-            if (hasHatches) {
-                tooltipLines.add(MIText.AcceptsHatches.text());
-                for (var type : hatch.values()) {
-                    tooltipLines.add(Component.literal("- ").append(type.description()));
-                }
-            }
             var minCorner = Vec3.atLowerCornerOf(pos);
             var annotation = new InWorldBoxAnnotation(minCorner.toVector3f(), minCorner.add(1, 1, 1).toVector3f(), hasHatches ? SymbolicColor.GREEN : ConstantColor.TRANSPARENT);
-            annotation.setTooltip(new TextTooltip(tooltipLines));
+            annotation.setTooltip(new TextTooltip(TextHelper.getMultiblockMemberTooltip(scene.getLevel().registryAccess(), member, hatch)));
             scene.addAnnotation(annotation);
         }
     }

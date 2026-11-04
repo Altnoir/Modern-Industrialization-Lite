@@ -1,65 +1,64 @@
 package aztech.milite.machines.components;
 
-import aztech.milite.items.RedstoneControlModuleItem;
 import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.MachineComponent;
 import aztech.milite.MI;
-import aztech.milite.MIItem;
+import aztech.milite.MIComponents;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.ItemInteractionResult;
 
-public class RedstoneControlComponent implements MachineComponent.ServerOnly, DropableComponent {
+public class RedstoneControlComponent implements MachineComponent.ServerOnly {
     public static final ResourceLocation ID = MI.id("redstone_control");
 
-    private ItemStack controlModule = ItemStack.EMPTY;
+    private boolean enabled;
+    private boolean requiresLowSignal;
 
     public boolean doAllowNormalOperation(MachineBlockEntity machine) {
-        if (controlModule.isEmpty()) {
+        if (!enabled) {
             return true;
         }
 
-        return RedstoneControlModuleItem.isRequiresLowSignal(controlModule) != machine.hasRedstoneHighSignal();
+        return requiresLowSignal != machine.hasRedstoneHighSignal();
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(MachineBlockEntity be, boolean enabled) {
+        this.enabled = enabled;
+        be.setChanged();
+        be.sync();
+    }
+
+    public boolean requiresLowSignal() {
+        return requiresLowSignal;
+    }
+
+    public void setRequiresLowSignal(MachineBlockEntity be, boolean requiresLowSignal) {
+        this.requiresLowSignal = requiresLowSignal;
+        be.setChanged();
+        be.sync();
     }
 
     @Override
     public void writeNbt(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.put("redstoneModuleStack", controlModule.saveOptional(registries));
+        tag.putBoolean("redstoneControlEnabled", enabled);
+        tag.putBoolean("redstoneControlLowSignal", requiresLowSignal);
     }
 
     @Override
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        controlModule = ItemStack.parseOptional(registries, tag.getCompound("redstoneModuleStack"));
-    }
+        enabled = tag.getBoolean("redstoneControlEnabled");
+        requiresLowSignal = tag.getBoolean("redstoneControlLowSignal");
 
-    public ItemInteractionResult onUse(MachineBlockEntity be, Player player, InteractionHand hand) {
-        ItemStack stackInHand = player.getItemInHand(hand);
-        if (stackInHand.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        // 迁移
+        if (tag.contains("redstoneModuleStack")) {
+            enabled = true;
+            String lowSignalKey = BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(MIComponents.LOW_SIGNAL.get()).toString();
+            requiresLowSignal = tag.getCompound("redstoneModuleStack").getCompound("components").getBoolean(lowSignalKey);
         }
-        if (MIItem.REDSTONE_CONTROL_MODULE.is(stackInHand) && controlModule.isEmpty()) {
-            controlModule = stackInHand.copyWithCount(1);
-            stackInHand.consume(1, player);
-
-            be.setChanged();
-            return ItemInteractionResult.sidedSuccess(player.level().isClientSide);
-        }
-
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    @Override
-    public ItemStack getDrop() {
-        return controlModule;
-    }
-
-    public void setStackServer(MachineBlockEntity be, ItemStack stack) {
-        controlModule = stack;
-        be.setChanged();
-        be.sync();
     }
 }

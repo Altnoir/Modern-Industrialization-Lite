@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:tin_rotor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:tin_rotor"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_mixer"
-  },
-  "second": {
-    "item": "minecraft:bucket"
   }
 }

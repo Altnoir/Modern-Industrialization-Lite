@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:bucket"
-  },
-  "key": {
+  "casing": {
     "item": "milite:steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:bucket"
+    },
+    "b": {
+      "item": "milite:analog_circuit"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:configurable_tank"
-  },
-  "second": {
-    "item": "milite:analog_circuit"
   }
 }

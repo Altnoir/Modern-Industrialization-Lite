@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:bronze_drill_head"
-  },
-  "key": {
+  "casing": {
     "item": "milite:steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:bronze_drill_head"
+    },
+    "b": {
+      "item": "milite:bronze_barrel"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:steel_macerator"
-  },
-  "second": {
-    "item": "milite:bronze_barrel"
   }
 }

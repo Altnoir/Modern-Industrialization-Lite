@@ -1,16 +1,23 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:electronic_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:large_steam_boiler"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:electronic_circuit"
+    },
+    "b": {
+      "item": "milite:large_pump"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:advanced_large_steam_boiler"
-  },
-  "second": {
-    "item": "milite:large_pump"
   }
 }

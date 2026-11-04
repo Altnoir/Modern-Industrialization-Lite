@@ -35,17 +35,12 @@ The first machine you'll want to make a lot of! The Assembler allows you to auto
 
 We strongly suggest that you automate Machine Hull, Analog Circuits, Motors, Pistons, Robot Arms and Conveyor Belts using Assemblers as soon as possible, that will make crafting electric machines basically free!
 
-## Redstone Control Modules
+## Redstone Control
 
-<ItemImage id="milite:redstone_control_module" />
+The top right corner of an electric machine or multiblock screen has two buttons. The redstone button on the right switches redstone control on and off; once it is on, a signal button appears to its left and changes whether the machine needs a high or a low signal.
 
-A Redstone Control Module can be used to control the behavior of electric machines and multiblocks with redstone signals.
+## Overclocking
 
-Configure the module in your hand, then insert it into the machine or multiblock controller.
+An Overclocker Unit is a block that makes electric machines run faster. Place it against any side of a machine and that machine processes twice as fast, out of the same FE per craft. Units stack: every further unit touching the machine doubles the speed again, and the limit is one tick per craft.
 
-## Overdrive Module
-
-An Overdrive Module doubles the speed of supported electric machines and multiblocks. Install it in the module slot or right-click the machine while holding it. The module is reusable and can be removed from the slot.
-
-The module doubles FE/t demand while keeping the same total FE per craft. Supply enough FE to reach full speed. Continuous processing and lubricant do not increase machine speed.
-
+A faster machine asks for more FE per tick, so keep its buffer full. Neither continuous processing nor lubricant changes machine speed.

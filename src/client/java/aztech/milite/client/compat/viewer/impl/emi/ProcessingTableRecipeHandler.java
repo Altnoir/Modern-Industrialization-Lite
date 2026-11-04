@@ -21,15 +21,16 @@ class ProcessingTableRecipeHandler implements StandardRecipeHandler<ProcessingTa
         for (int i = 0; i < 36; ++i) {
             inputs.add(handler.getSlot(i));
         }
-        inputs.add(handler.leftInput);
-        inputs.add(handler.keyInput);
-        inputs.add(handler.rightInput);
+        inputs.addAll(getCraftingSlots(handler));
         return inputs;
     }
 
     @Override
     public List<Slot> getCraftingSlots(ProcessingTableScreenHandler handler) {
-        return List.of(handler.leftInput, handler.keyInput, handler.rightInput);
+        List<Slot> slots = new ArrayList<>();
+        slots.add(handler.keyInput);
+        slots.addAll(handler.gridInputs);
+        return slots;
     }
 
     @Override

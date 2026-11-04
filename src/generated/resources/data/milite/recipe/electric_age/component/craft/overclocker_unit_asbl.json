@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "milite:electronic_circuit_board"
+    },
+    "d": {
+      "item": "milite:diode"
+    },
+    "t": {
+      "item": "milite:transistor"
+    },
+    "w": {
+      "item": "milite:electrum_fine_wire"
+    }
+  },
+  "pattern": [
+    "wdw",
+    "tbt",
+    "wdw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:overclocker_unit"
+  }
+}

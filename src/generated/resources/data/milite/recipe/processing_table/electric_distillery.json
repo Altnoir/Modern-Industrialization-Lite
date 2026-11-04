@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:large_pump"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:large_pump"
+    },
+    "b": {
+      "item": "milite:cupronickel_plate"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_distillery"
-  },
-  "second": {
-    "item": "milite:cupronickel_plate"
   }
 }

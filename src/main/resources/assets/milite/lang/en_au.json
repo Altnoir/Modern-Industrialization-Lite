@@ -34,5 +34,8 @@
   "tag.c.plates.aluminum": "Aluminium Plates",
   "tag.c.rods.aluminum": "Aluminium Rods",
   "tag.c.storage_blocks.aluminum": "Aluminium Storage Blocks",
-  "tag.c.tiny_dusts.aluminum": "Aluminium Tiny Dusts"
+  "tag.c.tiny_dusts.aluminum": "Aluminium Tiny Dusts",
+  "text.milite.ClickToSwitch": "Click to switch to %s",
+  "text.milite.RedstoneControlOff": "Redstone control disabled",
+  "text.milite.RedstoneControlOn": "Redstone control enabled"
 }

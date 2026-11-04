@@ -5,7 +5,7 @@ import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.guicomponents.TemperatureBar;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
@@ -17,6 +17,7 @@ import aztech.milite.MITooltips;
 import aztech.milite.util.Tickable;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -57,7 +58,7 @@ public class SteamBoilerMultiblockBlockEntity extends MultiblockMachineBlockEnti
 
         registerGuiComponent(new ProgressBar(PROGRESS_BAR, () -> (float) fuelBurning.getBurningProgress()));
         registerGuiComponent(new TemperatureBar(TEMPERATURE_BAR, () -> (int) steamHeater.getTemperature()));
-        registerGuiComponent(new SlotPanel(this).withRedstoneControl(redstoneControl));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
     }
 
     @Override
@@ -108,15 +109,11 @@ public class SteamBoilerMultiblockBlockEntity extends MultiblockMachineBlockEnti
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         List<Component> tooltips = fuelBurning.getTooltips(true);
 
         tooltips.add(new MITooltips.Line(MIText.ContinuousOperation).build());

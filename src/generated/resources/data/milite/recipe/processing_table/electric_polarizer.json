@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:inductor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:inductor"
+    },
+    "b": {
+      "item": "milite:copper_wire"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_polarizer"
-  },
-  "second": {
-    "item": "milite:copper_wire"
   }
 }

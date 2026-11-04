@@ -70,14 +70,7 @@ public abstract class AbstractElectricCraftingMultiblockBlockEntity extends Abst
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        if (!result.consumesAction()) {
-            result = components.mapOrDefault(OverdriveComponent.class, overdrive -> overdrive.onUse(this, player, hand), result);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 
     @Override

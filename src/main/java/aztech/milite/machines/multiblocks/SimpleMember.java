@@ -24,6 +24,7 @@ import net.neoforged.neoforge.common.Tags;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.List;
 import java.util.Objects;
@@ -132,6 +133,24 @@ public interface SimpleMember {
             @Override
             public BlockState getPreviewState() {
                 return state;
+            }
+        };
+    }
+
+    static SimpleMember forBlockStateId(String blockId, Function<BlockState, BlockState> modifier) {
+        Objects.requireNonNull(blockId);
+        Objects.requireNonNull(modifier);
+
+        return new SimpleMember() {
+            @Override
+            public boolean matchesState(BlockState state2, @Nullable BlockEntity blockEntity) {
+                return getPreviewState() == state2;
+            }
+
+            @Override
+            public BlockState getPreviewState() {
+                var block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(blockId));
+                return modifier.apply(block.defaultBlockState());
             }
         };
     }

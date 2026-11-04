@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:chest"
-  },
-  "key": {
+  "casing": {
     "item": "milite:steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:chest"
+    },
+    "b": {
+      "item": "milite:steel_gear"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:steel_unpacker"
-  },
-  "second": {
-    "item": "milite:steel_gear"
   }
 }

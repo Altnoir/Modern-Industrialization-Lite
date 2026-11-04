@@ -132,6 +132,8 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         }, tooltipSupplier, renderer, isButtonPresent));
     }
 
+    private static final int SLOT_FRAME_U = 0;
+
     private void addLockButton() {
         addButton(BUTTON_LOCK_U, syncId -> {
             if (hasShiftDown()) {
@@ -194,9 +196,14 @@ public class MachineScreen extends MIHandledScreen<MachineMenuClient> implements
         guiGraphics.drawString(this.font, titleToRender(), this.titleLabelX, this.titleLabelY, 4210752, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
     }
+    private static final int SLOT_FRAME_V = 88;
 
-    private static final int SLOT_FRAME_U = 26;
-    private static final int SLOT_FRAME_V = 94;
+    @Override
+    public MachineButton addButton(ClientComponentRenderer.CustomButtonRenderer renderer, Consumer<Integer> pressAction,
+                                   Supplier<List<Component>> tooltipSupplier, Supplier<Boolean> isButtonPresent) {
+        return addRenderableWidget(new MachineButton(buttonX(), buttonY(), BUTTON_SIZE, BUTTON_SIZE,
+                b -> pressAction.accept(menu.containerId), tooltipSupplier, renderer, isButtonPresent));
+    }
     private static final int SLOT_FRAME_BORDER = 4;
 
     private static void blitFrame(GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {

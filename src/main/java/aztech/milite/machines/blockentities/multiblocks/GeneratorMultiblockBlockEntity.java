@@ -7,7 +7,7 @@ import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.GeneratorMultiblockGui;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.machines.multiblocks.HatchBlockEntity;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
@@ -16,6 +16,7 @@ import aztech.milite.machines.multiblocks.ShapeTemplate;
 import aztech.milite.util.Simulation;
 import aztech.milite.util.Tickable;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
         this.redstoneControl = new RedstoneControlComponent();
 
         this.registerComponents(activeShape, isActiveComponent, fluidConsumer, redstoneControl);
-        registerGuiComponent(new SlotPanel(this).withRedstoneControl(redstoneControl));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
         registerGuiComponent(new GeneratorMultiblockGui(() -> shapeValid.shapeValid, () -> lastFeProduction, fluidConsumer.maxFeProduction));
     }
 
@@ -125,7 +126,7 @@ public class GeneratorMultiblockBlockEntity extends MultiblockMachineBlockEntity
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return fluidConsumer.getTooltips();
     }
 }

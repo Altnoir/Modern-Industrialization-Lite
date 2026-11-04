@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:electronic_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:electronic_circuit"
+    },
+    "b": {
+      "item": "milite:aluminum_wire"
+    },
+    "c": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "a c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:aluminum_alloy_electrolyzer"
-  },
-  "second": {
-    "item": "milite:aluminum_wire"
   }
 }

@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:large_pump"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:large_pump"
+    },
+    "b": {
+      "item": "milite:aluminum_large_plate"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    },
+    "d": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:vacuum_freezer"
-  },
-  "second": {
-    "item": "milite:aluminum_large_plate"
   }
 }

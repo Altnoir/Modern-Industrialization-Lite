@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:plates/nuclear_alloy"
+    },
+    "C": {
+      "item": "milite:nuclear_casing"
+    },
+    "R": {
+      "item": "milite:cadmium_control_rod"
+    }
+  },
+  "pattern": [
+    "ARA",
+    "RCR",
+    "ARA"
+  ],
+  "result": {
+    "count": 4,
+    "id": "milite:control_rod"
+  }
+}

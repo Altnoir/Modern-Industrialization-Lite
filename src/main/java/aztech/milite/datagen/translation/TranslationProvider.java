@@ -68,6 +68,11 @@ public final class TranslationProvider implements DataProvider {
 
         addTranslation("config.jade.plugin_milite.overclock", "Machine Overclock");
         addTranslation("config.jade.plugin_milite.pipe", "Pipe Information");
+
+        addTranslation(MIText.AttributeInfiniteDamage.getTranslationKey() + ".desc",
+                "Deals an effectively infinite amount of damage.");
+        addTranslation(MIText.AttributeQuantumArmor.getTranslationKey() + ".desc",
+                "Grants a chance to completely nullify all damage. When a full set is equipped, all damage taken is negated.");
     }
 
     private void collectTranslationEntries() {

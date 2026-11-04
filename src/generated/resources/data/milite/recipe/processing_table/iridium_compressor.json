@@ -1,16 +1,32 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:piston"
-  },
-  "key": {
+  "casing": {
     "item": "milite:iridium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:piston"
+    },
+    "b": {
+      "item": "milite:bronze_gear"
+    },
+    "c": {
+      "item": "milite:quantum_circuit"
+    },
+    "d": {
+      "item": "milite:tungsten_large_plate"
+    },
+    "e": {
+      "item": "milite:iridium_plate"
+    }
+  },
+  "pattern": [
+    "abc",
+    "dec",
+    "dec"
+  ],
   "result": {
     "count": 1,
     "id": "milite:iridium_compressor"
-  },
-  "second": {
-    "item": "milite:bronze_gear"
   }
 }

@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:piston"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:piston"
+    },
+    "b": {
+      "item": "milite:bronze_gear"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    },
+    "d": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:aluminum_alloy_compressor"
-  },
-  "second": {
-    "item": "milite:bronze_gear"
   }
 }

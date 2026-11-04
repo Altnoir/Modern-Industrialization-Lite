@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:digital_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:digital_circuit"
+    },
+    "b": {
+      "item": "milite:solid_titanium_machine_casing"
+    },
+    "c": {
+      "item": "milite:stainless_steel_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    " a ",
+    "c a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:pressurizer"
-  },
-  "second": {
-    "item": "milite:titanium_machine_casing_pipe"
   }
 }

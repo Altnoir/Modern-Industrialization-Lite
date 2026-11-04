@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:silver_wire"
-  },
-  "key": {
+  "casing": {
     "item": "milite:titanium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:silver_wire"
+    },
+    "b": {
+      "item": "milite:titanium_gear"
+    },
+    "c": {
+      "item": "milite:processing_unit"
+    },
+    "d": {
+      "item": "milite:titanium_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "ccd",
+    "d b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:large_diesel_generator"
-  },
-  "second": {
-    "item": "milite:titanium_gear"
   }
 }

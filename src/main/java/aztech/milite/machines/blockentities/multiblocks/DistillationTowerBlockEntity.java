@@ -5,9 +5,8 @@ import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.config.MIStartupConfig;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.OrientationComponent;
-import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.machines.guicomponents.ShapeSelection;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineTier;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
@@ -30,11 +29,7 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
 
     public DistillationTowerBlockEntity(BEP bep) {
         super(bep, "distillation_tower", 200, new OrientationComponent.Params(false, false, false), shapeTemplates);
-        this.overdrive = new OverdriveComponent();
-        this.registerComponents(overdrive);
-        registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl)
-                .withOverdrive(overdrive));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
 
         registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
             @Override
@@ -51,8 +46,6 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
                 IntStream.range(1, MAX_HEIGHT + 1).boxed().toList())));
     }
 
-    private final OverdriveComponent overdrive;
-
     @Override
     public MachineRecipeType recipeType() {
         return MIMachineRecipeTypes.DISTILLATION_TOWER;
@@ -66,11 +59,6 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
     @Override
     public int getSpeedBonus() {
         return 2;
-    }
-
-    @Override
-    public boolean isOverdriving() {
-        return overdrive.shouldOverdrive();
     }
 
     @Override
@@ -93,17 +81,12 @@ public class DistillationTowerBlockEntity extends AbstractElectricCraftingMultib
         shapeTemplates = new ShapeTemplate[MAX_HEIGHT];
 
         SimpleMember casing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("clean_stainless_steel_machine_casing")));
-        SimpleMember pipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("stainless_steel_machine_casing_pipe")));
         HatchFlags bottom = new HatchFlags.Builder().with(HatchTypes.ENERGY_INPUT, HatchTypes.FLUID_INPUT).build();
         HatchFlags layer = new HatchFlags.Builder().with(HatchTypes.FLUID_OUTPUT).build();
         for (int i = 0; i < MAX_HEIGHT; ++i) {
             ShapeTemplate.Builder builder = new ShapeTemplate.Builder(MachineCasings.CLEAN_STAINLESS_STEEL);
             for (int y = 0; y <= i + 1; ++y) {
                 builder.add3by3(y, casing, y != 0, y == 0 ? bottom : layer);
-                if (y != 0) {
-                    builder.add(0, y, 1, pipe, null);
-
-                }
             }
             shapeTemplates[i] = builder.build();
         }

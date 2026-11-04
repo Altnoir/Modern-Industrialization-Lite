@@ -3,8 +3,7 @@ package aztech.milite.machines.blockentities.multiblocks;
 import aztech.milite.api.machine.holder.EnergyListComponentHolder;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.OrientationComponent;
-import aztech.milite.machines.components.OverdriveComponent;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineTier;
 import aztech.milite.machines.multiblocks.ShapeTemplate;
@@ -23,11 +22,7 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
         super(bep, blockId, new OrientationComponent.Params(false, false, false), new ShapeTemplate[] { shapeTemplate });
         this.recipeType = recipeType;
         this.machineLevel = level;
-        this.overdrive = new OverdriveComponent();
-        this.registerComponents(overdrive);
-        registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl)
-                .withOverdrive(overdrive));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
     }
 
     public ElectricCraftingMultiblockBlockEntity(BEP bep, String name, ShapeTemplate shapeTemplate, MachineRecipeType recipeType) {
@@ -41,7 +36,6 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
 
     private final MachineRecipeType recipeType;
     private final MachineLevel machineLevel;
-    private final OverdriveComponent overdrive;
 
     @Override
     public MachineLevel getMachineLevel() {
@@ -57,10 +51,5 @@ public class ElectricCraftingMultiblockBlockEntity extends AbstractElectricCraft
     @Override
     public int getSpeedBonus() {
         return 2;
-    }
-
-    @Override
-    public boolean isOverdriving() {
-        return overdrive.shouldOverdrive();
     }
 }

@@ -10,10 +10,12 @@ import aztech.milite.machines.components.PlacedByComponent;
 import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.gui.MachineMenuServer;
+import aztech.milite.machines.helper.OverclockUnitHelper;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.MICapabilities;
 import aztech.milite.util.NbtHelper;
 import aztech.milite.util.WorldHelper;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -30,12 +32,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
@@ -70,6 +74,9 @@ public abstract class MachineBlockEntity extends FastBlockEntity
 
     public long lastSoundTick;
 
+    private int overclockerUnits;
+    private boolean overclockerScanPending = true;
+
     public MachineBlockEntity(BEP bep, MachineGuiParameters guiParams, OrientationComponent.Params orientationParams) {
         super(bep.type(), bep.pos(), bep.state());
         this.guiParams = guiParams;
@@ -77,6 +84,25 @@ public abstract class MachineBlockEntity extends FastBlockEntity
         this.placedBy = new PlacedByComponent();
 
         registerComponents(orientation, placedBy);
+    }
+
+    public int getOverclockerUnits() {
+        if (overclockerScanPending && level != null && !level.isClientSide()) {
+            overclockerScanPending = false;
+            overclockerUnits = OverclockUnitHelper.countAround(level, getBlockPos());
+        }
+        return overclockerUnits;
+    }
+
+    public void setOverclockerUnits(int units) {
+        overclockerScanPending = false;
+        overclockerUnits = Math.max(0, units);
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        overclockerScanPending = true;
     }
 
     protected final void registerGuiComponent(GuiComponentServer... components) {
@@ -250,8 +276,13 @@ public abstract class MachineBlockEntity extends FastBlockEntity
         return drops;
     }
 
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return List.of();
+    }
+
+    public Vec3 getOverclockParticlePos() {
+        BlockPos pos = this.getBlockPos();
+        return new Vec3(pos.getX() + 0.5D, pos.getY() + 1.05D, pos.getZ() + 0.5D);
     }
 
     protected boolean hasComparatorOutput() {

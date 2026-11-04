@@ -37,8 +37,6 @@ public class MachineCasings {
     public static final MachineCasing CLEAN_STAINLESS_STEEL = createBlockImitation(MI.id("clean_stainless_steel_machine_casing"),
             () -> MIMaterials.STAINLESS_STEEL.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing CONFIGURABLE_TANK = create(MI.id("configurable_tank"), "Configurable Tank");
-    public static final MachineCasing STAINLESS_STEEL_PIPE = createBlockImitation(MI.id("stainless_steel_machine_casing_pipe"),
-            () -> MIMaterials.STAINLESS_STEEL.getPart(MIParts.MACHINE_CASING_PIPE).asBlock());
     public static final MachineCasing FIREBRICKS = createBlockImitation(MI.id("firebricks"), () -> MIBlock.BLOCK_FIRE_CLAY_BRICKS.asBlock());
     public static final MachineCasing FROSTPROOF = createBlockImitation(MI.id("frostproof_machine_casing"),
             () -> MIMaterials.ALUMINUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
@@ -48,8 +46,6 @@ public class MachineCasings {
             () -> MIMaterials.INVAR.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL = createBlockImitation(MI.id("steel"), () -> MIMaterials.STEEL.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing STEEL_CRATE = create(MI.id("steel_crate"), "Steel Crate");
-    public static final MachineCasing TITANIUM_PIPE = createBlockImitation(MI.id("titanium_machine_casing_pipe"),
-            () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING_PIPE).asBlock());
     public static final MachineCasing SOLID_TITANIUM = createBlockImitation(MI.id("solid_titanium_machine_casing"),
             () -> MIMaterials.TITANIUM.getPart(MIParts.MACHINE_CASING_SPECIAL).asBlock());
     public static final MachineCasing NUCLEAR = createBlockImitation(MI.id("nuclear_casing"),

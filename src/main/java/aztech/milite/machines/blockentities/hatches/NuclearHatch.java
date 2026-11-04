@@ -26,6 +26,7 @@ import com.google.common.base.Preconditions;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Fluids;
@@ -355,7 +356,7 @@ public class NuclearHatch extends HatchBlockEntity implements NuclearTile {
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         if (isFluid) {
             return List.of(new MITooltips.Line(MIText.MaxFeProductionSteam).arg(
                     NuclearConstant.MAX_HATCH_FE_PRODUCTION,

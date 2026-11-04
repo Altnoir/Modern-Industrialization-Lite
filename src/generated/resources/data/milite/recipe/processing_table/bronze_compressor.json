@@ -1,16 +1,18 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:piston"
-  },
-  "key": {
+  "casing": {
     "item": "milite:bronze_machine_casing"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:piston"
+    }
+  },
+  "pattern": [
+    "a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:bronze_compressor"
-  },
-  "second": {
-    "item": "milite:bronze_gear"
   }
 }

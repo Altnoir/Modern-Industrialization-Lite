@@ -22,6 +22,7 @@ public class ManualPluginEmi implements EmiPlugin {
 
         // Clicking the machine progress bar displays the machine's recipes, like the JEI and REI plugins do.
         MachineClickAreaEmi.init();
+        ProcessingTableClickAreaEmi.init();
 
         registry.addStackProvider(MachineScreen.class, new MachineStackProvider());
         registry.addExclusionArea(MachineScreen.class, (screen, bounds) -> {

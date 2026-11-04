@@ -261,7 +261,7 @@ public class MIMaterials {
                         .set(MaterialProperty.HARDNESS, SOFT)
                         .addParts(BOLT, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, NUGGET, PLATE, TINY_DUST)
                         .addParts(BLOCK.of(MaterialBlockSet.COPPER)).addParts(TANK.of(4)).addParts(DRILL_HEAD, DRILL)
-                        .addParts(BARREL.of(32)).addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe())
+                        .addParts(BARREL.of(32)).addParts(MACHINE_CASING.of())
                         .addParts(MACHINE_CASING_SPECIAL.of("Bronze Plated Bricks", "bronze_plated_bricks"))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 
@@ -282,7 +282,7 @@ public class MIMaterials {
                         .set(MaterialProperty.MEAN_RGB, 0x3f3f3f)
                         .addParts(BOLT, RING, ROD, GEAR, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(ROD_MAGNETIC).addParts(BLOCK.of(MaterialBlockSet.IRON)).addParts(DRILL_HEAD, DRILL)
-                        .addParts(MACHINE_CASING.of(), MACHINE_CASING_PIPE.asPipe()).addParts(MACHINE_CASING_SPECIAL.of("Steel Machine Hull", "steel_machine_hull"))
+                        .addParts(MACHINE_CASING.of()).addParts(MACHINE_CASING_SPECIAL.of("Steel Machine Hull", "steel_machine_hull"))
                         .addParts(TANK.of(16)).addParts(BARREL.of(128))
                         .addRecipes(ForgeHammerRecipes::apply, SmeltingRecipes::apply, StandardRecipes::apply));
 
@@ -419,7 +419,7 @@ public class MIMaterials {
                         .set(MaterialProperty.HARDNESS, HARD)
                         .addParts(BOLT, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                         .addParts(BLOCK.of(MaterialBlockSet.NETHERITE)).addParts(RAW_METAL.ofAll(MaterialRawSet.COPPER)).addParts(HOT_INGOT)
-                        .addParts(MACHINE_CASING.of()).addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING_PIPE.asPipe())
+                        .addParts(MACHINE_CASING.of()).addParts(DRILL_HEAD, DRILL)
                         .addParts(MACHINE_CASING_SPECIAL.of("Solid Titanium Machine Casing", "solid_titanium_machine_casing")).addParts(ORE.of(MaterialOreSet.IRON))
                         .addParts(TANK.of(1024)).addParts(BARREL.of(8192)).addRecipes(StandardRecipes::apply)
                         .addRecipes((ctx) -> SmeltingRecipes.applyBlastFurnace(ctx, true, 128, 400)).cancelRecipes("macerator/raw_metal"));
@@ -448,7 +448,7 @@ public class MIMaterials {
                 .addParts(BLOCK.of(MaterialBlockSet.IRON))
                 .addParts(BOLT, RING, ROTOR, GEAR, ROD, DOUBLE_INGOT, DUST, INGOT, LARGE_PLATE, NUGGET, PLATE, TINY_DUST)
                 .addParts(HOT_INGOT).addParts(DRILL_HEAD, DRILL).addParts(MACHINE_CASING.of())
-                .addParts(MACHINE_CASING_PIPE.asPipe()).addParts(MACHINE_CASING_SPECIAL.of(
+                .addParts(MACHINE_CASING_SPECIAL.of(
                         "Clean Stainless Steel Machine Casing",
                         "clean_stainless_steel_machine_casing"))
                 .addParts(ROD_MAGNETIC).addParts(TANK.of(256)).addParts(BARREL.of(2048)).addRecipes(StandardRecipes::apply)
@@ -612,7 +612,6 @@ public class MIMaterials {
                                 new PartEnglishNameFormatter.Default(
                                         "Plasma Handling %s Machine Casing"),
                                 "plasma_handling_iridium_machine_casing", 6000f))
-                        .addParts(MACHINE_CASING_PIPE.asPipe(6000f))
                         .addParts(RAW_METAL.of(MaterialRawSet.IRIDIUM), PLATE)
                         .addParts(RAW_METAL_BLOCK.of(MaterialRawSet.GOLD))
                         .addRecipes(StandardRecipes::apply).addRecipes(SmeltingRecipes::apply)
@@ -692,7 +691,7 @@ public class MIMaterials {
                 .addParts(MACHINE_CASING_SPECIAL.of(
                         new PartEnglishNameFormatter.Default(
                                 "%s Casing"),
-                        "nuclear_casing", 6000f)).addParts(MACHINE_CASING_PIPE.asPipe(6000f))
+                        "nuclear_casing", 6000f))
                 .addRecipes(StandardRecipes::apply));
 
         SOLDERING_ALLOY = MaterialRegistry.addMaterial(new MaterialBuilder("Soldering Alloy", "soldering_alloy")

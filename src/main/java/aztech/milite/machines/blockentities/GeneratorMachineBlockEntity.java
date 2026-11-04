@@ -15,7 +15,7 @@ import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.helper.EnergyHelper;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.util.Simulation;
@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -116,7 +117,7 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
         inventory = new MIInventory(itemStacks, fluidStacks, itemPositions, fluidPositions);
 
         this.registerComponents(energy, isActiveComponent, inventory, fluidItemConsumer, redstoneControl);
-        this.registerGuiComponent(new SlotPanel(this).withRedstoneControl(redstoneControl));
+        this.registerGuiComponent(new RedstoneControlGui(redstoneControl));
     }
 
     public GeneratorMachineBlockEntity(BEP bep,
@@ -187,15 +188,11 @@ public class GeneratorMachineBlockEntity extends MachineBlockEntity implements T
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return fluidItemConsumer.getTooltips();
     }
 

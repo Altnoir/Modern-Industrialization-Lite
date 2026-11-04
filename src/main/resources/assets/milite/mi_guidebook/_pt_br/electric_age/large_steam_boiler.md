@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -23,13 +22,9 @@ A Caldeira de Vapor Grande é uma versão aprimorada das Caldeiras de Bronze e A
 
 Ao contrário de sua contraparte de bloco único, na Caldeira de Vapor Grande, 80% de qualquer calor não utilizado será perdido. Isso significa que a proporção de energia produzida pelo combustível consumido diminuirá drasticamente quando a produção ficar abaixo do máximo. Isso acontecerá quando a Caldeira não for usada continuamente em capacidade máxima.
 
-The main block you'll need is the Bronze Plated Bricks, but you'll also need Bronze Pipe Machine Casings and Heatproof Machine Casings.
+The main block you'll need is the Bronze Plated Bricks, but you'll also need Heatproof Machine Casings.
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 

@@ -4,6 +4,7 @@ import static net.minecraft.world.level.material.MapColor.STONE;
 
 import aztech.milite.blocks.creativestorageunit.CreativeStorageUnitBlock;
 import aztech.milite.blocks.forgehammer.ForgeHammerBlock;
+import aztech.milite.blocks.overclockerunit.OverclockerUnitBlock;
 import aztech.milite.blocks.processingtable.ProcessingTableBlock;
 import aztech.milite.blocks.storage.barrel.BarrelBlock;
 import aztech.milite.blocks.storage.barrel.BarrelItem;
@@ -21,6 +22,8 @@ import aztech.milite.items.SortOrder;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.materials.MaterialProgression;
 import aztech.milite.materials.part.TankPart;
+import aztech.milite.nuclear.NuclearOrder;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -31,8 +34,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -125,11 +130,33 @@ public class MIBlock {
     public static final BlockDefinition<Block> BLOCK_FIRE_CLAY_BRICKS = block("Fire Clay Bricks", "fire_clay_bricks",
             BlockDefinitionParams.of(BlockBehaviour.Properties.of().mapColor(STONE)).sortOrder(SortOrder.MATERIALS.and(MaterialProgression.rankOf("fire_clay"))).destroyTime(2.0f).explosionResistance(6.0f).requiresCorrectToolForDrops());
 
+    public static final BlockDefinition<RotatedPillarBlock> CONTROL_ROD = block("Control Rod", "control_rod",
+            BlockDefinitionParams.defaultStone()
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .sortOrder(SortOrder.NUCLEAR.create(NuclearOrder.CONTROL_ROD))
+                    .withBlockConstructor(RotatedPillarBlock::new)
+                    .withModel((block, gen) -> {
+                        String name = gen.name(block);
+                        var model = gen.models().cubeColumn(name, gen.blockTexture("control_rod_side"),
+                                gen.blockTexture("control_rod_top"));
+                        var variants = gen.getVariantBuilder(block);
+                        variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y)
+                                .modelForState().modelFile(model).addModel();
+                        variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X)
+                                .modelForState().modelFile(model).rotationX(90).rotationY(90).addModel();
+                        variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z)
+                                .modelForState().modelFile(model).rotationX(90).addModel();
+                        gen.itemModels().getBuilder(name).parent(model);
+                    }));
+
+    public static final BlockDefinition<OverclockerUnitBlock> OVERCLOCKER_UNIT = block("Overclocker Unit", "overclocker_unit",
+            overclockerUnitParams());
+
     // @formatter:on
 
     public static <T extends Block> BlockDefinition<T> block(
             String englishName, String id, BlockDefinitionParams<T> params) {
-        if (params.sortOrder.isMachineStructure()) {
+        if (params.sortOrder.isMachineStructure() && !params.soundSet) {
             params.props.sound(SoundType.NETHERITE_BLOCK);
         }
         var holder = BLOCKS.registerBlock(id, params.ctor, params.props);
@@ -148,6 +175,42 @@ public class MIBlock {
 
     public static BlockDefinition<Block> block(String englishName, String id) {
         return MIBlock.block(englishName, id, BlockDefinitionParams.defaultStone());
+    }
+
+    private static BlockDefinitionParams<OverclockerUnitBlock> overclockerUnitParams() {
+        var params = BlockDefinitionParams.defaultStone().sound(SoundType.COPPER).destroyTime(3.0f)
+                .explosionResistance(6.0f)
+                .sortOrder(SortOrder.STRUCTURES.and(Integer.MAX_VALUE));
+        params.props.lightLevel(state -> 7);
+        return params.withBlockConstructor(OverclockerUnitBlock::new)
+                .withModel((block, gen) -> {
+                    String name = gen.name(block);
+                    var model = gen.models().getBuilder(name)
+                            .parent(gen.models().getExistingFile(ResourceLocation.withDefaultNamespace("block/block")))
+                            .texture("particle", gen.blockTexture("overclocker_unit_top"))
+                            .texture("side", gen.blockTexture("overclocker_unit_side"))
+                            .texture("top", gen.blockTexture("overclocker_unit_top"));
+                    model.element()
+                            .from(4, 0, 4).to(12, 16, 12)
+                            .allFaces((direction, face) -> {
+                                boolean isEnd = direction.getAxis().isVertical();
+                                face.texture(isEnd ? "#top" : "#side");
+                                if (isEnd) {
+                                    face.uvs(4, 4, 12, 12);
+                                } else {
+                                    face.uvs(4, 0, 12, 16);
+                                }
+                            })
+                            .end();
+                    var variants = gen.getVariantBuilder(block);
+                    variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y)
+                            .modelForState().modelFile(model).addModel();
+                    variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.X)
+                            .modelForState().modelFile(model).rotationX(90).rotationY(90).addModel();
+                    variants.partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z)
+                            .modelForState().modelFile(model).rotationX(90).addModel();
+                    gen.itemModels().getBuilder(name).parent(model);
+                });
     }
 
     public static BlockDefinition<Block> nonConductorBlock(String englishName, String id, SortOrder sortOrder) {
@@ -185,6 +248,7 @@ public class MIBlock {
         public MIBlockLoot blockLoot;
         public final ArrayList<TagKey<Block>> tags = new ArrayList<>();
         public SortOrder sortOrder = SortOrder.BLOCKS_OTHERS;
+        public boolean soundSet;
 
         public Function<BlockBehaviour.Properties, T> ctor;
         public BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor;
@@ -196,7 +260,8 @@ public class MIBlock {
                                         BiConsumer<Item, ItemModelProvider> itemModelGenerator,
                                         @Nullable MIBlockLoot blockLoot,
                                         List<TagKey<Block>> tags,
-                                        SortOrder sortOrder) {
+                                        SortOrder sortOrder,
+                                        boolean soundSet) {
             this.props = properties;
             this.ctor = ctor;
             this.blockItemCtor = blockItemCtor;
@@ -205,6 +270,7 @@ public class MIBlock {
             this.blockLoot = blockLoot;
             this.tags.addAll(tags);
             this.sortOrder = sortOrder;
+            this.soundSet = soundSet;
         }
 
         public static BlockDefinitionParams<Block> of() {
@@ -218,7 +284,8 @@ public class MIBlock {
                     },
                     new MIBlockLoot.DropSelf(),
                     List.of(BlockTags.NEEDS_STONE_TOOL, BlockTags.MINEABLE_WITH_PICKAXE),
-                    SortOrder.BLOCKS_OTHERS);
+                    SortOrder.BLOCKS_OTHERS,
+                    false);
         }
 
         public static BlockDefinitionParams<Block> defaultStone() {
@@ -233,7 +300,7 @@ public class MIBlock {
          */
         public <U extends Block> BlockDefinitionParams<U> withBlockConstructor(Function<BlockBehaviour.Properties, U> ctor) {
             return new BlockDefinitionParams<>(props, ctor, (BiFunction) this.blockItemCtor, this.modelGenerator,
-                    this.itemModelGenerator, this.blockLoot, this.tags, this.sortOrder);
+                    this.itemModelGenerator, this.blockLoot, this.tags, this.sortOrder, this.soundSet);
         }
 
         public <U extends Block> BlockDefinitionParams<U> withBlockConstructor(Supplier<U> ctor) {
@@ -244,7 +311,8 @@ public class MIBlock {
                     this.itemModelGenerator,
                     this.blockLoot,
                     this.tags,
-                    this.sortOrder);
+                    this.sortOrder,
+                    this.soundSet);
         }
 
         public BlockDefinitionParams<T> withBlockItemConstructor(BiFunction<? super T, Item.Properties, BlockItem> blockItemCtor) {
@@ -355,6 +423,7 @@ public class MIBlock {
 
         public BlockDefinitionParams<T> sound(SoundType soundType) {
             this.props.sound(soundType);
+            this.soundSet = true;
             return this;
         }
 

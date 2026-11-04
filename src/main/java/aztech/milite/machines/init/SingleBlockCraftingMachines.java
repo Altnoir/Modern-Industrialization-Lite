@@ -1,11 +1,14 @@
 package aztech.milite.machines.init;
 
+import aztech.milite.MI;
+import aztech.milite.MIFluids;
 import aztech.milite.compat.rei.machines.MachineCategoryParams;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.compat.rei.machines.SteamMode;
 import aztech.milite.inventory.ConfigurableFluidStack;
 import aztech.milite.inventory.ConfigurableItemStack;
 import aztech.milite.inventory.SlotPositions;
+import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.blockentities.ElectricCraftingMachineBlockEntity;
 import aztech.milite.machines.blockentities.SteamCraftingMachineBlockEntity;
 import aztech.milite.machines.components.MachineInventoryComponent;
@@ -13,27 +16,66 @@ import aztech.milite.machines.components.OverclockComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.recipe.MachineRecipeType;
-import aztech.milite.MI;
-import aztech.milite.MIFluids;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Registration of all single block crafting machines.
  */
 public final class SingleBlockCraftingMachines {
+    /**
+     * The full ladder for machines whose lowest variant is the steel one.
+     */
+    private static final List<MachineLevel> LEVELS_STEEL_TO_IRIDIUM = List.of(MachineLevel.STEEL, MachineLevel.ELECTRIC,
+            MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
+
+    private static final EnergyBar.Params DEFAULT_ENERGY_BAR = new EnergyBar.Params(18, 34);
+
+    /**
+     * The full ladder for machines that have no steam variant.
+     */
+    private static final List<MachineLevel> LEVELS_ALL = List.of(MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
+            MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
+    /**
+     * The full ladder including the two steam machines at the bottom.
+     */
+    private static final List<MachineLevel> LEVELS_BRONZE_TO_IRIDIUM = List.of(MachineLevel.BRONZE, MachineLevel.STEEL,
+            MachineLevel.ELECTRIC, MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM,
+            MachineLevel.IRIDIUM);
+
+    private SingleBlockCraftingMachines() {
+    }
+
+    /**
+     * The id prefix of a machine at {@code level}. Every level carries its own prefix, so the id of a variant always
+     * says which level it is.
+     */
+    private static String prefixOf(MachineLevel level) {
+        return level.getSerializedName() + "_";
+    }
+
+    private static boolean isSteam(MachineLevel level) {
+        return level == MachineLevel.BRONZE || level == MachineLevel.STEEL;
+    }
+
+    private static MachineTier machineTierOf(MachineLevel level) {
+        return switch (level) {
+            case BRONZE -> MachineTier.BRONZE;
+            case STEEL -> MachineTier.STEEL;
+            default -> MachineTier.ELECTRIC;
+        };
+    }
+
     public static void init() {
         // @formatter:off
         registerMachineTiers(
-                                "Assembler", "assembler", MIMachineRecipeTypes.ASSEMBLER, 9, 3, 2, 0,
-                guiParams -> guiParams.backgroundHeight(186),
-                new ProgressBar.Params(105, 45, "circuit"), new EnergyBar.Params(14, 44),
-                items -> items.addSlots(42, 27, 3, 3).addSlots(139, 27, 1, 3), fluids -> fluids.addSlots(98, 27, 2, 1),
+                "Assembler", "assembler", MIMachineRecipeTypes.ASSEMBLER, 12, 3, 2, 0, guiParams -> guiParams.backgroundHeight(186),
+                new ProgressBar.Params(120, 45, "circuit"), new EnergyBar.Params(14, 44),
+                items -> items.addSlots(38, 27, 4, 3).addSlots(152, 27, 1, 3), fluids -> fluids.addSlots(113, 27, 2, 1),
                 true, true, false,
                 LEVELS_ALL, 16
         );
@@ -132,49 +174,12 @@ public final class SingleBlockCraftingMachines {
         // @formatter:on
     }
 
-    private static final EnergyBar.Params DEFAULT_ENERGY_BAR = new EnergyBar.Params(18, 34);
-
-    /**
-     * The full ladder for machines that have no steam variant.
-     */
-    private static final List<MachineLevel> LEVELS_ALL = List.of(MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
-            MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
-
-    /** The full ladder for machines whose lowest variant is the steel one. */
-    private static final List<MachineLevel> LEVELS_STEEL_TO_IRIDIUM = List.of(MachineLevel.STEEL, MachineLevel.ELECTRIC,
-            MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
-
-    /** The full ladder including the two steam machines at the bottom. */
-    private static final List<MachineLevel> LEVELS_BRONZE_TO_IRIDIUM = List.of(MachineLevel.BRONZE, MachineLevel.STEEL,
-            MachineLevel.ELECTRIC, MachineLevel.ALUMINUM, MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM,
-            MachineLevel.IRIDIUM);
-
-    /**
-     * The id prefix of a machine at {@code level}. Every level carries its own prefix, so the id of a variant always
-     * says which level it is.
-     */
-    private static String prefixOf(MachineLevel level) {
-        return level.getSerializedName() + "_";
-    }
-
-    private static boolean isSteam(MachineLevel level) {
-        return level == MachineLevel.BRONZE || level == MachineLevel.STEEL;
-    }
-
-    private static MachineTier machineTierOf(MachineLevel level) {
-        return switch (level) {
-            case BRONZE -> MachineTier.BRONZE;
-            case STEEL -> MachineTier.STEEL;
-            default -> MachineTier.ELECTRIC;
-        };
-    }
-
     public static void registerMachineTiers(String englishName, String machine, MachineRecipeType type, int itemInputCount, int itemOutputCount,
-            int fluidInputCount,
-            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params progressBarParams,
-            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
-            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, List<MachineLevel> levels,
-            int ioBucketCapacity) {
+                                            int fluidInputCount,
+                                            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params progressBarParams,
+                                            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
+                                            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, List<MachineLevel> levels,
+                                            int ioBucketCapacity) {
         registerMachineTiers(englishName, machine, type, itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount,
                 guiParams, progressBarParams, progressBarParams, energyBarParams, itemPositions, fluidPositions, frontOverlay,
                 topOverlay, sideOverlay, levels, ioBucketCapacity, new Config());
@@ -187,25 +192,25 @@ public final class SingleBlockCraftingMachines {
      *                                re-laid-out but the recipe viewer should keep its original appearance.
      */
     public static void registerMachineTiers(String englishName, String machine, MachineRecipeType type, int itemInputCount, int itemOutputCount,
-            int fluidInputCount,
-            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
-            ProgressBar.Params viewerProgressBarParams,
-            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
-            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, List<MachineLevel> levels,
-            int ioBucketCapacity) {
+                                            int fluidInputCount,
+                                            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
+                                            ProgressBar.Params viewerProgressBarParams,
+                                            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
+                                            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay, List<MachineLevel> levels,
+                                            int ioBucketCapacity) {
         registerMachineTiers(englishName, machine, type, itemInputCount, itemOutputCount, fluidInputCount, fluidOutputCount,
                 guiParams, guiProgressBarParams, viewerProgressBarParams, energyBarParams, itemPositions, fluidPositions,
                 frontOverlay, topOverlay, sideOverlay, levels, ioBucketCapacity, new Config());
     }
 
     public static void registerMachineTiers(String englishName, String machine, MachineRecipeType type, int itemInputCount, int itemOutputCount,
-            int fluidInputCount,
-            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
-            ProgressBar.Params viewerProgressBarParams,
-            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
-            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay,
-            List<MachineLevel> levels,
-            int ioBucketCapacity, Config extraConfig) {
+                                            int fluidInputCount,
+                                            int fluidOutputCount, Consumer<MachineGuiParameters.Builder> guiParams, ProgressBar.Params guiProgressBarParams,
+                                            ProgressBar.Params viewerProgressBarParams,
+                                            EnergyBar.Params energyBarParams, Consumer<SlotPositions.Builder> itemPositions,
+                                            Consumer<SlotPositions.Builder> fluidPositions, boolean frontOverlay, boolean topOverlay, boolean sideOverlay,
+                                            List<MachineLevel> levels,
+                                            int ioBucketCapacity, Config extraConfig) {
         for (MachineLevel level : levels) {
             if (isSteam(level)) {
                 SlotPositions items = new SlotPositions.Builder().buildWithConsumer(itemPositions);
@@ -286,7 +291,7 @@ public final class SingleBlockCraftingMachines {
      *                                   bar opens the recipe.
      */
     private static void registerReiTiers(String englishName, String machine, MachineRecipeType recipeType, MachineCategoryParams categoryParams,
-            List<MachineLevel> levels, ProgressBar.Params clickAreaProgressBarParams) {
+                                         List<MachineLevel> levels, ProgressBar.Params clickAreaProgressBarParams) {
         MachineLevel lowest = levels.get(0);
         // The category is registered under the id of the lowest variant, which is also the variant the ids used before
         // the other levels existed. Every variant of the family is then an alternative way to reach it.
@@ -310,7 +315,7 @@ public final class SingleBlockCraftingMachines {
      *                     no steam input slot
      */
     private static MachineInventoryComponent buildComponent(int itemInputCount, int itemOutputCount, int fluidInputCount, int fluidOutputCount,
-            SlotPositions itemPositions, SlotPositions fluidPositions, int steamBuckets, int ioBucketCapacity) {
+                                                            SlotPositions itemPositions, SlotPositions fluidPositions, int steamBuckets, int ioBucketCapacity) {
         List<ConfigurableItemStack> itemInputStacks = new ArrayList<>();
         for (int i = 0; i < itemInputCount; ++i) {
             itemInputStacks.add(ConfigurableItemStack.standardInputSlot());
@@ -333,8 +338,6 @@ public final class SingleBlockCraftingMachines {
 
         return new MachineInventoryComponent(itemInputStacks, itemOutputStacks, fluidInputStacks, fluidOutputStacks, itemPositions, fluidPositions);
     }
-
-    private SingleBlockCraftingMachines() {}
 
     public static class Config {
         public List<OverclockComponent.Catalyst> steamOverclockCatalysts = OverclockComponent.getDefaultCatalysts();

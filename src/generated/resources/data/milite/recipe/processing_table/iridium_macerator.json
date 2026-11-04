@@ -1,16 +1,32 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:bronze_drill_head"
-  },
-  "key": {
+  "casing": {
     "item": "milite:iridium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:bronze_drill_head"
+    },
+    "b": {
+      "item": "milite:bronze_barrel"
+    },
+    "c": {
+      "item": "milite:quantum_circuit"
+    },
+    "d": {
+      "item": "milite:tungsten_large_plate"
+    },
+    "e": {
+      "item": "milite:iridium_plate"
+    }
+  },
+  "pattern": [
+    "abc",
+    "dec",
+    "dec"
+  ],
   "result": {
     "count": 1,
     "id": "milite:iridium_macerator"
-  },
-  "second": {
-    "item": "milite:bronze_barrel"
   }
 }

@@ -91,12 +91,13 @@ public class OverclockComponent implements MachineComponent {
                 if (be.getLevel().isClientSide()) {
                     for (int iter = 0; iter < 3; iter++) {
                         var random = be.getLevel().getRandom();
-                        double d = be.getBlockPos().getX() + 0.5D;
-                        double e = be.getBlockPos().getY();
-                        double f = be.getBlockPos().getZ() + 0.5D;
+                        var particlePos = be.getOverclockParticlePos();
+                        double d = particlePos.x;
+                        double e = particlePos.y;
+                        double f = particlePos.z;
                         double i = random.nextDouble() * 0.6D - 0.3D;
                         double k = random.nextDouble() * 0.6D - 0.3D;
-                        be.getLevel().addParticle(ParticleTypes.SMOKE, d + i, e + 1.05, f + k, 0.15 * (random.nextDouble() - 0.5), 0.15D,
+                        be.getLevel().addParticle(ParticleTypes.SMOKE, d + i, e, f + k, 0.15 * (random.nextDouble() - 0.5), 0.15D,
                                 0.15 * (random.nextDouble() - 0.5));
                     }
                 }

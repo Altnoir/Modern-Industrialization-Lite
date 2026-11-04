@@ -6,7 +6,7 @@ import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MachineRegistrationHelper;
 import aztech.milite.machines.init.MachineTier;
@@ -29,19 +29,15 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
         super(bep, recipeType, inventory, guiParams, progressBarParams, tier, level);
         this.redstoneControl = new RedstoneControlComponent();
         this.casing = new CasingComponent(MachineRegistrationHelper.casingTierOf(level), level.speedMultiplier());
-        this.overdrive = new OverdriveComponent();
         this.energy = new EnergyComponent(this, casing::getFeCapacity);
         this.insertable = energy.buildInsertable();
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity));
-        registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl)
-                .withOverdrive(overdrive));
-        this.registerComponents(redstoneControl, casing, overdrive, energy);
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
+        this.registerComponents(redstoneControl, casing, energy);
     }
 
     private final RedstoneControlComponent redstoneControl;
     private final CasingComponent casing;
-    private final OverdriveComponent overdrive;
     private final EnergyComponent energy;
     private final IEnergyStorage insertable;
 
@@ -71,19 +67,7 @@ public class ElectricCraftingMachineBlockEntity extends AbstractCraftingMachineB
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        if (!result.consumesAction()) {
-            result = overdrive.onUse(this, player, hand);
-        }
-        return result;
-    }
-
-    @Override
-    public boolean isOverdriving() {
-        return overdrive.shouldOverdrive();
+        return super.useItemOn(player, hand, face);
     }
 
     @Override

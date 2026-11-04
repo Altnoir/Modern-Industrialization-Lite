@@ -65,6 +65,9 @@ public interface ClientComponentRenderer {
                 Supplier<List<Component>> tooltipSupplier, CustomButtonRenderer renderer) {
             return addButton(posX, posY, width, height, pressAction, tooltipSupplier, renderer, () -> true);
         }
+
+        MachineScreen.MachineButton addButton(CustomButtonRenderer renderer, Consumer<Integer> pressAction,
+                Supplier<List<Component>> tooltipSupplier, Supplier<Boolean> isButtonPresent);
     }
 
     @FunctionalInterface

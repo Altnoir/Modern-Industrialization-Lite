@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -20,10 +19,6 @@ item_ids:
 Основной блок, который вам понадобится, - это кирпичи с бронзовым покрытием, но вам также понадобятся бронзовые обшивки труб и жаростойкие обшивки машин.
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 

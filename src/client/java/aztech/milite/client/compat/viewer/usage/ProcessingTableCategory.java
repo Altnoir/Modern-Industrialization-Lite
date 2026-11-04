@@ -7,33 +7,32 @@ import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
 import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.Comparator;
 import java.util.function.Consumer;
 
-/**
- * Recipe viewer category of the Processing Table: a casing and two characterising items make one machine.
- *
- * <p>
- * The geometry deliberately matches {@link ForgeHammerCategory}: same 40 pixel tall box, the inputs on the Forge
- * Hammer's input positions and the arrow on the Forge Hammer's arrow position, so both hand-crafted stations look
- * alike in EMI, JEI and REI. No tooltip is registered.
- */
 public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<ProcessingTableRecipe>> {
     public static final ResourceLocation ID = MI.id("processing_table");
 
-    private static final int WIDTH = 116;
-    private static final int HEIGHT = 28;
-
-    private final int startPointY;
+    private static final int SLOT = 18;
+    private static final int GRID_X = 35;
+    private static final int GRID_Y = 5;
+    private static final int MIDDLE_Y = GRID_Y + SLOT;
+    private static final int KEY_X = 5;
+    private static final int ARROW_WIDTH = 24;
+    private static final int ARROW_HEIGHT = 17;
+    private static final int GAP = 5;
+    private static final int ARROW_X = GRID_X + SLOT * 3 + GAP;
+    private static final int OUTPUT_X = ARROW_X + ARROW_WIDTH + GAP;
+    private static final int WIDTH = OUTPUT_X + SLOT + GAP;
+    private static final int HEIGHT = GRID_Y * 2 + SLOT * 3 - 2;
 
     public ProcessingTableCategory() {
         super(recipeHolderClass(), ID, MIBlock.PROCESSING_TABLE.asBlock().getName(),
                 MIBlock.PROCESSING_TABLE.asItem().getDefaultInstance(), WIDTH, HEIGHT);
-
-        this.startPointY = HEIGHT / 2 - 8;
     }
 
     @Override
@@ -53,16 +52,23 @@ public class ProcessingTableCategory extends ViewerCategory<RecipeHolder<Process
     public void buildLayout(RecipeHolder<ProcessingTableRecipe> holder, LayoutBuilder builder) {
         var recipe = holder.value();
 
-        builder.inputSlot(8, startPointY).ingredient(recipe.first(), 1, 1);
-        builder.inputSlot(26, startPointY).ingredient(recipe.key(), 1, 1);
-        builder.inputSlot(44, startPointY).ingredient(recipe.second(), 1, 1);
-        builder.outputSlot(92, startPointY).item(recipe.result());
+        builder.inputSlot(KEY_X, MIDDLE_Y).ingredient(recipe.casing(), 1, 1);
+
+        for (int slot = ProcessingTableRecipe.MIN_SLOT; slot <= ProcessingTableRecipe.MAX_SLOT; slot++) {
+            int column = (slot - ProcessingTableRecipe.MIN_SLOT) % 3;
+            int row = (slot - ProcessingTableRecipe.MIN_SLOT) / 3;
+            var cell = builder.inputSlot(GRID_X + column * SLOT, GRID_Y + row * SLOT);
+
+            Ingredient ingredient = recipe.ingredientAt(slot);
+            cell.ingredient(ingredient, 1, 1);
+        }
+
+        builder.outputSlot(OUTPUT_X, MIDDLE_Y).item(recipe.result());
     }
 
     @Override
     public void buildWidgets(RecipeHolder<ProcessingTableRecipe> holder, WidgetList widgets) {
-        // Same arrow position and size as the Forge Hammer category, centred on the inputs.
-        widgets.arrow(64, startPointY);
+        widgets.arrow(ARROW_X, MIDDLE_Y + (SLOT - ARROW_HEIGHT) / 2);
     }
 
     @Override

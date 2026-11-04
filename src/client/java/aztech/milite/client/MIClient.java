@@ -51,17 +51,18 @@ import aztech.milite.client.machines.models.MachineUnbakedModel;
 import aztech.milite.client.machines.models.UseBlockModelUnbakedModel;
 import aztech.milite.client.machines.multiblocks.MultiblockHighlight;
 import aztech.milite.client.machines.multiblocks.MultiblockMachineBER;
+import aztech.milite.client.machines.multiblocks.MultiblockMemberTooltip;
 import aztech.milite.client.machines.multiblocks.MultiblockTankBER;
 import aztech.milite.config.MIClientConfig;
 import aztech.milite.config.MIStartupConfig;
 import aztech.milite.datagen.MIDatagenServer;
 import aztech.milite.datagen.model.DelegatingModelBuilder;
-import aztech.milite.items.RedstoneControlModuleItem;
 import aztech.milite.items.SteamDrillItem;
 import aztech.milite.machines.blockentities.multiblocks.LargeTankMultiblockBlockEntity;
 import aztech.milite.machines.MachineBlock;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.multiblocks.MultiblockMachineBlockEntity;
+import aztech.milite.machines.multiblocks.MultiblockMemberTooltipData;
 import aztech.milite.misc.runtime_datagen.RuntimeDataGen;
 import aztech.milite.util.TextHelper;
 import net.minecraft.ChatFormatting;
@@ -116,7 +117,7 @@ public class MIClient {
         NeoForge.EVENT_BUS.addListener(SteamDrillHighlight::onBlockHighlight);
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);
         DeferredBarrelTextRenderer.init();
-        MultiblockHighlight.init();
+        MultiblockHighlight.init(modBus);
 
         NeoForge.EVENT_BUS.addListener(RenderFrameEvent.Pre.class, event -> {
             JetpackParticleAdder.addJetpackParticles(Minecraft.getInstance());
@@ -125,7 +126,7 @@ public class MIClient {
             ClientKeyHandler.onEndTick(Minecraft.getInstance());
         });
         NeoForge.EVENT_BUS.addListener(ItemTooltipEvent.class, event -> {
-            MITooltips.attachTooltip(event.getItemStack(), event.getToolTip());
+            MITooltips.attachTooltip(event.getContext(), event.getItemStack(), event.getToolTip());
 
             if (event.getFlags().isAdvanced() && MIClientConfig.INSTANCE.itemTagTooltips.getAsBoolean()) {
                 var ids = event.getItemStack().getTags().map(TagKey::location).sorted().toList();
@@ -225,6 +226,7 @@ public class MIClient {
     private static void registerClientTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(BarrelTooltipData.class, BarrelTooltipComponent::new);
         event.register(SteamDrillItem.SteamDrillTooltipData.class, SteamDrillTooltipComponent::new);
+        event.register(MultiblockMemberTooltipData.class, MultiblockMemberTooltip::new);
     }
 
     @SubscribeEvent
@@ -235,15 +237,5 @@ public class MIClient {
     @SubscribeEvent
     private static void registerKeyMappings(RegisterKeyMappingsEvent event) {
         MIKeybinds.init(event);
-    }
-
-    @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            ItemProperties.register(MIItem.REDSTONE_CONTROL_MODULE.asItem(), MI.id("redstone_control_module"),
-                    (stack, level, entity, seed) -> {
-                        return RedstoneControlModuleItem.isRequiresLowSignal(stack) ? 0 : 1;
-                    });
-        });
     }
 }

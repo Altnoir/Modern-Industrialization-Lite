@@ -16,6 +16,7 @@ import aztech.milite.machines.recipe.condition.MachineProcessCondition;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.machines.recipe.MachineRecipeType;
 import aztech.milite.MI;
+import aztech.milite.MIAdvancementTriggers;
 import aztech.milite.stats.PlayerStatistics;
 import aztech.milite.stats.PlayerStatisticsData;
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
@@ -63,80 +64,18 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         int hash();
     }
 
-    public interface Behavior {
-        default boolean isEnabled() {
-            return true;
-        }
-
-        long consumeFe(long max, Simulation simulation);
-
-        default boolean banRecipe(MachineRecipe recipe) {
-            return !getMachineLevel().canCraft(recipe.level);
-        }
-
-        /**
-         * The recipe type of this machine, which is the one its viewer category and its recipe list are built from.
-         */
-        MachineRecipeType recipeType();
-
-        /**
-         * Every recipe type this machine runs. A machine that took over the work of an older one lists both, and the
-         * recipes of the second are found exactly like its own: by item input when it looks for something to start, and
-         * by id when it restores a craft that a reload interrupted.
-         */
-        default List<MachineRecipeType> recipeTypes() {
-            return List.of(recipeType());
-        }
-
-        /**
-         * The level of this machine. A recipe may only run when its own level is not above this one.
-         */
-        MachineLevel getMachineLevel();
-
-        /**
-         * An extra speed factor on top of {@link MachineLevel#speedMultiplier()}, for machines that can speed themselves
-         * up beyond what their level does (the gunpowder overclock of the steam multiblocks, for instance).
-         *
-         * <p>
-         * How much power the machine is supplied with decides whether it actually reaches this speed: a machine never
-         * eats more than its buffer holds, so a starved one simply sits in the middle of its progress bar.
-         */
-        default int getSpeedBonus() {
-            return 1;
-        }
-
-        default boolean isOverdriving() {
-            return false;
-        }
-
-        default void onCraft() {}
-
-        // can't use getWorld() or the remapping will fail
-        ServerLevel getCrafterWorld();
-
-        default int getMaxFluidOutputs() {
-            return Integer.MAX_VALUE;
-        }
-
-        @Nullable
-        UUID getOwnerUuid();
-
-        default PlayerStatistics getStatsOrDummy() {
-            var uuid = getOwnerUuid();
-            if (uuid == null) {
-                return PlayerStatistics.DUMMY;
-            } else {
-                return PlayerStatisticsData.get(getCrafterWorld().getServer()).get(uuid);
+    /**
+     * How many times faster than the reference machine of its level this machine runs, coefficients included.
+     */
+    public int getSpeedMultiplier() {
+        long speed = (long) behavior.getMachineLevel().speedMultiplier() * behavior.getSpeedBonus();
+        if (behavior.getMachineLevel().canCraft(MachineLevel.ELECTRIC)) {
+            int units = Math.min(behavior.getOverclockerUnits(), 31);
+            for (int i = 0; i < units; i++) {
+                speed *= 2;
             }
         }
-
-        /**
-         * If {@code true}, {@link #takeFluidInputs} will only allow each fluid stack to be used
-         * for up to one fluid input. This is used for the fusion reactor.
-         */
-        default boolean oneFluidInputPerStack() {
-            return false;
-        }
+        return (int) Math.min(Integer.MAX_VALUE, Math.max(1, speed));
     }
 
     private final Inventory inventory;
@@ -185,15 +124,9 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         return behavior;
     }
 
-    /**
-     * How many times faster than the reference machine of its level this machine runs, coefficients included.
-     */
-    public int getSpeedMultiplier() {
-        long speed = (long) behavior.getMachineLevel().speedMultiplier() * behavior.getSpeedBonus();
-        if (behavior.isOverdriving()) {
-            speed *= 2;
-        }
-        return (int) Math.min(Integer.MAX_VALUE, Math.max(1, speed));
+    private long getRecipeFePerTick(MachineRecipe recipe) {
+        long speed = Math.min(getSpeedMultiplier(), recipe.duration);
+        return Math.max(1, (long) recipe.energy * speed);
     }
 
     /**
@@ -214,10 +147,6 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         return lastConsumedFe;
     }
 
-    private long getRecipeFePerTick(MachineRecipe recipe) {
-        return Math.max(1, (long) recipe.energy * getSpeedMultiplier());
-    }
-
     /**
      * Perform a crafter tick, and return whether the crafter is active after the
      * tick.
@@ -236,7 +165,12 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         boolean recipeStarted = false;
         if (usedFe == 0 && isEnabled) {
             if (behavior.consumeFe(1, SIMULATE) == 1) {
+                boolean matchesMultipleRecipesBefore = matchesMultipleRecipes;
                 recipeStarted = updateActiveRecipe();
+                if (matchesMultipleRecipes && !matchesMultipleRecipesBefore) {
+                    behavior.getStatsOrDummy().triggerAdvancement(behavior.getCrafterWorld(),
+                            MIAdvancementTriggers.OVERLAPPING_RECIPES);
+                }
             }
         }
 
@@ -283,6 +217,82 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
         clearActiveRecipeIfPossible();
 
         return isActive;
+    }
+
+    public interface Behavior {
+        default boolean isEnabled() {
+            return true;
+        }
+
+        long consumeFe(long max, Simulation simulation);
+
+        default boolean banRecipe(MachineRecipe recipe) {
+            return !getMachineLevel().canCraft(recipe.level);
+        }
+
+        /**
+         * The recipe type of this machine, which is the one its viewer category and its recipe list are built from.
+         */
+        MachineRecipeType recipeType();
+
+        /**
+         * Every recipe type this machine runs. A machine that took over the work of an older one lists both, and the
+         * recipes of the second are found exactly like its own: by item input when it looks for something to start, and
+         * by id when it restores a craft that a reload interrupted.
+         */
+        default List<MachineRecipeType> recipeTypes() {
+            return List.of(recipeType());
+        }
+
+        /**
+         * The level of this machine. A recipe may only run when its own level is not above this one.
+         */
+        MachineLevel getMachineLevel();
+
+        /**
+         * An extra speed factor on top of {@link MachineLevel#speedMultiplier()}, for machines that can speed themselves
+         * up beyond what their level does (the gunpowder overclock of the steam multiblocks, for instance).
+         *
+         * <p>
+         * How much power the machine is supplied with decides whether it actually reaches this speed: a machine never
+         * eats more than its buffer holds, so a starved one simply sits in the middle of its progress bar.
+         */
+        default int getSpeedBonus() {
+            return 1;
+        }
+
+        default int getOverclockerUnits() {
+            return 0;
+        }
+
+        default void onCraft() {}
+
+        // can't use getWorld() or the remapping will fail
+        ServerLevel getCrafterWorld();
+
+        default int getMaxFluidOutputs() {
+            return Integer.MAX_VALUE;
+        }
+
+        @Nullable
+        UUID getOwnerUuid();
+
+        default PlayerStatistics getStatsOrDummy() {
+            var uuid = getOwnerUuid();
+            if (uuid == null) {
+                return PlayerStatistics.DUMMY;
+            } else {
+                return PlayerStatisticsData.get(getCrafterWorld().getServer()).get(uuid);
+            }
+        }
+
+        /**
+         * If {@code true}, {@link #takeFluidInputs} will only allow each fluid stack to be used
+         * for up to one fluid input. This is used for the fusion reactor.
+         */
+        default boolean oneFluidInputPerStack() {
+            return false;
+        }
     }
 
     private void clearActiveRecipeIfPossible() {

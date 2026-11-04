@@ -11,9 +11,9 @@ import aztech.milite.client.machines.guicomponents.MachineProblemsDisplayClient;
 import aztech.milite.client.machines.guicomponents.MultiblockBuildClient;
 import aztech.milite.client.machines.guicomponents.NuclearReactorGuiClient;
 import aztech.milite.client.machines.guicomponents.ProgressBarClient;
+import aztech.milite.client.machines.guicomponents.RedstoneControlGuiClient;
 import aztech.milite.client.machines.guicomponents.ReiSlotLockingClient;
 import aztech.milite.client.machines.guicomponents.ShapeSelectionClient;
-import aztech.milite.client.machines.guicomponents.SlotPanelClient;
 import aztech.milite.client.machines.guicomponents.TemperatureBarClient;
 import aztech.milite.machines.gui.GuiComponentServer;
 import aztech.milite.machines.guicomponents.AutoExtract;
@@ -26,9 +26,9 @@ import aztech.milite.machines.guicomponents.MachineProblemsDisplay;
 import aztech.milite.machines.guicomponents.MultiblockBuild;
 import aztech.milite.machines.guicomponents.NuclearReactorGui;
 import aztech.milite.machines.guicomponents.ProgressBar;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.guicomponents.ReiSlotLocking;
 import aztech.milite.machines.guicomponents.ShapeSelection;
-import aztech.milite.machines.guicomponents.SlotPanel;
 import aztech.milite.machines.guicomponents.TemperatureBar;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -67,7 +67,7 @@ public final class GuiComponentsClient {
         register(ProgressBar.TYPE, ProgressBarClient::new);
         register(ReiSlotLocking.TYPE, ReiSlotLockingClient::new);
         register(ShapeSelection.TYPE, ShapeSelectionClient::new);
-        register(SlotPanel.TYPE, SlotPanelClient::new);
+        register(RedstoneControlGui.TYPE, RedstoneControlGuiClient::new);
         register(TemperatureBar.TYPE, TemperatureBarClient::new);
     }
 

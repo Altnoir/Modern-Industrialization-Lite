@@ -1,16 +1,18 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:bucket"
-  },
-  "key": {
+  "casing": {
     "item": "milite:bronze_machine_casing"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "pattern": [
+    "a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:bronze_water_pump"
-  },
-  "second": {
-    "item": "milite:bronze_rotor"
   }
 }

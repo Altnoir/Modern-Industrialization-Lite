@@ -7,9 +7,8 @@ import aztech.milite.compat.kubejs.KubeJSProxy;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.machines.BEP;
 import aztech.milite.machines.components.OrientationComponent;
-import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.machines.guicomponents.ShapeSelection;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.models.MachineCasings;
@@ -71,11 +70,7 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
 
     public ElectricBlastFurnaceBlockEntity(BEP bep) {
         super(bep, "electric_blast_furnace", new OrientationComponent.Params(false, false, false), shapeTemplates);
-        this.overdrive = new OverdriveComponent();
-        this.registerComponents(overdrive);
-        registerGuiComponent(new SlotPanel(this)
-                .withRedstoneControl(redstoneControl)
-                .withOverdrive(overdrive));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
         registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
             @Override
             public void handleClick(int clickedLine, int delta) {
@@ -113,8 +108,6 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
         }
     }
 
-    private final OverdriveComponent overdrive;
-
     public Tier getTier() {
         return tiers.get(activeShape.getActiveShapeIndex());
     }
@@ -143,11 +136,6 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
     @Override
     public int getSpeedBonus() {
         return 2;
-    }
-
-    @Override
-    public boolean isOverdriving() {
-        return overdrive.shouldOverdrive();
     }
 
     /**

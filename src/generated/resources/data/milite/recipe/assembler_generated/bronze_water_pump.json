@@ -10,10 +10,6 @@
     {
       "amount": 1,
       "item": "minecraft:bucket"
-    },
-    {
-      "amount": 1,
-      "item": "milite:bronze_rotor"
     }
   ],
   "item_outputs": [

@@ -23,6 +23,7 @@ import aztech.milite.thirdparty.fabrictransfer.api.storage.StorageUtil;
 import aztech.milite.util.Tickable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -283,7 +284,7 @@ public class LargeTankMultiblockBlockEntity extends MultiblockMachineBlockEntity
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return List.of(new MITooltips.Line(MIText.LargeTankTooltips).arg(BUCKET_PER_STRUCTURE_BLOCK).build());
     }
 

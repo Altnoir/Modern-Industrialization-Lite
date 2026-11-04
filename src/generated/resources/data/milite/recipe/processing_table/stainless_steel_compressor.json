@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:piston"
-  },
-  "key": {
+  "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:piston"
+    },
+    "b": {
+      "item": "milite:bronze_gear"
+    },
+    "c": {
+      "item": "milite:digital_circuit"
+    },
+    "d": {
+      "item": "milite:stainless_steel_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    " c ",
+    "d c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:stainless_steel_compressor"
-  },
-  "second": {
-    "item": "milite:bronze_gear"
   }
 }

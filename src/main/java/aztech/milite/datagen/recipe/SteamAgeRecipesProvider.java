@@ -13,11 +13,6 @@ public class SteamAgeRecipesProvider extends FixedRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
-        shaped(consumer, "steam_age/bronze/casing_pipe_asbl",
-                new ShapedRecipeJson("milite:bronze_machine_casing_pipe", 2, "p p", "p#p", "p p")
-                        .addInput('#', "milite:bronze_machine_casing")
-                        .addInput('p', "milite:bronze_plate"));
-
         shaped(consumer, "steam_age/bronze/machine_casing_asbl",
                 new ShapedRecipeJson("milite:bronze_machine_casing", 1, "PPP", "PGP", "PPP")
                         .addInput('P', "#c:plates/bronze")
@@ -46,11 +41,6 @@ public class SteamAgeRecipesProvider extends FixedRecipesProvider {
                 new ShapedRecipeJson("milite:steam_blast_furnace", 1, "BBB", "BFB", "BBB")
                         .addInput('B', "milite:fire_clay_bricks")
                         .addInput('F', "minecraft:blast_furnace"));
-
-        shaped(consumer, "steam_age/steel/casing_pipe_asbl",
-                new ShapedRecipeJson("milite:steel_machine_casing_pipe", 2, "p p", "p#p", "p p")
-                        .addInput('#', "milite:steel_machine_casing")
-                        .addInput('p', "milite:steel_plate"));
 
         shaped(consumer, "steam_age/steel/machine_casing_asbl",
                 new ShapedRecipeJson("milite:steel_machine_casing", 1, "PPP", "PGP", "PPP")

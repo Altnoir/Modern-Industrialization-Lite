@@ -8,7 +8,7 @@ import aztech.milite.machines.components.*;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.NuclearReactorGui;
 import aztech.milite.machines.guicomponents.ShapeSelection;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.models.MachineModelClientData;
 import aztech.milite.machines.multiblocks.*;
@@ -43,30 +43,58 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
     private NuclearGrid nuclearGrid;
     private Supplier<NuclearReactorGui.Data> dataSupplier;
 
-    public NuclearReactorMultiblockBlockEntity(BEP bep) {
-        super(bep, new MachineGuiParameters.Builder("nuclear_reactor", false).backgroundHeight(274).build(),
-                new OrientationComponent.Params(false, false, false));
+    static {
 
-        this.activeShape = new ActiveShapeComponent(shapeTemplates);
-        this.efficiencyHistory = new NuclearEfficiencyHistoryComponent();
-        this.isActive = new IsActiveComponent();
-        this.redstoneControl = new RedstoneControlComponent();
-        registerComponents(activeShape, isActive, efficiencyHistory, redstoneControl);
-        this.registerGuiComponent(new NuclearReactorGui(this::sendData), new SlotPanel(this).withRedstoneControl(redstoneControl));
+        shapeTemplates = new ShapeTemplate[4];
+        gridLayout = new boolean[4][][];
 
-        registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
-            @Override
-            public void handleClick(int clickedLine, int delta) {
-                activeShape.incrementShape(NuclearReactorMultiblockBlockEntity.this, delta);
+        SimpleMember casing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("nuclear_casing")));
+        SimpleMember controlRod = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("control_rod")));
+        HatchFlags top = new HatchFlags.Builder().with(HatchTypes.NUCLEAR_FLUID, HatchTypes.NUCLEAR_ITEM).build();
+        for (int i = 0; i < 4; i++) {
+            ShapeTemplate.Builder builder = new ShapeTemplate.Builder(MachineCasings.NUCLEAR);
+            gridLayout[i] = new boolean[5 + 2 * i][5 + 2 * i];
+            for (int x = -2 - i; x <= 2 + i; x++) {
+                int minZ;
+                int xAbs = Math.abs(x);
+                if (i != 3) {
+                    if (xAbs == 0) {
+                        minZ = 0;
+                    } else {
+                        minZ = xAbs - 1;
+                    }
+                } else {
+                    if (xAbs <= 1) {
+                        minZ = 0;
+                    } else {
+                        minZ = xAbs - 2;
+                    }
+                }
+
+                int maxZ = 2 * (2 + i) - minZ;
+
+                for (int z = minZ; z <= maxZ; z++) {
+                    gridLayout[i][2 + i + x][z] = true;
+                    if (!(z == minZ || z == maxZ || xAbs == 2 + i)) {
+                        builder.add(x, -1, z, casing, null);
+                        builder.add(x, 0, z, controlRod, null);
+                        builder.add(x, 1, z, controlRod, null);
+                        builder.add(x, 2, z, controlRod, null);
+                        builder.add(x, 3, z, casing, top);
+
+                    } else {
+                        builder.add(x, -1, z, casing, null);
+                        if (x != 0 || z != 0)
+                            builder.add(x, 0, z, casing, null);
+                        builder.add(x, 1, z, casing, null);
+                        builder.add(x, 2, z, casing, null);
+                        builder.add(x, 3, z, casing, null);
+                    }
+
+                }
             }
-
-            @Override
-            public int getCurrentIndex(int line) {
-                return activeShape.getActiveShapeIndex();
-            }
-        }, new ShapeSelection.LineInfo(
-                List.of(MIText.ShapeTextSmall.text(), MIText.ShapeTextMedium.text(), MIText.ShapeTextLarge.text(), MIText.ShapeTextExtreme.text()),
-                List.of())));
+            shapeTemplates[i] = builder.build();
+        }
     }
 
     public NuclearReactorGui.Data sendData() {
@@ -87,31 +115,46 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
         return new MachineModelClientData(null, orientation.facingDirection).active(isActive.isActive);
     }
 
+    public NuclearReactorMultiblockBlockEntity(BEP bep) {
+        super(bep, new MachineGuiParameters.Builder("nuclear_reactor", false).backgroundHeight(274).build(),
+                new OrientationComponent.Params(false, false, false));
+
+        this.activeShape = new ActiveShapeComponent(shapeTemplates);
+        this.efficiencyHistory = new NuclearEfficiencyHistoryComponent();
+        this.isActive = new IsActiveComponent();
+        this.redstoneControl = new RedstoneControlComponent();
+        registerComponents(activeShape, isActive, efficiencyHistory, redstoneControl);
+        this.registerGuiComponent(new NuclearReactorGui(this::sendData), new RedstoneControlGui(redstoneControl));
+
+        registerGuiComponent(new ShapeSelection(new ShapeSelection.Behavior() {
+            @Override
+            public void handleClick(int clickedLine, int delta) {
+                activeShape.incrementShape(NuclearReactorMultiblockBlockEntity.this, delta);
+            }
+
+            @Override
+            public int getCurrentIndex(int line) {
+                return activeShape.getActiveShapeIndex();
+            }
+        }, new ShapeSelection.LineInfo(
+                List.of(MIText.ShapeTextSmall.text(), MIText.ShapeTextMedium.text(), MIText.ShapeTextLarge.text(), MIText.ShapeTextExtreme.text()),
+                List.of())));
+    }
+
     @Override
     public void tick() {
         if (!level.isClientSide) {
             link();
             if (shapeValid.shapeValid) {
-                if (redstoneControl.doAllowNormalOperation(this)) {
-                    isActive.updateActive(NuclearGridHelper.simulate(nuclearGrid, efficiencyHistory), this);
-                } else {
-                    isActive.updateActive(false, this);
-                }
+                boolean useFuel = redstoneControl.doAllowNormalOperation(this);
+                isActive.updateActive(NuclearGridHelper.simulate(nuclearGrid, efficiencyHistory, useFuel) && useFuel,
+                        this);
                 efficiencyHistory.tick();
             } else {
                 isActive.updateActive(false, this);
                 efficiencyHistory.clear();
             }
         }
-    }
-
-    @Override
-    protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
     }
 
     @Override
@@ -181,57 +224,8 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
         }
     }
 
-    static {
-
-        shapeTemplates = new ShapeTemplate[4];
-        gridLayout = new boolean[4][][];
-
-        SimpleMember casing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("nuclear_casing")));
-        SimpleMember pipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("nuclear_alloy_machine_casing_pipe")));
-        HatchFlags top = new HatchFlags.Builder().with(HatchTypes.NUCLEAR_FLUID, HatchTypes.NUCLEAR_ITEM).build();
-        for (int i = 0; i < 4; i++) {
-            ShapeTemplate.Builder builder = new ShapeTemplate.Builder(MachineCasings.NUCLEAR);
-            gridLayout[i] = new boolean[5 + 2 * i][5 + 2 * i];
-            for (int x = -2 - i; x <= 2 + i; x++) {
-                int minZ;
-                int xAbs = Math.abs(x);
-                if (i != 3) {
-                    if (xAbs == 0) {
-                        minZ = 0;
-                    } else {
-                        minZ = xAbs - 1;
-                    }
-                } else {
-                    if (xAbs <= 1) {
-                        minZ = 0;
-                    } else {
-                        minZ = xAbs - 2;
-                    }
-                }
-
-                int maxZ = 2 * (2 + i) - minZ;
-
-                for (int z = minZ; z <= maxZ; z++) {
-                    gridLayout[i][2 + i + x][z] = true;
-                    if (!(z == minZ || z == maxZ || xAbs == 2 + i)) {
-                        builder.add(x, -1, z, casing, null);
-                        builder.add(x, 0, z, pipe, null);
-                        builder.add(x, 1, z, pipe, null);
-                        builder.add(x, 2, z, pipe, null);
-                        builder.add(x, 3, z, casing, top);
-
-                    } else {
-                        builder.add(x, -1, z, casing, null);
-                        if (x != 0 || z != 0)
-                            builder.add(x, 0, z, casing, null);
-                        builder.add(x, 1, z, casing, null);
-                        builder.add(x, 2, z, casing, null);
-                        builder.add(x, 3, z, casing, null);
-                    }
-
-                }
-            }
-            shapeTemplates[i] = builder.build();
-        }
+    @Override
+    protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
+        return super.useItemOn(player, hand, face);
     }
 }

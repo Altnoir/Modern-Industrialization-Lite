@@ -1,16 +1,18 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:tin_rotor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:bronze_machine_casing"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:tin_rotor"
+    }
+  },
+  "pattern": [
+    "a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:bronze_mixer"
-  },
-  "second": {
-    "item": "minecraft:bucket"
   }
 }

@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:quantum_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:iridium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:quantum_circuit"
+    },
+    "b": {
+      "item": "milite:titanium_rotor"
+    },
+    "c": {
+      "item": "milite:tungsten_large_plate"
+    },
+    "d": {
+      "item": "milite:iridium_plate"
+    }
+  },
+  "pattern": [
+    "aba",
+    "cda",
+    "cda"
+  ],
   "result": {
     "count": 1,
     "id": "milite:plasma_turbine"
-  },
-  "second": {
-    "item": "milite:titanium_rotor"
   }
 }

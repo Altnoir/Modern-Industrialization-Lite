@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:inductor"
-  },
-  "key": {
+  "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:inductor"
+    },
+    "b": {
+      "item": "milite:copper_wire"
+    },
+    "c": {
+      "item": "milite:digital_circuit"
+    },
+    "d": {
+      "item": "milite:stainless_steel_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    " c ",
+    "d c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:stainless_steel_polarizer"
-  },
-  "second": {
-    "item": "milite:copper_wire"
   }
 }

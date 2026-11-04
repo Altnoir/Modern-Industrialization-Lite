@@ -181,6 +181,19 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var quantumSword = createBasic(consumer, "quantum_sword", quantumUpgrade, AdvancementType.CHALLENGE, "Annihilation Operator", "Craft a Quantum Sword and disintegrate your foes (or the Wandering Trader's llamas)", existingFileHelper);
         var quantumChestplate = createBasic(consumer, "quantum_chestplate", quantumUpgrade, AdvancementType.CHALLENGE, "Quantum Immortality™", "Craft a Quantum Chestplate to reduce the probability of taking any damage by 25% for each piece of the Quantum Armor Set", existingFileHelper);
         // @formatter:on
+
+        newBuilder("matches_multiple_recipes")
+                .parent(forgeHammer)
+                .display(MIItem.WRENCH,
+                        "Error 418 - I'm a teapot",
+                        "Have a machine fail to start running because it matched multiple recipes.",
+                        null,
+                        AdvancementType.GOAL,
+                        true,
+                        true,
+                        true)
+                .addCriterion("matches_multiple_recipes", createSimpleCriterion(MIAdvancementTriggers.OVERLAPPING_RECIPES))
+                .save(consumer, existingFileHelper);
     }
 
     private AdvancementHolder createBasic(Consumer<AdvancementHolder> consumer, String item, AdvancementHolder parent,

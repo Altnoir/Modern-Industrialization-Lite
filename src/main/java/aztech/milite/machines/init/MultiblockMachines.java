@@ -61,15 +61,12 @@ public class MultiblockMachines {
     private static SimpleMember invarCasings;
 
     private static SimpleMember bronzePlatedBricks;
-    private static SimpleMember bronzePipe;
 
     private static SimpleMember frostproofMachineCasing;
 
     private static SimpleMember stainlessSteelClean;
-    private static SimpleMember stainlessSteelPipe;
 
     private static SimpleMember titaniumCasing;
-    private static SimpleMember titaniumPipe;
 
 
     private static SimpleMember blastProofCasing;
@@ -78,7 +75,6 @@ public class MultiblockMachines {
     private static SimpleMember tungstenCasing;
 
     private static SimpleMember plasmaHandlingIridium;
-    private static SimpleMember iridiumPipe;
 
     private static final HatchFlags fluidInputs = new HatchFlags.Builder().with(FLUID_INPUT).build();
     private static final HatchFlags energyOutput = new HatchFlags.Builder().with(ENERGY_OUTPUT).build();
@@ -119,7 +115,7 @@ public class MultiblockMachines {
         HatchFlags slbHatchFlags = new HatchFlags.Builder().with(ITEM_INPUT, FLUID_INPUT, FLUID_OUTPUT).build();
         ShapeTemplate largeSteamBoilerShape = new ShapeTemplate.Builder(MachineCasings.HEATPROOF).add3by3(-1, invarCasings, false, slbHatchFlags)
                 .add3by3(0, bronzePlatedBricks, true, null).add3by3(1, bronzePlatedBricks, true, null).add3by3(2, bronzePlatedBricks, false, null)
-                .add(0, 0, 1, bronzePipe, null).add(0, 1, 1, bronzePipe, null).build();
+                .build();
 
 
         LARGE_STEAM_BOILER = MachineRegistrationHelper.registerMachine("Large Steam Boiler", "large_steam_boiler",
@@ -133,9 +129,7 @@ public class MultiblockMachines {
                 .add3by3(0, bronzePlatedBricks, true, null)
                 .add3by3(1, bronzePlatedBricks, true, null)
                 .add3by3(2, bronzePlatedBricks, false, null)
-                .add(0, -1, 1, bronzePipe, null)
-                .add(0, 0, 1, bronzePipe, null)
-                .add(0, 1, 1, bronzePipe, null).build();
+                .build();
 
         ADVANCED_LARGE_STEAM_BOILER = MachineRegistrationHelper.registerMachine("Advanced Large Steam Boiler", "advanced_large_steam_boiler",
                 bet -> new SteamBoilerMultiblockBlockEntity(bet, advancedLargeSteamBoilerShape, "advanced_large_steam_boiler",
@@ -147,9 +141,7 @@ public class MultiblockMachines {
                 .add3by3(-1, invarCasings, false, slbHatchFlags)
                 .add3by3(0, stainlessSteelClean, true, null)
                 .add3by3(1, stainlessSteelClean, true, null)
-                .add3by3(2, stainlessSteelClean, false, null)
-                .add(0, 0, 1, stainlessSteelPipe, null)
-                .add(0, 1, 1, stainlessSteelPipe, null).build();
+                .add3by3(2, stainlessSteelClean, false, null).build();
 
         HIGH_PRESSURE_LARGE_STEAM_BOILER = MachineRegistrationHelper.registerMachine(
                 "High Pressure Large Steam Boiler",
@@ -163,10 +155,7 @@ public class MultiblockMachines {
                 .add3by3(-1, stainlessSteelClean, true, null)
                 .add3by3(0, stainlessSteelClean, true, null)
                 .add3by3(1, stainlessSteelClean, true, null)
-                .add3by3(2, stainlessSteelClean, false, null)
-                .add(0, -1, 1, stainlessSteelPipe, null)
-                .add(0, 0, 1, stainlessSteelPipe, null)
-                .add(0, 1, 1, stainlessSteelPipe, null).build();
+                .add3by3(2, stainlessSteelClean, false, null).build();
 
         HIGH_PRESSURE_ADVANCED_LARGE_STEAM_BOILER = MachineRegistrationHelper.registerMachine(
                 "High Pressure Advanced Large Steam Boiler",
@@ -178,7 +167,6 @@ public class MultiblockMachines {
 
     private static void quarries() {
         SimpleMember steelCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing")));
-        SimpleMember steelPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing_pipe")));
         SimpleMember aluminumAlloyCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("aluminum_alloy_machine_casing")));
         HatchFlags quarryHatchFlags = new HatchFlags.Builder().with(ITEM_INPUT, FLUID_INPUT, ITEM_OUTPUT).build();
         HatchFlags quarryElectricHatchFlags = new HatchFlags.Builder().with(ITEM_INPUT, ITEM_OUTPUT, ENERGY_INPUT).build();
@@ -190,10 +178,10 @@ public class MultiblockMachines {
                 .add3by3(0, aluminumAlloyCasing, true, quarryElectricHatchFlags).add3by3(1, aluminumAlloyCasing, true, quarryElectricHatchFlags);
 
         for (int y = 2; y <= 4; y++) {
-            quarryShapeBuilder.add(-1, y, 1, steelPipe, null);
-            quarryShapeBuilder.add(1, y, 1, steelPipe, null);
-            quarryElectricShapeBuilder.add(-1, y, 1, steelPipe, null);
-            quarryElectricShapeBuilder.add(1, y, 1, steelPipe, null);
+            quarryShapeBuilder.add(-1, y, 1, steelCasing, null);
+            quarryShapeBuilder.add(1, y, 1, steelCasing, null);
+            quarryElectricShapeBuilder.add(-1, y, 1, aluminumAlloyCasing, null);
+            quarryElectricShapeBuilder.add(1, y, 1, aluminumAlloyCasing, null);
         }
         quarryShapeBuilder.add(0, 4, 1, steelCasing, null);
         quarryElectricShapeBuilder.add(0, 4, 1, aluminumAlloyCasing, null);
@@ -222,7 +210,6 @@ public class MultiblockMachines {
     }
 
     private static void oilDrillingRig() {
-        SimpleMember steelPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("steel_machine_casing_pipe")));
         SimpleMember aluminumAlloyCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("aluminum_alloy_machine_casing")));
         SimpleMember chain = SimpleMember.verticalChain();
         HatchFlags hatchFlags = new HatchFlags.Builder().with(ITEM_INPUT).with(FLUID_OUTPUT).with(ENERGY_INPUT).build();
@@ -236,7 +223,7 @@ public class MultiblockMachines {
         })
                 .key('C', aluminumAlloyCasing, null)
                 .key('o', chain, null)
-                .key('P', steelPipe, null)
+                .key('P', aluminumAlloyCasing, null)
                 .key('H', aluminumAlloyCasing, hatchFlags)
                 .build();
 
@@ -272,7 +259,9 @@ public class MultiblockMachines {
     private static void largeDieselGenerator() {
         ShapeTemplate.Builder largeDieselGeneratorShapeBuilder = new ShapeTemplate.Builder(MachineCasings.SOLID_TITANIUM);
         for (int z = 1; z < 4; z++) {
-            largeDieselGeneratorShapeBuilder.add(0, 0, z, z < 3 ? titaniumPipe : titaniumCasing, z == 3 ? energyOutput : null);
+            if (z == 3) {
+                largeDieselGeneratorShapeBuilder.add(0, 0, z, titaniumCasing, energyOutput);
+            }
             for (int x = -1; x < 2; x++) {
                 largeDieselGeneratorShapeBuilder.add(x, 1, z, titaniumCasing, null);
                 largeDieselGeneratorShapeBuilder.add(x, -1, z, titaniumCasing, null);
@@ -284,7 +273,7 @@ public class MultiblockMachines {
         for (int y = -1; y <= 1; y++) {
             for (int x = -1; x <= 1; x++) {
                 if (x != 0 || y != 0) {
-                    largeDieselGeneratorShapeBuilder.add(x, y, 0, titaniumPipe, null);
+                    largeDieselGeneratorShapeBuilder.add(x, y, 0, titaniumCasing, null);
                 }
             }
         }
@@ -298,7 +287,7 @@ public class MultiblockMachines {
         ReiMachineRecipes.registerMultiblockShape("large_diesel_generator", largeDieselGeneratorShape);
     }
 
-    private static ShapeTemplate largeTurbineShape(MachineCasing mainCasing, SimpleMember casing, SimpleMember pipe) {
+    private static ShapeTemplate largeTurbineShape(MachineCasing mainCasing, SimpleMember casing) {
         ShapeTemplate.Builder largeTurbineBuilder = new ShapeTemplate.Builder(mainCasing);
         for (int z = 0; z < 4; z++) {
             for (int x = -1; x <= 1; x++) {
@@ -309,8 +298,8 @@ public class MultiblockMachines {
                         }
                     } else if (z == 3) {
                         largeTurbineBuilder.add(x, y, z, casing, (x == 0 && y == 0) ? energyOutput : null);
-                    } else {
-                        largeTurbineBuilder.add(x, y, z, pipe, null);
+                    } else if (x != 0 || y != 0) {
+                        largeTurbineBuilder.add(x, y, z, casing, null);
                     }
 
                 }
@@ -322,7 +311,7 @@ public class MultiblockMachines {
 
     private static void largeSteamTurbine() {
         ShapeTemplate largeSteamTurbineShape = largeTurbineShape(MachineCasings.CLEAN_STAINLESS_STEEL,
-                stainlessSteelClean, stainlessSteelPipe);
+                stainlessSteelClean);
 
         LARGE_STEAM_TURBINE = MachineRegistrationHelper.registerMachine(
                 "Large Steam Turbine",
@@ -341,13 +330,13 @@ public class MultiblockMachines {
     }
 
     private static void heatExchanger() {
-        ShapeTemplate.Builder heatExchangerShapeBuilder = new ShapeTemplate.Builder(MachineCasings.STAINLESS_STEEL_PIPE);
+        ShapeTemplate.Builder heatExchangerShapeBuilder = new ShapeTemplate.Builder(MachineCasings.CLEAN_STAINLESS_STEEL);
         for (int z = 0; z < 5; z++) {
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
                     if (z > 0 && z < 4) {
 
-                        heatExchangerShapeBuilder.add(x, y, z, x == 1 ? invarCasings : x == 0 ? stainlessSteelPipe : frostproofMachineCasing,
+                        heatExchangerShapeBuilder.add(x, y, z, x == 1 ? invarCasings : x == 0 ? stainlessSteelClean : frostproofMachineCasing,
                                 ((y == 1 || y == -1) && x == 0) ? energyInput : null);
                     } else {
                         if (z != 0 || x != 0 || y != 0) {
@@ -359,7 +348,7 @@ public class MultiblockMachines {
                                 flag = new HatchFlags.Builder().with(fluidOutput ? FLUID_OUTPUT : FLUID_INPUT).build();
                             }
 
-                            heatExchangerShapeBuilder.add(x, y, z, stainlessSteelPipe, flag);
+                            heatExchangerShapeBuilder.add(x, y, z, stainlessSteelClean, flag);
                         }
                     }
                 }
@@ -378,7 +367,7 @@ public class MultiblockMachines {
     private static void pressurizer() {
         ShapeTemplate.Builder pressurizeShapeBuilder = new ShapeTemplate.Builder(MachineCasings.SOLID_TITANIUM);
         for (int y = -1; y < 3; y++) {
-            SimpleMember member = (y == -1 || y == 2) ? titaniumCasing : titaniumPipe;
+            SimpleMember member = titaniumCasing;
             HatchFlags flag = null;
             if (y == -1) {
                 flag = new HatchFlags.Builder().with(ENERGY_INPUT, FLUID_OUTPUT).build();
@@ -386,7 +375,9 @@ public class MultiblockMachines {
                 flag = new HatchFlags.Builder().with(FLUID_INPUT, ITEM_INPUT).build();
             }
             pressurizeShapeBuilder.add(-1, y, 1, member, flag);
-            pressurizeShapeBuilder.add(0, y, 1, member, flag);
+            if (y != 0 && y != 1) {
+                pressurizeShapeBuilder.add(0, y, 1, member, flag);
+            }
             pressurizeShapeBuilder.add(1, y, 1, member, flag);
             pressurizeShapeBuilder.add(0, y, 2, member, flag);
             if (y != 0) {
@@ -466,7 +457,7 @@ public class MultiblockMachines {
 
     private static void plasmaTurbine() {
         ShapeTemplate plasmaTurbineShape = largeTurbineShape(MachineCasings.PLASMA_HANDLING_IRIDIUM,
-                plasmaHandlingIridium, iridiumPipe);
+                plasmaHandlingIridium);
 
         PLASMA_TURBINE = MachineRegistrationHelper.registerMachine(
                 "Plasma Turbine",
@@ -485,15 +476,12 @@ public class MultiblockMachines {
         invarCasings = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("heatproof_machine_casing")));
 
         bronzePlatedBricks = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("bronze_plated_bricks")));
-        bronzePipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("bronze_machine_casing_pipe")));
 
         frostproofMachineCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("frostproof_machine_casing")));
 
         stainlessSteelClean = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("clean_stainless_steel_machine_casing")));
-        stainlessSteelPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("stainless_steel_machine_casing_pipe")));
 
         titaniumCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("solid_titanium_machine_casing")));
-        titaniumPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("titanium_machine_casing_pipe")));
 
         blastProofCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("blastproof_casing")));
 
@@ -502,7 +490,6 @@ public class MultiblockMachines {
         tungstenCasing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("tungsten_casing")));
 
         plasmaHandlingIridium = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("plasma_handling_iridium_machine_casing")));
-        iridiumPipe = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("iridium_machine_casing_pipe")));
 
         cokeOven();
         steamBlastFurnace();
@@ -584,13 +571,13 @@ public class MultiblockMachines {
 
         MachineRegistrationHelper.addMachineModel("large_steam_turbine", "steam_turbine", CLEAN_STAINLESS_STEEL, true, false, false);
 
-        MachineRegistrationHelper.addMachineModel("heat_exchanger", "heat_exchanger", MachineCasings.STAINLESS_STEEL_PIPE, true, false, false);
+        MachineRegistrationHelper.addMachineModel("heat_exchanger", "heat_exchanger", MachineCasings.CLEAN_STAINLESS_STEEL, true, false, false);
         new Rei("Heat Exchanger", "heat_exchanger", MIMachineRecipeTypes.HEAT_EXCHANGER, new ProgressBar.Params(77, 42, "arrow"))
                 .items(inputs -> inputs.addSlot(36, 35), outputs -> outputs.addSlot(122, 35))
                 .fluids(inputs -> inputs.addSlots(56, 35, 1, 2), outputs -> outputs.addSlots(102, 35, 1, 2))
                 .register();
 
-        MachineRegistrationHelper.addMachineModel("pressurizer", "pressurizer", MachineCasings.TITANIUM_PIPE, true, false, false);
+        MachineRegistrationHelper.addMachineModel("pressurizer", "pressurizer", MachineCasings.SOLID_TITANIUM, true, false, false);
         new Rei("Pressurizer", "pressurizer", MIMachineRecipeTypes.PRESSURIZER, new ProgressBar.Params(77, 33, "arrow"))
                 .items(inputs -> inputs.addSlot(38, 35), outputs -> {
                 })

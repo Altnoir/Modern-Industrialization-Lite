@@ -119,12 +119,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('A', "#c:plates/iridium")
                         .addInput('H', "milite:titanium_machine_hull"));
 
-        shaped(consumer, "electric_age/casing/iridium_machine_casing_pipe_asbl",
-                new ShapedRecipeJson("milite:iridium_machine_casing_pipe", 2, "pPp", "p#p", "pPp")
-                        .addInput('#', "milite:plasma_handling_iridium_machine_casing")
-                        .addInput('p', "milite:iridium_plate")
-                        .addInput('P', "milite:large_advanced_pump"));
-
         shaped(consumer, "electric_age/casing/nuclear_casing_asbl",
                 new ShapedRecipeJson("milite:nuclear_casing", 1, "AAA", "ACA", "AAA")
                         .addInput('A', "#c:plates/nuclear_alloy")
@@ -145,10 +139,10 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('A', "#c:plates/nuclear_alloy")
                         .addInput('C', "milite:titanium_item_input_hatch"));
 
-        shaped(consumer, "electric_age/casing/nuclear_pipe_casing_asbl",
-                new ShapedRecipeJson("milite:nuclear_alloy_machine_casing_pipe", 1, "cPc", "cCc", "cPc")
-                        .addInput('c', "milite:blastproof_alloy_plate")
-                        .addInput('P', "milite:advanced_pump")
+        shaped(consumer, "electric_age/casing/control_rod_asbl",
+                new ShapedRecipeJson("milite:control_rod", 4, "ARA", "RCR", "ARA")
+                        .addInput('A', "#c:plates/nuclear_alloy")
+                        .addInput('R', "milite:cadmium_control_rod")
                         .addInput('C', "milite:nuclear_casing"));
 
         shaped(consumer, "electric_age/casing/plasma_handling_iridium_machine_casing_asbl",
@@ -161,20 +155,10 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('A', "#c:plates/titanium")
                         .addInput('G', "#c:gears/titanium"));
 
-        shaped(consumer, "electric_age/casing/stainless_steel_casing_pipe_asbl",
-                new ShapedRecipeJson("milite:stainless_steel_machine_casing_pipe", 2, "p p", "p#p", "p p")
-                        .addInput('#', "milite:clean_stainless_steel_machine_casing")
-                        .addInput('p', "milite:stainless_steel_plate"));
-
         shaped(consumer, "electric_age/casing/stainless_steel_machine_casing_asbl",
                 new ShapedRecipeJson("milite:stainless_steel_machine_casing", 1, "AAA", "AHA", "AAA")
                         .addInput('A', "#c:plates/stainless_steel")
                         .addInput('H', "milite:aluminum_alloy_machine_hull"));
-
-        shaped(consumer, "electric_age/casing/titanium_casing_pipe_asbl",
-                new ShapedRecipeJson("milite:titanium_machine_casing_pipe", 2, "p p", "p#p", "p p")
-                        .addInput('#', "milite:solid_titanium_machine_casing")
-                        .addInput('p', "milite:titanium_plate"));
 
         shaped(consumer, "electric_age/casing/titanium_machine_casing_asbl",
                 new ShapedRecipeJson("milite:titanium_machine_casing", 1, "ACA", "CHC", "ACA")
@@ -486,8 +470,8 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('w', "milite:aluminum_wire")
                         .addInput('d', "milite:diode"));
 
-        shaped(consumer, "electric_age/component/craft/overdrive_module_asbl",
-                new ShapedRecipeJson("milite:overdrive_module", 1, "wdw", "tbt", "wdw")
+        shaped(consumer, "electric_age/component/craft/overclocker_unit_asbl",
+                new ShapedRecipeJson("milite:overclocker_unit", 1, "wdw", "tbt", "wdw")
                         .addInput('d', "milite:diode")
                         .addInput('t', "milite:transistor")
                         .addInput('w', "milite:electrum_fine_wire")
@@ -506,15 +490,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('m', "milite:motor")
                         .addInput('r', "milite:tin_rotor")
                         .addInput('b', "milite:tin_bolt"));
-
-        shaped(consumer, "electric_age/component/craft/redstone_control_module_asbl",
-                new ShapedRecipeJson("milite:redstone_control_module", 1, "dtd", "rcr", "ibi")
-                        .addInput('d', "minecraft:redstone")
-                        .addInput('t', "minecraft:redstone_torch")
-                        .addInput('c', "milite:capacitor")
-                        .addInput('r', "milite:resistor")
-                        .addInput('b', "milite:analog_circuit_board")
-                        .addInput('i', "milite:inductor"));
 
         shaped(consumer, "electric_age/component/craft/resistor",
                 new ShapedRecipeJson("milite:resistor", 3, " P ", "FCF", " P ")

@@ -14,6 +14,34 @@
     {
       "amount": 1,
       "item": "milite:titanium_rotor"
+    },
+    {
+      "amount": 1,
+      "item": "milite:quantum_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tungsten_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:iridium_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:quantum_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:tungsten_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:iridium_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:quantum_circuit"
     }
   ],
   "item_outputs": [

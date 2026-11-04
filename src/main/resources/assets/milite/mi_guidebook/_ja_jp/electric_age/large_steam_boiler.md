@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -19,21 +18,15 @@ item_ids:
 
 単一ブロックのボイラーとは異なり、大型蒸気ボイラーでは消費されなかった熱の80％が失われる。すなわち、出力が最大値より低下すると消費燃料に対する生産エネルギーの比率が急激に低下することになる。これは、ボイラーを最大出力で連続使用しない場合に起こる。
 
-主なブロックは青銅張りのレンガだが、青銅のパイプ機械筐体と耐熱機械筐体も必要だ。
+主なブロックは青銅張りのレンガだが、耐熱機械筐体も必要だ。
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 
 大型蒸気ボイラーは、1層の耐熱機械筐体と3層の青銅張りのレンガで構成されている。
 
 制御機械が配置されるのは2層目(つまり青銅張りのレンガの層)に配置される。
-
-中心二つのブロックは青銅のパイプ機械筐体。
 
 ハッチは最下層に置かなければならない。
 

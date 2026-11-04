@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:furnace"
-  },
-  "key": {
+  "casing": {
     "item": "milite:bronze_boiler"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:furnace"
+    },
+    "b": {
+      "item": "milite:steel_plate"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:steel_boiler"
-  },
-  "second": {
-    "item": "milite:steel_plate"
   }
 }

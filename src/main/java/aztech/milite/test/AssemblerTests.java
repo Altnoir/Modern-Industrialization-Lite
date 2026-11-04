@@ -36,6 +36,8 @@ public class AssemblerTests {
             var assemblerId = MI.id(ProcessingTableRecipesProvider.MACHINE_RECIPE_FOLDER
                     + path.substring(ProcessingTableRecipesProvider.PROCESSING_TABLE_RECIPE_FOLDER.length()));
 
+            int expectedInputs = 1 + tableRecipe.value().slots().size();
+
             var holder = assembler.getRecipesWithoutCache(level).stream()
                     .filter(candidate -> candidate.id().equals(assemblerId))
                     .findFirst()
@@ -46,8 +48,9 @@ public class AssemblerTests {
             }
 
             var recipe = holder.value();
-            if (recipe.itemInputs.size() != 3) {
-                helper.fail("recipe %s should take exactly three inputs, it takes %d".formatted(holder.id(), recipe.itemInputs.size()));
+            if (recipe.itemInputs.size() != expectedInputs) {
+                helper.fail("recipe %s should take %d inputs, it takes %d"
+                        .formatted(holder.id(), expectedInputs, recipe.itemInputs.size()));
             }
             // An assembler looks recipes up by the items it holds, so every input has to lead back to the recipe.
             for (var input : recipe.itemInputs) {

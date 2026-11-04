@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -26,10 +25,6 @@ item_ids:
 Основним блоком, який вам знадобиться, є бронзована цегла, але вам також знадобляться бронзові машинні обшивки для труб та термостійкі машинні обшивки.
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 

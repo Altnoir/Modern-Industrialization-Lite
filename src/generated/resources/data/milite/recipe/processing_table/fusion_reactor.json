@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:quantum_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:iridium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:quantum_circuit"
+    },
+    "b": {
+      "item": "milite:tungsten_large_plate"
+    },
+    "c": {
+      "item": "milite:iridium_plate"
+    }
+  },
+  "pattern": [
+    "aba",
+    "bca",
+    "bca"
+  ],
   "result": {
     "count": 1,
     "id": "milite:fusion_reactor"
-  },
-  "second": {
-    "item": "milite:tungsten_large_plate"
   }
 }

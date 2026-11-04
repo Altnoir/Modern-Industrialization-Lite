@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "minecraft:blast_furnace"
-  },
-  "key": {
+  "casing": {
     "item": "milite:steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "minecraft:blast_furnace"
+    },
+    "b": {
+      "item": "milite:fire_clay_bricks"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:steel_furnace"
-  },
-  "second": {
-    "item": "milite:fire_clay_bricks"
   }
 }

@@ -9,7 +9,7 @@ import aztech.milite.machines.components.RedstoneControlComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.AutoExtract;
 import aztech.milite.machines.guicomponents.ProgressBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.MachineComponent;
 import aztech.milite.machines.models.MachineModelClientData;
@@ -80,7 +80,7 @@ public class ReplicatorMachineBlockEntity extends MachineBlockEntity implements 
 
         registerGuiComponent(new ProgressBar(progressBarParams, () -> (float) progressTick / 20));
         registerGuiComponent(new AutoExtract(orientation, false));
-        registerGuiComponent(new SlotPanel(this).withRedstoneControl(redstoneControl));
+        registerGuiComponent(new RedstoneControlGui(redstoneControl));
     }
 
     @Override
@@ -181,10 +181,6 @@ public class ReplicatorMachineBlockEntity extends MachineBlockEntity implements 
 
     @Override
     protected ItemInteractionResult useItemOn(Player player, InteractionHand hand, Direction face) {
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 }

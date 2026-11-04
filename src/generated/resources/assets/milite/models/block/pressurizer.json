@@ -1,5 +1,5 @@
 {
-  "casing": "titanium_machine_casing_pipe",
+  "casing": "solid_titanium_machine_casing",
   "default_overlays": {
     "fluid_auto": "milite:block/overlays/fluid_auto",
     "front": "milite:block/machines/pressurizer/overlay_front",

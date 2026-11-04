@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -17,21 +16,15 @@ item_ids:
 
 <Recipe id="milite:processing_table/large_steam_boiler" />
 
-청동 도금 벽돌이 주로 필요하지만, 청동 파이프 기계 케이싱과 내열 기계 케이싱도 필요합니다.
+청동 도금 벽돌이 주로 필요하지만, 내열 기계 케이싱도 필요합니다.
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 
 대형 증기 보일러의 첫 층은 내열 기계 케이싱이고, 그 위로 청동 도금 벽돌 세 층이 올라갑니다.
 
 컨트롤러, 즉 대형 증기 보일러 블록은 두 번째 층에 있어야 합니다.
-
-멀티 블록 중앙의 두 블록은 청동 파이프 기계 케이싱입니다.
 
 해치들은 첫 층에 있어야 합니다.
 

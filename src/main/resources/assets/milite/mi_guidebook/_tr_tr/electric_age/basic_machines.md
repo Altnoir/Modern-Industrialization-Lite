@@ -35,13 +35,13 @@ Polarizör bir şeyleri polarize eder. Henüz çok fazla tarifi yok, ancak Motor
 
 Makine Gövdesi, Analog Devreler, Motorlar, Pistonlar, Robot Kolları ve Konveyör Bantlarını mümkün olan en kısa sürede Birleştiriciler kullanarak otomatikleştirmenizi şiddetle tavsiye ediyoruz, bu da elektrikli makineler üretmeyi temelde ücretsiz hale getirecektir!
 
-## Redstone Kontrol Modülleri
+## Redstone Kontrolü
 
-<ItemImage id="milite:redstone_control_module" />
+Elektrikli bir makine veya çoklu blok ekranının sağ üst köşesinde iki düğme vardır. Sağdaki redstone düğmesi redstone kontrolünü açar ve kapatır; açıkken solunda bir sinyal düğmesi belirir ve makinenin yüksek mi düşük mü sinyal istediğini değiştirir.
 
-Redstone Kontrol Modülü, redstone sinyalleri ile elektrikli makinelerin ve çoklu blokların davranışını kontrol etmek için kullanılabilir.
+## Hız Aşırtma Birimi
 
-Modülü elinizde yapılandırın, ardından makineye veya çoklu blok denetleyicisine takın.
+Hız Aşırtma Birimi, elektrikli makineleri hızlandıran bir bloktur. Bir makinenin herhangi bir yüzüne yerleştirin; makine aynı FE ile iki kat hızlı çalışır. Birimler üst üste eklenir: makineye değen her ek birim hızı bir kez daha ikiye katlar, sınır reçete başına bir ticktir.
 
 ## Hız Aşırtma Yükseltmeleri
 

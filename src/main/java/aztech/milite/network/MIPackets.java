@@ -13,6 +13,7 @@ import aztech.milite.network.machines.MoveRecipePacket;
 import aztech.milite.network.machines.ReiLockSlotsPacket;
 import aztech.milite.network.machines.SetAutoExtractPacket;
 import aztech.milite.network.machines.SetLockingModePacket;
+import aztech.milite.network.machines.SetRedstoneControlPacket;
 import aztech.milite.network.machines.UpdateFluidSlotPacket;
 import aztech.milite.network.machines.UpdateItemSlotPacket;
 import net.minecraft.network.codec.StreamCodec;
@@ -58,6 +59,7 @@ public class MIPackets {
         register("move_recipe", MoveRecipePacket.class, MoveRecipePacket.STREAM_CODEC);
         register("rei_lock_slots", ReiLockSlotsPacket.class, ReiLockSlotsPacket.STREAM_CODEC);
         register("set_auto_extract", SetAutoExtractPacket.class, SetAutoExtractPacket.STREAM_CODEC);
+        register("set_redstone_control", SetRedstoneControlPacket.class, SetRedstoneControlPacket.STREAM_CODEC);
     }
 
     public static void init(RegisterPayloadHandlersEvent event) {

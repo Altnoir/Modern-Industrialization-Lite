@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:processing_unit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:titanium_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:processing_unit"
+    },
+    "b": {
+      "item": "milite:nuclear_alloy_large_plate"
+    },
+    "c": {
+      "item": "milite:titanium_large_plate"
+    },
+    "d": {
+      "item": "milite:titanium_gear"
+    }
+  },
+  "pattern": [
+    "a b",
+    "aac",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:nuclear_reactor"
-  },
-  "second": {
-    "item": "milite:nuclear_alloy_large_plate"
   }
 }

@@ -1,16 +1,21 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:invar_rotary_blade"
-  },
-  "key": {
+  "casing": {
     "item": "milite:steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:invar_rotary_blade"
+    },
+    "b": {
+      "item": "milite:steel_drill_head"
+    }
+  },
+  "pattern": [
+    "a b"
+  ],
   "result": {
     "count": 1,
     "id": "milite:steam_quarry"
-  },
-  "second": {
-    "item": "milite:steel_drill_head"
   }
 }

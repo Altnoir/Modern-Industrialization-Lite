@@ -9,8 +9,10 @@ import aztech.milite.test.EnergyCapabilityTests;
 import aztech.milite.test.GeneratorTests;
 import aztech.milite.test.MachineSpeedTests;
 import aztech.milite.test.MultiblockTests;
+import aztech.milite.test.OverclockUnitTests;
 import aztech.milite.test.ProcessingTableTests;
 import aztech.milite.test.RecipeDatagenTests;
+import aztech.milite.test.RedstoneControlTests;
 import aztech.milite.test.SoundTests;
 import aztech.milite.test.UpstreamCompatTests;
 import net.minecraft.gametest.framework.GameTestGenerator;
@@ -33,8 +35,10 @@ public final class MIGameTests {
             GeneratorTests.class,
             MachineSpeedTests.class,
             MultiblockTests.class,
+            OverclockUnitTests.class,
             ProcessingTableTests.class,
             RecipeDatagenTests.class,
+            RedstoneControlTests.class,
             SoundTests.class,
             UpstreamCompatTests.class);
 

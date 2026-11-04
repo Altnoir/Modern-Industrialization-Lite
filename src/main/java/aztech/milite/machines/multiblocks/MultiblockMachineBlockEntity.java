@@ -11,9 +11,11 @@ import aztech.milite.machines.components.ShapeValidComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.guicomponents.MultiblockBuild;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public abstract class MultiblockMachineBlockEntity extends MachineBlockEntity {
@@ -98,6 +100,47 @@ public abstract class MultiblockMachineBlockEntity extends MachineBlockEntity {
     }
 
     public abstract ShapeTemplate getActiveShape();
+
+    private static BlockPos minBetween(BlockPos a, BlockPos b) {
+        return new BlockPos(Math.min(a.getX(), b.getX()), Math.min(a.getY(), b.getY()), Math.min(a.getZ(), b.getZ()));
+    }
+
+    private static BlockPos maxBetween(BlockPos a, BlockPos b) {
+        return new BlockPos(Math.max(a.getX(), b.getX()), Math.max(a.getY(), b.getY()), Math.max(a.getZ(), b.getZ()));
+    }
+
+    private static BlockPos findCentreHole(ShapeTemplate shape, BlockPos min, BlockPos max) {
+        int centreX = (min.getX() + max.getX()) / 2;
+        int centreZ = (min.getZ() + max.getZ()) / 2;
+        for (int y = max.getY(); y >= min.getY(); y--) {
+            var candidate = new BlockPos(centreX, y, centreZ);
+            if (!shape.simpleMembers.containsKey(candidate)) {
+                return candidate;
+            }
+        }
+        return new BlockPos(centreX, max.getY(), centreZ);
+    }
+
+    @Override
+    public Vec3 getOverclockParticlePos() {
+        if (!isShapeValid()) {
+            return super.getOverclockParticlePos();
+        }
+        ShapeTemplate shape = getActiveShape();
+        if (shape.simpleMembers.isEmpty()) {
+            return super.getOverclockParticlePos();
+        }
+
+        BlockPos min = null;
+        BlockPos max = null;
+        for (BlockPos pos : shape.simpleMembers.keySet()) {
+            min = min == null ? pos : minBetween(min, pos);
+            max = max == null ? pos : maxBetween(max, pos);
+        }
+        BlockPos hole = findCentreHole(shape, min, max);
+        BlockPos world = ShapeMatcher.toWorldPos(worldPosition, orientation.facingDirection, hole);
+        return new Vec3(world.getX() + 0.5D, world.getY() + 1.05D, world.getZ() + 0.5D);
+    }
 
     @Nullable
     public final String getActiveShapeId() {

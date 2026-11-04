@@ -34,17 +34,7 @@ public class ConnectedTexturesProvider implements DataProvider {
             "kanthal_coil",
             "superconductor_coil");
 
-    // athena:pillar
-    private static final List<String> PIPES = List.of(
-            "bronze_machine_casing_pipe",
-            "iridium_machine_casing_pipe",
-            "nuclear_alloy_machine_casing_pipe",
-            "stainless_steel_machine_casing_pipe",
-            "steel_machine_casing_pipe",
-            "titanium_machine_casing_pipe");
-
     private static final List<String> CASING_SLOTS = List.of("horizontal", "center", "particle", "vertical", "empty");
-    private static final List<String> PIPE_SLOTS = List.of("particle", "self", "top", "center", "bottom");
 
     private final PackOutput output;
 
@@ -57,9 +47,6 @@ public class ConnectedTexturesProvider implements DataProvider {
         List<CompletableFuture<?>> saves = new ArrayList<>();
         for (String blockId : CASINGS) {
             saves.add(applyConnectedTextures(cache, blockId, "athena:ctm", CASING_SLOTS));
-        }
-        for (String blockId : PIPES) {
-            saves.add(applyConnectedTextures(cache, blockId, "athena:pillar", PIPE_SLOTS));
         }
         return CompletableFuture.allOf(saves.toArray(CompletableFuture[]::new));
     }

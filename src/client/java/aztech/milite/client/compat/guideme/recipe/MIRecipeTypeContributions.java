@@ -50,9 +50,18 @@ public class MIRecipeTypeContributions implements RecipeTypeMappingSupplier {
         grid.setAlignItems(AlignItems.CENTER);
         grid.setWrap(false);
 
-        grid.append(new LytMIItemSlot(recipe.first(), 1, 1, true));
-        grid.append(new LytMIItemSlot(recipe.key(), 1, 1, true));
-        grid.append(new LytMIItemSlot(recipe.second(), 1, 1, true));
+        var keySlot = new LytSlotGrid(1, 1);
+        keySlot.setRenderEmptySlots(false);
+        keySlot.setIngredient(0, 0, recipe.casing());
+        grid.append(keySlot);
+
+        var slots = new LytSlotGrid(3, 3);
+        slots.setRenderEmptySlots(true);
+        for (var entry : recipe.slots().entrySet()) {
+            int cell = entry.getKey() - ProcessingTableRecipe.MIN_SLOT;
+            slots.setIngredient(cell % 3, cell / 3, entry.getValue());
+        }
+        grid.append(slots);
 
         grid.append(new LytGuiSprite(GuiAssets.ARROW, new LytSize(24, 17)));
 

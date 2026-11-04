@@ -1,7 +1,11 @@
 package aztech.milite.util;
 
 import aztech.milite.MIText;
+import aztech.milite.MITooltips;
+import aztech.milite.machines.multiblocks.HatchFlags;
+import aztech.milite.machines.multiblocks.SimpleMember;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -9,6 +13,8 @@ import net.minecraft.network.chat.TextColor;
 import org.jspecify.annotations.Nullable;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TextHelper {
     public static final Style GRAY_TEXT = Style.EMPTY.withColor(TextColor.fromRgb(0xa9a9a9)).withItalic(true);
@@ -177,5 +183,17 @@ public class TextHelper {
             text.setStyle(YELLOW);
             return text;
         }
+    }
+
+    public static List<Component> getMultiblockMemberTooltip(RegistryAccess registries, SimpleMember member, @Nullable HatchFlags hatch) {
+        List<Component> lines = new ArrayList<>(member.getTooltipPreview(registries));
+        if (hatch != null && !hatch.values().isEmpty()) {
+            lines.add(MIText.AcceptsHatches.text().withStyle(MITooltips.DEFAULT_STYLE));
+            for (var type : hatch.values()) {
+                lines.add(Component.literal("- ").withStyle(MITooltips.DEFAULT_STYLE)
+                        .append(type.description().withStyle(MITooltips.HIGHLIGHT_STYLE)));
+            }
+        }
+        return lines;
     }
 }

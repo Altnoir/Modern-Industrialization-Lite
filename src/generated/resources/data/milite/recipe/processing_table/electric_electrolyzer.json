@@ -1,16 +1,23 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:electronic_circuit"
-  },
-  "key": {
+  "casing": {
     "item": "milite:electric_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:electronic_circuit"
+    },
+    "b": {
+      "item": "milite:aluminum_wire"
+    }
+  },
+  "pattern": [
+    "a  ",
+    " b ",
+    "  a"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_electrolyzer"
-  },
-  "second": {
-    "item": "milite:aluminum_wire"
   }
 }

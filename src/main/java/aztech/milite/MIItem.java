@@ -101,8 +101,6 @@ public final class MIItem {
     public static final ItemDefinition<Item> ULTRADENSE_METAL_BALL = item("Ultradense Metal Ball", "ultradense_metal_ball", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> SINGULARITY = item("Singularity", "singularity", p -> new Item(p.rarity(Rarity.EPIC)), ITEMS_ORDERED.next());
 
-    public static final ItemDefinition<Item> REDSTONE_CONTROL_MODULE = item("Redstone Control Module", "redstone_control_module", RedstoneControlModuleItem::new, (item, itemModelGenerators) -> {}, ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> OVERDRIVE_MODULE = item("Overdrive Module", "overdrive_module", ITEMS_ORDERED.next());
 
     public static final ItemDefinition<Item> QUANTUM_UPGRADE = item("Quantum Upgrade", "quantum_upgrade", (p) -> new Item(p.stacksTo(1).rarity(Rarity.RARE)), ITEMS_ORDERED.next());
 

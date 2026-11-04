@@ -7,7 +7,6 @@ navigation:
 item_ids:
   - milite:large_steam_boiler
   - milite:bronze_plated_bricks
-  - milite:bronze_machine_casing_pipe
   - milite:heatproof_machine_casing
 ---
 
@@ -23,21 +22,15 @@ The Large Steam Boiler is an upgraded version of the smaller Bronze and Steel Bo
 
 Unlike its single block counterpart, in the Large Steam Boiler, 80% of any unconsumed heat will be lost. This means the ratio of energy produced by fuel consumed will drastically decrease when the output decreases below maximum. This will happen when the Boiler is not used continuously at maximum output.
 
-The main block you'll need is the Bronze Plated Bricks, but you'll also need Bronze Pipe Machine Casings and Heatproof Machine Casings.
+The main block you'll need is the Bronze Plated Bricks, but you'll also need Heatproof Machine Casings.
 
 <Recipe id="milite:electric_age/casing/bronze_plated_bricks_asbl" />
-
-
-
-<Recipe id="milite:steam_age/bronze/casing_pipe_asbl" />
 
 <Recipe id="milite:electric_age/casing/heatproof_machine_casing_asbl" />
 
 The Large Steam Boiler is comprised of one layer of Heatproof Machine Casings and three layers of Bronze Plated Bricks.
 
 The controller goes on the second layer (i.e. the first layer of Bronze Plated Bricks).
-
-The two middle blocks are Bronze Pipe Machine Casings.
 
 Hatches must be placed on the bottom layer.
 

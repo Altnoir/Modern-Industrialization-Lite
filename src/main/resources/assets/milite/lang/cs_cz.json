@@ -91,7 +91,6 @@
   "block.milite.bronze_item_output_hatch": "Bronzový výstup předmětů",
   "block.milite.bronze_macerator": "Bronzový macerátor",
   "block.milite.bronze_machine_casing": "Bronzový kryt stoje",
-  "block.milite.bronze_machine_casing_pipe": "Kryt strojní bronzové trubky",
   "block.milite.bronze_mixer": "Bronzový mixér",
   "block.milite.bronze_plated_bricks": "Bronzem plátované cihly",
   "block.milite.bronze_tank": "Bronzová nádrž",
@@ -224,6 +223,7 @@
   "block.milite.quantum_barrel": "Kvantový sud",
   "block.milite.iridium_machine_casing": "Iridiový kryt stroje",
   "block.milite.iridium_machine_hull": "Iridiový obal stroje",
+  "block.milite.overclocker_unit": "Jednotka přetaktování",
   "block.milite.quantum_tank": "Kvantová nádrž",
   "block.milite.quartz_ore": "Křemenná ruda",
   "block.milite.raw_antimony_block": "Blok surového antimonu",
@@ -769,5 +769,8 @@
   "machine_casing.milite.stainless_steel": "Nerezový",
   "machine_casing.milite.electric": "Elektrický",
   "machine_casing.milite.aluminum_alloy": "Hliníkoslitinový",
-  "machine_casing.milite.steel_crate": "Ocelová bedna"
+  "machine_casing.milite.steel_crate": "Ocelová bedna",
+  "text.milite.ClickToSwitch": "Click to switch to %s",
+  "text.milite.RedstoneControlOff": "Redstone control disabled",
+  "text.milite.RedstoneControlOn": "Redstone control enabled"
 }

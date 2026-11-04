@@ -37,13 +37,13 @@ A primeira máquina que você vai querer fabricar em grande quantidade! O Montad
 
 Recomendamos fortemente que você automatize Carcaça de Máquina, Circuitos Analógicos, Motores, Pistões, Braços Robóticos e Esteiras Transportadoras usando Montadores o quanto antes — isso tornará a fabricação de Máquinas Elétricas praticamente grátis!
 
-## Módulo Controlador de Redstone
+## Controle de Redstone
 
-<ItemImage id="milite:redstone_control_module" />
+O canto superior direito da tela de uma Máquina Elétrica ou multibloco tem dois botões. O botão de redstone à direita liga e desliga o controle de redstone; quando está ligado, aparece um botão de sinal à esquerda, que troca entre exigir sinal alto e sinal baixo.
 
-Um Módulo de Controle de Redstone pode ser usado para controlar o comportamento de Máquinas Elétricas e multiblocos com sinais de redstone.
+## Unidade de Overclock
 
-Configure o módulo na mão e depois insira-o no controlador da máquina ou multibloco.
+Uma Unidade de Overclock é um bloco que acelera Máquinas Elétricas. Coloque-a encostada em qualquer lado de uma máquina e ela processa duas vezes mais rápido, com o mesmo FE por receita. As unidades se acumulam: cada unidade adicional encostada na máquina dobra a velocidade novamente, até uma tick por receita.
 
 ## Melhorias de Overclock
 

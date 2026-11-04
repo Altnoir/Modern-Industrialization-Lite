@@ -10,10 +10,6 @@
     {
       "amount": 1,
       "item": "milite:tin_rotor"
-    },
-    {
-      "amount": 1,
-      "item": "minecraft:bucket"
     }
   ],
   "item_outputs": [

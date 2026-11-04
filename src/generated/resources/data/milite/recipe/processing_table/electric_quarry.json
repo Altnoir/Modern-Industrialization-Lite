@@ -1,16 +1,26 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:steam_quarry"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:steam_quarry"
+    },
+    "b": {
+      "item": "milite:electronic_circuit"
+    },
+    "c": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "b c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:electric_quarry"
-  },
-  "second": {
-    "item": "milite:electronic_circuit"
   }
 }

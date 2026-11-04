@@ -9,7 +9,7 @@ import aztech.milite.machines.components.OrientationComponent;
 import aztech.milite.machines.components.RedstoneControlComponent;
 import aztech.milite.machines.gui.MachineGuiParameters;
 import aztech.milite.machines.guicomponents.EnergyBar;
-import aztech.milite.machines.guicomponents.SlotPanel;
+import aztech.milite.machines.guicomponents.RedstoneControlGui;
 import aztech.milite.machines.helper.EnergyHelper;
 import aztech.milite.machines.MachineBlockEntity;
 import aztech.milite.machines.models.MachineCasing;
@@ -95,7 +95,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
         EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity),
-                new SlotPanel(this).withRedstoneControl(redstoneControl));
+                new RedstoneControlGui(redstoneControl));
 
         this.extractableOnOutputDirection = extractableOnOutputDirection;
     }
@@ -183,11 +183,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
             }
             return ItemInteractionResult.sidedSuccess(player.level().isClientSide());
         }
-        var result = super.useItemOn(player, hand, face);
-        if (!result.consumesAction()) {
-            result = redstoneControl.onUse(this, player, hand);
-        }
-        return result;
+        return super.useItemOn(player, hand, face);
     }
 
     public static void registerEnergyApi(BlockEntityType<?> bet) {

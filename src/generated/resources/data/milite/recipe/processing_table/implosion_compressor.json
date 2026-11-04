@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:titanium_large_plate"
-  },
-  "key": {
+  "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:titanium_large_plate"
+    },
+    "b": {
+      "item": "milite:blastproof_alloy_large_plate"
+    },
+    "c": {
+      "item": "milite:digital_circuit"
+    },
+    "d": {
+      "item": "milite:stainless_steel_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    " c ",
+    "d c"
+  ],
   "result": {
     "count": 1,
     "id": "milite:implosion_compressor"
-  },
-  "second": {
-    "item": "milite:blastproof_alloy_large_plate"
   }
 }

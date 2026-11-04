@@ -15,6 +15,7 @@ import aztech.milite.MI;
 import aztech.milite.util.Simulation;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
@@ -68,7 +69,7 @@ public class SteamCraftingMultiblockBlockEntity extends AbstractCraftingMultiblo
     }
 
     @Override
-    public List<Component> getTooltips() {
+    public List<Component> getTooltips(Item.TooltipContext context) {
         return overclockComponent.getTooltips();
     }
 

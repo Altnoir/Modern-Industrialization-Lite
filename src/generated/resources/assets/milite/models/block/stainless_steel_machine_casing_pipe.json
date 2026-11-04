@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "milite:block/stainless_steel_machine_casing_pipe/particle"
-  }
-}

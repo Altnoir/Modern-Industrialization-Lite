@@ -1,14 +1,13 @@
 package aztech.milite.client.compat.viewer.impl.jei;
 
 import aztech.milite.blocks.processingtable.ProcessingTableRecipe;
-import aztech.milite.blocks.processingtable.ProcessingTableScreenHandler;
 import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
+import aztech.milite.client.blocks.processingtable.ProcessingTableScreen;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.client.screen.MIHandledScreen;
 import aztech.milite.compat.rei.machines.ReiMachineRecipes;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.MI;
-import aztech.milite.MIRegistries;
 import me.shedaniel.rei.plugincompatibilities.api.REIPluginCompatIgnore;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -30,7 +29,7 @@ public class ManualPluginJei implements IModPlugin {
         return RecipeType.create(category.getNamespace(), category.getPath(), ViewerCategory.recipeHolderClass());
     }
 
-    private RecipeType<RecipeHolder<ProcessingTableRecipe>> getProcessingTableCategory() {
+    static RecipeType<RecipeHolder<ProcessingTableRecipe>> processingTableType() {
         return RecipeType.create(ID.getNamespace(), "processing_table", ViewerCategory.recipeHolderClass());
     }
 
@@ -48,10 +47,8 @@ public class ManualPluginJei implements IModPlugin {
             registration.addRecipeTransferHandler(new MachineSlotLockingHandler(helper, () -> jeiRuntime, type), type);
         }
 
-        // The Processing Table has three input slots (36, 37 and 38) and one output slot (39).
-        registration.addRecipeTransferHandler(helper.createBasicRecipeTransferInfo(
-                ProcessingTableScreenHandler.class, MIRegistries.PROCESSING_TABLE_MENU.get(), getProcessingTableCategory(),
-                36, 3, 0, 36));
+        var processingTableType = processingTableType();
+        registration.addRecipeTransferHandler(new ProcessingTableTransferHandler(processingTableType), processingTableType);
     }
 
     @Override
@@ -59,6 +56,7 @@ public class ManualPluginJei implements IModPlugin {
         registration.addGhostIngredientHandler((Class) MIHandledScreen.class, new MIGhostIngredientHandler());
         registration.addGuiContainerHandler(MachineScreen.class,
                 new MachineGuiContainerHandler(registration.getJeiHelpers().getIngredientManager(), () -> jeiRuntime));
+        registration.addGuiContainerHandler(ProcessingTableScreen.class, new ProcessingTableGuiContainerHandler());
     }
 
     @Override

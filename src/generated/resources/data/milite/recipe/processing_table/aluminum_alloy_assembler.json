@@ -1,16 +1,29 @@
 {
   "type": "milite:processing_table",
-  "first": {
-    "item": "milite:robot_arm"
-  },
-  "key": {
+  "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
+  "ingredients": {
+    "a": {
+      "item": "milite:robot_arm"
+    },
+    "b": {
+      "item": "milite:conveyor"
+    },
+    "c": {
+      "item": "milite:electronic_circuit"
+    },
+    "d": {
+      "item": "milite:aluminum_alloy_large_plate"
+    }
+  },
+  "pattern": [
+    "a b",
+    "   ",
+    "c d"
+  ],
   "result": {
     "count": 1,
     "id": "milite:aluminum_alloy_assembler"
-  },
-  "second": {
-    "item": "milite:conveyor"
   }
 }

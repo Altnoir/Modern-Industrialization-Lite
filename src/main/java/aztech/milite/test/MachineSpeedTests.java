@@ -1,11 +1,10 @@
 package aztech.milite.test;
 
 import aztech.milite.MI;
-import aztech.milite.MIItem;
+import aztech.milite.MIBlock;
 import aztech.milite.inventory.MIInventory;
 import aztech.milite.machines.blockentities.AbstractCraftingMachineBlockEntity;
 import aztech.milite.machines.components.CrafterComponent;
-import aztech.milite.machines.components.OverdriveComponent;
 import aztech.milite.test.framework.MIGameTest;
 import aztech.milite.test.framework.MIGameTestHelper;
 import net.minecraft.core.BlockPos;
@@ -68,19 +67,19 @@ public class MachineSpeedTests {
                 .thenSucceed();
     }
 
-    /** The overdrive module makes a machine twice as fast out of the same FE. */
+    /** An overclocker unit next to a machine makes it twice as fast out of the same FE. */
     @MIGameTest(timeoutTicks = 800)
-    public void overdriveModuleDoublesTheSpeedAndNotTheCost(MIGameTestHelper helper) {
+    public void overclockUnitDoublesTheSpeedAndNotTheCost(MIGameTestHelper helper) {
         Run plain = start(helper, new BlockPos(0, 2, 0), "electric_macerator", false);
-        Run overdriven = start(helper, new BlockPos(2, 2, 0), "electric_macerator", true);
+        Run boosted = start(helper, new BlockPos(2, 2, 0), "electric_macerator", true);
 
         helper.startSequence()
                 .thenIdle(MEASURE_TICKS)
                 .thenExecute(() -> {
                     assertCrafts(helper, plain, 16L, "electric", ELECTRIC_SPEED);
-                    assertCrafts(helper, overdriven, 30L, "overdriven electric", ELECTRIC_SPEED * 2);
+                    assertCrafts(helper, boosted, 30L, "boosted electric", ELECTRIC_SPEED * 2);
                     assertFirstCraftCost(helper, plain);
-                    assertFirstCraftCost(helper, overdriven);
+                    assertFirstCraftCost(helper, boosted);
                 })
                 .thenSucceed();
     }
@@ -164,8 +163,8 @@ public class MachineSpeedTests {
         }
     }
 
-    private Run start(MIGameTestHelper helper, BlockPos pos, String machineId, boolean withOverdrive) {
-        return start(helper, pos, machineId, withOverdrive, Integer.MAX_VALUE);
+    private Run start(MIGameTestHelper helper, BlockPos pos, String machineId, boolean withUnit) {
+        return start(helper, pos, machineId, withUnit, Integer.MAX_VALUE);
     }
 
     /**
@@ -175,7 +174,7 @@ public class MachineSpeedTests {
      * @param bufferTarget what the buffer is topped up to every tick, so that only a test about running out of power
      *                     ever passes less than the whole capacity
      */
-    private Run start(MIGameTestHelper helper, BlockPos pos, String machineId, boolean withOverdrive, int bufferTarget) {
+    private Run start(MIGameTestHelper helper, BlockPos pos, String machineId, boolean withUnit, int bufferTarget) {
         Block block = BuiltInRegistries.BLOCK.getOptional(MI.id(machineId))
                 .orElseThrow(() -> new AssertionError("The block " + MI.id(machineId) + " is not registered, the id of a machine level must have changed"));
         helper.setBlock(pos, block);
@@ -187,17 +186,13 @@ public class MachineSpeedTests {
         // Through the same capability a cable would use, so that the test measures what a machine really asks for.
         IEnergyStorage energy = helper.requireCapability(Capabilities.EnergyStorage.BLOCK, pos, Direction.NORTH);
 
-        OverdriveComponent overdrive = machine.components.getNullable(OverdriveComponent.class);
-        if (overdrive == null) {
-            helper.fail(machineId + " should have an overdrive slot", pos);
-        }
-        if (withOverdrive) {
-            overdrive.setStackServer(machine, new ItemStack(MIItem.OVERDRIVE_MODULE.asItem()));
+        if (withUnit) {
+            helper.setBlock(pos.east(), MIBlock.OVERCLOCKER_UNIT.get());
         }
 
         CrafterComponent crafter = machine.components.getOrThrow(CrafterComponent.class);
 
-        Run run = new Run(machineId + (withOverdrive ? " with an overdrive module" : ""), machine, items, energy, crafter,
+        Run run = new Run(machineId + (withUnit ? " with an overclocker unit" : ""), machine, items, energy, crafter,
                 bufferTarget);
         feed(helper, pos, run);
 

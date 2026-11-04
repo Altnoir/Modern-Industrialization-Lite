@@ -5,6 +5,4 @@ package aztech.milite.inventory;
  */
 public enum SlotGroup {
     CONFIGURABLE_STACKS,
-    REDSTONE_MODULE,
-    OVERDRIVE_MODULE,
 }
