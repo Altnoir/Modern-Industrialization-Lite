@@ -3,21 +3,13 @@
   "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "minecraft:blast_furnace"
-    },
-    "b": {
-      "item": "milite:fire_clay_bricks"
-    },
-    "c": {
-      "item": "milite:processor"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    "X"
   ],
   "result": {
     "count": 1,

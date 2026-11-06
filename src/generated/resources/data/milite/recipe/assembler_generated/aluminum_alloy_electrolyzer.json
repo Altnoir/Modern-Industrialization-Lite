@@ -17,7 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:electronic_circuit"
+      "item": "minecraft:bucket"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:glass"
     }
   ],
   "item_outputs": [

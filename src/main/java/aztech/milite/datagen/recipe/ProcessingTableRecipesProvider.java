@@ -31,8 +31,18 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class ProcessingTableRecipesProvider extends MIRecipesProvider {
-    private record Family(String machine, String levels, ItemLike first, ItemLike second) {
-    }
+    private static final int[][] CELL_PATTERNS = {
+            {},
+            {5},
+            {4, 6},
+            {4, 5, 6},
+            {2, 4, 6, 8},
+            {2, 4, 5, 6, 8},
+            {1, 3, 7, 9, 4, 6},
+            {1, 3, 4, 5, 6, 7, 9},
+            {1, 3, 7, 9, 4, 6, 2, 8},
+            {1, 2, 3, 4, 5, 6, 7, 8, 9},
+    };
 
     private static final List<Family> FAMILIES = new ArrayList<>();
 
@@ -41,30 +51,30 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
     private static final String ELECTRIC_TO_IRIDIUM = "electric_to_iridium";
     private static final String ALUMINUM_TO_IRIDIUM = "aluminum_to_iridium";
 
-    private static void family(String machine, String levels, ItemLike first, ItemLike second) {
-        FAMILIES.add(new Family(machine, levels, first, second));
-    }
-
     static {
         // Bronze machines, which also exist at every level above.
-        family("compressor", BRONZE_TO_IRIDIUM, Items.PISTON, MIMaterials.BRONZE.getPart(MIParts.GEAR));
-        family("cutting_machine", BRONZE_TO_IRIDIUM, Items.IRON_PICKAXE, MIMaterials.BRONZE.getPart(MIParts.GEAR));
-        family("furnace", BRONZE_TO_IRIDIUM, Items.BLAST_FURNACE, MIBlock.BLOCK_FIRE_CLAY_BRICKS);
-        family("macerator", BRONZE_TO_IRIDIUM, MIMaterials.BRONZE.getPart(MIParts.DRILL_HEAD), MIMaterials.BRONZE.getPart(MIParts.BARREL));
-        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR), Items.BUCKET);
+        family("compressor", BRONZE_TO_IRIDIUM, Items.PISTON);
+        family("cutting_machine", BRONZE_TO_IRIDIUM, Items.IRON_PICKAXE);
+        family("furnace", BRONZE_TO_IRIDIUM, Items.BLAST_FURNACE);
+        family("macerator", BRONZE_TO_IRIDIUM, MIMaterials.BRONZE.getPart(MIParts.DRILL_HEAD));
+        family("mixer", BRONZE_TO_IRIDIUM, MIMaterials.TIN.getPart(MIParts.ROTOR));
 
         // Steel machines.
-        family("packer", STEEL_TO_IRIDIUM, MIItem.CONVEYOR, MIMaterials.STEEL.getPart(MIParts.PLATE));
-        family("unpacker", STEEL_TO_IRIDIUM, Items.CHEST, MIMaterials.STEEL.getPart(MIParts.GEAR));
-        family("wiremill", STEEL_TO_IRIDIUM, MIMaterials.STEEL.getPart(MIParts.GEAR), MIMaterials.STEEL.getPart(MIParts.ROD));
+        family("packer", STEEL_TO_IRIDIUM, MIItem.CONVEYOR, MIMaterials.STEEL.getPart(MIParts.PLATE), MIMaterials.STEEL.getPart(MIParts.GEAR));
+        family("unpacker", STEEL_TO_IRIDIUM, Items.CHEST, MIMaterials.STEEL.getPart(MIParts.GEAR), MIMaterials.STEEL.getPart(MIParts.PLATE));
+        family("wiremill", STEEL_TO_IRIDIUM, MIMaterials.STEEL.getPart(MIParts.GEAR), MIMaterials.STEEL.getPart(MIParts.ROD), MIMaterials.STEEL.getPart(MIParts.PLATE));
 
         // Electric machines.
-        family("assembler", ELECTRIC_TO_IRIDIUM, MIItem.ROBOT_ARM, MIItem.CONVEYOR);
-        family("centrifuge", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_MOTOR, MIMaterials.ALUMINUM.getPart(MIParts.GEAR));
-        family("chemical_reactor", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_MOTOR, Items.BUCKET);
-        family("distillery", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_PUMP, MIMaterials.CUPRONICKEL.getPart(MIParts.PLATE));
-        family("electrolyzer", ALUMINUM_TO_IRIDIUM, MIItem.ELECTRONIC_CIRCUIT, MIMaterials.ALUMINUM.getPart(MIParts.WIRE));
-        family("polarizer", ALUMINUM_TO_IRIDIUM, MIItem.INDUCTOR, MIMaterials.COPPER.getPart(MIParts.WIRE));
+        family("assembler", ELECTRIC_TO_IRIDIUM, MIItem.ROBOT_ARM, MIItem.CONVEYOR, MIItem.ANALOG_CIRCUIT, MIMaterials.STEEL.getPart(MIParts.GEAR));
+        family("centrifuge", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_MOTOR, MIMaterials.ALUMINUM.getPart(MIParts.GEAR), Items.GLASS, MIMaterials.ALUMINUM.getPart(MIParts.PLATE));
+        family("chemical_reactor", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_MOTOR, Items.BUCKET, Items.GLASS, MIMaterials.INVAR.getPart(MIParts.PLATE));
+        family("distillery", ALUMINUM_TO_IRIDIUM, MIItem.LARGE_PUMP, MIMaterials.CUPRONICKEL.getPart(MIParts.PLATE), Items.GLASS, Items.BUCKET);
+        family("electrolyzer", ALUMINUM_TO_IRIDIUM, MIItem.ELECTRONIC_CIRCUIT, MIMaterials.ALUMINUM.getPart(MIParts.WIRE), Items.BUCKET, Items.GLASS);
+        family("polarizer", ALUMINUM_TO_IRIDIUM, MIItem.INDUCTOR, MIMaterials.COPPER.getPart(MIParts.WIRE), Items.REDSTONE, Items.IRON_INGOT);
+    }
+
+    private static void family(String machine, String levels, ItemLike... parts) {
+        FAMILIES.add(new Family(machine, levels, List.of(parts)));
     }
 
     public ProcessingTableRecipesProvider(PackOutput packOutput) {
@@ -103,84 +113,55 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         };
     }
 
-    private static final int[][] CELL_PATTERNS = {
-            {},
-            {5},
-            {4, 6},
-            {1, 5, 9},
-            {1, 3, 7, 9},
-            {1, 3, 5, 7, 9},
-            {1, 3, 7, 9, 4, 6},
-            {1, 3, 5, 7, 9, 4, 6},
-            {1, 3, 7, 9, 4, 6, 2, 8},
-            {1, 2, 3, 4, 5, 6, 7, 8, 9},
-    };
-
-    private static int partCountOf(MachineLevel level) {
-        return switch (level) {
-            case BRONZE -> 1;
-            case STEEL -> 2;
-            case ELECTRIC -> 3;
-            case ALUMINUM -> 4;
-            case STAINLESS_STEEL -> 5;
-            case TITANIUM -> 7;
-            case IRIDIUM -> 9;
-        };
-    }
-
-    private static List<Ingredient> fillersOf(MachineLevel level) {
-        return switch (level) {
-            case BRONZE, STEEL -> List.of();
-            case ELECTRIC -> List.of(Ingredient.of(MIItem.ANALOG_CIRCUIT),
-                    Ingredient.of(item(MIMaterials.STEEL, MIParts.LARGE_PLATE)));
-            case ALUMINUM -> List.of(Ingredient.of(MIItem.ELECTRONIC_CIRCUIT),
-                    Ingredient.of(item(MIMaterials.ALUMINUM_ALLOY, MIParts.LARGE_PLATE)));
-            case STAINLESS_STEEL -> List.of(Ingredient.of(MIItem.PROCESSOR),
-                    Ingredient.of(item(MIMaterials.STAINLESS_STEEL, MIParts.LARGE_PLATE)));
-            case TITANIUM -> List.of(Ingredient.of(MIItem.ADVANCED_PROCESSOR),
-                    Ingredient.of(item(MIMaterials.TITANIUM, MIParts.LARGE_PLATE)),
-                    Ingredient.of(item(MIMaterials.TITANIUM, MIParts.GEAR)));
-            case IRIDIUM -> List.of(Ingredient.of(MIItem.QUANTUM_PROCESSOR),
-                    Ingredient.of(item(MIMaterials.IRIDIUM, MIParts.PLATE)),
-                    Ingredient.of(item(MIMaterials.TUNGSTEN, MIParts.LARGE_PLATE)));
-        };
-    }
-
-    private static SortedMap<Integer, Ingredient> layout(MachineLevel level, List<Ingredient> parts) {
-        return layout(level, parts, partCountOf(level));
-    }
-
-    private static SortedMap<Integer, Ingredient> layout(MachineLevel level, List<Ingredient> parts, int wanted) {
-        List<Ingredient> fillers = fillersOf(level);
-        List<Ingredient> padded = new ArrayList<>(parts.subList(0, Math.min(parts.size(), wanted)));
-        for (int index = 0; padded.size() < wanted; index++) {
-            padded.add(fillers.get(index % fillers.size()));
+    private static SortedMap<Integer, Ingredient> layout(List<Ingredient> parts) {
+        if (parts.isEmpty() || parts.size() > ProcessingTableRecipe.SLOT_COUNT) {
+            throw new IllegalArgumentException("Machine recipes require between one and nine parts");
         }
-        int[] cells = CELL_PATTERNS[Math.min(padded.size(), ProcessingTableRecipe.SLOT_COUNT)];
+        int[] cells = CELL_PATTERNS[parts.size()];
         SortedMap<Integer, Ingredient> slots = new TreeMap<>();
         for (int index = 0; index < cells.length; index++) {
-            slots.put(cells[index], padded.get(index));
+            slots.put(cells[index], parts.get(index));
         }
         return slots;
+    }
+
+    private static void offer(RecipeOutput consumer, String path, ItemLike key, ItemLike first, ItemLike second, ResourceLocation result) {
+        offer(consumer, path, Ingredient.of(key), List.of(Ingredient.of(first), Ingredient.of(second), Ingredient.of(thirdPart(path))), result);
     }
 
     public static final String PROCESSING_TABLE_RECIPE_FOLDER = "processing_table/";
     public static final String MACHINE_RECIPE_FOLDER = "assembler_generated/";
 
-    private static void offer(RecipeOutput consumer, String path, ItemLike key, ItemLike first, ItemLike second, MachineLevel level, ResourceLocation result) {
-        offer(consumer, path, Ingredient.of(key), List.of(Ingredient.of(first), Ingredient.of(second)), level, result);
+    private static void offer(RecipeOutput consumer, String path, ItemLike key, Ingredient first, ItemLike second, ResourceLocation result) {
+        offer(consumer, path, Ingredient.of(key), List.of(first, Ingredient.of(second), Ingredient.of(thirdPart(path))), result);
     }
 
-    private static void offer(RecipeOutput consumer, String path, ItemLike key, Ingredient first, ItemLike second, MachineLevel level, ResourceLocation result) {
-        offer(consumer, path, Ingredient.of(key), List.of(first, Ingredient.of(second)), level, result);
+    private static ItemLike thirdPart(String path) {
+        return switch (path.substring(PROCESSING_TABLE_RECIPE_FOLDER.length())) {
+            case "bronze_boiler", "bronze_water_pump" -> MIMaterials.BRONZE.getPart(MIParts.PLATE);
+            case "large_steam_boiler" -> MIMaterials.COPPER.getPart(MIParts.PLATE);
+            case "steel_boiler" -> Items.BUCKET;
+            case "steam_quarry", "large_tank" -> MIMaterials.STEEL.getPart(MIParts.PLATE);
+            case "distillation_tower", "configurable_chest", "configurable_tank" -> Items.GLASS;
+            case "fusion_reactor" -> MIMaterials.IRIDIUM.getPart(MIParts.PLATE);
+            case "nuclear_reactor", "pressurizer", "high_pressure_advanced_large_steam_boiler" -> MIMaterials.TITANIUM.getPart(MIParts.PLATE);
+            case "electric_blast_furnace" -> MIItem.ANALOG_CIRCUIT;
+            case "implosion_compressor" -> MIItem.DIGITAL_CIRCUIT;
+            case "heat_exchanger", "vacuum_freezer" -> MIItem.PUMP;
+            case "advanced_large_steam_boiler" -> MIMaterials.INVAR.getPart(MIParts.PLATE);
+            case "high_pressure_large_steam_boiler" -> MIMaterials.STAINLESS_STEEL.getPart(MIParts.LARGE_PLATE);
+            case "electric_steam_turbine", "aluminum_alloy_steam_turbine", "stainless_steel_steam_turbine", "plasma_turbine" -> MIMaterials.COPPER.getPart(MIParts.WIRE);
+            case "electric_diesel_generator", "aluminum_alloy_diesel_generator", "stainless_steel_diesel_generator", "large_diesel_generator" -> MIItem.MOTOR;
+            case "oil_drilling_rig", "electric_quarry" -> MIMaterials.STEEL.getPart(MIParts.GEAR);
+            default -> throw new IllegalArgumentException("No third part defined for " + path);
+        };
     }
 
-    private static void offer(RecipeOutput consumer, String path, Ingredient key, List<Ingredient> sides, MachineLevel level, ResourceLocation result) {
-        offer(consumer, path, key, sides, level, result, partCountOf(level));
+    private static void offer(RecipeOutput consumer, String path, Ingredient key, List<Ingredient> sides, ResourceLocation result) {
+        offer(consumer, path, key, layout(sides), result);
     }
 
-    private static void offer(RecipeOutput consumer, String path, Ingredient key, List<Ingredient> sides, MachineLevel level, ResourceLocation result, int wanted) {
-        SortedMap<Integer, Ingredient> slots = layout(level, sides, wanted);
+    private static void offer(RecipeOutput consumer, String path, Ingredient key, SortedMap<Integer, Ingredient> slots, ResourceLocation result) {
         var recipe = ProcessingTableRecipe.fromSlots(key, slots, new ItemStack(lookupItem(result)));
         consumer.accept(MI.id(path), recipe, null);
 
@@ -198,12 +179,12 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
     private static void lithographyMachines(RecipeOutput consumer) {
         List<MachineLevel> levels = List.of(MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
         List<Material> materials = List.of(MIMaterials.STAINLESS_STEEL, MIMaterials.TITANIUM, MIMaterials.IRIDIUM);
-        List<ItemLike> controllers = List.of(MIItem.ELECTRONIC_CIRCUIT, MIItem.PROCESSOR, MIItem.ADVANCED_PROCESSOR);
+        List<ItemLike> controllers = List.of(MIItem.ELECTRONIC_CIRCUIT, MIItem.DIGITAL_CIRCUIT, MIItem.PROCESSOR);
         ItemLike core = lookupItem(MIBlockKeys.ALUMINUM_MACHINE_HULL.location());
         for (int index = 0; index < levels.size(); index++) {
             MachineLevel level = levels.get(index);
             List<Ingredient> sides = new ArrayList<>();
-            for (int plate = 0; plate < 2 + index * 2; plate++) {
+            for (int plate = 0; plate < 2; plate++) {
                 sides.add(materials.get(index).getPart(MIParts.PLATE).getTaggedIngredient());
             }
             sides.add(Ingredient.of(Tags.Items.GLASS_BLOCKS));
@@ -211,7 +192,7 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
             sides.add(Ingredient.of(controllers.get(index)));
             String id = prefixOf(level) + "lithography";
             // The previous controller and machine start this tier without needing its own processor first.
-            offer(consumer, PROCESSING_TABLE_RECIPE_FOLDER + id, Ingredient.of(core), sides, level, MI.id(id));
+            offer(consumer, PROCESSING_TABLE_RECIPE_FOLDER + id, Ingredient.of(core), sides, MI.id(id));
             core = lookupItem(MI.id(id));
         }
     }
@@ -221,134 +202,102 @@ public class ProcessingTableRecipesProvider extends MIRecipesProvider {
         lithographyMachines(consumer);
         for (Family family : FAMILIES) {
             for (MachineLevel level : levelsOf(family.levels())) {
-                int count = switch (level) {
-                    case BRONZE -> 1;
-                    case STEEL -> 2;
-                    case ELECTRIC, ALUMINUM, STAINLESS_STEEL -> 3;
-                    case TITANIUM, IRIDIUM -> 4;
-                };
                 offer(consumer, "processing_table/" + prefixOf(level) + family.machine(),
-                        Ingredient.of(casingOf(level)), List.of(Ingredient.of(family.first()), Ingredient.of(family.second())), level,
-                        MI.id(prefixOf(level) + family.machine()), count);
+                        Ingredient.of(casingOf(level)),
+                        layout(family.parts().stream().map(Ingredient::of).toList()),
+                        MI.id(prefixOf(level) + family.machine()));
             }
         }
         offer(consumer, "processing_table/bronze_boiler", MIBlock.BLOCK_FIRE_CLAY_BRICKS,
-                lookupItem(MI.id("bronze_furnace")), Items.BUCKET, MachineLevel.BRONZE,
-                MI.id("bronze_boiler"));
+                lookupItem(MI.id("bronze_furnace")), Items.BUCKET, MI.id("bronze_boiler"));
         offer(consumer, "processing_table/steel_boiler", lookupItem(MI.id("bronze_boiler")),
-                Items.FURNACE, item(MIMaterials.STEEL, MIParts.PLATE), MachineLevel.STEEL,
-                MI.id("steel_boiler"));
+                Items.FURNACE, item(MIMaterials.STEEL, MIParts.PLATE), MI.id("steel_boiler"));
         offer(consumer, "processing_table/steam_quarry", casingOf(MachineLevel.STEEL),
-                MIItem.INVAR_ROTARY_BLADE, item(MIMaterials.STEEL, MIParts.DRILL_HEAD), MachineLevel.STEEL,
-                MI.id("steam_quarry"));
+                MIItem.INVAR_ROTARY_BLADE, item(MIMaterials.STEEL, MIParts.DRILL_HEAD), MI.id("steam_quarry"));
         offer(consumer, "processing_table/bronze_water_pump", casingOf(MachineLevel.BRONZE),
-                Items.BUCKET, item(MIMaterials.BRONZE, MIParts.ROTOR), MachineLevel.BRONZE,
-                MI.id("bronze_water_pump"));
+                Items.BUCKET, item(MIMaterials.BRONZE, MIParts.ROTOR), MI.id("bronze_water_pump"));
 
         offer(consumer, "processing_table/distillation_tower", lookupItem(MI.id("clean_stainless_steel_machine_casing")),
-                lookupItem(MI.id("stainless_steel_distillery")), lookupItem(MI.id("stainless_steel_distillery")),
-                MachineLevel.STAINLESS_STEEL, MI.id("distillation_tower"));
+                lookupItem(MI.id("stainless_steel_distillery")), lookupItem(MI.id("stainless_steel_distillery")), MI.id("distillation_tower"));
 
         offer(consumer, "processing_table/fusion_reactor", lookupItem(MI.id("iridium_machine_hull")),
-                MIItem.QUANTUM_PROCESSOR, lookupItem(MI.id("tungsten_large_plate")),
-                MachineLevel.IRIDIUM, MI.id("fusion_reactor"));
+                MIItem.QUANTUM_PROCESSOR, lookupItem(MI.id("tungsten_large_plate")), MI.id("fusion_reactor"));
 
         offer(consumer, "processing_table/nuclear_reactor", lookupItem(MI.id("titanium_machine_hull")),
-                MIItem.ADVANCED_PROCESSOR, lookupItem(MI.id("nuclear_alloy_large_plate")),
-                MachineLevel.TITANIUM, MI.id("nuclear_reactor"));
+                MIItem.PROCESSOR, lookupItem(MI.id("nuclear_alloy_large_plate")), MI.id("nuclear_reactor"));
 
         offer(consumer, "processing_table/electric_blast_furnace", lookupItem(MI.id("electric_machine_hull")),
-                Items.BLAST_FURNACE, lookupItem(MI.id("cupronickel_wire_magnetic")), MachineLevel.ELECTRIC,
-                MI.id("electric_blast_furnace"));
+                Items.BLAST_FURNACE, lookupItem(MI.id("cupronickel_wire_magnetic")), MI.id("electric_blast_furnace"));
         offer(consumer, "processing_table/implosion_compressor", lookupItem(MI.id("stainless_steel_machine_hull")),
-                lookupItem(MI.id("titanium_large_plate")), lookupItem(MI.id("blastproof_alloy_large_plate")),
-                MachineLevel.STAINLESS_STEEL, MI.id("implosion_compressor"));
+                lookupItem(MI.id("titanium_large_plate")), lookupItem(MI.id("blastproof_alloy_large_plate")), MI.id("implosion_compressor"));
         offer(consumer, "processing_table/pressurizer", lookupItem(MI.id("stainless_steel_machine_hull")),
-                MIItem.PROCESSOR, lookupItem(MI.id("solid_titanium_machine_casing")),
-                MachineLevel.STAINLESS_STEEL, MI.id("pressurizer"));
+                MIItem.DIGITAL_CIRCUIT, lookupItem(MI.id("solid_titanium_machine_casing")), MI.id("pressurizer"));
         offer(consumer, "processing_table/heat_exchanger", lookupItem(MI.id("stainless_steel_machine_hull")),
-                lookupItem(MI.id("large_heat_exchanger")), lookupItem(MI.id("clean_stainless_steel_machine_casing")),
-                MachineLevel.STAINLESS_STEEL, MI.id("heat_exchanger"));
+                lookupItem(MI.id("large_heat_exchanger")), lookupItem(MI.id("clean_stainless_steel_machine_casing")), MI.id("heat_exchanger"));
 
         // 锅炉
         offer(consumer, "processing_table/large_steam_boiler", lookupItem(MI.id("bronze_boiler")),
-                lookupItem(MI.id("analog_circuit")), lookupItem(MI.id("bronze_plate")), MachineLevel.BRONZE,
-                MI.id("large_steam_boiler"));
+                lookupItem(MI.id("analog_circuit")), lookupItem(MI.id("bronze_plate")), MI.id("large_steam_boiler"));
         offer(consumer, "processing_table/advanced_large_steam_boiler", lookupItem(MI.id("large_steam_boiler")),
-                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("large_pump")), MachineLevel.ELECTRIC,
-                MI.id("advanced_large_steam_boiler"));
+                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("large_pump")), MI.id("advanced_large_steam_boiler"));
         offer(consumer, "processing_table/high_pressure_large_steam_boiler",
                 lookupItem(MI.id("clean_stainless_steel_machine_casing")),
-                lookupItem(MI.id("advanced_large_steam_boiler")), MIItem.PROCESSOR,
-                MachineLevel.STAINLESS_STEEL, MI.id("high_pressure_large_steam_boiler"));
+                lookupItem(MI.id("advanced_large_steam_boiler")), MIItem.DIGITAL_CIRCUIT, MI.id("high_pressure_large_steam_boiler"));
         offer(consumer, "processing_table/high_pressure_advanced_large_steam_boiler",
                 lookupItem(MI.id("high_pressure_large_steam_boiler")),
-                MIItem.ADVANCED_PROCESSOR, lookupItem(MI.id("large_pump")),
-                MachineLevel.TITANIUM, MI.id("high_pressure_advanced_large_steam_boiler"));
+                MIItem.PROCESSOR, lookupItem(MI.id("large_pump")), MI.id("high_pressure_advanced_large_steam_boiler"));
 
         // 涡轮
         offer(consumer, "processing_table/large_steam_turbine",
                 Ingredient.of(lookupItem(MI.id("clean_stainless_steel_machine_casing"))),
-                List.of(Ingredient.of(MIItem.PROCESSOR), Ingredient.of(lookupItem(MI.id("stainless_steel_rotor"))),
-                        Ingredient.of(item(MIMaterials.STAINLESS_STEEL, MIParts.LARGE_PLATE))),
-                MachineLevel.STAINLESS_STEEL, MI.id("large_steam_turbine"), 3);
+                List.of(Ingredient.of(MIItem.DIGITAL_CIRCUIT), Ingredient.of(lookupItem(MI.id("stainless_steel_rotor"))),
+                        Ingredient.of(item(MIMaterials.STAINLESS_STEEL, MIParts.LARGE_PLATE)), Ingredient.of(MIItem.PUMP)), MI.id("large_steam_turbine"));
         offer(consumer, "processing_table/electric_steam_turbine", lookupItem(MI.id("electric_machine_hull")),
-                lookupItem(MI.id("analog_circuit")), lookupItem(MI.id("tin_rotor")), MachineLevel.ELECTRIC,
-                MI.id("electric_steam_turbine"));
+                lookupItem(MI.id("analog_circuit")), lookupItem(MI.id("tin_rotor")), MI.id("electric_steam_turbine"));
         offer(consumer, "processing_table/aluminum_alloy_steam_turbine",
                 lookupItem(MI.id("aluminum_alloy_machine_hull")),
-                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("aluminum_rotor")),
-                MachineLevel.ALUMINUM, MI.id("aluminum_alloy_steam_turbine"));
+                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("aluminum_rotor")), MI.id("aluminum_alloy_steam_turbine"));
         offer(consumer, "processing_table/stainless_steel_steam_turbine",
                 lookupItem(MI.id("stainless_steel_machine_hull")),
-                MIItem.PROCESSOR, lookupItem(MI.id("stainless_steel_rotor")),
-                MachineLevel.STAINLESS_STEEL, MI.id("stainless_steel_steam_turbine"));
+                MIItem.DIGITAL_CIRCUIT, lookupItem(MI.id("stainless_steel_rotor")), MI.id("stainless_steel_steam_turbine"));
         offer(consumer, "processing_table/plasma_turbine", lookupItem(MI.id("iridium_machine_hull")),
-                MIItem.QUANTUM_PROCESSOR, lookupItem(MI.id("titanium_rotor")), MachineLevel.IRIDIUM,
-                MI.id("plasma_turbine"));
+                MIItem.QUANTUM_PROCESSOR, lookupItem(MI.id("titanium_rotor")), MI.id("plasma_turbine"));
 
         // 柴油发电机
         offer(consumer, "processing_table/electric_diesel_generator", lookupItem(MI.id("electric_machine_hull")),
-                lookupItem(MI.id("tin_wire")), lookupItem(MI.id("tin_gear")), MachineLevel.ELECTRIC,
-                MI.id("electric_diesel_generator"));
+                lookupItem(MI.id("tin_wire")), lookupItem(MI.id("tin_gear")), MI.id("electric_diesel_generator"));
         offer(consumer, "processing_table/aluminum_alloy_diesel_generator",
                 lookupItem(MI.id("aluminum_alloy_machine_hull")),
-                lookupItem(MI.id("electrum_wire")), lookupItem(MI.id("aluminum_gear")),
-                MachineLevel.ALUMINUM, MI.id("aluminum_alloy_diesel_generator"));
+                lookupItem(MI.id("electrum_wire")), lookupItem(MI.id("aluminum_gear")), MI.id("aluminum_alloy_diesel_generator"));
         offer(consumer, "processing_table/stainless_steel_diesel_generator",
                 lookupItem(MI.id("stainless_steel_machine_hull")),
-                lookupItem(MI.id("aluminum_wire")), lookupItem(MI.id("stainless_steel_gear")),
-                MachineLevel.STAINLESS_STEEL, MI.id("stainless_steel_diesel_generator"));
+                lookupItem(MI.id("aluminum_wire")), lookupItem(MI.id("stainless_steel_gear")), MI.id("stainless_steel_diesel_generator"));
         offer(consumer, "processing_table/large_diesel_generator", lookupItem(MI.id("titanium_machine_hull")),
-                lookupItem(MI.id("silver_wire")), lookupItem(MI.id("titanium_gear")), MachineLevel.TITANIUM,
-                MI.id("large_diesel_generator"));
+                lookupItem(MI.id("silver_wire")), lookupItem(MI.id("titanium_gear")), MI.id("large_diesel_generator"));
 
         // 采掘与冷冻
         offer(consumer, "processing_table/oil_drilling_rig", lookupItem(MI.id("aluminum_alloy_machine_hull")),
-                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("aluminum_alloy_large_plate")),
-                MachineLevel.ALUMINUM, MI.id("oil_drilling_rig"));
+                lookupItem(MI.id("electronic_circuit")), lookupItem(MI.id("aluminum_alloy_large_plate")), MI.id("oil_drilling_rig"));
         offer(consumer, "processing_table/electric_quarry", lookupItem(MI.id("aluminum_alloy_machine_hull")),
-                lookupItem(MI.id("steam_quarry")), lookupItem(MI.id("electronic_circuit")),
-                MachineLevel.ALUMINUM, MI.id("electric_quarry"));
+                lookupItem(MI.id("steam_quarry")), lookupItem(MI.id("electronic_circuit")), MI.id("electric_quarry"));
         offer(consumer, "processing_table/vacuum_freezer", lookupItem(MI.id("aluminum_alloy_machine_hull")),
-                lookupItem(MI.id("large_pump")), lookupItem(MI.id("aluminum_large_plate")),
-                MachineLevel.ALUMINUM, MI.id("vacuum_freezer"));
+                lookupItem(MI.id("large_pump")), lookupItem(MI.id("aluminum_large_plate")), MI.id("vacuum_freezer"));
 
         // 储运
         offer(consumer, "processing_table/large_tank", lookupItem(MI.id("steel_machine_hull")),
-                Items.BUCKET, lookupItem(MI.id("pump")), MachineLevel.STEEL,
-                MI.id("large_tank"));
+                Items.BUCKET, lookupItem(MI.id("pump")), MI.id("large_tank"));
         offer(consumer, "processing_table/configurable_chest", lookupItem(MI.id("steel_machine_hull")),
-                Ingredient.of(Tags.Items.CHESTS), lookupItem(MI.id("analog_circuit")), MachineLevel.STEEL,
-                MI.id("configurable_chest"));
+                Ingredient.of(Tags.Items.CHESTS), lookupItem(MI.id("analog_circuit")), MI.id("configurable_chest"));
         offer(consumer, "processing_table/configurable_tank", lookupItem(MI.id("steel_machine_hull")),
-                Items.BUCKET, lookupItem(MI.id("analog_circuit")), MachineLevel.STEEL,
-                MI.id("configurable_tank"));
+                Items.BUCKET, lookupItem(MI.id("analog_circuit")), MI.id("configurable_tank"));
 
         new ShapedRecipeJson(idOf(MIBlock.PROCESSING_TABLE.get()), 1, "II", "WW", "WW")
                 .addInput('I', idOf(Items.HEAVY_WEIGHTED_PRESSURE_PLATE))
                 .addInput('W', "#" + ItemTags.PLANKS.location())
                 .offerTo(consumer, "processing_table/processing_table");
+    }
+
+    private record Family(String machine, String levels, List<ItemLike> parts) {
     }
 
     private static final int MACHINE_ADAPTER_ENERGY = 2;

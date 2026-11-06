@@ -3,21 +3,19 @@
   "casing": {
     "item": "milite:iridium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:quantum_processor"
     },
-    "b": {
+    {
       "item": "milite:tungsten_large_plate"
     },
-    "c": {
+    {
       "item": "milite:iridium_plate"
     }
-  },
+  ],
   "pattern": [
-    "aba",
-    "cba",
-    "cba"
+    "XXX"
   ],
   "result": {
     "count": 1,

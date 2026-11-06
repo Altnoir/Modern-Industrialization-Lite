@@ -10,18 +10,6 @@
     {
       "amount": 1,
       "item": "minecraft:piston"
-    },
-    {
-      "amount": 1,
-      "item": "milite:bronze_gear"
-    },
-    {
-      "amount": 1,
-      "item": "milite:quantum_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:iridium_plate"
     }
   ],
   "item_outputs": [

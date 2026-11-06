@@ -109,9 +109,9 @@ public class ProcessingTableTests {
 
         menu.keyInput.set(new ItemStack(casing));
         for (int slot = ProcessingTableRecipe.MIN_SLOT; slot <= ProcessingTableRecipe.MAX_SLOT; slot++) {
-            boolean expected = slot == 5;
+            boolean expected = slot == 4 || slot == 5 || slot == 6;
             if (menu.isGridSlotActive(slot) != expected) {
-                helper.fail("the bronze macerator recipe %s cell %d"
+                helper.fail("the bronze machine recipes %s cell %d"
                         .formatted(expected ? "did not unlock" : "unlocked", slot));
             }
         }
@@ -132,7 +132,7 @@ public class ProcessingTableTests {
     }
 
     @MIGameTest
-    public void partsMustGoIntoTheirOwnCells(MIGameTestHelper helper) {
+    public void partsCanSwapWithinRecipeCells(MIGameTestHelper helper) {
         var player = helper.makeMockPlayer(GameType.SURVIVAL);
         var menu = menuWithTestRecipes(player);
 
@@ -142,8 +142,8 @@ public class ProcessingTableTests {
         menu.gridInputs.get(6).set(new ItemStack(Items.DIRT));
         menu.gridInputs.get(8).set(new ItemStack(Items.GRAVEL));
 
-        if (!menu.output.getItem().isEmpty()) {
-            helper.fail("the recipe produced %s with its two first parts swapped".formatted(menu.output.getItem()));
+        if (!menu.output.getItem().is(Items.DIAMOND)) {
+            helper.fail("the recipe did not produce a diamond with its first two parts swapped");
         }
 
         menu.gridInputs.get(0).set(new ItemStack(Items.STONE));
@@ -227,8 +227,8 @@ public class ProcessingTableTests {
 
         grid.set(0, new ItemStack(Items.COBBLESTONE));
         grid.set(8, new ItemStack(Items.STONE));
-        if (recipe.matches(new ItemStack(Items.IRON_INGOT), grid)) {
-            helper.fail("the recipe matched even though its two parts sat in each other's cell");
+        if (!recipe.matches(new ItemStack(Items.IRON_INGOT), grid)) {
+            helper.fail("the recipe did not match when its parts exchanged cells");
         }
 
         grid.set(0, new ItemStack(Items.STONE));
@@ -236,6 +236,20 @@ public class ProcessingTableTests {
         grid.set(4, new ItemStack(Items.DIRT));
         if (recipe.matches(new ItemStack(Items.IRON_INGOT), grid)) {
             helper.fail("the recipe matched even though a cell it does not use held an item");
+        }
+
+        var overlapping = ProcessingTableRecipe.fromSlots(Ingredient.of(Items.IRON_INGOT),
+                new TreeMap<>(Map.of(1, Ingredient.of(Items.STONE, Items.COBBLESTONE),
+                        9, Ingredient.of(Items.STONE))), new ItemStack(Items.DIAMOND));
+        grid.set(4, ItemStack.EMPTY);
+        grid.set(0, new ItemStack(Items.STONE));
+        grid.set(8, new ItemStack(Items.COBBLESTONE));
+        if (!overlapping.matches(new ItemStack(Items.IRON_INGOT), grid)) {
+            helper.fail("overlapping ingredients must be assigned without consuming a required item twice");
+        }
+        grid.set(0, new ItemStack(Items.COBBLESTONE));
+        if (overlapping.matches(new ItemStack(Items.IRON_INGOT), grid)) {
+            helper.fail("two cobblestone cannot replace the required stone");
         }
 
         helper.succeed();

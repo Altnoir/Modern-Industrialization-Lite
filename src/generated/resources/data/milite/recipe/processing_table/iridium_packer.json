@@ -3,24 +3,19 @@
   "casing": {
     "item": "milite:iridium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:conveyor"
     },
-    "b": {
+    {
       "item": "milite:steel_plate"
     },
-    "c": {
-      "item": "milite:quantum_processor"
-    },
-    "d": {
-      "item": "milite:iridium_plate"
+    {
+      "item": "milite:steel_gear"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    "XXX"
   ],
   "result": {
     "count": 1,

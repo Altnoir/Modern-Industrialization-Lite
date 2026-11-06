@@ -3,24 +3,27 @@
   "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "tag": "c:plates/stainless_steel"
     },
-    "b": {
+    {
+      "tag": "c:plates/stainless_steel"
+    },
+    {
       "tag": "c:glass_blocks"
     },
-    "c": {
+    {
       "item": "milite:robot_arm"
     },
-    "d": {
+    {
       "item": "milite:electronic_circuit"
     }
-  },
+  ],
   "pattern": [
-    "a a",
-    " b ",
-    "c d"
+    " X ",
+    "XXX",
+    " X "
   ],
   "result": {
     "count": 1,

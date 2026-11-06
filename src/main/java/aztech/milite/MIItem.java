@@ -63,8 +63,9 @@ public final class MIItem {
     public static final ItemDefinition<Item> ANALOG_CIRCUIT = item("Analog Circuit", "analog_circuit", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ELECTRONIC_CIRCUIT_BOARD = item("Electronic Circuit Board", "electronic_circuit_board", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ELECTRONIC_CIRCUIT = item("Electronic Circuit", "electronic_circuit", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> DIGITAL_CIRCUIT_BOARD = item("Digital Circuit Board", "digital_circuit_board", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> DIGITAL_CIRCUIT = item("Digital Circuit", "digital_circuit", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PROCESSOR = item("Processor", "processor", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> ADVANCED_PROCESSOR = item("Advanced Processor", "advanced_processor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> QUANTUM_PROCESSOR = item("Quantum Processor", "quantum_processor", p -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
 
     public static final ItemDefinition<Item> RESISTOR = item("Resistor", "resistor", ITEMS_ORDERED.next());
@@ -75,6 +76,10 @@ public final class MIItem {
 
     public static final ItemDefinition<Item> DIODE = item("Diode", "diode", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> TRANSISTOR = item("Transistor", "transistor", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> OP_AMP = item("Op Amp", "op_amp", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> AND_GATE = item("AND Gate", "and_gate", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> OR_GATE = item("OR Gate", "or_gate", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> NOT_GATE = item("NOT Gate", "not_gate", ITEMS_ORDERED.next());
 
 
     public static final ItemDefinition<Item> AIR_INTAKE = item("Air Intake", "air_intake", p -> new Item(p.stacksTo(1)), ITEMS_ORDERED.next());

@@ -3,21 +3,24 @@
   "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:large_motor"
     },
-    "b": {
+    {
       "item": "milite:aluminum_gear"
     },
-    "c": {
-      "item": "milite:processor"
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "milite:aluminum_plate"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

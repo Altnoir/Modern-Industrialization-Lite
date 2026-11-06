@@ -3,13 +3,19 @@
   "casing": {
     "item": "milite:bronze_machine_casing"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "minecraft:bucket"
+    },
+    {
+      "item": "milite:bronze_rotor"
+    },
+    {
+      "item": "milite:bronze_plate"
     }
-  },
+  ],
   "pattern": [
-    "a"
+    "XXX"
   ],
   "result": {
     "count": 1,

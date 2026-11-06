@@ -3,24 +3,19 @@
   "casing": {
     "item": "milite:high_pressure_large_steam_boiler"
   },
-  "ingredients": {
-    "a": {
-      "item": "milite:advanced_processor"
+  "ingredients": [
+    {
+      "item": "milite:processor"
     },
-    "b": {
+    {
       "item": "milite:large_pump"
     },
-    "c": {
-      "item": "milite:titanium_large_plate"
-    },
-    "d": {
-      "item": "milite:titanium_gear"
+    {
+      "item": "milite:titanium_plate"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "aac",
-    "c d"
+    "XXX"
   ],
   "result": {
     "count": 1,

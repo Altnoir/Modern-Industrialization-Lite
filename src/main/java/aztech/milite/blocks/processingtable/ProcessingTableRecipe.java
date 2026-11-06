@@ -1,6 +1,7 @@
 package aztech.milite.blocks.processingtable;
 
 import aztech.milite.MIRegistries;
+import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
@@ -18,7 +19,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
@@ -27,9 +28,10 @@ import java.util.TreeMap;
 public record ProcessingTableRecipe(
         Ingredient casing,
         List<String> pattern,
-        Map<Character, Ingredient> ingredients,
+        List<Ingredient> ingredients,
         ItemStack result) implements Recipe<RecipeInput> {
     public static final char EMPTY = ' ';
+    public static final char INPUT = 'X';
     public static final int GRID_SIZE = 3;
     public static final int SLOT_COUNT = GRID_SIZE * GRID_SIZE;
     public static final int MIN_SLOT = 1, MAX_SLOT = SLOT_COUNT;
@@ -46,13 +48,16 @@ public record ProcessingTableRecipe(
     private static final Codec<Map<Character, Ingredient>> INGREDIENTS_CODEC = Codec
             .unboundedMap(INGREDIENT_KEY_CODEC, Ingredient.CODEC_NONEMPTY);
 
+    private static final Codec<Either<List<Ingredient>, Map<Character, Ingredient>>> INPUTS_CODEC =
+            Codec.either(Ingredient.CODEC_NONEMPTY.listOf(1, SLOT_COUNT), INGREDIENTS_CODEC);
+
     private static final MapCodec<ProcessingTableRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     Ingredient.CODEC_NONEMPTY.fieldOf("casing").forGetter(ProcessingTableRecipe::casing),
                     PATTERN_CODEC.fieldOf("pattern").forGetter(ProcessingTableRecipe::pattern),
-                    INGREDIENTS_CODEC.fieldOf("ingredients").forGetter(ProcessingTableRecipe::ingredients),
+                    INPUTS_CODEC.fieldOf("ingredients").forGetter(recipe -> Either.left(recipe.ingredients)),
                     ItemStack.STRICT_CODEC.fieldOf("result").forGetter(ProcessingTableRecipe::result))
-                    .apply(instance, ProcessingTableRecipe::new));
+                    .apply(instance, ProcessingTableRecipe::fromEncoded));
 
     private static final StreamCodec<RegistryFriendlyByteBuf, List<String>> PATTERN_STREAM_CODEC = StreamCodec.of(
             (buffer, pattern) -> {
@@ -68,20 +73,17 @@ public record ProcessingTableRecipe(
                 return pattern;
             });
 
-    private static final StreamCodec<RegistryFriendlyByteBuf, Map<Character, Ingredient>> INGREDIENTS_STREAM_CODEC = StreamCodec
+    private static final StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> INGREDIENTS_STREAM_CODEC = StreamCodec
             .of(
                     (buffer, ingredients) -> {
                         buffer.writeVarInt(ingredients.size());
-                        ingredients.forEach((character, ingredient) -> {
-                            buffer.writeChar(character);
-                            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
-                        });
+                        ingredients.forEach(ingredient -> Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient));
                     },
                     buffer -> {
-                        Map<Character, Ingredient> ingredients = new LinkedHashMap<>();
+                        List<Ingredient> ingredients = new ArrayList<>();
                         int size = buffer.readVarInt();
                         for (int index = 0; index < size; index++) {
-                            ingredients.put(buffer.readChar(), Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
+                            ingredients.add(Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
                         }
                         return ingredients;
                     });
@@ -105,22 +107,50 @@ public record ProcessingTableRecipe(
         if (width == 0) {
             throw new IllegalArgumentException("A pattern row needs at least one character");
         }
+        int inputCount = 0;
         for (String row : pattern) {
             if (row.length() != width) {
                 throw new IllegalArgumentException("Pattern rows must all be the same width: " + pattern);
             }
             for (int column = 0; column < width; column++) {
                 char character = row.charAt(column);
-                if (character != EMPTY && !ingredients.containsKey(character)) {
-                    throw new IllegalArgumentException("Pattern uses '" + character + "' but defines no ingredient for it");
+                if (character == INPUT) {
+                    inputCount++;
+                } else if (character != EMPTY) {
+                    throw new IllegalArgumentException("Pattern may only use X and spaces: " + pattern);
                 }
             }
         }
-        if (ingredients.containsKey(EMPTY)) {
-            throw new IllegalArgumentException("'" + EMPTY + "' cannot be used as an ingredient key");
+        if (inputCount == 0 || inputCount != ingredients.size()) {
+            throw new IllegalArgumentException("Pattern input count must equal ingredient count: " + pattern);
         }
         pattern = List.copyOf(pattern);
-        ingredients = Map.copyOf(ingredients);
+        ingredients = List.copyOf(ingredients);
+    }
+
+    private static ProcessingTableRecipe fromEncoded(Ingredient casing, List<String> pattern,
+            Either<List<Ingredient>, Map<Character, Ingredient>> encoded, ItemStack result) {
+        return encoded.map(ingredients -> new ProcessingTableRecipe(casing, pattern, ingredients, result), legacy -> {
+            List<Ingredient> ingredients = new ArrayList<>();
+            List<String> normalized = new ArrayList<>();
+            for (String row : pattern) {
+                StringBuilder line = new StringBuilder();
+                for (char symbol : row.toCharArray()) {
+                    if (symbol == EMPTY) {
+                        line.append(EMPTY);
+                    } else {
+                        Ingredient ingredient = legacy.get(symbol);
+                        if (ingredient == null) {
+                            throw new IllegalArgumentException("Missing ingredient for " + symbol);
+                        }
+                        ingredients.add(ingredient);
+                        line.append(INPUT);
+                    }
+                }
+                normalized.add(line.toString());
+            }
+            return new ProcessingTableRecipe(casing, normalized, ingredients, result);
+        });
     }
 
     private static DataResult<List<String>> validatePattern(List<String> pattern) {
@@ -153,7 +183,7 @@ public record ProcessingTableRecipe(
             throw new IllegalArgumentException("A recipe needs at least one ingredient");
         }
 
-        Map<Ingredient, Character> characters = new LinkedHashMap<>();
+        List<Ingredient> ingredients = new ArrayList<>();
         List<String> pattern = new ArrayList<>();
         for (int row = minRow; row <= maxRow; row++) {
             StringBuilder line = new StringBuilder();
@@ -163,14 +193,12 @@ public record ProcessingTableRecipe(
                     line.append(EMPTY);
                     continue;
                 }
-                characters.computeIfAbsent(ingredient, ignored -> (char) ('a' + characters.size()));
-                line.append(characters.get(ingredient).charValue());
+                ingredients.add(ingredient);
+                line.append(INPUT);
             }
             pattern.add(line.toString());
         }
 
-        Map<Character, Ingredient> ingredients = new LinkedHashMap<>();
-        characters.forEach((ingredient, character) -> ingredients.put(character, ingredient));
         return new ProcessingTableRecipe(casing, pattern, ingredients, result);
     }
 
@@ -179,12 +207,12 @@ public record ProcessingTableRecipe(
         int offsetX = (GRID_SIZE - width) / 2;
         int offsetY = (GRID_SIZE - pattern.size()) / 2;
         SortedMap<Integer, Ingredient> slots = new TreeMap<>();
+        int ingredientIndex = 0;
         for (int row = 0; row < pattern.size(); row++) {
             String line = pattern.get(row);
             for (int column = 0; column < width; column++) {
-                Ingredient ingredient = ingredients.get(line.charAt(column));
-                if (ingredient != null) {
-                    slots.put((offsetY + row) * GRID_SIZE + offsetX + column + MIN_SLOT, ingredient);
+                if (line.charAt(column) == INPUT) {
+                    slots.put((offsetY + row) * GRID_SIZE + offsetX + column + MIN_SLOT, ingredients.get(ingredientIndex++));
                 }
             }
         }
@@ -201,13 +229,33 @@ public record ProcessingTableRecipe(
         }
         SortedMap<Integer, Ingredient> slots = slots();
         for (int slot = MIN_SLOT; slot <= MAX_SLOT; slot++) {
-            Ingredient required = slots.get(slot);
             ItemStack stack = grid.get(slot - MIN_SLOT);
-            if (required == null ? !stack.isEmpty() : !required.test(stack)) {
+            if (slots.containsKey(slot) == stack.isEmpty()) {
+                return false;
+            }
+        }
+        List<ItemStack> stacks = slots.keySet().stream().map(slot -> grid.get(slot - MIN_SLOT)).toList();
+        int[] matchedStacks = new int[ingredients.size()];
+        Arrays.fill(matchedStacks, -1);
+        for (int index = 0; index < stacks.size(); index++) {
+            if (!assignIngredient(stacks, index, matchedStacks, new boolean[ingredients.size()])) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean assignIngredient(List<ItemStack> stacks, int index, int[] matchedStacks, boolean[] visited) {
+        for (int ingredient = 0; ingredient < ingredients.size(); ingredient++) {
+            if (!visited[ingredient] && ingredients.get(ingredient).test(stacks.get(index))) {
+                visited[ingredient] = true;
+                if (matchedStacks[ingredient] == -1 || assignIngredient(stacks, matchedStacks[ingredient], matchedStacks, visited)) {
+                    matchedStacks[ingredient] = index;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean usesSlot(int slot) {

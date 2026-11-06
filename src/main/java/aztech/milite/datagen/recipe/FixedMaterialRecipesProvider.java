@@ -24,7 +24,7 @@ public class FixedMaterialRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("milite:industrial_tnt", 6, 1.0f)
                 .addItemInput("milite:plutonium_ingot", 4, 1.0f)
-                .addItemInput(MIItem.ADVANCED_PROCESSOR, 2, 1.0f)
+                .addItemInput(MIItem.PROCESSOR, 2, 1.0f)
                 .addItemInput("milite:nuclear_alloy_plate", 4, 1.0f)
                 .addFluidInput("milite:tritium", 50, 1.0f)
                 .addFluidInput("milite:deuterium", 100, 1.0f)

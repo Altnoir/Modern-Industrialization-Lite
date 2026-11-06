@@ -3,13 +3,19 @@
   "casing": {
     "item": "milite:bronze_boiler"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:analog_circuit"
+    },
+    {
+      "item": "milite:bronze_plate"
+    },
+    {
+      "item": "milite:copper_plate"
     }
-  },
+  ],
   "pattern": [
-    "a"
+    "XXX"
   ],
   "result": {
     "count": 1,

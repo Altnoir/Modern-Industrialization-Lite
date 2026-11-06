@@ -10,18 +10,6 @@
     {
       "amount": 1,
       "item": "minecraft:blast_furnace"
-    },
-    {
-      "amount": 1,
-      "item": "milite:fire_clay_bricks"
-    },
-    {
-      "amount": 1,
-      "item": "milite:quantum_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:iridium_plate"
     }
   ],
   "item_outputs": [

@@ -3,13 +3,13 @@
   "casing": {
     "item": "milite:bronze_machine_casing"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:tin_rotor"
     }
-  },
+  ],
   "pattern": [
-    "a"
+    "X"
   ],
   "result": {
     "count": 1,

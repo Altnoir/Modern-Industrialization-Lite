@@ -3,24 +3,27 @@
   "casing": {
     "item": "milite:stainless_steel_lithography"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "tag": "c:plates/titanium"
     },
-    "b": {
+    {
+      "tag": "c:plates/titanium"
+    },
+    {
+      "tag": "c:glass_blocks"
+    },
+    {
       "item": "milite:robot_arm"
     },
-    "c": {
-      "item": "milite:processor"
-    },
-    "d": {
-      "tag": "c:glass_blocks"
+    {
+      "item": "milite:digital_circuit"
     }
-  },
+  ],
   "pattern": [
-    "a a",
-    "bac",
-    "a d"
+    " X ",
+    "XXX",
+    " X "
   ],
   "result": {
     "count": 1,

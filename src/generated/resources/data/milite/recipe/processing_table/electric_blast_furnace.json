@@ -3,21 +3,19 @@
   "casing": {
     "item": "milite:electric_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "minecraft:blast_furnace"
     },
-    "b": {
+    {
       "item": "milite:cupronickel_wire_magnetic"
     },
-    "c": {
+    {
       "item": "milite:analog_circuit"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    "XXX"
   ],
   "result": {
     "count": 1,

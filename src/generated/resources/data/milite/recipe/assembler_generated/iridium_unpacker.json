@@ -17,11 +17,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:iridium_plate"
+      "item": "milite:steel_plate"
     }
   ],
   "item_outputs": [

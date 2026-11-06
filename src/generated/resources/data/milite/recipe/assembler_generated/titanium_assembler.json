@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:advanced_processor"
+      "item": "milite:analog_circuit"
     },
     {
       "amount": 1,
-      "item": "milite:titanium_large_plate"
+      "item": "milite:steel_gear"
     }
   ],
   "item_outputs": [

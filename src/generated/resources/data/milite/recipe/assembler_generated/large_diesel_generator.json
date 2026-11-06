@@ -17,23 +17,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:advanced_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:advanced_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:titanium_large_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:titanium_large_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:titanium_gear"
+      "item": "milite:motor"
     }
   ],
   "item_outputs": [

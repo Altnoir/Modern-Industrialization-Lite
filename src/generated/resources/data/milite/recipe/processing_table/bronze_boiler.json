@@ -3,13 +3,19 @@
   "casing": {
     "item": "milite:fire_clay_bricks"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:bronze_furnace"
+    },
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "milite:bronze_plate"
     }
-  },
+  ],
   "pattern": [
-    "a"
+    "XXX"
   ],
   "result": {
     "count": 1,

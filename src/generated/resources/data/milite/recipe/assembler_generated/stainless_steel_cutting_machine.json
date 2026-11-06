@@ -10,14 +10,6 @@
     {
       "amount": 1,
       "item": "minecraft:iron_pickaxe"
-    },
-    {
-      "amount": 1,
-      "item": "milite:bronze_gear"
-    },
-    {
-      "amount": 1,
-      "item": "milite:processor"
     }
   ],
   "item_outputs": [

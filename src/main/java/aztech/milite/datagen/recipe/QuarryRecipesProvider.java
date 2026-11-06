@@ -67,7 +67,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
                         .addInput('m', "milite:motor")
                         .addInput('P', "milite:pump")
                         .addInput('c', "milite:aluminum_wire")
-                        .addInput('C', MIItem.PROCESSOR.id()));
+                        .addInput('C', MIItem.DIGITAL_CIRCUIT.id()));
 
         shaped(consumer, "quarry/drill/steel_drill_asbl",
                 new ShapedRecipeJson("milite:steel_drill", 4, "gpd", "mCp", "cmg")
@@ -85,7 +85,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
                         .addInput('p', "#c:plates/titanium")
                         .addInput('m', "milite:large_motor")
                         .addInput('c', "milite:annealed_copper_wire")
-                        .addInput('C', MIItem.ADVANCED_PROCESSOR.id()));
+                        .addInput('C', MIItem.PROCESSOR.id()));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 8, 600)
                 .level("bronze")

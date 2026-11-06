@@ -8,15 +8,21 @@ item_ids:
   - milite:stainless_steel_lithography
   - milite:titanium_lithography
   - milite:iridium_lithography
+  - milite:digital_circuit
+  - milite:digital_circuit_board
   - milite:processor
-  - milite:advanced_processor
   - milite:quantum_processor
   - milite:silicon_plate
 ---
 
 # 处理器与光刻机
 
-前期继续使用模拟电路与电子电路。从不锈钢阶段开始，光刻机将硅板和金属板直接加工成处理器。机器有两个物品输入槽、一个输出槽，没有流体槽；每批稳定产出一个处理器，没有副产物。
+前期依次制作模拟电路、电子电路和数字电路。不锈钢框架使用数字电路；光刻机将硅板和金属板加工成处理器。机器有两个物品输入槽、一个输出槽，没有流体槽；每批稳定产出一个处理器，没有副产物。
+
+数字电路板由装配机制作，再结合电子电路、运算放大器制作的与门、或门和非门合成数字电路。
+
+<Recipe id="milite:electric_age/circuit/assembler/digital_circuit_board" />
+<Recipe id="milite:electric_age/circuit/craft/digital_circuit_asbl" />
 
 ## 准备硅板
 
@@ -31,18 +37,17 @@ item_ids:
 <Recipe id="milite:processing_table/stainless_steel_lithography" />
 <Recipe id="milite:lithography/processor" />
 
-一块硅板和两块琥珀金板可生产一个处理器，接替原数字电路在不锈钢机器中的用途。
+不锈钢光刻机使用一块硅板和两块退火铜板生产一个处理器，用于钛级机器。
 
 ## 升级光刻机
 
-使用原有光刻机、下一等级的金属板、玻璃方块、机械臂和上一等级的处理器升级机器。高等级光刻机也可以加工低等级配方。
+使用原有光刻机、下一等级的金属板、玻璃方块、机械臂和上一阶段的电路或处理器升级机器。高等级光刻机也可以加工低等级配方。
 
 <Recipe id="milite:processing_table/titanium_lithography" />
-<Recipe id="milite:lithography/advanced_processor" />
+钛光刻机使用一块硅板和两块超导体板生产一个量子处理器。
 
-钛光刻机使用一块硅板和两块退火铜板，生产一个进阶处理器，接替原处理单元的用途。
-
-<Recipe id="milite:processing_table/iridium_lithography" />
 <Recipe id="milite:lithography/quantum_processor" />
 
-铱光刻机使用一块硅板和两块超导体板，生产一个量子处理器，接替原量子电路的用途。高阶处理器不消耗低阶处理器；没有超频时，各等级配方在对应等级的光刻机中每批需要五秒，高等级机器加工低等级配方会更快。
+<Recipe id="milite:processing_table/iridium_lithography" />
+
+铱光刻机可更快地加工上述两种配方。没有超频且供电充足时，处理器在不锈钢光刻机中每批需要 10 秒，量子处理器在钛光刻机中每批需要 10 秒。

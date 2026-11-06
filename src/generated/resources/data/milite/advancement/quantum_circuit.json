@@ -1,5 +1,5 @@
 {
-  "parent": "milite:mixed_ingot_iridium",
+  "parent": "milite:raw_iridium",
   "criteria": {
     "checkInv": {
       "conditions": {

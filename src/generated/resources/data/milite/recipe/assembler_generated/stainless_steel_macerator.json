@@ -10,14 +10,6 @@
     {
       "amount": 1,
       "item": "milite:bronze_drill_head"
-    },
-    {
-      "amount": 1,
-      "item": "milite:bronze_barrel"
-    },
-    {
-      "amount": 1,
-      "item": "milite:processor"
     }
   ],
   "item_outputs": [

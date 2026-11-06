@@ -23,7 +23,7 @@ Keep in mind you can use a Stainless Steel Diesel Generator for compact power ge
     <MultiblockShape controller="large_diesel_generator" />
 </GameScene>
 
-Once you have access to processing units and highly advanced machine hulls, considering making a few Large Diesel Generators. Each of these bad boys will turn fuel into RF, up to 16384 RF/t!
+Once you can make Processors and Titanium Machine Hulls, consider building a few Large Diesel Generators. Each one turns fuel into RF, up to 16384 RF/t.
 
 <Recipe id="milite:processing_table/large_diesel_generator" />
 

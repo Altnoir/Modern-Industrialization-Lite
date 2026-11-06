@@ -3,24 +3,24 @@
   "casing": {
     "item": "milite:titanium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:electronic_circuit"
     },
-    "b": {
+    {
       "item": "milite:aluminum_wire"
     },
-    "c": {
-      "item": "milite:advanced_processor"
+    {
+      "item": "minecraft:bucket"
     },
-    "d": {
-      "item": "milite:titanium_large_plate"
+    {
+      "item": "minecraft:glass"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

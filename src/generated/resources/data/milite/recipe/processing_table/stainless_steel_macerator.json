@@ -3,21 +3,13 @@
   "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:bronze_drill_head"
-    },
-    "b": {
-      "item": "milite:bronze_barrel"
-    },
-    "c": {
-      "item": "milite:processor"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    "X"
   ],
   "result": {
     "count": 1,

@@ -3,24 +3,27 @@
   "casing": {
     "item": "milite:titanium_lithography"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "tag": "c:plates/iridium"
     },
-    "b": {
+    {
+      "tag": "c:plates/iridium"
+    },
+    {
       "tag": "c:glass_blocks"
     },
-    "c": {
+    {
       "item": "milite:robot_arm"
     },
-    "d": {
-      "item": "milite:advanced_processor"
+    {
+      "item": "milite:processor"
     }
-  },
+  ],
   "pattern": [
-    "aaa",
-    "aaa",
-    "bcd"
+    " X ",
+    "XXX",
+    " X "
   ],
   "result": {
     "count": 1,

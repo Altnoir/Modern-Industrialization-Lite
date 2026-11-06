@@ -8,15 +8,21 @@ item_ids:
   - milite:stainless_steel_lithography
   - milite:titanium_lithography
   - milite:iridium_lithography
+  - milite:digital_circuit
+  - milite:digital_circuit_board
   - milite:processor
-  - milite:advanced_processor
   - milite:quantum_processor
   - milite:silicon_plate
 ---
 
 # Processors and Lithography
 
-Analog and Electronic Circuits handle the early game. Starting with stainless steel, Lithography Machines make Processors directly from Silicon Plates and metal plates. There are two item inputs, one output and no fluid tanks. Every recipe produces one processor without byproducts.
+Craft Analog, Electronic, and then Digital Circuits. Stainless Steel Machine Hulls use Digital Circuits. Lithography Machines make processors directly from Silicon Plates and metal plates, using two item inputs, one output and no fluids.
+
+Assemble a Digital Circuit Board, then combine it with Electronic Circuits and the logic gates made from Op Amps to craft a Digital Circuit.
+
+<Recipe id="milite:electric_age/circuit/assembler/digital_circuit_board" />
+<Recipe id="milite:electric_age/circuit/craft/digital_circuit_asbl" />
 
 ## Preparing Silicon Plates
 
@@ -31,18 +37,17 @@ Build the stainless steel machine with an Aluminum Alloy Machine Hull, two Stain
 <Recipe id="milite:processing_table/stainless_steel_lithography" />
 <Recipe id="milite:lithography/processor" />
 
-One Silicon Plate and two Electrum Plates produce one Processor. Processors replace Digital Circuits in stainless steel machinery.
+One Silicon Plate and two Annealed Copper Plates produce one Processor in a Stainless Steel Lithography Machine. Processors are used in titanium machinery.
 
 ## Upgrading
 
-Upgrade your existing machine with plates of the next material, a Glass Block, a Robot Arm and the previous grade of processor. These machines can also run recipes from lower levels.
+Upgrade your existing machine with plates of the next material, a Glass Block, a Robot Arm and the previous stage's circuit or processor. Higher-tier machines also run lower-tier recipes.
 
 <Recipe id="milite:processing_table/titanium_lithography" />
-<Recipe id="milite:lithography/advanced_processor" />
+Titanium Lithography Machines use one Silicon Plate and two Superconductor Plates to make one Quantum Processor.
 
-Titanium Lithography Machines use one Silicon Plate and two Annealed Copper Plates to make one Advanced Processor, replacing Processing Units.
-
-<Recipe id="milite:processing_table/iridium_lithography" />
 <Recipe id="milite:lithography/quantum_processor" />
 
-Iridium Lithography Machines use one Silicon Plate and two Superconductor Plates to make one Quantum Processor, replacing Quantum Circuits. Higher-grade recipes do not consume lower-grade processors. Each batch takes five seconds in its matching machine before overclocking; faster machines run lower-grade recipes more quickly.
+<Recipe id="milite:processing_table/iridium_lithography" />
+
+Iridium Lithography Machines process both recipes faster. With sufficient power and no overclocking, the Processor takes 10 seconds in a stainless steel machine, and the Quantum Processor takes 10 seconds in a titanium machine.

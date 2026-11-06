@@ -3,21 +3,24 @@
   "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:inductor"
     },
-    "b": {
+    {
       "item": "milite:copper_wire"
     },
-    "c": {
-      "item": "milite:processor"
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:iron_ingot"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

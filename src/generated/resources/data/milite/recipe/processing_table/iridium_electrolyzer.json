@@ -3,24 +3,24 @@
   "casing": {
     "item": "milite:iridium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:electronic_circuit"
     },
-    "b": {
+    {
       "item": "milite:aluminum_wire"
     },
-    "c": {
-      "item": "milite:quantum_processor"
+    {
+      "item": "minecraft:bucket"
     },
-    "d": {
-      "item": "milite:iridium_plate"
+    {
+      "item": "minecraft:glass"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

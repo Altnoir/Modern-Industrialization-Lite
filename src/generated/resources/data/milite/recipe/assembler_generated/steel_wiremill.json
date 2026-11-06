@@ -14,6 +14,10 @@
     {
       "amount": 1,
       "item": "milite:steel_rod"
+    },
+    {
+      "amount": 1,
+      "item": "milite:steel_plate"
     }
   ],
   "item_outputs": [

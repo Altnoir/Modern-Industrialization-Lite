@@ -3,21 +3,19 @@
   "casing": {
     "item": "milite:clean_stainless_steel_machine_casing"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:advanced_large_steam_boiler"
     },
-    "b": {
-      "item": "milite:processor"
+    {
+      "item": "milite:digital_circuit"
     },
-    "c": {
+    {
       "item": "milite:stainless_steel_large_plate"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    " b ",
-    "c b"
+    "XXX"
   ],
   "result": {
     "count": 1,

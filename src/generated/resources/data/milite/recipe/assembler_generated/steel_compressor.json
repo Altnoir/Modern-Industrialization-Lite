@@ -10,10 +10,6 @@
     {
       "amount": 1,
       "item": "minecraft:piston"
-    },
-    {
-      "amount": 1,
-      "item": "milite:bronze_gear"
     }
   ],
   "item_outputs": [

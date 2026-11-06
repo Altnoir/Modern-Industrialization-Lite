@@ -13,19 +13,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:processor"
+      "item": "milite:digital_circuit"
     },
     {
       "amount": 1,
       "item": "milite:stainless_steel_large_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:processor"
     }
   ],
   "item_outputs": [

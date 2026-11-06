@@ -72,7 +72,8 @@ public class RecipeConversions {
 
         float probability = ComposterBlock.COMPOSTABLES.getOrDefault(compostable.asItem(), 0.0F);
         if (probability > 0.0F) {
-            ResourceLocation id = MI.id("/" + BuiltInRegistries.ITEM.getKey(compostable.asItem()).getPath() + "_to_plant_oil");
+            ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(compostable.asItem());
+            ResourceLocation id = MI.id("/centrifuge/compostable/" + itemId.getNamespace() + "/" + itemId.getPath());
             MachineRecipe plantOil = new MachineRecipe(MIMachineRecipeTypes.CENTRIFUGE);
             plantOil.energy = 8;
             plantOil.duration = 200;

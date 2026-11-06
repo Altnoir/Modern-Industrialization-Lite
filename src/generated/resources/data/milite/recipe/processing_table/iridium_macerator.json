@@ -3,24 +3,13 @@
   "casing": {
     "item": "milite:iridium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:bronze_drill_head"
-    },
-    "b": {
-      "item": "milite:bronze_barrel"
-    },
-    "c": {
-      "item": "milite:quantum_processor"
-    },
-    "d": {
-      "item": "milite:iridium_plate"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    "X"
   ],
   "result": {
     "count": 1,

@@ -3,24 +3,24 @@
   "casing": {
     "item": "milite:iridium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:large_motor"
     },
-    "b": {
+    {
       "item": "milite:aluminum_gear"
     },
-    "c": {
-      "item": "milite:quantum_processor"
+    {
+      "item": "minecraft:glass"
     },
-    "d": {
-      "item": "milite:iridium_plate"
+    {
+      "item": "milite:aluminum_plate"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

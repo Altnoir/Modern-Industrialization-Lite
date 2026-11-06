@@ -3,21 +3,19 @@
   "casing": {
     "item": "milite:stainless_steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
-      "item": "milite:processor"
+  "ingredients": [
+    {
+      "item": "milite:digital_circuit"
     },
-    "b": {
+    {
       "item": "milite:stainless_steel_rotor"
     },
-    "c": {
-      "item": "milite:stainless_steel_large_plate"
+    {
+      "item": "milite:copper_wire"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    " a ",
-    "c a"
+    "XXX"
   ],
   "result": {
     "count": 1,

@@ -17,22 +17,6 @@
     },
     {
       "amount": 1,
-      "tag": "c:plates/iridium"
-    },
-    {
-      "amount": 1,
-      "tag": "c:plates/iridium"
-    },
-    {
-      "amount": 1,
-      "tag": "c:plates/iridium"
-    },
-    {
-      "amount": 1,
-      "tag": "c:plates/iridium"
-    },
-    {
-      "amount": 1,
       "tag": "c:glass_blocks"
     },
     {
@@ -41,7 +25,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:advanced_processor"
+      "item": "milite:processor"
     }
   ],
   "item_outputs": [

@@ -3,21 +3,24 @@
   "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:large_pump"
     },
-    "b": {
+    {
       "item": "milite:cupronickel_plate"
     },
-    "c": {
-      "item": "milite:electronic_circuit"
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:bucket"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

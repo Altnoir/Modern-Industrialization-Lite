@@ -130,7 +130,11 @@ public class MachineRegistrationHelper {
     }
 
     private static int machineKindOrder(String machine) {
-        return machine.equals("blast_furnace") ? 0 : 1;
+        return switch (machine) {
+            case "lithography" -> -1;
+            case "blast_furnace" -> 0;
+            default -> 1;
+        };
     }
 
     private static int structureLevel(String prefix) {

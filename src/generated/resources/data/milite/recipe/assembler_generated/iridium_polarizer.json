@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_processor"
+      "item": "minecraft:redstone"
     },
     {
       "amount": 1,
-      "item": "milite:iridium_plate"
+      "item": "minecraft:iron_ingot"
     }
   ],
   "item_outputs": [

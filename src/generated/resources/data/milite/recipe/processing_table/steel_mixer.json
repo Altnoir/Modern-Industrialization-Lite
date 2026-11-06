@@ -3,16 +3,13 @@
   "casing": {
     "item": "milite:steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:tin_rotor"
-    },
-    "b": {
-      "item": "minecraft:bucket"
     }
-  },
+  ],
   "pattern": [
-    "a b"
+    "X"
   ],
   "result": {
     "count": 1,

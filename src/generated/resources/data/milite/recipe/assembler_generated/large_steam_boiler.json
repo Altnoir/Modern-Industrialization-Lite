@@ -10,6 +10,14 @@
     {
       "amount": 1,
       "item": "milite:analog_circuit"
+    },
+    {
+      "amount": 1,
+      "item": "milite:bronze_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:copper_plate"
     }
   ],
   "item_outputs": [

@@ -3,21 +3,24 @@
   "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:robot_arm"
     },
-    "b": {
+    {
       "item": "milite:conveyor"
     },
-    "c": {
-      "item": "milite:electronic_circuit"
+    {
+      "item": "milite:analog_circuit"
+    },
+    {
+      "item": "milite:steel_gear"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    " X ",
+    "X X",
+    " X "
   ],
   "result": {
     "count": 1,

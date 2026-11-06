@@ -3,16 +3,19 @@
   "casing": {
     "item": "milite:steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:invar_rotary_blade"
     },
-    "b": {
+    {
       "item": "milite:steel_drill_head"
+    },
+    {
+      "item": "milite:steel_plate"
     }
-  },
+  ],
   "pattern": [
-    "a b"
+    "XXX"
   ],
   "result": {
     "count": 1,

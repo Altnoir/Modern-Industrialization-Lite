@@ -17,7 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:electronic_circuit"
+      "item": "minecraft:glass"
+    },
+    {
+      "amount": 1,
+      "item": "milite:invar_plate"
     }
   ],
   "item_outputs": [

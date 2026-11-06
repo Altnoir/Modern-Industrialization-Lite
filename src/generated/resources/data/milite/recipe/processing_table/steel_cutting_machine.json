@@ -3,16 +3,13 @@
   "casing": {
     "item": "milite:steel_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "minecraft:iron_pickaxe"
-    },
-    "b": {
-      "item": "milite:bronze_gear"
     }
-  },
+  ],
   "pattern": [
-    "a b"
+    "X"
   ],
   "result": {
     "count": 1,

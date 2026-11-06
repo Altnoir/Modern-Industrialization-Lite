@@ -3,24 +3,19 @@
   "casing": {
     "item": "milite:aluminum_alloy_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:large_pump"
     },
-    "b": {
+    {
       "item": "milite:aluminum_large_plate"
     },
-    "c": {
-      "item": "milite:electronic_circuit"
-    },
-    "d": {
-      "item": "milite:aluminum_alloy_large_plate"
+    {
+      "item": "milite:pump"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    "XXX"
   ],
   "result": {
     "count": 1,

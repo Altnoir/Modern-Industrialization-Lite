@@ -17,11 +17,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:electronic_circuit"
-    },
-    {
-      "amount": 1,
-      "item": "milite:aluminum_alloy_large_plate"
+      "item": "milite:steel_gear"
     }
   ],
   "item_outputs": [

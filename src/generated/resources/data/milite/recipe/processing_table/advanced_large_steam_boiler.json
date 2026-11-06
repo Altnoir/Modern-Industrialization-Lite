@@ -3,21 +3,19 @@
   "casing": {
     "item": "milite:large_steam_boiler"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:electronic_circuit"
     },
-    "b": {
+    {
       "item": "milite:large_pump"
     },
-    "c": {
-      "item": "milite:analog_circuit"
+    {
+      "item": "milite:invar_plate"
     }
-  },
+  ],
   "pattern": [
-    "a  ",
-    " b ",
-    "  c"
+    "XXX"
   ],
   "result": {
     "count": 1,

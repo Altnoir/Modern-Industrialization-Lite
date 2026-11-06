@@ -17,23 +17,15 @@
     },
     {
       "amount": 1,
+      "tag": "c:glass_blocks"
+    },
+    {
+      "amount": 1,
       "item": "milite:robot_arm"
     },
     {
       "amount": 1,
-      "tag": "c:plates/titanium"
-    },
-    {
-      "amount": 1,
-      "item": "milite:processor"
-    },
-    {
-      "amount": 1,
-      "tag": "c:plates/titanium"
-    },
-    {
-      "amount": 1,
-      "tag": "c:glass_blocks"
+      "item": "milite:digital_circuit"
     }
   ],
   "item_outputs": [

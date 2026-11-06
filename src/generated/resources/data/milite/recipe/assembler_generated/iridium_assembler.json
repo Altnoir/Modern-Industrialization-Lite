@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_processor"
+      "item": "milite:analog_circuit"
     },
     {
       "amount": 1,
-      "item": "milite:iridium_plate"
+      "item": "milite:steel_gear"
     }
   ],
   "item_outputs": [

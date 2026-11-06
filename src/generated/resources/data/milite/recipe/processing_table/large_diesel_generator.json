@@ -3,24 +3,19 @@
   "casing": {
     "item": "milite:titanium_machine_hull"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "milite:silver_wire"
     },
-    "b": {
+    {
       "item": "milite:titanium_gear"
     },
-    "c": {
-      "item": "milite:advanced_processor"
-    },
-    "d": {
-      "item": "milite:titanium_large_plate"
+    {
+      "item": "milite:motor"
     }
-  },
+  ],
   "pattern": [
-    "a b",
-    "ccd",
-    "d b"
+    "XXX"
   ],
   "result": {
     "count": 1,

@@ -3,16 +3,19 @@
   "casing": {
     "item": "milite:bronze_boiler"
   },
-  "ingredients": {
-    "a": {
+  "ingredients": [
+    {
       "item": "minecraft:furnace"
     },
-    "b": {
+    {
       "item": "milite:steel_plate"
+    },
+    {
+      "item": "minecraft:bucket"
     }
-  },
+  ],
   "pattern": [
-    "a b"
+    "XXX"
   ],
   "result": {
     "count": 1,

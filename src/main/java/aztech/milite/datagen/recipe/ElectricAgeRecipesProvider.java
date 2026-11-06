@@ -175,6 +175,24 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
 
 
 
+        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 16, 500)
+                .level("bronze")
+                .addItemInput("milite:aluminum_wire", 6, 1.0f)
+                .addItemInput("milite:silicon_battery", 1, 1.0f)
+                .addItemInput("milite:electronic_circuit_board", 1, 1.0f)
+                .addItemInput("milite:stainless_steel_plate", 4, 1.0f)
+                .addFluidInput("milite:polyethylene", 750, 1.0f)
+                .addItemOutput("milite:digital_circuit_board", 1, 1.0f)
+                .offerTo(consumer, "electric_age/circuit/assembler/digital_circuit_board");
+
+        shaped(consumer, "electric_age/circuit/craft/digital_circuit_asbl",
+                new ShapedRecipeJson("milite:digital_circuit", 1, "cOc", "NbN", "cAc")
+                        .addInput('O', "milite:or_gate")
+                        .addInput('c', "milite:electronic_circuit")
+                        .addInput('N', "milite:not_gate")
+                        .addInput('A', "milite:and_gate")
+                        .addInput('b', "milite:digital_circuit_board"));
+
         shaped(consumer, "electric_age/circuit/craft/electronic_circuit_asbl",
                 new ShapedRecipeJson("milite:electronic_circuit", 1, "cdc", "tbt", "cdc")
                         .addInput('d', "milite:diode")
@@ -273,6 +291,30 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('a', "#c:plates/aluminum"));
 
 
+
+        shaped(consumer, "electric_age/component/craft/and_gate_asbl",
+                new ShapedRecipeJson("milite:and_gate", 1, "wr ", "wAw", "wr ")
+                        .addInput('r', "milite:resistor")
+                        .addInput('A', "milite:op_amp")
+                        .addInput('w', "milite:aluminum_wire"));
+
+        shaped(consumer, "electric_age/component/craft/not_gate_asbl",
+                new ShapedRecipeJson("milite:not_gate", 1, "   ", "wAr", "   ")
+                        .addInput('r', "milite:resistor")
+                        .addInput('A', "milite:op_amp")
+                        .addInput('w', "milite:aluminum_wire"));
+
+        shaped(consumer, "electric_age/component/craft/op_amp_asbl",
+                new ShapedRecipeJson("milite:op_amp", 1, "rTT", "rdr", "rTT")
+                        .addInput('r', "milite:resistor")
+                        .addInput('T', "milite:transistor")
+                        .addInput('d', "milite:diode"));
+
+        shaped(consumer, "electric_age/component/craft/or_gate_asbl",
+                new ShapedRecipeJson("milite:or_gate", 1, " A ", "wdw", " A ")
+                        .addInput('A', "milite:op_amp")
+                        .addInput('w', "milite:aluminum_wire")
+                        .addInput('d', "milite:diode"));
 
         shaped(consumer, "electric_age/component/craft/capacitor",
                 new ShapedRecipeJson("milite:capacitor", 1, " P ", "wSw", " P ")
@@ -450,14 +492,14 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
         shaped(consumer, "electric_age/hull/stainless_steel_machine_hull_asbl",
                 new ShapedRecipeJson("milite:stainless_steel_machine_hull", 1, " c ", "BCB", "ppp")
                         .addInput('B', "milite:sodium_battery")
-                        .addInput('c', MIItem.PROCESSOR.id())
+                        .addInput('c', MIItem.DIGITAL_CIRCUIT.id())
                         .addInput('C', "milite:stainless_steel_machine_casing")
                         .addInput('p', "milite:aluminum_wire"));
 
         shaped(consumer, "electric_age/hull/titanium_machine_hull_asbl",
                 new ShapedRecipeJson("milite:titanium_machine_hull", 1, " c ", "BCB", "ppp")
                         .addInput('B', "milite:cadmium_battery")
-                        .addInput('c', MIItem.ADVANCED_PROCESSOR.id())
+                        .addInput('c', MIItem.PROCESSOR.id())
                         .addInput('C', "milite:titanium_machine_casing")
                         .addInput('p', "milite:annealed_copper_wire"));
 

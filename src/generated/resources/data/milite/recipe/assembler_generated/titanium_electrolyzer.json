@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:advanced_processor"
+      "item": "minecraft:bucket"
     },
     {
       "amount": 1,
-      "item": "milite:titanium_large_plate"
+      "item": "minecraft:glass"
     }
   ],
   "item_outputs": [

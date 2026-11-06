@@ -17,7 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:processor"
+      "item": "minecraft:glass"
+    },
+    {
+      "amount": 1,
+      "item": "minecraft:bucket"
     }
   ],
   "item_outputs": [

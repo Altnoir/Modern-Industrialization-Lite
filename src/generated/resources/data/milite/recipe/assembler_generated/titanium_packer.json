@@ -17,11 +17,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:advanced_processor"
-    },
-    {
-      "amount": 1,
-      "item": "milite:titanium_large_plate"
+      "item": "milite:steel_gear"
     }
   ],
   "item_outputs": [

@@ -17,11 +17,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_processor"
+      "item": "minecraft:bucket"
     },
     {
       "amount": 1,
-      "item": "milite:iridium_plate"
+      "item": "minecraft:glass"
     }
   ],
   "item_outputs": [
