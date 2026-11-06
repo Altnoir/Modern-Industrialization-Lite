@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "milite:electric_chemical_reactor"
+            "items": "milite:aluminum_alloy_chemical_reactor"
           }
         ]
       },
@@ -18,7 +18,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "milite:electric_chemical_reactor"
+      "id": "milite:aluminum_alloy_chemical_reactor"
     },
     "title": {
       "translate": "advancements.milite.electric_chemical_reactor"

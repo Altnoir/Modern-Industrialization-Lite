@@ -6,7 +6,7 @@
       "tag": "c:plates/aluminum_alloy"
     },
     "R": {
-      "item": "milite:aluminum_alloy_ring"
+      "tag": "c:ingots/aluminum_alloy"
     },
     "b": {
       "item": "milite:aluminum_alloy_bolt"

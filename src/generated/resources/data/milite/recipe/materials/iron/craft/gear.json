@@ -6,7 +6,7 @@
       "tag": "c:plates/iron"
     },
     "R": {
-      "item": "milite:iron_ring"
+      "tag": "c:ingots/iron"
     },
     "b": {
       "item": "milite:iron_bolt"

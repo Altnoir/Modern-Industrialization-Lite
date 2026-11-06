@@ -13,7 +13,7 @@
     },
     {
       "amount": 2,
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     {
       "amount": 16,
@@ -21,7 +21,7 @@
     },
     {
       "amount": 8,
-      "item": "milite:large_advanced_pump"
+      "item": "milite:large_pump"
     },
     {
       "amount": 1,

@@ -19,18 +19,15 @@ public class ForgeHammerRecipes {
 
         addRecipe(ctx, INGOT, 2, PLATE, 1);
         addRecipe(ctx, INGOT, 1, ROD, 1);
-        addRecipe(ctx, INGOT, 1, RING, 1);
         addRecipe(ctx, INGOT, 1, BOLT, 2);
 
         addRecipe(ctx, DOUBLE_INGOT, 1, PLATE, 1);
         addRecipe(ctx, DOUBLE_INGOT, 1, ROD, 2);
-        addRecipe(ctx, DOUBLE_INGOT, 1, RING, 2);
         addRecipe(ctx, DOUBLE_INGOT, 1, BOLT, 4);
 
         addRecipe(ctx, DOUBLE_INGOT, 4, GEAR, 1);
 
         addRecipe(ctx, ROD, 1, BOLT, 2);
-        addRecipe(ctx, ROD, 1, RING, 1);
 
         addRecipe(ctx, ORE, 1, CRUSHED_DUST, 2);
         addRecipe(ctx, ORE, 1, RAW_METAL, 2);

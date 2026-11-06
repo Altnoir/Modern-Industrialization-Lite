@@ -5,6 +5,7 @@ import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.level.material.Fluids;
 
 public class MiscRecipesProvider extends FixedRecipesProvider {
     public MiscRecipesProvider(PackOutput output) {
@@ -36,7 +37,7 @@ public class MiscRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:plates/steel", 8, 1.0f)
-                .addFluidInput("minecraft:lava", 1000, 1.0f)
+                .addFluidInput(Fluids.LAVA, 1000, 1.0f)
                 .addItemOutput("milite:trash_can", 1, 1.0f)
                 .offerTo(consumer, "trash_can_assembler");
 

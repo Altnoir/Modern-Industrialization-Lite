@@ -11,16 +11,13 @@
       "item": "milite:aluminum_gear"
     },
     "c": {
-      "item": "milite:digital_circuit"
-    },
-    "d": {
-      "item": "milite:stainless_steel_large_plate"
+      "item": "milite:processor"
     }
   },
   "pattern": [
-    "a b",
-    " c ",
-    "d c"
+    "a  ",
+    " b ",
+    "  c"
   ],
   "result": {
     "count": 1,

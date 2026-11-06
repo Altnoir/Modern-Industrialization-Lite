@@ -26,7 +26,7 @@ bin/
 .classpath
 .project
 
-# fabric
+# NeoForge run directories
 
 run/
 runs/

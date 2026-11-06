@@ -15,7 +15,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:stainless_steel_ring"
+      "tag": "c:ingots/stainless_steel"
     }
   ],
   "item_outputs": [

@@ -24,5 +24,6 @@
       "amount": 1,
       "item": "minecraft:grass_block"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

@@ -5,10 +5,10 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:motor"
+      "item": "milite:steel_gear"
     },
     "b": {
-      "item": "milite:invar_rod"
+      "item": "milite:steel_rod"
     }
   },
   "pattern": [

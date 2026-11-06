@@ -6,7 +6,7 @@
       "tag": "c:plates/gold"
     },
     "R": {
-      "item": "milite:gold_ring"
+      "tag": "c:ingots/gold"
     },
     "b": {
       "item": "milite:gold_bolt"

@@ -17,5 +17,6 @@
       "amount": 1000,
       "fluid": "milite:styrene_butadiene"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

@@ -17,5 +17,6 @@
       "amount": 2000,
       "fluid": "milite:hydrochloric_acid"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

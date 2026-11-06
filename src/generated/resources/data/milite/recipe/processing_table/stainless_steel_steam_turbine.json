@@ -5,7 +5,7 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:digital_circuit"
+      "item": "milite:processor"
     },
     "b": {
       "item": "milite:stainless_steel_rotor"

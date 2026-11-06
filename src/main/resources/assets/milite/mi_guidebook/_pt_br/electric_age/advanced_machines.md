@@ -5,10 +5,10 @@ navigation:
   position: 107
   parent: milite:electric_age.md
 item_ids:
-  - milite:electric_centrifuge
-  - milite:electric_chemical_reactor
-  - milite:electric_distillery
-  - milite:electric_electrolyzer
+  - milite:aluminum_alloy_centrifuge
+  - milite:aluminum_alloy_chemical_reactor
+  - milite:aluminum_alloy_distillery
+  - milite:aluminum_alloy_electrolyzer
   - milite:configurable_tank
 ---
 
@@ -18,23 +18,23 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-O Alumínio é um material usado para fabricar mais Máquinas Avançadas. Assim como as outras máquinas elétricas, essas novas máquinas aceitam no máximo 32 RF/t. Coloque pó de bauxita em uma Fornalha ou Alto-forno comum e você obterá pepitas de alumínio.
+Make the first aluminum alloy in an electric blast furnace. Its machine hull unlocks the professional machines described here.
 
 A Centrífuga separa itens girando-os em alta velocidade. Você pode usá-la para fazer pó de carbono e desbloquear receitas melhores para aço e silício.
 
-<Recipe id="milite:processing_table/electric_centrifuge" />
+<Recipe id="milite:processing_table/aluminum_alloy_centrifuge" />
 
 O Reator Químico pode fazer itens e fluidos reagirem.
 
-<Recipe id="milite:processing_table/electric_chemical_reactor" />
+<Recipe id="milite:processing_table/aluminum_alloy_chemical_reactor" />
 
 A Destilaria transformará vários fluidos em suas partes mais leves. Isso será muito útil para o Processamento de Petróleo.
 
-<Recipe id="milite:processing_table/electric_distillery" />
+<Recipe id="milite:processing_table/aluminum_alloy_distillery" />
 
 O Eletrólisador pode separar materiais em suas diferentes partes usando correntes elétricas fortes. Você pode eletrólisar pó de bauxita para obter pó de alumínio, que pode então ser fundido em lingotes de alumínio em uma Fornalha ou Alto-forno comum.
 
-<Recipe id="milite:processing_table/electric_electrolyzer" />
+<Recipe id="milite:processing_table/aluminum_alloy_electrolyzer" />
 
 O Tanque Configurável é o equivalente fluido do Baú Configurável.
 

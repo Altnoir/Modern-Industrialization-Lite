@@ -5,25 +5,22 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:motor"
+      "item": "milite:steel_gear"
     },
     "b": {
-      "item": "milite:invar_rod"
+      "item": "milite:steel_rod"
     },
     "c": {
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     "d": {
-      "item": "milite:tungsten_large_plate"
-    },
-    "e": {
       "item": "milite:iridium_plate"
     }
   },
   "pattern": [
-    "abc",
-    "dec",
-    "dec"
+    "a b",
+    "   ",
+    "c d"
   ],
   "result": {
     "count": 1,

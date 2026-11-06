@@ -85,7 +85,7 @@ public class ConditionalMachineRecipesProvider implements DataProvider {
 
         new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
                 .level("bronze")
-                .addItemInput("milite:bronze_drill", 1, 0.04f)
+                .addItemInput("milite:bronze_drill", 1, 0f)
                 .addItemOutput("minecraft:iron_ore", 1, 0.4f)
                 .addItemOutput("minecraft:coal_ore", 1, 0.4f)
                 .addItemOutput("milite:lignite_coal_ore", 1, 0.24f)
@@ -99,7 +99,7 @@ public class ConditionalMachineRecipesProvider implements DataProvider {
 
         new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 12, 600)
                 .level("bronze")
-                .addItemInput("milite:steel_drill", 1, 0.04f)
+                .addItemInput("milite:steel_drill", 1, 0f)
                 .addItemOutput("milite:antimony_ore", 1, 0.2f)
                 .addItemOutput("minecraft:diamond_ore", 1, 0.12f)
                 .addItemOutput("minecraft:lapis_ore", 1, 0.1f)
@@ -114,7 +114,7 @@ public class ConditionalMachineRecipesProvider implements DataProvider {
 
         new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 128, 600)
                 .level("bronze")
-                .addItemInput("milite:titanium_drill", 1, 0.04f)
+                .addItemInput("milite:titanium_drill", 1, 0f)
                 .addItemOutput("milite:uranium_ore", 1, 0.2f)
                 .addItemOutput("milite:iridium_ore", 1, 0.05f)
                 .addItemOutput("mekanism:fluorite_ore", 1, 0.3f, new ModLoadedCondition("mekanism"))

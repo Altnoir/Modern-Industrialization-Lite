@@ -1,0 +1,29 @@
+{
+  "type": "milite:processing_table",
+  "casing": {
+    "item": "milite:aluminum_alloy_machine_hull"
+  },
+  "ingredients": {
+    "a": {
+      "tag": "c:plates/stainless_steel"
+    },
+    "b": {
+      "tag": "c:glass_blocks"
+    },
+    "c": {
+      "item": "milite:robot_arm"
+    },
+    "d": {
+      "item": "milite:electronic_circuit"
+    }
+  },
+  "pattern": [
+    "a a",
+    " b ",
+    "c d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:stainless_steel_lithography"
+  }
+}

@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "游戏中期"
-  icon: "milite:digital_circuit"
+  icon: "milite:processor"
   position: 3
 ---
 

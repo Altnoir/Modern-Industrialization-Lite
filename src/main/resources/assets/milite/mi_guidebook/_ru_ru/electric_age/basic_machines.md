@@ -5,7 +5,7 @@ navigation:
   position: 104
   parent: milite:electric_age.md
 item_ids:
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
   - milite:configurable_chest
 ---
@@ -18,7 +18,7 @@ item_ids:
 
 Поляризатор поляризует всякие штуки. Рецептов пока не много, но уже можно автоматизировать двигатели!
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 Первая машина, которую захочется дублировать много раз! Сборщик позволяет автоматизировать почти все рецепты, до трех на сборщик, если вы используете блокировку слотов.
 

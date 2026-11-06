@@ -20,5 +20,6 @@
       "amount": 1,
       "item": "minecraft:string"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

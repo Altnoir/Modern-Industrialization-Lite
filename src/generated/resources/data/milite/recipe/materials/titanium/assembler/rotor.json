@@ -15,7 +15,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:titanium_ring"
+      "tag": "c:ingots/titanium"
     }
   ],
   "item_outputs": [

@@ -17,7 +17,7 @@ item_ids:
 
 <Recipe id="milite:processing_table/electric_quarry" />
 
-크고, 더 나은 대형 증기 보일러입니다. 1024 RF/t 만큼의 증기를 소비하고, 그만큼의 전기를 만들 수 있습니다.
+전기 채석기는 증기 채석기의 전기 버전입니다. 아이템과 전력을 공급하면 광석을 채굴합니다.
 
 <Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

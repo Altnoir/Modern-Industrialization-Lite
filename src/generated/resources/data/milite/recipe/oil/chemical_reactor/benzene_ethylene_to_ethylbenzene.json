@@ -21,5 +21,6 @@
       "amount": 750,
       "fluid": "milite:ethylbenzene"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

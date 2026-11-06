@@ -17,7 +17,7 @@ item_ids:
 
 <Recipe id="milite:processing_table/electric_quarry" />
 
-Большой паровой котел лучше и больше обычного! Эта усовершенствованная версия может производить до 1024 мб/т пара!
+Электрический карьер — электрическая версия парового карьера. Подавайте предметы и энергию, чтобы добывать руду.
 
 <Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

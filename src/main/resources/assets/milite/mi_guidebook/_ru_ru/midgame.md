@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "Мидгейм"
-  icon: "milite:digital_circuit"
+  icon: "milite:processor"
   position: 2
 ---
 

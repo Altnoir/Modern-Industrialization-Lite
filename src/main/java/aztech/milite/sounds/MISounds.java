@@ -20,7 +20,10 @@ public final class MISounds {
     private static final Map<String, MachineSound> SOUNDS = new HashMap<>();
     private static final Map<ResourceLocation, String> MACHINE_SOUNDS = Map.ofEntries(
             Map.entry(MI.id("electric_blast_furnace"), "electric_blast_furnace"),
-            Map.entry(MI.id("nuclear_reactor"), "fission_reactor"));
+            Map.entry(MI.id("nuclear_reactor"), "fission_reactor"),
+            Map.entry(MI.id("stainless_steel_lithography"), "assembler"),
+            Map.entry(MI.id("titanium_lithography"), "assembler"),
+            Map.entry(MI.id("iridium_lithography"), "assembler"));
 
     static {
         sound("assembler", 39);

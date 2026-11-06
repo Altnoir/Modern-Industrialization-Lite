@@ -640,7 +640,7 @@ public class MultiblockMachines {
             this.recipeType = recipeType;
             this.progressBarParams = progressBarParams;
             this.workstations = new ArrayList<>();
-                workstations.add(category);
+            workstations.add(category);
         }
 
         public Rei(String englishName, String category, MachineRecipeType recipeType, ProgressBar.Params progressBarParams) {
@@ -687,9 +687,9 @@ public class MultiblockMachines {
                     progressBarParams, recipeType, extraTest, true, steamMode));
             for (ResourceLocation workstation : workstations) {
                 ReiMachineRecipes.registerWorkstation(category, workstation);
-                ReiMachineRecipes.registerRecipeCategoryForMachine(workstation, category, ReiMachineRecipes.MachineScreenPredicate.MULTIBLOCK);
-                ReiMachineRecipes.registerMachineClickArea(workstation, CRAFTING_GUI);
             }
+            ReiMachineRecipes.registerRecipeCategoryForMachine(category, category, ReiMachineRecipes.MachineScreenPredicate.MULTIBLOCK);
+            ReiMachineRecipes.registerMachineClickArea(category, CRAFTING_GUI);
         }
     }
 }

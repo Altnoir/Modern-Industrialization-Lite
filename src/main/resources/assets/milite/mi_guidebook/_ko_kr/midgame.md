@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "미드게임"
-  icon: "milite:digital_circuit"
+  icon: "milite:processor"
   position: 2
 ---
 

@@ -1,21 +1,11 @@
 {
   "type": "milite:blast_furnace",
   "duration": 1500,
-  "energy": 64,
-  "fluid_inputs": [
-    {
-      "amount": 1250,
-      "fluid": "milite:argon"
-    }
-  ],
+  "energy": 32,
   "item_inputs": [
     {
       "amount": 32,
       "tag": "c:dusts/silicon"
-    },
-    {
-      "amount": 1,
-      "tag": "c:tiny_dusts/iridium"
     }
   ],
   "item_outputs": [
@@ -24,5 +14,5 @@
       "item": "milite:monocrystalline_silicon"
     }
   ],
-  "level": "stainless_steel"
+  "level": "electric"
 }

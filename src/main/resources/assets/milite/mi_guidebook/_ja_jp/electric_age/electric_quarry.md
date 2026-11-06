@@ -17,7 +17,7 @@ item_ids:
 
 <Recipe id="milite:processing_table/electric_quarry" />
 
-より優れた、より大きな大型蒸気ボイラー！最大1024 mb/tの蒸気を発生させることができる！
+電動採石機は蒸気採石機の電動版です。アイテムと電力を供給すると、鉱石を採掘できます。
 
 <Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

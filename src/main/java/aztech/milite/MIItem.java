@@ -53,12 +53,8 @@ public final class MIItem {
 
     public static final ItemDefinition<Item> MOTOR = item("Motor", "motor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_MOTOR = item("Large Motor", "large_motor", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> ADVANCED_MOTOR = item("Advanced Motor", "advanced_motor", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> LARGE_ADVANCED_MOTOR = item("Large Advanced Motor", "large_advanced_motor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PUMP = item("Pump", "pump", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> LARGE_PUMP = item("Large Pump", "large_pump", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> ADVANCED_PUMP = item("Advanced Pump", "advanced_pump", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> LARGE_ADVANCED_PUMP = item("Large Advanced Pump", "large_advanced_pump", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> PISTON = item("Piston", "piston", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> CONVEYOR = item("Conveyor", "conveyor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ROBOT_ARM = item("Robot Arm", "robot_arm", ITEMS_ORDERED.next());
@@ -67,12 +63,9 @@ public final class MIItem {
     public static final ItemDefinition<Item> ANALOG_CIRCUIT = item("Analog Circuit", "analog_circuit", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ELECTRONIC_CIRCUIT_BOARD = item("Electronic Circuit Board", "electronic_circuit_board", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ELECTRONIC_CIRCUIT = item("Electronic Circuit", "electronic_circuit", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> PROCESSING_UNIT_BOARD = item("Processing Unit Board", "processing_unit_board", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> PROCESSING_UNIT = item("Processing Unit", "processing_unit", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> DIGITAL_CIRCUIT_BOARD = item("Digital Circuit Board", "digital_circuit_board", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> DIGITAL_CIRCUIT = item("Digital Circuit", "digital_circuit", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> QUANTUM_CIRCUIT_BOARD = item("Quantum Circuit Board", "quantum_circuit_board", (p) -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> QUANTUM_CIRCUIT = item("Quantum Circuit", "quantum_circuit", (p) -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> PROCESSOR = item("Processor", "processor", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> ADVANCED_PROCESSOR = item("Advanced Processor", "advanced_processor", ITEMS_ORDERED.next());
+    public static final ItemDefinition<Item> QUANTUM_PROCESSOR = item("Quantum Processor", "quantum_processor", p -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
 
     public static final ItemDefinition<Item> RESISTOR = item("Resistor", "resistor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> CAPACITOR = item("Capacitor", "capacitor", ITEMS_ORDERED.next());
@@ -83,20 +76,12 @@ public final class MIItem {
     public static final ItemDefinition<Item> DIODE = item("Diode", "diode", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> TRANSISTOR = item("Transistor", "transistor", ITEMS_ORDERED.next());
 
-    public static final ItemDefinition<Item> OP_AMP = item("Op Amp", "op_amp", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> AND_GATE = item("AND Gate", "and_gate", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> OR_GATE = item("OR Gate", "or_gate", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> NOT_GATE = item("NOT Gate", "not_gate", ITEMS_ORDERED.next());
 
     public static final ItemDefinition<Item> AIR_INTAKE = item("Air Intake", "air_intake", p -> new Item(p.stacksTo(1)), ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> MONOCRYSTALLINE_SILICON = item("Monocrystalline Silicon", "monocrystalline_silicon", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> SILICON_WAFER = item("Silicon Wafer", "silicon_wafer", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> ARITHMETIC_LOGIC_UNIT = item("Arithmetic Logic Unit", "arithmetic_logic_unit", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> MEMORY_MANAGEMENT_UNIT = item("Memory Management Unit", "memory_management_unit", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> RANDOM_ACCESS_MEMORY = item("Random Access Memory", "random_access_memory", ITEMS_ORDERED.next());
 
-    // Quantum circuits
-    public static final ItemDefinition<Item> QUBIT = item("Qubit", "qubit", (p) -> new Item(p.rarity(Rarity.RARE)), ITEMS_ORDERED.next());
+    // Quantum components
     public static final ItemDefinition<Item> COOLING_CELL = item("Cooling Cell", "cooling_cell", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> ULTRADENSE_METAL_BALL = item("Ultradense Metal Ball", "ultradense_metal_ball", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> SINGULARITY = item("Singularity", "singularity", p -> new Item(p.rarity(Rarity.EPIC)), ITEMS_ORDERED.next());

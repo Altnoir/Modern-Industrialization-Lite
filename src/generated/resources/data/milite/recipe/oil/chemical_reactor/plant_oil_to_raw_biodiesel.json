@@ -21,5 +21,6 @@
       "amount": 1500,
       "fluid": "milite:raw_biodiesel"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

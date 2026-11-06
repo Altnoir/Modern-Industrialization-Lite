@@ -9,12 +9,15 @@
     },
     "b": {
       "item": "milite:large_pump"
+    },
+    "c": {
+      "item": "milite:analog_circuit"
     }
   },
   "pattern": [
     "a  ",
     " b ",
-    "  a"
+    "  c"
   ],
   "result": {
     "count": 1,

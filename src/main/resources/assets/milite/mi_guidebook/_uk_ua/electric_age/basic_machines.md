@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
 ---
 
@@ -29,7 +29,7 @@ item_ids:
 
 Намагнічувач намагнічує різні штуки. У ньому ще не так багато рецептів, але він уже корисний для автоматизації двигунів!
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 Перша машина, яку ви захочете зробити багато! Збирач дозволяє вам автоматизувати майже всі рецепти, до 3 на збирачі, якщо ви використовуєте блокування слотів.
 

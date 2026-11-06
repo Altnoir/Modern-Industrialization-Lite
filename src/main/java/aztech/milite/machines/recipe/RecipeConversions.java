@@ -2,6 +2,7 @@ package aztech.milite.machines.recipe;
 
 import aztech.milite.config.MIServerConfig;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.MI;
 import aztech.milite.MIFluids;
 import aztech.milite.thirdparty.fabrictransfer.api.item.ItemVariant;
@@ -75,6 +76,7 @@ public class RecipeConversions {
             MachineRecipe plantOil = new MachineRecipe(MIMachineRecipeTypes.CENTRIFUGE);
             plantOil.energy = 8;
             plantOil.duration = 200;
+            plantOil.level = MachineLevel.ALUMINUM;
 
             plantOil.itemInputs = List.of(new MachineRecipe.ItemInput(
                     Ingredient.of(compostable),

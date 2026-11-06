@@ -13,5 +13,6 @@
       "amount": 5,
       "fluid": "milite:helium_3"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

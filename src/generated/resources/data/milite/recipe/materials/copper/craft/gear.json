@@ -6,7 +6,7 @@
       "tag": "c:plates/copper"
     },
     "R": {
-      "item": "milite:copper_ring"
+      "tag": "c:ingots/copper"
     },
     "b": {
       "item": "milite:copper_bolt"

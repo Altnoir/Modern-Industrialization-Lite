@@ -40,6 +40,8 @@ public final class SingleBlockCraftingMachines {
      */
     private static final List<MachineLevel> LEVELS_ALL = List.of(MachineLevel.ELECTRIC, MachineLevel.ALUMINUM,
             MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
+    private static final List<MachineLevel> LEVELS_ALUMINUM_TO_IRIDIUM = List.of(MachineLevel.ALUMINUM,
+            MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM);
     /**
      * The full ladder including the two steam machines at the bottom.
      */
@@ -84,14 +86,14 @@ public final class SingleBlockCraftingMachines {
                 new ProgressBar.Params(65, 33, "centrifuge"), DEFAULT_ENERGY_BAR,
                 items -> items.addSlot(42, 27).addSlots(93, 27, 2, 2), fluids -> fluids.addSlot(42, 45).addSlots(131, 27, 2, 2),
                 true, true, true,
-                LEVELS_ALL, 16
+                LEVELS_ALUMINUM_TO_IRIDIUM, 16
         );
         registerMachineTiers(
                 "Chemical Reactor", "chemical_reactor", MIMachineRecipeTypes.CHEMICAL_REACTOR, 3, 3, 3, 3, guiParams -> {},
                 new ProgressBar.Params(88, 35, "triple_arrow"), new EnergyBar.Params(12, 35),
                 items -> items.addSlots(30, 27, 3, 1).addSlots(116, 27, 3, 1), fluids -> fluids.addSlots(30, 47, 3, 1).addSlots(116, 47, 3, 1),
                 true, false, false,
-                LEVELS_ALL, 24
+                LEVELS_ALUMINUM_TO_IRIDIUM, 24
         );
         registerMachineTiers(
                 "Compressor", "compressor", MIMachineRecipeTypes.COMPRESSOR, 1, 1, 0, 0, guiParams -> {},
@@ -112,14 +114,14 @@ public final class SingleBlockCraftingMachines {
                 new ProgressBar.Params(77, 33, "arrow"), new EnergyBar.Params(18, 30),
                 items -> {}, fluids -> fluids.addSlot(56, 35).addSlot(102, 35),
                 true, false, false,
-                LEVELS_ALL, 16
+                LEVELS_ALUMINUM_TO_IRIDIUM, 16
         );
         registerMachineTiers(
                 "Electrolyzer", "electrolyzer", MIMachineRecipeTypes.ELECTROLYZER, 1, 4, 1, 4, guiParams -> {},
                 new ProgressBar.Params(66, 35, "arrow"), DEFAULT_ENERGY_BAR,
                 items -> items.addSlot(42, 27).addSlots(93, 27, 2, 2), fluids -> fluids.addSlot(42, 47).addSlots(131, 27, 2, 2),
                 true, false, true,
-                LEVELS_ALL, 16
+                LEVELS_ALUMINUM_TO_IRIDIUM, 16
         );
         registerMachineTiers(
                 "Furnace", "furnace", MIMachineRecipeTypes.FURNACE, 1, 1, 0, 0, guiParams -> {},
@@ -127,6 +129,13 @@ public final class SingleBlockCraftingMachines {
                 items -> items.addSlot(56, 35).addSlot(102, 35), fluids -> {},
                 true, false, false,
                 LEVELS_BRONZE_TO_IRIDIUM, 16
+        );
+        registerMachineTiers(
+                "Lithography Machine", "lithography", MIMachineRecipeTypes.LITHOGRAPHY, 2, 1, 0, 0, guiParams -> {},
+                new ProgressBar.Params(78, 34, "circuit"), DEFAULT_ENERGY_BAR,
+                items -> items.addSlot(44, 27).addSlot(44, 45).addSlot(116, 36), fluids -> {},
+                true, false, false,
+                List.of(MachineLevel.STAINLESS_STEEL, MachineLevel.TITANIUM, MachineLevel.IRIDIUM), 0
         );
         registerMachineTiers(
                 "Macerator", "macerator", MIMachineRecipeTypes.MACERATOR, 1, 4, 0, 0, guiParams -> {},
@@ -154,7 +163,7 @@ public final class SingleBlockCraftingMachines {
                 new ProgressBar.Params(77, 30, "magnet"), new EnergyBar.Params(18, 30),
                 items -> items.addSlots(56, 23, 1, 2).addSlot(102, 32), fluids -> {},
                 true, true, false,
-                LEVELS_ALL, 16
+                LEVELS_ALUMINUM_TO_IRIDIUM, 16
         );
         registerMachineTiers(
                 "Wiremill", "wiremill", MIMachineRecipeTypes.WIREMILL, 1, 1, 0, 0, guiParams -> {},

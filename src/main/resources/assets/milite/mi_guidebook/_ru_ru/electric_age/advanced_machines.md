@@ -5,10 +5,10 @@ navigation:
   position: 106
   parent: milite:electric_age.md
 item_ids:
-  - milite:electric_centrifuge
-  - milite:electric_chemical_reactor
-  - milite:electric_distillery
-  - milite:electric_electrolyzer
+  - milite:aluminum_alloy_centrifuge
+  - milite:aluminum_alloy_chemical_reactor
+  - milite:aluminum_alloy_distillery
+  - milite:aluminum_alloy_electrolyzer
 ---
 
 # Улучшенные машины
@@ -17,21 +17,21 @@ item_ids:
 
 <ItemImage id="milite:aluminum_ingot" />
 
-Алюминий - это материал, используемый для изготовления более совершенных машин. Как и другие электрические машины, эти новые машины принимают не более 32 RF/т. Поместите бокситовую пыль в обычную печь или доменную печь, и вы получите алюминиевые самородки.
+Make the first aluminum alloy in an electric blast furnace. Its machine hull unlocks the professional machines described here.
 
 Центрифуга разделяет предметы, вращая их на высокой скорости. Вы можете использовать её, чтобы делать угольную пыль и открывать лучшие рецепты для стали и кремния.
 
-<Recipe id="milite:processing_table/electric_centrifuge" />
+<Recipe id="milite:processing_table/aluminum_alloy_centrifuge" />
 
 Химический реактор позволяет взаимодействовать предметам и жидкостям друг с другом.
 
-<Recipe id="milite:processing_table/electric_chemical_reactor" />
+<Recipe id="milite:processing_table/aluminum_alloy_chemical_reactor" />
 
 Дистиллятор превращает различные жидкости в их более легкие части. Это будет очень полезно для нефтепереработки.
 
-<Recipe id="milite:processing_table/electric_distillery" />
+<Recipe id="milite:processing_table/aluminum_alloy_distillery" />
 
 Электролизер может разделять материалы на различные части с помощью сильных электрических токов. Вы можете электризовать бокситовую пыль, чтобы получить алюминиевую пыль, которую затем можно переплавить в алюминиевые слитки в обычной печи или доменной печи.
 
-<Recipe id="milite:processing_table/electric_electrolyzer" />
+<Recipe id="milite:processing_table/aluminum_alloy_electrolyzer" />
 

@@ -15,7 +15,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:copper_ring"
+      "tag": "c:ingots/copper"
     }
   ],
   "item_outputs": [

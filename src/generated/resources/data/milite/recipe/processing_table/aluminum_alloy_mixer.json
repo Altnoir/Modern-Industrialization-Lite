@@ -12,15 +12,12 @@
     },
     "c": {
       "item": "milite:electronic_circuit"
-    },
-    "d": {
-      "item": "milite:aluminum_alloy_large_plate"
     }
   },
   "pattern": [
-    "a b",
-    "   ",
-    "c d"
+    "a  ",
+    " b ",
+    "  c"
   ],
   "result": {
     "count": 1,

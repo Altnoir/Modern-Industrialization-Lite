@@ -6,7 +6,7 @@
       "tag": "c:plates/invar"
     },
     "R": {
-      "item": "milite:invar_ring"
+      "tag": "c:ingots/invar"
     },
     "b": {
       "item": "milite:invar_bolt"

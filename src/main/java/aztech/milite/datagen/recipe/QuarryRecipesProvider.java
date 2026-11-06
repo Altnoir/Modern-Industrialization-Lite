@@ -1,10 +1,13 @@
 package aztech.milite.datagen.recipe;
 
+import aztech.milite.MIItem;
+
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.level.block.Blocks;
 
 public class QuarryRecipesProvider extends FixedRecipesProvider {
     public QuarryRecipesProvider(PackOutput output) {
@@ -15,15 +18,15 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
                 .level("bronze")
-                .addItemInput("milite:copper_drill", 1, 0.1f)
-                .addItemOutput("minecraft:cobblestone", 32, 0.5f)
-                .addItemOutput("minecraft:diorite", 16, 0.25f)
-                .addItemOutput("minecraft:andesite", 16, 0.25f)
-                .addItemOutput("minecraft:granite", 16, 0.25f)
-                .addItemOutput("minecraft:dirt", 10, 0.5f)
-                .addItemOutput("minecraft:gravel", 10, 0.5f)
-                .addItemOutput("minecraft:cobbled_deepslate", 16, 0.25f)
-                .addItemOutput("minecraft:tuff", 16, 0.25f)
+                .addItemInput("milite:copper_drill", 1, 0f)
+                .addItemOutput(Blocks.COBBLESTONE, 32, 0.5f)
+                .addItemOutput(Blocks.DIORITE, 16, 0.25f)
+                .addItemOutput(Blocks.ANDESITE, 16, 0.25f)
+                .addItemOutput(Blocks.GRANITE, 16, 0.25f)
+                .addItemOutput(Blocks.DIRT, 10, 0.5f)
+                .addItemOutput(Blocks.GRAVEL, 10, 0.5f)
+                .addItemOutput(Blocks.COBBLED_DEEPSLATE, 16, 0.25f)
+                .addItemOutput(Blocks.TUFF, 16, 0.25f)
                 .offerTo(consumer, "quarry/copper");
 
         shaped(consumer, "quarry/drill/aluminum_drill_asbl",
@@ -61,10 +64,10 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
                         .addInput('d', "milite:stainless_steel_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/stainless_steel")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('P', "milite:advanced_pump")
+                        .addInput('m', "milite:motor")
+                        .addInput('P', "milite:pump")
                         .addInput('c', "milite:aluminum_wire")
-                        .addInput('C', "milite:digital_circuit"));
+                        .addInput('C', MIItem.PROCESSOR.id()));
 
         shaped(consumer, "quarry/drill/steel_drill_asbl",
                 new ShapedRecipeJson("milite:steel_drill", 4, "gpd", "mCp", "cmg")
@@ -80,28 +83,28 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
                         .addInput('d', "milite:titanium_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/titanium")
-                        .addInput('m', "milite:large_advanced_motor")
+                        .addInput('m', "milite:large_motor")
                         .addInput('c', "milite:annealed_copper_wire")
-                        .addInput('C', "milite:processing_unit"));
+                        .addInput('C', MIItem.ADVANCED_PROCESSOR.id()));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 8, 600)
                 .level("bronze")
-                .addItemInput("milite:gold_drill", 1, 0.1f)
-                .addItemOutput("minecraft:netherrack", 32, 0.5f)
-                .addItemOutput("minecraft:blackstone", 16, 0.25f)
-                .addItemOutput("minecraft:basalt", 16, 0.25f)
-                .addItemOutput("minecraft:soul_soil", 20, 0.1f)
-                .addItemOutput("minecraft:magma_block", 5, 0.1f)
-                .addItemOutput("minecraft:soul_sand", 20, 0.25f)
-                .addItemOutput("minecraft:ancient_debris", 1, 0.05f)
-                .addItemOutput("minecraft:glowstone", 4, 0.15f)
-                .addItemOutput("minecraft:nether_quartz_ore", 6, 0.15f)
-                .addItemOutput("minecraft:nether_gold_ore", 1, 0.25f)
+                .addItemInput("milite:gold_drill", 1, 0f)
+                .addItemOutput(Blocks.NETHERRACK, 32, 0.5f)
+                .addItemOutput(Blocks.BLACKSTONE, 16, 0.25f)
+                .addItemOutput(Blocks.BASALT, 16, 0.25f)
+                .addItemOutput(Blocks.SOUL_SOIL, 20, 0.1f)
+                .addItemOutput(Blocks.MAGMA_BLOCK, 5, 0.1f)
+                .addItemOutput(Blocks.SOUL_SAND, 20, 0.25f)
+                .addItemOutput(Blocks.ANCIENT_DEBRIS, 1, 0.05f)
+                .addItemOutput(Blocks.GLOWSTONE, 4, 0.15f)
+                .addItemOutput(Blocks.NETHER_QUARTZ_ORE, 6, 0.15f)
+                .addItemOutput(Blocks.NETHER_GOLD_ORE, 1, 0.25f)
                 .offerTo(consumer, "quarry/gold");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 32, 600)
                 .level("bronze")
-                .addItemInput("milite:stainless_steel_drill", 1, 0.04f)
+                .addItemInput("milite:stainless_steel_drill", 1, 0f)
                 .addItemOutput("milite:titanium_ore", 1, 0.15f)
                 .addItemOutput("milite:tungsten_ore", 1, 0.2f)
                 .addItemOutput("milite:monazite_ore", 1, 0.25f)

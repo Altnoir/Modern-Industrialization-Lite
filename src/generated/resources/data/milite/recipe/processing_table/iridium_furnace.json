@@ -11,19 +11,16 @@
       "item": "milite:fire_clay_bricks"
     },
     "c": {
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     "d": {
-      "item": "milite:tungsten_large_plate"
-    },
-    "e": {
       "item": "milite:iridium_plate"
     }
   },
   "pattern": [
-    "abc",
-    "dec",
-    "dec"
+    "a b",
+    "   ",
+    "c d"
   ],
   "result": {
     "count": 1,

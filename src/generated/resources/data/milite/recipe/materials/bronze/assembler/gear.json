@@ -15,7 +15,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:bronze_ring"
+      "tag": "c:ingots/bronze"
     }
   ],
   "item_outputs": [

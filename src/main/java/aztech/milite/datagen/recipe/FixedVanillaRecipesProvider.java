@@ -5,6 +5,10 @@ import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 
@@ -17,47 +21,47 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
-                .addItemInput("#minecraft:planks", 6, 1.0f)
-                .addItemInput("#minecraft:wooden_slabs", 2, 1.0f)
-                .addItemOutput("minecraft:barrel", 2, 1.0f)
+                .addItemInput(ItemTags.PLANKS, 6, 1.0f)
+                .addItemInput(ItemTags.WOODEN_SLABS, 2, 1.0f)
+                .addItemOutput(Blocks.BARREL, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/barrel");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
-                .addItemInput("#minecraft:planks", 8, 1.0f)
-                .addItemInput("minecraft:chest", 1, 0.0f)
-                .addItemOutput("minecraft:chest", 2, 1.0f)
+                .addItemInput(ItemTags.PLANKS, 8, 1.0f)
+                .addItemInput(Blocks.CHEST, 1, 0.0f)
+                .addItemOutput(Blocks.CHEST, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/chest");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:plates/steel", 5, 1.0f)
                 .addItemInput("milite:motor", 1, 1.0f)
-                .addItemOutput("minecraft:hopper", 2, 1.0f)
+                .addItemOutput(Blocks.HOPPER, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/hopper");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:rods/gold", 6, 1.0f)
-                .addItemInput("minecraft:stick", 1, 1.0f)
-                .addItemInput("minecraft:redstone", 1, 1.0f)
+                .addItemInput(Items.STICK, 1, 1.0f)
+                .addItemInput(Items.REDSTONE, 1, 1.0f)
                 .addFluidInput(fluidTag("c:creosote"), 100, 1.0f)
-                .addItemOutput("minecraft:powered_rail", 8, 1.0f)
+                .addItemOutput(Blocks.POWERED_RAIL, 8, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/powered_rail");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:rods/steel", 6, 1.0f)
-                .addItemInput("minecraft:stick", 1, 1.0f)
+                .addItemInput(Items.STICK, 1, 1.0f)
                 .addFluidInput(fluidTag("c:creosote"), 100, 1.0f)
-                .addItemOutput("minecraft:rail", 16, 1.0f)
+                .addItemOutput(Blocks.RAIL, 16, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/rail");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
-                .addItemInput("minecraft:prismarine_crystals", 5, 1.0f)
-                .addItemInput("minecraft:prismarine_shard", 4, 1.0f)
-                .addItemOutput("minecraft:sea_lantern", 2, 1.0f)
+                .addItemInput(Items.PRISMARINE_CRYSTALS, 5, 1.0f)
+                .addItemInput(Items.PRISMARINE_SHARD, 4, 1.0f)
+                .addItemOutput(Blocks.SEA_LANTERN, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/sea_lantern");
 
         blasting(consumer, "vanilla_recipes/bauxite_to_aluminum_nugget_blasting", "#c:dusts/bauxite",
@@ -73,8 +77,8 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                         .addInput('s', "minecraft:smooth_stone"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 32, 600)
-                .level("bronze")
-                .addFluidInput("minecraft:lava", 1000, 1.0f)
+                .level("aluminum_alloy")
+                .addFluidInput(Fluids.LAVA, 1000, 1.0f)
                 .addItemOutput("milite:sulfur_dust", 17, 1.0f)
                 .addItemOutput("milite:copper_nugget", 11, 1.0f)
                 .addItemOutput("milite:aluminum_nugget", 3, 0.5f)
@@ -83,49 +87,49 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         shaped(consumer, "vanilla_recipes/chainmail_boots",
                 new ShapedRecipeJson("minecraft:chainmail_boots", 1, "x x", "x x")
-                        .addInput('x', "milite:iron_ring"));
+                        .addInput('x', "#c:ingots/iron"));
 
         shaped(consumer, "vanilla_recipes/chainmail_chestplate",
                 new ShapedRecipeJson("minecraft:chainmail_chestplate", 1, "x x", "xxx", "xxx")
-                        .addInput('x', "milite:iron_ring"));
+                        .addInput('x', "#c:ingots/iron"));
 
         shaped(consumer, "vanilla_recipes/chainmail_helmet",
                 new ShapedRecipeJson("minecraft:chainmail_helmet", 1, "xxx", "x x")
-                        .addInput('x', "milite:iron_ring"));
+                        .addInput('x', "#c:ingots/iron"));
 
         shaped(consumer, "vanilla_recipes/chainmail_leggings",
                 new ShapedRecipeJson("minecraft:chainmail_leggings", 1, "xxx", "x x", "x x")
-                        .addInput('x', "milite:iron_ring"));
+                        .addInput('x', "#c:ingots/iron"));
 
         shaped(consumer, "vanilla_recipes/chains",
                 new ShapedRecipeJson("minecraft:chain", 6, " R ", " R ", " R ")
-                        .addInput('R', "milite:steel_ring"));
+                        .addInput('R', "#c:ingots/steel"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 4, 400)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("#c:dusts/quartz", 4, 1.0f)
                 .addItemInput("#c:tiny_dusts/iron", 1, 1.0f)
-                .addFluidInput("minecraft:water", 250, 1.0f)
+                .addFluidInput(Fluids.WATER, 250, 1.0f)
                 .addFluidInput("milite:sodium_hydroxide", 500, 1.0f)
-                .addItemOutput("minecraft:amethyst_shard", 4, 1.0f)
+                .addItemOutput(Items.AMETHYST_SHARD, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/amethyst");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
-                .level("bronze")
-                .addItemInput("minecraft:rotten_flesh", 5, 1.0f)
+                .level("aluminum_alloy")
+                .addItemInput(Items.ROTTEN_FLESH, 5, 1.0f)
                 .addFluidInput("milite:oxygen", 100, 1.0f)
-                .addItemOutput("minecraft:leather", 1, 1.0f)
+                .addItemOutput(Items.LEATHER, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/leather");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 4, 400)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("#c:dusts/quartz", 4, 1.0f)
                 .addItemInput("#c:tiny_dusts/beryllium", 3, 1.0f)
                 .addItemInput("#c:tiny_dusts/aluminum", 2, 1.0f)
                 .addFluidInput("milite:hydrogen", 4000, 1.0f)
                 .addFluidInput("milite:sodium_hydroxide", 4000, 1.0f)
                 .addFluidInput("milite:chlorine", 250, 1.0f)
-                .addItemOutput("minecraft:prismarine_crystals", 16, 1.0f)
+                .addItemOutput(Items.PRISMARINE_CRYSTALS, 16, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/prismarine_crystals");
 
         shaped(consumer, "vanilla_recipes/clay_uncrafting",
@@ -134,26 +138,26 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.COMPRESSOR, 4, 6000)
                 .level("bronze")
-                .addItemInput("minecraft:coal_block", 16, 1.0f)
-                .addItemOutput("minecraft:diamond", 1, 1.0f)
+                .addItemInput(Blocks.COAL_BLOCK, 16, 1.0f)
+                .addItemOutput(Items.DIAMOND, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/compressor/diamond_from_coal");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.COMPRESSOR, 2, 100)
                 .level("bronze")
                 .addItemInput("#c:glass_blocks", 1, 1.0f)
-                .addItemOutput("minecraft:glass_bottle", 2, 1.0f)
+                .addItemOutput(Items.GLASS_BOTTLE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/compressor/glass_bottle");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.COMPRESSOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:mud", 1, 1.0f)
-                .addItemOutput("minecraft:packed_mud", 1, 1.0f)
+                .addItemInput(Blocks.MUD, 1, 1.0f)
+                .addItemOutput(Blocks.PACKED_MUD, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/compressor/packed_mud");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.COMPRESSOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:sugar_cane", 1, 1.0f)
-                .addItemOutput("minecraft:paper", 2, 1.0f)
+                .addItemInput(Items.SUGAR_CANE, 1, 1.0f)
+                .addItemOutput(Items.PAPER, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/compressor/paper_with_sugarcane");
 
         shaped(consumer, "vanilla_recipes/easy_chest",
@@ -175,18 +179,18 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.IMPLOSION_COMPRESSOR, 1, 10)
                 .level("bronze")
                 .addItemInput("#c:storage_blocks/gold", 64, 1.0f)
-                .addItemInput("minecraft:apple", 1, 1.0f)
+                .addItemInput(Items.APPLE, 1, 1.0f)
                 .addItemInput("milite:industrial_tnt", 1, 1.0f)
-                .addItemOutput("minecraft:enchanted_golden_apple", 1, 1.0f)
+                .addItemOutput(Items.ENCHANTED_GOLDEN_APPLE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/implosion_compressor/enchanted_golden_apple");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.IMPLOSION_COMPRESSOR, 64, 10)
                 .level("bronze")
                 .addItemInput("milite:singularity", 1, 1.0f)
-                .addItemInput("minecraft:lava_bucket", 1, 1.0f)
+                .addItemInput(Items.LAVA_BUCKET, 1, 1.0f)
                 .addItemInput("milite:nuke", 64, 1.0f)
                 .addItemInput("milite:nuke", 64, 1.0f)
-                .addItemOutput("minecraft:nether_star", 1, 1.0f)
+                .addItemOutput(Items.NETHER_STAR, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/implosion_compressor/nether_star");
 
         shaped(consumer, "vanilla_recipes/lignite_torch",
@@ -196,475 +200,475 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:blaze_rod", 1, 1.0f)
-                .addItemOutput("minecraft:blaze_powder", 4, 1.0f)
+                .addItemInput(Items.BLAZE_ROD, 1, 1.0f)
+                .addItemOutput(Items.BLAZE_POWDER, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/blaze_dust");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
                 .addItemInput("#c:dusts/lapis", 1, 1.0f)
-                .addItemOutput("minecraft:blue_dye", 1, 1.0f)
+                .addItemOutput(Items.BLUE_DYE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/blue_dye1");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:bone_block", 1, 1.0f)
-                .addItemOutput("minecraft:bone_meal", 9, 1.0f)
+                .addItemInput(Blocks.BONE_BLOCK, 1, 1.0f)
+                .addItemOutput(Items.BONE_MEAL, 9, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/bone_meal_from_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:bone", 1, 1.0f)
-                .addItemOutput("minecraft:bone_meal", 6, 1.0f)
+                .addItemInput(Items.BONE, 1, 1.0f)
+                .addItemOutput(Items.BONE_MEAL, 6, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/bone_meal_from_bone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:clay", 1, 1.0f)
-                .addItemOutput("minecraft:clay_ball", 4, 1.0f)
+                .addItemInput(Blocks.CLAY, 1, 1.0f)
+                .addItemOutput(Items.CLAY_BALL, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/clay_ball");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:deepslate", 1, 1.0f)
-                .addItemOutput("minecraft:cobbled_deepslate", 1, 1.0f)
+                .addItemInput(Blocks.DEEPSLATE, 1, 1.0f)
+                .addItemOutput(Blocks.COBBLED_DEEPSLATE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/cobbled_deepslate");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:gilded_blackstone", 1, 1.0f)
-                .addItemOutput("minecraft:gold_nugget", 8, 1.0f)
+                .addItemInput(Blocks.GILDED_BLACKSTONE, 1, 1.0f)
+                .addItemOutput(Items.GOLD_NUGGET, 8, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/gilded_blackstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:glowstone", 1, 1.0f)
-                .addItemOutput("minecraft:glowstone_dust", 4, 1.0f)
+                .addItemInput(Blocks.GLOWSTONE, 1, 1.0f)
+                .addItemOutput(Items.GLOWSTONE_DUST, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/glowstone_dust");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:cobblestone", 1, 1.0f)
-                .addItemOutput("minecraft:gravel", 1, 1.0f)
+                .addItemInput(Blocks.COBBLESTONE, 1, 1.0f)
+                .addItemOutput(Blocks.GRAVEL, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/gravel");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 800)
                 .level("bronze")
-                .addItemInput("minecraft:ancient_debris", 1, 1.0f)
-                .addItemOutput("minecraft:netherite_scrap", 2, 1.0f)
+                .addItemInput(Blocks.ANCIENT_DEBRIS, 1, 1.0f)
+                .addItemOutput(Items.NETHERITE_SCRAP, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/netherite_scrap");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:red_sandstone", 1, 1.0f)
-                .addItemOutput("minecraft:red_sand", 4, 1.0f)
+                .addItemInput(Blocks.RED_SANDSTONE, 1, 1.0f)
+                .addItemOutput(Blocks.RED_SAND, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/red_sandstone_to_sand");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:gravel", 1, 1.0f)
-                .addItemOutput("minecraft:sand", 1, 1.0f)
+                .addItemInput(Blocks.GRAVEL, 1, 1.0f)
+                .addItemOutput(Blocks.SAND, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/sand");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:sandstone", 1, 1.0f)
-                .addItemOutput("minecraft:sand", 4, 1.0f)
+                .addItemInput(Blocks.SANDSTONE, 1, 1.0f)
+                .addItemOutput(Blocks.SAND, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/sandstone_to_sand");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("#minecraft:wool", 1, 1.0f)
-                .addItemOutput("minecraft:string", 4, 1.0f)
+                .addItemInput(ItemTags.WOOL, 1, 1.0f)
+                .addItemOutput(Items.STRING, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/strings");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:sugar_cane", 1, 1.0f)
-                .addItemOutput("minecraft:sugar", 3, 1.0f)
+                .addItemInput(Items.SUGAR_CANE, 1, 1.0f)
+                .addItemOutput(Items.SUGAR, 3, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/macerator/sugar");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:andesite", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:andesite", 2, 1.0f)
+                .addItemInput(Blocks.ANDESITE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.ANDESITE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/andesite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:calcite", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:calcite", 2, 1.0f)
+                .addItemInput(Blocks.CALCITE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.CALCITE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/calcite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:sand", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1000, 1.0f)
-                .addItemOutput("minecraft:clay", 1, 1.0f)
+                .addItemInput(Blocks.SAND, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1000, 1.0f)
+                .addItemOutput(Blocks.CLAY, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/clay");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:dirt", 1, 1.0f)
-                .addItemInput("minecraft:gravel", 1, 1.0f)
-                .addItemOutput("minecraft:coarse_dirt", 2, 1.0f)
+                .addItemInput(Blocks.DIRT, 1, 1.0f)
+                .addItemInput(Blocks.GRAVEL, 1, 1.0f)
+                .addItemOutput(Blocks.COARSE_DIRT, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/coarse_dirt");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:cobbled_deepslate", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:cobbled_deepslate", 2, 1.0f)
+                .addItemInput(Blocks.COBBLED_DEEPSLATE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.COBBLED_DEEPSLATE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/cobbled_deepslate");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:cobblestone", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:cobblestone", 2, 1.0f)
+                .addItemInput(Blocks.COBBLESTONE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.COBBLESTONE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/cobblestone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:prismarine", 8, 1.0f)
-                .addItemInput("minecraft:black_dye", 1, 1.0f)
-                .addItemOutput("minecraft:dark_prismarine", 8, 1.0f)
+                .addItemInput(Blocks.PRISMARINE, 8, 1.0f)
+                .addItemInput(Items.BLACK_DYE, 1, 1.0f)
+                .addItemOutput(Blocks.DARK_PRISMARINE, 8, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/dark_prismarine");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:diorite", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:diorite", 2, 1.0f)
+                .addItemInput(Blocks.DIORITE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.DIORITE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/diorite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 600)
                 .level("bronze")
-                .addItemInput("minecraft:coarse_dirt", 1, 1.0f)
-                .addFluidInput("minecraft:water", 6000, 1.0f)
-                .addItemOutput("minecraft:dirt", 1, 1.0f)
+                .addItemInput(Blocks.COARSE_DIRT, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 6000, 1.0f)
+                .addItemOutput(Blocks.DIRT, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/dirt");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:dripstone_block", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:dripstone_block", 2, 1.0f)
+                .addItemInput(Blocks.DRIPSTONE_BLOCK, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.DRIPSTONE_BLOCK, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/dripstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 8, 200)
                 .level("bronze")
-                .addItemInput("minecraft:end_stone", 1, 1.0f)
+                .addItemInput(Blocks.END_STONE, 1, 1.0f)
                 .addFluidInput("milite:heavy_water", 1, 1.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:end_stone", 2, 1.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.END_STONE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/endstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:spider_eye", 1, 1.0f)
-                .addItemInput("minecraft:brown_mushroom", 1, 1.0f)
-                .addItemInput("minecraft:sugar", 1, 1.0f)
-                .addItemOutput("minecraft:fermented_spider_eye", 1, 1.0f)
+                .addItemInput(Items.SPIDER_EYE, 1, 1.0f)
+                .addItemInput(Blocks.BROWN_MUSHROOM, 1, 1.0f)
+                .addItemInput(Items.SUGAR, 1, 1.0f)
+                .addItemOutput(Items.FERMENTED_SPIDER_EYE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/fermented_spider_eye");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:granite", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1, 0.0f)
-                .addFluidInput("minecraft:lava", 1, 0.0f)
-                .addItemOutput("minecraft:granite", 2, 1.0f)
+                .addItemInput(Blocks.GRANITE, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1, 0.0f)
+                .addFluidInput(Fluids.LAVA, 1, 0.0f)
+                .addItemOutput(Blocks.GRANITE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/granite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 32, 1250)
                 .level("bronze")
-                .addItemInput("minecraft:stone", 1, 1.0f)
-                .addFluidInput("minecraft:lava", 1000, 0.0f)
-                .addFluidOutput("minecraft:lava", 50, 1.0f)
+                .addItemInput(Blocks.STONE, 1, 1.0f)
+                .addFluidInput(Fluids.LAVA, 1000, 0.0f)
+                .addFluidOutput(Fluids.LAVA, 50, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/lava");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:dirt", 1, 1.0f)
-                .addFluidInput("minecraft:water", 1000, 1.0f)
-                .addItemOutput("minecraft:mud", 1, 1.0f)
+                .addItemInput(Blocks.DIRT, 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1000, 1.0f)
+                .addItemOutput(Blocks.MUD, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/mud");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 16, 200)
                 .level("bronze")
-                .addItemInput("minecraft:netherite_scrap", 4, 1.0f)
-                .addItemInput("minecraft:gold_ingot", 4, 1.0f)
-                .addItemOutput("minecraft:netherite_ingot", 2, 1.0f)
+                .addItemInput(Items.NETHERITE_SCRAP, 4, 1.0f)
+                .addItemInput(Items.GOLD_INGOT, 4, 1.0f)
+                .addItemOutput(Items.NETHERITE_INGOT, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/netherite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
                 .addItemInput("milite:wood_pulp", 1, 1.0f)
-                .addFluidInput("minecraft:water", 100, 1.0f)
-                .addItemOutput("minecraft:paper", 2, 1.0f)
+                .addFluidInput(Fluids.WATER, 100, 1.0f)
+                .addItemOutput(Items.PAPER, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/paper");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:redstone", 1, 1.0f)
-                .addItemInput("minecraft:sand", 1, 1.0f)
-                .addItemOutput("minecraft:red_sand", 1, 1.0f)
+                .addItemInput(Items.REDSTONE, 1, 1.0f)
+                .addItemInput(Blocks.SAND, 1, 1.0f)
+                .addItemOutput(Blocks.RED_SAND, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/red_sand");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("#minecraft:sand", 4, 1.0f)
-                .addItemInput("minecraft:gunpowder", 5, 1.0f)
-                .addItemOutput("minecraft:tnt", 2, 1.0f)
+                .addItemInput(ItemTags.SAND, 4, 1.0f)
+                .addItemInput(Items.GUNPOWDER, 5, 1.0f)
+                .addItemOutput(Blocks.TNT, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/tnt");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:rail", 4, 1.0f)
-                .addItemInput("minecraft:redstone_torch", 1, 1.0f)
-                .addItemOutput("minecraft:activator_rail", 4, 1.0f)
+                .addItemInput(Blocks.RAIL, 4, 1.0f)
+                .addItemInput(Blocks.REDSTONE_TORCH, 1, 1.0f)
+                .addItemOutput(Blocks.ACTIVATOR_RAIL, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/activator_rail");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:amethyst_shard", 4, 1.0f)
-                .addItemOutput("minecraft:amethyst_block", 1, 1.0f)
+                .addItemInput(Items.AMETHYST_SHARD, 4, 1.0f)
+                .addItemOutput(Blocks.AMETHYST_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/amethyst_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:packed_ice", 9, 1.0f)
-                .addItemOutput("minecraft:blue_ice", 1, 1.0f)
+                .addItemInput(Blocks.PACKED_ICE, 9, 1.0f)
+                .addItemOutput(Blocks.BLUE_ICE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/blue_ice");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:bone_meal", 9, 1.0f)
-                .addItemOutput("minecraft:bone_block", 1, 1.0f)
+                .addItemInput(Items.BONE_MEAL, 9, 1.0f)
+                .addItemOutput(Blocks.BONE_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/bone_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:brick", 4, 1.0f)
-                .addItemOutput("minecraft:bricks", 1, 1.0f)
+                .addItemInput(Items.BRICK, 4, 1.0f)
+                .addItemOutput(Blocks.BRICKS, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/bricks");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
                 .addItemInput("milite:steel_plate", 3, 1.0f)
-                .addItemOutput("minecraft:bucket", 4, 1.0f)
+                .addItemOutput(Items.BUCKET, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/bucket");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:string", 1, 1.0f)
+                .addItemInput(Items.STRING, 1, 1.0f)
                 .addItemInput("milite:wax", 1, 1.0f)
-                .addItemOutput("minecraft:candle", 1, 1.0f)
+                .addItemOutput(Blocks.CANDLE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/candle");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("milite:steel_ring", 3, 1.0f)
-                .addItemOutput("minecraft:chain", 6, 1.0f)
+                .addItemInput("#c:ingots/steel", 3, 1.0f)
+                .addItemOutput(Blocks.CHAIN, 6, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/chains");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:chest", 1, 1.0f)
-                .addItemInput("minecraft:minecart", 1, 1.0f)
-                .addItemOutput("minecraft:chest_minecart", 1, 1.0f)
+                .addItemInput(Blocks.CHEST, 1, 1.0f)
+                .addItemInput(Items.MINECART, 1, 1.0f)
+                .addItemOutput(Items.CHEST_MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/chest_minecart");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:rail", 4, 1.0f)
-                .addItemInput("minecraft:stone_pressure_plate", 1, 1.0f)
-                .addItemInput("minecraft:redstone", 1, 1.0f)
-                .addItemOutput("minecraft:detector_rail", 4, 1.0f)
+                .addItemInput(Blocks.RAIL, 4, 1.0f)
+                .addItemInput(Blocks.STONE_PRESSURE_PLATE, 1, 1.0f)
+                .addItemInput(Items.REDSTONE, 1, 1.0f)
+                .addItemOutput(Blocks.DETECTOR_RAIL, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/detector_rail");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:dried_kelp", 9, 1.0f)
-                .addItemOutput("minecraft:dried_kelp_block", 1, 1.0f)
+                .addItemInput(Items.DRIED_KELP, 9, 1.0f)
+                .addItemOutput(Blocks.DRIED_KELP_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/dried_kelp");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:pointed_dripstone", 4, 1.0f)
-                .addItemOutput("minecraft:dripstone_block", 1, 1.0f)
+                .addItemInput(Blocks.POINTED_DRIPSTONE, 4, 1.0f)
+                .addItemOutput(Blocks.DRIPSTONE_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/dripstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:furnace", 1, 1.0f)
-                .addItemInput("minecraft:minecart", 1, 1.0f)
-                .addItemOutput("minecraft:furnace_minecart", 1, 1.0f)
+                .addItemInput(Blocks.FURNACE, 1, 1.0f)
+                .addItemInput(Items.MINECART, 1, 1.0f)
+                .addItemOutput(Items.FURNACE_MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/furnace_minecart");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("#minecraft:stone_crafting_materials", 8, 1.0f)
-                .addItemOutput("minecraft:furnace", 1, 1.0f)
+                .addItemInput(ItemTags.STONE_CRAFTING_MATERIALS, 8, 1.0f)
+                .addItemOutput(Blocks.FURNACE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/furnace");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:gold_nugget", 4, 1.0f)
-                .addItemInput("minecraft:melon_slice", 1, 1.0f)
-                .addItemOutput("minecraft:glistering_melon_slice", 1, 1.0f)
+                .addItemInput(Items.GOLD_NUGGET, 4, 1.0f)
+                .addItemInput(Items.MELON_SLICE, 1, 1.0f)
+                .addItemOutput(Items.GLISTERING_MELON_SLICE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/glistering_melon_slice");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:glowstone_dust", 4, 1.0f)
-                .addItemOutput("minecraft:glowstone", 1, 1.0f)
+                .addItemInput(Items.GLOWSTONE_DUST, 4, 1.0f)
+                .addItemOutput(Blocks.GLOWSTONE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/glowstone_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:gold_nugget", 4, 1.0f)
-                .addItemInput("minecraft:carrot", 1, 1.0f)
-                .addItemOutput("minecraft:golden_carrot", 1, 1.0f)
+                .addItemInput(Items.GOLD_NUGGET, 4, 1.0f)
+                .addItemInput(Items.CARROT, 1, 1.0f)
+                .addItemOutput(Items.GOLDEN_CARROT, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/golden_carrot");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:wheat", 9, 1.0f)
-                .addItemOutput("minecraft:hay_block", 1, 1.0f)
+                .addItemInput(Items.WHEAT, 9, 1.0f)
+                .addItemOutput(Blocks.HAY_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/hayblock");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:honeycomb", 4, 1.0f)
-                .addItemOutput("minecraft:honeycomb_block", 1, 1.0f)
+                .addItemInput(Items.HONEYCOMB, 4, 1.0f)
+                .addItemOutput(Blocks.HONEYCOMB_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/honeycomb");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:hopper", 1, 1.0f)
-                .addItemInput("minecraft:minecart", 1, 1.0f)
-                .addItemOutput("minecraft:hopper_minecart", 1, 1.0f)
+                .addItemInput(Blocks.HOPPER, 1, 1.0f)
+                .addItemInput(Items.MINECART, 1, 1.0f)
+                .addItemOutput(Items.HOPPER_MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/hopper_minecart");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:magma_cream", 4, 1.0f)
-                .addItemOutput("minecraft:magma_block", 1, 1.0f)
+                .addItemInput(Items.MAGMA_CREAM, 4, 1.0f)
+                .addItemOutput(Blocks.MAGMA_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/magma_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:blaze_powder", 1, 1.0f)
-                .addItemInput("minecraft:slime_ball", 1, 1.0f)
-                .addItemOutput("minecraft:magma_cream", 2, 1.0f)
+                .addItemInput(Items.BLAZE_POWDER, 1, 1.0f)
+                .addItemInput(Items.SLIME_BALL, 1, 1.0f)
+                .addItemOutput(Items.MAGMA_CREAM, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/magma_cream");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:melon_slice", 9, 1.0f)
-                .addItemOutput("minecraft:melon", 1, 1.0f)
+                .addItemInput(Items.MELON_SLICE, 9, 1.0f)
+                .addItemOutput(Blocks.MELON, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/melon");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
                 .addItemInput("milite:steel_large_plate", 1, 1.0f)
-                .addItemInput("minecraft:rail", 1, 1.0f)
-                .addItemOutput("minecraft:minecart", 1, 1.0f)
+                .addItemInput(Blocks.RAIL, 1, 1.0f)
+                .addItemOutput(Items.MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/minecart");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:packed_mud", 4, 1.0f)
-                .addItemOutput("minecraft:mud_bricks", 4, 1.0f)
+                .addItemInput(Blocks.PACKED_MUD, 4, 1.0f)
+                .addItemOutput(Blocks.MUD_BRICKS, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/mud_bricks");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:nether_brick", 4, 1.0f)
-                .addItemOutput("minecraft:nether_bricks", 1, 1.0f)
+                .addItemInput(Items.NETHER_BRICK, 4, 1.0f)
+                .addItemOutput(Blocks.NETHER_BRICKS, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/nether_bricks");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:nether_wart", 9, 1.0f)
-                .addItemOutput("minecraft:nether_wart_block", 1, 1.0f)
+                .addItemInput(Items.NETHER_WART, 9, 1.0f)
+                .addItemOutput(Blocks.NETHER_WART_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/nether_warts");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 200)
                 .level("bronze")
-                .addItemInput("minecraft:netherite_ingot", 9, 1.0f)
-                .addItemOutput("minecraft:netherite_block", 1, 1.0f)
+                .addItemInput(Items.NETHERITE_INGOT, 9, 1.0f)
+                .addItemOutput(Blocks.NETHERITE_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/netherite");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:ice", 9, 1.0f)
-                .addItemOutput("minecraft:packed_ice", 1, 1.0f)
+                .addItemInput(Blocks.ICE, 9, 1.0f)
+                .addItemOutput(Blocks.PACKED_ICE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/packed_ice");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:prismarine_shard", 9, 1.0f)
+                .addItemInput(Items.PRISMARINE_SHARD, 9, 1.0f)
                 .addItemInput("milite:packer_block_template", 1, 0.0f)
-                .addItemOutput("minecraft:prismarine_bricks", 1, 1.0f)
+                .addItemOutput(Blocks.PRISMARINE_BRICKS, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/prismarine_bricks");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:prismarine_shard", 4, 1.0f)
-                .addItemOutput("minecraft:prismarine", 1, 1.0f)
+                .addItemInput(Items.PRISMARINE_SHARD, 4, 1.0f)
+                .addItemOutput(Blocks.PRISMARINE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/prismarine");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:popped_chorus_fruit", 4, 1.0f)
-                .addItemOutput("minecraft:purpur_block", 1, 1.0f)
+                .addItemInput(Items.POPPED_CHORUS_FRUIT, 4, 1.0f)
+                .addItemOutput(Blocks.PURPUR_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/purpur");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:quartz", 4, 1.0f)
-                .addItemOutput("minecraft:quartz_block", 1, 1.0f)
+                .addItemInput(Items.QUARTZ, 4, 1.0f)
+                .addItemOutput(Blocks.QUARTZ_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/quartz_block");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:red_sand", 4, 1.0f)
-                .addItemOutput("minecraft:red_sandstone", 1, 1.0f)
+                .addItemInput(Blocks.RED_SAND, 4, 1.0f)
+                .addItemOutput(Blocks.RED_SANDSTONE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/red_sandstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:sand", 4, 1.0f)
-                .addItemOutput("minecraft:sandstone", 1, 1.0f)
+                .addItemInput(Blocks.SAND, 4, 1.0f)
+                .addItemOutput(Blocks.SANDSTONE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/sandstone");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:slime_ball", 9, 1.0f)
-                .addItemOutput("minecraft:slime_block", 1, 1.0f)
+                .addItemInput(Items.SLIME_BALL, 9, 1.0f)
+                .addItemOutput(Blocks.SLIME_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/slimeblock");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:snowball", 4, 1.0f)
-                .addItemOutput("minecraft:snow_block", 1, 1.0f)
+                .addItemInput(Items.SNOWBALL, 4, 1.0f)
+                .addItemOutput(Blocks.SNOW_BLOCK, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/snowblock");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("minecraft:tnt", 1, 1.0f)
-                .addItemInput("minecraft:minecart", 1, 1.0f)
-                .addItemOutput("minecraft:tnt_minecart", 1, 1.0f)
+                .addItemInput(Blocks.TNT, 1, 1.0f)
+                .addItemInput(Items.MINECART, 1, 1.0f)
+                .addItemOutput(Items.TNT_MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/tnt_minecart");
 
         smelting(consumer.withConditions(new NotCondition(new ModLoadedCondition("dehydration"))), "vanilla_recipes/steam_bucket", "minecraft:water_bucket",
@@ -692,14 +696,14 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.VACUUM_FREEZER, 16, 200)
                 .level("bronze")
-                .addFluidInput("minecraft:water", 1000, 1.0f)
-                .addItemOutput("minecraft:ice", 1, 1.0f)
+                .addFluidInput(Fluids.WATER, 1000, 1.0f)
+                .addItemOutput(Blocks.ICE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/vacuum_freezer/ice");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.VACUUM_FREEZER, 2, 2400)
                 .level("bronze")
-                .addFluidInput("minecraft:lava", 1000, 1.0f)
-                .addItemOutput("minecraft:obsidian", 1, 1.0f)
+                .addFluidInput(Fluids.LAVA, 1000, 1.0f)
+                .addItemOutput(Blocks.OBSIDIAN, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/vacuum_freezer/obsidian");
     }
 }

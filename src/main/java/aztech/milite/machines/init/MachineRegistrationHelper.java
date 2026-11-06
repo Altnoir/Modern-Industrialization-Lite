@@ -38,17 +38,14 @@ public class MachineRegistrationHelper {
             "aluminum_alloy_wiremill", List.of("oil_drilling_rig", "electric_quarry", "vacuum_freezer"),
             "stainless_steel_distillery", List.of("distillation_tower"),
             "stainless_steel_steam_turbine", List.of("large_steam_turbine"),
-            "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler",
-                    "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
-            "nuclear_reactor", List.of("fusion_reactor"),
+            "stainless_steel_wiremill", List.of("high_pressure_large_steam_boiler", "high_pressure_advanced_large_steam_boiler", "heat_exchanger"),
             "iridium_wiremill", List.of("replicator", "plasma_turbine"));
 
     private static final List<String> MACHINE_TIER_PREFIXES = machineTierPrefixes();
 
     private static final List<String> MACHINE_HEAD = List.of("coke_oven");
-    private static final List<String> MACHINE_TAIL = List.of("configurable_chest", "configurable_tank");
+    private static final List<String> MACHINE_TAIL = List.of("nuclear_reactor", "fusion_reactor");
     private static final int MACHINE_HEAD_RANK = -1;
-    private static final int MACHINE_TAIL_RANK = MACHINE_TIER_PREFIXES.size() + 1;
 
     @SafeVarargs
     public static <T extends MachineBlockEntity> MachineDefinition<T> registerMachine(String englishName, String id,
@@ -99,7 +96,12 @@ public class MachineRegistrationHelper {
     }
 
     private static SortOrder machineSortOrder(String id) {
-        // 仓是部件，跟机壳排一起
+        if (id.equals("configurable_chest")) {
+            return SortOrder.BARRELS.and(Long.MAX_VALUE);
+        }
+        if (id.equals("configurable_tank")) {
+            return SortOrder.TANKS.and(Long.MAX_VALUE);
+        }
         if (id.endsWith("_hatch")) {
             return hatchSortOrder(id);
         }
@@ -109,7 +111,7 @@ public class MachineRegistrationHelper {
         }
         int tail = MACHINE_TAIL.indexOf(id);
         if (tail >= 0) {
-            return SortOrder.MACHINES.and(MACHINE_TAIL_RANK).and(tail);
+            return SortOrder.MACHINES.and(MACHINE_TIER_PREFIXES.size() + 1).and(tail);
         }
         for (var entry : MACHINE_FOLLOWS.entrySet()) {
             int index = entry.getValue().indexOf(id);

@@ -6,7 +6,7 @@
       "tag": "c:plates/titanium"
     },
     "R": {
-      "item": "milite:titanium_ring"
+      "tag": "c:ingots/titanium"
     },
     "b": {
       "item": "milite:titanium_bolt"

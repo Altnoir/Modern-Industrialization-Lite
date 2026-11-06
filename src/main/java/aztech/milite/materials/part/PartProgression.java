@@ -23,7 +23,7 @@ public final class PartProgression {
             // What the rolling and cutting machines make of an ingot.
             "plate", "large_plate", "n_doped_plate", "p_doped_plate",
             // The machine parts, from the simple shapes to the assembled ones.
-            "gear", "rod", "rod_magnetic", "bolt", "ring", "rotor", "wire", "wire_magnetic", "fine_wire",
+            "gear", "rod", "rod_magnetic", "bolt", "rotor", "wire", "wire_magnetic", "fine_wire",
             "drill_head", "drill",
             // The parts that are a device in their own right.
             "battery");

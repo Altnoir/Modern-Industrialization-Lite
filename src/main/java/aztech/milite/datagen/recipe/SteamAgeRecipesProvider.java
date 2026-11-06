@@ -5,6 +5,7 @@ import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.level.block.Blocks;
 
 public class SteamAgeRecipesProvider extends FixedRecipesProvider {
     public SteamAgeRecipesProvider(PackOutput output) {
@@ -25,14 +26,14 @@ public class SteamAgeRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 200)
                 .level("bronze")
-                .addItemInput("minecraft:furnace", 1, 1.0f)
-                .addItemInput("minecraft:bricks", 8, 1.0f)
+                .addItemInput(Blocks.FURNACE, 1, 1.0f)
+                .addItemInput(Blocks.BRICKS, 8, 1.0f)
                 .addItemOutput("milite:coke_oven", 1, 1.0f)
                 .offerTo(consumer, "steam_age/fireclay/packer/coke_oven");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 200)
                 .level("bronze")
-                .addItemInput("minecraft:blast_furnace", 1, 1.0f)
+                .addItemInput(Blocks.BLAST_FURNACE, 1, 1.0f)
                 .addItemInput("milite:fire_clay_bricks", 8, 1.0f)
                 .addItemOutput("milite:steam_blast_furnace", 1, 1.0f)
                 .offerTo(consumer, "steam_age/fireclay/packer/packer_steam_blast_furnace");

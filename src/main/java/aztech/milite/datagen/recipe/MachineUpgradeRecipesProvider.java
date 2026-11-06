@@ -62,6 +62,10 @@ public class MachineUpgradeRecipesProvider extends MIRecipesProvider {
     }
 
     private static void addUpgrade(RecipeOutput consumer, ItemLike machine, String machineName, MachineLevel targetLevel, ItemLike hull) {
+        // Lithography has its own upgrade path using the previous processor, before the target hull is available.
+        if (machineName.equals("lithography")) {
+            return;
+        }
         ItemLike target = MIBlock.BLOCK_DEFINITIONS.get(MI.id(targetLevel.getSerializedName() + "_" + machineName));
         if (target == null) {
             return;

@@ -27,6 +27,7 @@ public class MIMachineRecipeTypes {
     public static final MachineRecipeType DISTILLERY = create("distillery").withFluidInputs().withFluidOutputs();
     public static final MachineRecipeType ELECTROLYZER = create("electrolyzer").withItemInputs().withFluidInputs().withItemOutputs().withFluidOutputs();
     public static final MachineRecipeType FURNACE = create("furnace", FurnaceMachineRecipeType::new).withItemInputs().withItemOutputs();
+    public static final MachineRecipeType LITHOGRAPHY = create("lithography").withItemInputs().withItemOutputs();
     public static final MachineRecipeType MACERATOR = create("macerator").withItemInputs().withItemOutputs();
     public static final MachineRecipeType MIXER = create("mixer").withItemInputs().withFluidInputs().withItemOutputs().withFluidOutputs();
     public static final MachineRecipeType PACKER = create("packer").withItemInputs().withItemOutputs();

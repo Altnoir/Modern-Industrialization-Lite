@@ -3,6 +3,7 @@ package aztech.milite.datagen.recipe;
 import aztech.milite.MIFluids;
 import aztech.milite.MIItem;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapelessRecipeBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -51,7 +52,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
         generateCopperOxidation(exporter, Items.WAXED_CHISELED_COPPER, Items.WAXED_EXPOSED_CHISELED_COPPER, Items.WAXED_WEATHERED_CHISELED_COPPER, Items.WAXED_OXIDIZED_CHISELED_COPPER);
         generateCopperOxidation(exporter, Items.WAXED_COPPER_GRATE, Items.WAXED_EXPOSED_COPPER_GRATE, Items.WAXED_WEATHERED_COPPER_GRATE, Items.WAXED_OXIDIZED_COPPER_GRATE);
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 2, 100)
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 2, 100).level(MachineLevel.ALUMINUM)
                 .addItemInput(Items.HONEYCOMB, 1)
                 .addItemOutput(MIItem.WAX, 4)
                 .offerTo(exporter, "vanilla_recipes/centrifuge/honeycomb");
@@ -109,7 +110,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
     }
 
     private void generateGrasslike(RecipeOutput exporter, Ingredient from, Item to) {
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 320)
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 320).level(MachineLevel.ALUMINUM)
                 .addFluidInput(Fluids.WATER, 1000)
                 .addItemInput(Items.DIRT, 1)
                 .addItemInput(from, 1, 0)
@@ -129,7 +130,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
 
             new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                     .addItemInput("minecraft:" + name + "_concrete_powder", 1)
-                    .addFluidInput("minecraft:water", 1000)
+                    .addFluidInput(Fluids.WATER, 1000)
                     .addItemOutput("minecraft:" + name + "_concrete", 1)
                     .offerTo(exporter, "vanilla_recipes/mixer/concrete/" + name + "_concrete");
         }
@@ -137,15 +138,15 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
 
     private void generateCoralPropagation(RecipeOutput exporter) {
         for (String coral : new String[]{"brain", "bubble", "fire", "horn", "tube"}) {
-            new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 6000)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 2, 6000).level(MachineLevel.ALUMINUM)
                     .addItemInput("minecraft:" + coral + "_coral_block", 1)
                     .addItemInput(Items.BONE_MEAL, 4)
                     .addItemInput("#c:dusts/salt", 4)
-                    .addFluidInput("minecraft:water", 9000)
+                    .addFluidInput(Fluids.WATER, 9000)
                     .addItemOutput("minecraft:" + coral + "_coral_block", 2)
                     .addItemOutput("minecraft:" + coral + "_coral", 2)
                     .addItemOutput("minecraft:" + coral + "_coral_fan", 2)
-                    .addFluidOutput("minecraft:water", 6000)
+                    .addFluidOutput(Fluids.WATER, 6000)
                     .offerTo(exporter, "vanilla_recipes/chemical_reactor/" + coral + "_coral");
         }
     }
@@ -217,7 +218,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
     }
 
     private void oxidize(RecipeOutput exporter, Item from, Item to) {
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100).level(MachineLevel.ALUMINUM)
                 .addItemInput(from, 1)
                 .addFluidInput(MIFluids.OXYGEN, 100)
                 .addItemOutput(to, 1)
@@ -228,7 +229,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
         var recipe = ShapelessRecipeBuilder.shapeless(to).requires(from).requires(MIItem.WAX);
         recipe.offerTo(exporter, "vanilla_recipes/waxing/" + BuiltInRegistries.ITEM.getKey(from).getPath());
 
-        MachineRecipeBuilder chemicalReactorRecipe = new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
+        MachineRecipeBuilder chemicalReactorRecipe = new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100).level(MachineLevel.ALUMINUM)
                 .addItemInput(from, 1)
                 .addItemInput(MIItem.WAX, 1)
                 .addItemOutput(to, 1);

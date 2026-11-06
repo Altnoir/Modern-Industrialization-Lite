@@ -1,0 +1,29 @@
+{
+  "type": "milite:processing_table",
+  "casing": {
+    "item": "milite:titanium_lithography"
+  },
+  "ingredients": {
+    "a": {
+      "tag": "c:plates/iridium"
+    },
+    "b": {
+      "tag": "c:glass_blocks"
+    },
+    "c": {
+      "item": "milite:robot_arm"
+    },
+    "d": {
+      "item": "milite:advanced_processor"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "aaa",
+    "bcd"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:iridium_lithography"
+  }
+}

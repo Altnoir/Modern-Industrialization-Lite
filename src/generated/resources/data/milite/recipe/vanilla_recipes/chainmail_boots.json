@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "x": {
-      "item": "milite:iron_ring"
+      "tag": "c:ingots/iron"
     }
   },
   "pattern": [

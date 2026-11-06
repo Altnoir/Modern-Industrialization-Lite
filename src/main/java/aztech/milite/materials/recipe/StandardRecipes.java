@@ -36,12 +36,11 @@ public final class StandardRecipes {
         new ShapedRecipeBuilder(ctx, LARGE_PLATE, 1, "large_plate", "xx", "xx").addTaggedPart('x', PLATE)
                 .exportToMachine(MIMachineRecipeTypes.PACKER);
 
-        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", " B ", "BRB", " B ").addTaggedPart('B', PLATE).addTaggedPart('R', RING);
+        new ShapedRecipeBuilder(ctx, ROTOR, 1, "rotor", " B ", "BRB", " B ").addTaggedPart('B', PLATE).addTaggedPart('R', INGOT);
 
         new ShapedRecipeBuilder(ctx, GEAR, 1, "gear", "PbP", "bRb", "PbP").addTaggedPart('b', BOLT).addTaggedPart('P', PLATE).addTaggedPart('R',
-                RING);
+                INGOT);
 
-        new ShapedRecipeBuilder(ctx, RING, 2, "ring", "bRb", "R R", "bRb").addTaggedPart('b', BOLT).addTaggedPart('R', ROD);
 
         new ShapedRecipeBuilder(ctx, TANK, 1, "tank", "###", "#G#", "###").addTaggedPart('#', PLATE).addInput('G', Tags.Items.GLASS_BLOCKS)
                 .exportToAssembler();
@@ -60,7 +59,6 @@ public final class StandardRecipes {
         addMaceratorRecycling(ctx, NUGGET, 1);
         addMaceratorRecycling(ctx, LARGE_PLATE, 36);
         addMaceratorRecycling(ctx, GEAR, 18);
-        addMaceratorRecycling(ctx, RING, 4);
         addMaceratorRecycling(ctx, BOLT, 2);
         addMaceratorRecycling(ctx, ROD, 4);
         addMaceratorRecycling(ctx, ROTOR, 27);
@@ -81,7 +79,6 @@ public final class StandardRecipes {
                 .addPartOutput(DUST, 1).addPartOutput(DUST, 1, 0.5f);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "main").addTaggedPartInput(ctx.get(MAIN_PART), 1).addPartOutput(PLATE, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "double_ingot").addTaggedPartInput(DOUBLE_INGOT, 1).addPartOutput(PLATE, 2);
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.COMPRESSOR, "ring").addTaggedPartInput(ROD, 1).addPartOutput(RING, 1);
         addCuttingMachine(ctx, "main", ctx.get(MAIN_PART), ROD, 2);
         addCuttingMachine(ctx, "double_ingot", DOUBLE_INGOT, ROD, 4);
         addCuttingMachine(ctx, "rod", ROD, BOLT, 2);
@@ -103,10 +100,10 @@ public final class StandardRecipes {
         // These use the default energy of two, but the assembler only exists as an electric machine, so they still
         // belong to the electric level and have to say so.
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "rotor").level(MachineLevel.ELECTRIC)
-                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
+                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(INGOT, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(ROTOR, 1);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "gear").level(MachineLevel.ELECTRIC)
-                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(RING, 1)
+                .addTaggedPartInput(PLATE, 4).addTaggedPartInput(INGOT, 1)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 100).addPartOutput(GEAR, 2);
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "drill_head").level(MachineLevel.ELECTRIC)
                 .addTaggedPartInput(PLATE, 3)
@@ -123,8 +120,8 @@ public final class StandardRecipes {
                 .addFluidInput(MIFluids.CRYOFLUID, 20)
                 .addPartOutput(INGOT, 1).addFluidOutput(MIFluids.ARGON, 13).addFluidOutput(MIFluids.HELIUM, 5);
 
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.POLARIZER, "rod_magnetic", 8, 200).addTaggedPartInput(ROD, 1).addPartOutput(ROD_MAGNETIC, 1);
-        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.POLARIZER, "wire_magnetic", 8, 200).addTaggedPartInput(WIRE, 1).addPartOutput(WIRE_MAGNETIC, 1);
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.POLARIZER, "rod_magnetic", 8, 200).level(MachineLevel.ALUMINUM).addTaggedPartInput(ROD, 1).addPartOutput(ROD_MAGNETIC, 1);
+        new MIRecipeBuilder(ctx, MIMachineRecipeTypes.POLARIZER, "wire_magnetic", 8, 200).level(MachineLevel.ALUMINUM).addTaggedPartInput(WIRE, 1).addPartOutput(WIRE_MAGNETIC, 1);
         new SmeltingRecipeBuilder(ctx, ROD_MAGNETIC, ROD, 0.0f, false);
         new SmeltingRecipeBuilder(ctx, WIRE_MAGNETIC, WIRE, 0.0f, false);
 

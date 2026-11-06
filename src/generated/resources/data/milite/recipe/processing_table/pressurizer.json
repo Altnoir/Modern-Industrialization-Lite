@@ -5,7 +5,7 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:digital_circuit"
+      "item": "milite:processor"
     },
     "b": {
       "item": "milite:solid_titanium_machine_casing"

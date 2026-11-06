@@ -5,22 +5,19 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:processing_unit"
+      "item": "milite:processor"
     },
     "b": {
       "item": "milite:stainless_steel_rotor"
     },
     "c": {
-      "item": "milite:digital_circuit"
-    },
-    "d": {
       "item": "milite:stainless_steel_large_plate"
     }
   },
   "pattern": [
-    "a b",
-    " c ",
-    "d c"
+    "a  ",
+    " b ",
+    "  c"
   ],
   "result": {
     "count": 1,

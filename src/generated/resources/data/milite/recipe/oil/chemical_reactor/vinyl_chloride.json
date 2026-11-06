@@ -17,5 +17,6 @@
       "amount": 1000,
       "fluid": "milite:vinyl_chloride"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

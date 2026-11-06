@@ -9,39 +9,19 @@
     },
     {
       "amount": 1,
-      "item": "milite:invar_rotary_blade"
+      "item": "minecraft:iron_pickaxe"
     },
     {
       "amount": 1,
-      "item": "milite:invar_gear"
+      "item": "milite:bronze_gear"
     },
     {
       "amount": 1,
-      "item": "milite:quantum_circuit"
-    },
-    {
-      "amount": 1,
-      "item": "milite:tungsten_large_plate"
+      "item": "milite:quantum_processor"
     },
     {
       "amount": 1,
       "item": "milite:iridium_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:quantum_circuit"
-    },
-    {
-      "amount": 1,
-      "item": "milite:tungsten_large_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:iridium_plate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:quantum_circuit"
     }
   ],
   "item_outputs": [

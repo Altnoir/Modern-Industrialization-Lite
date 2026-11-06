@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "milite:processing_unit"
+            "items": "milite:advanced_processor"
           }
         ]
       },
@@ -18,7 +18,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "milite:processing_unit"
+      "id": "milite:advanced_processor"
     },
     "title": {
       "translate": "advancements.milite.processing_unit"

@@ -9,7 +9,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     {
       "amount": 1,
@@ -17,11 +17,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_circuit"
-    },
-    {
-      "amount": 1,
-      "item": "milite:tungsten_large_plate"
+      "item": "milite:quantum_processor"
     },
     {
       "amount": 1,
@@ -29,11 +25,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_circuit"
+      "item": "milite:tungsten_large_plate"
     },
     {
       "amount": 1,
-      "item": "milite:tungsten_large_plate"
+      "item": "milite:quantum_processor"
     },
     {
       "amount": 1,
@@ -41,7 +37,11 @@
     },
     {
       "amount": 1,
-      "item": "milite:quantum_circuit"
+      "item": "milite:tungsten_large_plate"
+    },
+    {
+      "amount": 1,
+      "item": "milite:quantum_processor"
     }
   ],
   "item_outputs": [

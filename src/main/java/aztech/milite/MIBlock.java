@@ -71,7 +71,7 @@ public class MIBlock {
                     .destroyTime(6.0f).explosionResistance(1200).sound(SoundType.WOOD));
 
     public static final BlockDefinition<TrashCanBlock> TRASH_CAN = block("Automatic Trash Can", "trash_can",
-            BlockDefinitionParams.defaultStone().withBlockConstructor(TrashCanBlock::new).destroyTime(6.0f).explosionResistance(1200).dontConductRedstone())
+            BlockDefinitionParams.defaultStone().withBlockConstructor(TrashCanBlock::new).sortOrder(SortOrder.BARRELS.and(Long.MAX_VALUE).and(1)).destroyTime(6.0f).explosionResistance(1200).dontConductRedstone())
             .withBlockRegistrationEvent(TrashCanBlock::onRegister);
 
     // Machine hulls. They are the casing a machine is built into, so the tab lists them beside the casings of the same

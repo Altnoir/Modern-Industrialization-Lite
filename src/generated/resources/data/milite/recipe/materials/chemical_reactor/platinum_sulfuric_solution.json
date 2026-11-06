@@ -19,5 +19,6 @@
       "amount": 1,
       "tag": "c:raw_materials/platinum"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

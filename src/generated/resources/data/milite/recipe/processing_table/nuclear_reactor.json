@@ -5,7 +5,7 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:processing_unit"
+      "item": "milite:advanced_processor"
     },
     "b": {
       "item": "milite:nuclear_alloy_large_plate"

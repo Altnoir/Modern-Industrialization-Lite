@@ -17,7 +17,7 @@ item_ids:
     <MultiblockShape controller="steam_quarry" />
 </GameScene>
 
-The Steam Quarry is a steam multiblock machine that consumes bronze drills, uses them to dig deeper than the bedrock and gives you back some ores, as you can see in REI.
+The Steam Quarry uses bronze drills to mine ores below bedrock. The drills stay in the machine as it runs. Check the recipe viewer for the ores it can produce.
 
 It's recommended that you have multiple SBFs running before you attempt to build it because it requires **a lot of steel**.
 

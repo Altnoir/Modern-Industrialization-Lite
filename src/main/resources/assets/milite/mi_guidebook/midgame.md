@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "The Midgame"
-  icon: "milite:digital_circuit"
+  icon: "milite:processor"
   position: 3
 ---
 

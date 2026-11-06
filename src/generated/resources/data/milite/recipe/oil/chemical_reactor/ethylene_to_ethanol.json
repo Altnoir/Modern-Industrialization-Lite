@@ -21,5 +21,6 @@
       "amount": 200,
       "fluid": "milite:ethanol"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

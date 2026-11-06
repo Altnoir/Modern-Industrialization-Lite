@@ -5,10 +5,10 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:processing_unit"
+      "item": "milite:advanced_processor"
     },
     "b": {
-      "item": "milite:large_advanced_pump"
+      "item": "milite:large_pump"
     },
     "c": {
       "item": "milite:titanium_large_plate"

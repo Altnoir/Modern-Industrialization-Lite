@@ -11,19 +11,16 @@
       "item": "milite:steel_plate"
     },
     "c": {
-      "item": "milite:processing_unit"
+      "item": "milite:advanced_processor"
     },
     "d": {
       "item": "milite:titanium_large_plate"
-    },
-    "e": {
-      "item": "milite:titanium_gear"
     }
   },
   "pattern": [
     "a b",
-    "ccd",
-    "d e"
+    "   ",
+    "c d"
   ],
   "result": {
     "count": 1,

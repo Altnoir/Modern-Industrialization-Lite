@@ -9,15 +9,12 @@
     },
     "b": {
       "item": "milite:tin_rotor"
-    },
-    "c": {
-      "item": "milite:electronic_circuit"
     }
   },
   "pattern": [
     "a  ",
     " b ",
-    "  c"
+    "  a"
   ],
   "result": {
     "count": 1,

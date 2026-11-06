@@ -1,7 +1,7 @@
 ---
 navigation:
   title: "Oyun Ortası"
-  icon: "milite:digital_circuit"
+  icon: "milite:processor"
   position: 3
 ---
 

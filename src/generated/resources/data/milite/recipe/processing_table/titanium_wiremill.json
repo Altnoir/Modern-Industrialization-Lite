@@ -5,25 +5,22 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:motor"
+      "item": "milite:steel_gear"
     },
     "b": {
-      "item": "milite:invar_rod"
+      "item": "milite:steel_rod"
     },
     "c": {
-      "item": "milite:processing_unit"
+      "item": "milite:advanced_processor"
     },
     "d": {
       "item": "milite:titanium_large_plate"
-    },
-    "e": {
-      "item": "milite:titanium_gear"
     }
   },
   "pattern": [
     "a b",
-    "ccd",
-    "d e"
+    "   ",
+    "c d"
   ],
   "result": {
     "count": 1,

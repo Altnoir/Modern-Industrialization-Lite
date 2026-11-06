@@ -17,7 +17,7 @@ Yapısı Buharlı Maden Ocağı ile tamamen aynıdır.
 
 <Recipe id="milite:processing_table/electric_quarry" />
 
-Daha iyi ve daha büyük bir Geniş Buhar Kazanı! Bu gelişmiş versiyon 1024 mb/t'ye kadar buhar üretebilir!
+Elektrikli taş ocağı, buharlı taş ocağının elektrikli sürümüdür. Cevher çıkarmak için eşya ve enerji sağlayın.
 
 <Recipe id="milite:processing_table/advanced_large_steam_boiler" />
 

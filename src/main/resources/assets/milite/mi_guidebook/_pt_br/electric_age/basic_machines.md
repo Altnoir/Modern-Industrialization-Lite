@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
 ---
 
@@ -29,7 +29,7 @@ Ele possui 27 slots configuráveis e funcionalidade de ejeção automática! Mui
 
 O Polarizador polariza coisas. Ainda não tem muitas receitas, mas já é útil para automatizar Motores!
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 A primeira máquina que você vai querer fabricar em grande quantidade! O Montador permite automatizar quase todas as receitas, até 3 por Montador se usar bloqueio de slots.
 

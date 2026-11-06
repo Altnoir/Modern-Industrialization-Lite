@@ -5,25 +5,22 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:invar_rotary_blade"
+      "item": "minecraft:iron_pickaxe"
     },
     "b": {
-      "item": "milite:invar_gear"
+      "item": "milite:bronze_gear"
     },
     "c": {
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     "d": {
-      "item": "milite:tungsten_large_plate"
-    },
-    "e": {
       "item": "milite:iridium_plate"
     }
   },
   "pattern": [
-    "abc",
-    "dec",
-    "dec"
+    "a b",
+    "   ",
+    "c d"
   ],
   "result": {
     "count": 1,

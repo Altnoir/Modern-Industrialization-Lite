@@ -5,7 +5,7 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     "b": {
       "item": "milite:tungsten_large_plate"
@@ -16,8 +16,8 @@
   },
   "pattern": [
     "aba",
-    "bca",
-    "bca"
+    "cba",
+    "cba"
   ],
   "result": {
     "count": 1,

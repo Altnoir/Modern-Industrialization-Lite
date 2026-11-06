@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
 ---
 
@@ -23,9 +23,9 @@ item_ids:
 
 <Recipe id="milite:processing_table/configurable_chest" />
 
-两极磁化机用于极化物品。当前配方虽不多，但已可用于自动化生产马达！
+两极磁化机从铝合金等级开始制造，可用于自动化磁化材料。首台电力高炉所需的磁性白铜线可以用白铜线和红石在工作台合成。
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 第一台你会想要大量生产的机器！装配机允许你自动化几乎所有配方，如果使用槽位锁定功能，每台装配机最多可处理3种配方。
 

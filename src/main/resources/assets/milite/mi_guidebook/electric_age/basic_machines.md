@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
 ---
 
@@ -25,9 +25,9 @@ It has 27 configurable slots, and auto-eject functionality! Very useful for auto
 
 <Recipe id="milite:processing_table/configurable_chest" />
 
-The Polarizer polarizes stuff. It doesn't have many recipes yet, but it is already useful to automate Motors!
+The Polarizer is available from the aluminum alloy tier and automates magnetization. Craft magnetic cupronickel wire from cupronickel wire and redstone to build your first electric blast furnace.
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 The first machine you'll want to make a lot of! The Assembler allows you to automate almost all recipes, up to 3 per Assembler if you use slot locking.
 

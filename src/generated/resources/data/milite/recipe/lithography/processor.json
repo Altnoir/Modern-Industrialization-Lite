@@ -1,0 +1,22 @@
+{
+  "type": "milite:lithography",
+  "duration": 1600,
+  "energy": 2,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "milite:silicon_plate"
+    },
+    {
+      "amount": 2,
+      "item": "milite:electrum_plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "milite:processor"
+    }
+  ],
+  "level": "stainless_steel"
+}

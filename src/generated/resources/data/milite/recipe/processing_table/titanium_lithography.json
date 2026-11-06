@@ -1,0 +1,29 @@
+{
+  "type": "milite:processing_table",
+  "casing": {
+    "item": "milite:stainless_steel_lithography"
+  },
+  "ingredients": {
+    "a": {
+      "tag": "c:plates/titanium"
+    },
+    "b": {
+      "item": "milite:robot_arm"
+    },
+    "c": {
+      "item": "milite:processor"
+    },
+    "d": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    "a a",
+    "bac",
+    "a d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milite:titanium_lithography"
+  }
+}

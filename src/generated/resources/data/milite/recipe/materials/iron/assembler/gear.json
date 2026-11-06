@@ -15,7 +15,7 @@
     },
     {
       "amount": 1,
-      "item": "milite:iron_ring"
+      "tag": "c:ingots/iron"
     }
   ],
   "item_outputs": [

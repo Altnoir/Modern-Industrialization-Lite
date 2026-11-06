@@ -17,7 +17,7 @@ item_ids:
     <MultiblockShape controller="steam_quarry" />
 </GameScene>
 
-A Mineradora a Vapor é uma máquina multiblocos a vapor que consome brocas de bronze, usa-as para escavar além da camada de bedrock e retorna alguns minérios, como você pode ver no JEI.
+A Mineradora a Vapor é uma máquina multiblocos a vapor que usa brocas de bronze sem consumi-las para escavar além da camada de bedrock e retorna alguns minérios, como você pode ver no JEI.
 
 Recomenda-se que você tenha várias SBFs funcionando antes de tentar construí-la, pois ela requer **muito aço**.
 

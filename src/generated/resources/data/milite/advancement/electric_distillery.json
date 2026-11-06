@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "milite:electric_distillery"
+            "items": "milite:aluminum_alloy_distillery"
           }
         ]
       },
@@ -18,7 +18,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "milite:electric_distillery"
+      "id": "milite:aluminum_alloy_distillery"
     },
     "title": {
       "translate": "advancements.milite.electric_distillery"

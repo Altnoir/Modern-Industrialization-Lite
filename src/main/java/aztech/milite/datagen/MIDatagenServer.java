@@ -44,6 +44,7 @@ public class MIDatagenServer {
         aggregate.addProvider(DyeRecipesProvider::new);
         aggregate.addProvider(ConditionalMachineRecipesProvider::new);
         aggregate.addProvider(ElectricAgeRecipesProvider::new);
+        aggregate.addProvider(LithographyRecipesProvider::new);
         aggregate.addProvider(FixedMaterialRecipesProvider::new);
         aggregate.addProvider(FixedVanillaRecipesProvider::new);
         aggregate.addProvider(FusionRecipesProvider::new);

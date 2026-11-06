@@ -21,5 +21,6 @@
       "amount": 250,
       "fluid": "minecraft:water"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

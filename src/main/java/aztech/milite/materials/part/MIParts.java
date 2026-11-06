@@ -50,7 +50,6 @@ public class MIParts {
     public static final PartTemplate PLATE = new PartTemplate("Plate", "plate");
     public static final RawMetalPart RAW_METAL = new RawMetalPart(false);
     public static final RawMetalPart RAW_METAL_BLOCK = new RawMetalPart(true);
-    public static final PartTemplate RING = new PartTemplate("Ring", "ring");
     public static final PartTemplate ROD = new PartTemplate("Rod", "rod");
     public static final PartTemplate ROD_MAGNETIC = new PartTemplate("Magnetic %s Rod", "rod_magnetic").withOverlay(ROD, "magnetic");
     public static final PartTemplate ROTOR = new PartTemplate("Rotor", "rotor");

@@ -5,22 +5,19 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:motor"
+      "item": "milite:steel_gear"
     },
     "b": {
-      "item": "milite:invar_rod"
+      "item": "milite:steel_rod"
     },
     "c": {
-      "item": "milite:digital_circuit"
-    },
-    "d": {
-      "item": "milite:stainless_steel_large_plate"
+      "item": "milite:processor"
     }
   },
   "pattern": [
-    "a b",
-    " c ",
-    "d c"
+    "a  ",
+    " b ",
+    "  c"
   ],
   "result": {
     "count": 1,

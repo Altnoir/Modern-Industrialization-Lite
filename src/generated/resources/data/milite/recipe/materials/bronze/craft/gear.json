@@ -6,7 +6,7 @@
       "tag": "c:plates/bronze"
     },
     "R": {
-      "item": "milite:bronze_ring"
+      "tag": "c:ingots/bronze"
     },
     "b": {
       "item": "milite:bronze_bolt"

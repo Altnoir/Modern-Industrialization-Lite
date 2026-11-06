@@ -17,5 +17,6 @@
       "amount": 1,
       "fluid": "milite:tritium"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

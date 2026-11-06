@@ -1,5 +1,7 @@
 package aztech.milite.datagen.recipe;
 
+import aztech.milite.MIItem;
+
 import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.recipe.json.ShapedRecipeJson;
@@ -14,6 +16,9 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
+        new ShapelessRecipeBuilder("milite:cupronickel_wire_magnetic", 1)
+                .requires("milite:cupronickel_wire").requires("minecraft:redstone")
+                .offerTo(consumer, "electric_age/component/craft/cupronickel_wire_magnetic");
         shaped(consumer, "electric_age/battery/cadmium_battery_asbl",
                 new ShapedRecipeJson("milite:cadmium_battery", 1, "cac", "BrB", "BrB")
                         .addInput('a', "#c:plates/battery_alloy")
@@ -60,9 +65,9 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("milite:iridium_machine_hull", 1, 1.0f)
                 .addItemInput("milite:singularity", 1, 1.0f)
-                .addItemInput("milite:quantum_circuit", 2, 1.0f)
+                .addItemInput(MIItem.QUANTUM_PROCESSOR, 2, 1.0f)
                 .addItemInput("#c:plates/iridium", 16, 1.0f)
-                .addItemInput("milite:large_advanced_motor", 8, 1.0f)
+                .addItemInput("milite:large_motor", 8, 1.0f)
                 .addItemInput("milite:titanium_barrel", 1, 1.0f)
                 .addItemOutput("milite:quantum_barrel", 1, 1.0f)
                 .offerTo(consumer, "electric_age/blocks/assembler/quantum_barrel");
@@ -71,9 +76,9 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("milite:iridium_machine_hull", 1, 1.0f)
                 .addItemInput("milite:singularity", 1, 1.0f)
-                .addItemInput("milite:quantum_circuit", 2, 1.0f)
+                .addItemInput(MIItem.QUANTUM_PROCESSOR, 2, 1.0f)
                 .addItemInput("#c:plates/iridium", 16, 1.0f)
-                .addItemInput("milite:large_advanced_pump", 8, 1.0f)
+                .addItemInput("milite:large_pump", 8, 1.0f)
                 .addItemInput("milite:titanium_tank", 1, 1.0f)
                 .addItemOutput("milite:quantum_tank", 1, 1.0f)
                 .offerTo(consumer, "electric_age/blocks/assembler/quantum_tank");
@@ -166,43 +171,9 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('C', "#c:plates/chromium")
                         .addInput('H', "milite:stainless_steel_machine_hull"));
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 16, 500)
-                .level("bronze")
-                .addItemInput("milite:aluminum_wire", 6, 1.0f)
-                .addItemInput("milite:silicon_battery", 1, 1.0f)
-                .addItemInput("milite:electronic_circuit_board", 1, 1.0f)
-                .addItemInput("milite:stainless_steel_plate", 4, 1.0f)
-                .addFluidInput("milite:polyethylene", 750, 1.0f)
-                .addItemOutput("milite:digital_circuit_board", 1, 1.0f)
-                .offerTo(consumer, "electric_age/circuit/assembler/digital_circuit_board");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 32, 1200)
-                .level("bronze")
-                .addItemInput("milite:annealed_copper_wire", 8, 1.0f)
-                .addItemInput("milite:cadmium_battery", 2, 1.0f)
-                .addItemInput("milite:digital_circuit_board", 1, 1.0f)
-                .addItemInput("#c:plates/platinum", 4, 1.0f)
-                .addFluidInput("milite:polyvinyl_chloride", 1500, 1.0f)
-                .addItemOutput("milite:processing_unit_board", 1, 1.0f)
-                .offerTo(consumer, "electric_age/circuit/assembler/processing_unit_board");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 64, 2000)
-                .level("bronze")
-                .addItemInput("milite:superconductor_wire", 12, 1.0f)
-                .addItemInput("milite:plutonium_battery", 2, 1.0f)
-                .addItemInput("milite:processing_unit_board", 1, 1.0f)
-                .addItemInput("#c:plates/iridium", 6, 1.0f)
-                .addFluidInput("milite:helium_3", 50, 1.0f)
-                .addItemOutput("milite:quantum_circuit_board", 1, 1.0f)
-                .offerTo(consumer, "electric_age/circuit/assembler/quantum_circuit_board");
 
-        shaped(consumer, "electric_age/circuit/craft/digital_circuit_asbl",
-                new ShapedRecipeJson("milite:digital_circuit", 1, "cOc", "NbN", "cAc")
-                        .addInput('O', "milite:or_gate")
-                        .addInput('c', "milite:electronic_circuit")
-                        .addInput('N', "milite:not_gate")
-                        .addInput('A', "milite:and_gate")
-                        .addInput('b', "milite:digital_circuit_board"));
 
         shaped(consumer, "electric_age/circuit/craft/electronic_circuit_asbl",
                 new ShapedRecipeJson("milite:electronic_circuit", 1, "cdc", "tbt", "cdc")
@@ -231,29 +202,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('r', "milite:rubber_sheet")
                         .addInput('c', "#c:plates/copper"));
 
-        shaped(consumer, "electric_age/circuit/craft/processing_unit_asbl",
-                new ShapedRecipeJson("milite:processing_unit", 1, "DUD", "MbM", "DAD")
-                        .addInput('D', "milite:digital_circuit")
-                        .addInput('M', "milite:random_access_memory")
-                        .addInput('U', "milite:memory_management_unit")
-                        .addInput('A', "milite:arithmetic_logic_unit")
-                        .addInput('b', "milite:processing_unit_board"));
 
-        shaped(consumer, "electric_age/circuit/craft/quantum_circuit_asbl",
-                new ShapedRecipeJson("milite:quantum_circuit", 1, "PCP", "QbQ", "PCP")
-                        .addInput('P', "milite:processing_unit")
-                        .addInput('C', "milite:cooling_cell")
-                        .addInput('Q', "milite:qubit")
-                        .addInput('b', "milite:quantum_circuit_board"));
-
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
-                .level("bronze")
-                .addItemInput("milite:bronze_plate", 3, 1.0f)
-                .addItemInput("milite:stainless_steel_rotor", 3, 1.0f)
-                .addItemInput("milite:advanced_motor", 1, 1.0f)
-                .addFluidInput("milite:soldering_alloy", 200, 1.0f)
-                .addItemOutput("milite:advanced_pump", 1, 1.0f)
-                .offerTo(consumer, "electric_age/component/assembler/advanced_pump");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
@@ -288,16 +237,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .addItemOutput("milite:pump", 1, 1.0f)
                 .offerTo(consumer, "electric_age/component/assembler/pump");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 20, 400)
-                .level("bronze")
-                .addItemInput("milite:arithmetic_logic_unit", 2, 1.0f)
-                .addItemInput("#c:plates/carbon", 2, 1.0f)
-                .addItemInput("#c:glass_panes", 2, 1.0f)
-                .addItemInput("milite:superconductor_wire", 6, 1.0f)
-                .addFluidInput("milite:cryofluid", 250, 1.0f)
-                .addFluidInput("milite:tritium", 50, 1.0f)
-                .addItemOutput("milite:qubit", 1, 1.0f)
-                .offerTo(consumer, "electric_age/component/assembler/qubit");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
@@ -306,50 +245,26 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .addItemOutput("milite:resistor", 12, 1.0f)
                 .offerTo(consumer, "electric_age/component/assembler/resistor");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.BLAST_FURNACE, 64, 1500)
-                .level("stainless_steel")
+        new MachineRecipeBuilder(MIMachineRecipeTypes.BLAST_FURNACE, 32, 1500)
+                .level("electric")
                 .addItemInput("#c:dusts/silicon", 32, 1.0f)
-                .addItemInput("#c:tiny_dusts/iridium", 1, 1.0f)
-                .addFluidInput("milite:argon", 1250, 1.0f)
                 .addItemOutput("milite:monocrystalline_silicon", 1, 1.0f)
                 .offerTo(consumer, "electric_age/component/blast_furnace/monocrystalline_silicon");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 400)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("#c:plates/silicon", 1, 1.0f)
                 .addItemInput("#c:tiny_dusts/antimony", 1, 1.0f)
                 .addItemOutput("milite:silicon_n_doped_plate", 1, 1.0f)
                 .offerTo(consumer, "electric_age/component/chemical_reactor/n_doped_silicon");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 400)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("#c:plates/silicon", 1, 1.0f)
                 .addItemInput("#c:tiny_dusts/aluminum", 1, 1.0f)
                 .addItemOutput("milite:silicon_p_doped_plate", 1, 1.0f)
                 .offerTo(consumer, "electric_age/component/chemical_reactor/p_doped_silicon");
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 12, 400)
-                .level("bronze")
-                .addItemInput("milite:silicon_wafer", 1, 1.0f)
-                .addItemInput("#c:dusts/antimony", 1, 1.0f)
-                .addItemInput("#c:dusts/aluminum", 1, 1.0f)
-                .addFluidInput("milite:argon", 250, 1.0f)
-                .addFluidInput("milite:styrene_butadiene_rubber", 500, 1.0f)
-                .addItemOutput("milite:random_access_memory", 2, 1.0f)
-                .offerTo(consumer, "electric_age/component/chemical_reactor/random_acces_memory");
-
-        shaped(consumer, "electric_age/component/craft/advanced_motor_asbl",
-                new ShapedRecipeJson("milite:advanced_motor", 1, "cwr", "wmw", "rwc")
-                        .addInput('m', "milite:stainless_steel_rod_magnetic")
-                        .addInput('r', "#c:rods/stainless_steel")
-                        .addInput('c', "milite:aluminum_wire")
-                        .addInput('w', "milite:annealed_copper_wire"));
-
-        shaped(consumer, "electric_age/component/craft/advanced_pump",
-                new ShapedRecipeJson("milite:advanced_pump", 1, "brb", "rmr", "brb")
-                        .addInput('m', "milite:advanced_motor")
-                        .addInput('r', "milite:stainless_steel_rotor")
-                        .addInput('b', "milite:stainless_steel_bolt"));
 
         shaped(consumer, "electric_age/component/craft/air_intake_asbl",
                 new ShapedRecipeJson("milite:air_intake", 1, "ara", "rRr", "ara")
@@ -357,18 +272,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('R', "milite:stainless_steel_rotor")
                         .addInput('a', "#c:plates/aluminum"));
 
-        shaped(consumer, "electric_age/component/craft/and_gate_asbl",
-                new ShapedRecipeJson("milite:and_gate", 1, "wr ", "wAw", "wr ")
-                        .addInput('r', "milite:resistor")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire"));
 
-        shaped(consumer, "electric_age/component/craft/arithmetic_logic_unit_asbl",
-                new ShapedRecipeJson("milite:arithmetic_logic_unit", 1, "NaN", "oPo", "NaN")
-                        .addInput('P', "#c:plates/diamond")
-                        .addInput('a', "milite:and_gate")
-                        .addInput('o', "milite:or_gate")
-                        .addInput('N', "milite:not_gate"));
 
         shaped(consumer, "electric_age/component/craft/capacitor",
                 new ShapedRecipeJson("milite:capacitor", 1, " P ", "wSw", " P ")
@@ -406,23 +310,10 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('d', "#c:dusts/diamond")
                         .addInput('G', "#c:gears/invar"));
 
-        shaped(consumer, "electric_age/component/craft/large_advanced_motor_asbl",
-                new ShapedRecipeJson("milite:large_advanced_motor", 1, "mmm", "Crr", "mmm")
-                        .addInput('C', "milite:processing_unit")
-                        .addInput('r', "#c:rods/titanium")
-                        .addInput('m', "milite:advanced_motor"));
-
-        shaped(consumer, "electric_age/component/craft/large_advanced_pump_asbl",
-                new ShapedRecipeJson("milite:large_advanced_pump", 1, "ppp", "rMr", "CrC")
-                        .addInput('C', "milite:processing_unit")
-                        .addInput('r', "milite:titanium_rotor")
-                        .addInput('M', "milite:large_advanced_motor")
-                        .addInput('p', "milite:advanced_pump"));
-
         shaped(consumer, "electric_age/component/craft/large_heat_exchanger_asbl",
                 new ShapedRecipeJson("milite:large_heat_exchanger", 1, "ghg", "RLR", "ghg")
                         .addInput('h', "milite:small_heat_exchanger")
-                        .addInput('L', "milite:large_advanced_pump")
+                        .addInput('L', "milite:large_pump")
                         .addInput('R', "milite:aluminum_rotor")
                         .addInput('g', "#c:gears/invar"));
 
@@ -439,11 +330,6 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('M', "milite:large_motor")
                         .addInput('p', "milite:pump"));
 
-        shaped(consumer, "electric_age/component/craft/memory_management_unit_asbl",
-                new ShapedRecipeJson("milite:memory_management_unit", 1, "WWW", "wPw", "WWW")
-                        .addInput('P', "#c:plates/emerald")
-                        .addInput('w', "milite:silicon_wafer")
-                        .addInput('W', "milite:platinum_fine_wire"));
 
         shaped(consumer, "electric_age/component/craft/motor_asbl",
                 new ShapedRecipeJson("milite:motor", 1, "cwr", "wmw", "rwc")
@@ -452,23 +338,8 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('c', "milite:tin_wire")
                         .addInput('w', "milite:copper_wire"));
 
-        shaped(consumer, "electric_age/component/craft/not_gate_asbl",
-                new ShapedRecipeJson("milite:not_gate", 1, "   ", "wAr", "   ")
-                        .addInput('r', "milite:resistor")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire"));
 
-        shaped(consumer, "electric_age/component/craft/op_amp_asbl",
-                new ShapedRecipeJson("milite:op_amp", 1, "rTT", "rdr", "rTT")
-                        .addInput('r', "milite:resistor")
-                        .addInput('T', "milite:transistor")
-                        .addInput('d', "milite:diode"));
 
-        shaped(consumer, "electric_age/component/craft/or_gate_asbl",
-                new ShapedRecipeJson("milite:or_gate", 1, " A ", "wdw", " A ")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire")
-                        .addInput('d', "milite:diode"));
 
         shaped(consumer, "electric_age/component/craft/overclocker_unit_asbl",
                 new ShapedRecipeJson("milite:overclocker_unit", 1, "wdw", "tbt", "wdw")
@@ -509,7 +380,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 new ShapedRecipeJson("milite:small_heat_exchanger", 1, "pPp", "PLP", "pPp")
                         .addInput('P', "#c:plates/invar")
                         .addInput('L', "milite:stainless_steel_large_plate")
-                        .addInput('p', "milite:advanced_pump"));
+                        .addInput('p', "milite:pump"));
 
         shaped(consumer, "electric_age/component/craft/steel_rod_magnetic",
                 new ShapedRecipeJson("milite:steel_rod_magnetic", 1, " RR", "RrR", "RR ")
@@ -536,7 +407,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('I', "#c:plates/iridium"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CUTTING_MACHINE, 16, 600)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("milite:monocrystalline_silicon", 1, 1.0f)
                 .addItemOutput("milite:silicon_wafer", 32, 1.0f)
                 .offerTo(consumer, "electric_age/component/cutting_machine/silicon_waffer");
@@ -549,7 +420,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "electric_age/component/implosion_compressor/singularity");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.POLARIZER, 16, 400)
-                .level("bronze")
+                .level("aluminum_alloy")
                 .addItemInput("#c:rods/stainless_steel", 1, 1.0f)
                 .addItemInput("milite:neodymium_dust", 1, 1.0f)
                 .addItemOutput("milite:stainless_steel_rod_magnetic", 1, 1.0f)
@@ -572,21 +443,21 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
         shaped(consumer, "electric_age/hull/iridium_machine_hull_asbl",
                 new ShapedRecipeJson("milite:iridium_machine_hull", 1, " c ", "BCB", "ppp")
                         .addInput('B', "milite:plutonium_battery")
-                        .addInput('c', "milite:quantum_circuit")
+                        .addInput('c', MIItem.QUANTUM_PROCESSOR.id())
                         .addInput('C', "milite:iridium_machine_casing")
                         .addInput('p', "milite:superconductor_wire"));
 
         shaped(consumer, "electric_age/hull/stainless_steel_machine_hull_asbl",
                 new ShapedRecipeJson("milite:stainless_steel_machine_hull", 1, " c ", "BCB", "ppp")
                         .addInput('B', "milite:sodium_battery")
-                        .addInput('c', "milite:digital_circuit")
+                        .addInput('c', MIItem.PROCESSOR.id())
                         .addInput('C', "milite:stainless_steel_machine_casing")
                         .addInput('p', "milite:aluminum_wire"));
 
         shaped(consumer, "electric_age/hull/titanium_machine_hull_asbl",
                 new ShapedRecipeJson("milite:titanium_machine_hull", 1, " c ", "BCB", "ppp")
                         .addInput('B', "milite:cadmium_battery")
-                        .addInput('c', "milite:processing_unit")
+                        .addInput('c', MIItem.ADVANCED_PROCESSOR.id())
                         .addInput('C', "milite:titanium_machine_casing")
                         .addInput('p', "milite:annealed_copper_wire"));
 
@@ -600,7 +471,7 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("milite:iridium_machine_hull", 1, 1.0f)
                 .addItemInput("milite:quantum_upgrade", 2, 1.0f)
-                .addItemInput("milite:quantum_circuit", 4, 1.0f)
+                .addItemInput(MIItem.QUANTUM_PROCESSOR, 4, 1.0f)
                 .addFluidInput("milite:uu_matter", 500, 1.0f)
                 .addItemOutput("milite:replicator", 1, 1.0f)
                 .offerTo(consumer, "electric_age/machine/assembler/replicator");
@@ -682,9 +553,8 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 32, 1000)
                 .level("bronze")
-                .addItemInput("milite:quantum_circuit", 8, 1.0f)
+                .addItemInput(MIItem.QUANTUM_PROCESSOR, 8, 1.0f)
                 .addItemInput("milite:singularity", 1, 1.0f)
-                .addItemInput("milite:quantum_circuit_board", 1, 1.0f)
                 .addFluidInput("milite:uu_matter", 50, 1.0f)
                 .addItemOutput("milite:quantum_upgrade", 1, 1.0f)
                 .offerTo(consumer, "electric_age/upgrades/quantum");

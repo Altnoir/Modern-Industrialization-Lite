@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "C": {
-      "item": "milite:processing_unit"
+      "item": "milite:advanced_processor"
     },
     "c": {
       "item": "milite:annealed_copper_wire"
@@ -15,7 +15,7 @@
       "tag": "c:gears/iron"
     },
     "m": {
-      "item": "milite:large_advanced_motor"
+      "item": "milite:large_motor"
     },
     "p": {
       "tag": "c:plates/titanium"

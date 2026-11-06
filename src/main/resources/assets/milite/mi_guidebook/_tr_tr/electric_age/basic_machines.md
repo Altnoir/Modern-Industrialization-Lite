@@ -6,7 +6,7 @@ navigation:
   parent: milite:electric_age.md
 item_ids:
   - milite:configurable_chest
-  - milite:electric_polarizer
+  - milite:aluminum_alloy_polarizer
   - milite:electric_assembler
 ---
 
@@ -27,7 +27,7 @@ Yapılandırılabilir Sandık bir makine değildir, ancak Analog Devrelere sahip
 
 Polarizör bir şeyleri polarize eder. Henüz çok fazla tarifi yok, ancak Motorları otomatikleştirmek için zaten kullanışlı!
 
-<Recipe id="milite:processing_table/electric_polarizer" />
+<Recipe id="milite:processing_table/aluminum_alloy_polarizer" />
 
 Çok sayıda yapmak isteyeceğiniz ilk makine! Birleştirici, yuva kilitleme kullanırsanız, Birleştirici başına 3'e kadar neredeyse tüm tarifleri otomatikleştirmenize olanak tanır.
 

@@ -9,15 +9,12 @@
     },
     "b": {
       "item": "milite:aluminum_wire"
-    },
-    "c": {
-      "item": "milite:aluminum_alloy_large_plate"
     }
   },
   "pattern": [
-    "a b",
-    "   ",
-    "a c"
+    "a  ",
+    " b ",
+    "  a"
   ],
   "result": {
     "count": 1,

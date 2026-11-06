@@ -23,7 +23,7 @@ item_ids:
     <MultiblockShape controller="large_diesel_generator" />
 </GameScene>
 
-一旦能够制造处理单元和精英机器框架，不妨考虑建造几台大型柴油发电机。这些大家伙能将燃料转化为RF，最高可达16384 RF/t！
+一旦能够制造进阶处理器和精英机器框架，不妨考虑建造几台大型柴油发电机。这些大家伙能将燃料转化为RF，最高可达16384 RF/t！
 
 <Recipe id="milite:processing_table/large_diesel_generator" />
 

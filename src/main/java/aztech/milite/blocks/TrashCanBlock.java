@@ -2,6 +2,9 @@ package aztech.milite.blocks;
 
 import aztech.milite.MICapabilities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +20,14 @@ import net.neoforged.neoforge.items.IItemHandler;
 public class TrashCanBlock extends Block {
     public TrashCanBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (random.nextInt(24) == 0) {
+            level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                    SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 0.5f, 0.8f + random.nextFloat() * 0.4f, false);
+        }
     }
 
     // We have no BE, so we must invalidate caps on placement and removal

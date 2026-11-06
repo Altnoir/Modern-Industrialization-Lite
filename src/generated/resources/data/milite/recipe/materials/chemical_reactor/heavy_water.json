@@ -17,5 +17,6 @@
       "amount": 3000,
       "fluid": "milite:heavy_water"
     }
-  ]
+  ],
+  "level": "aluminum_alloy"
 }

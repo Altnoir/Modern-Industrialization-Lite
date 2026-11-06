@@ -5,6 +5,7 @@ import static aztech.milite.MIFluids.*;
 import aztech.milite.definition.FluidLike;
 import aztech.milite.fluid.MIFluid;
 import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.MI;
 import com.google.common.base.Preconditions;
@@ -79,7 +80,7 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
         // Partial recipes
         for (int i = 0; i < outputs.length; ++i) {
             var output = outputs[i];
-            new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLERY, fe, duration)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.DISTILLERY, fe, duration).level(MachineLevel.ALUMINUM)
                     .addFluidInput(input.fluid, input.amount).addFluidOutput(output.fluid, output.amount)
                     .offerTo(consumer, basePath + i);
         }
@@ -93,7 +94,7 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
         Fluid sulfuricFluid = BuiltInRegistries.FLUID.get(MI.id("sulfuric_" + baseName));
         Preconditions.checkArgument(sulfuricFluid instanceof MIFluid);
 
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 16, 400)
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 16, 400).level(MachineLevel.ALUMINUM)
                 .addFluidInput(sulfuricFluid, 12000).addFluidInput(HYDROGEN.asFluid(), 2000)
                 .addFluidOutput(purifiedFluid, 12000).addFluidOutput(SULFURIC_ACID.asFluid(), 2000)
                 .offerTo(consumer, "petrochem/sulfuric_purification/" + baseName);
@@ -107,7 +108,7 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
         String baseNameInput = BuiltInRegistries.FLUID.getKey(input).getPath();
 
         for (var kind : PolymerizationKind.values()) {
-            new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 12, 700)
+            new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 12, 700).level(MachineLevel.ALUMINUM)
                     .addItemInput("#c:tiny_dusts/" + kind.catalystMaterial, kind.inputTinyDust)
                     .addFluidInput(input, 500)
                     .addFluidOutput(output, kind.outputMillis)
@@ -120,7 +121,7 @@ public class PetrochemRecipesProvider extends MIRecipesProvider {
     }
 
     private void generateSteamCracking(RecipeOutput consumer, FluidLike input, FluidLike output) {
-        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
+        new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100).level(MachineLevel.ALUMINUM)
                 .addFluidInput(input, 1000)
                 .addFluidInput(STEAM, 100)
                 .addFluidOutput(output, 1000)

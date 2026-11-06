@@ -1,12 +1,16 @@
 package aztech.milite.datagen.recipe.compat;
 
 import aztech.milite.machines.init.MIMachineRecipeTypes;
+import aztech.milite.machines.init.MachineLevel;
 import aztech.milite.machines.recipe.MachineRecipeBuilder;
 import aztech.milite.MIFluids;
 import aztech.milite.MIItem;
 import aztech.milite.recipe.json.ShapedRecipeJson;
 import aztech.milite.recipe.json.ShapelessRecipeBuilder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 
 public class CreateCompatRecipes extends CompatRecipesProvider {
@@ -32,35 +36,35 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
                 .addItemOutput("create:crushed_raw_zinc", 1, 0.5f));
 
         addCompatRecipe("mixer/andesite_alloy/iron", new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
-                .addItemInput("minecraft:andesite", 1)
+                .addItemInput(Blocks.ANDESITE, 1)
                 .addItemInput("#c:nuggets/iron", 1)
                 .addItemOutput("create:andesite_alloy", 1));
         addCompatRecipe("mixer/andesite_alloy/zinc", new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
-                .addItemInput("minecraft:andesite", 1)
+                .addItemInput(Blocks.ANDESITE, 1)
                 .addItemInput("#c:nuggets/zinc", 1)
                 .addItemOutput("create:andesite_alloy", 1));
 
         addMiRecipe(MIMachineRecipeTypes.COMPRESSOR, "#c:ingots/brass", "create:brass_sheet", 1, 2, 100);
 
         addCompatRecipe("macerator/wheat_to_wheat_flour", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
-                .addItemInput("minecraft:wheat", 1)
+                .addItemInput(Items.WHEAT, 1)
                 .addItemOutput("create:wheat_flour", 1)
                 .addItemOutput("create:wheat_flour", 2, 0.25f)
-                .addItemOutput("minecraft:wheat_seeds", 1, 0.25f));
+                .addItemOutput(Items.WHEAT_SEEDS, 1, 0.25f));
         addCompatRecipe("mixer/dough", new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .addItemInput("create:wheat_flour", 1)
                 .addFluidInput(Fluids.WATER, 1000)
                 .addItemOutput("create:dough", 1));
 
         addCompatRecipe("macerator/netherrack_to_cinder_flour", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
-                .addItemInput("minecraft:netherrack", 1)
+                .addItemInput(Blocks.NETHERRACK, 1)
                 .addItemOutput("create:cinder_flour", 1)
                 .addItemOutput("create:cinder_flour", 1, 0.5f));
 
         addCompatRecipe("macerator/obsidian_to_powdered_obsidian", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
-                .addItemInput("minecraft:obsidian", 1)
+                .addItemInput(Blocks.OBSIDIAN, 1)
                 .addItemOutput("create:powdered_obsidian", 1)
-                .addItemOutput("minecraft:obsidian", 1, 0.75f));
+                .addItemOutput(Blocks.OBSIDIAN, 1, 0.75f));
 
         addCompatRecipe("macerator/asurine", new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 8, 100)
                 .addItemInput("#create:stone_types/asurine", 1)
@@ -95,11 +99,11 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
         casing("#c:stripped_woods", "#c:ingots/copper", "create:copper_casing");
         casing("create:brass_casing", "create:sturdy_sheet", "create:railway_casing");
 
-        addCompatRecipe("chemical_reactor/rose_quartz", new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
+        addCompatRecipe("chemical_reactor/rose_quartz", new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100).level(MachineLevel.ALUMINUM)
                 .addItemInput("#c:gems/quartz", 1)
                 .addFluidInput(MIFluids.MOLTEN_REDSTONE, 90 * 8)
                 .addItemOutput("create:rose_quartz", 1));
-        addCompatRecipe("chemical_reactor/polished_rose_quartz", new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
+        addCompatRecipe("chemical_reactor/polished_rose_quartz", new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100).level(MachineLevel.ALUMINUM)
                 .addItemInput("create:rose_quartz", 1)
                 .addItemInput("milite:wax", 1)
                 .addItemOutput("create:polished_rose_quartz", 1));
@@ -119,11 +123,11 @@ public class CreateCompatRecipes extends CompatRecipesProvider {
 
         addCompatRecipe("assembler/cogwheel", new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 100)
                 .addItemInput("create:shaft", 1)
-                .addItemInput("#minecraft:planks", 1)
+                .addItemInput(ItemTags.PLANKS, 1)
                 .addItemOutput("create:cogwheel", 1));
         addCompatRecipe("assembler/large_cogwheel", new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 100)
                 .addItemInput("create:cogwheel", 1)
-                .addItemInput("#minecraft:planks", 1)
+                .addItemInput(ItemTags.PLANKS, 1)
                 .addItemOutput("create:large_cogwheel", 1));
 
         addCompatRecipe("assembler/precision_mechanism", new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 500)

@@ -5,16 +5,16 @@
   },
   "ingredients": {
     "a": {
-      "item": "milite:quantum_circuit"
+      "item": "milite:quantum_processor"
     },
     "b": {
       "item": "milite:titanium_rotor"
     },
     "c": {
-      "item": "milite:tungsten_large_plate"
+      "item": "milite:iridium_plate"
     },
     "d": {
-      "item": "milite:iridium_plate"
+      "item": "milite:tungsten_large_plate"
     }
   },
   "pattern": [
