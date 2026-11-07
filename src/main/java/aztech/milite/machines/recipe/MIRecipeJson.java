@@ -89,7 +89,7 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
         return addItemInput("#" + tag.location(), amount, probability);
     }
 
-    public T addItemInput(String maybeTag, int amount, float probability) {
+    private static Ingredient itemIngredient(String maybeTag) {
         Ingredient ing;
         if (maybeTag.startsWith("#")) {
             ing = Ingredient.of(ItemTags.create(ResourceLocation.parse(maybeTag.substring(1))));
@@ -99,7 +99,16 @@ public class MIRecipeJson<T extends MIRecipeJson<?>> {
             }
             ing = Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse(maybeTag)));
         }
-        return addItemInput(ing, amount, probability);
+        return ing;
+    }
+
+    public T addItemInput(String maybeTag, int amount, float probability) {
+        return addItemInput(itemIngredient(maybeTag), amount, probability);
+    }
+
+    public T addReusableItemInput(String maybeTag, int amount) {
+        recipe.itemInputs.add(new MachineRecipe.ItemInput(itemIngredient(maybeTag), amount, 1f, true));
+        return (T) this;
     }
 
     public T addItemInput(ItemLike item, int amount) {

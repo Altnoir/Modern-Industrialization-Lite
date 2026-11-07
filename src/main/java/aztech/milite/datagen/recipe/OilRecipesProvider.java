@@ -139,7 +139,7 @@ public class OilRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.OIL_DRILLING_RIG, 8, 200)
                 .level("bronze")
-                .addItemInput("moderntech:aluminum_drill", 1, 0.04f)
+                .addReusableItemInput("moderntech:aluminum_drill", 1)
                 .addFluidOutput("moderntech:crude_oil", 500, 1.0f)
                 .offerTo(consumer, "oil/crude_oil");
 
@@ -179,7 +179,7 @@ public class OilRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.OIL_DRILLING_RIG, 32, 200)
                 .level("bronze")
-                .addItemInput("moderntech:stainless_steel_drill", 1, 0.02f)
+                .addReusableItemInput("moderntech:stainless_steel_drill", 1)
                 .addFluidOutput("moderntech:shale_oil", 4000, 1.0f)
                 .offerTo(consumer, "oil/shale_oil");
 
@@ -191,7 +191,7 @@ public class OilRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.OIL_DRILLING_RIG, 2, 100)
                 .level("bronze")
-                .addItemInput("moderntech:copper_drill", 1, 0.02f)
+                .addReusableItemInput("moderntech:copper_drill", 1)
                 .addFluidOutput(Fluids.WATER, 16000, 1.0f)
                 .offerTo(consumer, "oil/water");
     }

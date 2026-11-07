@@ -56,6 +56,10 @@ public class MachineKubeRecipe extends KubeRecipe implements ProcessConditionHel
         return addToList(MachineRecipeSchema.ITEM_INPUTS, new MachineRecipe.ItemInput(ingredient.ingredient(), ingredient.count(), chance));
     }
 
+    public MachineKubeRecipe itemInReusable(SizedIngredient ingredient) {
+        return addToList(MachineRecipeSchema.ITEM_INPUTS, new MachineRecipe.ItemInput(ingredient.ingredient(), ingredient.count(), 1f, true));
+    }
+
     public MachineKubeRecipe itemOut(ItemStack output) {
         return itemOut(output, 1F);
     }

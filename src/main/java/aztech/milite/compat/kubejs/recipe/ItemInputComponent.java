@@ -37,7 +37,7 @@ public class ItemInputComponent extends SimpleRecipeComponent<MachineRecipe.Item
             Object with) {
         if (matches(cx, original, match)) {
             var withJava = IngredientWrapper.wrap(cx.cx(), with);
-            return new MachineRecipe.ItemInput(withJava, original.amount(), original.probability());
+            return new MachineRecipe.ItemInput(withJava, original.amount(), original.probability(), original.reusable());
         } else {
             return original;
         }

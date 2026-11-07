@@ -26,24 +26,31 @@ public class LytMIItemSlot extends LytBlock implements InteractiveElement {
     private final ItemStack[] stacks;
     private final float probability;
     private final boolean input;
+    private final boolean reusable;
 
     public LytMIItemSlot(Ingredient ingredient, int amount, float probability, boolean input) {
+        this(ingredient, amount, probability, input, false);
+    }
+
+    private LytMIItemSlot(Ingredient ingredient, int amount, float probability, boolean input, boolean reusable) {
         this.stacks = ingredient.getItems().clone();
         for (int i = 0; i < this.stacks.length; i++) {
             this.stacks[i] = this.stacks[i].copyWithCount(amount);
         }
         this.probability = probability;
         this.input = input;
+        this.reusable = reusable;
     }
 
     public LytMIItemSlot(MachineRecipe.ItemInput input) {
-        this(input.ingredient(), input.amount(), input.probability(), true);
+        this(input.ingredient(), input.amount(), input.probability(), true, input.reusable());
     }
 
     public LytMIItemSlot(ItemVariant item, int amount, float probability, boolean input) {
         this.stacks = new ItemStack[] { item.toStack(amount) };
         this.probability = probability;
         this.input = input;
+        this.reusable = false;
     }
 
     public LytMIItemSlot(MachineRecipe.ItemOutput output) {
@@ -54,6 +61,7 @@ public class LytMIItemSlot extends LytBlock implements InteractiveElement {
         this.stacks = new ItemStack[0];
         this.probability = 1;
         this.input = input;
+        this.reusable = false;
     }
 
     @Override
@@ -90,7 +98,7 @@ public class LytMIItemSlot extends LytBlock implements InteractiveElement {
         if (stack.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(new MIGuideItemTooltip(stack, probability, input));
+        return Optional.of(new MIGuideItemTooltip(stack, probability, input, reusable));
     }
 
     private ItemStack getDisplayedStack() {

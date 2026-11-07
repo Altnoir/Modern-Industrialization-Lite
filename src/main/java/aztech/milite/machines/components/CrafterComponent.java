@@ -538,6 +538,9 @@ public class CrafterComponent implements MachineComponent.ServerOnly, CrafterAcc
 
         boolean ok = true;
         for (MachineRecipe.ItemInput input : recipe.itemInputs) {
+            if (!simulate && input.reusable()) {
+                continue;
+            }
             if (!simulate && input.probability() < 1) { // if we are not simulating, there is a chance we don't need to take this output
                 if (ThreadLocalRandom.current().nextFloat() >= input.probability()) {
                     continue;

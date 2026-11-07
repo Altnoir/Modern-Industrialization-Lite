@@ -77,6 +77,9 @@ public class MachineCategory extends ViewerCategory<RecipeHolder<MachineRecipe>>
             if (i < recipe.itemInputs.size()) {
                 var input = recipe.itemInputs.get(i);
                 slot.ingredient(input.ingredient(), input.amount(), input.probability());
+                if (input.reusable()) {
+                    slot.markCatalyst();
+                }
             }
         }
     }

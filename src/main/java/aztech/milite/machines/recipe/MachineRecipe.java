@@ -147,7 +147,7 @@ public class MachineRecipe implements Recipe<RecipeInput> {
         // The item stacks in the ingredient are copied with the correct count
         // instead of being modified in place, because some mods (e.g. AllTheLeaks)
         // cache and lock the item stacks of ingredients.
-        return new DefaultedListWrapper<>(itemInputs.stream().filter(i -> i.probability == 1).map(i -> Ingredient.of(
+        return new DefaultedListWrapper<>(itemInputs.stream().filter(i -> !i.reusable && i.probability == 1).map(i -> Ingredient.of(
                 Arrays.stream(i.ingredient.getItems()).map(stack -> stack.copyWithCount(i.amount)))).collect(Collectors.toList()));
     }
 
@@ -188,14 +188,16 @@ public class MachineRecipe implements Recipe<RecipeInput> {
                     deserialized -> deserialized.orElse(1),
                     Optional::of);
 
-    public record ItemInput(Ingredient ingredient, int amount, float probability) {
+    public record ItemInput(Ingredient ingredient, int amount, float probability, boolean reusable) {
         public static final Codec<ItemInput> CODEC = RecordCodecBuilder.create(
                 g -> g.group(
                         Ingredient.MAP_CODEC_NONEMPTY.forGetter(ItemInput::ingredient),
                         AMOUNT_CODEC.forGetter(ItemInput::amount),
-                        MIExtraCodecs.FLOAT_01.optionalFieldOf("probability", 1f).forGetter(ItemInput::probability))
-                        .apply(g, ItemInput::new));
-
+                        MIExtraCodecs.FLOAT_01.optionalFieldOf("probability").forGetter(input ->
+                                input.reusable || input.probability == 1f ? Optional.empty() : Optional.of(input.probability)),
+                        Codec.BOOL.optionalFieldOf("reusable", false).forGetter(ItemInput::reusable))
+                        .apply(g, (ingredient, amount, probability, reusable) ->
+                                new ItemInput(ingredient, amount, probability.orElse(1f), reusable)));
         public static final StreamCodec<RegistryFriendlyByteBuf, ItemInput> STREAM_CODEC = StreamCodec.composite(
                 Ingredient.CONTENTS_STREAM_CODEC,
                 ItemInput::ingredient,
@@ -203,7 +205,19 @@ public class MachineRecipe implements Recipe<RecipeInput> {
                 ItemInput::amount,
                 ByteBufCodecs.FLOAT,
                 ItemInput::probability,
+                ByteBufCodecs.BOOL,
+                ItemInput::reusable,
                 ItemInput::new);
+
+        public ItemInput {
+            if (reusable) {
+                probability = 1f;
+            }
+        }
+
+        public ItemInput(Ingredient ingredient, int amount, float probability) {
+            this(ingredient, amount, probability, false);
+        }
 
         public boolean matches(ItemStack otherStack) {
             return ingredient.test(otherStack);

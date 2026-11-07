@@ -18,7 +18,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
                 .level("bronze")
-                .addItemInput("moderntech:copper_drill", 1, 0f)
+                .addReusableItemInput("moderntech:copper_drill", 1)
                 .addItemOutput(Blocks.COBBLESTONE, 32, 0.5f)
                 .addItemOutput(Blocks.DIORITE, 16, 0.25f)
                 .addItemOutput(Blocks.ANDESITE, 16, 0.25f)
@@ -89,7 +89,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 8, 600)
                 .level("bronze")
-                .addItemInput("moderntech:gold_drill", 1, 0f)
+                .addReusableItemInput("moderntech:gold_drill", 1)
                 .addItemOutput(Blocks.NETHERRACK, 32, 0.5f)
                 .addItemOutput(Blocks.BLACKSTONE, 16, 0.25f)
                 .addItemOutput(Blocks.BASALT, 16, 0.25f)
@@ -104,7 +104,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 32, 600)
                 .level("bronze")
-                .addItemInput("moderntech:stainless_steel_drill", 1, 0f)
+                .addReusableItemInput("moderntech:stainless_steel_drill", 1)
                 .addItemOutput("moderntech:titanium_ore", 1, 0.15f)
                 .addItemOutput("moderntech:tungsten_ore", 1, 0.2f)
                 .addItemOutput("moderntech:monazite_ore", 1, 0.25f)

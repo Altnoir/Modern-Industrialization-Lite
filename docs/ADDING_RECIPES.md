@@ -3,7 +3,7 @@ In general, a machine recipe JSON in MI has the following properties:
 - `energy`: Reference FE/t before the machine's speed multiplier.
 - `duration`: Reference processing time in ticks; total recipe energy is `energy * duration`.
 - `level`: The minimum machine level; omitted JSON levels default to `bronze`.
-- `item_inputs`: The list of items it consumes.
+- `item_inputs`: The list of required items. Set `"reusable": true` on an input that must remain in the machine; omit its `probability`.
 - `item_outputs`: The list of items it produces.
 - `fluid_inputs`: The list of fluids it consumes.
 - `fluid_outputs`: The list of fluids it produces.
@@ -49,7 +49,7 @@ NeoForge conditions without looking up optional items or evaluating conditions a
 ```java
 new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
         .level("bronze")
-        .addItemInput("moderntech:bronze_drill", 1, 0.04f)
+        .addReusableItemInput("moderntech:bronze_drill", 1)
         .addItemOutput("minecraft:iron_ore", 1, 0.4f)
         .addItemOutput("mekanism:osmium_ore", 1, 0.12f, new ModLoadedCondition("mekanism"))
         .offerTo(consumer, "example/conditional_quarry");
@@ -74,6 +74,7 @@ MI adds a nicer syntax when the recipes are being registered by KubeJS:
   as an alternative input key when reading existing recipes through the schema.
 - Then you can add inputs and outputs by calling the following functions. The can be called multiple times of course:
   - `itemIn(input specification)`: Add a new input.
+  - `itemInReusable(input specification)`: Require an input without consuming it, such as a quarry drill.
   - `itemIn(input specification, consumption chance)`: Add a new chanced input. Chance can be `0` if the input should not be consumable.
   - `itemOut(output specification)` and `itemOut(output specification, production chance)`: Add a new output.
   - `fluidIn("1000x moderntech:oxygen")` and `fluidIn("1000x moderntech:oxygen", consumption chance)`: Add a fluid input in millibuckets. Chance can be `0` for a catalyst.
@@ -109,7 +110,7 @@ Here is an example that removes the default bronze drill quarry recipe, and adds
 ServerEvents.recipes(event => {
     event.remove({id: "moderntech:quarry/bronze"})
     event.recipes.moderntech.quarry(4, 600)
-        .itemIn("moderntech:bronze_drill", 0.04)
+        .itemInReusable("moderntech:bronze_drill")
         .itemOut("minecraft:iron_ore", 0.4)
         .itemOut("minecraft:coal_ore", 0.4)
         .itemOut("minecraft:copper_ore", 0.2)

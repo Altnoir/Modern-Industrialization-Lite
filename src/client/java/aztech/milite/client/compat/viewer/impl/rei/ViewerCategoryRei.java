@@ -1,5 +1,6 @@
 package aztech.milite.client.compat.viewer.impl.rei;
 
+import aztech.milite.MIText;
 import aztech.milite.client.compat.viewer.abstraction.ViewerCategory;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariant;
@@ -219,6 +220,9 @@ class ViewerCategoryRei<D> implements DisplayCategory<ViewerCategoryRei<D>.Viewe
 
         @Override
         public ViewerCategory.SlotBuilder markCatalyst() {
+            for (var stack : ing) {
+                stack.tooltip(ignored -> List.of(MIText.NotConsumed.text()));
+            }
             return this;
         }
     }

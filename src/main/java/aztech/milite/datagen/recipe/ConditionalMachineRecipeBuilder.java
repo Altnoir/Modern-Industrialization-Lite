@@ -48,6 +48,14 @@ final class ConditionalMachineRecipeBuilder {
         return this;
     }
 
+    ConditionalMachineRecipeBuilder addReusableItemInput(String itemOrTag, int amount) {
+        var input = entry(itemOrTag.startsWith("#") ? "tag" : "item",
+                itemOrTag.startsWith("#") ? itemOrTag.substring(1) : itemOrTag, amount, 1);
+        input.addProperty("reusable", true);
+        inputs.add(input);
+        return this;
+    }
+
     ConditionalMachineRecipeBuilder addItemOutput(String item, int amount, float probability, ICondition... conditions) {
         var output = entry("item", item, amount, probability);
         if (conditions.length != 0) {

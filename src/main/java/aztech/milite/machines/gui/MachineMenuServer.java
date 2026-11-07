@@ -96,7 +96,7 @@ public class MachineMenuServer extends MachineMenuCommon implements MoveRecipeHa
         // Handle item inputs
         itemLoop:
         for (var itemInput : recipe.itemInputs) {
-            int remainingAmount = itemInput.amount() * amount;
+            int remainingAmount = itemInput.reusable() ? itemInput.amount() : itemInput.amount() * amount;
             // Check contents of the machine first
             for (int slot = 0; slot < machineItemInventory.itemHandler.getSlots(); slot++) {
                 if (remainingAmount <= 0) {
