@@ -93,7 +93,7 @@ public abstract class AbstractStorageMachineBlockEntity extends MachineBlockEnti
 
         this.registerComponents(energy, redstoneControl);
 
-        EnergyBar.Params energyBarParams = new EnergyBar.Params(76, 39);
+        EnergyBar.Params energyBarParams = new EnergyBar.Params(81, 39);
         registerGuiComponent(new EnergyBar(energyBarParams, energy::getFe, energy::getCapacity),
                 new RedstoneControlGui(redstoneControl));
 

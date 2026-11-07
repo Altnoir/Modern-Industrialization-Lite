@@ -19,7 +19,7 @@ item_ids:
 
 前期依次制作模拟电路、电子电路和数字电路。不锈钢框架使用数字电路；光刻机将硅板和金属板加工成处理器。机器有两个物品输入槽、一个输出槽，没有流体槽；每批稳定产出一个处理器，没有副产物。
 
-数字电路板由装配机制作，再结合电子电路、运算放大器制作的与门、或门和非门合成数字电路。
+数字电路板由装配机制作，再结合电子电路、运算放大器和铝线合成数字电路。
 
 <Recipe id="milite:electric_age/circuit/assembler/digital_circuit_board" />
 <Recipe id="milite:electric_age/circuit/craft/digital_circuit_asbl" />

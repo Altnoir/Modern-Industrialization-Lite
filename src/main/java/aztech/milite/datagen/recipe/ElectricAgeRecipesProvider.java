@@ -179,18 +179,16 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("milite:aluminum_wire", 6, 1.0f)
                 .addItemInput("milite:silicon_battery", 1, 1.0f)
-                .addItemInput("milite:electronic_circuit_board", 1, 1.0f)
                 .addItemInput("milite:stainless_steel_plate", 4, 1.0f)
                 .addFluidInput("milite:polyethylene", 750, 1.0f)
                 .addItemOutput("milite:digital_circuit_board", 1, 1.0f)
                 .offerTo(consumer, "electric_age/circuit/assembler/digital_circuit_board");
 
         shaped(consumer, "electric_age/circuit/craft/digital_circuit_asbl",
-                new ShapedRecipeJson("milite:digital_circuit", 1, "cOc", "NbN", "cAc")
-                        .addInput('O', "milite:or_gate")
+                new ShapedRecipeJson("milite:digital_circuit", 1, "cAc", "wbw", "cAc")
+                        .addInput('A', "milite:op_amp")
                         .addInput('c', "milite:electronic_circuit")
-                        .addInput('N', "milite:not_gate")
-                        .addInput('A', "milite:and_gate")
+                        .addInput('w', "milite:aluminum_wire")
                         .addInput('b', "milite:digital_circuit_board"));
 
         shaped(consumer, "electric_age/circuit/craft/electronic_circuit_asbl",
@@ -200,12 +198,13 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
                         .addInput('t', "milite:transistor")
                         .addInput('b', "milite:electronic_circuit_board"));
 
-        shaped(consumer, "electric_age/circuit/craft/electronic_circuit_board_asbl",
-                new ShapedRecipeJson("milite:electronic_circuit_board", 1, "eAe", "AbA", "eBe")
-                        .addInput('A', "#c:plates/aluminum")
-                        .addInput('e', "milite:electrum_wire")
-                        .addInput('b', "milite:analog_circuit_board")
-                        .addInput('B', "milite:redstone_battery"));
+        new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
+                .level("electric")
+                .addItemInput("milite:electrum_wire", 4, 1.0f)
+                .addItemInput("milite:redstone_battery", 1, 1.0f)
+                .addItemInput("#c:plates/aluminum", 2, 1.0f)
+                .addItemOutput("milite:electronic_circuit_board", 1, 1.0f)
+                .offerTo(consumer, "assembler_generated/electric_age/circuit/craft/electronic_circuit_board");
 
         shaped(consumer, "electric_age/circuit/craft/lv_circuit_asbl",
                 new ShapedRecipeJson("milite:analog_circuit", 1, "RLR", "CBC", "www")
@@ -292,28 +291,10 @@ public class ElectricAgeRecipesProvider extends FixedRecipesProvider {
 
 
 
-        shaped(consumer, "electric_age/component/craft/and_gate_asbl",
-                new ShapedRecipeJson("milite:and_gate", 1, "wr ", "wAw", "wr ")
-                        .addInput('r', "milite:resistor")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire"));
-
-        shaped(consumer, "electric_age/component/craft/not_gate_asbl",
-                new ShapedRecipeJson("milite:not_gate", 1, "   ", "wAr", "   ")
-                        .addInput('r', "milite:resistor")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire"));
-
         shaped(consumer, "electric_age/component/craft/op_amp_asbl",
                 new ShapedRecipeJson("milite:op_amp", 1, "rTT", "rdr", "rTT")
                         .addInput('r', "milite:resistor")
                         .addInput('T', "milite:transistor")
-                        .addInput('d', "milite:diode"));
-
-        shaped(consumer, "electric_age/component/craft/or_gate_asbl",
-                new ShapedRecipeJson("milite:or_gate", 1, " A ", "wdw", " A ")
-                        .addInput('A', "milite:op_amp")
-                        .addInput('w', "milite:aluminum_wire")
                         .addInput('d', "milite:diode"));
 
         shaped(consumer, "electric_age/component/craft/capacitor",

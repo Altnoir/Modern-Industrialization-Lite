@@ -20,25 +20,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ForgeHammerBlock extends Block {
-    private VoxelShape shape;
-    private final int[] part_height = { 4, 1, 5, 5 };
-    private final int[] part_width = { 14, 10, 8, 14 };
+    private static final VoxelShape SHAPE = Shapes.or(
+            Block.box(3, 5, 3, 13, 11, 13),
+            Block.box(1, 0, 1, 15, 5, 15),
+            Block.box(0, 11, 0, 16, 16, 16),
+            Block.box(11, 0, 0, 16, 6, 5),
+            Block.box(0, 0, 0, 5, 6, 5),
+            Block.box(11, 0, 11, 16, 6, 16),
+            Block.box(0, 0, 11, 5, 6, 16));
 
     public ForgeHammerBlock(Properties properties) {
         super(properties);
-
-        VoxelShape[] parts = new VoxelShape[part_height.length];
-        float currentY = 0;
-        for (int i = 0; i < part_height.length; i++) {
-            float o = (16 - part_width[i]) / 32.0f;
-            float e = o + part_width[i] / 16.0f;
-            parts[i] = Shapes.box(o, currentY, o, e, currentY + part_height[i] / 16.0f, e);
-            currentY += part_height[i] / 16.0f;
-        }
-        shape = parts[0];
-        for (int i = 1; i < part_height.length; i++) {
-            shape = Shapes.or(shape, parts[i]);
-        }
     }
 
     @Override
@@ -63,7 +55,7 @@ public class ForgeHammerBlock extends Block {
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext context) {
-        return shape;
+        return SHAPE;
     }
 
     @Override

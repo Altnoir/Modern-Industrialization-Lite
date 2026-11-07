@@ -4,8 +4,8 @@
   "energy": 8,
   "item_inputs": [
     {
-      "amount": 1,
-      "item": "milite:and_gate"
+      "amount": 2,
+      "item": "milite:op_amp"
     },
     {
       "amount": 1,
@@ -17,11 +17,7 @@
     },
     {
       "amount": 2,
-      "item": "milite:not_gate"
-    },
-    {
-      "amount": 1,
-      "item": "milite:or_gate"
+      "item": "milite:aluminum_wire"
     }
   ],
   "item_outputs": [

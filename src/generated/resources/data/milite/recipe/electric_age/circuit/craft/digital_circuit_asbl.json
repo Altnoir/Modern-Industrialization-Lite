@@ -3,24 +3,21 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "milite:and_gate"
-    },
-    "N": {
-      "item": "milite:not_gate"
-    },
-    "O": {
-      "item": "milite:or_gate"
+      "item": "milite:op_amp"
     },
     "b": {
       "item": "milite:digital_circuit_board"
     },
     "c": {
       "item": "milite:electronic_circuit"
+    },
+    "w": {
+      "item": "milite:aluminum_wire"
     }
   },
   "pattern": [
-    "cOc",
-    "NbN",
+    "cAc",
+    "wbw",
     "cAc"
   ],
   "result": {

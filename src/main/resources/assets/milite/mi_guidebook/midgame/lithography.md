@@ -19,7 +19,7 @@ item_ids:
 
 Craft Analog, Electronic, and then Digital Circuits. Stainless Steel Machine Hulls use Digital Circuits. Lithography Machines make processors directly from Silicon Plates and metal plates, using two item inputs, one output and no fluids.
 
-Assemble a Digital Circuit Board, then combine it with Electronic Circuits and the logic gates made from Op Amps to craft a Digital Circuit.
+Assemble a Digital Circuit Board, then combine it with Electronic Circuits, Op Amps and Aluminum Wire to craft a Digital Circuit.
 
 <Recipe id="milite:electric_age/circuit/assembler/digital_circuit_board" />
 <Recipe id="milite:electric_age/circuit/craft/digital_circuit_asbl" />

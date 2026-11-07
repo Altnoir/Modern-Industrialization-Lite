@@ -77,9 +77,6 @@ public final class MIItem {
     public static final ItemDefinition<Item> DIODE = item("Diode", "diode", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> TRANSISTOR = item("Transistor", "transistor", ITEMS_ORDERED.next());
     public static final ItemDefinition<Item> OP_AMP = item("Op Amp", "op_amp", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> AND_GATE = item("AND Gate", "and_gate", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> OR_GATE = item("OR Gate", "or_gate", ITEMS_ORDERED.next());
-    public static final ItemDefinition<Item> NOT_GATE = item("NOT Gate", "not_gate", ITEMS_ORDERED.next());
 
 
     public static final ItemDefinition<Item> AIR_INTAKE = item("Air Intake", "air_intake", p -> new Item(p.stacksTo(1)), ITEMS_ORDERED.next());
