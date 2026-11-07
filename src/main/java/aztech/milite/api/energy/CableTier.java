@@ -82,7 +82,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String shortEnglishKey() {
-        return "cable_tier_short.modern_tech." + name;
+        return "cable_tier_short.moderntech." + name;
     }
 
     public MutableComponent shortEnglishName() {
@@ -90,7 +90,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String longEnglishKey() {
-        return "cable_tier_long.modern_tech." + name;
+        return "cable_tier_long.moderntech." + name;
     }
 
     public MutableComponent longEnglishName() {

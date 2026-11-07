@@ -5,26 +5,26 @@ Each machine model in MI consists of two parts:
 
 ## Casing models
 Casing models can either be a normal block model, or pull their model directly from a block.
-They are located at `modern_tech:models/machine_casing/<casing name>.json`.
+They are located at `moderntech:models/machine_casing/<casing name>.json`.
 
 ### Normal model
-Place a standard block model at `modern_tech:models/machine_casing/<casing name>.json`, for example:
+Place a standard block model at `moderntech:models/machine_casing/<casing name>.json`, for example:
 ```json5
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "modern_tech:block/casings/configurable_tank"
+    "all": "moderntech:block/casings/configurable_tank"
   }
 }
 ```
 
 ### Pull the model from a block
-To use a block's model for a casing, you must use the `modern_tech:use_block_model` loader.
+To use a block's model for a casing, you must use the `moderntech:use_block_model` loader.
 You must also define a single `block` key, telling MI which block to use for the casing.
 ```json5
 {
   "block": "<block id to use for the casing>",
-  "loader": "modern_tech:use_block_model"
+  "loader": "moderntech:use_block_model"
 }
 ```
 **Connected textures applied to the target block (for example with Athena) will be applied to the casing.**
@@ -36,13 +36,13 @@ and keep loading the `variants` below them.
 
 ## Machine models
 A machine model JSON file defines which overlays are applied on which sides of the machine.
-The JSON file must be located at `modern_tech:models/block/<machine name>.json`.
+The JSON file must be located at `moderntech:models/block/<machine name>.json`.
 
 Example JSON:
 ```json5
 {
-  // The loader must always be "modern_tech:machine".
-  "loader": "modern_tech:machine",
+  // The loader must always be "moderntech:machine".
+  "loader": "moderntech:machine",
   // Casing to use for the model. Will be used by all machines except for multiblock hatches linked to a controller.
   "casing": "<casing name>",
   // Set of overlays to use for all casings unless overridden below.

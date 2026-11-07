@@ -31,13 +31,13 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
     }
 
     private Component translateTitle(String path, String englishName) {
-        var titleKey = "advancements.modern_tech." + path;
+        var titleKey = "advancements.moderntech." + path;
         translations.addTranslation(titleKey, englishName);
         return Component.translatable(titleKey);
     }
 
     private Component translateDescription(String path, String englishDescription) {
-        var descKey = "advancements.modern_tech." + path + ".description";
+        var descKey = "advancements.moderntech." + path + ".description";
         translations.addTranslation(descKey, englishDescription);
         return Component.translatable(descKey);
     }

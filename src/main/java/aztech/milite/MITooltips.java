@@ -279,7 +279,7 @@ public class MITooltips {
                     line(MIText.ToolConfiguration).build(),
                     line(MIText.SteamDrillWaterHelp).arg("use", KEYBIND_PARSER).build(),
                     line(MIText.SteamDrillFuelHelp).arg("use", KEYBIND_PARSER).build(),
-                    line(MIText.SteamDrillProfit).arg("modern_tech.toggle_3x3", KEYBIND_PARSER).build(),
+                    line(MIText.SteamDrillProfit).arg("moderntech.toggle_3x3", KEYBIND_PARSER).build(),
                     line(MIText.SteamDrillToggle).arg("sneak", KEYBIND_PARSER).arg("use", KEYBIND_PARSER).build()));
     public static final TooltipAttachment MACHINE_CASING_VOLTAGE = TooltipAttachment.of(
             (context, itemStack, item) -> {
@@ -310,7 +310,7 @@ public class MITooltips {
 
         Preconditions.checkArgument(lineCount > 0);
 
-        String[] translationKey = IntStream.range(0, lineCount).mapToObj(l -> "item_tooltip.modern_tech." + translationId + ".line_" + l)
+        String[] translationKey = IntStream.range(0, lineCount).mapToObj(l -> "item_tooltip.moderntech." + translationId + ".line_" + l)
                 .toArray(String[]::new);
 
         for (int i = 0; i < lineCount; i++) {

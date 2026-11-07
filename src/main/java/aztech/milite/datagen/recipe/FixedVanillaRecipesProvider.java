@@ -36,7 +36,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:plates/steel", 5, 1.0f)
-                .addItemInput("modern_tech:motor", 1, 1.0f)
+                .addItemInput("moderntech:motor", 1, 1.0f)
                 .addItemOutput(Blocks.HOPPER, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/assembler/hopper");
 
@@ -65,10 +65,10 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "vanilla_recipes/assembler/sea_lantern");
 
         blasting(consumer, "vanilla_recipes/bauxite_to_aluminum_nugget_blasting", "#c:dusts/bauxite",
-                "modern_tech:aluminum_nugget", 1, 0.08f, 100);
+                "moderntech:aluminum_nugget", 1, 0.08f, 100);
 
         smelting(consumer, "vanilla_recipes/bauxite_to_aluminum_nugget_smelting", "#c:dusts/bauxite",
-                "modern_tech:aluminum_nugget", 1, 0.08f, 200);
+                "moderntech:aluminum_nugget", 1, 0.08f, 200);
 
         shaped(consumer, "vanilla_recipes/blast_furnace_asbl",
                 new ShapedRecipeJson("minecraft:blast_furnace", 2, "ppp", "pfp", "sss")
@@ -79,10 +79,10 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.CENTRIFUGE, 32, 600)
                 .level("aluminum_alloy")
                 .addFluidInput(Fluids.LAVA, 1000, 1.0f)
-                .addItemOutput("modern_tech:sulfur_dust", 17, 1.0f)
-                .addItemOutput("modern_tech:copper_nugget", 11, 1.0f)
-                .addItemOutput("modern_tech:aluminum_nugget", 3, 0.5f)
-                .addItemOutput("modern_tech:chromium_nugget", 1, 0.25f)
+                .addItemOutput("moderntech:sulfur_dust", 17, 1.0f)
+                .addItemOutput("moderntech:copper_nugget", 11, 1.0f)
+                .addItemOutput("moderntech:aluminum_nugget", 3, 0.5f)
+                .addItemOutput("moderntech:chromium_nugget", 1, 0.25f)
                 .offerTo(consumer, "vanilla_recipes/centrifuge/lava");
 
         shaped(consumer, "vanilla_recipes/chainmail_boots",
@@ -110,14 +110,14 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                 .addItemInput("#c:dusts/quartz", 4, 1.0f)
                 .addItemInput("#c:tiny_dusts/iron", 1, 1.0f)
                 .addFluidInput(Fluids.WATER, 250, 1.0f)
-                .addFluidInput("modern_tech:sodium_hydroxide", 500, 1.0f)
+                .addFluidInput("moderntech:sodium_hydroxide", 500, 1.0f)
                 .addItemOutput(Items.AMETHYST_SHARD, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/amethyst");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.CHEMICAL_REACTOR, 8, 100)
                 .level("aluminum_alloy")
                 .addItemInput(Items.ROTTEN_FLESH, 5, 1.0f)
-                .addFluidInput("modern_tech:oxygen", 100, 1.0f)
+                .addFluidInput("moderntech:oxygen", 100, 1.0f)
                 .addItemOutput(Items.LEATHER, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/leather");
 
@@ -126,9 +126,9 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                 .addItemInput("#c:dusts/quartz", 4, 1.0f)
                 .addItemInput("#c:tiny_dusts/beryllium", 3, 1.0f)
                 .addItemInput("#c:tiny_dusts/aluminum", 2, 1.0f)
-                .addFluidInput("modern_tech:hydrogen", 4000, 1.0f)
-                .addFluidInput("modern_tech:sodium_hydroxide", 4000, 1.0f)
-                .addFluidInput("modern_tech:chlorine", 250, 1.0f)
+                .addFluidInput("moderntech:hydrogen", 4000, 1.0f)
+                .addFluidInput("moderntech:sodium_hydroxide", 4000, 1.0f)
+                .addFluidInput("moderntech:chlorine", 250, 1.0f)
                 .addItemOutput(Items.PRISMARINE_CRYSTALS, 16, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/chemical_reactor/prismarine_crystals");
 
@@ -180,23 +180,23 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput("#c:storage_blocks/gold", 64, 1.0f)
                 .addItemInput(Items.APPLE, 1, 1.0f)
-                .addItemInput("modern_tech:industrial_tnt", 1, 1.0f)
+                .addItemInput("moderntech:industrial_tnt", 1, 1.0f)
                 .addItemOutput(Items.ENCHANTED_GOLDEN_APPLE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/implosion_compressor/enchanted_golden_apple");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.IMPLOSION_COMPRESSOR, 64, 10)
                 .level("bronze")
-                .addItemInput("modern_tech:singularity", 1, 1.0f)
+                .addItemInput("moderntech:singularity", 1, 1.0f)
                 .addItemInput(Items.LAVA_BUCKET, 1, 1.0f)
-                .addItemInput("modern_tech:nuke", 64, 1.0f)
-                .addItemInput("modern_tech:nuke", 64, 1.0f)
+                .addItemInput("moderntech:nuke", 64, 1.0f)
+                .addItemInput("moderntech:nuke", 64, 1.0f)
                 .addItemOutput(Items.NETHER_STAR, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/implosion_compressor/nether_star");
 
         shaped(consumer, "vanilla_recipes/lignite_torch",
                 new ShapedRecipeJson("minecraft:torch", 4, "X", "#")
                         .addInput('#', "minecraft:stick")
-                        .addInput('X', "modern_tech:lignite_coal"));
+                        .addInput('X', "moderntech:lignite_coal"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MACERATOR, 2, 100)
                 .level("bronze")
@@ -367,7 +367,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 8, 200)
                 .level("bronze")
                 .addItemInput(Blocks.END_STONE, 1, 1.0f)
-                .addFluidInput("modern_tech:heavy_water", 1, 1.0f)
+                .addFluidInput("moderntech:heavy_water", 1, 1.0f)
                 .addFluidInput(Fluids.LAVA, 1, 0.0f)
                 .addItemOutput(Blocks.END_STONE, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/endstone");
@@ -411,7 +411,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100)
                 .level("bronze")
-                .addItemInput("modern_tech:wood_pulp", 1, 1.0f)
+                .addItemInput("moderntech:wood_pulp", 1, 1.0f)
                 .addFluidInput(Fluids.WATER, 100, 1.0f)
                 .addItemOutput(Items.PAPER, 2, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/mixer/paper");
@@ -463,14 +463,14 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("modern_tech:steel_plate", 3, 1.0f)
+                .addItemInput("moderntech:steel_plate", 3, 1.0f)
                 .addItemOutput(Items.BUCKET, 4, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/bucket");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
                 .addItemInput(Items.STRING, 1, 1.0f)
-                .addItemInput("modern_tech:wax", 1, 1.0f)
+                .addItemInput("moderntech:wax", 1, 1.0f)
                 .addItemOutput(Blocks.CANDLE, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/candle");
 
@@ -580,7 +580,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
-                .addItemInput("modern_tech:steel_large_plate", 1, 1.0f)
+                .addItemInput("moderntech:steel_large_plate", 1, 1.0f)
                 .addItemInput(Blocks.RAIL, 1, 1.0f)
                 .addItemOutput(Items.MINECART, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/minecart");
@@ -618,7 +618,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 100)
                 .level("bronze")
                 .addItemInput(Items.PRISMARINE_SHARD, 9, 1.0f)
-                .addItemInput("modern_tech:packer_block_template", 1, 0.0f)
+                .addItemInput("moderntech:packer_block_template", 1, 0.0f)
                 .addItemOutput(Blocks.PRISMARINE_BRICKS, 1, 1.0f)
                 .offerTo(consumer, "vanilla_recipes/packer/prismarine_bricks");
 
@@ -672,15 +672,15 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "vanilla_recipes/packer/tnt_minecart");
 
         smelting(consumer.withConditions(new NotCondition(new ModLoadedCondition("dehydration"))), "vanilla_recipes/steam_bucket", "minecraft:water_bucket",
-                "modern_tech:steam_bucket", 1, 0.0f, 500);
+                "moderntech:steam_bucket", 1, 0.0f, 500);
 
         shaped(consumer, "vanilla_recipes/steel_anvil_asbl",
                 new ShapedRecipeJson("minecraft:anvil", 2, "III", " i ", "iii")
-                        .addInput('I', "modern_tech:steel_block")
-                        .addInput('i', "modern_tech:steel_ingot"));
+                        .addInput('I', "moderntech:steel_block")
+                        .addInput('i', "moderntech:steel_ingot"));
 
         shaped(consumer, "vanilla_recipes/steel_forge_hammer_asbl",
-                new ShapedRecipeJson("modern_tech:forge_hammer", 2, "___", " i ", "iii")
+                new ShapedRecipeJson("moderntech:forge_hammer", 2, "___", " i ", "iii")
                         .addInput('_', "#c:plates/steel")
                         .addInput('i', "#c:ingots/steel"));
 
@@ -691,7 +691,7 @@ public class FixedVanillaRecipesProvider extends FixedRecipesProvider {
 
         shaped(consumer, "vanilla_recipes/torch",
                 new ShapedRecipeJson("minecraft:torch", 8, "C", "s")
-                        .addInput('C', "modern_tech:coke")
+                        .addInput('C', "moderntech:coke")
                         .addInput('s', "minecraft:stick"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.VACUUM_FREEZER, 16, 200)

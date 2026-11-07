@@ -14,6 +14,8 @@ import aztech.milite.machines.init.MIMachineRecipeTypes;
 import aztech.milite.machines.models.MachineCasings;
 import aztech.milite.machines.multiblocks.HatchFlags;
 import aztech.milite.machines.multiblocks.ShapeTemplate;
+import aztech.milite.machines.multiblocks.ShapeMatcher;
+import aztech.milite.machines.multiblocks.CoilGlowTracker;
 import aztech.milite.machines.multiblocks.SimpleMember;
 import aztech.milite.machines.recipe.MachineRecipe;
 import aztech.milite.machines.recipe.MachineRecipeType;
@@ -23,6 +25,8 @@ import aztech.milite.MIText;
 import com.google.common.base.Preconditions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -110,6 +114,26 @@ public class ElectricBlastFurnaceBlockEntity extends AbstractElectricCraftingMul
 
     public Tier getTier() {
         return tiers.get(activeShape.getActiveShapeIndex());
+    }
+
+    @Override
+    public void tickExtra() {
+        if (!(level instanceof ServerLevel server)) return;
+        Set<BlockPos> coils = new HashSet<>();
+        if (isShapeValid() && getMachineModelData().isActive) {
+            for (BlockPos relative : getActiveShape().simpleMembers.keySet()) {
+                if (relative.getY() == 1 || relative.getY() == 2) {
+                    coils.add(ShapeMatcher.toWorldPos(worldPosition, orientation.facingDirection, relative));
+                }
+            }
+        }
+        CoilGlowTracker.update(server, worldPosition, coils);
+    }
+
+    @Override
+    public void setRemoved() {
+        if (level instanceof ServerLevel server) CoilGlowTracker.update(server, worldPosition, Set.of());
+        super.setRemoved();
     }
 
     @Override

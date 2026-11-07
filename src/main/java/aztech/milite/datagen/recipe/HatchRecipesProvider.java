@@ -23,19 +23,19 @@ public class HatchRecipesProvider extends MIRecipesProvider {
 
         for (int i = 0; i < casings.length; i++) {
 
-            String casing = String.format("modern_tech:%s_machine_hull", casings[i]);
+            String casing = String.format("moderntech:%s_machine_hull", casings[i]);
             if (i < 2) {
-                casing = String.format("modern_tech:%s_machine_casing", casings[i]);
+                casing = String.format("moderntech:%s_machine_casing", casings[i]);
             }
 
-            String tank = String.format("modern_tech:%s_tank", tanks[i]);
-            String fluidInput = String.format("modern_tech:%s_fluid_input_hatch", casings[i]);
-            String fluidOutput = String.format("modern_tech:%s_fluid_output_hatch", casings[i]);
-            String itemInput = String.format("modern_tech:%s_item_input_hatch", casings[i]);
-            String itemOutput = String.format("modern_tech:%s_item_output_hatch", casings[i]);
-            String energyInput = String.format("modern_tech:%s_energy_input_hatch", casings[i]);
-            String energyOutput = String.format("modern_tech:%s_energy_output_hatch", casings[i]);
-            String wire = String.format("modern_tech:%s_wire", wires[i]);
+            String tank = String.format("moderntech:%s_tank", tanks[i]);
+            String fluidInput = String.format("moderntech:%s_fluid_input_hatch", casings[i]);
+            String fluidOutput = String.format("moderntech:%s_fluid_output_hatch", casings[i]);
+            String itemInput = String.format("moderntech:%s_item_input_hatch", casings[i]);
+            String itemOutput = String.format("moderntech:%s_item_output_hatch", casings[i]);
+            String energyInput = String.format("moderntech:%s_energy_input_hatch", casings[i]);
+            String energyOutput = String.format("moderntech:%s_energy_output_hatch", casings[i]);
+            String wire = String.format("moderntech:%s_wire", wires[i]);
             String hopper = "minecraft:hopper";
 
             String[][] ABs = { { fluidInput, fluidOutput }, { itemInput, itemOutput }, { energyInput, energyOutput } };

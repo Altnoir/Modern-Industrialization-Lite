@@ -14,7 +14,7 @@ version = System.getenv("MI_VERSION")
         : project.mod_version
 group = "aztech"
 base {
-    archivesName = "modern_tech"
+    archivesName = "moderntech"
 }
 
 logger.lifecycle("ModernTech version ${version}")
@@ -28,6 +28,9 @@ java {
 }
 
 repositories {
+    mavenLocal {
+        content { includeModule "com.altnoir", "abysslib-relink-${project.minecraft_version}" }
+    }
     def localShimRepo = file("$rootDir/../_shim/repo")
     if (localShimRepo.isDirectory()) {
         maven {
@@ -153,10 +156,10 @@ neoForge {
     version = project.neo_version
 
     mods {
-        modern_tech {
+        moderntech {
             sourceSet sourceSets.main
         }
-        modern_tech_with_client {
+        moderntech_with_client {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -165,7 +168,7 @@ neoForge {
     runs {
         // applies to all the run configs below
         configureEach {
-            loadedMods = [mods.modern_tech]
+            loadedMods = [mods.moderntech]
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -180,38 +183,38 @@ neoForge {
             systemProperty 'forge.logging.console.level', 'debug'
 
             // Allows updates to the guide book to be watched for by GuideME.
-            systemProperty 'guideme.modern_tech.book.sources',
-                    file("src/main/resources/assets/modern_tech/mi_guidebook/").absolutePath
+            systemProperty 'guideme.moderntech.book.sources',
+                    file("src/main/resources/assets/moderntech/mi_guidebook/").absolutePath
         }
 
         client {
             client()
             sourceSet = sourceSets.client
-            loadedMods = [mods.modern_tech_with_client]
+            loadedMods = [mods.moderntech_with_client]
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "moderntech"
         }
 
         server {
             server()
-            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "moderntech"
         }
 
         data {
             data()
             sourceSet = sourceSets.client
-            loadedMods = [mods.modern_tech_with_client]
+            loadedMods = [mods.moderntech_with_client]
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
             // workingDirectory project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', "modern_tech", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', "moderntech", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
 
         gameTestServer {
             type = "gameTestServer"
             gameDirectory = project.file("build/gametest")
-            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "moderntech"
         }
     }
 
@@ -234,8 +237,8 @@ dependencies {
     // use lives in gradle.properties. Note that a published release is a fixed version: when the library changes and
     // is published again under the same number, Gradle keeps serving the copy it cached the first time. Use the
     // build-numbered version (1.0.0-16 and up) or run with --refresh-dependencies to pick a new one up.
-    def abysslibReginth = "com.altnoir:abysslib-reginth-${project.minecraft_version}:${project.abysslib_version}"
-    implementation abysslibReginth
+    implementation "com.altnoir:abysslib-reginth-${project.minecraft_version}:${project.abysslib_version}"
+    compileOnly "com.altnoir:abysslib-relink-${project.minecraft_version}:${project.abysslib_relink_version}"
     compileOnly "org.appliedenergistics:guideme:${project.guideme_version}:api"
     runtimeOnly "org.appliedenergistics:guideme:${project.guideme_version}"
 
@@ -270,7 +273,6 @@ dependencies {
 
     localRuntimeOnly compileOnly("appeng:appliedenergistics2:${project.ae2_version}")
     compileOnly "earth.terrarium.argonauts:argonauts-neoforge-${project.argonauts_minecraft_version}:${project.argonauts_version}"
-    localRuntimeOnly compileOnly("earth.terrarium.athena:athena-neoforge-${project.athena_minecraft_version}:${project.athena_version}")
 
     compileOnly "dev.ftb.mods:ftb-quests-neoforge:${project.ftb_quests_version}"
     compileOnly "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"

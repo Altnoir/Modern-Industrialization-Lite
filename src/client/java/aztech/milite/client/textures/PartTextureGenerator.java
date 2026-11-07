@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
  * <p>
  * Two things are generated: raw metal ore blocks, which are a hand drawn shape over a stone background that depends on the
  * stone the ore generates in, and the block of a column shaped part (the quantum barrel), which is a column model built from a
- * shared template. Every other material part is a hand drawn texture in {@code src/main/resources/assets/modern_tech/textures}; add
+ * shared template. Every other material part is a hand drawn texture in {@code src/main/resources/assets/moderntech/textures}; add
  * the art there instead of adding a branch here, because a generated texture is written into the generated resources, which
  * {@code processResources} puts in front of the main tree.
  */

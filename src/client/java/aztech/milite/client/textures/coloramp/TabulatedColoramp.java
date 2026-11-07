@@ -15,7 +15,7 @@ public class TabulatedColoramp implements Coloramp {
     public TabulatedColoramp(TextureManager mtm, int meanRGB, String name) {
         this.meanRGB = meanRGB;
 
-        var gradientMapPath = "modern_tech:textures/gradient_maps/" + name + ".png";
+        var gradientMapPath = "moderntech:textures/gradient_maps/" + name + ".png";
 
         if (mtm.hasAsset(gradientMapPath)) {
             try (NativeImage gradientMap = mtm.getAssetAsTexture(gradientMapPath)) {

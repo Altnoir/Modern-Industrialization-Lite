@@ -18,7 +18,7 @@ reactor), materials, tools and the in-game guidebook form the factory progressio
 
 **Bring your own logistics mod, and ModernTech supplies the factory.**
 
-The mod id is `modern_tech`.
+The mod id is `moderntech`.
 
 This namespace replaces `milite`. Existing worlds, data packs, resource packs and scripts using the old ID
 are not automatically migrated; back up worlds and update integrations before upgrading.
@@ -51,7 +51,7 @@ The jar is written to `build/libs`. `./gradlew runClient` starts a development c
 ## Bug reports and contributions
 
 Please report bugs on the [issue tracker](https://github.com/Altnoir/Modern-Tech/issues).
-Translations live in `src/main/resources/assets/modern_tech/lang`, so pull requests with translation fixes are welcome.
+Translations live in `src/main/resources/assets/moderntech/lang`, so pull requests with translation fixes are welcome.
 Modpack and resource pack developers should have a look at [docs/README.md](docs/README.md).
 
 ## Credits and license
@@ -85,7 +85,7 @@ the Fusion Reactor sound from [Mekanism](https://github.com/mekanism/mekanism) (
 **ModernTech** 是 [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization)
 的精简分支。
 
-模组 id 是 `modern_tech`。模组保留机器与工业进度，移除了自带管道、电缆和变压器，物流与供电需要搭配其他模组。
+模组 id 是 `moderntech`。模组保留机器与工业进度，移除了自带管道、电缆和变压器，物流与供电需要搭配其他模组。
 
 新命名空间取代了 `milite`。旧存档、数据包、资源包和脚本不会自动迁移；升级前请备份存档并更新相关内容。
 

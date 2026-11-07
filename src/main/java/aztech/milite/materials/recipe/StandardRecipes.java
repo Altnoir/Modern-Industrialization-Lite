@@ -111,7 +111,7 @@ public final class StandardRecipes {
                 .addPartOutput(DRILL_HEAD, 1);
 
         new MIRecipeBuilder(ctx, MIMachineRecipeTypes.ASSEMBLER, "fuel_rod", 16, 200)
-                .addItemInput("modern_tech:blastproof_alloy_plate", 2)
+                .addItemInput("moderntech:blastproof_alloy_plate", 2)
                 .addItemInput(MIItem.LARGE_MOTOR, 1).addItemInput(MIItem.ROBOT_ARM, 2).addTaggedPartInput(ROD, 18)
                 .addFluidInput(MIFluids.SOLDERING_ALLOY, 500).addFluidInput(MIFluids.HELIUM, 100)
                 .addPartOutput(FUEL_ROD, 1);

@@ -38,7 +38,7 @@ public class ProgressBar implements GuiComponentServer<ProgressBar.Params, Float
 
     /**
      * @param progressBarType The real path will be
-     *                        {@code modern_tech:textures/gui/progress_bar/<progressBarType>.png}.
+     *                        {@code moderntech:textures/gui/progress_bar/<progressBarType>.png}.
      *                        Must have a size of width x 2*height.
      */
     public record Params(int renderX, int renderY, String progressBarType, int width, int height, boolean isVertical) {

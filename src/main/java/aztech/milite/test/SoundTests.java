@@ -33,9 +33,9 @@ public class SoundTests {
 
     @MIGameTest
     public void machineSoundsHaveTheirFiles(MIGameTestHelper helper) {
-        var stream = SoundTests.class.getResourceAsStream("/assets/modern_tech/sounds.json");
+        var stream = SoundTests.class.getResourceAsStream("/assets/moderntech/sounds.json");
         if (stream == null) {
-            helper.fail("assets/modern_tech/sounds.json is missing");
+            helper.fail("assets/moderntech/sounds.json is missing");
             return;
         }
 
@@ -55,7 +55,7 @@ public class SoundTests {
             }
             for (JsonElement element : entry.getValue().getAsJsonObject().getAsJsonArray("sounds")) {
                 var name = element.getAsString();
-                var file = "/assets/modern_tech/sounds/" + name.substring(MI.ID.length() + 1) + ".ogg";
+                var file = "/assets/moderntech/sounds/" + name.substring(MI.ID.length() + 1) + ".ogg";
                 if (SoundTests.class.getResourceAsStream(file) == null) {
                     helper.fail("sounds.json uses " + name + " but " + file + " is missing");
                     return;

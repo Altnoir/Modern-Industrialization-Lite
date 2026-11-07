@@ -39,7 +39,7 @@ public sealed interface MaterialItemPart extends PartKeyProvider, ItemLike permi
      * Simple item parts are just regular MIItems.
      */
     static MaterialItemPart simpleItem(PartKeyProvider part, String englishName, String itemPath) {
-        String itemId = "modern_tech:" + itemPath;
+        String itemId = "moderntech:" + itemPath;
 
         return new MaterialItemPartImpl(part.key(), itemId, itemId, ctx -> {
             MIItem.item(englishName, itemPath, SortOrder.MATERIALS

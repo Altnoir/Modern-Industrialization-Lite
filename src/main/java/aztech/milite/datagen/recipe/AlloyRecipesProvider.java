@@ -30,7 +30,7 @@ public class AlloyRecipesProvider extends MIRecipesProvider {
         new MachineRecipeBuilder(MIMachineRecipeTypes.BLAST_FURNACE, 32, 200).level(MachineLevel.ELECTRIC)
                 .addItemInput("#c:dusts/aluminum", 3)
                 .addItemInput("#c:dusts/invar", 1)
-                .addItemOutput("modern_tech:aluminum_alloy_ingot", 4)
+                .addItemOutput("moderntech:aluminum_alloy_ingot", 4)
                 .offerTo(consumer, "alloy/blast_furnace/aluminum_alloy/ingot");
 
         new AlloyBuilder("le_uranium").addIngredient("uranium_238", 8).addIngredient("uranium_235", 1).Build(consumer);
@@ -73,10 +73,10 @@ public class AlloyRecipesProvider extends MIRecipesProvider {
 
         public void Build(RecipeOutput consumer) {
             MachineRecipeBuilder dusts = new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100);
-            dusts.addItemOutput("modern_tech:" + output + "_dust", totalAmount);
+            dusts.addItemOutput("moderntech:" + output + "_dust", totalAmount);
 
             MachineRecipeBuilder tinyDusts = new MachineRecipeBuilder(MIMachineRecipeTypes.MIXER, 2, 100);
-            tinyDusts.addItemOutput("modern_tech:" + output + "_tiny_dust", totalAmount);
+            tinyDusts.addItemOutput("moderntech:" + output + "_tiny_dust", totalAmount);
 
             for (int i = 0; i < ingredients.size(); i++) {
                 int n = ingredientAmounts.get(i);

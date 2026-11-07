@@ -3,43 +3,43 @@
     "#c:dusts/coal": {
       "burn_time": 1600
     },
-    "modern_tech:carbon_dust": {
+    "moderntech:carbon_dust": {
       "burn_time": 6400
     },
-    "modern_tech:carbon_tiny_dust": {
+    "moderntech:carbon_tiny_dust": {
       "burn_time": 640
     },
-    "modern_tech:coal_crushed_dust": {
+    "moderntech:coal_crushed_dust": {
       "burn_time": 1600
     },
-    "modern_tech:coal_tiny_dust": {
+    "moderntech:coal_tiny_dust": {
       "burn_time": 160
     },
-    "modern_tech:coke": {
+    "moderntech:coke": {
       "burn_time": 6400
     },
-    "modern_tech:coke_block": {
+    "moderntech:coke_block": {
       "burn_time": 57600
     },
-    "modern_tech:coke_dust": {
+    "moderntech:coke_dust": {
       "burn_time": 6400
     },
-    "modern_tech:guidebook": {
+    "moderntech:guidebook": {
       "burn_time": 300
     },
-    "modern_tech:lignite_coal": {
+    "moderntech:lignite_coal": {
       "burn_time": 1600
     },
-    "modern_tech:lignite_coal_block": {
+    "moderntech:lignite_coal_block": {
       "burn_time": 16000
     },
-    "modern_tech:lignite_coal_crushed_dust": {
+    "moderntech:lignite_coal_crushed_dust": {
       "burn_time": 1600
     },
-    "modern_tech:lignite_coal_dust": {
+    "moderntech:lignite_coal_dust": {
       "burn_time": 1600
     },
-    "modern_tech:lignite_coal_tiny_dust": {
+    "moderntech:lignite_coal_tiny_dust": {
       "burn_time": 160
     }
   }

@@ -79,7 +79,7 @@ public enum MIText {
     FuelEfficiencyFluidNormal("Accepts fluid fuel at normal efficiency."),
     FuelEfficiencyItemNormal("Accepts item fuel at normal efficiency."),
     GeneratedResources("MI Generated Resources"),
-    GeneratedResourcesDescription("Resources from the modern_tech/generated_resources folder."),
+    GeneratedResourcesDescription("Resources from the moderntech/generated_resources folder."),
     GeneratorCurrentFe("Production: %s"),
     GeneratorMaxFe("Max Production: %s"),
     GravichestplateDisabled("Gravichestplate disabled!"),

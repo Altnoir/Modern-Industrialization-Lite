@@ -6,7 +6,7 @@ MI Lite supports adding EBF variants from KubeJS using the `addEbfTiers` event. 
 electric, stainless-steel and iridium levels.
 
 For each tier, call `event.add` with:
-- The new controller's ID path, without the `modern_tech:` namespace.
+- The new controller's ID path, without the `moderntech:` namespace.
 - The controller's English name.
 - The coil block ID. Can be any block that also has an item.
 - The reference FE/t value shown for the coil.
@@ -56,12 +56,12 @@ energy buffer separately and do not change the registered machine's recipe level
 The following parameters need to be provided, in order:
 - First, a few general parameters:
   - 1: English name of the machine. This is the name that players see when they over the stack, look at the machine, etc...
-  - 2: Internal name of the machine. The registration id of the machine is always `modern_tech:` followed by the internal name.
+  - 2: Internal name of the machine. The registration id of the machine is always `moderntech:` followed by the internal name.
   - 3: Recipe type. The recipes that the machine can process. See above how to register a recipe type.
   - 4: List of machine level names from the list above.
 - GUI configuration:
   - 5: Height of the background in the machine screen.
-  - 6: Where the progress bar is located, in pixels, and the type of progress bar to use. You can look at the available progress bars [here](../src/main/resources/assets/modern_tech/textures/gui/progress_bar/).
+  - 6: Where the progress bar is located, in pixels, and the type of progress bar to use. You can look at the available progress bars [here](../src/main/resources/assets/moderntech/textures/gui/progress_bar/).
 
     By default, the progress bar has 20x20 pixels. This can be changed by adding a width and a height as 4th and 5th parameters when creating it.
     For example, for a 40x20 long arrow: `event.progressBar(x pos, y pos, "long_arrow", 40, 20)`.
@@ -75,7 +75,7 @@ The following parameters need to be provided, in order:
   - 13: Positions of the item input and output slots. Grids use `.addSlots(x, y, width, height)`.
   - 14: Positions of the fluid input and output slots.
 - Model configuration. Here you can choose which overlays are available in your machine. The overlays are the machine-specific textures.
-  - You can find overlay examples [here](../src/main/resources/assets/modern_tech/textures/block/machines/).
+  - You can find overlay examples [here](../src/main/resources/assets/moderntech/textures/block/machines/).
   - 15: Choose whether the machine has a front overlay (`overlay_front.png` and `overlay_front_active.png`).
   - 16: Choose whether the machine has a top overlay (`overlay_top.png` and `overlay_top_active.png`).
   - 17: Choose whether the machine has a side overlay (`overlay_side.png` and `overlay_side_active.png`).
@@ -153,8 +153,8 @@ Here is an example of how to create the shape for a pyrolyse oven multiblock:
 ```js
 MIMachineEvents.registerMachines(event => {
     const pyrolyseHatch = event.hatchOf("item_input", "item_output", "fluid_input", "fluid_output", "energy_input");
-    const heatproofMember = event.memberOfBlock("modern_tech:heatproof_machine_casing");
-    const cupronickelCoilMember = event.memberOfBlock("modern_tech:cupronickel_coil");
+    const heatproofMember = event.memberOfBlock("moderntech:heatproof_machine_casing");
+    const cupronickelCoilMember = event.memberOfBlock("moderntech:cupronickel_coil");
     const pyrolyseShapeBuilder = event.startShape("heatproof_machine_casing");
     for (let x = -1; x <= 1; x++) {
         for (let y= -1; y <= 1; y++) {
@@ -185,8 +185,8 @@ The character `#` is used for the controller, and a space is used for air.
 ```js
 MIMachineEvents.registerMachines(event => {
     const pyrolyseHatch = event.hatchOf("item_input", "item_output", "fluid_input", "fluid_output", "energy_input");
-    const heatproofMember = event.memberOfBlock("modern_tech:heatproof_machine_casing");
-    const cupronickelCoilMember = event.memberOfBlock("modern_tech:cupronickel_coil");
+    const heatproofMember = event.memberOfBlock("moderntech:heatproof_machine_casing");
+    const cupronickelCoilMember = event.memberOfBlock("moderntech:cupronickel_coil");
     const pyrolyseShape = event.layeredShape("heatproof_machine_casing", [
         [ "HHH", "HHH", "HHH" ],
         [ "CCC", "C C", "CCC" ],
@@ -262,12 +262,12 @@ Here is an example creating an electric pyrolyse oven:
 
 For this example, we only register a front overlay, and the overlay folder is `pyrolyse_overlays`.
 Hence, we need 2 textures for the controller to render correctly:
-- `modern_tech:textures/block/machines/pyrolyse_overlays/overlay_front.png` used when the machine is not working.
-- `modern_tech:textures/block/machines/pyrolyse_overlays/overlay_front_active.png` used when the machine is working (i.e. active).
+- `moderntech:textures/block/machines/pyrolyse_overlays/overlay_front.png` used when the machine is not working.
+- `moderntech:textures/block/machines/pyrolyse_overlays/overlay_front_active.png` used when the machine is working (i.e. active).
 
 With KubeJS, the texture can go in the following folders respectively:
-- `kubejs/assets/modern_tech/textures/block/machines/pyrolyse_overlays/overlay_front.png`.
-- `kubejs/assets/modern_tech/textures/block/machines/pyrolyse_overlays/overlay_front_active.png`.
+- `kubejs/assets/moderntech/textures/block/machines/pyrolyse_overlays/overlay_front.png`.
+- `kubejs/assets/moderntech/textures/block/machines/pyrolyse_overlays/overlay_front_active.png`.
 
 ### Extra multiblock configuration options
 Both steam and electric have an optional config function parameter that can be added to the end for further customization.
@@ -390,7 +390,7 @@ MIMachineEvents.registerMachines(event => {
         largeSolidDieselGeneratorShape, // The multiblock shape
         512, // Maximum energy generation rate (FE/tick)
         builder => { // The builder (same as for a single block generator)
-            builder.furnaceFuels().fluid("modern_tech:synthetic_oil", 100);
+            builder.furnaceFuels().fluid("moderntech:synthetic_oil", 100);
         },
             // --- Standard model configuration --- //
         "heatproof_machine_casing", // casing

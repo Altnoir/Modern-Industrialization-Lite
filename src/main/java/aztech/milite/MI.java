@@ -45,6 +45,7 @@ import aztech.milite.items.DynamicToolItem;
 import aztech.milite.items.SteamDrillHooks;
 import aztech.milite.machines.init.*;
 import aztech.milite.machines.multiblocks.world.ChunkEventListeners;
+import aztech.milite.machines.multiblocks.CoilGlowTracker;
 import aztech.milite.materials.MIMaterials;
 import aztech.milite.misc.runtime_datagen.RuntimeDataGen;
 import aztech.milite.network.MIPackets;
@@ -101,7 +102,7 @@ import java.util.Optional;
 
 @Mod(MI.ID)
 public class MI {
-    public static final String ID = "modern_tech";
+    public static final String ID = "moderntech";
     public static final Logger LOGGER = LoggerFactory.getLogger("ModernTech");
 
     public static ResourceLocation id(String path) {
@@ -134,6 +135,7 @@ public class MI {
         MICommonProxy.initEvents();
         FTBQuestsFacade.INSTANCE.init();
         ChunkEventListeners.init();
+        CoilGlowTracker.init();
         DebugCommands.init();
         GuidebookEvents.init();
         MIGuide.init();
@@ -245,12 +247,12 @@ public class MI {
                 event.addRepositorySource(consumer -> {
                     consumer.accept(new Pack(
                             new PackLocationInfo(
-                                    "modern_tech/generated",
+                                    "moderntech/generated",
                                     MIText.GeneratedResources.text(),
                                     PackSource.BUILT_IN,
                                     Optional.empty()),
                             BuiltInPackSource.fixedResources(new GeneratedPathPackResources(
-                                    FMLPaths.GAMEDIR.get().resolve("modern_tech/generated_resources"),
+                                    FMLPaths.GAMEDIR.get().resolve("moderntech/generated_resources"),
                                     event.getPackType())),
                             new Pack.Metadata(
                                     MIText.GeneratedResourcesDescription.text(),

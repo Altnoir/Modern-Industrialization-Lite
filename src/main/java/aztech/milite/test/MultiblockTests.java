@@ -148,9 +148,9 @@ public class MultiblockTests {
                 .thenExecute(() -> {
                     var inventory = oven.getMultiblockInventoryComponent();
                     helper.assertTrue(MIFluids.STEAM.asFluid().defaultFluidState().is(SteamHelper.STEAM),
-                            "modern_tech steam belongs to the c:steam tag");
+                            "moderntech steam belongs to the c:steam tag");
                     helper.assertTrue(MIFluids.HIGH_PRESSURE_STEAM.asFluid().defaultFluidState().is(SteamHelper.HIGH_PRESSURE_STEAM),
-                            "modern_tech high pressure steam belongs to the c:high_pressure_steam tag");
+                            "moderntech high pressure steam belongs to the c:high_pressure_steam tag");
                     helper.assertValueEqual(SteamHelper.consumeSteamFe(inventory.getFluidInputs(), 1, Simulation.SIMULATE), 0L,
                             "steam made from nothing");
                     inventory.getFluidInputs().get(0).setKey(FluidVariant.of(MIFluids.HIGH_PRESSURE_STEAM.asFluid()));

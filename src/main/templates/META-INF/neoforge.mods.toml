@@ -4,43 +4,43 @@ license="MIT"
 issueTrackerURL="https://github.com/Altnoir/Modern-Tech/issues"
 
 [[mods]]
-modId="modern_tech"
+modId="moderntech"
 version="${mod_version}"
 displayName="ModernTech"
 displayURL="https://github.com/Altnoir/Modern-Tech"
-logoFile="assets/modern_tech/milogo.png"
+logoFile="assets/moderntech/milogo.png"
 authors="ALTNOIR,Azerococo,Technici4n;"
 description='''A simplified fork of Modern Industrialization. Machines expose standard NeoForge energy, fluid and item capabilities, and electric machines use FE. Bring other mods for cables and pipes. Recipe levels and fixed machine speed multipliers replace gradual overclocking.'''
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="minecraft"
 type="required"
 versionRange="[${minecraft_version}]"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="neoforge"
 type="required"
 versionRange="${neo_version_range}"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="guideme"
 type="required"
 versionRange="${guideme_version_range}"
 ordering="AFTER"
 side="BOTH"
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="abysslib_reginth"
 type="required"
 versionRange="${abysslib_version_range}"
 ordering="AFTER"
 side="BOTH"
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="kubejs"
 type="optional"
 versionRange="${kubejs_version_range}"
@@ -48,9 +48,9 @@ ordering="AFTER"
 side="BOTH"
 
 [[mixins]]
-config="modern_tech.mixins.json"
+config="moderntech.mixins.json"
 
-[[dependencies.modern_tech]]
+[[dependencies.moderntech]]
 modId="ftbquests"
 type="optional"
 versionRange="${ftb_quests_version_range}"

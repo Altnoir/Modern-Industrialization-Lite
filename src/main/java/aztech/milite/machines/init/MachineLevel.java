@@ -85,7 +85,7 @@ public enum MachineLevel implements StringRepresentable {
     }
 
     public String getTranslationKey() {
-        return "machine_level.modern_tech." + levelName;
+        return "machine_level.moderntech." + levelName;
     }
 
     /**

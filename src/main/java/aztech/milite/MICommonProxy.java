@@ -9,6 +9,7 @@ import aztech.milite.thirdparty.fabrictransfer.api.fluid.FluidVariantAttributes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.ChunkPos;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
@@ -31,6 +33,7 @@ import java.util.List;
  * Abstractions over client-only code called in common code.
  */
 public class MICommonProxy {
+    public void updateCoilGlow(ResourceLocation dimension, ChunkPos chunk, List<BlockPos> positions) {}
     public static MICommonProxy INSTANCE = instantiateProxy();
 
     private static MICommonProxy instantiateProxy() {

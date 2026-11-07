@@ -18,7 +18,7 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
                 .level("bronze")
-                .addItemInput("modern_tech:copper_drill", 1, 0f)
+                .addItemInput("moderntech:copper_drill", 1, 0f)
                 .addItemOutput(Blocks.COBBLESTONE, 32, 0.5f)
                 .addItemOutput(Blocks.DIORITE, 16, 0.25f)
                 .addItemOutput(Blocks.ANDESITE, 16, 0.25f)
@@ -30,66 +30,66 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
                 .offerTo(consumer, "quarry/copper");
 
         shaped(consumer, "quarry/drill/aluminum_drill_asbl",
-                new ShapedRecipeJson("modern_tech:aluminum_drill", 4, "gpd", "mCp", "cmg")
-                        .addInput('d', "modern_tech:aluminum_drill_head")
+                new ShapedRecipeJson("moderntech:aluminum_drill", 4, "gpd", "mCp", "cmg")
+                        .addInput('d', "moderntech:aluminum_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/aluminum")
-                        .addInput('m', "modern_tech:pump")
-                        .addInput('c', "modern_tech:electrum_wire")
-                        .addInput('C', "modern_tech:electronic_circuit"));
+                        .addInput('m', "moderntech:pump")
+                        .addInput('c', "moderntech:electrum_wire")
+                        .addInput('C', "moderntech:electronic_circuit"));
 
         shaped(consumer, "quarry/drill/bronze_drill_asbl",
-                new ShapedRecipeJson("modern_tech:bronze_drill", 4, "  d", "gp ", "pg ")
-                        .addInput('d', "modern_tech:bronze_drill_head")
+                new ShapedRecipeJson("moderntech:bronze_drill", 4, "  d", "gp ", "pg ")
+                        .addInput('d', "moderntech:bronze_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/bronze"));
 
         shaped(consumer, "quarry/drill/copper_drill_asbl",
-                new ShapedRecipeJson("modern_tech:copper_drill", 4, "  d", "gp ", "pg ")
-                        .addInput('d', "modern_tech:copper_drill_head")
+                new ShapedRecipeJson("moderntech:copper_drill", 4, "  d", "gp ", "pg ")
+                        .addInput('d', "moderntech:copper_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/copper"));
 
         shaped(consumer, "quarry/drill/gold_drill_asbl",
-                new ShapedRecipeJson("modern_tech:gold_drill", 4, "gpd", "mCp", "cmg")
-                        .addInput('d', "modern_tech:gold_drill_head")
+                new ShapedRecipeJson("moderntech:gold_drill", 4, "gpd", "mCp", "cmg")
+                        .addInput('d', "moderntech:gold_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/gold")
-                        .addInput('m', "modern_tech:motor")
-                        .addInput('c', "modern_tech:tin_wire")
-                        .addInput('C', "modern_tech:analog_circuit"));
+                        .addInput('m', "moderntech:motor")
+                        .addInput('c', "moderntech:tin_wire")
+                        .addInput('C', "moderntech:analog_circuit"));
 
         shaped(consumer, "quarry/drill/stainless_steel_drill_asbl",
-                new ShapedRecipeJson("modern_tech:stainless_steel_drill", 4, "gpd", "mCp", "cPg")
-                        .addInput('d', "modern_tech:stainless_steel_drill_head")
+                new ShapedRecipeJson("moderntech:stainless_steel_drill", 4, "gpd", "mCp", "cPg")
+                        .addInput('d', "moderntech:stainless_steel_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/stainless_steel")
-                        .addInput('m', "modern_tech:motor")
-                        .addInput('P', "modern_tech:pump")
-                        .addInput('c', "modern_tech:aluminum_wire")
+                        .addInput('m', "moderntech:motor")
+                        .addInput('P', "moderntech:pump")
+                        .addInput('c', "moderntech:aluminum_wire")
                         .addInput('C', MIItem.DIGITAL_CIRCUIT.id()));
 
         shaped(consumer, "quarry/drill/steel_drill_asbl",
-                new ShapedRecipeJson("modern_tech:steel_drill", 4, "gpd", "mCp", "cmg")
-                        .addInput('d', "modern_tech:steel_drill_head")
+                new ShapedRecipeJson("moderntech:steel_drill", 4, "gpd", "mCp", "cmg")
+                        .addInput('d', "moderntech:steel_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/steel")
-                        .addInput('m', "modern_tech:motor")
-                        .addInput('c', "modern_tech:tin_wire")
-                        .addInput('C', "modern_tech:analog_circuit"));
+                        .addInput('m', "moderntech:motor")
+                        .addInput('c', "moderntech:tin_wire")
+                        .addInput('C', "moderntech:analog_circuit"));
 
         shaped(consumer, "quarry/drill/titanium_drill_asbl",
-                new ShapedRecipeJson("modern_tech:titanium_drill", 4, "gpd", "mCp", "cmg")
-                        .addInput('d', "modern_tech:titanium_drill_head")
+                new ShapedRecipeJson("moderntech:titanium_drill", 4, "gpd", "mCp", "cmg")
+                        .addInput('d', "moderntech:titanium_drill_head")
                         .addInput('g', "#c:gears/iron")
                         .addInput('p', "#c:plates/titanium")
-                        .addInput('m', "modern_tech:large_motor")
-                        .addInput('c', "modern_tech:annealed_copper_wire")
+                        .addInput('m', "moderntech:large_motor")
+                        .addInput('c', "moderntech:annealed_copper_wire")
                         .addInput('C', MIItem.PROCESSOR.id()));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 8, 600)
                 .level("bronze")
-                .addItemInput("modern_tech:gold_drill", 1, 0f)
+                .addItemInput("moderntech:gold_drill", 1, 0f)
                 .addItemOutput(Blocks.NETHERRACK, 32, 0.5f)
                 .addItemOutput(Blocks.BLACKSTONE, 16, 0.25f)
                 .addItemOutput(Blocks.BASALT, 16, 0.25f)
@@ -104,11 +104,11 @@ public class QuarryRecipesProvider extends FixedRecipesProvider {
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 32, 600)
                 .level("bronze")
-                .addItemInput("modern_tech:stainless_steel_drill", 1, 0f)
-                .addItemOutput("modern_tech:titanium_ore", 1, 0.15f)
-                .addItemOutput("modern_tech:tungsten_ore", 1, 0.2f)
-                .addItemOutput("modern_tech:monazite_ore", 1, 0.25f)
-                .addItemOutput("modern_tech:platinum_ore", 1, 0.12f)
+                .addItemInput("moderntech:stainless_steel_drill", 1, 0f)
+                .addItemOutput("moderntech:titanium_ore", 1, 0.15f)
+                .addItemOutput("moderntech:tungsten_ore", 1, 0.2f)
+                .addItemOutput("moderntech:monazite_ore", 1, 0.25f)
+                .addItemOutput("moderntech:platinum_ore", 1, 0.12f)
                 .offerTo(consumer, "quarry/stainless_steel");
     }
 }

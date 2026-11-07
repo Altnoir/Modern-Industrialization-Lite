@@ -1,13 +1,13 @@
 {
   "values": [
-    "modern_tech:gold_bolt",
-    "modern_tech:gold_double_ingot",
-    "modern_tech:gold_drill",
-    "modern_tech:gold_drill_head",
-    "modern_tech:gold_dust",
-    "modern_tech:gold_gear",
-    "modern_tech:gold_plate",
-    "modern_tech:gold_rod",
-    "modern_tech:gold_tiny_dust"
+    "moderntech:gold_bolt",
+    "moderntech:gold_double_ingot",
+    "moderntech:gold_drill",
+    "moderntech:gold_drill_head",
+    "moderntech:gold_dust",
+    "moderntech:gold_gear",
+    "moderntech:gold_plate",
+    "moderntech:gold_rod",
+    "moderntech:gold_tiny_dust"
   ]
 }

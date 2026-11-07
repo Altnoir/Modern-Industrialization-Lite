@@ -23,10 +23,10 @@ public class MaterialRecipesProvider extends MIRecipesProvider {
 
     private void generatePressurizerRecipes(RecipeOutput recipeOutput) {
         String[][] fluids = {
-                {"minecraft:water", "modern_tech:high_pressure_water"},
-                {"modern_tech:steam", "modern_tech:high_pressure_steam"},
-                {"modern_tech:heavy_water", "modern_tech:high_pressure_heavy_water"},
-                {"modern_tech:heavy_water_steam", "modern_tech:high_pressure_heavy_water_steam"}
+                {"minecraft:water", "moderntech:high_pressure_water"},
+                {"moderntech:steam", "moderntech:high_pressure_steam"},
+                {"moderntech:heavy_water", "moderntech:high_pressure_heavy_water"},
+                {"moderntech:heavy_water_steam", "moderntech:high_pressure_heavy_water_steam"}
         };
 
         for (String[] fluid : fluids) {

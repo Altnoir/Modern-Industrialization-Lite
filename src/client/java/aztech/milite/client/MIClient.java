@@ -45,6 +45,8 @@ import aztech.milite.client.machines.gui.MachineMenuClient;
 import aztech.milite.client.machines.gui.MachineScreen;
 import aztech.milite.client.machines.MachineBlockEntityRenderer;
 import aztech.milite.client.machines.MachineOverlayClient;
+import aztech.milite.client.machines.CoilGlowClient;
+import aztech.milite.client.machines.RelinkCoilGlow;
 import aztech.milite.client.machines.models.DelegatingUnbakedModel;
 import aztech.milite.client.machines.models.MachineBakedModel;
 import aztech.milite.client.machines.models.MachineUnbakedModel;
@@ -118,6 +120,15 @@ public class MIClient {
         NeoForge.EVENT_BUS.addListener(MachineOverlayClient::onBlockOutline);
         DeferredBarrelTextRenderer.init();
         MultiblockHighlight.init(modBus);
+        CoilGlowClient.init();
+        if (ModList.get().isLoaded("abysslib_relink")) {
+            try {
+                Class.forName("com.altnoir.abysslib.model.api.client.DynamicEmissive");
+                RelinkCoilGlow.register();
+            } catch (ClassNotFoundException | LinkageError unavailable) {
+                MI.LOGGER.info("ReLink dynamic emissive API is unavailable; coil glow is disabled.");
+            }
+        }
 
         NeoForge.EVENT_BUS.addListener(RenderFrameEvent.Pre.class, event -> {
             JetpackParticleAdder.addJetpackParticles(Minecraft.getInstance());

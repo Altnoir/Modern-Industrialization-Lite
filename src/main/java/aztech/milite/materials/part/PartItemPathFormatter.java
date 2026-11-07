@@ -2,7 +2,7 @@ package aztech.milite.materials.part;
 
 public sealed interface PartItemPathFormatter {
     static String idFromPath(String path) {
-        return "modern_tech:" + path;
+        return "moderntech:" + path;
     }
 
     String getPartItemPath(String materialName, PartKey partKey);
@@ -10,7 +10,7 @@ public sealed interface PartItemPathFormatter {
     String getPartItemTag(String materialName, PartKey partKey);
 
     default String getPartItemId(String materialName, PartKey partKey) {
-        return "modern_tech:" + getPartItemPath(materialName, partKey);
+        return "moderntech:" + getPartItemPath(materialName, partKey);
     }
 
     record Default() implements PartItemPathFormatter {

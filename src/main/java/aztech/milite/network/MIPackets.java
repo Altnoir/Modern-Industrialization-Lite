@@ -6,6 +6,7 @@ import aztech.milite.network.armor.UpdateKeysPacket;
 import aztech.milite.network.machines.AdjustSlotCapacityPacket;
 import aztech.milite.network.machines.BuildMultiblockPacket;
 import aztech.milite.network.machines.ChangeShapePacket;
+import aztech.milite.network.machines.CoilGlowPacket;
 import aztech.milite.network.machines.DoSlotDraggingPacket;
 import aztech.milite.network.machines.LockAllPacket;
 import aztech.milite.network.machines.MachineComponentSyncPacket;
@@ -56,6 +57,7 @@ public class MIPackets {
         // Machine
         register("build_multiblock", BuildMultiblockPacket.class, BuildMultiblockPacket.STREAM_CODEC);
         register("change_shape", ChangeShapePacket.class, ChangeShapePacket.STREAM_CODEC);
+        register("coil_glow", CoilGlowPacket.class, CoilGlowPacket.STREAM_CODEC);
         register("move_recipe", MoveRecipePacket.class, MoveRecipePacket.STREAM_CODEC);
         register("rei_lock_slots", ReiLockSlotsPacket.class, ReiLockSlotsPacket.STREAM_CODEC);
         register("set_auto_extract", SetAutoExtractPacket.class, SetAutoExtractPacket.STREAM_CODEC);

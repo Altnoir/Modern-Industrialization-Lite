@@ -5,6 +5,7 @@ import aztech.milite.blocks.storage.tank.AbstractTankBlockEntity;
 import aztech.milite.client.blocks.storage.barrel.BarrelRenderer;
 import aztech.milite.client.blocks.storage.tank.TankRenderer;
 import aztech.milite.client.machines.gui.MachineMenuClient;
+import aztech.milite.client.machines.CoilGlowClient;
 import aztech.milite.client.machines.models.MachineBakedModel;
 import aztech.milite.client.machines.models.UseBlockModelBakedModel;
 import aztech.milite.client.textures.TextureHelper;
@@ -19,19 +20,29 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
 import java.util.function.Supplier;
 import java.util.Objects;
+import java.util.List;
 
 public class MIClientProxy extends MICommonProxy {
+    @Override
+    public void updateCoilGlow(ResourceLocation dimension, ChunkPos chunk, List<BlockPos> positions) {
+        var level = Minecraft.getInstance().level;
+        if (level != null && level.dimension().location().equals(dimension)) {
+            CoilGlowClient.replace(chunk, positions);
+        }
+    }
     @Override
     public Player getClientPlayer() {
         return Objects.requireNonNull(Minecraft.getInstance().player);

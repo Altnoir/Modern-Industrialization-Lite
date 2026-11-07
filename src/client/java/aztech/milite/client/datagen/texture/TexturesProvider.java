@@ -48,7 +48,7 @@ public record TexturesProvider(PackOutput packOutput, ExistingFileHelper existin
                     ModList.get().getModFileById(MI.ID).getFile().getSecureJar().getRootPath()));
 
             // extra_datagen_resources folder
-            var extra = FMLPaths.GAMEDIR.get().resolve("modern_tech").resolve("extra_datagen_resources");
+            var extra = FMLPaths.GAMEDIR.get().resolve("moderntech").resolve("extra_datagen_resources");
             packs.add(new FastPathPackResources(makePackInfo("extra"), extra));
         } else {
             // PathPackResources resolves resources against <root>/<packType>/<namespace>
