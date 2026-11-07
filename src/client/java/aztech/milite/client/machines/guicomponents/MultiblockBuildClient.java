@@ -106,9 +106,6 @@ public class MultiblockBuildClient extends GuiComponentClient<Unit, MultiblockBu
                     },
                     () -> List.of(),
                     (s, button, guiGraphics, mouseX, mouseY, partialTicks) -> {
-                        if (data.shapeValid()) {
-                            return;
-                        }
                         MachineScreen.blitStretched(guiGraphics, button.getX(), button.getY(), button.getWidth(), button.getHeight(),
                                 36, 18, 2, 14);
                         if (button.isHovered()) {
@@ -119,7 +116,7 @@ public class MultiblockBuildClient extends GuiComponentClient<Unit, MultiblockBu
                         var text = MIText.Build.text().getString();
                         guiGraphics.drawString(font, text, button.getX() + (button.getWidth() - font.width(text)) / 2, button.getY() + 3,
                                 0x505050, false);
-                    });
+                    }, () -> !data.shapeValid());
         }
 
         @Override

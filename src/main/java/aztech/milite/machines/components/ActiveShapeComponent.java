@@ -43,6 +43,6 @@ public class ActiveShapeComponent implements MachineComponent {
 
     @Override
     public void readNbt(CompoundTag tag, HolderLookup.Provider registries, boolean isUpgradingMachine) {
-        activeShape = tag.getInt("activeShape");
+        activeShape = Mth.clamp(tag.getInt("activeShape"), 0, shapeTemplates.length - 1);
     }
 }

@@ -29,11 +29,6 @@ import java.util.Optional;
 
 public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockEntity implements Tickable {
     private static final ShapeTemplate[] shapeTemplates;
-    /**
-     * For every possible shape, contains true if the position is within the bounds
-     * for the shape.
-     */
-    private static final boolean[][][] gridLayout;
 
     private final ActiveShapeComponent activeShape;
     private final RedstoneControlComponent redstoneControl;
@@ -45,36 +40,20 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
 
     static {
 
-        shapeTemplates = new ShapeTemplate[4];
-        gridLayout = new boolean[4][][];
+        shapeTemplates = new ShapeTemplate[3];
 
         SimpleMember casing = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("nuclear_casing")));
         SimpleMember controlRod = SimpleMember.forBlock(MIBlock.BLOCK_DEFINITIONS.get(MI.id("control_rod")));
         HatchFlags top = new HatchFlags.Builder().with(HatchTypes.NUCLEAR_FLUID, HatchTypes.NUCLEAR_ITEM).build();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < shapeTemplates.length; i++) {
             ShapeTemplate.Builder builder = new ShapeTemplate.Builder(MachineCasings.NUCLEAR);
-            gridLayout[i] = new boolean[5 + 2 * i][5 + 2 * i];
             for (int x = -2 - i; x <= 2 + i; x++) {
-                int minZ;
                 int xAbs = Math.abs(x);
-                if (i != 3) {
-                    if (xAbs == 0) {
-                        minZ = 0;
-                    } else {
-                        minZ = xAbs - 1;
-                    }
-                } else {
-                    if (xAbs <= 1) {
-                        minZ = 0;
-                    } else {
-                        minZ = xAbs - 2;
-                    }
-                }
+                int minZ = Math.max(0, xAbs - 1 - i);
 
                 int maxZ = 2 * (2 + i) - minZ;
 
                 for (int z = minZ; z <= maxZ; z++) {
-                    gridLayout[i][2 + i + x][z] = true;
                     if (!(z == minZ || z == maxZ || xAbs == 2 + i)) {
                         builder.add(x, -1, z, casing, null);
                         builder.add(x, 0, z, controlRod, null);
@@ -137,7 +116,8 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
                 return activeShape.getActiveShapeIndex();
             }
         }, new ShapeSelection.LineInfo(
-                List.of(MIText.ShapeTextSmall.text(), MIText.ShapeTextMedium.text(), MIText.ShapeTextLarge.text(), MIText.ShapeTextExtreme.text()),
+                List.of(MIText.ShapeTextSmall.text().append(" 3×3"), MIText.ShapeTextMedium.text().append(" 5×5"),
+                        MIText.ShapeTextLarge.text().append(" 7×7")),
                 List.of())));
     }
 
@@ -172,7 +152,8 @@ public class NuclearReactorMultiblockBlockEntity extends MultiblockMachineBlockE
         nuclearGrid = null;
         if (shapeMatcher.isMatchSuccessful()) {
             shapeValid.shapeValid = true;
-            int size = gridLayout[activeShape.getActiveShapeIndex()].length;
+            // Keep one empty cell around the hatch grid for neutron and heat escape.
+            int size = 5 + 2 * activeShape.getActiveShapeIndex();
             NuclearHatch[][] hatchesGrid = new NuclearHatch[size][size];
 
             for (HatchBlockEntity hatch : shapeMatcher.getMatchedHatches()) {

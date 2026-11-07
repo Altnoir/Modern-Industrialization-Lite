@@ -372,7 +372,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
 
         @Override
         public void addButtons(ButtonContainer container) {
-            container.addButton(centerX + 63, 7, 18, 18,
+            container.addButton(centerX - 9, 7, 18, 18,
                     (i) -> currentMode = circulateMode(),
                     () -> List.of(modeTooltip[currentMode.index], MIText.ClickToSwitch
                             .text(modeTooltip[nextMode().index]).setStyle(TextHelper.GRAY_TEXT),
@@ -391,7 +391,7 @@ public class NuclearReactorGuiClient extends GuiComponentClient<Unit, NuclearRea
                         }
                     }, this::drawButton);
 
-            container.addButton(centerX + 63, 151, 18, 18, (i) -> neutronMode = circulateNeutronMode(),
+            container.addButton(centerX - 9, 151, 18, 18, (i) -> neutronMode = circulateNeutronMode(),
                     () -> List.of(neutronModeTooltip[neutronMode.index],
                             MIText.ClickToSwitch.text(neutronModeTooltip[nextNeutronMode().index]).setStyle(TextHelper.GRAY_TEXT),
                             MIText.ShiftClickToSwitch.text(neutronModeTooltip[previousNeutronMode().index]).setStyle(TextHelper.GRAY_TEXT)),
