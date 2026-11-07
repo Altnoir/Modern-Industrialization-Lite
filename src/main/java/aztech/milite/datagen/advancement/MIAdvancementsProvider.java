@@ -31,13 +31,13 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
     }
 
     private Component translateTitle(String path, String englishName) {
-        var titleKey = "advancements.milite." + path;
+        var titleKey = "advancements.modern_tech." + path;
         translations.addTranslation(titleKey, englishName);
         return Component.translatable(titleKey);
     }
 
     private Component translateDescription(String path, String englishDescription) {
-        var descKey = "advancements.milite." + path + ".description";
+        var descKey = "advancements.modern_tech." + path + ".description";
         translations.addTranslation(descKey, englishDescription);
         return Component.translatable(descKey);
     }
@@ -104,7 +104,7 @@ public record MIAdvancementsProvider(TranslationProvider translations) implement
         var guidebook = newBuilder("guidebook")
                 .display(MIItem.GUIDE_BOOK,
                         MIText.ModernIndustrialization.text(),
-                        translateDescription("guidebook", "Welcome to Modern Industrialization! Make sure to check out the guidebook."),
+                        translateDescription("guidebook", "Welcome to ModernTech! Make sure to check out the guidebook."),
                         MI.id("textures/block/fire_clay_bricks.png"),
                         AdvancementType.TASK,
                         false,

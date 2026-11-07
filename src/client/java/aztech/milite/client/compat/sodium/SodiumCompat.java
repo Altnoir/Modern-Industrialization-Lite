@@ -20,10 +20,10 @@ public class SodiumCompat {
                     Class.forName("me.jellysquid.mods.sodium.client.render.texture.SpriteUtil"),
                     "markSpriteActive",
                     MethodType.methodType(void.class, TextureAtlasSprite.class));
-            MI.LOGGER.info("Loaded Modern Industrialization Sodium active sprite compat.");
+            MI.LOGGER.info("Loaded ModernTech Sodium active sprite compat.");
         } catch (NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
             if (ModList.get().isLoaded("embeddium")) {
-                MI.LOGGER.error("Failed to load Modern Industrialization Sodium active sprite compat.", e);
+                MI.LOGGER.error("Failed to load ModernTech Sodium active sprite compat.", e);
             }
         }
 

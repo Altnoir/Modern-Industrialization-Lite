@@ -29,7 +29,7 @@ public class GeneratedPathPackResources extends FastPathPackResources {
             return () -> new ByteArrayInputStream("""
                     {
                         "pack": {
-                            "description": "Generated resources for Modern Industrialization",
+                            "description": "Generated resources for ModernTech",
                             "pack_format": %d
                         }
                     }

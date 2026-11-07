@@ -54,8 +54,8 @@ public class UpstreamCompatTests {
 
     @MIGameTest
     public void legacyFtbConfigPreservesBothSettings(MIGameTestHelper helper) throws IOException {
-        var directory = Files.createTempDirectory("milite-ftb-config-");
-        var config = directory.resolve("milite-startup.toml");
+        var directory = Files.createTempDirectory("modern_tech-ftb-config-");
+        var config = directory.resolve("modern_tech-startup.toml");
         try {
             helper.assertTrue(ConfigMigration.ftbQuestsDefault(config), "new installations default to enabled");
             Files.writeString(config, "[compat]\nftbQuestsIntegration = false\n");

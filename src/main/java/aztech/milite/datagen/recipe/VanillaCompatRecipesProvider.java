@@ -153,7 +153,7 @@ public class VanillaCompatRecipesProvider extends MIRecipesProvider {
 
     private void generateDyeMixing(RecipeOutput exporter) {
         List<DyeMixRecipe> recipes = List.of(
-                new DyeMixRecipe("black_dye", "black", 1, List.of("milite:coal_dust"), "minecraft:water", 50),
+                new DyeMixRecipe("black_dye", "black", 1, List.of("modern_tech:coal_dust"), "minecraft:water", 50),
                 new DyeMixRecipe("black_dye2", "black", 1, List.of("minecraft:ink_sac")),
                 new DyeMixRecipe("black_dye3", "black", 1, List.of("minecraft:wither_rose")),
                 new DyeMixRecipe("blue_dye2", "blue", 1, List.of("minecraft:cornflower")),

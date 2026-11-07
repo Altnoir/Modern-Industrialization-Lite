@@ -3,7 +3,7 @@ package aztech.milite.api.energy;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
- * Small helpers for MI's FE-based energy handling. MI Lite does not ship its own cables or energy network:
+ * Small helpers for MI's FE-based energy handling. ModernTech does not ship its own cables or energy network:
  * machines simply expose NeoForge's standard {@code Capabilities.EnergyStorage.BLOCK} capability, so any
  * FE cable, energy pipe or storage block from another mod can power them.
  */

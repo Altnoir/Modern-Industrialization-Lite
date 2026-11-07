@@ -9,13 +9,13 @@ In general, a machine recipe JSON in MI has the following properties:
 - `fluid_outputs`: The list of fluids it produces.
 - `process_conditions`: A list of additional conditions for the recipe to be processed by the machine.
 
-You can find plenty of examples for the JSON format in [our files](../src/generated/resources/data/milite/recipe).
-For example, the assembler recipe for the trash can looks [like this](../src/generated/resources/data/milite/recipe/trash_can_assembler.json).
+You can find plenty of examples for the JSON format in [our files](../src/generated/resources/data/modern_tech/recipe).
+For example, the assembler recipe for the trash can looks [like this](../src/generated/resources/data/modern_tech/recipe/trash_can_assembler.json).
 
 ## Built-in recipe datagen
 
 Built-in static recipes are defined in Java under `aztech.milite.datagen.recipe` and generated into
-`src/generated/resources/data/milite/recipe`. Run `gradlew runData` after editing their definitions and include the
+`src/generated/resources/data/modern_tech/recipe`. Run `gradlew runData` after editing their definitions and include the
 updated generated files with the change. Do not edit generated JSON directly.
 
 The fixed providers group recipes by materials, electric age, steam age, oil, quarry, fusion, tools, vanilla recipes,
@@ -28,7 +28,7 @@ Specify the required machine level explicitly when adding a recipe:
 new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
         .level("bronze")
         .addItemInput("minecraft:chest", 1)
-        .addItemOutput("milite:trash_can", 1)
+        .addItemOutput("modern_tech:trash_can", 1)
         .offerTo(consumer, "example/trash_can");
 ```
 
@@ -49,7 +49,7 @@ NeoForge conditions without looking up optional items or evaluating conditions a
 ```java
 new ConditionalMachineRecipeBuilder(MIMachineRecipeTypes.QUARRY, 4, 600)
         .level("bronze")
-        .addItemInput("milite:bronze_drill", 1, 0.04f)
+        .addItemInput("modern_tech:bronze_drill", 1, 0.04f)
         .addItemOutput("minecraft:iron_ore", 1, 0.4f)
         .addItemOutput("mekanism:osmium_ore", 1, 0.12f, new ModLoadedCondition("mekanism"))
         .offerTo(consumer, "example/conditional_quarry");
@@ -76,20 +76,20 @@ MI adds a nicer syntax when the recipes are being registered by KubeJS:
   - `itemIn(input specification)`: Add a new input.
   - `itemIn(input specification, consumption chance)`: Add a new chanced input. Chance can be `0` if the input should not be consumable.
   - `itemOut(output specification)` and `itemOut(output specification, production chance)`: Add a new output.
-  - `fluidIn("1000x milite:oxygen")` and `fluidIn("1000x milite:oxygen", consumption chance)`: Add a fluid input in millibuckets. Chance can be `0` for a catalyst.
-  - `fluidOut("1000x milite:creosote")` and `fluidOut("1000x milite:creosote", production chance)`: Add a fluid output in millibuckets.
+  - `fluidIn("1000x modern_tech:oxygen")` and `fluidIn("1000x modern_tech:oxygen", consumption chance)`: Add a fluid input in millibuckets. Chance can be `0` for a catalyst.
+  - `fluidOut("1000x modern_tech:creosote")` and `fluidOut("1000x modern_tech:creosote", production chance)`: Add a fluid output in millibuckets.
 
 Here is an example to get you started:
 ```js
 ServerEvents.recipes(event => {
     // start a new recipe for the blast furnace, with 128 FE/t and a duration of 100 ticks
-    event.recipes.milite.blast_furnace(128, 100)
+    event.recipes.modern_tech.blast_furnace(128, 100)
         .level("electric")
         // add all the inputs and outputs:
         .itemIn("64x #minecraft:logs_that_burn")
         .itemOut("64x minecraft:charcoal")
-        .fluidIn("1000x milite:oxygen")
-        .fluidOut("5000x milite:creosote")
+        .fluidIn("1000x modern_tech:oxygen")
+        .fluidOut("5000x modern_tech:creosote")
 })
 ```
 
@@ -107,13 +107,13 @@ Here is the list of currently supported conditions:
 Here is an example that removes the default bronze drill quarry recipe, and adds one that requires the machine to be in the overworld and right above bedrock:
 ```js
 ServerEvents.recipes(event => {
-    event.remove({id: "milite:quarry/bronze"})
-    event.recipes.milite.quarry(4, 600)
-        .itemIn("milite:bronze_drill", 0.04)
+    event.remove({id: "modern_tech:quarry/bronze"})
+    event.recipes.modern_tech.quarry(4, 600)
+        .itemIn("modern_tech:bronze_drill", 0.04)
         .itemOut("minecraft:iron_ore", 0.4)
         .itemOut("minecraft:coal_ore", 0.4)
         .itemOut("minecraft:copper_ore", 0.2)
-        .itemOut("milite:tin_ore", 0.3)
+        .itemOut("modern_tech:tin_ore", 0.3)
         .itemOut("minecraft:gold_ore", 0.15)
         .itemOut("minecraft:redstone_ore", 0.2)
         .dimension("overworld")
@@ -142,7 +142,7 @@ MIRecipeEvents.customCondition(event => {
 
 // Add recipe that uses the condition, see above
 ServerEvents.recipes(event => {
-    event.recipes.milite.compressor(2, 200)
+    event.recipes.modern_tech.compressor(2, 200)
         .itemIn("dirt")
         .itemOut("diamond")
         // Use custom condition defined above
@@ -156,11 +156,11 @@ If a process condition doesn't have direct KubeJS support (like from an addon mo
 ```js
 // Manually adding a dimension condition - of course, this is just an example and you don't have a reason to actually do it this way.
 ServerEvents.recipes(event => {
-    event.recipes.milite.compressor(2, 200)
+    event.recipes.modern_tech.compressor(2, 200)
         .itemIn("dirt")
         .itemOut("diamond")
         .registeredCondition({
-          "milite:dimension": {
+          "modern_tech:dimension": {
             "dimension": "minecraft:the_nether"
           }
         })
@@ -196,7 +196,7 @@ MIMachineEvents.addMultiblockSlots("electric_blast_furnace", event => {
 The category ID can be found in various ways, for example by inspecting the `en_us.json` lang file:
 ```json
 {
-  "rei_categories.milite.electric_blast_furnace": "Electric Blast Furnace"
+  "rei_categories.modern_tech.electric_blast_furnace": "Electric Blast Furnace"
 }
 ```
 From this we deduce that the category is `electric_blast_furnace`.

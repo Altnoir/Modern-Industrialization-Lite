@@ -1,9 +1,0 @@
-{
-  "casing": "titanium",
-  "default_overlays": {
-    "fluid_auto": "milite:block/overlays/fluid_auto",
-    "output": "milite:block/overlays/output_fluid",
-    "side": "milite:block/machines/hatch_fluid/overlay_side"
-  },
-  "loader": "milite:machine"
-}

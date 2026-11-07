@@ -6,7 +6,7 @@ import net.minecraft.network.chat.MutableComponent;
 import java.util.List;
 
 public enum MIText {
-    ModernIndustrialization("Modern Industrialization"),
+    ModernIndustrialization("ModernTech"),
     AbsorptionProbability("Absorption Probability"),
     AcceptAnyFluidFuels("Consumes any Fluid Fuel (Check REI for FE/mb production)"),
     AcceptAnyItemFuels("Consumes any Furnace Fuel"),
@@ -79,7 +79,7 @@ public enum MIText {
     FuelEfficiencyFluidNormal("Accepts fluid fuel at normal efficiency."),
     FuelEfficiencyItemNormal("Accepts item fuel at normal efficiency."),
     GeneratedResources("MI Generated Resources"),
-    GeneratedResourcesDescription("Resources from the milite/generated_resources folder."),
+    GeneratedResourcesDescription("Resources from the modern_tech/generated_resources folder."),
     GeneratorCurrentFe("Production: %s"),
     GeneratorMaxFe("Max Production: %s"),
     GravichestplateDisabled("Gravichestplate disabled!"),
@@ -129,7 +129,7 @@ public enum MIText {
     Neutrons("%d Neutrons"),
     NeutronsMultiplication("Max %s neutrons emitted"),
     NeutronsRate("%s neutrons/t"),
-    NoEmi("WARNING: To play with Modern Industrialization, we STRONGLY RECOMMEND using EMI (Item and Recipe Viewer). Otherwise you won't be able to view the recipes in-game, and you will not be able to deal with conflicting machine recipes. Just Enough Items and Roughly Enough Items are also supported. This message can be disabled in the config."),
+    NoEmi("WARNING: To play with ModernTech, we STRONGLY RECOMMEND using EMI (Item and Recipe Viewer). Otherwise you won't be able to view the recipes in-game, and you will not be able to deal with conflicting machine recipes. Just Enough Items and Roughly Enough Items are also supported. This message can be disabled in the config."),
     NoLargeTank("Not linked to a Large Tank"),
     NotConsumed("Not consumed"),
     NuclearFuelEfficiencyTooltip("%s produced for %s of fuel consumed"),

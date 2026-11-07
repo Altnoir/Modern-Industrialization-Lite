@@ -38,7 +38,7 @@ public final class MITextures {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         Consumer<IORunnable> defer = r -> futures.add(CompletableFuture.runAsync(r::safeRun, Util.backgroundExecutor()));
 
-        // Material parts are hand drawn textures, they live in src/main/resources/assets/milite/textures. Only the parts that
+        // Material parts are hand drawn textures, they live in src/main/resources/assets/modern_tech/textures. Only the parts that
         // cannot be baked into a static texture are generated, which is why this visits every part but almost all of them are
         // ignored by PartTextureGenerator.
         for (Material material : MaterialRegistry.getMaterials().values()) {
@@ -57,29 +57,29 @@ public final class MITextures {
                 MI.id("textures/block/steel_machine_hull.png")));
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasAsset("milite:textures/item/mixed_ingot_blastproof.png")) {
-                mtm.addTexture("milite:textures/item/mixed_ingot_blastproof.png",
-                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/stainless_steel_ingot.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/titanium_ingot.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/tungsten_ingot.png")));
+            if (!mtm.hasAsset("modern_tech:textures/item/mixed_ingot_blastproof.png")) {
+                mtm.addTexture("modern_tech:textures/item/mixed_ingot_blastproof.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_tech:textures/item/stainless_steel_ingot.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/titanium_ingot.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/tungsten_ingot.png")));
             }
         });
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasAsset("milite:textures/item/mixed_plate_nuclear.png")) {
-                mtm.addTexture("milite:textures/item/mixed_plate_nuclear.png",
-                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/cadmium_plate.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/beryllium_plate.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_plate.png"), 1, 2));
+            if (!mtm.hasAsset("modern_tech:textures/item/mixed_plate_nuclear.png")) {
+                mtm.addTexture("modern_tech:textures/item/mixed_plate_nuclear.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_tech:textures/item/cadmium_plate.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/beryllium_plate.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/blastproof_alloy_plate.png"), 1, 2));
             }
         });
 
         mtm.runAtEnd(() -> {
-            if (!mtm.hasAsset("milite:textures/item/mixed_ingot_iridium.png")) {
-                mtm.addTexture("milite:textures/item/mixed_ingot_iridium.png",
-                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/iridium_ingot.png"),
-                                mtm.getAssetAsTexture("milite:textures/item/blastproof_alloy_ingot.png")));
+            if (!mtm.hasAsset("modern_tech:textures/item/mixed_ingot_iridium.png")) {
+                mtm.addTexture("modern_tech:textures/item/mixed_ingot_iridium.png",
+                        TextureHelper.tripleTexture(mtm.getAssetAsTexture("modern_tech:textures/item/blastproof_alloy_ingot.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/iridium_ingot.png"),
+                                mtm.getAssetAsTexture("modern_tech:textures/item/blastproof_alloy_ingot.png")));
             }
         });
 
@@ -104,7 +104,7 @@ public final class MITextures {
      */
     public static void generateMaterialTexture(TextureManager mtm, String materialSet, String part, String path, boolean isBlock,
             Coloramp coloramp) {
-        String outputPath = String.format("milite:textures/%s/%s.png", isBlock ? "block" : "item", path);
+        String outputPath = String.format("modern_tech:textures/%s/%s.png", isBlock ? "block" : "item", path);
         if (mtm.hasAsset(outputPath)) {
             return;
         }
@@ -151,7 +151,7 @@ public final class MITextures {
 
     private static String getTemplate(String materialSet, boolean explicitPath, String part, String suffix) {
         String template = explicitPath ? part : "materialsets/" + materialSet + "/" + part;
-        return String.format("milite:textures/%s%s.png", template, suffix);
+        return String.format("modern_tech:textures/%s%s.png", template, suffix);
     }
 
     private static final String[] LAYERS = new String[] { "_underlay", "", "_overlay" };
@@ -173,7 +173,7 @@ public final class MITextures {
 
         try (
                 var topTexture = tm.getAssetAsTexture(topTexturePath.toString());
-                var brickTexture = tm.getAssetAsTexture("milite:textures/block/fire_clay_bricks.png")) {
+                var brickTexture = tm.getAssetAsTexture("modern_tech:textures/block/fire_clay_bricks.png")) {
             if (topTexture.getWidth() != brickTexture.getWidth() || topTexture.getHeight() != brickTexture.getHeight()) {
                 throw new IllegalArgumentException("Texture and Brick must have same dimension");
             }
@@ -192,13 +192,13 @@ public final class MITextures {
     }
 
     private static void registerFluidTextures(TextureManager tm, FluidDefinition fluid) {
-        String path = "milite:textures/fluid/";
+        String path = "modern_tech:textures/fluid/";
         String bucket = path + "bucket.png";
         String bucket_content = path + "bucket_content.png";
 
         Coloramp fluidColoramp = new TabulatedColoramp(fluid.color);
 
-        if (!tm.hasAsset(String.format("milite:textures/item/%s_bucket.png", fluid.path()))) {
+        if (!tm.hasAsset(String.format("modern_tech:textures/item/%s_bucket.png", fluid.path()))) {
             try {
                 NativeImage bucket_image = tm.getAssetAsTexture(bucket);
                 NativeImage bucket_content_image = tm.getAssetAsTexture(bucket_content);
@@ -209,7 +209,7 @@ public final class MITextures {
                 if (fluid.isGas) {
                     TextureHelper.flip(bucket_image);
                 }
-                tm.addTexture(String.format("milite:textures/item/%s_bucket.png", fluid.path()), bucket_image);
+                tm.addTexture(String.format("modern_tech:textures/item/%s_bucket.png", fluid.path()), bucket_image);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -218,13 +218,13 @@ public final class MITextures {
 
         String pathFluid = path + String.format("template/%s.png", fluid.fluidTexture.path);
 
-        if (!tm.hasAsset(String.format("milite:textures/fluid/%s_still.png", fluid.path()))) {
+        if (!tm.hasAsset(String.format("modern_tech:textures/fluid/%s_still.png", fluid.path()))) {
             try {
                 NativeImage fluidAnim = tm.getAssetAsTexture(pathFluid);
                 TextureHelper.colorize(fluidAnim, fluidColoramp);
                 TextureHelper.setAlpha(fluidAnim, fluid.opacity);
-                tm.addTexture(String.format("milite:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
-                tm.addMcMeta(String.format("milite:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
+                tm.addTexture(String.format("modern_tech:textures/fluid/%s_still.png", fluid.path()), fluidAnim, true);
+                tm.addMcMeta(String.format("modern_tech:textures/fluid/%s_still.png.mcmeta", fluid.path()), fluid.fluidTexture.mcMetaInfo);
 
             } catch (IOException e) {
                 e.printStackTrace();

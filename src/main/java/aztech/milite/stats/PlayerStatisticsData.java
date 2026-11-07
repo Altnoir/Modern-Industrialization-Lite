@@ -48,7 +48,7 @@ public class PlayerStatisticsData extends SavedData {
         return tag;
     }
 
-    private static final String NAME = "milite_player_stats";
+    private static final String NAME = "modern_tech_player_stats";
     private static final Factory<PlayerStatisticsData> FACTORY = new Factory<>(PlayerStatisticsData::new, PlayerStatisticsData::new);
 
     public static PlayerStatisticsData get(MinecraftServer server) {

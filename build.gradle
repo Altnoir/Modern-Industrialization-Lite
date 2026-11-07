@@ -14,10 +14,10 @@ version = System.getenv("MI_VERSION")
         : project.mod_version
 group = "aztech"
 base {
-    archivesName = "milite"
+    archivesName = "modern_tech"
 }
 
-logger.lifecycle("Modern Industrialization version ${version}")
+logger.lifecycle("ModernTech version ${version}")
 
 java {
     toolchain {
@@ -153,10 +153,10 @@ neoForge {
     version = project.neo_version
 
     mods {
-        milite {
+        modern_tech {
             sourceSet sourceSets.main
         }
-        milite_with_client {
+        modern_tech_with_client {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -165,7 +165,7 @@ neoForge {
     runs {
         // applies to all the run configs below
         configureEach {
-            loadedMods = [mods.milite]
+            loadedMods = [mods.modern_tech]
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -180,38 +180,38 @@ neoForge {
             systemProperty 'forge.logging.console.level', 'debug'
 
             // Allows updates to the guide book to be watched for by GuideME.
-            systemProperty 'guideme.milite.book.sources',
-                    file("src/main/resources/assets/milite/mi_guidebook/").absolutePath
+            systemProperty 'guideme.modern_tech.book.sources',
+                    file("src/main/resources/assets/modern_tech/mi_guidebook/").absolutePath
         }
 
         client {
             client()
             sourceSet = sourceSets.client
-            loadedMods = [mods.milite_with_client]
+            loadedMods = [mods.modern_tech_with_client]
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
         }
 
         server {
             server()
-            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
         }
 
         data {
             data()
             sourceSet = sourceSets.client
-            loadedMods = [mods.milite_with_client]
+            loadedMods = [mods.modern_tech_with_client]
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
             // workingDirectory project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', "milite", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', "modern_tech", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
 
         gameTestServer {
             type = "gameTestServer"
             gameDirectory = project.file("build/gametest")
-            systemProperty 'neoforge.enabledGameTestNamespaces', "milite"
+            systemProperty 'neoforge.enabledGameTestNamespaces', "modern_tech"
         }
     }
 
@@ -331,6 +331,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
+    includeEmptyDirs = false
     from "LICENSE"
     from sourceSets.client.output
 }
@@ -457,7 +458,7 @@ publishing {
 }
 
 def releaseChannel = "stable"
-def changelogContents = System.getenv("CHANGELOG") ?: "Please visit our github repository for a changelog: https://github.com/AztechMC/Modern-Industrialization/releases."
+def changelogContents = System.getenv("CHANGELOG") ?: "Please visit our github repository for a changelog: https://github.com/Altnoir/Modern-Tech/releases."
 if (version.toLowerCase().contains("alpha")) {
     releaseChannel = "alpha"
     changelogContents = "THIS IS AN ALPHA RELEASE, MAKE A BACKUP BEFORE INSTALLING AND FREQUENTLY WHILE PLAYING, AND PLEASE REPORT ANY ISSUE YOU MAY FIND ON OUR ISSUE TRACKER.\n\n" + changelogContents
@@ -471,7 +472,7 @@ publishMods {
     version = project.version
     changelog = changelogContents
     type = ReleaseType.of(releaseChannel)
-    displayName = "Modern Industrialization v${project.version}"
+    displayName = "ModernTech v${project.version}"
     modLoaders = ["neoforge"]
 
     def shared = { platform ->

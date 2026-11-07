@@ -1,8 +1,0 @@
-{
-  "casing": "nuclear_casing",
-  "default_overlays": {
-    "fluid_auto": "milite:block/overlays/fluid_auto",
-    "top": "milite:block/overlays/output_fluid"
-  },
-  "loader": "milite:machine"
-}

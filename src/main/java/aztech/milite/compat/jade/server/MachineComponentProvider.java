@@ -62,7 +62,7 @@ public abstract sealed class MachineComponentProvider<S, C>
 
         @Override
         public List<ClientViewGroup<EnergyView>> getClientGroups(Accessor<?> accessor, List<ViewGroup<CompoundTag>> list) {
-            // MI Lite exposes machine energy through NeoForge's FE-compatible energy API.
+            // ModernTech exposes machine energy through NeoForge's FE-compatible energy API.
             return ClientViewGroup.map(list, tag -> EnergyView.read(tag, " FE"), null);
         }
     }

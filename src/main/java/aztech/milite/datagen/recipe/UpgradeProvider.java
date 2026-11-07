@@ -36,8 +36,8 @@ public class UpgradeProvider extends MIRecipesProvider {
             var packerRecipe = new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 1_000_000, 200)
                     .level(MachineLevel.IRIDIUM)
                     .addItemInput("minecraft:netherite_" + itemType, 1)
-                    .addItemInput("milite:quantum_upgrade", 1)
-                    .addItemOutput("milite:quantum_" + itemType, 1);
+                    .addItemInput("modern_tech:quantum_upgrade", 1)
+                    .addItemOutput("modern_tech:quantum_" + itemType, 1);
             packerRecipe.offerTo(consumer, "upgrade/packer/quantum/" + itemType);
         }
     }

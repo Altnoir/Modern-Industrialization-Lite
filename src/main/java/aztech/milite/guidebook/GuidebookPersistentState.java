@@ -14,7 +14,7 @@ import java.util.*;
 
 public class GuidebookPersistentState extends SavedData {
     private static final Factory<GuidebookPersistentState> FACTORY = new Factory<>(GuidebookPersistentState::new, GuidebookPersistentState::fromNbt);
-    private static final String NAME = "milite_guidebook";
+    private static final String NAME = "modern_tech_guidebook";
     private final Set<String> receivedPlayers;
 
     private GuidebookPersistentState(Set<String> receivedPlayers) {

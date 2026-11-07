@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "milite:block/fire_clay_bricks",
-    "side": "milite:block/casings/bricked_bronze",
-    "top": "milite:block/bronze_machine_casing"
-  }
-}

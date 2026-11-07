@@ -88,7 +88,7 @@ public class ConflictsChecker {
             finalReport += conflictsReport.toString();
         }
 
-        var filePath = FMLPaths.GAMEDIR.get().resolve("milite").resolve("recipe_conflicts.txt");
+        var filePath = FMLPaths.GAMEDIR.get().resolve("modern_tech").resolve("recipe_conflicts.txt");
         try (var os = new BufferedOutputStream(Files.newOutputStream(filePath))) {
             os.write(finalReport.getBytes(StandardCharsets.UTF_8));
         }

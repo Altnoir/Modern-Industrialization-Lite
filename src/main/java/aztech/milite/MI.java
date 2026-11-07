@@ -101,8 +101,8 @@ import java.util.Optional;
 
 @Mod(MI.ID)
 public class MI {
-    public static final String ID = "milite";
-    public static final Logger LOGGER = LoggerFactory.getLogger("Modern Industrialization");
+    public static final String ID = "modern_tech";
+    public static final Logger LOGGER = LoggerFactory.getLogger("ModernTech");
 
     public static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(ID, path);
@@ -245,12 +245,12 @@ public class MI {
                 event.addRepositorySource(consumer -> {
                     consumer.accept(new Pack(
                             new PackLocationInfo(
-                                    "milite/generated",
+                                    "modern_tech/generated",
                                     MIText.GeneratedResources.text(),
                                     PackSource.BUILT_IN,
                                     Optional.empty()),
                             BuiltInPackSource.fixedResources(new GeneratedPathPackResources(
-                                    FMLPaths.GAMEDIR.get().resolve("milite/generated_resources"),
+                                    FMLPaths.GAMEDIR.get().resolve("modern_tech/generated_resources"),
                                     event.getPackType())),
                             new Pack.Metadata(
                                     MIText.GeneratedResourcesDescription.text(),
@@ -267,6 +267,6 @@ public class MI {
             event.register(MIGameTests.class);
         });
 
-        LOGGER.info("Modern Industrialization setup done!");
+        LOGGER.info("ModernTech setup done!");
     }
 }

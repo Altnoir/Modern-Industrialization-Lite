@@ -1,18 +1,18 @@
 {
   "values": [
-    "milite:tin_ore",
-    "milite:lignite_coal_ore",
-    "milite:salt_ore",
-    "milite:quartz_ore",
-    "milite:bauxite_ore",
-    "milite:lead_ore",
-    "milite:nickel_ore",
-    "milite:antimony_ore",
-    "milite:monazite_ore",
-    "milite:tungsten_ore",
-    "milite:platinum_ore",
-    "milite:titanium_ore",
-    "milite:iridium_ore",
-    "milite:uranium_ore"
+    "modern_tech:tin_ore",
+    "modern_tech:lignite_coal_ore",
+    "modern_tech:salt_ore",
+    "modern_tech:quartz_ore",
+    "modern_tech:bauxite_ore",
+    "modern_tech:lead_ore",
+    "modern_tech:nickel_ore",
+    "modern_tech:antimony_ore",
+    "modern_tech:monazite_ore",
+    "modern_tech:tungsten_ore",
+    "modern_tech:platinum_ore",
+    "modern_tech:titanium_ore",
+    "modern_tech:iridium_ore",
+    "modern_tech:uranium_ore"
   ]
 }

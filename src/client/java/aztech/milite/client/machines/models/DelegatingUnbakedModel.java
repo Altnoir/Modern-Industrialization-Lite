@@ -22,7 +22,7 @@ import java.util.function.Function;
  * A model that simply delegates to another block/item model, resolved by its model id.
  *
  * <p>
- * This used to live inside MI's pipe renderer package. MI Lite no longer ships pipes, but the casing models
+ * This used to live inside MI's pipe renderer package. ModernTech no longer ships pipes, but the casing models
  * ({@code models/machine_casing/*.json}) still rely on this loader, so it was moved here.
  */
 public class DelegatingUnbakedModel implements IUnbakedGeometry<DelegatingUnbakedModel> {

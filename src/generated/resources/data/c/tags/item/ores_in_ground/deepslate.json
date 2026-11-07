@@ -1,14 +1,14 @@
 {
   "values": [
-    "milite:deepslate_tin_ore",
-    "milite:deepslate_lignite_coal_ore",
-    "milite:deepslate_salt_ore",
-    "milite:deepslate_bauxite_ore",
-    "milite:deepslate_lead_ore",
-    "milite:deepslate_nickel_ore",
-    "milite:deepslate_antimony_ore",
-    "milite:deepslate_monazite_ore",
-    "milite:deepslate_tungsten_ore",
-    "milite:deepslate_uranium_ore"
+    "modern_tech:deepslate_tin_ore",
+    "modern_tech:deepslate_lignite_coal_ore",
+    "modern_tech:deepslate_salt_ore",
+    "modern_tech:deepslate_bauxite_ore",
+    "modern_tech:deepslate_lead_ore",
+    "modern_tech:deepslate_nickel_ore",
+    "modern_tech:deepslate_antimony_ore",
+    "modern_tech:deepslate_monazite_ore",
+    "modern_tech:deepslate_tungsten_ore",
+    "modern_tech:deepslate_uranium_ore"
   ]
 }

@@ -87,7 +87,7 @@ public class RedstoneControlTests {
 
         CompoundTag module = new CompoundTag();
         CompoundTag components = new CompoundTag();
-        components.putBoolean("milite:low_signal", true);
+        components.putBoolean("modern_tech:low_signal", true);
         module.put("components", components);
         CompoundTag old = new CompoundTag();
         old.put("redstoneModuleStack", module);

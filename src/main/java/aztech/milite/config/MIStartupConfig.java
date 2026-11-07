@@ -42,7 +42,7 @@ public final class MIStartupConfig {
                 .define("datagenOnStartup", false);
         this.loadRuntimeGeneratedResources = builder.start("loadRuntimeGeneratedResources",
                 "Load generated resources",
-                "Additionally load resources in milite/generated_resources.")
+                "Additionally load resources in modern_tech/generated_resources.")
                 .gameRestart()
                 .define("loadRuntimeGeneratedResources", false);
         builder.popSection();

@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
  * Implemented by MI items that can store FE, such as the portable storage unit or the gravi chestplate.
  *
  * <p>
- * MI Lite exposes these through NeoForge's standard {@code Capabilities.EnergyStorage.ITEM} capability so that
+ * ModernTech exposes these through NeoForge's standard {@code Capabilities.EnergyStorage.ITEM} capability so that
  * chargers and energy pipes from other mods can fill them up.
  */
 public interface EnergyItem {

@@ -18,24 +18,24 @@ public class HatchRecipesProvider extends MIRecipesProvider {
     public void buildRecipes(RecipeOutput consumer) {
         String[] casings = { "bronze", "steel", "electric", "aluminum_alloy", "stainless_steel", "titanium", "iridium" };
         String[] tanks = { "bronze", "steel", "", "aluminum", "stainless_steel", "titanium", "" };
-        // MI Lite has no cables, so energy hatches are crafted with the wire of the same material.
+        // ModernTech has no cables, so energy hatches are crafted with the wire of the same material.
         String[] wires = { "", "", "tin", "electrum", "aluminum", "annealed_copper", "superconductor" };
 
         for (int i = 0; i < casings.length; i++) {
 
-            String casing = String.format("milite:%s_machine_hull", casings[i]);
+            String casing = String.format("modern_tech:%s_machine_hull", casings[i]);
             if (i < 2) {
-                casing = String.format("milite:%s_machine_casing", casings[i]);
+                casing = String.format("modern_tech:%s_machine_casing", casings[i]);
             }
 
-            String tank = String.format("milite:%s_tank", tanks[i]);
-            String fluidInput = String.format("milite:%s_fluid_input_hatch", casings[i]);
-            String fluidOutput = String.format("milite:%s_fluid_output_hatch", casings[i]);
-            String itemInput = String.format("milite:%s_item_input_hatch", casings[i]);
-            String itemOutput = String.format("milite:%s_item_output_hatch", casings[i]);
-            String energyInput = String.format("milite:%s_energy_input_hatch", casings[i]);
-            String energyOutput = String.format("milite:%s_energy_output_hatch", casings[i]);
-            String wire = String.format("milite:%s_wire", wires[i]);
+            String tank = String.format("modern_tech:%s_tank", tanks[i]);
+            String fluidInput = String.format("modern_tech:%s_fluid_input_hatch", casings[i]);
+            String fluidOutput = String.format("modern_tech:%s_fluid_output_hatch", casings[i]);
+            String itemInput = String.format("modern_tech:%s_item_input_hatch", casings[i]);
+            String itemOutput = String.format("modern_tech:%s_item_output_hatch", casings[i]);
+            String energyInput = String.format("modern_tech:%s_energy_input_hatch", casings[i]);
+            String energyOutput = String.format("modern_tech:%s_energy_output_hatch", casings[i]);
+            String wire = String.format("modern_tech:%s_wire", wires[i]);
             String hopper = "minecraft:hopper";
 
             String[][] ABs = { { fluidInput, fluidOutput }, { itemInput, itemOutput }, { energyInput, energyOutput } };

@@ -72,7 +72,7 @@
 
 仍有 **129** 条青铜要求但参考能耗不为 2 的机器配方，其中以下 **12** 条可以进入蒸汽单方块机器。它们继承原 JSON 的缺省等级；datagen 迁移没有制造这些问题。
 
-| 配方路径（`milite:` 后） | 参考能耗／时长 | 判断与建议 |
+| 配方路径（`modern_tech:` 后） | 参考能耗／时长 | 判断与建议 |
 |---|---|---|
 | `electric_age/component/cutting_machine/silicon_waffer` | 16／600 | 硅原料已有后续加工门槛，可考虑将切片明确限定 electric；先核对电路解锁链 |
 | `materials/compressor/blastproof_alloy_plate` | 32／600 | 抗爆合金已有材料门槛；可考虑 electric，避免蒸汽机承担后期设备加工 |

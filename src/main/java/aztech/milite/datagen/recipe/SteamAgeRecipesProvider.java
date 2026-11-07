@@ -15,12 +15,12 @@ public class SteamAgeRecipesProvider extends FixedRecipesProvider {
     @Override
     public void buildRecipes(RecipeOutput consumer) {
         shaped(consumer, "steam_age/bronze/machine_casing_asbl",
-                new ShapedRecipeJson("milite:bronze_machine_casing", 1, "PPP", "PGP", "PPP")
+                new ShapedRecipeJson("modern_tech:bronze_machine_casing", 1, "PPP", "PGP", "PPP")
                         .addInput('P', "#c:plates/bronze")
                         .addInput('G', "#c:gears/bronze"));
 
         shaped(consumer, "steam_age/fireclay/coke_oven",
-                new ShapedRecipeJson("milite:coke_oven", 1, "BBB", "BFB", "BBB")
+                new ShapedRecipeJson("modern_tech:coke_oven", 1, "BBB", "BFB", "BBB")
                         .addInput('B', "minecraft:bricks")
                         .addInput('F', "minecraft:furnace"));
 
@@ -28,23 +28,23 @@ public class SteamAgeRecipesProvider extends FixedRecipesProvider {
                 .level("bronze")
                 .addItemInput(Blocks.FURNACE, 1, 1.0f)
                 .addItemInput(Blocks.BRICKS, 8, 1.0f)
-                .addItemOutput("milite:coke_oven", 1, 1.0f)
+                .addItemOutput("modern_tech:coke_oven", 1, 1.0f)
                 .offerTo(consumer, "steam_age/fireclay/packer/coke_oven");
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.PACKER, 2, 200)
                 .level("bronze")
                 .addItemInput(Blocks.BLAST_FURNACE, 1, 1.0f)
-                .addItemInput("milite:fire_clay_bricks", 8, 1.0f)
-                .addItemOutput("milite:steam_blast_furnace", 1, 1.0f)
+                .addItemInput("modern_tech:fire_clay_bricks", 8, 1.0f)
+                .addItemOutput("modern_tech:steam_blast_furnace", 1, 1.0f)
                 .offerTo(consumer, "steam_age/fireclay/packer/packer_steam_blast_furnace");
 
         shaped(consumer, "steam_age/fireclay/steam_blast_furnace",
-                new ShapedRecipeJson("milite:steam_blast_furnace", 1, "BBB", "BFB", "BBB")
-                        .addInput('B', "milite:fire_clay_bricks")
+                new ShapedRecipeJson("modern_tech:steam_blast_furnace", 1, "BBB", "BFB", "BBB")
+                        .addInput('B', "modern_tech:fire_clay_bricks")
                         .addInput('F', "minecraft:blast_furnace"));
 
         shaped(consumer, "steam_age/steel/machine_casing_asbl",
-                new ShapedRecipeJson("milite:steel_machine_casing", 1, "PPP", "PGP", "PPP")
+                new ShapedRecipeJson("modern_tech:steel_machine_casing", 1, "PPP", "PGP", "PPP")
                         .addInput('P', "#c:plates/steel")
                         .addInput('G', "#c:gears/steel"));
     }

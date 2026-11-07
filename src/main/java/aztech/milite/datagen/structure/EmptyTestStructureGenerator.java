@@ -27,7 +27,7 @@ public class EmptyTestStructureGenerator implements DataProvider {
     @Override
     public CompletableFuture<?> run(CachedOutput output) {
         String structureIn;
-        try (var in = getClass().getResourceAsStream("/data/milite/structure/empty.snbt")) {
+        try (var in = getClass().getResourceAsStream("/data/modern_tech/structure/empty.snbt")) {
             structureIn = new String(in.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new UncheckedIOException(e);

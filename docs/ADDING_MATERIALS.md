@@ -88,13 +88,13 @@ MIMaterialEvents.addMaterials(event => {
 ## Textures
 
 Almost every texture is hand drawn. A part is textured by
-`assets/milite/textures/item/<material>_<part>.png` and a block by
-`assets/milite/textures/block/<material>_<part>.png`, so a new material needs new art, shipped in a
+`assets/modern_tech/textures/item/<material>_<part>.png` and a block by
+`assets/modern_tech/textures/block/<material>_<part>.png`, so a new material needs new art, shipped in a
 resource pack. Generated resources are loaded in front of resource packs, so anything that is
 generated wins over your art.
 
 Only the textures that cannot be baked into a static image are generated from a template in
-`assets/milite/textures/materialsets`:
+`assets/modern_tech/textures/materialsets`:
 - the raw metal block, which is the hand drawn raw shape over the stone background of the set the
   material uses (`materialsets/raw/<set>_block.png`)
 - the side and the top of barrels and coils that have no art of their own

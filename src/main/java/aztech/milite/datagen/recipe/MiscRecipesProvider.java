@@ -15,34 +15,34 @@ public class MiscRecipesProvider extends FixedRecipesProvider {
     @Override
     public void buildRecipes(RecipeOutput consumer) {
         shaped(consumer, "forge_hammer",
-                new ShapedRecipeJson("milite:forge_hammer", 1, "___", " i ", "iii")
+                new ShapedRecipeJson("modern_tech:forge_hammer", 1, "___", " i ", "iii")
                         .addInput('_', "minecraft:heavy_weighted_pressure_plate")
                         .addInput('i', "minecraft:iron_ingot"));
 
         shaped(consumer, "guide_book",
-                new ShapedRecipeJson("milite:guidebook", 1, "ccc", "cbc", "ccc")
+                new ShapedRecipeJson("modern_tech:guidebook", 1, "ccc", "cbc", "ccc")
                         .addInput('c', "#c:nuggets/copper")
                         .addInput('b', "minecraft:book"));
 
         shaped(consumer, "other/packer_block_template",
-                new ShapedRecipeJson("milite:packer_block_template", 1, "b", "p")
+                new ShapedRecipeJson("modern_tech:packer_block_template", 1, "b", "p")
                         .addInput('b', "minecraft:bricks")
                         .addInput('p', "#c:plates/steel"));
 
         shaped(consumer, "other/packer_double_ingot_template",
-                new ShapedRecipeJson("milite:packer_double_ingot_template", 1, "b", "p")
-                        .addInput('b', "milite:iron_double_ingot")
+                new ShapedRecipeJson("modern_tech:packer_double_ingot_template", 1, "b", "p")
+                        .addInput('b', "modern_tech:iron_double_ingot")
                         .addInput('p', "#c:plates/steel"));
 
         new MachineRecipeBuilder(MIMachineRecipeTypes.ASSEMBLER, 8, 200)
                 .level("bronze")
                 .addItemInput("#c:plates/steel", 8, 1.0f)
                 .addFluidInput(Fluids.LAVA, 1000, 1.0f)
-                .addItemOutput("milite:trash_can", 1, 1.0f)
+                .addItemOutput("modern_tech:trash_can", 1, 1.0f)
                 .offerTo(consumer, "trash_can_assembler");
 
         shaped(consumer, "trash_can",
-                new ShapedRecipeJson("milite:trash_can", 1, "PPP", "PLP", "PPP")
+                new ShapedRecipeJson("modern_tech:trash_can", 1, "PPP", "PLP", "PPP")
                         .addInput('P', "#c:plates/steel")
                         .addInput('L', "minecraft:lava_bucket"));
     }

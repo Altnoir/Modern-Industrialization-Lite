@@ -168,7 +168,7 @@ public class MIClient {
             });
         }
 
-        MI.LOGGER.info("Modern Industrialization client setup done!");
+        MI.LOGGER.info("ModernTech client setup done!");
     }
 
     @SubscribeEvent

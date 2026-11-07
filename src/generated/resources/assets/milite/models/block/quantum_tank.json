@@ -1,6 +1,0 @@
-{
-  "parent": "milite:base/tank",
-  "textures": {
-    "0": "milite:block/quantum_tank"
-  }
-}

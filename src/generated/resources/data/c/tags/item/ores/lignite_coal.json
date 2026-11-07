@@ -1,6 +1,6 @@
 {
   "values": [
-    "milite:lignite_coal_ore",
-    "milite:deepslate_lignite_coal_ore"
+    "modern_tech:lignite_coal_ore",
+    "modern_tech:deepslate_lignite_coal_ore"
   ]
 }

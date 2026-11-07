@@ -34,13 +34,13 @@ public class RuntimeDataGen {
     }
 
     private static void runInner(DataGenConfig... configs) throws Exception {
-        var miFolder = FMLPaths.GAMEDIR.get().resolve("milite");
+        var miFolder = FMLPaths.GAMEDIR.get().resolve("modern_tech");
 
         // Create some relevant texture folders because I'm sure some people will forget it
         var datagenOverridesFolder = miFolder.resolve("extra_datagen_resources");
         Files.createDirectories(datagenOverridesFolder
                 .resolve("assets")
-                .resolve("milite")
+                .resolve("modern_tech")
                 .resolve("textures"));
 
         var dataOutput = miFolder.resolve("runtime_datagen");

@@ -32,7 +32,7 @@ Crafting-machine buffers use the casing tier's value multiplied by 100 and the m
 with a cap based on the highest registered tier. Storage blocks and energy hatches define their capacity separately.
 Registering a casing tier does not add a recipe level or change a machine's fixed speed multiplier.
 
-Add the `cable_tier_short.milite.<name>` and `cable_tier_long.milite.<name>` translation keys so that the tier name shows up in game.
+Add the `cable_tier_short.modern_tech.<name>` and `cable_tier_long.modern_tech.<name>` translation keys so that the tier name shows up in game.
 Use `event.get("aluminum")` to read an already-registered tier, for example to derive your FE/t value from it.
 
 Energy input and output hatches are not registered automatically for a new tier:

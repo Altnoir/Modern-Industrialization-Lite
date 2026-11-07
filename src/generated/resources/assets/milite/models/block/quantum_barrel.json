@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "milite:block/quantum_barrel_top",
-    "side": "milite:block/quantum_barrel_side"
-  }
-}

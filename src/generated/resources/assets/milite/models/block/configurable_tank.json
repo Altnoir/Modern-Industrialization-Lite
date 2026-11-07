@@ -1,9 +1,0 @@
-{
-  "casing": "configurable_tank",
-  "default_overlays": {
-    "fluid_auto": "milite:block/overlays/fluid_auto",
-    "item_auto": "milite:block/overlays/item_auto",
-    "output": "milite:block/overlays/output"
-  },
-  "loader": "milite:machine"
-}

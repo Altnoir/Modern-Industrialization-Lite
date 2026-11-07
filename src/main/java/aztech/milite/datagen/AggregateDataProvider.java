@@ -36,7 +36,7 @@ public class AggregateDataProvider implements DataProvider {
     @Override
     public CompletableFuture<?> run(CachedOutput output) {
         LOGGER.info("Will run the following providers in parallel:" +
-                providers.stream().map(provider -> "\n - Modern Industrialization/%s".formatted(provider.getName())).collect(Collectors.joining()));
+                providers.stream().map(provider -> "\n - ModernTech/%s".formatted(provider.getName())).collect(Collectors.joining()));
         return CompletableFuture.allOf(providers.stream().map(provider -> provider.run(output)).toArray(CompletableFuture[]::new));
     }
 

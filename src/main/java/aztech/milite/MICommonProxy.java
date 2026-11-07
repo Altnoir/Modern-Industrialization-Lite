@@ -39,7 +39,7 @@ public class MICommonProxy {
                 Class<?> clientProxy = Class.forName("aztech.milite.client.MIClientProxy");
                 return (MICommonProxy) clientProxy.getConstructor().newInstance();
             } catch (Exception e) {
-                throw new RuntimeException("Failed to create Modern Industrialization ClientProxy.", e);
+                throw new RuntimeException("Failed to create ModernTech ClientProxy.", e);
             }
         } else {
             return new MICommonProxy();

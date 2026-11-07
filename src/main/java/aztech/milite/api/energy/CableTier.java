@@ -21,12 +21,12 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
- * A single energy tier. In MI Lite the tiers are purely expressed in FE/t: the value of a tier is the base
+ * A single energy tier. In ModernTech the tiers are purely expressed in FE/t: the value of a tier is the base
  * amount of FE/t that a machine of that tier consumes or produces, and {@link #getMaxTransfer()} is the
  * ceiling for machine buffers of that tier.
  *
  * <p>
- * MI Lite no longer ships cables: machines expose NeoForge's standard energy capability, so the tier is now
+ * ModernTech no longer ships cables: machines expose NeoForge's standard energy capability, so the tier is now
  * just a machine class marker (it selects the machine casing model and caps the machine's internal buffer),
  * not a cable voltage.
  */
@@ -82,7 +82,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String shortEnglishKey() {
-        return "cable_tier_short.milite." + name;
+        return "cable_tier_short.modern_tech." + name;
     }
 
     public MutableComponent shortEnglishName() {
@@ -90,7 +90,7 @@ public final class CableTier implements Comparable<CableTier> {
     }
 
     public String longEnglishKey() {
-        return "cable_tier_long.milite." + name;
+        return "cable_tier_long.modern_tech." + name;
     }
 
     public MutableComponent longEnglishName() {

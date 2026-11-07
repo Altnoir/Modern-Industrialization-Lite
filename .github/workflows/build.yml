@@ -27,5 +27,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Modern Industrialization ${{ steps.var.outputs.commit_hash }}
+        name: ModernTech ${{ steps.var.outputs.commit_hash }}
         path: build/libs

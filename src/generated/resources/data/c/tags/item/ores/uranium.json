@@ -1,6 +1,6 @@
 {
   "values": [
-    "milite:uranium_ore",
-    "milite:deepslate_uranium_ore"
+    "modern_tech:uranium_ore",
+    "modern_tech:deepslate_uranium_ore"
   ]
 }

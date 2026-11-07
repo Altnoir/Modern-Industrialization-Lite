@@ -3,8 +3,8 @@ api_key_env: CROWDIN_API_KEY
 commit_message: "Updated Translations from Crowdin"
 base_path: .
 files:
-  - source: /src/generated/resources/assets/milite/lang/en_us.json
-    translation: /src/main/resources/assets/milite/lang/%locale_with_underscore%.json
+  - source: /src/generated/resources/assets/modern_tech/lang/en_us.json
+    translation: /src/main/resources/assets/modern_tech/lang/%locale_with_underscore%.json
     languages_mapping:
       locale_with_underscore:
         af: af_za

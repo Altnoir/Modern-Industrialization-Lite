@@ -29,7 +29,7 @@ import java.util.TreeMap;
 
 public final class TranslationProvider implements DataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String OUTPUT_PATH = "assets/milite/lang/en_us.json";
+    private static final String OUTPUT_PATH = "assets/modern_tech/lang/en_us.json";
 
     private final PackOutput packOutput;
     private final Map<String, String> translationPairs = new TreeMap<>();
@@ -49,25 +49,25 @@ public final class TranslationProvider implements DataProvider {
     }
 
     private void addManualEntries() {
-        addTranslation("block.milite.pipe", "Pipe(s)");
+        addTranslation("block.modern_tech.pipe", "Pipe(s)");
 
         // The machine levels, shown on a recipe in the viewer in place of the energy it costs.
         for (MachineLevel level : MachineLevel.values()) {
             addTranslation(level.getTranslationKey(), level.getEnglishName());
         }
 
-        addTranslation("entity.minecraft.villager.milite.industrialist", "Industrialist");
-        addTranslation("ftbquests.task.milite.built_multiblock", "Build Multiblock");
-        addTranslation("ftbquests.task.milite.built_multiblock.machine", "Machine");
+        addTranslation("entity.minecraft.villager.modern_tech.industrialist", "Industrialist");
+        addTranslation("ftbquests.task.modern_tech.built_multiblock", "Build Multiblock");
+        addTranslation("ftbquests.task.modern_tech.built_multiblock.machine", "Machine");
 
-        addTranslation("key.categories.milite.milite", "Modern Industrialization");
-        addTranslation("key.milite.toggle_flight", "Toggle Flight");
-        addTranslation("key.milite.toggle_3x3", "Toggle 3x3 Mining");
-        addTranslation("text.autoconfig.milite.title", "Modern Industrialization Menu");
-        addTranslation("tag.milite.replicator_blacklist", "Replicator Blacklist");
+        addTranslation("key.categories.modern_tech.modern_tech", "ModernTech");
+        addTranslation("key.modern_tech.toggle_flight", "Toggle Flight");
+        addTranslation("key.modern_tech.toggle_3x3", "Toggle 3x3 Mining");
+        addTranslation("text.autoconfig.modern_tech.title", "ModernTech Menu");
+        addTranslation("tag.modern_tech.replicator_blacklist", "Replicator Blacklist");
 
-        addTranslation("config.jade.plugin_milite.overclock", "Machine Overclock");
-        addTranslation("config.jade.plugin_milite.pipe", "Pipe Information");
+        addTranslation("config.jade.plugin_modern_tech.overclock", "Machine Overclock");
+        addTranslation("config.jade.plugin_modern_tech.pipe", "Pipe Information");
 
         addTranslation(MIText.AttributeInfiniteDamage.getTranslationKey() + ".desc",
                 "Deals an effectively infinite amount of damage.");
@@ -99,7 +99,7 @@ public final class TranslationProvider implements DataProvider {
 
         for (var entry : ReiMachineRecipes.categories.entrySet()) {
             if (entry.getKey().getNamespace().equals(MI.ID)) {
-                addTranslation("rei_categories.milite." + entry.getKey().getPath(), entry.getValue().englishName);
+                addTranslation("rei_categories.modern_tech." + entry.getKey().getPath(), entry.getValue().englishName);
             }
         }
 

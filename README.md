@@ -1,4 +1,4 @@
-# Modern Industrialization: Lite
+# ModernTech
 
 A slimmed-down fork of [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization):
 **the machines stay, the logistics go.**
@@ -16,21 +16,25 @@ reactor), materials, tools and the in-game guidebook form the factory progressio
 - gunpowder temporarily doubles steam-machine speed, and an Overdrive Module doubles the speed of supported
   electric machines. A full energy buffer stops accepting power.
 
-**Bring your own logistics mod, and MI Lite supplies the factory.**
+**Bring your own logistics mod, and ModernTech supplies the factory.**
 
-The mod id is `milite`.
+The mod id is `modern_tech`.
+
+This namespace replaces `milite`. Existing worlds, data packs, resource packs and scripts using the old ID
+are not automatically migrated; back up worlds and update integrations before upgrading.
 
 ## Requirements
 
 - Minecraft 1.21.1
-- NeoForge 21.1.228 or newer
+- NeoForge 21.1.238 or newer
 - [GuideME](https://modrinth.com/mod/guideme) (required, it renders the guidebook)
+- AbyssLib Reginth 1.0.0 or newer (required)
 - Optional: EMI, JEI or REI for recipe viewing, Jade for machine tooltips
 
 ## Installation
 
 1. Install NeoForge for Minecraft 1.21.1.
-2. Put this mod and [GuideME](https://modrinth.com/mod/guideme) into your `mods` folder.
+2. Put this mod, [GuideME](https://modrinth.com/mod/guideme) and AbyssLib Reginth into your `mods` folder.
 3. Craft the guidebook in game, it walks you through the whole progression.
 
 ## Building from source
@@ -46,8 +50,8 @@ The jar is written to `build/libs`. `./gradlew runClient` starts a development c
 
 ## Bug reports and contributions
 
-Please report bugs on the [issue tracker](https://github.com/Altnoir/Modern-Industrialization-Lite/issues).
-Translations live in `src/main/resources/assets/milite/lang`, so pull requests with translation fixes are welcome.
+Please report bugs on the [issue tracker](https://github.com/Altnoir/Modern-Tech/issues).
+Translations live in `src/main/resources/assets/modern_tech/lang`, so pull requests with translation fixes are welcome.
 Modpack and resource pack developers should have a look at [docs/README.md](docs/README.md).
 
 ## Credits and license
@@ -76,18 +80,20 @@ the Fusion Reactor sound from [Mekanism](https://github.com/mekanism/mekanism) (
 
 ---
 
-## 现代工业化
+## ModernTech 中文简介
 
-**Modern Industrialization: Lite** 是 [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization)
+**ModernTech** 是 [Modern Industrialization](https://github.com/AztechMC/Modern-Industrialization)
 的精简分支。
 
-模组 id 是 `milite`。模组保留机器与工业进度，移除了自带管道、电缆和变压器，物流与供电需要搭配其他模组。
+模组 id 是 `modern_tech`。模组保留机器与工业进度，移除了自带管道、电缆和变压器，物流与供电需要搭配其他模组。
+
+新命名空间取代了 `milite`。旧存档、数据包、资源包和脚本不会自动迁移；升级前请备份存档并更新相关内容。
 
 电动机器使用 FE，配方通过机器等级限制加工要求。各等级使用固定速度倍率，加速提高每刻能耗，但同一配方的总能耗不变。
 火药可临时加速蒸汽机器，超速模块可持续加速支持它的电动机器；连续加工不再逐步提升超频。
 
-- 需要：Minecraft 1.21.1、NeoForge 21.1.228+、[GuideME](https://modrinth.com/mod/guideme)
+- 需要：Minecraft 1.21.1、NeoForge 21.1.238+、[GuideME](https://modrinth.com/mod/guideme)、AbyssLib Reginth 1.0.0+
 - 可选：EMI / JEI / REI、Jade
 - 自行构建：需要 Java 21，执行 `./gradlew build`，产物在 `build/libs`
-- 问题反馈：[issue tracker](https://github.com/Altnoir/Modern-Industrialization-Lite/issues)
+- 问题反馈：[issue tracker](https://github.com/Altnoir/Modern-Tech/issues)
 - 协议：代码 MIT，素材 CC0

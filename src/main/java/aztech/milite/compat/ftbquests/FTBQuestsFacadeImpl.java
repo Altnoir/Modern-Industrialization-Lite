@@ -32,7 +32,7 @@ public class FTBQuestsFacadeImpl implements FTBQuestsFacade {
     @Override
     public void init() {
         BuiltMultiblockQuestTask.TYPE = TaskTypes.register(MI.id("built_multiblock"), BuiltMultiblockQuestTask::new,
-                () -> Icon.getIcon("milite:item/wrench"));
+                () -> Icon.getIcon("modern_tech:item/wrench"));
         ClearFileCacheEvent.EVENT.register(event -> {
             itemTasks = null;
             builtMultiblockTasks = null;

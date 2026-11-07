@@ -1,7 +1,7 @@
 {
   "values": {
-    "milite:industrialist": {
-      "loot_table": "milite:gameplay/hero_of_the_village/industrialist_gift"
+    "modern_tech:industrialist": {
+      "loot_table": "modern_tech:gameplay/hero_of_the_village/industrialist_gift"
     }
   }
 }

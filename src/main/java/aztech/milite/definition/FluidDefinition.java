@@ -58,7 +58,7 @@ public class FluidDefinition extends Definition implements FluidLike {
 
     @Override
     public String getTranslationKey() {
-        return "block.milite." + this.getId().getPath();
+        return "block.modern_tech." + this.getId().getPath();
     }
 
     @Override

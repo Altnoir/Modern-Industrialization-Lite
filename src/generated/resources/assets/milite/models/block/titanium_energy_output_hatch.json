@@ -1,8 +1,0 @@
-{
-  "casing": "titanium",
-  "default_overlays": {
-    "output": "milite:block/overlays/output_energy",
-    "side": "milite:block/machines/hatch_energy/overlay_side"
-  },
-  "loader": "milite:machine"
-}
